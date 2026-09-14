@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#161616">
+<title>Algebra 2</title>
+<!-- Mobile-first Algebra 2 launcher: lessons, worksheets, checks, and flashcards. -->
+<style>
+  :root { /* Tango theme — mirrors the Desk tokens */
+          --blue:#161616; --ink:#161616; --bg:#E5E3D2; --card:#F7F5EE; --line:#A9A79A;
+          --accent:#FF5B19; --accent-ink:#A8330A; --second:#AECACD; --second-ink:#2F5A5E;
+          --ok:#25663F; --ok-bg:#DEF0D3; --bad:#B03A2E; --bad-bg:#F1DDD3; --muted:#6E6C62; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { margin:0; }
+  body { font-family:-apple-system,Roboto,"Segoe UI",sans-serif; background:var(--bg); color:var(--ink); }
+  header { position:sticky; top:0; background:var(--blue); color:#E5E3D2; border-bottom:3px solid var(--accent); z-index:5;
+           padding:calc(12px + env(safe-area-inset-top,0)) 16px 12px; box-shadow:0 2px 6px rgba(0,0,0,.15); }
+  header h1 { margin:0; font-size:19px; font-weight:700; }
+  header .who { font-size:12px; opacity:.9; margin-top:3px; }
+  header .hdr-row { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+  header .hdr-btn { background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.35);
+           border-radius:8px; padding:9px 14px; font-size:13px; font-weight:600; -webkit-tap-highlight-color:transparent; }
+  header .hdr-btn:active { background:rgba(255,255,255,.28); }
+  header #vhint { margin-top:6px; }
+  main { padding:10px 12px 48px; max-width:680px; margin:0 auto; }
+  details.unit { margin:0 0 8px; }
+  details.unit > summary { list-style:none; cursor:pointer; padding:12px 14px; background:#F3F1E8;
+           border:1px solid var(--line); border-radius:10px; font-weight:700; font-size:15px; display:flex; align-items:center; gap:8px; }
+  details.unit > summary::-webkit-details-marker { display:none; }
+  details.unit > summary .caret { margin-left:auto; opacity:.55; transition:transform .15s; }
+  details.unit[open] > summary .caret { transform:rotate(90deg); }
+  .lesson { background:var(--card); border:1px solid var(--line); border-top:none; padding:10px 12px; }
+  .lesson:first-of-type { border-top:1px solid var(--line); margin-top:6px; border-radius:10px 10px 0 0; }
+  .lesson:last-of-type { border-radius:0 0 10px 10px; }
+  .lesson .title { font-weight:600; font-size:14px; margin-bottom:8px; }
+  .btns { display:flex; gap:8px; flex-wrap:wrap; }
+  .btn { flex:1 1 auto; min-width:84px; text-align:center; padding:12px 8px; border-radius:9px;
+         border:1px solid var(--line); background:var(--card); font-size:13px; font-weight:600; color:var(--ink);
+         text-decoration:none; cursor:pointer; }
+  .btn:active { background:#DEDDE6; }
+  .btn.ws { background:var(--second); border-color:#7FA5A9; }
+  .btn.quiz { background:var(--ok-bg); border-color:#8FB893; }
+  .btn.bloo { background:#DEDDE6; border-color:#A9A7C4; }
+  .btn.fc { background:#F1E5CF; border-color:#D1B98A; }
+  .btn[disabled] { opacity:.4; pointer-events:none; }
+  header #gradepill { display:inline-block; margin-top:8px; background:rgba(255,255,255,.16);
+           border:1px solid rgba(255,255,255,.35); border-radius:999px; padding:5px 12px; font-size:13px; font-weight:700; }
+  .lesson .title { display:flex; align-items:center; gap:8px; }
+  .lesson .done-badge { margin-left:auto; font-size:11px; font-weight:700; color:var(--ok);
+           background:var(--ok-bg); border:1px solid #8FB893; border-radius:999px; padding:1px 8px; white-space:nowrap; }
+  /* Bonus lessons use a muted enrichment style. */
+  .bonus-strip { margin-top:10px; border-top:2px dashed var(--line); padding-top:6px; }
+  .bonus-head { font-size:12px; font-weight:700; color:var(--muted); padding:6px 4px 8px; }
+  .lesson.bonus { background:#DEDDD3; filter:grayscale(.55); }
+  .lesson.bonus .title { color:var(--muted); }
+  .lesson.bonus .btn { opacity:.82; }
+  .empty { text-align:center; color:var(--muted); padding:40px 20px; }
+
+  /* Native flashcards overlay — fixed sheet with the mobile palette. */
+  #fco { position:fixed; inset:0; background:var(--bg); display:none; z-index:60; flex-direction:column; }
+  #fco.show { display:flex; }
+  #fco .fc-bar { display:flex; gap:10px; align-items:center; background:var(--blue); color:#E5E3D2; border-bottom:3px solid var(--accent);
+             padding:calc(12px + env(safe-area-inset-top,0)) 16px 12px; }
+  #fco .fc-bar .fc-title { margin:0; font-size:14px; font-weight:700; }
+  #fco .fc-bar .fc-prog { font-size:12px; opacity:.9; margin-left:auto; }
+  #fco .fc-bar button { background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.35);
+             border-radius:8px; padding:8px 12px; font-size:13px; font-weight:600; }
+  #fco .fc-body { flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; padding:16px; max-width:100%;
+             width:100%; margin:0 auto; display:flex; flex-direction:column; }
+  #fco .fc-timer { height:5px; background:#DEDDD3; border-radius:3px; overflow:hidden; margin-bottom:14px; display:none; }
+  #fco.timed .fc-timer { display:block; }
+  #fco .fc-timer > i { display:block; height:100%; width:100%; background:var(--accent); transition:width .95s linear; }
+  #fco .fc-q { font-size:17px; font-weight:600; line-height:1.4; margin-bottom:16px; }
+  #fco .fc-choice { display:block; width:100%; max-width:100%; min-height:44px; text-align:left; padding:14px 16px; margin-bottom:10px; border-radius:10px;
+             border:1px solid var(--line); background:var(--card); font-size:15px; color:var(--ink); font-weight:500;
+             white-space:normal; overflow-wrap:anywhere; }
+  #fco .fc-choice:active { background:#DEDDE6; }
+  #fco .fc-choice.right { background:var(--ok-bg); border-color:var(--ok); color:var(--ok); font-weight:700; }
+  #fco .fc-choice.wrong { background:var(--bad-bg); border-color:var(--bad); color:var(--bad); }
+  #fco .fc-choice[disabled] { pointer-events:none; }
+  #fco .fc-feedback { min-height:22px; margin-top:6px; font-size:14px; font-weight:600; }
+  #fco .fc-next { margin-top:auto; padding:14px; border-radius:10px; border:0; background:var(--accent); color:var(--black,#161616);
+             font-size:15px; font-weight:700; display:none; }
+  #fco .fc-next.show { display:block; }
+  /* Mode picker + result panels reuse .fc-body; big beveled choices. */
+  #fco .fc-pick, #fco .fc-result { text-align:center; margin:auto 0; }
+  #fco .fc-pick h2, #fco .fc-result h2 { font-size:20px; margin:0 0 6px; }
+  #fco .fc-pick p, #fco .fc-result p { color:var(--muted); font-size:14px; margin:0 0 20px; line-height:1.4; }
+  #fco .fc-mode { display:block; width:100%; padding:18px; margin-bottom:12px; border-radius:12px; border:1px solid var(--line);
+             background:var(--card); font-size:16px; font-weight:700; color:var(--ink); }
+  #fco .fc-result .fc-mode { max-width:100%; white-space:normal; overflow-wrap:anywhere; }
+  #fco .fc-mode small { display:block; font-weight:500; font-size:12px; color:var(--muted); margin-top:4px; }
+  #fco .fc-mode:active { background:#DEDDE6; }
+  #fco .fc-mode.quick { background:#F1E5CF; border-color:#D1B98A; }
+  #fco .fc-mode.full { background:var(--second); border-color:#7FA5A9; }
+  #fco .fc-score { font-size:44px; font-weight:800; margin:8px 0; }
+  #fco .fc-score.pass { color:var(--ok); } #fco .fc-score.fail { color:var(--bad); }
+  #fco .fc-recap { text-align:left; margin:14px 0; font-size:14px; line-height:1.4; }
+  #fco .fc-recap ul { margin:6px 0 0; padding-left:20px; }
+  #fco .fc-recap li { margin-bottom:8px; overflow-wrap:anywhere; }
+  #fco .fc-recap .fc-recap-answer, #fco .fc-perfect { color:var(--ok); }
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 Algebra 2 <a href="teacher-app.html" style="float:right;color:#E5E3D2;opacity:.85;font-size:12px;font-weight:400;text-decoration:none;margin-top:3px">🔑 Teacher</a></h1>
+  <div class="who" id="who">Not signed in.</div>
+  <div class="hdr-row">
+    <button id="signin-btn" class="hdr-btn" onclick="openNameFinder()">👤 Sign in</button>
+    <button id="sync-nearby" class="hdr-btn" onclick="syncNearby()">📡 Sync Nearby</button>
+  </div>
+  <div id="gradepill" style="display:none"></div>
+  
+</header>
+<main id="main"><div class="empty">Loading lessons…</div></main>
+
+
+
+<div id="fco" role="dialog" aria-modal="true" aria-labelledby="fc-title">
+  <div class="fc-bar">
+    <h2 class="fc-title" id="fc-title">🃏 Flashcards</h2>
+    <span class="fc-prog" id="fc-prog"></span>
+    <button type="button" onclick="closeFlashcards()">✕ Close</button>
+  </div>
+  <div class="fc-body" id="fc-body"><!-- mode picker / cards / result injected here --></div>
+</div>
+
+<!-- offline-config.js is GENERATED into the pack; it sets window.OFFLINE_MODE and,
+     in a --play build, window.PLAY_BUILD + window.MEDIA_BASE_URL. mobile-home isn't in
+     ROOT_FILES (build-android copies it in separately), so it must load this itself.
+     Must be FIRST. On the web it 404s harmlessly (mobile-home is the APK home). -->
+<script src="offline-config.js" onerror=""></script>
+<script src="roster_config.js" onerror=""></script>
+<script src="roster-client.js" onerror=""></script>
+<!-- Signed receipts and durable local ledger storage. -->
+<script src="receipt-verify.js" onerror=""></script>
+<script src="ledger-store.js" onerror=""></script>
+
+
+<!-- OFFLINE GRADING MESH Phase 1-2 — the student's device signing key + the
+     submissions lane (self-sign raw work, gossip it beside grades). Inert on the
+     web: SecureKeyStore only exists inside the APK. -->
+<script src="receipt-sign.js" onerror=""></script>
+<script src="secure-key.js" onerror=""></script>
+<script src="student-key.js" onerror=""></script>
+<script src="submission-store.js" onerror=""></script>
+<script src="submission-capture.js" onerror=""></script>
+<!-- FLASHCARDS (native) — the shared pure Blooket-flashcard engine + the gradebook
+     ledger feeder, so the launcher runs flashcards IN-APP instead of deep-linking to
+     the Desk. flashcards.js is byte-pinned to the Desk's inline engine by
+     tests/flashcards-engine.test.js. offline-queue.js lets a finished deck queue its
+     grade row when offline; gradebook-client.js is the same feeder the Desk uses. -->
+<script src="flashcards.js" onerror=""></script>
+<script src="lib/flashcard-flags.js" onerror=""></script>
+<script src="lib/flashcard-sync.js" onerror=""></script>
+<script src="offline-queue.js" onerror=""></script>
+<script src="gradebook-client.js" onerror=""></script>
+<script src="js/ced2026-crosswalk.js"></script>
+<script src="js/ced2026-labels.js"></script>
+<script>
+(function () {
+  var main = document.getElementById('main');
+  var cedRegistry = { lessons: {} };
+  configureCedLabels(function () { return cedRegistry; });
+  // Fall 2026 CED (5-unit) group names; topic mapping lives in the shared helper.
+  var NEW_UNIT_NAMES = {
+    1:'Unit 1 · Exploring One-Variable Data & Collecting Data',
+    2:'Unit 2 · Probability, Random Variables & Distributions',
+    3:'Unit 3 · Inference for Categorical Data: Proportions',
+    4:'Unit 4 · Inference for Quantitative Data: Means',
+    5:'Unit 5 · Regression Analysis'
+  };
+  // Keep the existing numeric CED topic order; OLD ids still identify the lessons.
+  function _topicKey(l){ var m=String(cedLabel(l.id).id).split('.'); return (parseInt(m[0],10)||0)*100+(parseInt(m[1],10)||0); }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+
+  // Identity line + Sign-in button reflect the shared roster session (the same
+  // localStorage session every bundled page uses). refreshIdentity() is re-run after
+  // a sign-in so the student's name appears without a reload.
+  function refreshIdentity() {
+    var who = (window.rosterClient && rosterClient.current && rosterClient.current()) || null;
+    var w = document.getElementById('who');
+    var b = document.getElementById('signin-btn');
+    if (who) {
+      if (w) w.textContent = '👤 Signed in as ' + (who.realName || who.username || 'student');
+      if (b) b.textContent = '⇄ Switch student';
+    } else {
+      if (w) w.textContent = 'Not signed in — sign in so your work counts toward your grade.';
+      if (b) b.textContent = '👤 Sign in';
+    }
+  }
+  window.refreshIdentity = refreshIdentity;
+  try { refreshIdentity(); } catch (e) {}
+
+  // ── ANDROID Phase 3 — Sync Nearby (P2P ledger gossip) ─────────────────────────
+  function svcUrl() {
+    var u = (typeof window.ROSTER_SERVICE_URL === 'string' && window.ROSTER_SERVICE_URL)
+      || (typeof window.RAILWAY_ROSTER_URL === 'string' && window.RAILWAY_ROSTER_URL)
+      || (typeof window.ROSTER_SERVER_URL === 'string' && window.ROSTER_SERVER_URL) || '';
+    return String(u).replace(/\/$/, '');
+  }
+  function verifyRow(row) {
+    // Verify-on-ingest for gossiped/QR'd rows: the shared BINDING verifier
+    // (receipt-verify.js) — the signature must cover THIS row's grade fields, not just
+    // "some bytes", or a harvested signature could be re-stapled to a forged score.
+    try {
+      if (!window.ReceiptVerify || typeof ReceiptVerify.verifyLedgerRow !== 'function') return Promise.resolve(false);
+      return Promise.resolve(ReceiptVerify.verifyLedgerRow(row)).catch(function () { return false; });
+    } catch (_) { return Promise.resolve(false); }
+  }
+  var _issuerReg = false;
+  function registerIssuer(base) {
+    if (_issuerReg || !window.ReceiptVerify || !Array.isArray(ReceiptVerify.ISSUERS) || !base || typeof fetch !== 'function') return Promise.resolve();
+    return fetch(base + '/receipts/issuer').then(function (r) { return r && r.ok ? r.json() : null; }).then(function (j) {
+      if (!j || !j.enabled) return;
+      var keys = (j.pubkeys && j.pubkeys.length) ? j.pubkeys : (j.pubkey ? [j.pubkey] : []);
+      // registerIssuerKeys refuses any pubkey already bound to a student (§0.1c
+      // disjointness) — falls back to a raw push if the guarded API isn't present.
+      if (typeof ReceiptVerify.registerIssuerKeys === 'function') {
+        ReceiptVerify.registerIssuerKeys(keys, { name: 'Roster', kind: 'roster' });
+      } else {
+        keys.forEach(function (pk) { if (pk && !ReceiptVerify.ISSUERS.some(function (i) { return i.pubkey === pk; })) ReceiptVerify.ISSUERS.push({ name: 'Roster', pubkey: pk, kind: 'roster' }); });
+      }
+      _issuerReg = true;
+    }).catch(function () {});
+  }
+
+  // OFFLINE GRADING MESH Phase 1 — get-or-generate this student's device key,
+  // register it (authenticated), and sync the class student trust set so gossiped
+  // submissions can be verified. Inert on the web (StudentKey.available()===false).
+  // Fire-and-forget; never blocks navigation or sign-in.
+  function meshKeyBoot() {
+    if (!window.StudentKey || !window.rosterClient) return Promise.resolve();
+    var base = svcUrl();
+    var token = null;
+    try { token = rosterClient.token && rosterClient.token(); } catch (_) {}
+    var p = StudentKey.available() ? StudentKey.ensure(window.rosterClient, base) : Promise.resolve();
+    return p.then(function () { return token ? StudentKey.syncTrustSet(base, token) : null; }).catch(function () {});
+  }
+  window.meshKeyBoot = meshKeyBoot;
+
+  // The submissions-lane verifier (student trust set). Fail-closed like verifyRow.
+
+  // ── Sign-in: diamond-dial name finder (ported from the Desk) ──────────────────
+  // Same 4-way narrowing pick as desk.html's _nf* wall: fetch
+  // the class roster (section PeriodX), sort by name, and let the student "turn the
+  // dial" (↑ ← → ↓) down to their own name — never typing a username — then just their
+  // password. Success flows into rosterClient, so every signed grade receipt they earn
+  // carries their `sid`. First sign-in needs the network; the session then persists.
+  var ROSTER_CACHE_TTL_MS = 60 * 60 * 1000;
+
+  function _periodToSection(period) {
+    if (typeof period !== 'string' || !period) return 'PeriodX';
+    if (/^Period/.test(period)) return period;
+    if (/^[A-Za-z]$/.test(period)) return 'Period' + period.toUpperCase();
+    return 'PeriodX';
+  }
+  function _fetchSectionRoster(section, opts) {
+    if (!section) return Promise.resolve([]);
+    var fresh = !!(opts && opts.fresh);
+    var cacheKey = 'a2_desk_roster_cache_' + section;
+    if (!fresh) { try {
+      var raw = localStorage.getItem(cacheKey);
+      if (raw) {
+        var cached = JSON.parse(raw);
+        if (cached && cached.ts && (Date.now() - cached.ts < ROSTER_CACHE_TTL_MS)) return Promise.resolve(cached.roster || []);
+      }
+    } catch (_) {} }
+    var base = svcUrl();
+    if (!base) return Promise.resolve([]);
+    return fetch(base + '/roster/section/' + encodeURIComponent(section), fresh ? { cache: 'no-store' } : undefined)
+      .then(function (res) { return res && res.ok ? res.json() : null; })
+      .then(function (data) {
+        var students = (data && data.ok && Array.isArray(data.students)) ? data.students : [];
+        students.sort(function (a, b) { return (a.realName || '').localeCompare(b.realName || ''); });
+        try { localStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), roster: students })); } catch (_) {}
+        return students;
+      })
+      .catch(function () { return []; });
+  }
+  function _fetchPeriodRoster(period, opts) {
+    var primary = _periodToSection(period);
+    return _fetchSectionRoster(primary, opts).then(function (rows) {
+      if (rows.length > 0) return rows;
+      if (primary !== 'PeriodX') return _fetchSectionRoster('PeriodX', opts);
+      return [];
+    });
+  }
+
+  function _nfEsc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; }); }
+  function _nfFriendly(r) {
+    var nm = (r && r.realName || '').trim();
+    if (!nm) return (r && r.username) || '(unnamed)';
+    var p = nm.split(/\s+/);
+    if (p.length === 1) return p[0];
+    return p[0] + ' ' + p[p.length - 1].charAt(0).toUpperCase() + '.';
+  }
+  function _nfRangeKey(r) {
+    var nm = ((r && (r.realName || r.username)) || '').trim();
+    if (!nm) return '?';
+    return nm.charAt(0).toUpperCase() + (nm.charAt(1) || '').toLowerCase();
+  }
+  // Split [lo,hi] into up to 4 contiguous buckets. <=4 names -> one leaf per name.
+  function _nfBuckets(lo, hi) {
+    var n = hi - lo + 1, out = [];
+    if (n <= 0) return out;
+    if (n <= 4) { for (var i = lo; i <= hi; i++) out.push({ lo: i, hi: i, leaf: true }); return out; }
+    var bs = Math.ceil(n / 4), start = lo;
+    for (var b = 0; b < 4 && start <= hi; b++) {
+      var end = (b === 3) ? hi : Math.min(start + bs - 1, hi);
+      out.push({ lo: start, hi: end, leaf: false });
+      start = end + 1;
+    }
+    return out;
+  }
+
+  var _nfRoster = [], _nfStack = [], _nfLo = 0, _nfHi = -1, _nfState = 'dial', _nfPicked = null;
+
+  function openNameFinder() {
+    if (!window.rosterClient || !rosterClient.signIn) { ; setTimeout(dlHide, 3000); return Promise.resolve(); }
+    ;
+    return _fetchPeriodRoster('PeriodX', { fresh: true }).then(function (roster) {
+      ;
+      _nfRoster = (roster || []).slice().sort(function (a, b) { return (a.realName || a.username || '').localeCompare(b.realName || b.username || ''); });
+      if (!_nfRoster.length) { ; setTimeout(dlHide, 4000); return; }
+      _nfLo = 0; _nfHi = _nfRoster.length - 1; _nfStack = []; _nfPicked = null;
+      _nfEnsureOverlay();
+      document.getElementById('namefinder-overlay').style.display = 'flex';
+      _nfRenderDial();
+    }).catch(function () { ; ; setTimeout(dlHide, 3500); });
+  }
+  window.openNameFinder = openNameFinder;
+
+  function _nfEnsureOverlay() {
+    if (document.getElementById('namefinder-overlay')) return;
+    var ov = document.createElement('div');
+    ov.id = 'namefinder-overlay';
+    ov.style.cssText = 'position:fixed;inset:0;background:rgba(10,20,35,.55);display:none;align-items:center;justify-content:center;z-index:100001;padding:16px';
+    ov.innerHTML =
+      '<style>'
+      + '#namefinder-overlay .nf-card{background:#F7F5EE;border-radius:16px;max-width:460px;width:100%;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0));box-shadow:0 12px 40px rgba(0,0,0,.35);text-align:center;font-family:-apple-system,Roboto,"Segoe UI",sans-serif}'
+      + '#namefinder-overlay .nf-title{font-size:16px;font-weight:800;color:#161616;margin-bottom:2px}'
+      + '#namefinder-overlay .nf-count{font-size:11px;color:#667;margin-bottom:12px}'
+      + '#namefinder-overlay .nf-diamond{display:flex;flex-direction:column;align-items:center;gap:8px;margin:4px 0}'
+      + '#namefinder-overlay .nf-row{display:flex;gap:8px;justify-content:center;width:100%}'
+      + '#namefinder-overlay .nf-tile{flex:1;min-width:120px;max-width:200px;min-height:64px;border:1.5px solid #7FA5A9;background:#AECACD;border-radius:12px;cursor:pointer;padding:8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#161616}'
+      + '#namefinder-overlay .nf-tile:active{background:#9BBFC3}'
+      + '#namefinder-overlay .nf-arrow{font-size:20px;line-height:1}'
+      + '#namefinder-overlay .nf-label{font-size:14px;font-weight:700;margin-top:3px}'
+      + '#namefinder-overlay .nf-sub{font-size:9px;color:#5a6b82;margin-top:2px}'
+      + '#namefinder-overlay .nf-foot{font-size:12px;color:#667;margin-top:12px}'
+      + '#namefinder-overlay .nf-foot a{color:#A8330A;text-decoration:none}'
+      + '#namefinder-overlay input{width:100%;max-width:260px;font-size:16px;padding:11px;border:1.5px solid #A9A79A;border-radius:10px;box-sizing:border-box}'
+      + '#namefinder-overlay .nf-go{margin-top:12px;background:#FF5B19;color:#161616;border:0;border-radius:10px;padding:12px 22px;font-size:15px;font-weight:700;min-width:150px}'
+      + '#namefinder-overlay .nf-err{color:#B03A2E;font-size:11px;margin-top:6px;min-height:13px}'
+      + '</style>'
+      + '<div class="nf-card" role="dialog" aria-label="Sign in"><div id="nf-content"></div></div>';
+    ov.addEventListener('click', function (e) { if (e.target === ov) closeNameFinder(); });
+    document.body.appendChild(ov);
+    document.addEventListener('keydown', _nfKeydown);
+  }
+
+  function _nfRenderDial() {
+    _nfState = 'dial';
+    var host = document.getElementById('nf-content');
+    if (!host) return;
+    var n = _nfHi - _nfLo + 1;
+    if (n <= 1) { _nfSelectName(_nfRoster[_nfLo]); return; }   // singleton: auto-pick
+    var buckets = _nfBuckets(_nfLo, _nfHi);
+    var arrows = ['↑', '←', '→', '↓'];
+    var arrowName = ['up', 'left', 'right', 'down'];
+    function tile(b, i) {
+      if (!b) return '<div class="nf-tile" style="visibility:hidden"></div>';
+      var label, sub, aria;
+      if (b.leaf) {
+        var r = _nfRoster[b.lo];
+        label = _nfEsc(_nfFriendly(r)); sub = '';
+        aria = 'Press ' + arrowName[i] + ': select ' + _nfFriendly(r);
+      } else {
+        var first = _nfRoster[b.lo], last = _nfRoster[b.hi], c = b.hi - b.lo + 1;
+        label = _nfEsc(_nfRangeKey(first)) + '–' + _nfEsc(_nfRangeKey(last));
+        sub = _nfEsc(_nfFriendly(first)) + ' … ' + _nfEsc(_nfFriendly(last)) + ' (' + c + ')';
+        aria = 'Press ' + arrowName[i] + ': ' + _nfFriendly(first) + ' to ' + _nfFriendly(last) + ', ' + c + ' names';
+      }
+      return '<button class="nf-tile" aria-label="' + _nfEsc(aria) + '" onclick="_nfPick(' + i + ')">'
+        + '<div class="nf-arrow">' + arrows[i] + '</div>'
+        + '<div class="nf-label">' + label + '</div>'
+        + (sub ? '<div class="nf-sub">' + sub + '</div>' : '')
+        + '</button>';
+    }
+    host.innerHTML =
+      '<div class="nf-title">🔒 Find your name</div>'
+      + '<div class="nf-count" aria-live="polite">' + n + ' classmates left · turn the dial to you</div>'
+      + '<div class="nf-diamond">'
+      + '<div class="nf-row">' + tile(buckets[0], 0) + '</div>'
+      + '<div class="nf-row">' + tile(buckets[1], 1) + tile(buckets[2], 2) + '</div>'
+      + '<div class="nf-row">' + tile(buckets[3], 3) + '</div>'
+      + '</div>'
+      + '<div class="nf-foot">press ↑ ← → ↓'
+      + (_nfStack.length ? ' &nbsp;·&nbsp; <a href="#" onclick="_nfBack();return false;">⌫ back</a>' : '')
+      + '</div>'
+      + '<div class="nf-foot" style="color:#889"><a href="#" onclick="_nfCreate();return false;">I\'m not on the list →</a></div>';
+  }
+
+  function _nfPick(i) {
+    if (_nfState !== 'dial') return;
+    var b = _nfBuckets(_nfLo, _nfHi)[i];
+    if (!b) return;
+    if (b.leaf) { _nfSelectName(_nfRoster[b.lo]); return; }
+    _nfStack.push({ lo: _nfLo, hi: _nfHi });
+    _nfLo = b.lo; _nfHi = b.hi;
+    _nfRenderDial();
+  }
+  window._nfPick = _nfPick;
+
+  function _nfBack() {
+    if (!_nfStack.length) return;
+    var w = _nfStack.pop();
+    _nfLo = w.lo; _nfHi = w.hi;
+    _nfRenderDial();
+  }
+  window._nfBack = _nfBack;
+
+  function _nfSelectName(r) { _nfPicked = r || null; _nfRenderPassword(); }
+
+  function _nfRenderPassword() {
+    _nfState = 'password';
+    var host = document.getElementById('nf-content');
+    if (!host) return;
+    var r = _nfPicked || {};
+    host.innerHTML =
+      '<div class="nf-title">👋 Hi, ' + _nfEsc(_nfFriendly(r)) + '!</div>'
+      + '<div class="nf-count">Enter your password to sign in.</div>'
+      + '<input type="password" id="nf-pw" autocomplete="current-password" placeholder="password">'
+      + '<div id="nf-pw-error" class="nf-err"></div>'
+      + '<div><button class="nf-go" id="nf-pw-ok" onclick="_nfSubmitPassword()">Sign in</button></div>'
+      + '<div class="nf-foot" style="color:#889"><a href="#" onclick="_nfBackToDial();return false;">← that’s not me</a></div>';
+    var pw = document.getElementById('nf-pw');
+    if (pw) { pw.onkeydown = function (e) { if (e.key === 'Enter') _nfSubmitPassword(); }; setTimeout(function () { pw.focus(); }, 60); }
+  }
+
+  function _nfSubmitPassword() {
+    if (_nfSubmitPassword._pending) return;
+    var r = _nfPicked || {};
+    var pw = document.getElementById('nf-pw');
+    var err = document.getElementById('nf-pw-error');
+    var okBtn = document.getElementById('nf-pw-ok');
+    var password = (pw && pw.value) || '';    // NOT trimmed — edge whitespace can be valid
+    if (err) err.textContent = '';
+    if (!r.username) { _nfBackToDial(); return; }
+    if (!password) { if (err) err.textContent = 'Enter your password.'; return; }
+    if (!window.rosterClient || !window.rosterClient.signIn) { if (err) err.textContent = 'Sign-in unavailable — connect to Wi-Fi and try again.'; return; }
+    _nfSubmitPassword._pending = true;
+    if (okBtn) okBtn.disabled = true;
+    if (err) err.textContent = 'Signing in…';
+    Promise.resolve()
+      .then(function () { return window.rosterClient.signIn(r.username, password); })
+      .catch(function (e) { return { ok: false, error: (e && e.message) || 'Network error' }; })
+      .then(function (result) {
+        if (!result || !result.ok) { if (err) err.textContent = (result && result.error) || 'Sign-in failed. Check your password.'; return; }
+        var who = (window.rosterClient.current && window.rosterClient.current()) || {};
+        try { localStorage.setItem('a2_desk_student_email', who.username || r.username); } catch (_) {}
+        try { if (typeof _fcSyncPull === 'function') _fcSyncPull({ force: true }); } catch (_) {}
+        closeNameFinder();
+        refreshIdentity();
+        // Pull this student's signed ledger so their grades are on-device to gossip.
+        try { if (window.LedgerStore && LedgerStore.pull) LedgerStore.pull(window.rosterClient, { serverUrl: svcUrl() }).catch(function () {}); } catch (_) {}
+        // Get-or-generate + register this device's mesh signing key (APK only; inert on web).
+        try { if (window.meshKeyBoot) meshKeyBoot(); } catch (_) {}
+        try { loadGrade(); } catch (_) {}   // fetch + show the current grade for the just-signed-in student
+        var msg = result.mustChangePassword
+          ? '✅ Signed in as ' + (who.realName || r.username) + ' — change your password in the full app.'
+          : '✅ Signed in as ' + (who.realName || r.username);
+        ; setTimeout(dlHide, 4000);
+      })
+      .then(function () { _nfSubmitPassword._pending = false; if (okBtn) okBtn.disabled = false; })
+      .catch(function () { _nfSubmitPassword._pending = false; if (okBtn) okBtn.disabled = false; });
+  }
+  window._nfSubmitPassword = _nfSubmitPassword;
+
+  function _nfBackToDial() { _nfRenderDial(); }
+  window._nfBackToDial = _nfBackToDial;
+
+  // Off-roster self-signup, NATIVE to the launcher (§2.5 mobile port — was a redirect
+  // to the desktop Desk). A genuinely-new student makes an account here: real name +
+  // a spun fruit_animal username (re-rollable) + a 4-digit PIN. Mirrors the Desk's
+  // client-side spinner (word lists copied from desk.html /
+  // roster-server/username.js); the server's POST /roster/claim is the authoritative
+  // first-come-first-serve check, so the lists need not byte-match.
+  var _SU_FRUITS = ['apple','banana','cherry','grape','kiwi','lemon','lime','mango','melon','peach','pear','plum','berry','fig','date','guava','lychee','papaya','orange','apricot','coconut','pineapple','pomelo','quince','raisin','olive','tomato','avocado','pumpkin','cranberry'];
+  var _SU_ANIMALS = ['koala','panda','tiger','lion','bear','wolf','fox','otter','seal','whale','shark','eagle','hawk','owl','duck','swan','deer','moose','zebra','horse','llama','sloth','gecko','turtle','frog','toad','rabbit','hamster','badger','beaver'];
+  var _suUsername = '';
+  var _suSection = 'PeriodX';   // single-section class; the picker adapts if the server lists more.
+  function _suPick(a) { return a[Math.floor(Math.random() * a.length)]; }
+  function _suSpin() {
+    _suUsername = _suPick(_SU_FRUITS) + '_' + _suPick(_SU_ANIMALS);
+    var el = document.getElementById('nf-su-user');
+    if (el) el.textContent = _suUsername;
+    return _suUsername;
+  }
+  window._nfSpin = function () { _suSpin(); };
+
+  function _nfCreate() {
+    _nfState = 'signup';
+    _suSpin();
+    var host = document.getElementById('nf-content');
+    if (!host) return;
+    host.innerHTML =
+      '<div class="nf-title">🎉 Create your account</div>'
+      + '<div class="nf-count">So your work counts toward your grade.</div>'
+      + '<input type="text" id="nf-su-name" autocomplete="name" placeholder="Your real name" style="margin-bottom:8px">'
+      + '<div style="font-size:11px;color:#556;margin:2px 0 4px">Your username: '
+      +   '<b id="nf-su-user">' + _nfEsc(_suUsername) + '</b> '
+      +   '<button class="nf-go" style="min-width:0;padding:2px 8px;font-size:11px" onclick="_nfSpin()" type="button">🎲 Re-roll</button></div>'
+      + '<div id="nf-su-period-row" style="font-size:11px;color:#556;margin:2px 0 8px"></div>'
+      + '<input type="tel" id="nf-su-pin" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="Pick a 4-digit PIN" style="margin-bottom:6px">'
+      + '<div id="nf-su-error" class="nf-err"></div>'
+      + '<div><button class="nf-go" id="nf-su-ok" onclick="_nfSubmitSignup()">Create account</button></div>'
+      + '<div class="nf-foot" style="color:#889"><a href="#" onclick="_nfBackToDial();return false;">← back</a></div>';
+    var name = document.getElementById('nf-su-name');
+    if (name) setTimeout(function () { name.focus(); }, 60);
+    // Period picker (parity with the Desk): default to Period X, then adapt to the
+    // server's open sections. One section → a read-only label; MANY → a real <select>
+    // so a multi-period student picks their OWN period (never silently section[0]).
+    _nfRenderPeriod([{ value: 'PeriodX', label: 'Period X' }]);
+    try {
+      if (window.rosterClient && rosterClient.openSections) {
+        rosterClient.openSections().then(function (secs) {
+          if (Array.isArray(secs) && secs.length) _nfRenderPeriod(secs);
+        }).catch(function () {});
+      }
+    } catch (_) {}
+  }
+  window._nfCreate = _nfCreate;
+
+  // Render the period field into #nf-su-period-row. Labels only (section values stay
+  // hidden). Sets _suSection to the current selection.
+  function _nfRenderPeriod(secs) {
+    var row = document.getElementById('nf-su-period-row');
+    if (!row) return;
+    while (row.firstChild) row.removeChild(row.firstChild);
+    if (!secs || !secs.length) secs = [{ value: 'PeriodX', label: 'Period X' }];
+    _suSection = secs[0].value || 'PeriodX';
+    row.appendChild(document.createTextNode('Class period: '));
+    if (secs.length === 1) {
+      var b = document.createElement('b');
+      b.textContent = secs[0].label || secs[0].value;   // textContent → XSS-safe
+      row.appendChild(b);
+    } else {
+      var sel = document.createElement('select');
+      sel.id = 'nf-su-period';
+      sel.style.cssText = 'font-size:13px;padding:4px';
+      secs.forEach(function (s) {
+        var o = document.createElement('option');
+        o.value = s.value;                              // value set as a property, not innerHTML
+        o.textContent = s.label || s.value;
+        sel.appendChild(o);
+      });
+      sel.value = _suSection;
+      sel.onchange = function () { _suSection = sel.value; };
+      row.appendChild(sel);
+    }
+  }
+
+  function _nfSubmitSignup() {
+    if (_nfSubmitSignup._pending) return;
+    var name = document.getElementById('nf-su-name');
+    var pinEl = document.getElementById('nf-su-pin');
+    var err = document.getElementById('nf-su-error');
+    var okBtn = document.getElementById('nf-su-ok');
+    var realName = (name && name.value || '').trim();
+    var pin = (pinEl && pinEl.value || '').trim();
+    if (err) err.textContent = '';
+    if (!realName) { if (err) err.textContent = 'Enter your real name.'; return; }
+    if (!/^\d{4}$/.test(pin)) { if (err) err.textContent = 'Your PIN must be exactly 4 digits.'; return; }
+    if (!window.rosterClient || !window.rosterClient.claim) { if (err) err.textContent = 'Signup unavailable — connect to Wi-Fi and try again.'; return; }
+    _nfSubmitSignup._pending = true;
+    if (okBtn) okBtn.disabled = true;
+    if (err) err.textContent = 'Creating your account…';
+
+    // Retry a taken username by re-rolling (bounded), mirroring the Desk.
+    function attempt(triesLeft) {
+      return window.rosterClient.claim({ realName: realName, section: _suSection, username: _suUsername, pin: pin })
+        .catch(function (e) { return { ok: false, error: (e && e.message) || 'Network error' }; })
+        .then(function (result) {
+          if (result && result.ok) return result;
+          if (result && result.code === 'username-taken' && triesLeft > 0) { _suSpin(); return attempt(triesLeft - 1); }
+          return result || { ok: false, error: 'Signup failed' };
+        });
+    }
+    attempt(5)
+      .then(function (result) {
+        if (!result || !result.ok) { if (err) err.textContent = (result && result.error) || 'Signup failed.'; return; }
+        var who = (window.rosterClient.current && window.rosterClient.current()) || {};
+        try { localStorage.setItem('a2_desk_student_email', who.username || _suUsername); } catch (_) {}
+        try { if (typeof _fcSyncPull === 'function') _fcSyncPull({ force: true }); } catch (_) {}
+        closeNameFinder();
+        refreshIdentity();
+        // Same post-sign-in flow as the password path: pull the ledger, boot the mesh
+        // key (silent, §2.5), show the grade.
+        try { if (window.LedgerStore && LedgerStore.pull) LedgerStore.pull(window.rosterClient, { serverUrl: svcUrl() }).catch(function () {}); } catch (_) {}
+        try { if (window.meshKeyBoot) meshKeyBoot(); } catch (_) {}
+        try { loadGrade(); } catch (_) {}
+        ;
+        setTimeout(dlHide, 5000);
+      })
+      .then(function () { _nfSubmitSignup._pending = false; if (okBtn) okBtn.disabled = false; })
+      .catch(function () { _nfSubmitSignup._pending = false; if (okBtn) okBtn.disabled = false; });
+  }
+  window._nfSubmitSignup = _nfSubmitSignup;
+
+  function _nfKeydown(e) {
+    var ov = document.getElementById('namefinder-overlay');
+    if (!ov || ov.style.display === 'none') return;
+    if (_nfState !== 'dial') { if (e.key === 'Escape') { e.preventDefault(); closeNameFinder(); } return; }
+    var map = { ArrowUp: 0, ArrowLeft: 1, ArrowRight: 2, ArrowDown: 3 };
+    if (e.key in map) { e.preventDefault(); _nfPick(map[e.key]); }
+    else if (e.key === 'Backspace') { e.preventDefault(); _nfBack(); }
+    else if (e.key === 'Escape') { e.preventDefault(); closeNameFinder(); }
+  }
+
+  function closeNameFinder() {
+    var ov = document.getElementById('namefinder-overlay');
+    if (ov) ov.style.display = 'none';
+  }
+  window.closeNameFinder = closeNameFinder;
+
+  function render(lessons) {
+    if (!lessons || !lessons.length) { main.innerHTML = '<div class="empty">No lessons found.</div>'; return; }
+    // Fall 2026 CED view: group CORE lessons under their NEW unit; BONUS lessons drop
+    // into a greyed "Beyond the Exam" strip at the end of their bonusUnit.
+    // Existing identities, resource links, and grade lookups stay unchanged.
+    var coreByUnit = {}, bonusByUnit = {};
+    lessons.forEach(function (l) {
+      var c = cedLabel(l.id);
+      if (c.bonus) { var bu = c.bonusUnit || 0; (bonusByUnit[bu] = bonusByUnit[bu] || []).push(l); }
+      else { var nu = c.unit || 0; (coreByUnit[nu] = coreByUnit[nu] || []).push(l); }
+    });
+    var seen = {};
+    Object.keys(coreByUnit).forEach(function (u) { seen[u] = 1; });
+    Object.keys(bonusByUnit).forEach(function (u) { seen[u] = 1; });
+    var units = Object.keys(seen).map(Number).sort(function (a, b) { return a - b; });
+    units.forEach(function (u) { if (coreByUnit[u]) coreByUnit[u].sort(function (a, b) { return _topicKey(a) - _topicKey(b); }); });
+    main.innerHTML = '';
+    units.forEach(function (u, ui) {
+      var det = document.createElement('details'); det.className = 'unit'; if (ui === 0) det.open = true;
+      var sum = document.createElement('summary');
+      sum.innerHTML = esc(NEW_UNIT_NAMES[u] || 'Lessons') + '<span class="caret">▶</span>';
+      det.appendChild(sum);
+      (coreByUnit[u] || []).forEach(function (l) { det.appendChild(lessonCard(l, false)); });
+      var bonus = bonusByUnit[u];
+      if (bonus && bonus.length) {
+        var strip = document.createElement('div'); strip.className = 'bonus-strip';
+        var bh = document.createElement('div'); bh.className = 'bonus-head';
+        bh.textContent = '★ Beyond the Exam — enrichment, not on the Fall 2026 test';
+        strip.appendChild(bh);
+        bonus.forEach(function (l) { strip.appendChild(lessonCard(l, true)); });
+        det.appendChild(strip);
+      }
+      main.appendChild(det);
+    });
+  }
+
+  // Build one lesson card. Every link, file path, and grade key is the lesson's
+  // original; only the shared CED label changes the visible title.
+  function lessonCard(l, isBonus) {
+    var name = cedLabel(l.id).text;
+    var card = document.createElement('div'); card.className = 'lesson' + (isBonus ? ' bonus' : '');
+    var t = document.createElement('div'); t.className = 'title';
+    var tlabel = document.createElement('span'); tlabel.textContent = name;
+    t.appendChild(tlabel);
+    // Done badge from the offline-cached grade (best-effort; hidden if no grade for this topic).
+    var g = _gradeByTopic[_normTopic(l.id)];
+    if (g && g.lessonGrade != null && isFinite(g.lessonGrade)) {
+      var badge = document.createElement('span'); badge.className = 'done-badge';
+      badge.textContent = '✓ ' + Math.round(g.lessonGrade) + '%';
+      t.appendChild(badge);
+    }
+    card.appendChild(t);
+    var btns = document.createElement('div'); btns.className = 'btns';
+    ;
+    var w = document.createElement('a'); w.className = 'btn ws'; w.textContent = '✍ Worksheet';
+    if (l.worksheet) w.href = l.worksheet; else w.setAttribute('disabled', '');
+    btns.appendChild(w);
+    // G1/H0: web → absolute CR origin; APK (OFFLINE_MODE) keeps relative bundled quiz/.
+    // W1 honesty: openers with quiz:null get a plain label — not a dead/disabled Quiz control
+    // (a grey button that does nothing is more confusing than "no quiz" text).
+    
+    ;
+    // Blooket (external game) + the in-app Flashcards deck for the same topic.
+    if (l.blooket) {
+      var bl = document.createElement('a'); bl.className = 'btn bloo'; bl.textContent = '🎯 Blooket';
+      bl.href = l.blooket; bl.target = '_blank'; bl.rel = 'noopener';
+      btns.appendChild(bl);
+      // Flashcards run NATIVELY here (shared flashcards.js engine + the gradebook
+      // feeder) — no longer a deep-link into the Desk. Same deck, same scoring, same
+      // BL-…-DESK_DONE grade row.
+      var fc = document.createElement('button'); fc.className = 'btn fc'; fc.textContent = '🃏 Flashcards';
+      fc.onclick = function (event) { openFlashcards(l, event.currentTarget); };
+      btns.appendChild(fc);
+    }
+    card.appendChild(btns);
+    return card;
+  }
+
+  // ── Grade + per-lesson completion ────────────────────────────────────────────
+  // Offline-cached: show the last-fetched grade immediately (so it works with no
+  // network), then refresh from GET /grade when signed in + online. The grade is
+  // computed server-side (authoritative) from the same ledger the app already pulls.
+  var GRADE_KEY = 'a2_mobile_grade_v1';
+  var _gradeByTopic = {}, _lastLessons = [];
+  // Whose /grade filled _gradeByTopic (stamped at FETCH time from the token's owner,
+  // and persisted inside the GRADE_KEY cache). The map + cache are device-global, so
+  // on a shared device the best-wins floor must only trust the synced half when it
+  // belongs to the CURRENT student — clearing on sign-in wouldn't cover a previous
+  // student's still-in-flight /grade response landing late.
+  var _gradeOwner = null;
+  function _normTopic(s) { s = String(s == null ? '' : s); var m = s.match(/U?(\d+)[.\-_ ]?L?(\d+)/i); return m ? (m[1] + '.' + m[2]) : s; }
+
+  // Populate the per-topic lesson-grade map + the header pill from a /grade payload.
+  // repaint=true re-renders the tiles so their ✓ badges appear.
+  function _applyGradeData(g, repaint) {
+    if (!g) return;
+    _gradeByTopic = {};
+    var ls = Array.isArray(g.lessons) ? g.lessons
+      : (g.lessons && typeof g.lessons === 'object') ? Object.keys(g.lessons).map(function (k) { var e = g.lessons[k] || {}; if (e.topic == null && e.topicKey == null) e.topic = k; return e; })
+      : [];
+    ls.forEach(function (e) { if (!e) return; var key = _normTopic(e.lessonKey || e.topic || e.topicKey || e.id || e.lesson || ''); if (key) _gradeByTopic[key] = e; });
+    // Current grade = the last quarter carrying a numeric quarterGrade.
+    var qs = Array.isArray(g.quarters) ? g.quarters
+      : (g.quarters && typeof g.quarters === 'object') ? Object.keys(g.quarters).map(function (k) { var e = g.quarters[k] || {}; if (e.quarter == null && e.label == null && e.key == null) e.key = k; return e; })
+      : [];
+    var best = null;
+    qs.forEach(function (q) { if (q && typeof q.quarterGrade === 'number' && isFinite(q.quarterGrade)) best = q; });
+    var pill = document.getElementById('gradepill');
+    if (pill) {
+      if (best) { var ql = best.quarter || best.label || best.key || ''; pill.textContent = '📊 Current grade: ' + Math.round(best.quarterGrade) + '%' + (ql ? (' · ' + ql) : ''); pill.style.display = ''; }
+      else { pill.style.display = 'none'; }
+    }
+    if (repaint && _lastLessons.length) render(_lastLessons);
+  }
+
+  // Returns a promise so callers can await a fresh floor before recording (see the
+  // flashcards commit). Resolves (never rejects) even when offline / not signed in.
+  function loadGrade() {
+    if (!window.rosterClient || !rosterClient.current || !rosterClient.current()) return Promise.resolve(false);
+    var base = svcUrl(); if (!base) return Promise.resolve(false);
+    var token = (rosterClient.token && rosterClient.token()) || null; if (!token) return Promise.resolve(false);
+    var owner = _fcStudent();   // whose token this fetch carries — stamped at request time
+    return fetch(base + '/grade?token=' + encodeURIComponent(token))
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (g) {
+        if (!g || !g.ok) return false;
+        try { localStorage.setItem(GRADE_KEY, JSON.stringify({ lessons: g.lessons, quarters: g.quarters, owner: owner })); } catch (_) {}
+        _gradeOwner = owner;
+        _applyGradeData(g, true);
+        return true;
+      })
+      .catch(function () { return false; });
+  }
+  window.loadGrade = loadGrade;
+
+  // ── Native flashcards (shared flashcards.js engine + the gradebook feeder) ────
+  // Runs the Blooket deck IN-APP: mode picker → cards → the BL-…-DESK_DONE grade
+  // row. Scoring + item-id come from window.Flashcards, byte-pinned to the Desk's
+  // inline engine by tests/flashcards-engine.test.js so they can't drift. The grade
+  // write is the same fire-and-forget gradebookClient.record the Desk uses; the
+  // best-wins floor here means a weaker re-run never lowers a recorded score.
+  var FC = window.Flashcards || null;
+  // T3.4 (2026-08-18): timed-deck misses no longer reveal the answer on mobile
+  // (Desk parity). Flip to true to roll back; _fcResolve reads it typeof-guarded.
+  var FC_MOBILE_REVEAL_ON_MISS = false;
+  var _fcTags = null, _fcFlags = null, _fc = null, _fcLauncher = null;
+  function fcoEl() { return document.getElementById('fco'); }
+  function fcBody() { return document.getElementById('fc-body'); }
+  function _fcSetProg(t) { var p = document.getElementById('fc-prog'); if (p) p.textContent = t || ''; }
+  function _fcTimerStop() { if (_fc && _fc.timer) { clearInterval(_fc.timer); _fc.timer = null; } }
+
+  function _fcLoadFlagsOnce() {
+    if (!window.FlashcardFlags || typeof window.FlashcardFlags.loadFlags !== 'function') return;
+    var loaded;
+    try {
+      loaded = window.FlashcardFlags.loadFlags(fetch, Date.now());
+    } catch (_) {
+      return;
+    }
+    Promise.resolve(loaded).then(function (flags) {
+      _fcFlags = flags;
+      try { if (typeof _fcSyncPull === 'function') _fcSyncPull({ force: true }); } catch (_) {}
+    }, function () {
+      _fcFlags = null;
+    });
+  }
+
+  function _fcChoicePermutationEnabled() {
+    if (!_fcFlags) return false;
+    if (!window.FlashcardFlags || typeof window.FlashcardFlags.resolveFlag !== 'function') return false;
+    try {
+      return window.FlashcardFlags.resolveFlag(_fcFlags, 'choicePermutation', {
+        search: location.search,
+        username: _fcStudent(),
+        section: null,
+        storage: localStorage
+      });
+    } catch (_) {}
+    return false;
+  }
+
+  // ── Cross-device sync of the flashcard PRACTICE log (Supabase via roster-server's
+  // trainer_state row; pure logic in lib/flashcard-sync.js). Mirrors the Desk's
+  // _fcSyncClient / _srsSyncPull / _srsSyncViaTrainerState. Never grade evidence.
+  var _fcSyncInstance = null;
+  function _fcSyncFlagOn() {
+    if (!_fcFlags || !window.FlashcardFlags || typeof window.FlashcardFlags.resolveFlag !== 'function') return false;
+    try {
+      return window.FlashcardFlags.resolveFlag(_fcFlags, 'flashcardSync', {
+        search: location.search, username: _fcStudent(), section: null, storage: localStorage
+      });
+    } catch (_) { return false; }
+  }
+  function _fcSyncAllowed() {
+    if (!_fcSyncFlagOn()) return false;
+    if (typeof _viewAsContext === 'function' && _viewAsContext()) return false;
+    if (window.__WS_READ_ONLY__) return false;
+    return true;
+  }
+  function _fcSyncClient() {
+    if (_fcSyncInstance) return _fcSyncInstance;
+    if (!window.FlashcardSync || typeof window.FlashcardSync.createSyncClient !== 'function') return null;
+    if (typeof fetch !== 'function') return null;
+    _fcSyncInstance = window.FlashcardSync.createSyncClient({
+      fetch: function (url, init) { return fetch(url, init); },
+      baseUrl: function () { return (typeof svcUrl === 'function') ? svcUrl() : (window.ROSTER_SERVICE_URL || null); },
+      token: function () {
+        try { return (window.rosterClient && typeof rosterClient.token === 'function') ? rosterClient.token() : null; } catch (_) { return null; }
+      },
+      email: function () { return (typeof _fcEmail === 'function') ? _fcEmail() : null; },
+      storage: localStorage
+    });
+    return _fcSyncInstance;
+  }
+  function _fcSyncPull(opts) {
+    try {
+      if (!_fcSyncAllowed()) return Promise.resolve({ ok: false });
+      var c = _fcSyncClient(); if (!c) return Promise.resolve({ ok: false });
+      return c.pull(opts || {});
+    } catch (_) { return Promise.resolve({ ok: false }); }
+  }
+  function _fcSyncPush() {
+    try { if (!_fcSyncAllowed()) return; var c = _fcSyncClient(); if (c) c.schedulePush(); } catch (_) {}
+  }
+  function _fcSyncFlush() {
+    try { if (!_fcSyncAllowed()) return; var c = _fcSyncClient(); if (c) c.flush(); } catch (_) {}
+  }
+  try {
+    window.addEventListener('pagehide', function () { _fcSyncFlush(); });
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') _fcSyncFlush(); else _fcSyncPull();
+    });
+  } catch (_) {}
+
+  _fcLoadFlagsOnce();
+
+  function _fcEmail() {
+    try {
+      var legacy = localStorage.getItem('a2_desk_student_email');
+      if (legacy) return legacy;
+    } catch (_) {}
+    var username = _fcStudent();
+    return username ? (username + '@roster.local') : null;
+  }
+
+  function _fcSrsAppend(entries) {
+    if (typeof _viewAsContext === 'function' && _viewAsContext()) return;
+    if (typeof window !== 'undefined' && window.__WS_READ_ONLY__) return;
+    if (!Array.isArray(entries) || !entries.length) return;
+    try {
+      var email = typeof _fcEmail === 'function' ? _fcEmail() : null;
+      if (!email) return;
+      var key = 'a2_srs_log_' + email;
+      var saved = JSON.parse(localStorage.getItem(key) || '[]');
+      if (!Array.isArray(saved)) saved = [];
+      for (var i = 0; i < entries.length; i++) saved.push(entries[i]);
+      if (saved.length > 2000) saved = saved.slice(saved.length - 2000);
+      localStorage.setItem(key, JSON.stringify(saved));
+      if (typeof _fcSyncPush === 'function') _fcSyncPush();
+    } catch (_) {}
+  }
+
+  function _fcRoundId() {
+    var suffix = Math.floor(Math.random() * 1679616).toString(36);
+    return 'mobile-' + Date.now() + '-' + ('0000' + suffix).slice(-4);
+  }
+
+  function _fcStemHash(stem) {
+    try {
+      if (window.FlashcardSrs && typeof window.FlashcardSrs.stemHash === 'function') {
+        return window.FlashcardSrs.stemHash(stem);
+      }
+    } catch (_) {}
+    var normalized = String(stem == null ? '' : stem).trim().toLowerCase().replace(/\s+/g, ' ');
+    var hash = 5381;
+    for (var i = 0; i < normalized.length; i++) {
+      hash = (((hash << 5) + hash) + normalized.charCodeAt(i)) >>> 0;
+    }
+    return ('00000000' + hash.toString(16)).slice(-8);
+  }
+
+  function _fcCsvBase(csvPath) {
+    return String(csvPath || '').split('/').pop().split('?')[0];
+  }
+
+  function _fcQuickProgressKey() {
+    var email = _fcEmail();
+    return email ? ('a2_desk_bf_progress_' + email) : null;
+  }
+
+  function _fcLoadQuickProgress(topic) {
+    var key = _fcQuickProgressKey();
+    if (!key) return null;
+    try {
+      var all = JSON.parse(localStorage.getItem(key) || '{}');
+      var entry = all && all[topic];
+      if (!entry || !Array.isArray(entry.deck) || !entry.deck.length) return null;
+      if ((entry.idx || 0) >= entry.deck.length) return null;
+      return entry;
+    } catch (_) { return null; }
+  }
+
+  function _fcSaveQuickProgress() {
+    if (typeof _viewAsContext === 'function' && _viewAsContext()) return;
+    if (typeof window !== 'undefined' && window.__WS_READ_ONLY__) return;
+    if (!_fc || _fc.mode !== 'quick' || !_fc.lesson || !_fc.deck.length) return;
+    try {
+      var email = typeof _fcEmail === 'function' ? _fcEmail() : null;
+      if (!email) return;
+      var key = 'a2_desk_bf_progress_' + email;
+      var all = JSON.parse(localStorage.getItem(key) || '{}');
+      if (!all || typeof all !== 'object' || Array.isArray(all)) all = {};
+      all[String(_fc.lesson.id)] = {
+        deck: _fc.deck,
+        idx: _fc.idx,
+        score: _fc.correct,
+        answered: !!_fc.answered,
+        ts: new Date().toISOString(),
+        roundId: _fc.roundId,
+        seq: _fc.seq,
+        misses: _fc.misses
+      };
+      localStorage.setItem(key, JSON.stringify(all));
+    } catch (_) {}
+  }
+
+  function _fcClearQuickProgress(topic) {
+    if (typeof _viewAsContext === 'function' && _viewAsContext()) return;
+    if (typeof window !== 'undefined' && window.__WS_READ_ONLY__) return;
+    try {
+      var email = typeof _fcEmail === 'function' ? _fcEmail() : null;
+      if (!email) return;
+      var key = 'a2_desk_bf_progress_' + email;
+      var all = JSON.parse(localStorage.getItem(key) || '{}');
+      if (!all || typeof all !== 'object' || Array.isArray(all)) all = {};
+      delete all[topic];
+      localStorage.setItem(key, JSON.stringify(all));
+    } catch (_) {}
+  }
+
+  function _fcRememberMiss(card) {
+    if (!_fc || !card) return;
+    if (!Array.isArray(_fc.misses)) _fc.misses = [];
+    for (var i = 0; i < _fc.misses.length; i++) {
+      if (_fc.misses[i].qnum === card.qnum) return;
+    }
+    _fc.misses.push({
+      qnum: card.qnum,
+      q: card.q,
+      correctAnswer: card.choices[card.correctIdx]
+    });
+  }
+
+  function closeFlashcards() {
+    var launcher = _fcLauncher;
+    _fcTimerStop(); _fc = null;
+    _fcLauncher = null;
+    var el = fcoEl(); if (el) el.classList.remove('show', 'timed');
+    try { if (launcher && document.documentElement.contains(launcher)) launcher.focus(); } catch (_) {}
+  }
+  window.closeFlashcards = closeFlashcards;
+
+  // Worksheet URL → deck CSV (primary — already correct for combined lessons).
+  // ID-only fallback: bare topic ids like 3.6 used to invent u3_l6_blooket.csv, but the
+  // real deck is u3_l6_l7_blooket.csv. Resolve via topic→csv map (from lessons-index
+  // worksheet names) so combined lessons hit the real file; unknown → null (explicit
+  // "No deck" in _fcStart). Do NOT invent a naive u{U}_l{key} path.
+  // Topic→CSV map: static JSON (combined-lesson IDs) merged with worksheet-derived paths.
+  // Track loaded-vs-partial so a rebuild that seeds {} cannot poison the static fetch
+  // (Codex M2a C: early-return on truthy map skipped data/blooket-topic-csv.json).
+  var _fcTopicCsvMap = null; // merged result (static base + derived overlay)
+  var _fcTopicCsvMapStaticLoaded = false;
+  function _fcLoadTopicCsvMap() {
+    if (_fcTopicCsvMapStaticLoaded) return Promise.resolve(_fcTopicCsvMap || {});
+    return fetch('data/blooket-topic-csv.json', { cache: 'no-store' })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (j) {
+        var staticMap = (j && j.map && typeof j.map === 'object') ? j.map : {};
+        // Static as base; worksheet-derived keys already on the map overlay (fresher).
+        var derived = _fcTopicCsvMap || {};
+        _fcTopicCsvMap = Object.assign({}, staticMap, derived);
+        _fcTopicCsvMapStaticLoaded = true;
+        return _fcTopicCsvMap;
+      })
+      .catch(function () {
+        if (!_fcTopicCsvMap) _fcTopicCsvMap = {};
+        _fcTopicCsvMapStaticLoaded = true; // don't spin forever; keep any derived partial
+        return _fcTopicCsvMap;
+      });
+  }
+  // Sync rebuild from a lessons array (worksheet paths). Merges into the map without
+  // marking static as loaded — so a later/pending _fcLoadTopicCsvMap still fetches.
+  function _fcRebuildTopicCsvMapFromLessons(lessons) {
+    if (!FC || !Array.isArray(lessons)) return;
+    if (!_fcTopicCsvMap) _fcTopicCsvMap = {};
+    for (var i = 0; i < lessons.length; i++) {
+      var L = lessons[i];
+      if (!L || !L.id) continue;
+      var p = L.worksheet ? FC.csvPathFromWorksheet(L.worksheet) : null;
+      if (p) _fcTopicCsvMap[L.id] = p;
+    }
+  }
+  function _fcCsvPath(lesson) {
+    if (!FC) return null;
+    var p = lesson && lesson.worksheet ? FC.csvPathFromWorksheet(lesson.worksheet) : null;
+    if (p) return p;
+    var id = String((lesson && lesson.id) || '');
+    if (_fcTopicCsvMap && _fcTopicCsvMap[id]) return _fcTopicCsvMap[id];
+    return null; // explicit no-deck — never invent a wrong solo CSV for combined topics
+  }
+  function _fcLoadTags() {
+    if (_fcTags) return Promise.resolve(_fcTags);
+    return fetch('data/blooket-difficulty.json', { cache: 'no-store' })
+      .then(function (r) { return r && r.ok ? r.json() : null; })
+      .then(function (j) { _fcTags = (j && j.tags) || {}; return _fcTags; })
+      .catch(function () { _fcTags = {}; return _fcTags; });
+  }
+  function _fcLoadDeck(csvPath) {
+    return fetch(csvPath, { cache: 'no-store' })
+      .then(function (r) { if (!r || !r.ok) throw new Error('deck ' + (r && r.status)); return r.text(); })
+      .then(function (txt) { return FC.rowsToDeck(FC.parseCsv(txt)); });
+  }
+  function _fcBodyHtml(html) { var b = fcBody(); if (b) b.innerHTML = html; }
+
+  function openFlashcards(lesson, launcher) {
+    if (launcher) _fcLauncher = launcher;
+    try { if (typeof _fcSyncPull === 'function') _fcSyncPull(); } catch (_) {}
+    if (!FC) { _fcBodyHtml('<div class="fc-result"><h2>Unavailable</h2><p>Flashcards engine not loaded.</p></div>'); fcoEl() && fcoEl().classList.add('show'); return; }
+    var el = fcoEl(); if (!el) return;
+    _fcTimerStop(); _fc = null; el.classList.remove('timed');
+    document.getElementById('fc-title').textContent = '🃏 ' + cedLabel(lesson && lesson.id).text;
+    _fcSetProg(''); el.classList.add('show');
+    // Ensure topic→csv map is warm before mode pick (ID-only combined-lesson fix).
+    _fcLoadTopicCsvMap().then(function () {
+      // If worksheet missing but we have last lessons list, fold it in.
+      try { if (_lastLessons && _lastLessons.length) _fcRebuildTopicCsvMapFromLessons(_lastLessons); } catch (_) {}
+      if (!_fcCsvPath(lesson)) {
+        _fcBodyHtml('<div class="fc-result"><h2>No deck</h2><p>This lesson has no flashcard deck.</p></div>');
+        return;
+      }
+      // No mode picker: the full timed deck is the only graded mode (Desk parity, 2026-09-13).
+      _fcStart(lesson, 'full');
+    });
+  }
+  window.openFlashcards = openFlashcards;
+
+  function _fcStart(lesson, mode) {
+    var csv = _fcCsvPath(lesson);
+    if (!csv) { _fcBodyHtml('<div class="fc-result"><h2>No deck</h2><p>This lesson has no flashcard deck.</p></div>'); return; }
+    _fcBodyHtml('<div class="fc-result"><h2>Loading deck…</h2></div>');
+    var topic = String(lesson && lesson.id);
+    var resumed = mode === 'quick' ? _fcLoadQuickProgress(topic) : null;
+    if (resumed) {
+      var resumedSeq = (typeof resumed.seq === 'number' && isFinite(resumed.seq)) ? Math.max(0, Math.floor(resumed.seq)) : 0;
+      var resumedRoundId = typeof resumed.roundId === 'string' ? resumed.roundId : '';
+      var sameSurfaceRound = resumedRoundId.indexOf('mobile-') === 0;
+      var resumedMisses = [];
+      if (Array.isArray(resumed.misses)) {
+        for (var missIndex = 0; missIndex < resumed.misses.length; missIndex++) {
+          var miss = resumed.misses[missIndex];
+          if (!miss) continue;
+          resumedMisses.push({
+            qnum: miss.qnum,
+            q: miss.q || miss.stem,
+            correctAnswer: miss.correctAnswer
+          });
+        }
+      }
+      _fc = {
+        mode: 'quick', lesson: lesson, deck: resumed.deck,
+        idx: resumed.idx || 0, correct: resumed.score || 0,
+        need: FC.quickPassCount(resumed.deck.length), answered: false, timer: null,
+        csv: _fcCsvBase(csv),
+        roundId: sameSurfaceRound ? resumedRoundId : _fcRoundId(),
+        seq: sameSurfaceRound ? resumedSeq : 0,
+        misses: resumedMisses
+      };
+      if (resumed.answered === true) _fc.idx = (resumed.idx || 0) + 1;
+      if (!sameSurfaceRound) _fcSaveQuickProgress();
+      fcoEl().classList.remove('timed');
+      var resumedTitle = document.getElementById('fc-title');
+      if (resumedTitle) resumedTitle.textContent = '🃏 ' + cedLabel(topic).text + ' (resuming)';
+      if (_fc.correct >= _fc.need || _fc.idx >= _fc.deck.length) _fcFinish();
+      else _fcRender();
+      return;
+    }
+    var tagsP = (mode === 'quick') ? _fcLoadTags() : Promise.resolve({});
+    Promise.all([_fcLoadDeck(csv), tagsP]).then(function (res) {
+      var deck = res[0], tags = res[1] || {};
+      if (!deck || !deck.length) { _fcBodyHtml('<div class="fc-result"><h2>Empty deck</h2><p>Could not read cards for this lesson.</p></div>'); return; }
+      if (mode === 'quick') {
+        var top = FC.selectTop10(deck, tags[csv] || {});
+        _fc = {
+          mode: 'quick', lesson: lesson, deck: FC.shuffle(top), idx: 0, correct: 0,
+          need: FC.quickPassCount(top.length), answered: false, timer: null,
+          csv: _fcCsvBase(csv), roundId: _fcRoundId(), seq: 0, misses: []
+        };
+        fcoEl().classList.remove('timed');
+        _fcSaveQuickProgress();
+      } else {
+        _fc = {
+          mode: 'full', lesson: lesson, round: FC.createRound(FC.shuffle(deck)),
+          answered: false, timer: null, csv: _fcCsvBase(csv),
+          roundId: _fcRoundId(), seq: 0, misses: []
+        };
+        fcoEl().classList.add('timed');
+      }
+      _fcRender();
+    }).catch(function (e) {
+      _fcBodyHtml('<div class="fc-result"><h2>Couldn’t load deck</h2><p>' + esc(String(e && e.message || e)) + '</p></div>');
+    });
+  }
+
+  function _fcCurrentCard() {
+    if (!_fc) return null;
+    if (_fc.mode === 'quick') return _fc.deck[_fc.idx] || null;
+    var i = FC.currentIdx(_fc.round);
+    return i >= 0 ? _fc.round.deck[i] : null;
+  }
+
+  function _fcRender() {
+    _fcRenderCard();
+  }
+
+  function _fcRenderCard() {
+    _fcTimerStop();
+    var card = _fcCurrentCard();
+    if (!card) { _fcFinish(); return; }
+    _fc.answered = false;
+    if (_fc.mode === 'quick') _fcSetProg((_fc.idx + 1) + ' / ' + _fc.deck.length + ' · ' + _fc.correct + '✓');
+    else _fcSetProg(_fc.round.order.length + ' left · ' + _fc.round.total + ' cards');
+    var perm = [];
+    for (var identityIdx = 0; identityIdx < card.choices.length; identityIdx++) {
+      perm.push(identityIdx);
+    }
+    var canPermute = _fcChoicePermutationEnabled()
+      && typeof FC.permutationFor === 'function'
+      && typeof FC.permSeed === 'function'
+      && typeof FC.isPermutationUnsafe === 'function'
+      && !FC.isPermutationUnsafe(card.choices);
+    if (canPermute) {
+      var email = (typeof _fcEmail === 'function') ? _fcEmail() : null;
+      perm = FC.permutationFor(
+        FC.permSeed(email, _fc.roundId, card.qnum),
+        card.choices.length
+      );
+    }
+    _fc.perm = perm;
+    var html = '<div class="fc-timer"><i id="fc-timer-bar"></i></div>' +
+      '<div class="fc-q">' + esc(card.q) + '</div><div id="fc-choices">';
+    for (var displayIdx = 0; displayIdx < perm.length; displayIdx++) {
+      var realIdx = perm[displayIdx];
+      html += '<button class="fc-choice" data-i="' + realIdx + '">' + esc(card.choices[realIdx]) + '</button>';
+    }
+    html += '</div><div class="fc-feedback" id="fc-feedback" aria-live="polite"></div><button class="fc-next" id="fc-next">Next →</button>';
+    var b = fcBody(); b.innerHTML = html; b.scrollTop = 0;
+    Array.prototype.forEach.call(b.querySelectorAll('.fc-choice'), function (btn) {
+      btn.onclick = function () { _fcAnswer(parseInt(btn.getAttribute('data-i'), 10)); };
+    });
+    document.getElementById('fc-next').onclick = function () { _fcNext(); };
+    _fc.cardStart = Date.now();
+    if (_fc.mode === 'full') _fcStartTimer(card);
+    var firstChoice = b.querySelector('.fc-choice');
+    try { if (firstChoice) firstChoice.focus(); } catch (_) {}
+  }
+
+  function _fcStartTimer(card) {
+    var total = FC.FULLDECK_SECONDS, left = total;
+    var bar = document.getElementById('fc-timer-bar');
+    if (bar) bar.style.width = '100%';
+    _fc.timer = setInterval(function () {
+      left -= 1;
+      if (bar) bar.style.width = Math.max(0, (left / total) * 100) + '%';
+      if (left <= 0) { _fcTimerStop(); _fcResolve('timeout', card, -1); }
+    }, 1000);
+  }
+
+  function _fcAnswer(choiceIdx) {
+    if (!_fc || _fc.answered) return;
+    var card = _fcCurrentCard(); if (!card) return;
+    _fcTimerStop();
+    _fcResolve(choiceIdx === card.correctIdx ? 'correct' : 'wrong', card, choiceIdx);
+  }
+
+  function _fcResolve(outcome, card, choiceIdx) {
+    if (!_fc || _fc.answered) return;
+    _fc.answered = true;
+    var answeredAt = Date.now();
+    var latency = _fc.cardStart ? (answeredAt - _fc.cardStart) : 0;
+    var b = fcBody();
+    var correct = (outcome === 'correct');
+    // Timed deck: a missed card comes back later at reduced credit (FC credit
+    // ladder), so revealing the answer mid-round would make the retry trivial —
+    // the Desk (_ftHandle) never reveals; mobile now matches. Quick mode has no
+    // re-queue, so it keeps the reveal like the Desk's _bfAnswer.
+    // FC_MOBILE_REVEAL_ON_MISS (typeof-guarded: the parity harness slices this
+    // function out of the page) is the T3.4 rollback constant.
+    var revealOnMiss = (_fc.mode === 'quick')
+      || (typeof FC_MOBILE_REVEAL_ON_MISS !== 'undefined' && FC_MOBILE_REVEAL_ON_MISS === true);
+    Array.prototype.forEach.call(b.querySelectorAll('.fc-choice'), function (btn) {
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      btn.setAttribute('disabled', '');
+      if (i === card.correctIdx && (correct || revealOnMiss)) btn.classList.add('right');
+      else if (i === choiceIdx && !correct) btn.classList.add('wrong');
+    });
+    var willStrike = false;
+    if (_fc.mode !== 'quick' && !correct && _fc.round && Array.isArray(_fc.round.status)) {
+      var curIdx = FC.currentIdx(_fc.round);
+      var st = curIdx >= 0 ? _fc.round.status[curIdx] : null;
+      willStrike = !!(st && (st.misses + 1 >= 3));
+    }
+    var fb = document.getElementById('fc-feedback');
+    if (fb) {
+      var missText;
+      if (revealOnMiss) missText = (outcome === 'timeout' ? '⏱ Time’s up — answer shown' : '✗ Not quite');
+      else if (outcome === 'timeout') missText = willStrike ? '⏱ Too slow — out (0 for this card)' : '⏱ Too slow — it’ll come back';
+      else missText = willStrike ? '✗ Out (0 for this card)' : '✗ Not quite — it’ll come back';
+      fb.textContent = correct ? '✓ Correct' : missText;
+      fb.style.color = correct ? '#25663F' : '#B03A2E';
+    }
+    if (_fc.mode === 'quick') {
+      if (correct) _fc.correct += 1;
+      else _fcRememberMiss(card);
+      _fcSrsAppend([{
+        topic: String(_fc.lesson.id), qnum: card.qnum, correct: correct,
+        latencyMs: latency, wasTimeout: outcome === 'timeout', missIndex: 0,
+        ts: answeredAt, mode: 'quick', csv: _fc.csv, surface: 'mobile',
+        roundId: _fc.roundId, seq: _fc.seq, nChoices: card.choices.length,
+        chosenIdx: choiceIdx, stemHash: _fcStemHash(card.q),
+        displayedPerm: Array.isArray(_fc.perm)
+          ? _fc.perm.slice()
+          : card.choices.map(function (_, choiceIndex) { return choiceIndex; })
+      }]);
+      _fc.seq += 1;
+      _fcSaveQuickProgress();
+      if (_fc.correct >= _fc.need) { setTimeout(function () { _fcFinish(); }, 700); return; }   // early-stop caps at 80%
+    } else {
+      FC.recordOutcome(_fc.round, outcome, latency);
+      if (!correct) _fcRememberMiss(card);
+      var logged = _fc.round.log[_fc.round.log.length - 1];
+      if (logged) {
+        logged.topic = String(_fc.lesson.id);
+        logged.ts = answeredAt;
+        logged.mode = 'full';
+        logged.csv = _fc.csv;
+        logged.surface = 'mobile';
+        logged.roundId = _fc.roundId;
+        logged.seq = _fc.seq;
+        logged.nChoices = card.choices.length;
+        logged.chosenIdx = choiceIdx;
+        logged.stemHash = _fcStemHash(card.q);
+        logged.displayedPerm = Array.isArray(_fc.perm)
+          ? _fc.perm.slice()
+          : card.choices.map(function (_, choiceIndex) { return choiceIndex; });
+        _fcSrsAppend([logged]);
+        _fc.seq += 1;
+      }
+    }
+    var nx = document.getElementById('fc-next'); if (nx) nx.classList.add('show');
+  }
+
+  function _fcNext() {
+    if (!_fc) return;
+    if (_fc.mode === 'quick') {
+      _fc.idx += 1;
+      _fc.answered = false;
+      _fcSaveQuickProgress();
+    }
+    _fcRender();
+  }
+
+  // The LOCAL-BEST half of the best-wins floor. Lives OUTSIDE _gradeByTopic because
+  // _applyGradeData rebuilds that map from every /grade payload — a stale response
+  // (the fire-and-forget refresh racing this run's own record POST) would wipe an
+  // in-map bump, and a later run whose pre-commit refresh FAILS (offline / server
+  // hiccup) could then emit a weaker score that the server's last-write-wins upsert
+  // records over the better one. localStorage-backed so it also survives a reload
+  // while the higher score is still queued. Scoped PER STUDENT (v2): the synced half
+  // of the floor is the signed-in student's /grade, so on a shared classroom device
+  // a device-global local best would let student A's 90 suppress student B's
+  // legitimate 60. A signed-out run never persists a bump — it can't be keyed and
+  // its write is dropped by gradebook-client anyway. Guarded by
+  // tests/feeder-bestwins-invariants.property.test.js (prop 12b).
+  var FC_BEST_KEY = 'a2_mobile_fcbest_v2';   // { username: { topicKey: score } }
+  function _fcStudent() {
+    try {
+      var u = window.rosterClient && rosterClient.current && rosterClient.current();
+      var name = u && u.username;
+      return (typeof name === 'string' && name) ? name : null;
+    } catch (_) { return null; }
+  }
+  function _fcLoadLocalBest() {
+    try {
+      localStorage.removeItem('a2_mobile_fcbest_v1');   // v1 was device-global (shared-device leak)
+      var s = localStorage.getItem(FC_BEST_KEY);
+      var m = s ? JSON.parse(s) : null;
+      return (m && typeof m === 'object') ? m : {};
+    } catch (_) { return {}; }
+  }
+  var _fcLocalBest = _fcLoadLocalBest();
+
+  function _fcBlooketFloor(topic) {
+    var key = _normTopic(topic);
+    var who = _fcStudent();
+    var synced = -1;
+    if (who && _gradeOwner === who) {   // the synced map counts only for the student whose /grade filled it
+      var e = _gradeByTopic[key];
+      var v = e && (typeof e.blooket === 'number' ? e.blooket : (e.blooket && e.blooket.score));
+      synced = (typeof v === 'number' && isFinite(v)) ? v : -1;
+    }
+    var mine = who && _fcLocalBest[who];
+    var b = mine && mine[key];
+    var local = (typeof b === 'number' && isFinite(b)) ? b : -1;
+    return synced > local ? synced : local;
+  }
+  function _fcBumpLocalBlooket(topic, score) {
+    var key = _normTopic(topic);
+    var who = _fcStudent();
+    if (who && typeof score === 'number' && isFinite(score)) {
+      var mine = _fcLocalBest[who] || (_fcLocalBest[who] = {});
+      var best = (typeof mine[key] === 'number') ? mine[key] : -1;
+      if (score > best) {
+        mine[key] = score;
+        try { localStorage.setItem(FC_BEST_KEY, JSON.stringify(_fcLocalBest)); } catch (_) {}
+      }
+    }
+    var e = _gradeByTopic[key] || (_gradeByTopic[key] = {});
+    var cur = (typeof e.blooket === 'number') ? e.blooket : -1;
+    if (score > cur) e.blooket = score;
+  }
+
+  // best-wins: never downgrade a recorded score; record the same ledger row the Desk
+  // does (source 'worksheet' + BL-…-DESK_DONE → the server's Blooket track).
+  function _fcCommit(topic, score) {
+    var floor = _fcBlooketFloor(topic);
+    if (!(score > floor)) return { skipped: true, floor: floor };
+    var built = FC.blooketItemId(topic);
+    var res = { ok: false, reason: 'no-client' };
+    try {
+      if (window.gradebookClient && window.gradebookClient.record) {
+        res = window.gradebookClient.record({
+          source: 'worksheet', itemId: built.itemId, unit: built.unit, topic: topic,
+          response: { selfAttest: 'blooket' }, score: score, attempt: 1
+        }) || res;
+      }
+    } catch (e) { res = { ok: false, reason: 'error' }; }
+    _fcBumpLocalBlooket(topic, score);
+    try { loadGrade(); } catch (_) {}   // refresh the pill/badges with the new record
+    return res;
+  }
+
+  function _fcFinish() {
+    _fcTimerStop();
+    if (!_fc) return;
+    var lesson = _fc.lesson, topic = String(lesson.id);
+    var mode = _fc.mode;
+    var misses = Array.isArray(_fc.misses) ? _fc.misses.slice() : [];
+    var score, passed;
+    if (_fc.mode === 'quick') { score = FC.quickScorePct(_fc.correct, _fc.deck.length); passed = FC.quickPassed(_fc.correct, _fc.deck.length); }
+    else { score = FC.fullScorePct(_fc.round); passed = score >= (FC.PASS_THRESHOLD * 100); }
+    // Quick records only on pass (Desk behavior); the full deck always records its score.
+    var doCommit = (_fc.mode === 'quick') ? passed : true;
+    if (_fc.mode === 'quick' && passed) _fcClearQuickProgress(topic);
+    fcoEl().classList.remove('timed');
+    _fc = null;
+
+    function finishCommit() {
+      var committed = doCommit ? _fcCommit(topic, score) : { skipped: true };
+      Promise.resolve(committed).then(function (c) {
+        _fcRenderResult(lesson, score, passed, c || { ok:false, reason:'error' }, misses, mode);
+      }, function () {
+        _fcRenderResult(lesson, score, passed, { ok:false, reason:'error' }, misses, mode);
+      });
+    }
+    // Desk parity: refresh /grade FIRST so the best-wins floor reflects any higher
+    // score recorded on another device, THEN commit (a cold session can't downgrade).
+    Promise.resolve(loadGrade()).then(finishCommit, finishCommit);
+  }
+
+  function _fcRenderResult(lesson, score, passed, committed, misses, mode) {
+    var note;
+    if (committed && committed.skipped && !passed && score < 80) note = 'Reach 80% for the Blooket half of Done — your grade wasn’t lowered.';
+    else if (committed && committed.skipped) note = 'Kept your best score — a higher one is already recorded.';
+    else if (committed && committed.queued) note = 'Saved offline — it’ll sync when you reconnect.';
+    else if (committed && committed.ok === false) note = (committed.reason === 'no-identity' || committed.reason === 'no-client') ? 'Sign in to save this to your grade.' : 'Couldn’t save right now — try again when online.';
+    else note = passed ? '🎯 Recorded — that’s the Blooket half of Done (the worksheet 60% is also needed).' : 'Score recorded. Reach 80% for the Blooket half of Done — the worksheet 60% is also needed.';
+    _fcBodyHtml(
+      '<div class="fc-result">' +
+        '<h2>' + (passed ? '🎉 Passed!' : 'Keep going') + '</h2>' +
+        '<div class="fc-score ' + (passed ? 'pass' : 'fail') + '">' + (Math.round(score * 10) / 10) + '%</div>' +
+        '<div id="fc-recap-slot"></div>' +
+        '<p>' + esc(note) + '</p>' +
+        '<button class="fc-mode quick" id="fc-again">↻ Try again</button>' +
+        '<button class="fc-mode full" id="fc-done">✓ Done</button>' +
+      '</div>');
+    var recapSlot = document.getElementById('fc-recap-slot');
+    if (recapSlot) {
+      var recap = document.createElement('div');
+      recap.className = 'fc-recap';
+      if (Array.isArray(misses) && misses.length) {
+        var heading = document.createElement('strong');
+        heading.textContent = 'Review your misses';
+        recap.appendChild(heading);
+        var list = document.createElement('ul');
+        var worksheetUrl = lesson && lesson.worksheet ? lesson.worksheet : null;
+        for (var i = 0; i < misses.length; i++) {
+          var item = document.createElement('li');
+          var stem = document.createElement('div');
+          var stemText = String(misses[i].q == null ? '' : misses[i].q);
+          stem.textContent = stemText;
+          item.appendChild(stem);
+          var answer = document.createElement('div');
+          answer.className = 'fc-recap-answer';
+          answer.textContent = 'Answer: ' + misses[i].correctAnswer;
+          item.appendChild(answer);
+          if (worksheetUrl) {
+            var fragmentText = stemText.trim().split(/\s+/).slice(0, 6).join(' ');
+            var reviewLink = document.createElement('a');
+            reviewLink.href = worksheetUrl + '#:~:text=' + encodeURIComponent(fragmentText);
+            reviewLink.target = '_blank';
+            reviewLink.rel = 'noopener';
+            reviewLink.textContent = 'Review in the worksheet ↗';
+            item.appendChild(reviewLink);
+          }
+          list.appendChild(item);
+        }
+        recap.appendChild(list);
+      } else {
+        recap.className += ' fc-perfect';
+        recap.textContent = 'Perfect — no misses!';
+      }
+      recapSlot.parentNode.replaceChild(recap, recapSlot);
+    }
+    document.getElementById('fc-again').onclick = function () {
+      if (mode === 'quick' && !passed) _fcClearQuickProgress(String(lesson.id));
+      openFlashcards(lesson);
+    };
+    document.getElementById('fc-done').onclick = function () { closeFlashcards(); };
+    _fcSetProg('');
+  }
+
+  // Keyboard (desktop testers): Esc closes, 1-4/a-d answer, Enter/Space advances.
+  document.addEventListener('keydown', function (e) {
+    var el = fcoEl(); if (!el || !el.classList.contains('show')) return;
+    if (e.key === 'Escape') { closeFlashcards(); return; }
+    if (!_fc) return;
+    var key = String(e.key || '').toLowerCase();
+    var i = /^[1-4]$/.test(key) ? parseInt(key, 10) - 1 : 'abcd'.indexOf(key);
+    if (!_fc.answered && i >= 0) {
+      var card = _fcCurrentCard();
+      if (!card) return;
+      var displayedCount = (_fc.perm && typeof _fc.perm.length === 'number')
+        ? _fc.perm.length
+        : card.choices.length;
+      if (i >= displayedCount) return;
+      var real = (_fc && _fc.perm && _fc.perm[i] != null) ? _fc.perm[i] : i;
+      _fcAnswer(real);
+    } else if (_fc.answered && (e.key === 'Enter' || e.key === ' ')) {
+      var nx = document.getElementById('fc-next');
+      if (nx && nx.classList.contains('show')) { e.preventDefault(); _fcNext(); }
+    }
+  });
+
+  // Cached grade → first paint has the pill + ✓ badges even offline. The cache is
+  // device-global: honor its owner stamp so another student's cached grades never
+  // feed the current student's best-wins floor (old unstamped caches → owner null).
+  try {
+    var _cg = localStorage.getItem(GRADE_KEY);
+    if (_cg) {
+      var _cgp = JSON.parse(_cg);
+      _gradeOwner = (_cgp && typeof _cgp.owner === 'string') ? _cgp.owner : null;
+      _applyGradeData(_cgp, false);
+    }
+  } catch (_) {}
+
+  // Allow host overrides while retaining a fallback when config scripts are absent.
+  var _WS_BASE = (window.A2_CONFIG && window.A2_CONFIG.WORKSHEET_BASE_URL)
+    || window.WORKSHEET_BASE_URL
+    || 'https://robjohncolson.github.io/a2-live-worksheets/';
+  _WS_BASE = _WS_BASE.replace(/\/?$/, '/');
+  
+  // Web-vs-APK signal: offline-config.js (pack only) sets window.OFFLINE_MODE = true.
+  // On the web that script 404s harmlessly and OFFLINE_MODE stays falsy.
+  // Match offline-queue.js: true or '1' (pack builders may emit either).
+  function isOfflinePack() { return window.OFFLINE_MODE === true || window.OFFLINE_MODE === '1'; }
+  // G1 / H0: lessons-index stores relative quiz/index.html?u=&l= for the APK bundle.
+  // That relative path 404s on GH Pages (no /quiz published under WS_BASE). On web,
+  // rewrite relative quiz paths to absolute CR origin; keep ?u=&l= (and #) intact.
+  // Absolute quiz URLs (roadmap fallback / already-CR) pass through unchanged.
+  // APK keeps the relative form so offline bundled quiz/ still works.
+  // Does NOT mutate lessons-index.json — resolution is display-time only.
+  
+  function _relWs(u) { return (typeof u === 'string' && u.indexOf(_WS_BASE) === 0) ? u.slice(_WS_BASE.length) : (u || null); }
+  function _lessonsFromRoadmap(roadmap) {
+    var L = (roadmap && roadmap.lessons) || {};
+    var out = Object.keys(L).map(function (id) {
+      var u = (L[id] && L[id].urls) || {};
+      var lesson = {
+        id: id, unit: parseInt(id, 10) || 0, label: (L[id] && L[id].topic) || ('Topic ' + id),
+        worksheet: _relWs(u.worksheet), quiz: u.quiz || null, blooket: u.blooket || null
+      };
+      // Missing metadata uses the shared fallback; an explicit null stays explicit.
+      if (L[id] && Object.prototype.hasOwnProperty.call(L[id], 'ced2026')) lesson.ced2026 = L[id].ced2026;
+      return lesson;
+    });
+    out.sort(function (a, b) {
+      if (a.unit !== b.unit) return a.unit - b.unit;
+      return ((parseInt(String(a.id).split('.')[1], 10) || 0) - (parseInt(String(b.id).split('.')[1], 10) || 0));
+    });
+    return out;
+  }
+  function _bootLessons(lessons) {
+    _lastLessons = lessons || [];
+    cedRegistry = { lessons: {} };
+    _lastLessons.forEach(function (lesson) { cedRegistry.lessons[lesson.id] = lesson; });
+    try { _fcRebuildTopicCsvMapFromLessons(_lastLessons); } catch (_) {}
+    try { _fcLoadTopicCsvMap(); } catch (_) {}
+    render(_lastLessons);
+    loadGrade();
+  }
+
+  // Primary: lessons-index.json (published on Pages AND bundled in APK — the old
+  // comment claiming it is "APK-only / not on Pages" was stale; live Pages serves
+  // it 200, which is why mobile-web used relative quiz/ and hit H0 until resolveQuizHref).
+  // Fallback: roadmap-data.json when the index is missing (older hosts / sparse packs).
+  // Strip WS_BASE so worksheet links are ORIGIN-RELATIVE (GH Pages or Vercel mirror).
+  // PHASE 4: A2 lessons
+  const LESSONS = window.A2_LESSONS || [];
+  _bootLessons(LESSONS);
+})();
+</script>
+</body>
+</html>

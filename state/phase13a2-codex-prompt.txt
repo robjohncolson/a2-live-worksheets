@@ -1,0 +1,179 @@
+## Task: Add DD/FD/ED Prefix Handling to eZ80 Decoder
+
+The file `TI-84_Plus_CE/ez80-decoder.js` (525 lines) already handles unprefixed opcodes and CB prefix. Your job is to add DD/FD prefix (IX/IY indexed) and ED prefix (extended instructions) handling.
+
+### Files you MUST read first
+
+- `TI-84_Plus_CE/ez80-decoder.js` — Read the ENTIRE file to understand the structure, helper functions, tag naming conventions, and the `decodeInstruction` export.
+
+### Current structure
+
+The file has:
+- Helper functions: `hex()`, `signedByte()`, `readImm()`, `getImmWidth()`
+- Register tables: `REGS8`, `REGS16`, `ALU_OPS`, `CONDITIONS`, `ROTATE_OPS`
+- `decodeCB()` — CB prefix bit operations
+- `decodeMain()` — unprefixed opcodes (0x00-0xFF except CB/DD/FD/ED)
+- `decodeInstruction()` — entry point that checks for mode prefix, then dispatches
+
+Currently, DD/FD/ED opcodes return `null`. You need to add three decoder functions and wire them in.
+
+### What to modify
+
+**1. Add `decodeDD_FD()` function** for IX/IY indexed instructions.
+
+When DD or FD is the opcode:
+- DD = index register is 'ix', FD = index register is 'iy'
+- Check for doubled prefix: if DD followed by FD (or vice versa), consume first, second wins
+- Check for DD/FD CB d op — indexed bit operations (displacement before CB opcode)
+- Otherwise: most instructions mirror the main opcode table but with IX/IY replacing HL and (IX+d) replacing (HL)
+
+Key behaviors:
+- `DD 21 nn nn` → `LD IX, nn` (tag: `'ld-pair-imm'`, pair: 'ix')
+- `DD 36 d nn` → `LD (IX+d), n` (tag: `'ld-ixd-imm'`, indexReg, displacement, value)
+- `DD 46 d` → `LD B, (IX+d)` (tag: `'ld-reg-ixd'`, dest, indexReg, displacement)
+- `DD 70 d` → `LD (IX+d), B` (tag: `'ld-ixd-reg'`, indexReg, displacement, src)
+- `DD 86 d` → `ADD A, (IX+d)` (tag: `'alu-ixd'`, op, indexReg, displacement)
+- `DD BE d` → `CP (IX+d)` (tag: `'alu-ixd'`, op: 'cp', indexReg, displacement)
+- `DD E1` → `POP IX` (tag: `'pop'`, pair: 'ix')
+- `DD E5` → `PUSH IX` (tag: `'push'`, pair: 'ix')
+- `DD E9` → `JP (IX)` (tag: `'jp-indirect'`, indirectRegister: 'ix', terminates: true)
+- `DD F9` → `LD SP, IX` (tag: `'ld-sp-pair'`, pair: 'ix')
+- `DD E3` → `EX (SP), IX` (tag: `'ex-sp-pair'`, pair: 'ix')
+- `DD 09/19/29/39` → `ADD IX, rr` (tag: `'add-pair'`, dest: 'ix', src: pair)
+- `DD 23` → `INC IX` (tag: `'inc-pair'`, pair: 'ix')
+- `DD 2B` → `DEC IX` (tag: `'dec-pair'`, pair: 'ix')
+- `DD 34 d` → `INC (IX+d)` (tag: `'inc-ixd'`, indexReg, displacement)
+- `DD 35 d` → `DEC (IX+d)` (tag: `'dec-ixd'`, indexReg, displacement)
+- `DD 22 nn` → `LD (nn), IX` (tag: `'ld-mem-pair'`, addr, pair: 'ix')
+- `DD 2A nn` → `LD IX, (nn)` (tag: `'ld-pair-mem'`, pair: 'ix', addr)
+
+For register-only ops (not involving (HL) position), H→ixh/iyh, L→ixl/iyl:
+- `DD 44` → `LD B, IXH` (tag: `'ld-reg-reg'`, dest: 'b', src: 'ixh')
+- `DD 45` → `LD B, IXL`
+- `DD 60` → `LD IXH, B`
+- etc.
+
+Half-register substitution: In the DD/FD context, when the register field is H (4) or L (5) AND the instruction does NOT use (HL) as memory operand, substitute with ixh/ixl (or iyh/iyl).
+
+**DD/FD CB d op — indexed bit operations:**
+- Byte sequence: DD CB d op (4 bytes)
+- `d` is signed displacement
+- `op` determines the operation (same encoding as regular CB)
+- Always operates on (IX+d) or (IY+d)
+- Tags: `'indexed-cb-bit'`, `'indexed-cb-set'`, `'indexed-cb-res'`, `'indexed-cb-rotate'`
+- Fields: `indexRegister`, `displacement`, `bit` (for bit ops), `operation` (for rotate)
+
+**2. Add `decodeED()` function** for extended instructions.
+
+Key ED instructions:
+
+| Opcode | Instruction | Tag |
+|--------|------------|-----|
+| ED 38+r nn | IN0 r, (n) | `'in0'` with reg, port |
+| ED 39+r nn | OUT0 (n), r | `'out0'` with reg, port |
+| ED 40-78 (even+0) | IN r, (C) | `'in-reg'` with reg |
+| ED 41-79 (even+1) | OUT (C), r | `'out-reg'` with reg |
+| ED 42,52,62,72 | SBC HL, rr | `'sbc-pair'` with src |
+| ED 4A,5A,6A,7A | ADC HL, rr | `'adc-pair'` with src |
+| ED 43,53,63,73 nn | LD (nn), rr | `'ld-mem-pair'` with addr, pair |
+| ED 4B,5B,6B,7B nn | LD rr, (nn) | `'ld-pair-mem'` with pair, addr |
+| ED 44 | NEG | `'neg'` |
+| ED 45 | RETN | `'retn'`, terminates |
+| ED 4D | RETI | `'reti'`, terminates |
+| ED 46 | IM 0 | `'im'`, value: 0 |
+| ED 56 | IM 1 | `'im'`, value: 1 |
+| ED 5E | IM 2 | `'im'`, value: 2 |
+| ED 47 | LD I, A | `'ld-special'`, dest: 'i' |
+| ED 4F | LD R, A | `'ld-special'`, dest: 'r' |
+| ED 57 | LD A, I | `'ld-special'`, src: 'i' |
+| ED 5F | LD A, R | `'ld-special'`, src: 'r' |
+| ED 67 | RRD | `'rrd'` |
+| ED 6F | RLD | `'rld'` |
+| ED A0 | LDI | `'ldi'` |
+| ED A1 | CPI | `'cpi'` |
+| ED A8 | LDD | `'ldd'` |
+| ED A9 | CPD | `'cpd'` |
+| ED B0 | LDIR | `'ldir'` |
+| ED B1 | CPIR | `'cpir'` |
+| ED B8 | LDDR | `'lddr'` |
+| ED B9 | CPDR | `'cpdr'` |
+| ED 4C | MLT BC | `'mlt'`, reg: 'bc' |
+| ED 5C | MLT DE | `'mlt'`, reg: 'de' |
+| ED 6C | MLT HL | `'mlt'`, reg: 'hl' |
+| ED 7C | MLT SP | `'mlt'`, reg: 'sp' (eZ80) |
+| ED 7D | STMIX | `'stmix'` |
+| ED 7E | RSMIX | `'rsmix'` |
+| ED 76 | SLP | `'slp'`, terminates |
+| ED 64 nn | TST A, n | `'tst-imm'`, value |
+| ED 74 nn | TSTIO n | `'tstio'`, value |
+| ED 34 | TST A, (HL) | `'tst-ind'` |
+| ED 93 | OTIMR | `'otimr'` |
+| ED 32 d | LEA IX, IX+d | `'lea'`, dest, base, displacement |
+| ED 33 d | LEA IY, IY+d | `'lea'` |
+| ED 54 d | LEA IX, IY+d | `'lea'` |
+| ED 55 d | LEA IY, IX+d | `'lea'` |
+| ED 31 | LD IY, (HL) | `'ld-pair-ind'`, pair: 'iy', src: 'hl' |
+| ED 37 | LD IX, (HL) | `'ld-pair-ind'`, pair: 'ix', src: 'hl' |
+| ED 3E | LD (HL), IY | `'ld-ind-pair'`, dest: 'hl', pair: 'iy' |
+| ED 3F | LD (HL), IX | `'ld-ind-pair'`, dest: 'hl', pair: 'ix' |
+| Undefined | NOP (2 bytes) | `'nop'`, length: 2 from startPc |
+
+For IN0/OUT0 register mapping: ED 38=IN0 A, ED 00=IN0 B, ED 08=IN0 C, ED 10=IN0 D, ED 18=IN0 E, ED 20=IN0 H, ED 28=IN0 L. (Bits 5-3 encode register.) Same pattern for OUT0 at ED 01/09/11/19/21/29/31/39.
+
+Wait — the actual IN0/OUT0 encoding on eZ80:
+- IN0: ED + (r << 3) where r uses standard register encoding, mapped to opcodes ED 00, ED 08, ED 10, ED 18, ED 20, ED 28, ED 30, ED 38
+- OUT0: ED 01, ED 09, ED 11, ED 19, ED 21, ED 29, ED 31, ED 39
+
+Actually the standard encoding is simpler. For the ED prefix block:
+- Opcodes ED 40-7F follow a pattern: bits 5-3 = register, bit 0 = IN(0)/OUT(1), bits 2-1 determine operation type
+- ED 40 = IN B,(C), ED 41 = OUT (C),B, ED 42 = SBC HL,BC, ED 43 nn = LD (nn),BC
+- ED 48 = IN C,(C), ED 49 = OUT (C),C, ED 4A = ADC HL,BC, ED 4B nn = LD BC,(nn)
+- Pattern: (op & 0x07) determines sub-operation within each register group
+
+Use this pattern for a compact decoder.
+
+**3. Wire into `decodeInstruction()`**
+
+Replace the `return null` stubs for DD/FD and ED with calls to the new functions.
+
+Also handle the doubled prefix case in decodeInstruction: if after consuming a mode prefix, the opcode is DD/FD and the next byte is also DD/FD (different one), consume the first — second prefix wins.
+
+### Important: immWidth for DD/FD instructions
+
+Indexed instructions with displacement use: prefix byte(s) + opcode + displacement + optional immediate.
+The address/immediate width for LD IX, nn etc. follows the same mode/modePrefix rules as main opcodes.
+
+### Verification
+
+```bash
+node --check TI-84_Plus_CE/ez80-decoder.js
+```
+
+Then test:
+```bash
+node -e "
+import('./TI-84_Plus_CE/ez80-decoder.js').then(m => {
+  // DD 21 00 10 00 = LD IX, 0x001000 (ADL mode, 3-byte imm)
+  let rom = new Uint8Array([0xdd, 0x21, 0x00, 0x10, 0x00]);
+  console.log(m.decodeInstruction(rom, 0, 'adl'));
+
+  // DD 46 05 = LD B, (IX+5)
+  rom = new Uint8Array([0xdd, 0x46, 0x05]);
+  console.log(m.decodeInstruction(rom, 0, 'z80'));
+
+  // ED 7E = RSMIX
+  rom = new Uint8Array([0xed, 0x7e]);
+  console.log(m.decodeInstruction(rom, 0, 'adl'));
+
+  // DD CB 03 46 = BIT 0, (IX+3)
+  rom = new Uint8Array([0xdd, 0xcb, 0x03, 0x46]);
+  console.log(m.decodeInstruction(rom, 0, 'z80'));
+});
+"
+```
+
+### Do NOT
+
+- Do NOT modify any other files
+- Do NOT add npm dependencies
+- Do NOT change existing decodeMain or decodeCB functions — only ADD new functions and wire them in

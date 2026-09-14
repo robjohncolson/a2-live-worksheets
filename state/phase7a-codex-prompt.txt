@@ -1,0 +1,98 @@
+## Task: Create I/O Peripheral Model for TI-84 Plus CE ROM Executor
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. The ROM's reset vector has been lifted to JS and executes 1308 blocks to reach HALT. Currently, all I/O port reads return 0xFF, which causes the PLL initialization loop at 0x000690-0x000697 to spin forever (requiring a forced loop break). Your job is to create a peripheral model so that I/O ports return meaningful values.
+
+### Files you MUST read first
+
+- `TI-84_Plus_CE/cpu-runtime.js` (790 lines) — the CPU class and `createExecutor()` function
+  - Lines 61-62: `_ioRead` and `_ioWrite` stubs (currently return 0xFF / no-op)
+  - Lines 507-527: `ioRead()`, `ioWrite()`, `ioReadPage0()`, `ioWritePage0()`, `ioReadImmediate()` — all delegate to `_ioRead`/`_ioWrite`
+  - Lines 639-790: `createExecutor(blocks, memory)` — wraps `_ioRead`/`_ioWrite` for tracing hooks, compiles blocks, runs executor loop
+
+### What to create
+
+**File: `TI-84_Plus_CE/peripherals.js`**
+
+Create an ES module exporting a `createPeripheralBus()` factory function. The peripheral bus:
+
+1. Has a `register(portOrRange, handler)` method to attach peripheral handlers
+2. Has `read(port)` and `write(port, value)` methods
+3. Returns 0xFF for unregistered ports (preserving current behavior)
+4. Logs all reads/writes if a `trace` option is enabled
+
+Include these built-in peripherals:
+
+**PLL Controller (port 0x28)**:
+- During ROM startup, code at 0x000690 reads port 0x28 and loops until bit 1 is set (PLL locked)
+- Model: After receiving any write to port 0x28 (PLL configuration), subsequent reads should return 0x02 (bit 1 = PLL locked) after a configurable delay (default: 2 reads return 0x00, then 0x02)
+- This is the CRITICAL peripheral — it eliminates the need for the loop force-breaker
+
+**CPU Control Register (port 0x00)**:
+- Tracks the last value written (power mode control)
+- Reads return the last written value (default 0x00)
+
+**GPIO Port (port 0x03)**:
+- Returns a configurable value (default 0xFF = no buttons pressed)
+- Writes are stored but have no side effects
+
+**Flash Controller (port 0x06)**:
+- Returns 0x00 on read (flash ready)
+- Writes are stored
+
+**Timer/Counter ports (0x10-0x18)**:
+- Returns 0x00 on read
+- Writes are stored
+
+Export signature:
+```javascript
+export function createPeripheralBus(options = {}) {
+  // options.trace: boolean (default false) — log all I/O
+  // options.pllDelay: number (default 2) — reads before PLL reports locked
+  // Returns: { read(port), write(port, value), register(port, handler), getState() }
+}
+```
+
+### What to modify
+
+**File: `TI-84_Plus_CE/cpu-runtime.js`**
+
+1. Modify `createExecutor(blocks, memory, options)` to accept an optional third `options` parameter:
+   ```javascript
+   export function createExecutor(blocks, memory, options = {}) {
+   ```
+
+2. If `options.peripherals` is provided (a peripheral bus object), wire it into the CPU's I/O:
+   ```javascript
+   if (options.peripherals) {
+     cpu._ioRead = (port) => options.peripherals.read(port);
+     cpu._ioWrite = (port, value) => options.peripherals.write(port, value);
+   }
+   ```
+   Place this BEFORE the tracing hook wrapper (so tracing still works — the existing code wraps `origIoRead`/`origIoWrite`).
+
+3. Remove the dead `cpu.call()` method if it exists (it's dead code — emitted blocks now handle call push directly). Search for a `call(` method on the CPU class. If there is one, remove it.
+
+### Code style
+
+- ES module (import/export)
+- No classes — use plain objects and closures (matches the factory-function style)
+- Early returns, no cleverness
+- No external dependencies
+
+### Verification
+
+After making changes, run:
+```bash
+node --check TI-84_Plus_CE/peripherals.js
+node --check TI-84_Plus_CE/cpu-runtime.js
+```
+
+Both should pass syntax check with zero errors.
+
+### Do NOT
+
+- Do not modify test-harness.mjs (that's a separate task)
+- Do not modify transpile-ti84-rom.mjs
+- Do not modify ROM.transpiled.js
+- Do not run the transpiler
+- Do not add npm dependencies

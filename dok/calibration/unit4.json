@@ -1,0 +1,48 @@
+{
+  "_comment": "Authoring anchors for NEW CED Unit 4 (Inference for Means; OLD topics 5.7-5.8 and 7.x). Describe what DOK-2 and DOK-3 look like here so authors rate by the same yardstick (spec §1.1-1.2). Anchors describe released-FRQ patterns and never quote an item. Mapping/content note: OLD 7.1 carries NEW 4.2 confidence-interval metadata, but its actual legacy framework and worksheet form a VAR-1.I rerandomization-and-error bridge; author 7.1 from that artifact rather than importing OLD 7.2 t-interval mechanics.",
+  "unit": 4,
+  "dok2_anchors": [
+    {
+      "id": "u4-d2-sampling-distribution-mechanics",
+      "shape": "Given a quantitative population model and sample size, check independence and shape conditions, then calculate the center, standard deviation, z-score, or tail probability for a sample mean or a difference in sample means.",
+      "why_dok2": "The random variable, model, and target probability are supplied, so the student follows a standard condition-and-calculation path without choosing among competing models or claims.",
+      "skills": ["3.B", "3.C", "4.B"]
+    },
+    {
+      "id": "u4-d2-carry-out-named-mean-inference-procedure",
+      "shape": "Given a named one-sample, matched-pairs, or two-sample t procedure, verify its stated conditions and calculate a standard error, degrees of freedom, interval, test statistic, or p-value in context.",
+      "why_dok2": "Procedure selection and conclusion boundaries are already settled; the student executes and communicates a known multistep algorithm.",
+      "skills": ["3.C", "3.D", "3.E", "4.C"]
+    }
+  ],
+  "dok3_anchors": [
+    {
+      "id": "u4-d3-which-sampling-model-is-warranted",
+      "shape": "Two normal models for a sample mean or difference compete; decide which are warranted by population shape, sample size, independence, and standard-error structure, then explain what a rejected approximation would mislead a reader into believing about a tail probability.",
+      "why_dok3": "The student must coordinate multiple routes to approximate normality and separate valid parameter formulas from a potentially invalid shape model; no single calculation resolves the competing claims.",
+      "skills": ["3.B", "3.C", "4.B"],
+      "frq_patterns": ["normal-population-vs-clt-two-paths-adjudicate-sampling-model", "failed-shape-condition-what-the-tail-probability-misleads"]
+    },
+    {
+      "id": "u4-d3-which-mean-procedure-answers-the-question",
+      "shape": "Several mean-inference procedures are plausible; select one-sample, matched-pairs, or independent two-sample inference from the study structure and parameter, defend the condition checks, and explain what an alternative analysis would estimate or test instead.",
+      "why_dok3": "The student translates pairing, independence, variables, and the research target into a defensible procedure while tracing the consequence of collapsing pairs or treating dependent measurements as independent.",
+      "skills": ["1.D", "1.E", "4.C"],
+      "frq_patterns": ["paired-vs-independent-means-which-procedure-fits", "one-sample-vs-two-sample-mean-procedure-and-consequence"]
+    },
+    {
+      "id": "u4-d3-which-mean-inference-conclusion-is-warranted",
+      "shape": "Two students interpret the same mean interval, t-test, or rerandomization result differently; decide which conclusion the uncertainty and design support, distinguish chance probability from certainty or practical importance, and bound causation and population scope.",
+      "why_dok3": "The student coordinates a numerical result, remaining error risk, study design, effect-size claim, and scope of inference to adjudicate competing conclusions and diagnose the overreach.",
+      "skills": ["4.A", "4.B", "4.D", "4.E"],
+      "frq_patterns": ["chance-alone-probability-is-not-probability-the-null-is-true", "confidence-interval-mean-effect-size-and-scope", "fail-to-reject-is-not-evidence-the-mean-equals-the-null"]
+    }
+  ],
+  "not_dok3": [
+    "A longer sampling-distribution, confidence-interval, or t-test calculation after the correct model and procedure have already been named.",
+    "A checklist that only compares n with 30 or 10 percent and never asks whether a probability or conclusion remains defensible.",
+    "An interval or p-value interpretation prompt that supplies the correct conclusion and asks the student to restate it in context.",
+    "Lettered parts that separately calculate, check, and conclude but never adjudicate a model, procedure, interpretation, or scope claim.",
+    "Calling any nonzero observed difference in sample means convincing without evaluating how readily random variation could produce it."
+  ]
+}

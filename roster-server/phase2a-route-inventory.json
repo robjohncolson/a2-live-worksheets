@@ -1,0 +1,892 @@
+[
+  {
+    "route": "/admin/verify",
+    "handler": "admin-restore.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/admin/restore",
+    "handler": "admin-restore.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/admin/snapshot",
+    "handler": "admin-snapshot.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/misconceptions",
+    "handler": "class.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/blank/:itemId",
+    "handler": "class.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/grades",
+    "handler": "class.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/quarter/close",
+    "handler": "class.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/quarter/deltas",
+    "handler": "class.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/blooket",
+    "handler": "class.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/backfill-receipts",
+    "handler": "class.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/mastery",
+    "handler": "class.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/commits",
+    "handler": "commits.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/wallet",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/chain",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/eat",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/buy-doge",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/sell-doge",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/gift",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/bet/open",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/bet/resolve",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/casino",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/class/casino",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/address",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/address/propose",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/class/wallet-proposals",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/address/approve",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/address/reject",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/mark-given",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/mark-sent",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/mark-returned",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/class/wallets",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/class/wallets/chain",
+    "handler": "doge-wallet.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/donow",
+    "handler": "donow.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/grade/answer-key",
+    "handler": "grade-answer-key.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/grade/offline-inputs",
+    "handler": "grade-offline-inputs.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/grade",
+    "handler": "grade.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/ledger/import",
+    "handler": "ledger-import.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/ledger/record",
+    "handler": "ledger.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/ledger/frq-config",
+    "handler": "ledger.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/ledger/frq-status",
+    "handler": "ledger.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/ledger/frq-appeal",
+    "handler": "ledger.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/ledger/frq-regrade",
+    "handler": "ledger.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/ledger/student/:studentId",
+    "handler": "ledger.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/lesson-unlock",
+    "handler": "lesson-unlock.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/lesson-unlock/revoke",
+    "handler": "lesson-unlock.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/lesson-unlocks",
+    "handler": "lesson-unlock.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/:studentId/lesson-unlocks",
+    "handler": "lesson-unlock.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/mastery",
+    "handler": "mastery.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge",
+    "handler": "nudge.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history",
+    "handler": "nudge.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge",
+    "handler": "nudge.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge-history",
+    "handler": "nudge.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge-history-guest",
+    "handler": "nudge.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge-reply",
+    "handler": "nudge.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-inbox",
+    "handler": "nudge.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/payout/plan",
+    "handler": "payout.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/payout/batch",
+    "handler": "payout.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/payout/batch/:id/cancel",
+    "handler": "payout.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/payout/next",
+    "handler": "payout.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/payout/batch/:id/claim",
+    "handler": "payout.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/payout/batch/:id/arm",
+    "handler": "payout.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/payout/batch/:id/complete",
+    "handler": "payout.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/payout/batch/:id/fail",
+    "handler": "payout.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/payout/status",
+    "handler": "payout.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/pc/:unit/:part",
+    "handler": "pc.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/pc/:unit/:part/submit",
+    "handler": "pc.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/pc/grade",
+    "handler": "pc.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/pc/unlock",
+    "handler": "pc.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/pc/unlock/student",
+    "handler": "pc.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/pc/unlock/status",
+    "handler": "pc.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/pc/unlock/class",
+    "handler": "pc.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/poll-archive",
+    "handler": "poll-archive.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/poll-archive/:id",
+    "handler": "poll-archive.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/receipts/issuer",
+    "handler": "receipts.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/receipts/trusted-issuers",
+    "handler": "receipts.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/receipts/trusted-issuers/revoke",
+    "handler": "receipts.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/remediation/propose",
+    "handler": "remediation.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/remediation/approve",
+    "handler": "remediation.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/remediation/complete",
+    "handler": "remediation.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/remediation/waive",
+    "handler": "remediation.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/remediation/student",
+    "handler": "remediation.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/remediation/list",
+    "handler": "remediation.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/remediation/unlocks",
+    "handler": "remediation.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/remediation/propose-from-mastery",
+    "handler": "remediation.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/review-queue",
+    "handler": "review.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/review-item/:ledgerId",
+    "handler": "review.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/review-by-item",
+    "handler": "review.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/review",
+    "handler": "review.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/rollup",
+    "handler": "rollup.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/health",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/enroll",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/verify",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/resolve",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/change-password",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/open-sections",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/claim",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/list",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/:studentId",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/:studentId/archive",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/:studentId/unarchive",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/:studentId/sprite-hue",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/:studentId/schoology-uid",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/roster/section/:section",
+    "handler": "server.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student-keys/register",
+    "handler": "student-keys.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student-keys",
+    "handler": "student-keys.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student-keys/revoke",
+    "handler": "student-keys.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/submissions/archive",
+    "handler": "submissions.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/:studentId/profile",
+    "handler": "teacher.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/:studentId/grade",
+    "handler": "teacher.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/:studentId/recent",
+    "handler": "teacher.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/:studentId/donow",
+    "handler": "teacher.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/:studentId/poll-archive",
+    "handler": "teacher.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/class/backfill-receipts?section=P1",
+    "handler": "tests/backfill-receipts.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/blank/WS-U6L1-2-Q1",
+    "handler": "tests/class-blank.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/blank/WS-U6L1-2-Q1?token=good",
+    "handler": "tests/class-blank.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/blank/WS-U6L1-2-Q2",
+    "handler": "tests/class-blank.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/blank/WS-U6L1-2-Q99",
+    "handler": "tests/class-blank.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/grades?section=P1",
+    "handler": "tests/class.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/grades?includeSavedWork=1",
+    "handler": "tests/class.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/grades?includeStaff=1",
+    "handler": "tests/class.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/quarter/deltas?quarter=Q1",
+    "handler": "tests/class.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/class/quarter/deltas?quarter=nope",
+    "handler": "tests/class.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/grade?token=garbage",
+    "handler": "tests/grade.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_abc123/lesson-unlocks",
+    "handler": "tests/lesson-unlock-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_unknown/lesson-unlocks",
+    "handler": "tests/lesson-unlock-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/mastery?token=garbage",
+    "handler": "tests/mastery.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya-otter",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya-otter&teacherUsername=apple-fox",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya,evil",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya(evil",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya.evil",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya'evil",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=student_name-99&teacherUsername=apple-fox",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya-otter&limit=999&teacherUsername=apple-fox",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya-otter&limit=banana&teacherUsername=apple-fox",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya-otter&limit=0&teacherUsername=apple-fox",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya-otter&limit=-5&teacherUsername=apple-fox",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya-otter&offset=-5&teacherUsername=apple-fox",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya-otter&offset=banana&teacherUsername=apple-fox",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-history?studentUsername=papaya-otter&teacherUsername=INJECTED",
+    "handler": "tests/nudge-history.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-inbox?section=PeriodE&since=2026-08-01T00:00:00.000Z&limit=999",
+    "handler": "tests/nudge-inbox.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-inbox?limit=0",
+    "handler": "tests/nudge-inbox.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-inbox?since=2026-08-01",
+    "handler": "tests/nudge-inbox.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/nudge-inbox?since=yesterday",
+    "handler": "tests/nudge-inbox.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/rollup?token=garbage",
+    "handler": "tests/rollup.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge-history?limit=999",
+    "handler": "tests/student-dm.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge-history?limit=banana",
+    "handler": "tests/student-dm.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge-history?offset=-5",
+    "handler": "tests/student-dm.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge-history-guest?guestUsername=Guest_Mango_Turtle",
+    "handler": "tests/student-dm.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge-history-guest?guestUsername=guest_mango_turtle",
+    "handler": "tests/student-dm.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge-history-guest?guestUsername=papaya-otter",
+    "handler": "tests/student-dm.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/student/nudge-history-guest?guestUsername=Guest_Berry_Sloth",
+    "handler": "tests/student-dm.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_abc123/profile",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/no-such-student/profile",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_abc123/grade",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/unknown-id/grade",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_abc123/recent",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_abc123/recent?limit=5",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_abc123/recent?limit=banana",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_abc123/recent?limit=999",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/no-such/recent",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_abc123/recent?limit=Infinity",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_abc123/donow",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/no-such/donow",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/student/stu_abc123/poll-archive",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/teacher/student/no-such/poll-archive",
+    "handler": "tests/teacher-endpoints.test.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/transcript",
+    "handler": "tests/transcript.test.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/trainer/state/:deckId",
+    "handler": "trainer.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/trainer/leaderboard/:section/:deckId",
+    "handler": "trainer.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/trainer/section/:section/summary/:deckId",
+    "handler": "trainer.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/custody",
+    "handler": "wallet-custody.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/custody/print",
+    "handler": "wallet-custody.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/wallet/custody/:studentId",
+    "handler": "wallet-custody.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/class/wallet-custody/export",
+    "handler": "wallet-custody.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/class/wallet-custody",
+    "handler": "wallet-custody.js",
+    "decision": "DROP"
+  },
+  {
+    "route": "/student/worksheet-diagnostics",
+    "handler": "worksheet-diagnostics.js",
+    "decision": "KEEP"
+  },
+  {
+    "route": "/teacher/worksheet-diagnostics",
+    "handler": "worksheet-diagnostics.js",
+    "decision": "KEEP"
+  }
+]

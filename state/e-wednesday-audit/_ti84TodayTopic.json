@@ -1,0 +1,237 @@
+﻿{
+  "target": {
+    "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_ti84TodayTopic",
+    "name": "_ti84TodayTopic",
+    "type": "Function",
+    "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js"
+  },
+  "direction": "upstream",
+  "impactedCount": 16,
+  "risk": "LOW",
+  "epistemic": "exact",
+  "summary": {
+    "direct": 2,
+    "processes_affected": 2,
+    "modules_affected": 1
+  },
+  "byDepthCounts": {
+    "1": 2,
+    "2": 4,
+    "3": 10
+  },
+  "affected_processes": [
+    {
+      "name": "submitSignIn",
+      "type": "Function",
+      "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+      "affected_process_count": 5,
+      "total_hits": 5,
+      "earliest_broken_step": 1
+    },
+    {
+      "name": "run",
+      "type": "Function",
+      "filePath": "scripts/audit-question-context.mjs",
+      "affected_process_count": 1,
+      "total_hits": 1,
+      "earliest_broken_step": 4
+    }
+  ],
+  "affected_modules": [
+    {
+      "name": "Gitnexus-shadow",
+      "hits": 15,
+      "impact": "direct"
+    }
+  ],
+  "byDepth": {
+    "1": [
+      {
+        "depth": 1,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_renderTi84SkillBtn",
+        "name": "_renderTi84SkillBtn",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 1,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:appLaunchUrl",
+        "name": "appLaunchUrl",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      }
+    ],
+    "2": [
+      {
+        "depth": 2,
+        "id": "File:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "name": "ap_stats_roadmap_square_mode.inline.js",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 2,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:renderDoNow",
+        "name": "renderDoNow",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 2,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:openApp",
+        "name": "openApp",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 2,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:popOutApp",
+        "name": "popOutApp",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      }
+    ],
+    "3": [
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:loadRegistry",
+        "name": "loadRegistry",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:submitSignIn",
+        "name": "submitSignIn",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": [
+          {
+            "id": "proc_112_submitsignin",
+            "label": "SubmitSignIn → _viewAsContext",
+            "processType": "cross_community",
+            "step": 1
+          },
+          {
+            "id": "proc_111_submitsignin",
+            "label": "SubmitSignIn → _fcFlag",
+            "processType": "cross_community",
+            "step": 1
+          },
+          {
+            "id": "proc_265_submitsignin",
+            "label": "SubmitSignIn → _loadKnownUsers",
+            "processType": "cross_community",
+            "step": 1
+          },
+          {
+            "id": "proc_264_submitsignin",
+            "label": "SubmitSignIn → Fetch",
+            "processType": "cross_community",
+            "step": 1
+          },
+          {
+            "id": "proc_263_submitsignin",
+            "label": "SubmitSignIn → _fcSyncClient",
+            "processType": "cross_community",
+            "step": 1
+          }
+        ]
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_nfSubmitPassword",
+        "name": "_nfSubmitPassword",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_applySignedUpSession",
+        "name": "_applySignedUpSession",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:submitPwChange",
+        "name": "submitPwChange",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_walletLoadSummerSchedule",
+        "name": "_walletLoadSummerSchedule",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_renderGradeStatus",
+        "name": "_renderGradeStatus",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_studentMarkSave",
+        "name": "_studentMarkSave",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_openTi84ForTopic",
+        "name": "_openTi84ForTopic",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_deskLaunch",
+        "name": "_deskLaunch",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": [
+          {
+            "id": "proc_28_run",
+            "label": "Run → BumpUsage",
+            "processType": "cross_community",
+            "step": 4
+          }
+        ]
+      }
+    ]
+  }
+}

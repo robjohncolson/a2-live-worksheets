@@ -1,0 +1,93 @@
+## Task: Create Coverage Gap Analyzer Script
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. The transpiler has generated 50307 blocks covering 7.54% of a 4MB ROM. Your job is to create a standalone analysis script that identifies the largest uncovered ROM regions and suggests new seed entry points.
+
+### Files you MUST read first
+
+- `TI-84_Plus_CE/ROM.transpiled.report.json` — current coverage metrics
+- Read the first 100 lines of `TI-84_Plus_CE/ROM.transpiled.js` to understand the module structure (especially PRELIFTED_BLOCKS and how block keys map to addresses)
+
+### What to create
+
+**File: `TI-84_Plus_CE/coverage-analyzer.mjs`**
+
+A standalone Node.js script (ES module) that:
+
+1. **Imports** `PRELIFTED_BLOCKS` and `TRANSPILATION_META` from `./ROM.transpiled.js`
+
+2. **Builds a coverage map**: For each block key (format: `"00abcd:adl"` or `"00abcd:z80"`), extract the PC address. Each block covers some bytes (the `instructions` array in the block metadata has byte offsets). Build a Set of all covered byte addresses.
+
+3. **Identifies uncovered gaps**: Walk the ROM address space (0x000000 to 0x3FFFFF) and find contiguous uncovered regions. Track:
+   - Gap start address
+   - Gap length (bytes)
+   - Whether the gap is in a "interesting" region (below 0x100000 = main OS area)
+
+4. **Ranks gaps by size**: Sort uncovered gaps by length (descending). Show top 20.
+
+5. **Suggests seed entry points**: For each of the top 10 largest gaps in the main OS area (< 0x100000), suggest the start address as a potential seed entry point.
+
+6. **Prints a coverage heatmap**: Divide the ROM into 256 equal regions (16KB each). For each region, show the coverage percentage. Format as a simple text table:
+
+   ```
+   Region 0x000000-0x003FFF:  45.2% covered (7234 bytes)
+   Region 0x004000-0x007FFF:  12.1% covered (1982 bytes)
+   ...
+   ```
+
+   Only show regions with >0% coverage (skip empty regions).
+
+7. **Summary statistics**:
+   - Total blocks
+   - Total covered bytes / ROM size / coverage %
+   - Number of gaps > 1KB
+   - Number of gaps > 10KB
+   - Largest gap location and size
+   - Coverage in OS area (0x000000-0x0FFFFF) vs data area (0x100000+)
+
+### Output format
+
+The script should print everything to stdout. Example:
+
+```
+=== TI-84 Plus CE ROM Coverage Analysis ===
+
+Coverage: 316203 / 4194304 bytes (7.54%)
+Blocks: 50307
+
+--- Coverage Heatmap (16KB regions, non-zero only) ---
+  0x000000-0x003FFF:  45.2% (7234 bytes)
+  ...
+
+--- Top 20 Uncovered Gaps ---
+  #1: 0x0A1234-0x0BFFFF (126,412 bytes)
+  #2: ...
+
+--- Suggested New Seeds (from largest OS-area gaps) ---
+  { pc: 0x0A1234, mode: 'adl' },
+  ...
+
+--- Summary ---
+  Gaps > 1KB: 42
+  Gaps > 10KB: 15
+  OS area coverage: 12.3%
+  Data area coverage: 2.1%
+```
+
+### Implementation notes
+
+- The block metadata includes an `instructions` array. Each instruction has `offset` (relative to block start) and `bytes` (hex string of the instruction bytes). You can compute covered byte count from this.
+- If `instructions` is not available, fall back to estimating from the block's address range (difference between this block's PC and the next block's PC in the same mode).
+- Use `import()` to load the ROM module.
+- Keep it simple — no npm dependencies.
+
+### Verification
+
+```bash
+node --check TI-84_Plus_CE/coverage-analyzer.mjs
+```
+
+### Do NOT
+
+- Do NOT modify any existing files
+- Do NOT run the analyzer (the ROM module is large and takes time to load)
+- Do NOT add npm dependencies

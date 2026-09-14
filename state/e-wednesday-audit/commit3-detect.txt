@@ -1,0 +1,29 @@
+Changes: 39 files, 24 symbols
+Affected processes: 6
+Risk level: high
+
+Changed symbols:
+  Symbol DOK ladder backlog — dated lesson days without a `dok/lessons/{topic}.yaml` yet → dok/PENDING.md
+  Symbol dok/ — one DOK-3 problem per AP Stats lesson day → dok/README.md
+  Symbol Files → dok/README.md
+  Symbol load_registry → dok/build_ladder.py
+  Symbol tether_lines → dok/build_ladder.py
+  Symbol validate_item → dok/build_ladder.py
+  Symbol validate_visual → dok/build_ladder.py
+  Symbol scoring_table → dok/build_ladder.py
+  Symbol emit_teacher → dok/build_ladder.py
+  Symbol build → dok/build_ladder.py
+  Symbol write_manifest → dok/build_ladder.py
+  Symbol validate_all → dok/build_ladder.py
+  Symbol BANNED_RATIONALE_WORDS → dok/build_ladder.py
+  Symbol VISUAL_KEYS → dok/build_ladder.py
+  Symbol showResourcePanel → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+... and 9 more
+
+Affected execution flows:
+  • Run → LookupTopic (6 steps) — changed: showResourcePanel
+  • Run → GetStudentEmail (6 steps) — changed: showResourcePanel
+  • Main → Validate_visual (4 steps) — changed: validate_all, validate_visual
+  • Emit_teacher → Tutor_path (3 steps) — changed: emit_teacher, tether_lines
+  • Emit_teacher → Latex_text (3 steps) — changed: emit_teacher, tether_lines
+  • Emit_teacher → Ced_topic_label (3 steps) — changed: emit_teacher

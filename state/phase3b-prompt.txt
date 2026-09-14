@@ -1,0 +1,58 @@
+You are modifying scripts/transpile-ti84-rom.mjs — a TI-84 Plus CE ROM-to-JavaScript byte-lift transpiler.
+
+After raising the block limit to 4096, 39 new cpu.unimplemented() stubs appeared. Your job is to add emitter support for ALL of them, then raise the block limit to 8192.
+
+IMPORTANT: Only edit scripts/transpile-ti84-rom.mjs. After editing, run: node scripts/transpile-ti84-rom.mjs to regenerate output.
+
+THE 39 NEW STUBS (by category):
+
+1. ldd (block load with decrement) — 9 stubs
+   Add: if (mnemonic === 'ldd') return ['cpu.ldd();'];
+   Place near the existing ldi/ldir/lddr handlers.
+
+2. rld (rotate left digit, BCD) — 7 stubs
+   Add: if (mnemonic === 'rld') return ['cpu.rld();'];
+
+3. sla register (shift left arithmetic) — 8 stubs (sla d x 4, sla h x 4)
+   Add regex: /^sla ([abcdehl])$/i
+   Emit: cpu.{reg} = cpu.rotateShift8('sla', cpu.{reg});
+   Place near the existing srl/rr register handlers.
+
+4. nop.sil (nop with .sil prefix) — 4 stubs
+   The existing nop handler checks mnemonic === 'nop' but doesn't match 'nop.sil'.
+   Change the check to: if (mnemonic === 'nop' || mnemonic.startsWith('nop.'))
+
+5. sub (ix+d) / sub (ix-d) (indexed subtract) — 3 stubs
+   Add regex that matches: sub (ix-8), sub (ix+0), etc.
+   Pattern: /^sub \((ix|iy)([+-](?:0x[0-9a-f]+|\d+))\)$/i
+   Emit: cpu.a = cpu.subtract8(cpu.a, cpu.readIndexed8('{reg}', {displacement}));
+   Place near the existing sub immediate/register handlers.
+
+6. res bit, register (bit reset for non-a registers) — 4 stubs (res 4-7, l)
+   Add regex: /^res (\d), ([bcdehl])$/i
+   Emit: cpu.{reg} &= ~(hex(1 << bit));
+   Place near the existing bitReset (res bit, a) handler.
+
+7. add a, (ix+d) (indexed add) — 2 stubs
+   Add regex that matches: add a, (ix-1), add a, (ix-2), etc.
+   Pattern: /^add a, \((ix|iy)([+-](?:0x[0-9a-f]+|\d+))\)$/i
+   Emit: cpu.a = cpu.add8(cpu.a, cpu.readIndexed8('{reg}', {displacement}));
+   Place near the existing add a, (hl) handler.
+
+8. sra register (shift right arithmetic) — 1 stub (sra h)
+   Add regex: /^sra ([abcdehl])$/i
+   Emit: cpu.{reg} = cpu.rotateShift8('sra', cpu.{reg});
+   Place near the srl/rr/sla handlers.
+
+ALSO: After adding all emitter support, raise blockLimit from 4096 to 8192 in walkBlocks() options.
+
+PATTERN REFERENCE — existing rr register handler:
+  const rrRegister = /^rr ([abcdehl])$/i.exec(mnemonic);
+  if (rrRegister) {
+    return [`cpu.${rrRegister[1].toLowerCase()} = cpu.rotateShift8('rr', cpu.${rrRegister[1].toLowerCase()});`];
+  }
+
+AFTER EDITING:
+1. Run: node --check scripts/transpile-ti84-rom.mjs
+2. Run: node scripts/transpile-ti84-rom.mjs
+3. Report the new block count and covered bytes

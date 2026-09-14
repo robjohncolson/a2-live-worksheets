@@ -1,0 +1,55 @@
+{
+  "name": "Algebra 2 Fall-2026 CED skill taxonomy",
+  "canonical": true,
+  "note": "THE one skill map (plan G7). Formula Lab, TI-84 pattern recognition, tutor prompts, and curriculum_render AI-grading context must consume THIS file (or verbatim copies of it) — no per-surface skill vocabularies. The Big Ideas axis (VAR/UNC/DAT) is ELIMINATED in the Fall-2026 CED and must not appear anywhere student-facing.",
+  "warning": "Code numbering COLLIDES with the old 2019 CED skill codes (old 1.A 'Selecting Statistical Methods' etc. used the same X.Y shapes with different meanings). Never mix: a bare code like '3.A' is ambiguous without stating which CED. Old->new skill mapping is INFERENCE ONLY — College Board publishes no crosswalk.",
+  "source": {
+    "codes": "framworkSY2627/unit1framework.txt … unit5framework.txt (official Fall-2026 unit guides, Skills column, extracted verbatim 2026-07-09)",
+    "practiceNames": "school/ap-stats-2026-curriculum-changes.tex (primary-source extraction; confirm against the CED PDF if load-bearing)"
+  },
+  "codeCount": 18,
+  "practices": [
+    {
+      "practice": 1,
+      "name": "Formulate Questions",
+      "codes": [
+        { "code": "1.A", "description": "Determine a valid investigative question that requires a statistical investigation." }
+      ]
+    },
+    {
+      "practice": 2,
+      "name": "Collect Data",
+      "codes": [
+        { "code": "2.A", "description": "Identify information to answer a question or solve a problem." },
+        { "code": "2.B", "description": "Justify an appropriate method for ethically gathering and representing data." },
+        { "code": "2.C", "description": "Identify appropriate statistical inference methods." },
+        { "code": "2.D", "description": "Identify types of errors and relationships among components in statistical inference methods." },
+        { "code": "2.E", "description": "Identify the null and alternative hypotheses." }
+      ]
+    },
+    {
+      "practice": 3,
+      "name": "Analyze Data",
+      "codes": [
+        { "code": "3.A", "description": "Construct tabular and graphical representations of data and distributions." },
+        { "code": "3.B", "description": "Calculate summary statistics, relative positions of points within a distribution, and predicted responses." },
+        { "code": "3.C", "description": "Calculate and estimate expected counts, percentages, probabilities, and intervals." },
+        { "code": "3.D", "description": "Calculate means, standard deviations, and parameters for probability distributions." },
+        { "code": "3.E", "description": "Calculate appropriate statistical inference method results." }
+      ]
+    },
+    {
+      "practice": 4,
+      "name": "Interpret Results",
+      "codes": [
+        { "code": "4.A", "description": "Describe and compare tabular and graphical representations of data, as well as summary statistics." },
+        { "code": "4.B", "description": "Justify a claim based on statistical calculations and results." },
+        { "code": "4.C", "description": "Describe distributions and compare relative positions of points within a distribution." },
+        { "code": "4.D", "description": "Interpret statistical calculations and results to assess meaning or a claim." },
+        { "code": "4.E", "description": "Justify the use of a chosen statistical inference method by verifying conditions." },
+        { "code": "4.F", "description": "Interpret results of statistical inference methods." },
+        { "code": "4.G", "description": "Justify a claim based on statistical inference method results." }
+      ]
+    }
+  ]
+}

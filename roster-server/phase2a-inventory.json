@@ -1,0 +1,2072 @@
+[
+  {
+    "kind": "module",
+    "name": "admin-restore.js",
+    "decision": "KEEP",
+    "reason": "Remove candy award metadata from restore."
+  },
+  {
+    "kind": "module",
+    "name": "admin-snapshot.js",
+    "decision": "KEEP",
+    "reason": "Remove candy award metadata from snapshots."
+  },
+  {
+    "kind": "module",
+    "name": "backfill.js",
+    "decision": "KEEP",
+    "reason": "Academic/flashcard commits, integrity and recovery."
+  },
+  {
+    "kind": "module",
+    "name": "bkt.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "module",
+    "name": "class.js",
+    "decision": "KEEP",
+    "reason": "Remove economy totals and trainer summaries from class responses."
+  },
+  {
+    "kind": "module",
+    "name": "code-hash.js",
+    "decision": "KEEP",
+    "reason": "Academic/flashcard commits, integrity and recovery."
+  },
+  {
+    "kind": "module",
+    "name": "commits.js",
+    "decision": "KEEP",
+    "reason": "Academic/flashcard commits, integrity and recovery."
+  },
+  {
+    "kind": "module",
+    "name": "crypto.js",
+    "decision": "KEEP",
+    "reason": "Remove wallet WIF encryption and wallet secret resolution; keep password cryptography."
+  },
+  {
+    "kind": "module",
+    "name": "db.js",
+    "decision": "KEEP",
+    "reason": "Remove wallet, candy, chain, payout and stake database operations and review candy metadata."
+  },
+  {
+    "kind": "module",
+    "name": "doge-chain.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "doge-econ.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "doge-wallet.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "donow.js",
+    "decision": "KEEP",
+    "reason": "Retained service infrastructure."
+  },
+  {
+    "kind": "module",
+    "name": "frq-ledger-db.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "module",
+    "name": "frq-prompt.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "module",
+    "name": "frq-verdict.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "module",
+    "name": "frq-worker.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "module",
+    "name": "grade-answer-key.js",
+    "decision": "KEEP",
+    "reason": "Unified academic ledger, grades and transcripts."
+  },
+  {
+    "kind": "module",
+    "name": "grade-config.js",
+    "decision": "KEEP",
+    "reason": "Remove PC anchors/curves, trainer, poster and pcTrack settings; retain dates/useV3 and add Phase 3 placeholder."
+  },
+  {
+    "kind": "module",
+    "name": "grade-contexts.js",
+    "decision": "KEEP",
+    "reason": "Stop loading retired event tracks; accept empty valid curriculum bundles."
+  },
+  {
+    "kind": "module",
+    "name": "grade-offline-inputs.js",
+    "decision": "KEEP",
+    "reason": "Remove trainer data and PC-specific redaction options."
+  },
+  {
+    "kind": "module",
+    "name": "grade.js",
+    "decision": "KEEP",
+    "reason": "Remove PC/trainer grading branches; retain legacy and v3 grade entry points."
+  },
+  {
+    "kind": "module",
+    "name": "gradebook-grid.js",
+    "decision": "KEEP",
+    "reason": "Remove PC/poster columns and category branches; preserve supported grid and Schoology inputs."
+  },
+  {
+    "kind": "module",
+    "name": "ledger-db.js",
+    "decision": "KEEP",
+    "reason": "Unified academic ledger, grades and transcripts."
+  },
+  {
+    "kind": "module",
+    "name": "ledger-import.js",
+    "decision": "KEEP",
+    "reason": "Unified academic ledger, grades and transcripts."
+  },
+  {
+    "kind": "module",
+    "name": "ledger.js",
+    "decision": "KEEP",
+    "reason": "Reject retired and unsupported sources through the surviving-source allowlist."
+  },
+  {
+    "kind": "module",
+    "name": "lesson-grade.js",
+    "decision": "KEEP",
+    "reason": "Remove PC/trainer/poster aggregation; retain generic two-track v3 arithmetic and supported work grading."
+  },
+  {
+    "kind": "module",
+    "name": "lesson-unlock-db.js",
+    "decision": "KEEP",
+    "reason": "Teacher feedback and lesson access; no classroom state."
+  },
+  {
+    "kind": "module",
+    "name": "lesson-unlock.js",
+    "decision": "KEEP",
+    "reason": "Teacher feedback and lesson access; no classroom state."
+  },
+  {
+    "kind": "module",
+    "name": "lib/doge-keys.mjs",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "mastery.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0001_roster.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0002_item_ledger.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0003_roster_pw.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0004_remediation_assignment.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0005_roster_role.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0006_roster_sprite_hue.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0007_poll_archive.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0008_nudges_log.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0009_lesson_unlock.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0010_schoology_sync.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0011_item_ledger_pc_source.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0012_roster_schoology_uid.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0013_item_ledger_blooket_source.sql",
+    "decision": "KEEP",
+    "reason": "Remove retired source values and stale poster comment; retain Blooket."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0014_item_ledger_quiz_exception.sql",
+    "decision": "KEEP",
+    "reason": "Remove retired source values; retain quiz exceptions."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0015_item_ledger_quiz_review.sql",
+    "decision": "KEEP",
+    "reason": "Remove retired source values; retain quiz reviews."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0016_item_ledger_trainer_source.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0017_trainer_state.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0018_item_ledger_receipt.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0019_doge_wallet.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0020_doge_chain_cache.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0021_doge_gifting.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0022_retire_candy_eaten.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0023_doge_sell.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0024_tetris_stakes.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0025_review_marks.sql",
+    "decision": "KEEP",
+    "reason": "Keep review marks/indexes/RLS; remove candy fields, grants and RPC schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0026_trusted_issuers.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0027_student_keys.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0028_submission_archive.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0029_pc_makeup.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0030_quarter_grade_snapshot.sql",
+    "decision": "KEEP",
+    "reason": "Remove stale PC schema comment; retain snapshots."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0031_frq_tickets.sql",
+    "decision": "KEEP",
+    "reason": "Retained roster, academic ledger, Schoology, receipt or recovery schema."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0032_payout_batch.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0033_wallet_address_proposals.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0034_candy_return.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "migration",
+    "name": "migrations/0035_wallet_custody.sql",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "misconception-assets.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "module",
+    "name": "misconception-triage.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "module",
+    "name": "misconceptions.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "module",
+    "name": "nudge-db.js",
+    "decision": "KEEP",
+    "reason": "Teacher feedback and lesson access; no classroom state."
+  },
+  {
+    "kind": "module",
+    "name": "nudge.js",
+    "decision": "KEEP",
+    "reason": "Teacher feedback and lesson access; no classroom state."
+  },
+  {
+    "kind": "module",
+    "name": "payout.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "pc-db.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "pc-figures.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "pc.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "poll-archive-db.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "poll-archive.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "rate-limit.js",
+    "decision": "KEEP",
+    "reason": "Retained service infrastructure."
+  },
+  {
+    "kind": "module",
+    "name": "receipts.js",
+    "decision": "KEEP",
+    "reason": "Remove payout receipt issuance; retain signed academic receipts."
+  },
+  {
+    "kind": "module",
+    "name": "remediation-db.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "module",
+    "name": "remediation.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "module",
+    "name": "review.js",
+    "decision": "KEEP",
+    "reason": "Remove candy minting and award responses; retain signed marks and feedback."
+  },
+  {
+    "kind": "module",
+    "name": "rollup.js",
+    "decision": "KEEP",
+    "reason": "Unified academic ledger, grades and transcripts."
+  },
+  {
+    "kind": "module",
+    "name": "scoring.js",
+    "decision": "KEEP",
+    "reason": "Remove PC row scoring."
+  },
+  {
+    "kind": "module",
+    "name": "scripts/build-golden-fixture.mjs",
+    "decision": "KEEP",
+    "reason": "Remove PC diagnostic logging and stale economy comment."
+  },
+  {
+    "kind": "module",
+    "name": "scripts/build-golden-synthetic.mjs",
+    "decision": "KEEP",
+    "reason": "Remove PC/trainer generators and config before documented regeneration."
+  },
+  {
+    "kind": "module",
+    "name": "scripts/gen-blooket-lessons.mjs",
+    "decision": "KEEP",
+    "reason": "Retained Blooket authoring or golden-fixture tooling."
+  },
+  {
+    "kind": "module",
+    "name": "scripts/load-pc-bank.mjs",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "server.js",
+    "decision": "KEEP",
+    "reason": "Remove retired imports, mounts and production initialization; preserve injectable startup."
+  },
+  {
+    "kind": "module",
+    "name": "signup-config.js",
+    "decision": "KEEP",
+    "reason": "Identity, authentication and self-signup."
+  },
+  {
+    "kind": "module",
+    "name": "snapshot-verify.js",
+    "decision": "KEEP",
+    "reason": "Academic/flashcard commits, integrity and recovery."
+  },
+  {
+    "kind": "module",
+    "name": "student-keys.js",
+    "decision": "KEEP",
+    "reason": "Identity, authentication and self-signup."
+  },
+  {
+    "kind": "module",
+    "name": "submissions.js",
+    "decision": "KEEP",
+    "reason": "Academic/flashcard commits, integrity and recovery."
+  },
+  {
+    "kind": "module",
+    "name": "teacher-auth.js",
+    "decision": "KEEP",
+    "reason": "Remove payout-agent authorization helpers; keep teacher auth."
+  },
+  {
+    "kind": "module",
+    "name": "teacher.js",
+    "decision": "KEEP",
+    "reason": "Remove student poll archive endpoint."
+  },
+  {
+    "kind": "module",
+    "name": "token.js",
+    "decision": "KEEP",
+    "reason": "Identity, authentication and self-signup."
+  },
+  {
+    "kind": "module",
+    "name": "tools/grade-model-emit-cases.mjs",
+    "decision": "KEEP",
+    "reason": "Remove poster track generation."
+  },
+  {
+    "kind": "module",
+    "name": "tools/grade-sim-f1a-compare.mjs",
+    "decision": "KEEP",
+    "reason": "Retained grade simulation tooling."
+  },
+  {
+    "kind": "module",
+    "name": "tools/grade-sim-sweep.mjs",
+    "decision": "KEEP",
+    "reason": "Remove the poster-weight sweep setting."
+  },
+  {
+    "kind": "module",
+    "name": "tools/wallet-model-emit-cases.mjs",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "trainer-db.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "trainer.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "transcript-canonical.js",
+    "decision": "KEEP",
+    "reason": "Unified academic ledger, grades and transcripts."
+  },
+  {
+    "kind": "module",
+    "name": "transcript.js",
+    "decision": "KEEP",
+    "reason": "Unified academic ledger, grades and transcripts."
+  },
+  {
+    "kind": "module",
+    "name": "username.js",
+    "decision": "KEEP",
+    "reason": "Identity, authentication and self-signup."
+  },
+  {
+    "kind": "module",
+    "name": "vitest.config.js",
+    "decision": "KEEP",
+    "reason": "Retained service infrastructure."
+  },
+  {
+    "kind": "module",
+    "name": "wallet-custody.js",
+    "decision": "DROP",
+    "reason": "Retired feature module, schema or dedicated tooling."
+  },
+  {
+    "kind": "module",
+    "name": "worksheet-diagnostics.js",
+    "decision": "KEEP",
+    "reason": "Academic grading, diagnostics and remediation."
+  },
+  {
+    "kind": "route",
+    "name": "/admin/verify",
+    "decision": "KEEP",
+    "reason": "admin-restore.js"
+  },
+  {
+    "kind": "route",
+    "name": "/admin/restore",
+    "decision": "KEEP",
+    "reason": "admin-restore.js"
+  },
+  {
+    "kind": "route",
+    "name": "/admin/snapshot",
+    "decision": "KEEP",
+    "reason": "admin-snapshot.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/misconceptions",
+    "decision": "KEEP",
+    "reason": "class.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/blank/:itemId",
+    "decision": "KEEP",
+    "reason": "class.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/grades",
+    "decision": "KEEP",
+    "reason": "class.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/quarter/close",
+    "decision": "KEEP",
+    "reason": "class.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/quarter/deltas",
+    "decision": "KEEP",
+    "reason": "class.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/blooket",
+    "decision": "KEEP",
+    "reason": "class.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/backfill-receipts",
+    "decision": "KEEP",
+    "reason": "class.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/mastery",
+    "decision": "KEEP",
+    "reason": "class.js"
+  },
+  {
+    "kind": "route",
+    "name": "/commits",
+    "decision": "KEEP",
+    "reason": "commits.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/chain",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/eat",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/buy-doge",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/sell-doge",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/gift",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/bet/open",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/bet/resolve",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/casino",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/casino",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/address",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/address/propose",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/wallet-proposals",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/address/approve",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/address/reject",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/mark-given",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/mark-sent",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/mark-returned",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/wallets",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/wallets/chain",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "route",
+    "name": "/donow",
+    "decision": "KEEP",
+    "reason": "donow.js"
+  },
+  {
+    "kind": "route",
+    "name": "/grade/answer-key",
+    "decision": "KEEP",
+    "reason": "grade-answer-key.js"
+  },
+  {
+    "kind": "route",
+    "name": "/grade/offline-inputs",
+    "decision": "KEEP",
+    "reason": "grade-offline-inputs.js"
+  },
+  {
+    "kind": "route",
+    "name": "/grade",
+    "decision": "KEEP",
+    "reason": "grade.js"
+  },
+  {
+    "kind": "route",
+    "name": "/ledger/import",
+    "decision": "KEEP",
+    "reason": "ledger-import.js"
+  },
+  {
+    "kind": "route",
+    "name": "/ledger/record",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "route",
+    "name": "/ledger/frq-config",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "route",
+    "name": "/ledger/frq-status",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "route",
+    "name": "/ledger/frq-appeal",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "route",
+    "name": "/ledger/frq-regrade",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "route",
+    "name": "/ledger/student/:studentId",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/lesson-unlock",
+    "decision": "KEEP",
+    "reason": "lesson-unlock.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/lesson-unlock/revoke",
+    "decision": "KEEP",
+    "reason": "lesson-unlock.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/lesson-unlocks",
+    "decision": "KEEP",
+    "reason": "lesson-unlock.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/:studentId/lesson-unlocks",
+    "decision": "KEEP",
+    "reason": "lesson-unlock.js"
+  },
+  {
+    "kind": "route",
+    "name": "/mastery",
+    "decision": "KEEP",
+    "reason": "mastery.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge",
+    "decision": "KEEP",
+    "reason": "nudge.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history",
+    "decision": "KEEP",
+    "reason": "nudge.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge",
+    "decision": "KEEP",
+    "reason": "nudge.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge-history",
+    "decision": "KEEP",
+    "reason": "nudge.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge-history-guest",
+    "decision": "KEEP",
+    "reason": "nudge.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge-reply",
+    "decision": "KEEP",
+    "reason": "nudge.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-inbox",
+    "decision": "KEEP",
+    "reason": "nudge.js"
+  },
+  {
+    "kind": "route",
+    "name": "/payout/plan",
+    "decision": "DROP",
+    "reason": "payout.js"
+  },
+  {
+    "kind": "route",
+    "name": "/payout/batch",
+    "decision": "DROP",
+    "reason": "payout.js"
+  },
+  {
+    "kind": "route",
+    "name": "/payout/batch/:id/cancel",
+    "decision": "DROP",
+    "reason": "payout.js"
+  },
+  {
+    "kind": "route",
+    "name": "/payout/next",
+    "decision": "DROP",
+    "reason": "payout.js"
+  },
+  {
+    "kind": "route",
+    "name": "/payout/batch/:id/claim",
+    "decision": "DROP",
+    "reason": "payout.js"
+  },
+  {
+    "kind": "route",
+    "name": "/payout/batch/:id/arm",
+    "decision": "DROP",
+    "reason": "payout.js"
+  },
+  {
+    "kind": "route",
+    "name": "/payout/batch/:id/complete",
+    "decision": "DROP",
+    "reason": "payout.js"
+  },
+  {
+    "kind": "route",
+    "name": "/payout/batch/:id/fail",
+    "decision": "DROP",
+    "reason": "payout.js"
+  },
+  {
+    "kind": "route",
+    "name": "/payout/status",
+    "decision": "DROP",
+    "reason": "payout.js"
+  },
+  {
+    "kind": "route",
+    "name": "/pc/:unit/:part",
+    "decision": "DROP",
+    "reason": "pc.js"
+  },
+  {
+    "kind": "route",
+    "name": "/pc/:unit/:part/submit",
+    "decision": "DROP",
+    "reason": "pc.js"
+  },
+  {
+    "kind": "route",
+    "name": "/pc/grade",
+    "decision": "DROP",
+    "reason": "pc.js"
+  },
+  {
+    "kind": "route",
+    "name": "/pc/unlock",
+    "decision": "DROP",
+    "reason": "pc.js"
+  },
+  {
+    "kind": "route",
+    "name": "/pc/unlock/student",
+    "decision": "DROP",
+    "reason": "pc.js"
+  },
+  {
+    "kind": "route",
+    "name": "/pc/unlock/status",
+    "decision": "DROP",
+    "reason": "pc.js"
+  },
+  {
+    "kind": "route",
+    "name": "/pc/unlock/class",
+    "decision": "DROP",
+    "reason": "pc.js"
+  },
+  {
+    "kind": "route",
+    "name": "/poll-archive",
+    "decision": "DROP",
+    "reason": "poll-archive.js"
+  },
+  {
+    "kind": "route",
+    "name": "/poll-archive/:id",
+    "decision": "DROP",
+    "reason": "poll-archive.js"
+  },
+  {
+    "kind": "route",
+    "name": "/receipts/issuer",
+    "decision": "KEEP",
+    "reason": "receipts.js"
+  },
+  {
+    "kind": "route",
+    "name": "/receipts/trusted-issuers",
+    "decision": "KEEP",
+    "reason": "receipts.js"
+  },
+  {
+    "kind": "route",
+    "name": "/receipts/trusted-issuers/revoke",
+    "decision": "KEEP",
+    "reason": "receipts.js"
+  },
+  {
+    "kind": "route",
+    "name": "/remediation/propose",
+    "decision": "KEEP",
+    "reason": "remediation.js"
+  },
+  {
+    "kind": "route",
+    "name": "/remediation/approve",
+    "decision": "KEEP",
+    "reason": "remediation.js"
+  },
+  {
+    "kind": "route",
+    "name": "/remediation/complete",
+    "decision": "KEEP",
+    "reason": "remediation.js"
+  },
+  {
+    "kind": "route",
+    "name": "/remediation/waive",
+    "decision": "KEEP",
+    "reason": "remediation.js"
+  },
+  {
+    "kind": "route",
+    "name": "/remediation/student",
+    "decision": "KEEP",
+    "reason": "remediation.js"
+  },
+  {
+    "kind": "route",
+    "name": "/remediation/list",
+    "decision": "KEEP",
+    "reason": "remediation.js"
+  },
+  {
+    "kind": "route",
+    "name": "/remediation/unlocks",
+    "decision": "KEEP",
+    "reason": "remediation.js"
+  },
+  {
+    "kind": "route",
+    "name": "/remediation/propose-from-mastery",
+    "decision": "KEEP",
+    "reason": "remediation.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/review-queue",
+    "decision": "KEEP",
+    "reason": "review.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/review-item/:ledgerId",
+    "decision": "KEEP",
+    "reason": "review.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/review-by-item",
+    "decision": "KEEP",
+    "reason": "review.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/review",
+    "decision": "KEEP",
+    "reason": "review.js"
+  },
+  {
+    "kind": "route",
+    "name": "/rollup",
+    "decision": "KEEP",
+    "reason": "rollup.js"
+  },
+  {
+    "kind": "route",
+    "name": "/health",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/enroll",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/verify",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/resolve",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/change-password",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/open-sections",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/claim",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/list",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/:studentId",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/:studentId/archive",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/:studentId/unarchive",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/:studentId/sprite-hue",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/:studentId/schoology-uid",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/roster/section/:section",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student-keys/register",
+    "decision": "KEEP",
+    "reason": "student-keys.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student-keys",
+    "decision": "KEEP",
+    "reason": "student-keys.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student-keys/revoke",
+    "decision": "KEEP",
+    "reason": "student-keys.js"
+  },
+  {
+    "kind": "route",
+    "name": "/submissions/archive",
+    "decision": "KEEP",
+    "reason": "submissions.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/:studentId/profile",
+    "decision": "KEEP",
+    "reason": "teacher.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/:studentId/grade",
+    "decision": "KEEP",
+    "reason": "teacher.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/:studentId/recent",
+    "decision": "KEEP",
+    "reason": "teacher.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/:studentId/donow",
+    "decision": "KEEP",
+    "reason": "teacher.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/:studentId/poll-archive",
+    "decision": "DROP",
+    "reason": "teacher.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/backfill-receipts?section=P1",
+    "decision": "KEEP",
+    "reason": "tests/backfill-receipts.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/blank/WS-U6L1-2-Q1",
+    "decision": "KEEP",
+    "reason": "tests/class-blank.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/blank/WS-U6L1-2-Q1?token=good",
+    "decision": "KEEP",
+    "reason": "tests/class-blank.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/blank/WS-U6L1-2-Q2",
+    "decision": "KEEP",
+    "reason": "tests/class-blank.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/blank/WS-U6L1-2-Q99",
+    "decision": "KEEP",
+    "reason": "tests/class-blank.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/grades?section=P1",
+    "decision": "KEEP",
+    "reason": "tests/class.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/grades?includeSavedWork=1",
+    "decision": "KEEP",
+    "reason": "tests/class.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/grades?includeStaff=1",
+    "decision": "KEEP",
+    "reason": "tests/class.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/quarter/deltas?quarter=Q1",
+    "decision": "KEEP",
+    "reason": "tests/class.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/quarter/deltas?quarter=nope",
+    "decision": "KEEP",
+    "reason": "tests/class.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/grade?token=garbage",
+    "decision": "KEEP",
+    "reason": "tests/grade.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_abc123/lesson-unlocks",
+    "decision": "KEEP",
+    "reason": "tests/lesson-unlock-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_unknown/lesson-unlocks",
+    "decision": "KEEP",
+    "reason": "tests/lesson-unlock-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/mastery?token=garbage",
+    "decision": "KEEP",
+    "reason": "tests/mastery.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya-otter",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya-otter&teacherUsername=apple-fox",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya,evil",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya(evil",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya.evil",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya'evil",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=student_name-99&teacherUsername=apple-fox",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya-otter&limit=999&teacherUsername=apple-fox",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya-otter&limit=banana&teacherUsername=apple-fox",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya-otter&limit=0&teacherUsername=apple-fox",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya-otter&limit=-5&teacherUsername=apple-fox",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya-otter&offset=-5&teacherUsername=apple-fox",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya-otter&offset=banana&teacherUsername=apple-fox",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-history?studentUsername=papaya-otter&teacherUsername=INJECTED",
+    "decision": "KEEP",
+    "reason": "tests/nudge-history.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-inbox?section=PeriodE&since=2026-08-01T00:00:00.000Z&limit=999",
+    "decision": "KEEP",
+    "reason": "tests/nudge-inbox.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-inbox?limit=0",
+    "decision": "KEEP",
+    "reason": "tests/nudge-inbox.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-inbox?since=2026-08-01",
+    "decision": "KEEP",
+    "reason": "tests/nudge-inbox.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/nudge-inbox?since=yesterday",
+    "decision": "KEEP",
+    "reason": "tests/nudge-inbox.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/rollup?token=garbage",
+    "decision": "KEEP",
+    "reason": "tests/rollup.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge-history?limit=999",
+    "decision": "KEEP",
+    "reason": "tests/student-dm.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge-history?limit=banana",
+    "decision": "KEEP",
+    "reason": "tests/student-dm.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge-history?offset=-5",
+    "decision": "KEEP",
+    "reason": "tests/student-dm.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge-history-guest?guestUsername=Guest_Mango_Turtle",
+    "decision": "KEEP",
+    "reason": "tests/student-dm.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge-history-guest?guestUsername=guest_mango_turtle",
+    "decision": "KEEP",
+    "reason": "tests/student-dm.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge-history-guest?guestUsername=papaya-otter",
+    "decision": "KEEP",
+    "reason": "tests/student-dm.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/nudge-history-guest?guestUsername=Guest_Berry_Sloth",
+    "decision": "KEEP",
+    "reason": "tests/student-dm.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_abc123/profile",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/no-such-student/profile",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_abc123/grade",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/unknown-id/grade",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_abc123/recent",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_abc123/recent?limit=5",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_abc123/recent?limit=banana",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_abc123/recent?limit=999",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/no-such/recent",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_abc123/recent?limit=Infinity",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_abc123/donow",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/no-such/donow",
+    "decision": "KEEP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/stu_abc123/poll-archive",
+    "decision": "DROP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/student/no-such/poll-archive",
+    "decision": "DROP",
+    "reason": "tests/teacher-endpoints.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/transcript",
+    "decision": "KEEP",
+    "reason": "tests/transcript.test.js"
+  },
+  {
+    "kind": "route",
+    "name": "/trainer/state/:deckId",
+    "decision": "DROP",
+    "reason": "trainer.js"
+  },
+  {
+    "kind": "route",
+    "name": "/trainer/leaderboard/:section/:deckId",
+    "decision": "DROP",
+    "reason": "trainer.js"
+  },
+  {
+    "kind": "route",
+    "name": "/trainer/section/:section/summary/:deckId",
+    "decision": "DROP",
+    "reason": "trainer.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/custody",
+    "decision": "DROP",
+    "reason": "wallet-custody.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/custody/print",
+    "decision": "DROP",
+    "reason": "wallet-custody.js"
+  },
+  {
+    "kind": "route",
+    "name": "/wallet/custody/:studentId",
+    "decision": "DROP",
+    "reason": "wallet-custody.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/wallet-custody/export",
+    "decision": "DROP",
+    "reason": "wallet-custody.js"
+  },
+  {
+    "kind": "route",
+    "name": "/class/wallet-custody",
+    "decision": "DROP",
+    "reason": "wallet-custody.js"
+  },
+  {
+    "kind": "route",
+    "name": "/student/worksheet-diagnostics",
+    "decision": "KEEP",
+    "reason": "worksheet-diagnostics.js"
+  },
+  {
+    "kind": "route",
+    "name": "/teacher/worksheet-diagnostics",
+    "decision": "KEEP",
+    "reason": "worksheet-diagnostics.js"
+  },
+  {
+    "kind": "environment",
+    "name": "ANSWER_KEY_PATH",
+    "decision": "KEEP",
+    "reason": "grade-contexts.js, server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "BCRYPT_COST",
+    "decision": "KEEP",
+    "reason": "server.js, vitest.config.js"
+  },
+  {
+    "kind": "environment",
+    "name": "BLOCKCYPHER_TOKEN",
+    "decision": "DROP",
+    "reason": "doge-chain.js"
+  },
+  {
+    "kind": "environment",
+    "name": "BUYBACK_ENABLED",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "environment",
+    "name": "FRQ_APPEAL_MAX_PER_MINUTE",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "environment",
+    "name": "FRQ_CANARY_STUDENTS",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "environment",
+    "name": "FRQ_GRADE_MODE",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "FRQ_GRADER_SECRET",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "FRQ_GRADER_URL",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "FRQ_RECORD_MAX_PER_MINUTE",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "environment",
+    "name": "FRQ_STATUS_MAX_PER_MINUTE",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "environment",
+    "name": "GIFTING_ENABLED",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "environment",
+    "name": "GRADE_FREEZE_DIR",
+    "decision": "KEEP",
+    "reason": "grade-contexts.js"
+  },
+  {
+    "kind": "environment",
+    "name": "LESSON_SCHEDULE_PATH",
+    "decision": "KEEP",
+    "reason": "grade-contexts.js, server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "NODE_ENV",
+    "decision": "KEEP",
+    "reason": "frq-worker.js, grade-contexts.js, server.js, doge-wallet.js"
+  },
+  {
+    "kind": "environment",
+    "name": "OPEN_SIGNUP_SECTIONS",
+    "decision": "KEEP",
+    "reason": "signup-config.js"
+  },
+  {
+    "kind": "environment",
+    "name": "PAYOUT_AGENT_KEY",
+    "decision": "DROP",
+    "reason": "retired wallet / payout configuration"
+  },
+  {
+    "kind": "environment",
+    "name": "PAYOUT_BATCH_CAP",
+    "decision": "DROP",
+    "reason": "payout.js"
+  },
+  {
+    "kind": "environment",
+    "name": "PC_FIGURES_MANIFEST_PATH",
+    "decision": "DROP",
+    "reason": "pc-figures.js"
+  },
+  {
+    "kind": "environment",
+    "name": "PC_FIGURES_SUPABASE_SERVICE_KEY",
+    "decision": "DROP",
+    "reason": "pc-figures.js"
+  },
+  {
+    "kind": "environment",
+    "name": "PC_FIGURES_SUPABASE_URL",
+    "decision": "DROP",
+    "reason": "pc-figures.js"
+  },
+  {
+    "kind": "environment",
+    "name": "PC_TRACK_ENABLED",
+    "decision": "DROP",
+    "reason": "grade-config.js"
+  },
+  {
+    "kind": "environment",
+    "name": "PORT",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "RAILWAY_GIT_COMMIT_SHA",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "RECEIPT_ISSUER_PRIVATE_KEY",
+    "decision": "KEEP",
+    "reason": "receipts.js"
+  },
+  {
+    "kind": "environment",
+    "name": "RETIRED_ISSUER_PUBKEYS",
+    "decision": "KEEP",
+    "reason": "receipts.js"
+  },
+  {
+    "kind": "environment",
+    "name": "REVIEW_GRANT_PUBKEY",
+    "decision": "KEEP",
+    "reason": "receipts.js"
+  },
+  {
+    "kind": "environment",
+    "name": "ROSTER_GRADER_SECRET",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "ROSTER_PROCTOR_SECRET",
+    "decision": "KEEP",
+    "reason": "ledger.js"
+  },
+  {
+    "kind": "environment",
+    "name": "ROSTER_PW_ENC_KEY",
+    "decision": "KEEP",
+    "reason": "crypto.js"
+  },
+  {
+    "kind": "environment",
+    "name": "ROSTER_SUPABASE_SERVICE_KEY",
+    "decision": "KEEP",
+    "reason": "db.js, ledger-db.js, lesson-unlock-db.js, nudge-db.js, remediation-db.js, worksheet-diagnostics.js, payout.js, pc-db.js, poll-archive-db.js, trainer-db.js"
+  },
+  {
+    "kind": "environment",
+    "name": "ROSTER_SUPABASE_URL",
+    "decision": "KEEP",
+    "reason": "db.js, ledger-db.js, lesson-unlock-db.js, nudge-db.js, remediation-db.js, worksheet-diagnostics.js, payout.js, pc-db.js, poll-archive-db.js, trainer-db.js"
+  },
+  {
+    "kind": "environment",
+    "name": "ROSTER_TEACHER_SECRET",
+    "decision": "KEEP",
+    "reason": "ledger.js, server.js, teacher-auth.js"
+  },
+  {
+    "kind": "environment",
+    "name": "ROSTER_TOKEN_SECRET",
+    "decision": "KEEP",
+    "reason": "token.js, worksheet-diagnostics.js"
+  },
+  {
+    "kind": "environment",
+    "name": "SIGNUP_CLAIM_MAX",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "SIGNUP_CLAIM_WINDOW_MS",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "SKILL_MAP_PATH",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "STAKES_ENABLED",
+    "decision": "DROP",
+    "reason": "doge-wallet.js"
+  },
+  {
+    "kind": "environment",
+    "name": "STUDENT_WALLET_OPTIN",
+    "decision": "DROP",
+    "reason": "retired wallet / payout configuration"
+  },
+  {
+    "kind": "environment",
+    "name": "TEACHER_KEY",
+    "decision": "KEEP",
+    "reason": "teacher-auth.js"
+  },
+  {
+    "kind": "environment",
+    "name": "TRAINER_DECK_ALLOWLIST",
+    "decision": "DROP",
+    "reason": "trainer.js"
+  },
+  {
+    "kind": "environment",
+    "name": "USE_V3_GRADING",
+    "decision": "KEEP",
+    "reason": "grade-config.js"
+  },
+  {
+    "kind": "environment",
+    "name": "VERIFY_IP_MAX",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "VERIFY_IP_WINDOW_MS",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "VERIFY_LOCKOUT_MAX",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "VERIFY_LOCKOUT_WINDOW_MS",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "VITEST",
+    "decision": "KEEP",
+    "reason": "grade-contexts.js"
+  },
+  {
+    "kind": "environment",
+    "name": "WALLET_KEY_SECRET",
+    "decision": "DROP",
+    "reason": "retired wallet / payout configuration"
+  },
+  {
+    "kind": "environment",
+    "name": "WORK_MANIFEST_PATH",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "WORKSHEET_KEY_PATH",
+    "decision": "KEEP",
+    "reason": "server.js"
+  },
+  {
+    "kind": "environment",
+    "name": "UPDATE_M2B_GOLDEN",
+    "decision": "KEEP",
+    "reason": "tests/m2b-grade-invariance.test.js"
+  },
+  {
+    "kind": "worker",
+    "name": "frq-worker.js polling interval and request timeout",
+    "decision": "KEEP",
+    "reason": "Queued academic FRQ grading; worker starts in production."
+  },
+  {
+    "kind": "worker",
+    "name": "doge-wallet.js stale-stake sweep interval",
+    "decision": "DROP",
+    "reason": "Removed wallet scheduler and stake timeout refunds."
+  },
+  {
+    "kind": "worker",
+    "name": "doge-chain.js external request timeout",
+    "decision": "DROP",
+    "reason": "Removed balance fetches and timers."
+  },
+  {
+    "kind": "middleware",
+    "name": "CORS, JSON body limits, student token, teacher auth, rate limiting",
+    "decision": "KEEP",
+    "reason": "Protect surviving academic and roster routes."
+  },
+  {
+    "kind": "middleware",
+    "name": "Wallet/payout/PC/trainer/poll-specific guards",
+    "decision": "DROP",
+    "reason": "Removed with their route mounts."
+  },
+  {
+    "kind": "feature",
+    "name": "Live classroom presence/poll, pico level/activity, Tetris and video",
+    "decision": "DROP",
+    "reason": "No standalone server module/migration beyond deleted poll and wallet-stake modules; root/Desk clients belong to Phase 2b."
+  },
+  {
+    "kind": "data",
+    "name": "pc_bank",
+    "decision": "DROP",
+    "reason": "Removed loader and consumers; no standalone pc_bank data directory was present."
+  },
+  {
+    "kind": "schema",
+    "name": "roster_sprite_hue (0006)",
+    "decision": "KEEP",
+    "reason": "Identity preference, not classroom activity or level state."
+  }
+]

@@ -1,0 +1,3 @@
+# Schoology grade sync
+
+Schoology = max(app, hand-entered); the app never learns about hand entries. Before a pending grade write, the sync reads the Schoology cell and keeps an equal or higher value, recording it as last-synced; a later app increase can raise the cell. This applies to follow-alongs, quizzes, Blooket, progress checks, and posters. Dry runs show WOULD KEEP or WOULD PUSH with both values, and run summaries include `grades_kept`. A hand-entered grade overrides the app's gate for Schoology purposes only: the Desk and in-app gradebook retain the app's value and completion rules. To unlock the Desk lesson too, use the existing teacher override at `/teacher/lesson-unlock`.

@@ -1,0 +1,3680 @@
+<!DOCTYPE html>
+<!-- Phase 4a of GRADEBOOK_PHASE4_BUILD.md §2.2. Read-only teacher dashboard:
+     class grade table, skill heatmap, weak-skill triage. Calls the teacher-
+     gated /class/grades and /class/mastery endpoints. The teacher secret is
+     typed at runtime and is NEVER persisted — no localStorage, no sessionStorage,
+     no cookies. It is read from the input on every request. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#161616">
+  <title>Teacher Dashboard</title>
+  
+  <style>
+    :root {
+      --sg-bg: #E5E3D2;        /* Tango: platinum */
+      --sg-text: #161616;
+      --sg-accent: #A8330A;    /* ink-tangerine */
+      --sg-bar-track: #D3D1C2;
+      --sg-bg-card: #F7F5EE;
+      --sg-border: #A9A79A;
+      --sg-text-dim: #6E6C62;
+      --sg-low: #B03A2E;
+      --sg-high: #25663F;
+      --heat-green: #c8e6c9;
+      --heat-yellow: #fff3a3;
+      --heat-orange: #ffcc80;
+      --heat-red: #ef9a9a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--sg-bg);
+      color: var(--sg-text);
+      min-height: 100vh;
+    }
+    .page-header {
+      background: var(--sg-bg-card);
+      border-bottom: 3px solid #FF5B19;   /* Tango accent rule */
+      padding: 16px 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .page-header h1 { margin: 0; font-size: 1.25rem; font-weight: 800; color: var(--sg-accent); }
+    .page-header .subtitle { margin: 0; font-size: 0.82rem; color: var(--sg-text-dim); }
+    .security-banner {
+      background: #fff0f0;
+      border: 1px solid var(--sg-low);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: #6a1b1b;
+      line-height: 1.5;
+    }
+    .error-banner {
+      background: #fff0f0;
+      border: 1px solid var(--sg-low);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      color: #6a1b1b;
+      line-height: 1.4;
+      display: none;
+    }
+    .error-banner.show { display: block; }
+    .info-banner {
+      background: #eef6ee;
+      border: 1px solid var(--sg-high);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      color: #1b4d1b;
+      line-height: 1.4;
+      display: none;
+    }
+    .info-banner.show { display: block; }
+    .main { max-width: 1400px; margin: 0 auto; padding: 24px 20px 60px; display: grid; gap: 24px; }
+    .section {
+      background: var(--sg-bg-card);
+      border: 1px solid var(--sg-border);
+      border-radius: 10px;
+      padding: 20px 22px;
+      display: grid;
+      gap: 16px;
+    }
+    .section-title {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--sg-text-dim);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--sg-border);
+    }
+    .form-row { display: grid; gap: 6px; }
+    .form-row label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--sg-text-dim);
+    }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--sg-border);
+      border-radius: 8px;
+      background: var(--sg-bg);
+      color: var(--sg-text);
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus { outline: 2px solid var(--sg-accent); outline-offset: 2px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--sg-accent);
+      background: var(--sg-accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn[disabled] { opacity: 0.5; cursor: default; }
+    .btn-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .meta-row {
+      font-size: 0.82rem;
+      color: var(--sg-text-dim);
+      line-height: 1.4;
+    }
+    .table-wrap {
+      overflow: auto;
+      max-height: 70vh;
+      border: 1px solid var(--sg-border);
+      border-radius: 8px;
+    }
+    table.grades { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+    table.grades th {
+      text-align: left;
+      padding: 7px 9px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--sg-text-dim);
+      border-bottom: 2px solid var(--sg-border);
+      background: var(--sg-bg-card);
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    table.grades td {
+      padding: 6px 9px;
+      border-bottom: 1px solid var(--sg-bar-track);
+      vertical-align: top;
+    }
+    table.grades tr:last-child td { border-bottom: none; }
+    table.grades td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    table.grades td.dim { color: var(--sg-text-dim); }
+    table.grades td.completion {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      color: var(--sg-text-dim);
+    }
+    table.grades .uname { font-weight: 700; color: var(--sg-accent); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .heatmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+    }
+    .heat-tile {
+      border: 1px solid var(--sg-border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: grid;
+      gap: 4px;
+    }
+    .heat-tile .skill {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--sg-text);
+      word-break: break-word;
+    }
+    .heat-tile .pct {
+      font-size: 1.1rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+    .heat-tile .frac {
+      font-size: 0.76rem;
+      color: var(--sg-text-dim);
+      font-variant-numeric: tabular-nums;
+    }
+    .heat-green { background: var(--heat-green); }
+    .heat-yellow { background: var(--heat-yellow); }
+    .heat-orange { background: var(--heat-orange); }
+    .heat-red { background: var(--heat-red); }
+    .triage-list { display: grid; gap: 6px; }
+    .triage-row {
+      border: 1px solid var(--sg-border);
+      border-radius: 8px;
+      background: var(--sg-bg);
+    }
+    .triage-row summary {
+      cursor: pointer;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      list-style: none;
+    }
+    .triage-row summary::-webkit-details-marker { display: none; }
+    .triage-row summary::before {
+      content: '\25B8';
+      font-size: 0.75rem;
+      color: var(--sg-text-dim);
+      width: 10px;
+      display: inline-block;
+    }
+    .triage-row[open] summary::before { content: '\25BE'; }
+    .triage-row .skill-code { font-weight: 700; color: var(--sg-accent); min-width: 100px; }
+    .triage-row .pct-badge {
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+    }
+    .triage-row .count {
+      font-size: 0.78rem;
+      color: var(--sg-text-dim);
+      font-variant-numeric: tabular-nums;
+    }
+    .triage-row .student-list {
+      padding: 8px 18px 14px 36px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .triage-row .student-list .pill {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--sg-bg-card);
+      border: 1px solid var(--sg-border);
+      color: var(--sg-accent);
+    }
+    .triage-row .student-list .none { color: var(--sg-text-dim); font-style: italic; }
+    .empty-note { font-size: 0.85rem; color: var(--sg-text-dim); font-style: italic; }
+    .loading-note {
+      font-size: 0.9rem;
+      color: var(--sg-text-dim);
+      padding: 12px 0;
+    }
+    .hint { font-size: 0.8rem; color: var(--sg-text-dim); line-height: 1.5; }
+    .manage-student-row.is-archived td {
+      background: #e7e5dc;
+      color: var(--sg-text-dim);
+    }
+    .manage-status-pill, .manage-test-badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .manage-status-active { background: #dcebdd; color: var(--sg-high); }
+    .manage-status-archived { background: #d6d4cc; color: #55534c; }
+    .manage-test-badge { margin-left: 6px; background: #fff3a3; color: #6f5510; }
+    .manage-student-action {
+      border: 1px solid var(--sg-border);
+      border-radius: 999px;
+      padding: 5px 12px;
+      background: var(--sg-bg-card);
+      color: var(--sg-text);
+      font: inherit;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .manage-student-action:hover { border-color: var(--sg-accent); color: var(--sg-accent); }
+    .manage-student-action[disabled] { opacity: 0.55; cursor: default; }
+
+    /* Teacher -> Student Console drawer (P1 of TEACHER_STUDENT_CONSOLE_SPEC.md) */
+    .tsc-drawer { position: fixed; inset: 0; z-index: 200; display: none; }
+    .tsc-drawer.tsc-open { display: block; }
+    .tsc-drawer-overlay {
+      position: absolute; inset: 0;
+      background: rgba(42, 37, 32, 0.32);
+      opacity: 0;
+      transition: opacity 180ms ease-out;
+    }
+    .tsc-drawer.tsc-open .tsc-drawer-overlay { opacity: 1; }
+    .tsc-drawer-panel {
+      position: absolute; top: 0; right: 0; bottom: 0;
+      width: 420px; max-width: 92vw;
+      background: var(--sg-bg-card);
+      border-left: 1px solid var(--sg-border);
+      box-shadow: -4px 0 16px rgba(42, 37, 32, 0.18);
+      transform: translateX(100%);
+      transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .tsc-drawer.tsc-open .tsc-drawer-panel { transform: translateX(0); }
+    .tsc-drawer-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--sg-border);
+      background: var(--sg-bg-card);
+    }
+    .tsc-drawer-title-wrap h2 { margin: 0; font-size: 1.05rem; color: var(--sg-accent); }
+    .tsc-drawer-subtitle { margin: 4px 0 0; font-size: 0.82rem; color: var(--sg-text-dim); }
+    .tsc-drawer-close {
+      background: transparent; border: 0; font-size: 1.5rem;
+      color: var(--sg-text-dim); cursor: pointer; line-height: 1;
+      padding: 0 4px;
+    }
+    .tsc-drawer-body { padding: 16px 18px; overflow-y: auto; display: grid; gap: 18px; }
+    .tsc-section-title {
+      margin: 0 0 8px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--sg-text-dim);
+    }
+    .tsc-grade-card { font-size: 0.9rem; color: var(--sg-text); display: grid; gap: 6px; }
+    .tsc-recent-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 0.85rem; }
+    .tsc-recent-list li {
+      border: 1px solid var(--sg-border); border-radius: 6px;
+      padding: 8px 10px; background: var(--sg-bg);
+      display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center;
+    }
+    .tsc-actions { display: grid; gap: 6px; padding-top: 10px; border-top: 1px solid var(--sg-border); }
+    .tsc-action-btn {
+      padding: 8px 12px;
+      border: 1px solid var(--sg-border); border-radius: 6px;
+      background: var(--sg-bg);
+      font: inherit; cursor: pointer;
+      text-align: left;
+    }
+    .tsc-action-btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+    .tsc-action-btn:not([disabled]):hover { background: var(--sg-bg-card); border-color: var(--sg-accent); }
+    .grades-row-clickable { cursor: pointer; }
+    .grades-row-clickable:hover { background: rgba(122, 74, 31, 0.06); }
+
+    /* T1 (P6 BUILD section 4.1): Remediation modal -- shared shell that T3's
+       future modals (if any) can also adopt. Variant of the drawer's palette. */
+    .tsc-modal { position: fixed; inset: 0; z-index: 250; display: none; }
+    .tsc-modal.tsc-modal-open { display: block; }
+    .tsc-modal-overlay {
+      position: absolute; inset: 0;
+      background: rgba(42, 37, 32, 0.42);
+    }
+    .tsc-modal-panel {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 440px; max-width: 92vw; max-height: 86vh;
+      background: var(--sg-bg-card);
+      border: 1px solid var(--sg-border); border-radius: 8px;
+      box-shadow: 0 12px 32px rgba(42, 37, 32, 0.24);
+      padding: 18px 20px;
+      display: flex; flex-direction: column; gap: 8px;
+      overflow-y: auto;
+    }
+    .tsc-modal-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .tsc-modal-header h3 { margin: 0; color: var(--sg-accent); font-size: 1rem; }
+    .tsc-modal-close {
+      background: transparent; border: 0; font-size: 1.4rem; line-height: 1;
+      color: var(--sg-text-dim); cursor: pointer; padding: 0 4px;
+    }
+    .tsc-modal-desc { margin: 4px 0 8px; color: var(--sg-text-dim); font-size: 0.85rem; }
+    .tsc-modal-panel label { font-size: 0.78rem; color: var(--sg-text-dim); margin-top: 4px; }
+    .tsc-modal-panel input, .tsc-modal-panel textarea {
+      font: inherit; padding: 6px 8px;
+      border: 1px solid var(--sg-border); border-radius: 4px;
+      background: var(--sg-bg);
+    }
+    .tsc-modal-status { min-height: 18px; font-size: 0.82rem; color: var(--sg-text-dim); }
+    .tsc-modal-status.is-error { color: #b91c1c; }
+    .tsc-modal-status.is-success { color: #15803d; }
+    .tsc-modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+    .tsc-modal-cancel, .tsc-modal-confirm {
+      padding: 8px 14px; border: 1px solid var(--sg-border); border-radius: 6px;
+      font: inherit; cursor: pointer; background: var(--sg-bg);
+    }
+    .tsc-modal-confirm { background: var(--sg-accent); color: #fff; border-color: var(--sg-accent); }
+    .tsc-modal-confirm[disabled] { opacity: 0.55; cursor: not-allowed; }
+    .payout-preview-wrap { max-height: 240px; overflow: auto; margin: 8px 0; }
+    .payout-preview-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .payout-preview-table th, .payout-preview-table td {
+      border-bottom: 1px solid #ddd; padding: 5px 6px; text-align: left;
+    }
+    .payout-preview-table th:last-child, .payout-preview-table td:last-child { text-align: right; }
+    .payout-status-strip { min-height: 22px; margin: 4px 0 7px; font-size: 0.84rem; }
+
+    /* T3 (P6 BUILD section 4.2): Lesson Unlocks drawer section */
+    .tsc-unlocks-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 0.85rem; }
+    .tsc-unlocks-list li {
+      border: 1px solid var(--sg-border); border-radius: 6px;
+      padding: 8px 10px; background: var(--sg-bg);
+      display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center;
+    }
+    .tsc-unlocks-list .tsc-unlock-key { font-family: var(--sg-mono, monospace); color: var(--sg-accent); }
+    .tsc-unlocks-list .tsc-unlock-meta { color: var(--sg-text-dim); font-size: 0.78rem; }
+    .tsc-unlocks-list .tsc-unlock-revoke {
+      padding: 4px 10px; font: inherit; font-size: 0.78rem;
+      background: transparent; color: #b91c1c;
+      border: 1px solid #fca5a5; border-radius: 4px; cursor: pointer;
+    }
+    .tsc-unlocks-list .tsc-unlock-revoke:hover { background: #fee2e2; }
+    .tsc-unlocks-list .tsc-unlock-empty { color: var(--sg-text-dim); font-style: italic; }
+
+    /* P7 (TEACHER_STUDENT_CONSOLE_P7_BUILD.md section 3.2): Nudge History drawer section */
+    .tsc-nudges-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 0.85rem; }
+    .tsc-nudges-list li {
+      border: 1px solid var(--sg-border); border-radius: 6px;
+      padding: 8px 10px; background: var(--sg-bg);
+      display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: start;
+    }
+    .tsc-nudges-list .tsc-nudge-arrow {
+      font-weight: 700; line-height: 1.4;
+      font-family: var(--sg-mono, monospace);
+    }
+    .tsc-nudges-list .tsc-nudge-teacher { color: var(--sg-accent); }
+    .tsc-nudges-list .tsc-nudge-student { color: #15803d; }
+    .tsc-nudges-list .tsc-nudge-text-block { display: grid; gap: 2px; }
+    .tsc-nudges-list .tsc-nudge-meta { color: var(--sg-text-dim); font-size: 0.78rem; }
+    .tsc-nudges-list .tsc-nudge-text { white-space: pre-wrap; word-wrap: break-word; line-height: 1.35; }
+    .tsc-nudges-list .tsc-nudge-empty { color: var(--sg-text-dim); font-style: italic; }
+
+    /* P12 (TEACHER_STUDENT_CONSOLE_P12_BUILD.md section 3): Load older button */
+    .tsc-nudges-older {
+      margin-top: 6px;
+      padding: 6px 10px;
+      font: inherit; font-size: 0.82rem;
+      background: var(--sg-bg, #fff);
+      color: var(--sg-accent, #A8330A);
+      border: 1px solid var(--sg-border, #A9A79A);
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .tsc-nudges-older:hover { background: var(--sg-bg-card, #ffffff); border-color: var(--sg-accent, #A8330A); }
+    .tsc-nudges-older[disabled] { opacity: 0.55; cursor: not-allowed; }
+      /* 2026-09-09: student→teacher message inbox strip (see loadStudentInbox) */
+    .inbox-strip { margin-top: 10px; border: 1px solid var(--sg-border); background: var(--sg-bg-card); border-radius: 4px; padding: 8px 10px; }
+    .inbox-strip[hidden], .inbox-badge[hidden] { display: none !important; }
+    .inbox-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .inbox-badge { background: var(--sg-accent); color: #fff; border-radius: 10px; padding: 1px 8px; font-size: 0.8rem; font-weight: bold; }
+    .inbox-list { list-style: none; margin: 6px 0 0; padding: 0; max-height: 220px; overflow: auto; }
+    .inbox-list li { display: flex; gap: 8px; align-items: baseline; padding: 4px 6px; border-top: 1px solid var(--sg-bar-track); cursor: pointer; }
+    .inbox-list li.inbox-empty { cursor: default; color: var(--sg-text-dim); }
+    .inbox-list li:hover { background: rgba(0,0,0,0.04); }
+    .inbox-list li.unread .inbox-who { font-weight: bold; }
+    .inbox-list li.unread::before { content: '●'; color: var(--sg-accent); font-size: 0.7rem; }
+    .inbox-when { color: var(--sg-text-dim); font-size: 0.8rem; white-space: nowrap; }
+    .inbox-who { white-space: nowrap; }
+    .inbox-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      #worksheet-diagnostics-section .btn-row { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+      #worksheet-diagnostics-student, #worksheet-diagnostics-search { width:280px; max-width:100%; }
+      #worksheet-diagnostics-section label { display:inline-flex; align-items:center; gap:6px; margin:0; }
+      #worksheet-diagnostics-previews { width:auto; margin:0; }
+      #worksheet-diagnostics-section th, #worksheet-diagnostics-section td { text-align:left; vertical-align:top; }
+      #worksheet-diagnostics-section td { border-top:1px solid #ddd; font-size:0.9rem; }
+      .triage-row .skill-code { flex:1; min-width:180px; }
+    .triage-row .skill-code small { display:block; font-weight:normal; color:var(--sg-text-dim); margin-top:4px; }
+    .triage-row summary { flex-wrap:wrap; }
+    .skill-evidence { font-family:"Segoe UI",sans-serif; color:var(--sg-text-dim); display:block; font-size:0.78rem; font-weight:normal; padding:4px 0; }
+    .skill-next-step { padding:0 14px; line-height:1.5; }
+    .heat-tile .pct { font-size:1.1rem; }
+  </style>
+  <link rel="stylesheet" href="teacher-workspace.css">
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Algebra 2 — Teacher workspace</h1>
+    <p id="bonus-window-setting" class="subtitle"></p>
+    <script src="grade-engine.bundle.js"></script>
+    <script>
+      const bonusWindowDate = window.GradeEngine?.PHASE3_CONFIG?.bonusOnlyThrough;
+      document.getElementById("bonus-window-setting").textContent = bonusWindowDate
+        ? "Bonus-only through " + new Date(bonusWindowDate + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }) + " (only-raise)" : "Bonus-only window disabled";
+    </script>
+    <p class="subtitle">Topic assessments can be retaken any number of times. The latest score replaces the earlier one. Makeup and retake times are announced in class.</p>
+    <p class="subtitle">Your class, saved work, and the students who need a hand.</p>
+  </div>
+
+  <div class="main">
+
+    <!-- Auth & load -->
+    <div class="section" id="workspace-connection">
+      <h2 class="section-title">Connection</h2>
+      <div class="row-2">
+        <div class="form-row">
+          <label for="svc-url-select">Roster service URL</label>
+          <select id="svc-url-select" style="margin-bottom:6px">
+            <option value="http://localhost:8091">Local dev (localhost:8091)</option>
+            <option value="https://a2-live-worksheets-production.up.railway.app">Railway production</option>
+            <option value="__custom__">Custom...</option>
+          </select>
+          <input id="svc-url" type="text" spellcheck="false"
+                 value="http://localhost:8091" style="display:none">
+        </div>
+        <div class="form-row">
+          <label for="teacher-secret">Teacher secret</label>
+          <input id="teacher-secret" type="password" autocomplete="off" spellcheck="false"
+                 placeholder="x-teacher-secret">
+          <span class="hint" id="session-status"></span>
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="form-row">
+          <label for="section-filter">Section filter (blank = all)</label>
+          <input id="section-filter" type="text" spellcheck="false"
+                 placeholder="e.g. PERIOD3">
+        </div>
+        <div class="form-row">
+          <label class="hint" style="font-size:0.82rem"><input type="checkbox" id="remember-secret" style="width:auto;margin-right:6px">Remember on this device (saves to localStorage — teacher-local only)</label>
+          <button class="btn" id="clear-secret" style="display:none;font-size:0.78rem;padding:4px 10px;background:transparent;color:var(--sg-accent);border:1px solid var(--sg-accent)">Clear saved secret</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="load-btn">Load class data</button>
+        <span class="meta-row" id="meta-line"></span>
+      </div>
+      <div class="error-banner" id="err-banner" role="alert"></div>
+      <div class="info-banner" id="info-banner" role="status"></div>
+      <!-- 2026-09-09: student→teacher inbox. Messages used to be visible only inside ONE
+           student's drawer, so two "I can't see my grade" notes went unread for two weeks.
+           Filled by loadStudentInbox() after "Load class data"; polls every 60s. -->
+      <div class="inbox-strip" id="inbox-strip" hidden>
+        <div class="inbox-head">
+          <strong>📨 Student messages</strong>
+          <span class="inbox-badge" id="inbox-unread" hidden>0 new</span>
+          <span class="dim" id="inbox-meta"></span>
+          <button class="btn" id="inbox-mark-read" type="button" style="margin-left:auto">Mark all read</button>
+        </div>
+        <ul class="inbox-list" id="inbox-list"></ul>
+      </div>
+    </div>
+
+    <div class="section" id="worksheet-diagnostics-section">
+      <h2 class="section-title">Worksheet answer loading</h2>
+      <p class="dim">Student browser reports from the last 7 days. Teacher previews are separate; no report does not mean no work. Offline reports arrive when that browser reconnects.</p>
+      <div class="btn-row">
+        <button class="btn" id="worksheet-diagnostics-refresh" type="button">Refresh reports</button>
+        <label>Student <select id="worksheet-diagnostics-student"><option value="">All students</option></select></label>
+        <span id="worksheet-diagnostics-roster-status" role="status"></span>
+        <input id="worksheet-diagnostics-search" aria-label="Filter worksheet reports by student" placeholder="Student name or username">
+        <label><input type="checkbox" id="worksheet-diagnostics-previews"> Include teacher previews</label>
+      </div>
+      <p id="worksheet-diagnostics-meta" role="status">Waiting for teacher sign-in.</p>
+      <div style="overflow-x:auto"><table style="width:100%"><thead><tr><th>Student / browser</th><th>Worksheet</th><th>Answer loading</th><th>Observed / version</th></tr></thead><tbody id="worksheet-diagnostics-rows"></tbody></table></div>
+    </div>
+
+    <!-- Grade Backup & Recovery: off-Supabase, tamper-evident durability -->
+    <div class="section" id="backup-section">
+      <h2 class="section-title">Grade Backup &amp; Recovery <span class="dim" style="font-size:0.8rem">(signed, tamper-evident — survives a Supabase loss)</span></h2>
+      <div class="btn-row">
+        <button class="btn" id="backup-download-btn">⬇ Download backup</button>
+        <button class="btn" id="backup-verify-btn" style="background:transparent;color:var(--sg-accent);border:1px solid var(--sg-accent)">✓ Verify a backup file…</button>
+        <input id="backup-verify-file" type="file" accept="application/json,.json" style="display:none">
+      </div>
+      <div class="hint" id="backup-status" style="margin-top:8px">Downloads a signed snapshot of every student's ledger and checks it. An automatic daily copy is also kept in the private grade-mirror repo.</div>
+
+      <details style="margin-top:12px">
+        <summary style="cursor:pointer;color:var(--sg-accent)">Restore from a backup file… (overwrites the live ledger)</summary>
+        <div style="margin-top:8px">
+          <div class="hint">Replays only rows bearing a valid signature from this server, byte-for-byte (tampered/unsigned rows are refused). The file is re-verified before anything is written. Type <strong>RESTORE</strong> to enable.</div>
+          <div class="btn-row" style="margin-top:6px;align-items:center">
+            <input id="backup-restore-file" type="file" accept="application/json,.json">
+            <input id="backup-restore-confirm" type="text" placeholder="type RESTORE" spellcheck="false" autocomplete="off" style="width:130px">
+            <button class="btn" id="backup-restore-btn" disabled style="background:#a33;color:#fff">Restore</button>
+          </div>
+          <div class="hint" id="backup-restore-status" style="margin-top:6px"></div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Roster archive management: reversible hiding; no password fields enter this DOM. -->
+    <div class="section" id="manage-students-section">
+      <h2 class="section-title">Manage Students <span class="dim" style="font-size:0.8rem">(archive hides a student from class views without deleting their work)</span></h2>
+      <div class="btn-row">
+        <button class="btn" id="manage-students-load-btn">Load students</button>
+        <span class="hint" id="manage-students-status" role="status">Uses the section filter above; blank loads everyone.</span>
+      </div>
+      <div class="table-wrap" id="manage-students-wrap" style="display:none">
+        <table class="grades">
+          <thead><tr><th>Name</th><th>Section</th><th>Status</th><th>Login UID</th><th>Action</th></tr></thead>
+          <tbody id="manage-students-tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty-note" id="manage-students-empty" style="display:none">No students.</div>
+      <div class="hint">🧪 <strong>test?</strong> is a hint only. Review the row before archiving it. Unarchive restores every class view and keeps all saved work.</div>
+    </div>
+
+    <!-- Pacing overview: each student's readiness color (same as their wallet) -->
+    <div class="section">
+      <h2 class="section-title">Pacing Overview <span class="dim" style="font-size:0.8rem">(student readiness — the same colors they see in My Ledger)</span></h2>
+      <div class="loading-note" id="pacing-loading" style="display:none">Loading…</div>
+      <div class="table-wrap" id="pacing-wrap" style="display:none">
+        <table class="grades">
+          <thead><tr><th>Student</th><th>Status</th><th>Progress</th><th>Last activity</th></tr></thead>
+          <tbody id="pacing-tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty-note" id="pacing-empty" style="display:none">No students.</div>
+      <div class="hint" id="pacing-legend"></div>
+    </div>
+
+    <!-- 🍬 DOGE Reward Disbursement -->
+    
+
+    <!-- Class grade table -->
+    <div class="section">
+      <h2 class="section-title">Class Grades</h2>
+      <div class="loading-note" id="grades-loading" style="display:none">Loading class data...</div>
+      <div class="table-wrap" id="grades-wrap" style="display:none">
+        <table class="grades">
+          <thead id="grades-thead"></thead>
+          <tbody id="grades-tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty-note" id="grades-empty" style="display:none">
+        No students returned for this section.
+      </div>
+      <div class="hint">
+        Quarter columns show the cumulative quarter grade; unit columns show the per-unit grade
+        (Worksheet / Quiz feeders plus the Progress Check booster). Completion (ws / q / pc) is
+        the accountability readout: did the student finish the work, regardless of score.
+      </div>
+    </div>
+
+    <!-- In-app 1:1 Schoology gradebook (component grid) -->
+    <div class="section">
+      <style>
+        .gb-quarter-bar { display:flex; align-items:center; gap:6px; margin-bottom:10px; flex-wrap:wrap; }
+        .gb-qbtn { font-size:0.82rem; padding:4px 12px; background:transparent; color:var(--sg-accent);
+                   border:1px solid var(--sg-accent); cursor:pointer; border-radius:4px; }
+        .gb-qbtn.active { background:var(--sg-accent); color:#fff; font-weight:600; }
+        table.gb-table { border-collapse:collapse; font-size:0.78rem; }
+        table.gb-table th, table.gb-table td { border:1px solid #d7d7e0; padding:3px 6px; text-align:center; white-space:nowrap; }
+        table.gb-table th.gb-name-h, table.gb-table td.gb-name {
+          position:sticky; left:0; z-index:2; background:#fff; text-align:left; min-width:140px; font-weight:600; }
+        table.gb-table thead th { position:sticky; top:0; z-index:1; background:#f3f3f7; }
+        table.gb-table th.gb-cat { font-size:0.74rem; letter-spacing:0.02em; }
+        .gb-cat-lesson   { background:#e8f0fe; } .gb-col.gb-cat-lesson,   td.gb-cat-lesson   { background:#f6f9ff; }
+        .gb-cat-quizzes  { background:#f0e8fe; } .gb-col.gb-cat-quizzes,  td.gb-cat-quizzes  { background:#faf6ff; }
+        .gb-cat-blooket  { background:#fdeede; } .gb-col.gb-cat-blooket,  td.gb-cat-blooket  { background:#fff8f0; }
+        .gb-cat-pc       { background:#e3f6ea; } .gb-col.gb-cat-pc,       td.gb-cat-pc       { background:#f3fbf6; }
+        .gb-cat-posters  { background:#eeeef2; } .gb-col.gb-cat-posters,  td.gb-cat-posters  { background:#f8f8fb; }
+        table.gb-table th.gb-col { font-weight:500; font-size:0.72rem; max-width:62px; overflow:hidden; text-overflow:ellipsis; }
+        table.gb-table th.gb-tot-h { background:#2a2a35; color:#fff; }
+        td.gb-tot { font-weight:700; }
+        td.gb-cell.gb-top,  td.gb-tot.gb-top  { color:#0a6b2e; }   /* 90+  deep green */
+        td.gb-cell.gb-good, td.gb-tot.gb-good { color:#0a7d33; }   /* 70-89 green (clears 70 cap) */
+        td.gb-cell.gb-mid,  td.gb-tot.gb-mid  { color:#a8730a; }   /* 40-69 amber */
+        td.gb-cell.gb-low,  td.gb-tot.gb-low  { color:#c0282d; font-weight:800; }  /* <40 red — below floor */
+        td.gb-cell.gb-null { color:#b9b9c4; }
+        .gb-delta { display:block; font-size:0.66rem; font-weight:600; color:#7a5cc0; }
+      </style>
+      <h2 class="section-title">Gradebook <span class="dim" style="font-size:0.8rem">(1:1 Schoology — component grid)</span></h2>
+      <div class="gb-quarter-bar" id="gb-quarter-bar">
+        <span class="hint" style="margin-right:4px">Quarter:</span>
+        <!-- Labels are filled by gbQuarterLabels() from the payload's DERIVED unit
+             bands (server deriveQuarterBands: units follow schedule dates), so the
+             buttons can never disagree with how the engine buckets lessons. -->
+        <button class="gb-qbtn" id="gb-q-Q1" data-q="Q1">Q1</button>
+        <button class="gb-qbtn" id="gb-q-Q2" data-q="Q2">Q2</button>
+        <button class="gb-qbtn" id="gb-q-Q3" data-q="Q3">Q3</button>
+        <button class="gb-qbtn" id="gb-q-Q4" data-q="Q4">Q4</button>
+      </div>
+      <div class="hint" id="gb-scope" style="margin:2px 0 6px"></div>
+      <div class="table-wrap" id="gb-wrap" style="display:none; max-height:70vh; overflow:auto">
+        <table class="grades gb-table">
+          <thead id="gb-thead"></thead>
+          <tbody id="gb-tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty-note" id="gb-empty" style="display:none">
+        Load a section to see the component gradebook. (Columns appear once the server returns gradebook data —
+        redeploy must be live.)
+      </div>
+      <div class="hint">
+        Each cell is a component score (Follow-Along / Quiz / Blooket per lesson; Progress Check / Poster per unit),
+        grouped by Schoology category. <b>Schoology</b> = the category-weighted total
+        (PC&nbsp;50 / Lesson&nbsp;15 / Quizzes&nbsp;15 / Posters&nbsp;15 / Blooket&nbsp;5). <b>v3</b> = the app's
+        two-track model. The Δ on v3 flags where the two diverge. Click a row for the student drawer.
+      </div>
+    </div>
+
+    <!-- TI-84 Practice -->
+    
+
+    <!-- Skill heatmap -->
+    <div class="section">
+      <h2 class="section-title">Class skill overview</h2>
+      <div class="loading-note" id="heatmap-loading" style="display:none">Loading class data...</div>
+      <div class="heatmap-grid" id="heatmap-grid"></div>
+      <div class="empty-note" id="heatmap-empty" style="display:none">
+        No skill observations recorded yet for this section.
+      </div>
+      <div class="hint">
+        Names describe the skill; the small code is a reference, not a lesson number.
+        Colors show the share flagged for review among students with graded evidence, not the percentage of wrong answers.
+      </div>
+    </div>
+
+    <!-- Weak-skill triage list -->
+    <div class="section">
+      <h2 class="section-title">Skills to review</h2>
+      <div class="loading-note" id="triage-loading" style="display:none">Loading class data...</div>
+      <div class="triage-list" id="triage-list"></div>
+      <div class="empty-note" id="triage-empty" style="display:none">
+        No graded skill evidence available for this section yet.
+      </div>
+      <div class="hint">
+        Expand a skill to see who is flagged and how much graded evidence is available, then click a name to inspect saved work.
+        These estimates do not change grades. A small amount of evidence can still produce a flag even after a correct answer; check the work before assigning extra practice.
+      </div>
+    </div>
+
+    <div class="section" id="misconceptions-section">
+      <h2 class="section-title">Persistent misconceptions</h2>
+      <label for="misconceptions-days">Window</label>
+      <select id="misconceptions-days">
+        <option value="14">14 days</option>
+        <option value="42" selected>42 days</option>
+        <option value="0">Year</option>
+      </select>
+      <button id="misconceptions-refresh" type="button">Refresh</button>
+      <span id="misconceptions-draft" class="hint" hidden>
+        draft vocabulary — not yet reviewed ·
+        <a href="data/misconception-rubric-map.json">misconception-rubric-map.json</a> ·
+        <a href="data/misconception-distractor-map.json">misconception-distractor-map.json</a>
+      </span>
+      <p id="misconceptions-status" class="empty-note" role="status"></p>
+      <!-- Remediation sheets: standalone DOK-3 sheets (dok/manifest.json standalone:true), built from these labels. -->
+      <div id="misconceptions-sheets" class="hint" hidden></div>
+      <div id="misconceptions-frequent"></div>
+      <div id="misconceptions-class"></div>
+      <div id="misconceptions-students"></div>
+    </div>
+
+    <!-- Remediation (Phase 4b) -->
+    <div class="section">
+      <h2 class="section-title">Remediation</h2>
+      <div class="hint">
+        Proposed remediations come from the current mastery readout (or you can add them
+        manually via the API). Approve to assign to the student; complete on their behalf when
+        the re-check is closed; waive a row that is already covered by other evidence. A
+        re-check for a given skill unlocks when every assigned remediation for that skill is
+        completed or waived.
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="propose-from-mastery-btn">Propose from current mastery</button>
+        <button class="btn" id="propose-dryrun-btn" style="background:transparent;color:var(--sg-accent);border:1px solid var(--sg-accent)">Dry run (preview)</button>
+        <button class="btn" id="remediation-refresh-btn" style="background:transparent;color:var(--sg-accent);border:1px solid var(--sg-accent)">Refresh</button>
+        <span class="meta-row" id="remediation-meta"></span>
+      </div>
+      <div class="loading-note" id="remediation-loading" style="display:none">Loading remediation rows...</div>
+      <div class="table-wrap" id="remediation-wrap" style="display:none">
+        <table class="grades">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Unit</th>
+              <th>Skill</th>
+              <th>Status</th>
+              <th>Proposed by</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="remediation-tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty-note" id="remediation-empty" style="display:none">
+        No remediation rows for this section yet. Click "Propose from current mastery" to seed
+        them from the weak-skill readout above.
+      </div>
+    </div>
+
+    
+
+    <div class="section" id="quarter-close-section">
+      <h2 class="section-title">Quarter Close &amp; Bonus</h2>
+      <div class="hint">
+        At the end of a quarter, <b>Freeze</b> it — this snapshots every student's current
+        quarter grade as the authoritative closed-quarter record (those are the numbers you enter
+        into Schoology). Freezing is one-way per quarter: the FIRST freeze wins. Afterward,
+        <b>Bonus deltas</b> lists anyone whose grade rose since the freeze (e.g. a makeup PC), so
+        you can grant the difference as extra credit in the new quarter. Does not change how any
+        grade computes — it only records + compares.
+      </div>
+      <div class="btn-row">
+        <label>Quarter
+          <select id="qc-quarter">
+            <option value="Q1">Q1</option><option value="Q2">Q2</option>
+            <option value="Q3">Q3</option><option value="Q4">Q4</option>
+          </select>
+        </label>
+        <button class="btn" id="qc-freeze-btn">❄ Freeze this quarter</button>
+        <button class="btn" id="qc-deltas-btn" style="background:transparent;color:var(--sg-accent);border:1px solid var(--sg-accent)">Show bonus deltas</button>
+        <span class="meta-row" id="qc-meta"></span>
+      </div>
+      <div class="loading-note" id="qc-loading" style="display:none">Working…</div>
+      <div class="table-wrap" id="qc-wrap" style="display:none">
+        <table class="grades">
+          <thead>
+            <tr><th>Student</th><th>Frozen</th><th>Current</th><th>Bonus Δ</th></tr>
+          </thead>
+          <tbody id="qc-tbody"></tbody>
+        </table>
+      </div>
+      <div class="empty-note" id="qc-empty" style="display:none">
+        No post-close improvements for this quarter yet. Freeze a quarter first, then check back after makeups.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Teacher -> Student Console drawer (P1 of TEACHER_STUDENT_CONSOLE_SPEC.md).
+       Must be in the DOM before the inline script runs so that
+       document.getElementById('tsc-drawer') resolves at script-eval time. -->
+  <div id="tsc-drawer" class="tsc-drawer" aria-hidden="true">
+    <div class="tsc-drawer-overlay" data-tsc-close="overlay"></div>
+    <aside class="tsc-drawer-panel" role="dialog" aria-labelledby="tsc-drawer-title">
+      <header class="tsc-drawer-header">
+        <div class="tsc-drawer-title-wrap">
+          <h2 id="tsc-drawer-title">Loading...</h2>
+          <p id="tsc-drawer-subtitle" class="tsc-drawer-subtitle"></p>
+        </div>
+        <button class="tsc-drawer-close" data-tsc-close="button" aria-label="Close drawer">&times;</button>
+      </header>
+      <div class="tsc-drawer-body">
+        <section class="tsc-section" id="tsc-section-grade">
+          <h3 class="tsc-section-title">Grade Summary</h3>
+          <div id="tsc-grade-card" class="tsc-grade-card">Loading...</div>
+        </section>
+        <section class="tsc-section" id="tsc-section-reconcile">
+          <h3 class="tsc-section-title">Schoology vs v3 — why they differ</h3>
+          <div id="tsc-reconcile-card" class="tsc-grade-card">&mdash;</div>
+        </section>
+        <section class="tsc-section" id="tsc-section-recent">
+          <h3 class="tsc-section-title">Recent saved work</h3>
+          <ul id="tsc-recent-list" class="tsc-recent-list"></ul>
+        </section>
+        <section class="tsc-section" id="tsc-section-unlocks" hidden>
+          <h3 class="tsc-section-title">Lesson Unlocks</h3>
+          <ul id="tsc-unlocks-list" class="tsc-unlocks-list"></ul>
+        </section>
+        <section class="tsc-section" id="tsc-section-nudges">
+          <h3 class="tsc-section-title">Messages</h3>
+          <ul id="tsc-nudges-list" class="tsc-nudges-list"></ul>
+          <button type="button" id="tsc-nudges-older" class="tsc-nudges-older"
+                  style="display:none">Load older</button>
+          <!-- Teacher chat compose (Phase 1): send to this student or the whole class. -->
+          <div id="tsc-nudge-compose" style="display:none;margin-top:8px">
+            <textarea id="tsc-nudge-text" maxlength="280" rows="2"
+                      placeholder="Message this student…"
+                      style="width:100%;box-sizing:border-box;font-size:0.85rem;padding:6px;resize:vertical"></textarea>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:4px;flex-wrap:wrap">
+              <label style="font-size:0.78rem;display:flex;align-items:center;gap:4px">
+                <input type="checkbox" id="tsc-nudge-broadcast"> whole class
+              </label>
+              <span id="tsc-nudge-count" style="font-size:0.72rem;color:var(--sg-text-dim)">280</span>
+              <span style="flex:1"></span>
+              <button type="button" class="tsc-action-btn" id="tsc-nudge-send">Send</button>
+              <button type="button" class="tsc-action-btn" id="tsc-nudge-cancel">Cancel</button>
+            </div>
+            <div id="tsc-nudge-status" role="status" style="font-size:0.78rem;margin-top:4px;min-height:1em;color:var(--sg-text-dim)"></div>
+          </div>
+        </section>
+        <nav class="tsc-actions" aria-label="Console actions">
+          <button type="button" class="tsc-action-btn" id="tsc-action-view-as" title="Open this student's Desk in a new tab (read-only)">View student app</button>
+          <button type="button" class="tsc-action-btn" id="tsc-action-nudge" title="Message this student — or the whole class">Send message</button>
+          <button type="button" class="tsc-action-btn" id="tsc-action-remediation" title="Open the remediation form for this student">Apply remediation</button>
+          <button type="button" class="tsc-action-btn" id="tsc-action-gate" hidden disabled title="Phase 5">Override gate</button>
+        </nav>
+      </div>
+    </aside>
+  </div>
+
+  <!-- T1 (P6 BUILD section 4.1): Apply Remediation modal. Hidden until the
+       drawer's "Apply remediation" button is clicked. -->
+  <div id="tsc-remediation-modal" class="tsc-modal" aria-hidden="true">
+    <div class="tsc-modal-overlay" data-tsc-modal-close="overlay"></div>
+    <div class="tsc-modal-panel" role="dialog" aria-labelledby="tsc-remediation-title">
+      <header class="tsc-modal-header">
+        <h3 id="tsc-remediation-title">Apply remediation</h3>
+        <button type="button" class="tsc-modal-close" data-tsc-modal-close="button" aria-label="Close">&times;</button>
+      </header>
+      <p class="tsc-modal-desc">Propose a remediation assignment for
+         <strong id="tsc-remediation-student-name">Student</strong>.
+         Status will be <code>proposed</code>; approve from the
+         Remediation tab to push it to the student.</p>
+      <label for="tsc-rem-unit">Unit (required, e.g. <code>U3</code>):</label>
+      <input type="text" id="tsc-rem-unit" maxlength="8" pattern="^U\d+$" title='Format like "U3"' placeholder="U3">
+      <label for="tsc-rem-skill">Skill code (required, e.g. <code>3.A</code>):</label>
+      <input type="text" id="tsc-rem-skill" maxlength="16" placeholder="3.A">
+      <label for="tsc-rem-notes">Notes (optional):</label>
+      <textarea id="tsc-rem-notes" rows="3" maxlength="500"
+                placeholder="Free-form context for the student or for the approval review."></textarea>
+      <div class="tsc-modal-status" id="tsc-remediation-status"></div>
+      <div class="tsc-modal-actions">
+        <button type="button" class="tsc-modal-cancel" data-tsc-modal-close="button">Cancel</button>
+        <button type="button" class="tsc-modal-confirm" id="tsc-remediation-confirm">Propose</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOGE batch preview. No wallet secret or transaction material enters this page. -->
+  
+
+  <!-- Sibling config; sets window.ROSTER_SERVICE_URL -->
+  <script src="teacher-worksheet-diagnostics.js"></script>
+  <script src="roster_config.js"></script>
+  <!-- Roster identity client; provides window.rosterClient.token() and .current() -->
+  <script src="roster-client.js"></script>
+  <!-- Pure readiness logic shared with the student wallet (My Ledger) so the
+       pacing overview shows the SAME colors each student sees. -->
+  
+  
+  
+  <script src="vendor/qrcode-generator/qrcode-2.0.4.js"></script>
+  
+  
+
+  <script>
+    // ===== guardrails =====
+    // The x-teacher-secret is NEVER auto-persisted client-side. It is read
+    // fresh from the input on every fetch (see api()).
+    // EXCEPTION (opt-in, teacher-local only): if the user explicitly checks
+    // "Remember on this device", the secret is saved to localStorage under
+    // the key 'a2_teacher_secret'. The dashboard is documented as
+    // local-use only (see security-banner) — this is acceptable convenience
+    // on a teacher-controlled machine. A "Clear saved secret" button is
+    // provided. The ROSTER_SERVICE_URL choice is similarly saved unconditionally
+    // under 'a2_teacher_service_url' (URL is not a secret).
+
+    // ===== helpers =====
+    function _pcAuthOk() {
+      var secret = teacherSecret();
+      var _hasTok = (typeof window !== 'undefined' && window.rosterClient) ? !!window.rosterClient.token() : false;
+      if (!secret && !_hasTok) { showError('Enter the teacher secret, or sign in as a teacher via the Desk first.'); return false; }
+      return true;
+    }
+    var URL_KEY    = 'a2_teacher_service_url';
+    var SECRET_KEY = 'a2_teacher_secret';
+    // The dropdown writes BOTH URL_KEY (this page) and GLOBAL_OVERRIDE_KEY
+    // (the one roster_config.js consults so the Desk + worksheets + start-here
+    // pick up the same backend without a second DevTools step).
+    var GLOBAL_OVERRIDE_KEY = 'roster_service_url_override';
+    var FALLBACK_SVC = 'https://a2-live-worksheets-production.up.railway.app';
+    function svcUrl() {
+      // Phase: prefer the dropdown/text input (if loaded), then fall back to
+      // window.ROSTER_SERVICE_URL (set by roster_config.js), then the hard
+      // fallback. The dropdown lets the teacher switch envs without editing
+      // the config file.
+      var el = document.getElementById('svc-url');
+      var u = (el && el.value && el.value.trim()) ||
+              (typeof window !== 'undefined' && window.ROSTER_SERVICE_URL) || '';
+      if (!u) {
+        console.warn('[teacher-dashboard] no ROSTER_SERVICE_URL configured; using fallback ' + FALLBACK_SVC);
+        u = FALLBACK_SVC;
+      }
+      return String(u).replace(/\/+$/, '');
+    }
+
+    function $(id) { return document.getElementById(id); }
+
+    // Show "Signed in as <name> (teacher)" or hint when a roster session exists.
+    function renderSessionStatus() {
+      var el = $('session-status');
+      if (!el) return;
+      var session = (typeof window !== 'undefined' && window.rosterClient)
+        ? window.rosterClient.current() : null;
+      if (session && session.role === 'teacher') {
+        el.textContent = 'Signed in as ' + session.realName + ' (teacher) — secret is optional.';
+        el.style.color = '#25663F';
+      } else if (session) {
+        el.textContent = '(signed in as student — enter the teacher secret above)';
+        el.style.color = '#6E6C62';
+      } else {
+        el.textContent = 'Optional when signed in as a teacher via the Desk.';
+        el.style.color = '#6E6C62';
+      }
+    }
+
+    function teacherSecret() {
+      // ALWAYS read from the input — never cached. Persistence to
+      // localStorage is opt-in via the "Remember on this device" checkbox.
+      var el = $('teacher-secret');
+      return el ? el.value : '';
+    }
+
+    function escHtml(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function showError(msg) {
+      var b = $('err-banner');
+      b.textContent = msg;
+      b.classList.add('show');
+      $('info-banner').classList.remove('show');
+    }
+    function clearBanners() {
+      $('err-banner').classList.remove('show');
+      $('err-banner').textContent = '';
+      $('info-banner').classList.remove('show');
+      $('info-banner').textContent = '';
+    }
+    function showInfo(msg) {
+      var b = $('info-banner');
+      b.textContent = msg;
+      b.classList.add('show');
+    }
+
+    function fmt1(x) {
+      if (x == null || isNaN(x)) return '—';
+      return (Math.round(Number(x) * 10) / 10).toFixed(1);
+    }
+
+    function heatClass(pct) {
+      if (pct >= 75) return 'heat-red';
+      if (pct >= 50) return 'heat-orange';
+      if (pct >= 25) return 'heat-yellow';
+      return 'heat-green';
+    }
+
+    async function fetchJson(path, secret) {
+      // Build a fresh Headers object each call. Secret is passed in by caller
+      // and is itself read fresh from the input — never cached.
+      var headers = {};
+      if (secret) headers['x-teacher-secret'] = secret;
+      // If a roster teacher session is active, also send the Bearer token.
+      // The server accepts either; sending both is fine and covers the
+      // pre-migration window where the secret is still required by the human.
+      var _tok = (typeof window !== 'undefined' && window.rosterClient)
+        ? window.rosterClient.token() : null;
+      if (_tok) headers['Authorization'] = 'Bearer ' + _tok;
+      var res;
+      try {
+        res = await fetch(svcUrl() + path, { method: 'GET', headers: headers });
+      } catch (e) {
+        return { status: 0, data: null, networkError: (e && e.message) || 'network error' };
+      }
+      var data = null;
+      try { data = await res.json(); } catch (_) { data = null; }
+      return { status: res.status, data: data, networkError: null };
+    }
+
+    // ===== rendering =====
+    var UNITS = ['U1', 'U2', 'U3', 'U4', 'U5', 'U6', 'U7', 'U8', 'U9'];
+    var QUARTERS = ['Q1', 'Q2', 'Q3', 'Q4'];
+
+    // In-app gradebook grid state. The last /class/grades payload is stashed so
+    // switching quarters re-renders without a refetch.
+    var lastGradesPayload = null;
+    var a2TopicKeys = [];
+    var a2TopicLoadStarted = false;
+    var lastPacingPayload = null;   // /class/grades?includeStaff=1 — pacing includes teacher/test accounts
+    var currentQuarter = 'Q1';
+    // Prefetch the CED-2026 relabel map; re-render the grid once it lands.
+    try {
+      gbLoadCed2026().then(function () {
+        try { if (typeof lastGradesPayload !== 'undefined' && lastGradesPayload) renderGradebook(lastGradesPayload); } catch (_) {}
+      });
+    } catch (_) {}
+
+    // ── Pacing overview: per-student readiness color (lesson completion) ──
+    var _summerScheduleData = null;
+    (function _loadSummerSchedule() {
+      try {
+        fetch('data/summer-schedule.json')
+          .then(function (r) { return (r && r.ok) ? r.json() : null; })
+          .then(function (d) {
+            if (d && Array.isArray(d.lessons)) {
+              _summerScheduleData = d;
+              var _pp = lastPacingPayload || lastGradesPayload;
+              if (_pp) renderPacingOverview(_pp);
+            }
+          })
+          .catch(function () {});
+      } catch (_) {}
+    })();
+
+    function _pacingTodayISO() { try { return new Date().toISOString().slice(0, 10); } catch (_) { return ''; } }
+    function _pacingSummerMode(sch) { return !!(sch && sch.firstDayOfSchool && _pacingTodayISO() < sch.firstDayOfSchool); }
+
+    // doneCount over the summer schedule: a lesson is complete when its worksheet
+    // (Cws) >= 60 AND blooket >= 80 — the same gate the Desk's _isLessonComplete uses.
+    function _pacingDoneCount(student, sch) {
+      var done = {};
+      var lessons = (student && Array.isArray(student.lessons)) ? student.lessons : [];
+      for (var i = 0; i < lessons.length; i++) {
+        var L = lessons[i]; if (!L) continue;
+        var key = String(L.lessonKey || L.topicKey || L.topic || '');
+        var cws = (typeof L.Cws === 'number') ? L.Cws : null;
+        var bl = (typeof L.blooket === 'number') ? L.blooket : null;
+        if (key && cws != null && cws >= 60 && bl != null && bl >= 80) done[key] = true;
+      }
+      var count = 0;
+      (sch.lessons || []).forEach(function (sl) { if (sl && done[String(sl.topic)]) count++; });
+      return count;
+    }
+
+    function _pacingReadiness(student, sch) {
+      if (!student || !sch) return null;
+      var today = _pacingTodayISO();
+      var lessons = sch.lessons || [];
+      var actual = _pacingDoneCount(student, sch);
+      var due = lessons.filter(function (lesson) { return lesson.due && lesson.due <= today; }).length;
+      var state = actual >= due ? 'caughtup' : 'behind';
+      if (!due && !actual) state = 'notdue';
+      return { state: state, actual: actual, total: lessons.length, hue: state === 'behind' ? 0 : 120 };
+}
+
+    var _PACING_LABEL = {
+      done: 'Caught up ✓', caughtup: 'Caught up ✓', resting: 'On pace',
+      ready: 'Ready for next', catchingup: 'Catching up', behind: 'Behind',
+      notdue: 'Not started', nodue: '—', eligible: 'Eligible'
+    };
+    var _PACING_ORDER = { behind: 0, catchingup: 1, ready: 2, resting: 3, eligible: 3, done: 4, caughtup: 4, notdue: 5, nodue: 6 };
+
+    function _pacingRelTime(iso) {
+      if (!iso) return 'never';
+      try {
+        var then = new Date(iso).getTime();
+        if (!isFinite(then)) return '—';
+        var days = Math.floor((Date.now() - then) / 86400000);
+        if (days <= 0) return 'today';
+        if (days === 1) return 'yesterday';
+        return days + 'd ago';
+      } catch (_) { return '—'; }
+    }
+
+    function renderPacingOverview(payload) {
+      var tbody = $('pacing-tbody'), wrap = $('pacing-wrap'), empty = $('pacing-empty'), legend = $('pacing-legend');
+      if (!tbody) return;
+      var sch = _summerScheduleData;
+      var students = (payload && payload.students) || [];
+      if (!students.length) { wrap.style.display = 'none'; empty.style.display = 'block'; empty.textContent = 'No students.'; return; }
+      if (!sch) {
+        wrap.style.display = 'none'; empty.style.display = 'block';
+        empty.textContent = 'Pacing needs a lesson schedule.';
+        return;
+      }
+      var totalLessons = (sch.lessons || []).length;
+      var rows = students.map(function (s) { return { s: s, rd: _pacingReadiness(s, sch) }; })
+        .sort(function (a, b) {
+          // Teacher/test accounts sink to the bottom so they don't clutter the
+          // most-behind-first class ordering (they're opted in via includeStaff=1).
+          var sa = (a.s && a.s.role === 'teacher') ? 1 : 0;
+          var sb = (b.s && b.s.role === 'teacher') ? 1 : 0;
+          if (sa !== sb) return sa - sb;
+          var oa = a.rd && _PACING_ORDER[a.rd.state] != null ? _PACING_ORDER[a.rd.state] : 9;
+          var ob = b.rd && _PACING_ORDER[b.rd.state] != null ? _PACING_ORDER[b.rd.state] : 9;
+          if (oa !== ob) return oa - ob;
+          return ((a.rd && a.rd.actual) || 0) - ((b.rd && b.rd.actual) || 0);
+        });
+      tbody.innerHTML = '';
+      rows.forEach(function (row) {
+        var s = row.s, rd = row.rd;
+        var hue = (rd && typeof rd.hue === 'number') ? rd.hue : null;
+        var color = (hue == null) ? '#bbb' : ('hsl(' + hue + ',70%,45%)');
+        var state = rd ? (rd.state || '—') : '—';
+        var label = _PACING_LABEL[state] || state;
+        var actual = (rd && typeof rd.actual === 'number') ? rd.actual : 0;
+        var total = (rd && typeof rd.total === 'number') ? rd.total : totalLessons;
+        var tr = document.createElement('tr');
+        var tdName = document.createElement('td');
+        tdName.innerHTML = studentNameHtml(s);
+        if (s.role === 'teacher') {
+          var badge = document.createElement('span');
+          badge.textContent = ' 🧪 teacher · test';
+          badge.style.cssText = 'font-size:0.7rem;color:#888;margin-left:4px';
+          tdName.appendChild(badge);
+        }
+        tr.appendChild(tdName);
+        var tdStatus = document.createElement('td');
+        var dot = document.createElement('span');
+        dot.style.cssText = 'display:inline-block;width:12px;height:12px;border-radius:50%;background:' + color + ';border:1px solid #888;vertical-align:middle;margin-right:6px';
+        tdStatus.appendChild(dot);
+        tdStatus.appendChild(document.createTextNode(label));
+        tr.appendChild(tdStatus);
+        var tdProg = document.createElement('td'); tdProg.textContent = actual + ' / ' + total + ' lessons'; tr.appendChild(tdProg);
+        var tdTime = document.createElement('td'); tdTime.textContent = _pacingRelTime(s.lastActivityAt); tr.appendChild(tdTime);
+        tbody.appendChild(tr);
+      });
+      wrap.style.display = ''; empty.style.display = 'none';
+      legend.textContent = (_pacingSummerMode(sch)
+        ? 'Summer pacing (Unit 1 by Sept 1): red = behind · cyan = catching up · green = caught up / on pace · grey = not started. Most-behind first. '
+        : 'Readiness by current quarter: red = behind · yellow = eligible · green = caught up.')
+        + ' Teacher/test accounts (🧪) sort last. Guests aren’t shown — their work isn’t saved to the roster.';
+    }
+
+    function renderGradesTable(payload) {
+      var thead = $('grades-thead');
+      var tbody = $('grades-tbody');
+      thead.innerHTML = '';
+      tbody.innerHTML = '';
+
+      var students = (payload && payload.students) || [];
+      if (students.length === 0) {
+        $('grades-wrap').style.display = 'none';
+        $('grades-empty').style.display = '';
+        return;
+      }
+      $('grades-empty').style.display = 'none';
+      $('grades-wrap').style.display = '';
+
+      // Header row
+      var headCells = ['Name', 'Username', 'Section'];
+      QUARTERS.forEach(function (q) { headCells.push(q); });
+      UNITS.forEach(function (u) { headCells.push(u); });
+      headCells.push('Completion');
+      var trh = '<tr>' + headCells.map(function (h) {
+        return '<th>' + escHtml(h) + '</th>';
+      }).join('') + '</tr>';
+      thead.innerHTML = trh;
+
+      // Sort by realName ascending (stable, case-insensitive).
+      var sorted = students.slice().sort(function (a, b) {
+        var an = String(a.realName || '').toLowerCase();
+        var bn = String(b.realName || '').toLowerCase();
+        if (an < bn) return -1;
+        if (an > bn) return 1;
+        return 0;
+      });
+
+      var rowsHtml = [];
+      sorted.forEach(function (s) {
+        var cells = [];
+        cells.push('<td>' + studentNameHtml(s) + '</td>');
+        cells.push('<td class="uname mono">' + escHtml(s.username || '') + '</td>');
+        cells.push('<td class="dim">' + escHtml(s.section || '') + '</td>');
+
+        QUARTERS.forEach(function (q) {
+          var qrec = s.quarters && s.quarters[q];
+          var qg = qrec ? qrec.quarterGrade : null;
+          var ceil = qrec ? qrec.ceiling : null;
+          var graded = qrec && typeof qrec.unitsGraded === 'number' ? qrec.unitsGraded : null;
+          var total = qrec && typeof qrec.unitsTotal === 'number' ? qrec.unitsTotal : null;
+          // Current grade (large) + motivational ceiling on a second line when
+          // the student has banked at least one unit and still has room to grow.
+          // Tooltip names the band fraction (graded/total) for at-a-glance reads.
+          var tip = total != null ? (graded + '/' + total + ' graded') : '';
+          var ceilHtml = (ceil != null && qg != null)
+            ? '<span class="dim" style="font-size:0.78rem">&uarr; ' + escHtml(fmt1(ceil)) + '</span>'
+            : '';
+          cells.push('<td class="num" title="' + escHtml(tip) + '">' + escHtml(fmt1(qg)) + (ceilHtml ? '<br>' + ceilHtml : '') + '</td>');
+        });
+
+        UNITS.forEach(function (u) {
+          var urec = s.units && s.units[u];
+          var ug = urec ? urec.unitGrade : null;
+          cells.push('<td class="num">' + escHtml(fmt1(ug)) + '</td>');
+        });
+
+        // Compact completion summary: ws:N · q:M · pc:K (sums across units present)
+        var ws = 0, q = 0, pc = 0;
+        var comp = s.completion || {};
+        Object.keys(comp).forEach(function (u) {
+          var c = comp[u] || {};
+          if (typeof c.worksheet === 'number') ws += c.worksheet;
+          if (typeof c.curriculum_quiz === 'number') q += c.curriculum_quiz;
+          if (typeof c.pc === 'number') pc += c.pc;
+        });
+        var compTxt = 'ws:' + ws + ' · q:' + q + ' · pc:' + pc;
+        cells.push('<td class="completion">' + escHtml(compTxt) + '</td>');
+
+        rowsHtml.push(
+          '<tr class="grades-row-clickable"' +
+          ' data-student-id="' + escHtml(s.studentId || '') + '"' +
+          ' data-username="' + escHtml(s.username || '') + '"' +
+          ' data-real-name="' + escHtml(s.realName || '') + '"' +
+          ' data-section="' + escHtml(s.section || '') + '">' +
+          cells.join('') + '</tr>'
+        );
+      });
+      tbody.innerHTML = rowsHtml.join('');
+
+      // Delegated click handler: open the TSC drawer for the clicked row.
+      // __tscWired guard prevents double-binding on re-render.
+      if (!tbody.__tscWired) {
+        tbody.__tscWired = true;
+        tbody.addEventListener('click', function(e) {
+          var tr = e.target.closest('tr.grades-row-clickable');
+          if (!tr) return;
+          var sid = tr.getAttribute('data-student-id');
+          if (!sid) return;
+          openTscDrawer({
+            studentId: sid,
+            username: tr.getAttribute('data-username') || '',
+            realName: tr.getAttribute('data-real-name') || '',
+            section: tr.getAttribute('data-section') || ''
+          });
+        });
+      }
+    }
+
+
+    // ===== in-app 1:1 Schoology gradebook (component grid) =====
+    var GB_CAT_ORDER = ['Assessments', 'Assignments', 'Engagement', 'Lesson', 'Quizzes', 'Blooket'];
+    var GB_CAT_SLUG = { Assessments: 'assessments', Assignments: 'assignments', Engagement: 'engagement', 'Lesson': 'lesson', 'Quizzes': 'quizzes', 'Blooket': 'blooket' };
+
+    // Columns are schedule-driven (identical across students); take them from the
+    // first student that carries them for this quarter.
+    function gbColumnsFor(students, qk) {
+      for (var i = 0; i < students.length; i++) {
+        var gb = students[i] && students[i].gradebook;
+        var q = gb && gb.quarters && gb.quarters[qk];
+        if (q && Array.isArray(q.columns) && q.columns.length) return q.columns;
+      }
+      return [];
+    }
+
+    function gbWeights(students) {
+      for (var i = 0; i < students.length; i++) {
+        var gb = students[i] && students[i].gradebook;
+        if (gb && gb.weights) return gb.weights;
+      }
+      return null;
+    }
+
+    // grade -> colour band, tied to the grade rules (40% floor, 70% cap), matching
+    // the Desk's My Gradebook: deep-green 90+, green 70-89 (clears the cap), amber
+    // 40-69, red <40 (below the floor).
+    function gbColor(v) {
+      if (v == null) return 'gb-null';
+      if (v >= 90) return 'gb-top';
+      if (v >= 70) return 'gb-good';
+      if (v >= 40) return 'gb-mid';
+      return 'gb-low';
+    }
+
+    // Compact header label: the part after the key prefix (FA:1.1 -> "1.1",
+    // QUIZ:1.2 -> "1.2", PC:U1 -> "U1"). Full title lives in the th tooltip.
+    // "U1–4" style range text for a derived unit band ([] → "—").
+    function gbUnitRange(units) {
+      var u = (Array.isArray(units) ? units.slice() : []).filter(function (n) { return Number.isFinite(n); }).sort(function (a, b) { return a - b; });
+      if (!u.length) return '—';
+      var contiguous = u.every(function (n, i) { return i === 0 || n === u[i - 1] + 1; });
+      if (u.length === 1) return 'U' + u[0];
+      return contiguous ? ('U' + u[0] + '–' + u[u.length - 1]) : ('U' + u.join(','));
+    }
+
+    // Quarter buttons: label from the payload's derived bands (any student's
+    // grade carries quarters[q].units; they are identical class-wide for a period).
+    function gbQuarterLabels(students) {
+      var sample = null;
+      (students || []).some(function (st) { if (st && st.quarters) { sample = st.quarters; return true; } return false; });
+      QUARTERS.forEach(function (q) {
+        var b = $('gb-q-' + q);
+        if (!b) return;
+        var units = sample && sample[q] ? sample[q].units : null;
+        // Fall-2026 CED: label the quarter by the NEW units whose Progress Check
+        // lands in it (quarters[q].pcUnits); the old-numbering band is the tooltip.
+        // (Teacher, 2026-09-05: "the new CED has no unit 9" — Q4 used to say U9.)
+        var pc = sample && sample[q] ? sample[q].pcUnits : null;
+        var label = Array.isArray(pc)
+          ? (pc.length ? 'CED U' + pc.slice().sort(function (a, c) { return a - c; }).join(',') : 'after the exam')
+          : (units ? gbUnitRange(units) : null);
+        b.textContent = label ? (q + ' · ' + label) : q;
+        b.title = units
+          ? ('Fall-2026 CED units whose Progress Check falls in ' + q + '. Old-numbering lessons banded here: ' + gbUnitRange(units))
+          : '';
+      });
+    }
+
+    // CED-2026 topic relabel (the same mapping the Desk uses): old topic key
+    // ("4.1") → { key: "2.3", label: "…" } from roadmap-data.json ced2026.
+    // Loaded once, best-effort; columns fall back to the old key when absent.
+    var _ced2026ByOldKey = null;
+    function gbLoadCed2026() {
+      if (_ced2026ByOldKey) return Promise.resolve(_ced2026ByOldKey);
+      if (typeof fetch !== 'function') { _ced2026ByOldKey = {}; return Promise.resolve(_ced2026ByOldKey); }
+      return fetch('roadmap-data.json', { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (rd) {
+          var map = {};
+          var lessons = rd && rd.lessons ? rd.lessons : {};
+          Object.keys(lessons).forEach(function (oldKey) {
+            var c = lessons[oldKey] && lessons[oldKey].ced2026;
+            if (c && c.newTopic) map[oldKey] = { key: String(c.newTopic), label: c.newLabel || '', status: c.status || '' };
+          });
+          _ced2026ByOldKey = map;
+          return map;
+        })
+        .catch(function () { _ced2026ByOldKey = {}; return _ced2026ByOldKey; });
+    }
+    function gbCedFor(topicKey) {
+      return (_ced2026ByOldKey && _ced2026ByOldKey[String(topicKey)]) || null;
+    }
+
+    // Short column header. Prefer the CED-2026 topic key (like the Desk); the
+    // old key stays in the hover title. Combined worksheets ("4.1-2") map by
+    // their first topic.
+    function gbShortTitle(col) {
+      var k = String(col.key || '');
+      var i = k.indexOf(':');
+      var tail = i >= 0 ? k.slice(i + 1) : (col.title || k);
+      var firstTopic = (Array.isArray(col.topicKeys) && col.topicKeys.length) ? col.topicKeys[0] : null;
+      var ced = firstTopic ? gbCedFor(firstTopic) : null;
+      if (!ced) return tail;
+      var suffix = tail.replace(/^[\d.\-]+/, '');   // keep any "(bonus)"-style suffix
+      return ced.key + suffix;
+    }
+    function gbColumnHover(col) {
+      var firstTopic = (Array.isArray(col.topicKeys) && col.topicKeys.length) ? col.topicKeys[0] : null;
+      var ced = firstTopic ? gbCedFor(firstTopic) : null;
+      var base = String(col.title || col.key || '');
+      if (!ced) return base;
+      return 'CED-2026 ' + ced.key + (ced.label ? ' — ' + ced.label : '') + '  (was ' + base + ')';
+    }
+
+    function renderGradebook(payload) {
+      var thead = $('gb-thead');
+      var tbody = $('gb-tbody');
+      if (!thead || !tbody) return;
+      thead.innerHTML = '';
+      tbody.innerHTML = '';
+
+      var students = (payload && payload.students) || [];
+      var qk = currentQuarter;
+      if (students.length && !a2TopicLoadStarted) {
+        a2TopicLoadStarted = true;
+        Promise.resolve().then(function () { return fetch('content/a2/lessons.json'); }).then(function (response) { return response.json(); }).then(function (lessons) {
+          if (!Array.isArray(lessons)) return;
+          a2TopicKeys = Array.from(new Set(lessons.map(function (lesson) { return lesson.topicAssessmentKey; }).filter(Boolean)));
+          if (lastGradesPayload) renderGradebook(lastGradesPayload);
+        }).catch(function () { a2TopicLoadStarted = false; });
+      }
+
+      // Reflect the active quarter button + derived band labels.
+      gbQuarterLabels(students);
+      QUARTERS.forEach(function (q) {
+        var b = $('gb-q-' + q);
+        if (b) b.classList.toggle('active', q === qk);
+      });
+
+      var cols = gbColumnsFor(students, qk).slice();
+      a2TopicKeys.forEach(function (key) {
+        if (!cols.some(function (col) { return col.key === 'TA-' + key; })) cols.push({ key: 'TA-' + key,
+          kind: 'topic_assessment', category: 'Assessments', title: 'Topic assessment ' + key, maxPoints: 100, topicKeys: [] });
+      });
+      if (students.length === 0 || cols.length === 0) {
+        $('gb-wrap').style.display = 'none';
+        $('gb-empty').style.display = '';
+        return;
+      }
+      $('gb-empty').style.display = 'none';
+      $('gb-wrap').style.display = '';
+
+      var weights = gbWeights(students);
+
+      // ── Date-gate: a column shows if its calendar date has arrived (col.due, set
+      // server-side from the schedule) OR any student has started it. Future,
+      // not-yet-started columns are hidden to declutter. Columns with no `due` field
+      // (older server / no schedule) always show — a safe degrade. ──
+      var startedKeys = {};
+      students.forEach(function (s) {
+        var gq = s.gradebook && s.gradebook.quarters && s.gradebook.quarters[qk];
+        var cc = (gq && gq.cells) || {};
+        for (var k in cc) { if (cc[k] != null) startedKeys[k] = true; }
+      });
+      var shownCols = cols.filter(function (c) { return c.due !== false || startedKeys[c.key]; });
+      var hiddenCount = cols.length - shownCols.length;
+      if (shownCols.length === 0) { shownCols = cols; hiddenCount = 0; }   // never blank the grid
+      var scopeEl = $('gb-scope');
+      if (scopeEl) {
+        scopeEl.textContent = hiddenCount > 0
+          ? ('Date-gated: ' + hiddenCount + ' future, not-yet-started column' + (hiddenCount === 1 ? '' : 's') + ' hidden.')
+          : '';
+      }
+
+      // Order columns by category (Schoology groups by weighted category), keeping
+      // the within-category column order the server produced. Built over SHOWN cols.
+      var orderedCols = [];
+      var catCounts = {};
+      GB_CAT_ORDER.forEach(function (cat) {
+        shownCols.forEach(function (c) {
+          if (c.category === cat) { orderedCols.push(c); catCounts[cat] = (catCounts[cat] || 0) + 1; }
+        });
+      });
+
+      // Row 1: category group headers (name spans both header rows).
+      var groupRow = '<tr><th class="gb-name-h" rowspan="2">Name</th>';
+      GB_CAT_ORDER.forEach(function (cat) {
+        if (!catCounts[cat]) return;
+        var w = (weights && weights[cat] != null) ? (' ' + weights[cat] + '%') : '';
+        groupRow += '<th class="gb-cat gb-cat-' + GB_CAT_SLUG[cat] + '" colspan="' + catCounts[cat] + '">' +
+          escHtml(cat) + escHtml(w) + '</th>';
+      });
+      groupRow += '<th class="gb-tot-h" colspan="2">Total</th></tr>';
+
+      // Row 2: per-column titles + the two total headers.
+      var titleRow = '<tr>';
+      orderedCols.forEach(function (c) {
+        titleRow += '<th class="gb-col gb-cat-' + GB_CAT_SLUG[c.category] + '" title="' + escHtml(gbColumnHover(c)) + '">' +
+          escHtml(gbShortTitle(c)) + '</th>';
+      });
+      titleRow += '<th class="gb-tot-h">Schoology</th><th class="gb-tot-h">Desk</th></tr>';
+      thead.innerHTML = groupRow + titleRow;
+
+      // Body: one row per student, sorted by name.
+      var sorted = students.slice().sort(function (a, b) {
+        var an = String(a.realName || '').toLowerCase();
+        var bn = String(b.realName || '').toLowerCase();
+        return an < bn ? -1 : an > bn ? 1 : 0;
+      });
+
+      var rowsHtml = sorted.map(function (s) {
+        var gq = s.gradebook && s.gradebook.quarters && s.gradebook.quarters[qk];
+        var cells = (gq && gq.cells) || {};
+        var html = '<tr class="grades-row-clickable"' +
+          ' data-student-id="' + escHtml(s.studentId || '') + '"' +
+          ' data-username="' + escHtml(s.username || '') + '"' +
+          ' data-real-name="' + escHtml(s.realName || '') + '"' +
+          ' data-section="' + escHtml(s.section || '') + '">';
+        html += '<td class="gb-name">' + studentNameHtml(s) + '</td>';
+        orderedCols.forEach(function (c) {
+          var v = cells[c.key];
+          if (v === undefined) v = null;
+          if (c.kind === 'topic_assessment' && /^TA-T\d+$/.test(c.key)) {
+            html += '<td><input class="a2-topic-score" type="number" min="0" max="100" step="any" style="min-height:44px;width:70px" aria-label="' + escHtml(c.title) + '" data-item-id="' + escHtml(c.key) + '" value="' + (v == null ? '' : escHtml(v)) + '"></td>';
+            return;
+          }
+          html += '<td class="gb-cell gb-cat-' + GB_CAT_SLUG[c.category] + ' ' + gbColor(c.maxPoints ? v / c.maxPoints * 100 : v) + '">' +
+            (v == null ? '<span class="gb-null">·</span>' : escHtml(fmt1(v)) + (c.maxPoints ? ' / ' + c.maxPoints : '')) + '</td>';
+        });
+        var st = gq ? gq.schoologyTotal : null;
+        var vt = gq ? gq.v3Total : null;
+        var delta = (st != null && vt != null) ? Math.round((vt - st) * 10) / 10 : null;
+        var deltaHtml = (delta != null && Math.abs(delta) >= 0.1)
+          ? '<span class="gb-delta">&Delta;' + (delta > 0 ? '+' : '') + escHtml(fmt1(delta)) + '</span>'
+          : '';
+        html += '<td class="gb-tot ' + gbColor(st) + '">' + escHtml(fmt1(st)) + '</td>';
+        html += '<td class="gb-tot ' + gbColor(vt) + '">' + escHtml(fmt1(vt)) + deltaHtml + '</td>';
+        html += '</tr>';
+        return html;
+      });
+      tbody.innerHTML = rowsHtml.join('');
+      tbody.querySelectorAll('.a2-topic-score').forEach(function (input) {
+        input.addEventListener('click', function (event) { event.stopPropagation(); });
+        input.addEventListener('change', async function () {
+          if (input.value === '' || !input.checkValidity()) return;
+          input.disabled = true;
+          try {
+            var headers = teacherAuthHeaders(); headers['Content-Type'] = 'application/json';
+            var response = await fetch(svcUrl() + '/ledger/record', { method: 'POST', headers: headers,
+              body: JSON.stringify({ source: 'topic-assessment', itemId: input.dataset.itemId,
+                studentId: input.closest('tr').dataset.studentId, score: Number(input.value), maxPoints: 100,
+                quarter: qk, requestId: crypto.randomUUID() }) });
+            var result = await response.json();
+            if (!response.ok) throw new Error(result.error || 'Score was not saved');
+            input.title = 'Saved · attempt ' + result.attempt;
+            await loadAll();
+          } catch (error) { showError(error.message); }
+          finally { input.disabled = false; }
+        });
+      });
+
+      // Rows open the same per-student drawer as the Class Grades table.
+      if (!tbody.__gbWired) {
+        tbody.__gbWired = true;
+        tbody.addEventListener('click', function (e) {
+          var tr = e.target.closest('tr.grades-row-clickable');
+          if (!tr) return;
+          var sid = tr.getAttribute('data-student-id');
+          if (!sid) return;
+          openTscDrawer({
+            studentId: sid,
+            username: tr.getAttribute('data-username') || '',
+            realName: tr.getAttribute('data-real-name') || '',
+            section: tr.getAttribute('data-section') || ''
+          });
+        });
+      }
+    }
+
+    // These labels match the legacy item map loaded by /class/mastery and the
+    // apstat_*_framework.md sources. New CED codes overlap but mean different things.
+    var TEACHER_SKILL_LABELS = {
+      "1.A": [
+            "Identify the statistical question",
+            "Ask students to state the question an investigation should answer."
+      ],
+      "1.B": [
+            "Identify the relevant information",
+            "Ask students to identify which facts are needed to answer a question."
+      ],
+      "1.C": [
+            "Plan how to collect and represent data",
+            "Ask students to describe a sampling or study method and how they would display the results."
+      ],
+      "1.D": [
+            "Choose a confidence-interval method",
+            "Ask students to choose an interval method and explain why it fits the data."
+      ],
+      "1.E": [
+            "Choose a significance test",
+            "Ask students to choose a test and explain why it fits the question."
+      ],
+      "1.F": [
+            "State null and alternative hypotheses",
+            "Ask students to write hypotheses about the population parameter in context."
+      ],
+      "2.A": [
+            "Read and describe graphs, tables, and data",
+            "Ask students to describe what a graph or table shows in the context of the question."
+      ],
+      "2.B": [
+            "Make graphs and tables",
+            "Ask students to build a graph or frequency table from a small data set; check labels, scales, and counts."
+      ],
+      "2.C": [
+            "Calculate summary statistics",
+            "Check a calculation such as a mean, standard deviation, percentile, correlation, or predicted response."
+      ],
+      "2.D": [
+            "Compare distributions and relative positions",
+            "Ask students to compare two distributions or explain where a value sits within a distribution."
+      ],
+      "3.A": [
+            "Calculate probabilities and proportions",
+            "Ask students to calculate a probability or proportion and explain the numerator and denominator."
+      ],
+      "3.B": [
+            "Find probability-distribution parameters",
+            "Ask students to identify or calculate the parameters of a probability distribution."
+      ],
+      "3.C": [
+            "Describe probability distributions",
+            "Ask students to describe the possible outcomes and their probabilities."
+      ],
+      "3.D": [
+            "Calculate confidence intervals",
+            "Check an interval calculation after the student verifies the conditions."
+      ],
+      "3.E": [
+            "Calculate test statistics and p-values",
+            "Check the test statistic and p-value after the student verifies the conditions."
+      ],
+      "4.A": [
+            "Draw a conclusion from the evidence",
+            "Ask students to state a conclusion that the evidence supports."
+      ],
+      "4.B": [
+            "Explain what a statistical result means",
+            "Ask students to interpret a calculated result in the context of the problem."
+      ],
+      "4.C": [
+            "Check conditions for statistical inference",
+            "Ask students to verify the conditions required for the chosen procedure."
+      ],
+      "4.D": [
+            "Use a confidence interval to justify a claim",
+            "Ask students to explain how an interval supports or challenges a claim."
+      ],
+      "4.E": [
+            "Use a significance test to justify a claim",
+            "Ask students to connect the p-value, decision, and conclusion in context."
+      ]
+};
+    function teacherSkillLabel(code) {
+      var entry = Object.prototype.hasOwnProperty.call(TEACHER_SKILL_LABELS, code) ? TEACHER_SKILL_LABELS[code] : null;
+      return entry ? entry[0] : 'Unlabeled skill (' + code + ')';
+    }
+    function teacherSkillAction(code) {
+      var entry = Object.prototype.hasOwnProperty.call(TEACHER_SKILL_LABELS, code) ? TEACHER_SKILL_LABELS[code] : null;
+      return entry ? entry[1] : 'Inspect the saved question before deciding what to review; this skill label is unavailable.';
+    }
+
+    function renderHeatmap(payload) {
+      var grid = $('heatmap-grid');
+      grid.innerHTML = '';
+      var heatmap = (payload && payload.heatmap) || {};
+      var skills = Object.keys(heatmap);
+
+      if (skills.length === 0) {
+        $('heatmap-empty').style.display = '';
+        grid.style.display = 'none';
+        return;
+      }
+      $('heatmap-empty').style.display = 'none';
+      grid.style.display = '';
+
+      // Sort by pctWeak desc, then skill code asc.
+      var tiles = skills.map(function (k) {
+        var row = heatmap[k] || {};
+        return {
+          skill: k,
+          weak: Number(row.weak) || 0,
+          total: Number(row.total) || 0,
+          pctWeak: Number(row.pctWeak) || 0
+        };
+      });
+      tiles.sort(function (a, b) {
+        if (b.pctWeak !== a.pctWeak) return b.pctWeak - a.pctWeak;
+        return a.skill < b.skill ? -1 : a.skill > b.skill ? 1 : 0;
+      });
+
+      var html = tiles.map(function (t) {
+        var cls = heatClass(t.pctWeak);
+        return '<div class="heat-tile ' + cls + '">' +
+                 '<div class="skill">' + escHtml(teacherSkillLabel(t.skill)) + '</div><small>Skill ' + escHtml(t.skill) + '</small>' +
+                 '<div class="pct">' + escHtml(fmt1(t.pctWeak)) + '% flagged</div>' +
+                 '<div class="frac">' + escHtml(t.weak) + ' of ' + escHtml(t.total) + ' students with graded evidence</div>' +
+               '</div>';
+      }).join('');
+      grid.innerHTML = html;
+    }
+
+    function renderTriage(payload) {
+      var list = $('triage-list');
+      list.innerHTML = '';
+      var heatmap = (payload && payload.heatmap) || {};
+      var students = (payload && payload.students) || [];
+
+      var skills = Object.keys(heatmap);
+      if (skills.length === 0) {
+        $('triage-empty').style.display = '';
+        list.style.display = 'none';
+        return;
+      }
+      $('triage-empty').style.display = 'none';
+      list.style.display = '';
+
+      // Build skill -> [usernames who are weak] index from the per-student weak lists.
+      var weakBySkill = {};
+      students.forEach(function (s) {
+        var ws = Array.isArray(s.weakSkills) ? s.weakSkills : [];
+        ws.forEach(function (sk) {
+          if (!weakBySkill[sk]) weakBySkill[sk] = [];
+          weakBySkill[sk].push(s);
+        });
+      });
+
+      var rows = skills.map(function (k) {
+        var row = heatmap[k] || {};
+        return {
+          skill: k,
+          weak: Number(row.weak) || 0,
+          total: Number(row.total) || 0,
+          pctWeak: Number(row.pctWeak) || 0
+        };
+      });
+      rows.sort(function (a, b) {
+        if (b.pctWeak !== a.pctWeak) return b.pctWeak - a.pctWeak;
+        return a.skill < b.skill ? -1 : a.skill > b.skill ? 1 : 0;
+      });
+
+      var html = rows.map(function (r) {
+        var cls = heatClass(r.pctWeak);
+        var users = weakBySkill[r.skill] || [];
+        users.sort(function (a, b) { return String(a.realName || a.username).localeCompare(String(b.realName || b.username)); });
+        var inner = users.length
+          ? users.map(function (u) {
+              var evidence = u.skills && u.skills[r.skill];
+              var count = evidence && evidence.observations;
+              var detail = typeof count === 'number'
+                ? count + ' graded answer' + (count === 1 ? '' : 's') + '; ' + evidence.correct + ' counted correct'
+                : 'Evidence count unavailable';
+              if (typeof count === 'number' && count < 3) detail += '; limited evidence; check another answer';
+              return '<span class="pill">' + studentNameHtml(u, r.skill) + '<span class="skill-evidence">' + escHtml(detail) + '</span></span>';
+            }).join('')
+          : '<span class="none">No students with graded evidence are currently flagged for review.</span>';
+        return '<details class="triage-row">' +
+                 '<summary>' +
+                   '<span class="skill-code">' + escHtml(teacherSkillLabel(r.skill)) + '<small>Skill ' + escHtml(r.skill) + '</small></span>' +
+                   '<span class="pct-badge ' + cls + '">' + escHtml(fmt1(r.pctWeak)) + '% flagged</span>' +
+                   '<span class="count">' + escHtml(r.weak) + ' of ' + escHtml(r.total) + ' students with graded evidence</span>' +
+                 '</summary>' +
+                 '<p class="skill-next-step">First, inspect a few saved answers. ' + escHtml(teacherSkillAction(r.skill)) + '</p>' +
+                 '<div class="student-list">' + inner + '</div>' +
+               '</details>';
+      }).join('');
+      list.innerHTML = html;
+    }
+
+    function setLoading(on) {
+      var dispBlock = on ? '' : 'none';
+      $('grades-loading').style.display = dispBlock;
+      $('heatmap-loading').style.display = dispBlock;
+      $('triage-loading').style.display = dispBlock;
+      if (on) {
+        // Hide previous results while loading so the user sees the loading state.
+        $('grades-wrap').style.display = 'none';
+        $('grades-empty').style.display = 'none';
+        ;
+        ;
+        $('heatmap-grid').style.display = 'none';
+        $('heatmap-empty').style.display = 'none';
+        $('triage-list').style.display = 'none';
+        $('triage-empty').style.display = 'none';
+      }
+    }
+
+    // ===== load handler =====
+    async function loadAll() {
+      clearBanners();
+      if (window.teacherWorkspace) window.teacherWorkspace.loading();
+      var secret = teacherSecret();
+      // If the teacher is signed in via a roster session, the Bearer token
+      // in fetchJson/postJson is enough — the secret is optional.
+      var _hasTok = (typeof window !== 'undefined' && window.rosterClient)
+        ? !!window.rosterClient.token() : false;
+      if (!secret && !_hasTok) {
+        showError('Enter the teacher secret, or sign in as a teacher via the Desk first.');
+        if (window.teacherWorkspace) window.teacherWorkspace.failed();
+        return;
+      }
+      var section = $('section-filter').value.trim();
+      var loadIdentity = JSON.stringify(teacherAuthHeaders());
+      var qs = section ? '?section=' + encodeURIComponent(section) : '';
+
+      var btn = $('load-btn');
+      btn.disabled = true;
+      setLoading(true);
+      $('meta-line').textContent = '';
+      ;
+
+      try {
+        // Fan-out both endpoints in parallel; each call re-reads the secret
+        // through teacherSecret() at fetch-time (no cached value).
+        var workQs = window.teacherWorkspace ? (qs ? qs + '&' : '?') + 'includeSavedWork=1' : qs;
+        var gradesP = fetchJson('/class/grades' + workQs, teacherSecret());
+        var masteryP = fetchJson('/class/mastery' + qs, teacherSecret());
+        // Pacing Overview opts into teacher/test accounts (includeStaff=1) so the
+        // teacher can see their OWN account drive the view before students log in.
+        // Separate fetch: the grades/gradebook/trainer tables stay student-only.
+        var pacingP = fetchJson('/class/grades' + (qs ? qs + '&includeStaff=1' : '?includeStaff=1'), teacherSecret());
+        var results = await Promise.all([gradesP, masteryP, pacingP]);
+        if (loadIdentity !== JSON.stringify(teacherAuthHeaders())) {
+          if (window.teacherWorkspace) window.teacherWorkspace.failed();
+          return;
+        }
+        var gRes = results[0];
+        var mRes = results[1];
+        var pRes = results[2];
+
+        // 401 from either endpoint => clear, never persisting anything.
+        if (gRes.status === 401 || mRes.status === 401) {
+          showError('Teacher sign-in needs a refresh. Sign in through the Desk, then load again.');
+          lastGradesPayload = null;
+          if (window.teacherWorkspace) window.teacherWorkspace.failed();
+          setLoading(false);
+          renderGradesTable({ students: [] });
+          renderPacingOverview({ students: [] });
+          ;
+          renderGradebook({ students: [] });
+          ;
+          renderHeatmap({ heatmap: {} });
+          renderTriage({ heatmap: {}, students: [] });
+          return;
+        }
+
+        if (gRes.networkError) {
+          showError('Network error loading /class/grades: ' + gRes.networkError);
+        } else if (gRes.status !== 200 || !gRes.data || !gRes.data.ok) {
+          var errG = (gRes.data && gRes.data.error) || ('HTTP ' + gRes.status);
+          showError('Failed to load /class/grades: ' + errG);
+        }
+        if (mRes.networkError) {
+          showError('Network error loading /class/mastery: ' + mRes.networkError);
+        } else if (mRes.status !== 200 || !mRes.data || !mRes.data.ok) {
+          var errM = (mRes.data && mRes.data.error) || ('HTTP ' + mRes.status);
+          // Only overwrite if grades-side was OK.
+          if (!$('err-banner').classList.contains('show')) {
+            showError('Failed to load /class/mastery: ' + errM);
+          }
+        }
+
+        // Render whatever came back; render-empty for the failed half.
+        var gPayload = (gRes.status === 200 && gRes.data && gRes.data.ok)
+          ? gRes.data : { students: [] };
+        var mPayload = (mRes.status === 200 && mRes.data && mRes.data.ok)
+          ? mRes.data : { heatmap: {}, students: [] };
+
+        // Pacing uses the staff-inclusive payload; falls back to the student-only
+        // grades payload if that fetch failed (teachers simply won't appear then).
+        var pPayload = (pRes && pRes.status === 200 && pRes.data && pRes.data.ok) ? pRes.data : gPayload;
+        renderGradesTable(gPayload);
+        lastGradesPayload = gPayload;
+        if (window.teacherWorkspace) window.teacherWorkspace.loaded(gPayload);
+        lastPacingPayload = pPayload;
+        renderPacingOverview(pPayload);
+        ;   // 🍬 effort → candy / DOGE (incl. teacher/test accounts for testing)
+        loadStudentInbox();                   // 📨 student→teacher messages (2026-09-09)
+        startInboxPolling();
+        renderGradebook(gPayload);
+        ;
+        renderHeatmap(mPayload);
+        renderTriage(mPayload);
+
+        var bits = [];
+        if (gPayload.asOf) bits.push('grades as of ' + String(gPayload.asOf));
+        if (mPayload.asOf) bits.push('mastery as of ' + String(mPayload.asOf));
+        if (gPayload.section || mPayload.section) {
+          bits.push('section: ' + (gPayload.section || mPayload.section || '(all)'));
+        }
+        var nStudents = (gPayload.students || []).length;
+        bits.push(nStudents + ' student(s)');
+        $('meta-line').textContent = bits.join(' · ');
+
+        if (!$('err-banner').classList.contains('show')) {
+          showInfo('Loaded ' + nStudents + ' student(s).');
+        }
+      } catch (e) {
+        // Last-resort guard so the UI never throws uncaught.
+        showError('Unexpected error: ' + ((e && e.message) || String(e)));
+        if (window.teacherWorkspace) window.teacherWorkspace.failed();
+      } finally {
+        btn.disabled = false;
+        setLoading(false);
+      }
+    }
+
+    $('load-btn').addEventListener('click', loadAll);
+
+    // ===== Grade Backup & Recovery (download / verify / restore) =====
+    function backupStatus(msg, color) { var el = $('backup-status'); if (el) { el.textContent = msg; el.style.color = color || '#6E6C62'; } }
+    function restoreStatus(msg, color) { var el = $('backup-restore-status'); if (el) { el.textContent = msg; el.style.color = color || '#6E6C62'; } }
+    function fmtReport(rep) {
+      if (!rep) return 'no report';
+      var t = rep.totals || {};
+      var mark = rep.ok ? '✓ VERIFIED' : ('✗ ' + (rep.breaks ? rep.breaks.length : '?') + ' break(s)');
+      return mark + ' — ' + (t.students || 0) + ' students, ' + (t.records || 0) + ' records, ' +
+        (t.verifiedReceipts || 0) + ' signed, anchor ' + (rep.epochOk ? 'OK' : 'BROKEN');
+    }
+    function readFileJson(file) {
+      return new Promise(function (resolve, reject) {
+        var r = new FileReader();
+        r.onload = function () { try { resolve(JSON.parse(r.result)); } catch (e) { reject(e); } };
+        r.onerror = function () { reject(new Error('read error')); };
+        r.readAsText(file);
+      });
+    }
+    async function downloadBackup() {
+      var s = teacherSecret();
+      if (!s) { backupStatus('Enter the teacher secret above first.', '#a33'); return; }
+      backupStatus('Downloading…');
+      var r = await fetchJson('/admin/snapshot', s);
+      if (r.status !== 200 || !r.data) { backupStatus('Download failed (HTTP ' + r.status + '). Check the teacher secret.', '#a33'); return; }
+      var snap = r.data;
+      var date = (snap && snap.asOfDateNY) || new Date().toISOString().slice(0, 10);
+      var blob = new Blob([JSON.stringify(snap, null, 2)], { type: 'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'grade-backup-' + date + '.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+      backupStatus('Saved grade-backup-' + date + '.json — verifying…');
+      var v = await postJson('/admin/verify', snap, s);
+      if (v.status === 200 && v.data && v.data.report) {
+        backupStatus('Saved grade-backup-' + date + '.json · ' + fmtReport(v.data.report), v.data.report.ok ? '#2a7' : '#a33');
+      } else {
+        backupStatus('Saved grade-backup-' + date + '.json (verify unavailable: HTTP ' + v.status + ')', '#a70');
+      }
+    }
+    async function verifyBackupFile(file) {
+      if (!file) return;
+      backupStatus('Verifying ' + file.name + '…');
+      var snap; try { snap = await readFileJson(file); } catch (e) { backupStatus(file.name + ' is not valid JSON.', '#a33'); return; }
+      var v = await postJson('/admin/verify', snap, teacherSecret());
+      if (v.status === 200 && v.data && v.data.report) backupStatus(file.name + ': ' + fmtReport(v.data.report), v.data.report.ok ? '#2a7' : '#a33');
+      else backupStatus('Verify failed (HTTP ' + v.status + ').' + (v.data && v.data.error ? ' ' + v.data.error : ''), '#a33');
+    }
+    async function restoreFromFile() {
+      var f = $('backup-restore-file').files[0];
+      if (!f) { restoreStatus('Choose a backup file first.', '#a33'); return; }
+      if ($('backup-restore-confirm').value.trim() !== 'RESTORE') { restoreStatus('Type RESTORE to confirm.', '#a33'); return; }
+      restoreStatus('Reading + verifying before any write…');
+      var snap; try { snap = await readFileJson(f); } catch (e) { restoreStatus('Not valid JSON.', '#a33'); return; }
+      var v = await postJson('/admin/verify', snap, teacherSecret());
+      if (!(v.status === 200 && v.data && v.data.report && v.data.report.ok)) {
+        restoreStatus('Refusing: backup did not verify (' + fmtReport(v.data && v.data.report) + ').', '#a33'); return;
+      }
+      if (!window.confirm('Restore ' + ((snap.students || []).length) + ' students into the LIVE ledger? Rows with the same key are overwritten with the signed values.')) { restoreStatus('Cancelled.'); return; }
+      restoreStatus('Restoring…');
+      var bundles = (snap.students || []).map(function (s) { return s.bundle; }).filter(function (b) { return b && b.records && b.records.length; });
+      var r = await postJson('/admin/restore', { bundles: bundles }, teacherSecret());
+      if (r.status === 200 && r.data && r.data.ok) restoreStatus('Restored ' + r.data.restored + ', skipped ' + r.data.skipped + '.', r.data.skipped ? '#a70' : '#2a7');
+      else restoreStatus('Restore failed (HTTP ' + r.status + ').' + (r.data && r.data.error ? ' ' + r.data.error : ''), '#a33');
+    }
+    $('backup-download-btn').addEventListener('click', downloadBackup);
+    $('backup-verify-btn').addEventListener('click', function () { $('backup-verify-file').click(); });
+    $('backup-verify-file').addEventListener('change', function (e) { var f = e.target.files[0]; e.target.value = ''; verifyBackupFile(f); });
+    $('backup-restore-confirm').addEventListener('input', function () { $('backup-restore-btn').disabled = (this.value.trim() !== 'RESTORE'); });
+    $('backup-restore-btn').addEventListener('click', restoreFromFile);
+
+    // ===== Manage Students (reversible roster archive) =====
+    // /roster/list also carries password-recovery fields. Copy only this
+    // explicit safe allowlist before keeping any response data in page state.
+    var managedStudents = [];
+    function safeManagedStudent(student) {
+      return {
+        studentId: student && student.studentId ? String(student.studentId) : '',
+        realName: student && student.realName ? String(student.realName) : '',
+        username: student && student.username ? String(student.username) : '',
+        section: student && student.section ? String(student.section) : '',
+        status: student && student.status === 'archived' ? 'archived' : 'active',
+        schoologyUid: student && student.schoologyUid ? String(student.schoologyUid) : ''
+      };
+    }
+
+    function isLikelyTestStudent(student) {
+      var noSchoologyUid = !String(student.schoologyUid || '').trim();
+      var normalizedSection = String(student.section || '').replace(/[^a-z0-9]/gi, '').toUpperCase();
+      var smokeTestSection = normalizedSection.indexOf('SMOKETEST') !== -1;
+      var testName = /test|demo|asdf|zz/i.test(String(student.realName || ''));
+      return (noSchoologyUid && smokeTestSection) || testName;
+    }
+
+    function manageStudentsStatus(message, color) {
+      var el = $('manage-students-status');
+      if (!el) return;
+      el.textContent = message;
+      el.style.color = color || 'var(--sg-text-dim)';
+    }
+
+    function renderManagedStudents() {
+      var tbody = $('manage-students-tbody');
+      var wrap = $('manage-students-wrap');
+      var empty = $('manage-students-empty');
+      tbody.textContent = '';
+
+      managedStudents.forEach(function (student) {
+        var archived = student.status === 'archived';
+        var tr = document.createElement('tr');
+        tr.className = 'manage-student-row' + (archived ? ' is-archived' : '');
+
+        var nameCell = document.createElement('td');
+        nameCell.innerHTML = studentNameHtml(student);
+        if (isLikelyTestStudent(student)) {
+          var testBadge = document.createElement('span');
+          testBadge.className = 'manage-test-badge';
+          testBadge.textContent = '🧪 test?';
+          testBadge.title = 'Looks like a test account; teacher review required.';
+          nameCell.appendChild(testBadge);
+        }
+
+        var sectionCell = document.createElement('td');
+        sectionCell.textContent = student.section || '—';
+
+        var statusCell = document.createElement('td');
+        var statusPill = document.createElement('span');
+        statusPill.className = 'manage-status-pill manage-status-' + student.status;
+        statusPill.textContent = student.status;
+        statusCell.appendChild(statusPill);
+
+        var uidCell = document.createElement('td');
+        uidCell.className = 'mono';
+        uidCell.textContent = student.username || '—';
+
+        var actionCell = document.createElement('td');
+        var actionButton = document.createElement('button');
+        actionButton.type = 'button';
+        actionButton.className = 'manage-student-action';
+        actionButton.textContent = archived ? 'Unarchive' : 'Archive';
+        actionButton.addEventListener('click', function () {
+          toggleManagedStudentArchive(student, actionButton);
+        });
+        actionCell.appendChild(actionButton);
+
+        tr.appendChild(nameCell);
+        tr.appendChild(sectionCell);
+        tr.appendChild(statusCell);
+        tr.appendChild(uidCell);
+        tr.appendChild(actionCell);
+        tbody.appendChild(tr);
+      });
+
+      wrap.style.display = managedStudents.length ? '' : 'none';
+      empty.style.display = managedStudents.length ? 'none' : '';
+    }
+
+    async function loadManagedStudents() {
+      var button = $('manage-students-load-btn');
+      var section = $('section-filter').value.trim();
+      var path = '/roster/list' + (section ? '?section=' + encodeURIComponent(section) : '');
+      button.disabled = true;
+      manageStudentsStatus('Loading…');
+
+      try {
+        var result = await fetchJson(path, teacherSecret());
+        if (result.status === 401) {
+          manageStudentsStatus('Forbidden — sign in as a teacher or check the teacher secret.', '#a33');
+          return;
+        }
+        if (result.status !== 200 || !result.data || !result.data.ok) {
+          var detail = result.networkError || (result.data && result.data.error) || ('HTTP ' + result.status);
+          manageStudentsStatus('Load failed: ' + detail, '#a33');
+          return;
+        }
+
+        var responseStudents = Array.isArray(result.data.students) ? result.data.students : [];
+        managedStudents = responseStudents.map(safeManagedStudent);
+        renderManagedStudents();
+
+        var archivedCount = managedStudents.filter(function (student) {
+          return student.status === 'archived';
+        }).length;
+        manageStudentsStatus(
+          managedStudents.length + ' student(s) · ' + archivedCount + ' archived.',
+          '#25663F'
+        );
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    async function toggleManagedStudentArchive(student, button) {
+      if (!student.studentId) {
+        manageStudentsStatus('Missing studentId — reload the students.', '#a33');
+        return;
+      }
+
+      var archiving = student.status !== 'archived';
+      var name = student.realName || student.username || 'this student';
+      if (archiving) {
+        if (typeof window.confirm !== 'function') {
+          manageStudentsStatus('Confirmation unavailable — archive cancelled.', '#a33');
+          return;
+        }
+        var confirmed = window.confirm('Hide ' + name + ' from all class views? Their work is kept; Unarchive restores everything.');
+        if (!confirmed) return;
+      }
+
+      var nextStatus = archiving ? 'archived' : 'active';
+      var action = archiving ? 'archive' : 'unarchive';
+      var rosterActionPath = '/roster/' + encodeURIComponent(student.studentId) + '/' + action;
+      button.disabled = true;
+      manageStudentsStatus((archiving ? 'Archiving ' : 'Unarchiving ') + name + '…');
+
+      var result = await postJson(rosterActionPath, {}, teacherSecret());
+      if (result.status === 401) {
+        button.disabled = false;
+        manageStudentsStatus('Forbidden — sign in as a teacher or check the teacher secret.', '#a33');
+        return;
+      }
+      if (result.status !== 200 || !result.data || !result.data.ok) {
+        button.disabled = false;
+        var detail = result.networkError || (result.data && result.data.error) || ('HTTP ' + result.status);
+        manageStudentsStatus((archiving ? 'Archive' : 'Unarchive') + ' failed: ' + detail, '#a33');
+        return;
+      }
+
+      student.status = result.data.status === 'archived' ? 'archived' : nextStatus;
+      renderManagedStudents();
+      manageStudentsStatus(
+        (student.status === 'archived' ? 'Archived ' : 'Unarchived ') + name + '.',
+        '#25663F'
+      );
+    }
+
+    $('manage-students-load-btn').addEventListener('click', loadManagedStudents);
+
+    // Gradebook quarter selector: re-render from the stashed payload (no refetch).
+    QUARTERS.forEach(function (q) {
+      var b = $('gb-q-' + q);
+      if (b) b.addEventListener('click', function () {
+        currentQuarter = q;
+        renderGradebook(lastGradesPayload || { students: [] });
+        // Keep an open drawer's reconciliation in sync with the chosen quarter.
+        if (_tscCurrentStudentId) renderTscReconcile(_tscCurrentStudentId);
+      });
+    });
+    $('teacher-secret').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') loadAll();
+    });
+    $('section-filter').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') loadAll();
+    });
+
+    // ===== URL dropdown wiring (Phase: convenience) =====
+    (function wireUrlDropdown() {
+      var sel = $('svc-url-select');
+      var inp = $('svc-url');
+      function persist(url) {
+        try {
+          localStorage.setItem(URL_KEY, url);
+          if (url) localStorage.setItem(GLOBAL_OVERRIDE_KEY, url);
+        } catch (_) {}
+      }
+      function syncFromSelect() {
+        if (sel.value === '__custom__') {
+          inp.style.display = '';
+          if (!inp.value || inp.value === 'http://localhost:8091' || inp.value === 'https://a2-live-worksheets-production.up.railway.app') {
+            inp.value = '';
+          }
+          persist(inp.value || '');
+        } else {
+          inp.style.display = 'none';
+          inp.value = sel.value;
+          persist(sel.value);
+        }
+      }
+      try {
+        var saved = localStorage.getItem(URL_KEY) || localStorage.getItem(GLOBAL_OVERRIDE_KEY);
+        // A fresh hosted dashboard must use the Desk's service, not localhost.
+        // Keep explicit choices and the local development default intact.
+        if (!saved && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+          saved = window.ROSTER_SERVICE_URL || FALLBACK_SVC;
+        }
+        if (saved) {
+          var opt = null;
+          for (var i = 0; i < sel.options.length; i++) {
+            if (sel.options[i].value === saved) { opt = sel.options[i]; break; }
+          }
+          if (opt) {
+            sel.value = saved;
+          } else {
+            sel.value = '__custom__';
+            inp.value = saved;
+          }
+        }
+      } catch (_) {}
+      syncFromSelect();
+      sel.addEventListener('change', syncFromSelect);
+      inp.addEventListener('input', function () {
+        if (sel.value === '__custom__') { persist(inp.value); }
+      });
+    })();
+
+    // ===== Opt-in teacher secret persistence (local-use convenience) =====
+    (function restoreSecret() {
+      try {
+        var s = localStorage.getItem(SECRET_KEY);
+        if (s) {
+          $('teacher-secret').value = s;
+          $('remember-secret').checked = true;
+          $('clear-secret').style.display = '';
+        }
+      } catch (_) {}
+    })();
+    function persistSecretMaybe() {
+      try {
+        if ($('remember-secret').checked && teacherSecret()) {
+          localStorage.setItem(SECRET_KEY, teacherSecret());
+          $('clear-secret').style.display = '';
+        } else {
+          localStorage.removeItem(SECRET_KEY);
+          $('clear-secret').style.display = 'none';
+        }
+      } catch (_) {}
+    }
+    $('remember-secret').addEventListener('change', persistSecretMaybe);
+    $('teacher-secret').addEventListener('input', persistSecretMaybe);
+    $('clear-secret').addEventListener('click', function () {
+      try { localStorage.removeItem(SECRET_KEY); } catch (_) {}
+      $('teacher-secret').value = '';
+      $('remember-secret').checked = false;
+      $('clear-secret').style.display = 'none';
+    });
+
+    // ===== Phase 4b: remediation panel =====
+    async function postJson(path, body, secret) {
+      var headers = { 'Content-Type': 'application/json' };
+      if (secret) headers['x-teacher-secret'] = secret;
+      // Same Bearer token logic as fetchJson.
+      var _tok = (typeof window !== 'undefined' && window.rosterClient)
+        ? window.rosterClient.token() : null;
+      if (_tok) headers['Authorization'] = 'Bearer ' + _tok;
+      var res;
+      try {
+        res = await fetch(svcUrl() + path, {
+          method: 'POST', headers: headers, body: JSON.stringify(body || {}),
+        });
+      } catch (e) {
+        return { status: 0, data: null, networkError: (e && e.message) || 'network error' };
+      }
+      var data = null;
+      try { data = await res.json(); } catch (_) { data = null; }
+      return { status: res.status, data: data, networkError: null };
+    }
+
+    function statusBadge(s) {
+      var cls = 'pct-badge';
+      if (s === 'proposed') cls += ' heat-yellow';
+      else if (s === 'assigned') cls += ' heat-orange';
+      else if (s === 'completed') cls += ' heat-green';
+      else if (s === 'waived') cls += ' heat-red';
+      return '<span class="' + cls + '">' + escHtml(s) + '</span>';
+    }
+
+    function fmtDate(iso) {
+      if (!iso) return '—';
+      try {
+        var d = new Date(iso);
+        if (isNaN(d.getTime())) return '—';
+        return d.toLocaleDateString();
+      } catch (_) { return '—'; }
+    }
+
+    // BEGIN MISCONCEPTIONS PANEL — data is rendered only through textContent.
+    var misconceptionRequest = 0;
+    function misconceptionNode(tag, text) {
+      var node = document.createElement(tag);
+      if (text !== undefined) node.textContent = String(text);
+      return node;
+    }
+    function misconceptionEvidence(payload, key, studentId) {
+      var list = misconceptionNode('ul');
+      (payload.evidence[key] || []).filter(function (event) {
+        return !studentId || event.studentId === studentId;
+      }).forEach(function (event) {
+        var student = payload.students[event.studentId] || {};
+        var detail = event.evidence || {};
+        var text = event.source === 'mcq'
+          ? 'chose ' + detail.chosen + ' on ' + event.itemId
+          : (detail.missing || '') + (detail.feedback ? ' — ' + detail.feedback : '');
+        list.appendChild(misconceptionNode('li', (student.realName || student.username || event.studentId) +
+          ' · ' + event.ts.slice(0, 10) + ' · ' + text));
+      });
+      if (!list.children.length) list.appendChild(misconceptionNode('li', 'No evidence in the most recent 50 entries for this key.'));
+      return list;
+    }
+    function misconceptionActions(payload, entry, studentId) {
+      var box = misconceptionNode('div');
+      var ids = studentId ? [studentId] : Array.from(new Set((payload.evidence[entry.key] || []).map(function (event) {
+        return event.studentId;
+      })));
+      var select = misconceptionNode('select');
+      select.setAttribute('aria-label', 'Student to nudge');
+      ids.forEach(function (id) {
+        var student = payload.students[id] || {};
+        var option = misconceptionNode('option', student.realName || student.username || id);
+        option.value = id;
+        select.appendChild(option);
+      });
+      if (!studentId) box.appendChild(select);
+      var lessons = entry.lessons || Array.from(new Set((entry.itemIds || []).map(function (id) {
+        var match = /^(?:WS-)?U(\d+)-?L(\d+(?:-\d+)*)/.exec(id);
+        return match ? match[1] + '.' + match[2] : '';
+      }).filter(Boolean)));
+      var nudge = misconceptionNode('button', 'Nudge');
+      nudge.type = 'button';
+      nudge.disabled = !ids.length;
+      nudge.addEventListener('click', function () {
+        var id = studentId || select.value;
+        var student = payload.students[id];
+        if (!student) return;
+        openTscDrawer({ studentId: id, username: student.username, realName: student.realName, section: payload.section });
+        $('tsc-nudge-broadcast').checked = false;
+        var text = $('tsc-nudge-text');
+        text.value = ('Let’s review: ' + entry.label + (lessons.length ? ' · lessons ' + lessons.join(', ') : '')).slice(0, 280);
+        text.dispatchEvent(new Event('input', { bubbles: true }));
+        text.focus();
+      });
+      box.appendChild(nudge);
+      var question = /^U(\d+)-L(\d+)-Q\d+$/.exec(entry.questionId || '');
+      if (question) {
+        var quizLink = misconceptionNode('a', 'Open quiz ' + entry.questionId);
+        quizLink.href = 'https://robjohncolson.github.io/curriculum_render/?u=' + question[1] + '&l=' + question[2];
+        quizLink.style.marginLeft = '8px';
+        box.appendChild(quizLink);
+      }
+      lessons.forEach(function (lesson) {
+        var match = /^(\d+)\.([\d-]+)$/.exec(lesson);
+        if (!match) return;
+        var link = misconceptionNode('a', 'Open follow-along ' + lesson);
+        link.href = (payload.worksheetLinks && payload.worksheetLinks[lesson]) ||
+          'u' + match[1] + '_lesson' + match[2] + '_live.html';
+        link.style.marginLeft = '8px';
+        box.appendChild(link);
+      });
+      return box;
+    }
+    function misconceptionStatusCell(entry) {
+      var cell = misconceptionNode('td', 'untriaged');
+      var triage = entry.triage;
+      if (!triage) return cell;
+      if (entry.recurringAfterTriage) {
+        cell.textContent = 'still recurring after ' + triage.sheetTitle;
+        cell.style.color = '#b91c1c';
+        return cell;
+      }
+      var date = new Date(triage.triagedAt + 'T12:00:00Z');
+      var displayDate = Number.isNaN(date.getTime()) ? triage.triagedAt :
+        date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+      cell.textContent = 'triaged → ' + triage.sheetTitle + ' (' + displayDate + ')';
+      return cell;
+    }
+    function sortMisconceptionsByTriage(entries) {
+      return entries.slice().sort(function (a, b) {
+        return Number(Boolean(a && a.triage)) - Number(Boolean(b && b.triage));
+      });
+    }
+    function renderFrequentMisconceptions(payload) {
+      var host = $('misconceptions-frequent');
+      host.replaceChildren(misconceptionNode('h3', 'Most frequent this window (no persistence filter)'));
+      var entries = sortMisconceptionsByTriage(Array.isArray(payload.frequent) ? payload.frequent : []);
+      if (!entries.length) {
+        host.appendChild(misconceptionNode('p', 'No graded evidence in this window yet.'));
+        return;
+      }
+      var table = misconceptionNode('table');
+      var header = misconceptionNode('tr');
+      ['Label', 'Status', 'Students', 'Events', 'Lessons', 'Sources', 'Last seen'].forEach(function (label) {
+        header.appendChild(misconceptionNode('th', label));
+      });
+      table.appendChild(header);
+      entries.forEach(function (entry) {
+        var row = misconceptionNode('tr');
+        var labelCell = misconceptionNode('td');
+        var toggle = misconceptionNode('button', entry.label);
+        toggle.type = 'button';
+        toggle.setAttribute('aria-expanded', 'false');
+        labelCell.appendChild(toggle);
+        [entry.draft ? 'draft — not yet reviewed' : '', entry.weak ? 'weak' : ''].filter(Boolean).forEach(function (text) {
+          var pill = misconceptionNode('span', text);
+          pill.className = 'pct-badge';
+          labelCell.appendChild(pill);
+        });
+        row.appendChild(labelCell);
+        row.appendChild(misconceptionStatusCell(entry));
+        var sources = entry.sources || {};
+        [entry.students + ' / ' + entry.activeStudents, entry.events, (entry.lessons || []).join(', '),
+          'MCQ ' + (sources.mcq || 0) + ' / written ' + (sources.frq || 0),
+          String(entry.lastSeen || '').slice(0, 10)].forEach(function (text) {
+          row.appendChild(misconceptionNode('td', text));
+        });
+        var evidenceRow = misconceptionNode('tr');
+        evidenceRow.hidden = true;
+        var cell = misconceptionNode('td');
+        cell.colSpan = 7;
+        cell.appendChild(misconceptionEvidence(payload, entry.key));
+        cell.appendChild(misconceptionActions(payload, entry));
+        evidenceRow.appendChild(cell);
+        row.addEventListener('click', function () {
+          evidenceRow.hidden = !evidenceRow.hidden;
+          toggle.setAttribute('aria-expanded', String(!evidenceRow.hidden));
+        });
+        table.appendChild(row);
+        table.appendChild(evidenceRow);
+      });
+      host.appendChild(table);
+    }
+    function renderMisconceptions(payload) {
+      // Harden against a partial payload (a proxy/mocked 200 without the arrays): never throw mid-render.
+      payload = payload && typeof payload === 'object' ? payload : {};
+      var classEntries = sortMisconceptionsByTriage(Array.isArray(payload.class) ? payload.class : []);
+      var studentMap = payload.students && typeof payload.students === 'object' ? payload.students : {};
+      renderFrequentMisconceptions(payload);
+      var host = $('misconceptions-class');
+      var studentHost = $('misconceptions-students');
+      host.replaceChildren();
+      studentHost.replaceChildren();
+      $('misconceptions-draft').hidden = payload.vocabReviewed !== false;
+      var table = misconceptionNode('table');
+      var header = misconceptionNode('tr');
+      ['Misconception', 'Status', 'Students', 'Lessons', 'Sources', 'Last seen', 'Skill', 'Actions'].forEach(function (label) {
+        header.appendChild(misconceptionNode('th', label));
+      });
+      table.appendChild(header);
+      classEntries.forEach(function (entry) {
+        entry = entry && typeof entry === 'object' ? entry : {};
+        var lessons = Array.isArray(entry.lessons) ? entry.lessons : [];
+        var sources = entry.sources && typeof entry.sources === 'object' ? entry.sources : {};
+        var skills = Array.isArray(entry.skills) ? entry.skills : [];
+        var row = misconceptionNode('tr');
+        var labelCell = misconceptionNode('td');
+        var toggle = misconceptionNode('button', entry.label + (entry.draft ? ' · draft — not yet reviewed' : ''));
+        toggle.type = 'button';
+        toggle.setAttribute('aria-expanded', 'false');
+        labelCell.appendChild(toggle);
+        row.appendChild(labelCell);
+        row.appendChild(misconceptionStatusCell(entry));
+        [(entry.students || 0) + ' / ' + (entry.activeStudents || 0), lessons.join(', '),
+          'MCQ ' + (sources.mcq || 0) + ' / written ' + (sources.frq || 0),
+          String(entry.lastSeen || '').slice(0, 10), skills.join(', ')].forEach(function (text) {
+          row.appendChild(misconceptionNode('td', text));
+        });
+        var actions = misconceptionNode('td');
+        actions.appendChild(misconceptionActions(payload, entry));
+        row.appendChild(actions);
+        table.appendChild(row);
+        var evidenceRow = misconceptionNode('tr');
+        evidenceRow.hidden = true;
+        var cell = misconceptionNode('td');
+        cell.colSpan = 8;
+        cell.appendChild(misconceptionEvidence(payload, entry.key));
+        evidenceRow.appendChild(cell);
+        table.appendChild(evidenceRow);
+        row.addEventListener('click', function (event) {
+          if (actions.contains(event.target)) return;
+          evidenceRow.hidden = !evidenceRow.hidden;
+          toggle.setAttribute('aria-expanded', String(!evidenceRow.hidden));
+        });
+      });
+      if (classEntries.length) host.appendChild(table);
+      var persistentCount = 0;
+      Object.keys(studentMap).forEach(function (id) {
+        var student = studentMap[id] || {};
+        var persistent = Array.isArray(student.persistent) ? student.persistent : [];
+        if (!persistent.length) return;
+        studentHost.appendChild(misconceptionNode('h3', student.realName || student.username || id));
+        persistent.forEach(function (entry) {
+          persistentCount++;
+          var details = misconceptionNode('details');
+          details.appendChild(misconceptionNode('summary', entry.label + ' · ' + entry.count +
+            (entry.draft ? ' · draft — not yet reviewed' : '')));
+          details.appendChild(misconceptionEvidence(payload, entry.key, id));
+          details.appendChild(misconceptionActions(payload, entry, id));
+          studentHost.appendChild(details);
+        });
+      });
+      $('misconceptions-status').textContent = !classEntries.length && !persistentCount
+        ? 'No persistent misconceptions in this window yet.' : '';
+    }
+    async function loadMisconceptions() {
+      var request = ++misconceptionRequest;
+      $('misconceptions-frequent').replaceChildren();
+      $('misconceptions-class').replaceChildren();
+      $('misconceptions-students').replaceChildren();
+      $('misconceptions-draft').hidden = true;
+      $('misconceptions-status').textContent = 'Loading misconceptions…';
+      var section = $('section-filter').value || '';
+      var result = await fetchJson('/class/misconceptions?section=' + encodeURIComponent(section) +
+        '&days=' + $('misconceptions-days').value, teacherSecret());
+      if (request !== misconceptionRequest) return;
+      if (result.status !== 200 || !result.data || !result.data.ok) {
+        $('misconceptions-status').textContent = 'Could not load misconceptions. Check your teacher sign-in and try again.';
+        return;
+      }
+      renderMisconceptions(result.data);
+    }
+    $('misconceptions-refresh').addEventListener('click', loadMisconceptions);
+    $('misconceptions-days').addEventListener('change', loadMisconceptions);
+    $('section-filter').addEventListener('change', loadMisconceptions);
+    $('load-btn').addEventListener('click', loadMisconceptions);
+    // Remediation sheets — the standalone DOK-3 sheets (human-graded, never AI-graded) built to
+    // target these labels. Read from the same manifest the DOK table of contents uses; links only,
+    // rendered with textContent/createElement. Missing manifest → the strip stays hidden.
+    async function loadRemediationSheets() {
+      var host = $('misconceptions-sheets');
+      if (!host) return;
+      host.replaceChildren(); host.hidden = true;
+      try {
+        var response = await fetch('data/remediation-sheets.json');
+        if (!response.ok) return;
+        var manifest = await response.json();
+        var vocabulary = {};
+        try {
+          var vocabResponse = await fetch('data/misconceptions.json');
+          if (vocabResponse.ok) vocabulary = await vocabResponse.json();
+        } catch (_) {}
+        for (var slug of Object.keys(manifest)) {
+          var m = manifest[slug];
+          var row = document.createElement('div');
+          var title = document.createElement('strong'); title.textContent = m.title || slug;
+          row.appendChild(title);
+          var targets = document.createElement('p');
+          targets.textContent = 'Targets: ' + (m.misconceptions || []).map(function (key) {
+            return key.startsWith('label:') ? key.slice(6) : vocabulary.tags && vocabulary.tags[key] ? vocabulary.tags[key].label : key;
+          }).join('; ');
+          row.appendChild(targets);
+          for (var link of [['student', 'Student'], ['board', 'Board'], ['teacher', 'Teacher key']]) {
+            if (!m.links || !m.links[link[0]]) continue;
+            var url = new URL(m.links[link[0]], location.href);
+            if (url.protocol !== 'http:' && url.protocol !== 'https:') continue;
+            var anchor = document.createElement('a');
+            anchor.href = url.href; anchor.textContent = link[1]; row.appendChild(anchor);
+          }
+          host.appendChild(row);
+        }
+        host.hidden = host.children.length === 0;
+      } catch (_) { host.hidden = true; }
+}
+    loadRemediationSheets();
+    // END MISCONCEPTIONS PANEL
+
+    function renderRemediation(payload) {
+      var tbody = $('remediation-tbody');
+      tbody.innerHTML = '';
+      var rows = (payload && payload.assignments) || [];
+      if (rows.length === 0) {
+        $('remediation-wrap').style.display = 'none';
+        $('remediation-empty').style.display = '';
+        return;
+      }
+      $('remediation-empty').style.display = 'none';
+      $('remediation-wrap').style.display = '';
+
+      var actionBtnStyle = 'font-size:0.78rem;padding:4px 8px;margin-right:4px';
+      var html = rows.map(function (r) {
+        var rosterMeta = r.roster || {};
+        var name = rosterMeta.real_name || rosterMeta.login_username || r.student_id || '?';
+        var actions = '';
+        if (r.status === 'proposed') {
+          actions += '<button class="btn" style="' + actionBtnStyle + '" data-act="approve" data-id="' + escHtml(r.assignment_id) + '">Approve</button>';
+          actions += '<button class="btn" style="' + actionBtnStyle + 'background:transparent;color:var(--sg-accent);border:1px solid var(--sg-accent)" data-act="waive" data-id="' + escHtml(r.assignment_id) + '">Waive</button>';
+        } else if (r.status === 'assigned') {
+          actions += '<button class="btn" style="' + actionBtnStyle + '" data-act="complete" data-id="' + escHtml(r.assignment_id) + '">Complete</button>';
+          actions += '<button class="btn" style="' + actionBtnStyle + 'background:transparent;color:var(--sg-accent);border:1px solid var(--sg-accent)" data-act="waive" data-id="' + escHtml(r.assignment_id) + '">Waive</button>';
+        } else {
+          actions = '<span class="dim">—</span>';
+        }
+        return '<tr>' +
+          '<td>' + studentNameHtml({ studentId: r.student_id, realName: name, username: r.student_username }) + '</td>' +
+          '<td class="mono">' + escHtml(r.unit || '') + '</td>' +
+          '<td class="mono">' + escHtml(r.skill || '') + '</td>' +
+          '<td>' + statusBadge(r.status) + '</td>' +
+          '<td class="dim">' + escHtml(r.proposed_by || '—') + '</td>' +
+          '<td class="dim">' + escHtml(fmtDate(r.created_at)) + '</td>' +
+          '<td>' + actions + '</td>' +
+          '</tr>';
+      }).join('');
+      tbody.innerHTML = html;
+    }
+
+    async function loadRemediation() {
+      var secret = teacherSecret();
+      var _hasTok2 = (typeof window !== 'undefined' && window.rosterClient)
+        ? !!window.rosterClient.token() : false;
+      if (!secret && !_hasTok2) return;
+      var section = $('section-filter').value.trim();
+      var qs = section ? '?section=' + encodeURIComponent(section) : '';
+      $('remediation-loading').style.display = '';
+      $('remediation-wrap').style.display = 'none';
+      $('remediation-empty').style.display = 'none';
+      var res = await fetchJson('/remediation/list' + qs, secret);
+      $('remediation-loading').style.display = 'none';
+      if (res.networkError) {
+        $('remediation-meta').textContent = 'Network error: ' + res.networkError;
+        return;
+      }
+      if (res.status === 503) {
+        $('remediation-empty').style.display = '';
+        $('remediation-wrap').style.display = 'none';
+        $('remediation-meta').textContent = 'Migration pending: run roster-server/migrations/0004_remediation_assignment.sql to enable.';
+        return;
+      }
+      if (res.status === 401) {
+        showError('Invalid teacher secret');
+        return;
+      }
+      if (res.status !== 200 || !res.data || !res.data.ok) {
+        $('remediation-meta').textContent = 'Failed to load /remediation/list: ' + ((res.data && res.data.error) || ('HTTP ' + res.status));
+        return;
+      }
+      renderRemediation(res.data);
+      $('remediation-meta').textContent = (res.data.assignments || []).length + ' remediation row(s).';
+    }
+
+    async function handleRemediationAction(btn) {
+      var act = btn.getAttribute('data-act');
+      var id = btn.getAttribute('data-id');
+      var secret = teacherSecret();
+      var _hasTok3 = (typeof window !== 'undefined' && window.rosterClient)
+        ? !!window.rosterClient.token() : false;
+      if (!secret && !_hasTok3) { showError('Enter the teacher secret, or sign in as a teacher via the Desk first.'); return; }
+      if (!id || !act) return;
+      btn.disabled = true;
+      var res = await postJson('/remediation/' + act, { assignmentId: id }, secret);
+      btn.disabled = false;
+      if (res.status === 503) {
+        showError('Migration pending: run 0004_remediation_assignment.sql.');
+        return;
+      }
+      if (res.status !== 200 || !res.data || !res.data.ok) {
+        showError(act + ' failed: ' + ((res.data && res.data.error) || ('HTTP ' + res.status)));
+        return;
+      }
+      clearBanners();
+      showInfo(act + ' applied.');
+      await loadRemediation();
+    }
+
+    async function handleProposeFromMastery(dryRun) {
+      var secret = teacherSecret();
+      var _hasTok4 = (typeof window !== 'undefined' && window.rosterClient)
+        ? !!window.rosterClient.token() : false;
+      if (!secret && !_hasTok4) { showError('Enter the teacher secret, or sign in as a teacher via the Desk first.'); return; }
+      var section = $('section-filter').value.trim();
+      if (!section) {
+        showError('Enter a section first - propose-from-mastery is per-section.');
+        return;
+      }
+      var btn = dryRun ? $('propose-dryrun-btn') : $('propose-from-mastery-btn');
+      btn.disabled = true;
+      var res = await postJson('/remediation/propose-from-mastery', { section: section, dryRun: !!dryRun }, secret);
+      btn.disabled = false;
+      if (res.status === 503) {
+        showError('Migration pending: run 0004_remediation_assignment.sql.');
+        return;
+      }
+      if (res.status !== 200 || !res.data || !res.data.ok) {
+        showError('propose-from-mastery failed: ' + ((res.data && res.data.error) || ('HTTP ' + res.status)));
+        return;
+      }
+      var nProposed = (res.data.proposed || []).length;
+      var nSkipped = (res.data.skipped || []).length;
+      clearBanners();
+      showInfo((dryRun ? 'Dry run - would propose ' : 'Proposed ') + nProposed + ' new row(s); ' + nSkipped + ' already covered.');
+      if (!dryRun) await loadRemediation();
+    }
+
+    // Delegated click handler for action buttons in the remediation table.
+    document.body.addEventListener('click', function (e) {
+      var t = e.target;
+      if (t && t.tagName === 'BUTTON' && t.getAttribute('data-act') && t.closest && t.closest('#remediation-tbody')) {
+        handleRemediationAction(t);
+      }
+    });
+
+    $('propose-from-mastery-btn').addEventListener('click', function () { handleProposeFromMastery(false); });
+    $('propose-dryrun-btn').addEventListener('click', function () { handleProposeFromMastery(true); });
+    // Codex Phase-4b MINOR-1: explicit panel-level Refresh affordance, plus
+    // refresh-on-section-change so the table follows the active section
+    // filter without requiring a full Load round-trip.
+    $('remediation-refresh-btn').addEventListener('click', loadRemediation);
+    $('section-filter').addEventListener('change', loadRemediation);
+
+    // PC makeup board — same Load/Refresh/section triggers (parallel listeners).
+    ;
+    ;
+    ;
+    ;
+    ;
+
+    // ── Quarter Close & Bonus (PC makeup [D] freeze/delta) ───────────────────
+    function _qcQuarter() { return $('qc-quarter').value; }
+
+    async function freezeQuarter() {
+      if (!_pcAuthOk()) return;
+      var q = _qcQuarter();
+      var section = $('section-filter').value.trim();
+      if (!confirm('Freeze ' + q + ' for ' + (section || 'ALL sections') + '?\n\nThis snapshots every student\'s CURRENT grade as the closed-quarter record. The first freeze wins — it cannot be undone here.')) return;
+      var btn = $('qc-freeze-btn'); btn.disabled = true; $('qc-loading').style.display = '';
+      var res = await postJson('/class/quarter/close', { quarter: q, section: section || undefined }, teacherSecret());
+      btn.disabled = false; $('qc-loading').style.display = 'none';
+      if (res.status === 503) { showError('Migration pending: run roster-server/migrations/0030_quarter_grade_snapshot.sql.'); return; }
+      if (res.status !== 200 || !res.data || !res.data.ok) { showError('Freeze failed: ' + ((res.data && res.data.error) || ('HTTP ' + res.status))); return; }
+      clearBanners();
+      showInfo('Froze ' + q + ': ' + res.data.frozen + ' newly frozen of ' + res.data.considered + ' student(s).');
+      await loadQuarterDeltas();
+    }
+
+    function renderQuarterDeltas(payload) {
+      var tbody = $('qc-tbody');
+      var rows = (payload && payload.deltas) || [];
+      if (rows.length === 0) { $('qc-wrap').style.display = 'none'; $('qc-empty').style.display = ''; return; }
+      $('qc-empty').style.display = 'none'; $('qc-wrap').style.display = '';
+      tbody.innerHTML = rows.map(function (r) {
+        return '<tr>' +
+          '<td>' + studentNameHtml(r) + '</td>' +
+          '<td class="mono">' + escHtml(r.frozen) + '</td>' +
+          '<td class="mono">' + escHtml(r.current) + '</td>' +
+          '<td class="mono" style="color:#070;font-weight:bold">+' + escHtml(r.delta) + '</td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    async function loadQuarterDeltas() {
+      var secret = teacherSecret();
+      var _hasTok = (typeof window !== 'undefined' && window.rosterClient) ? !!window.rosterClient.token() : false;
+      if (!secret && !_hasTok) return;
+      var q = _qcQuarter();
+      var section = $('section-filter').value.trim();
+      var qs = '?quarter=' + encodeURIComponent(q) + (section ? '&section=' + encodeURIComponent(section) : '');
+      $('qc-loading').style.display = ''; $('qc-wrap').style.display = 'none'; $('qc-empty').style.display = 'none';
+      var res = await fetchJson('/class/quarter/deltas' + qs, secret);
+      $('qc-loading').style.display = 'none';
+      if (res.networkError) { $('qc-meta').textContent = 'Network error: ' + res.networkError; return; }
+      if (res.status === 503) { $('qc-empty').style.display = ''; $('qc-meta').textContent = 'Migration pending: run 0030_quarter_grade_snapshot.sql.'; return; }
+      if (res.status === 401) { showError('Invalid teacher secret'); return; }
+      if (res.status !== 200 || !res.data || !res.data.ok) { $('qc-meta').textContent = 'Failed: ' + ((res.data && res.data.error) || ('HTTP ' + res.status)); return; }
+      renderQuarterDeltas(res.data);
+      $('qc-meta').textContent = (res.data.deltas || []).length + ' bonus delta(s) · ' + (res.data.frozenCount || 0) + ' frozen.';
+    }
+
+    $('qc-freeze-btn').addEventListener('click', freezeQuarter);
+    $('qc-deltas-btn').addEventListener('click', loadQuarterDeltas);
+    $('qc-quarter').addEventListener('change', loadQuarterDeltas);
+
+    // Hook remediation refresh onto the same Load triggers (parallel
+    // listeners — the existing loadAll handler is left untouched).
+    $('load-btn').addEventListener('click', loadRemediation);
+    $('teacher-secret').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') loadRemediation();
+    });
+    $('section-filter').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') loadRemediation();
+    });
+
+    // ===== Teacher -> Student Console (TSC) drawer =====
+
+    function teacherAuthHeaders() {
+      // Codex MAJOR fold: forward BOTH credentials when present so a teacher
+      // signed in via rosterClient (Bearer token) isn't forced to also type
+      // the break-glass secret. requireTeacher checks header A first; if A is
+      // present-but-wrong it falls through to Path B (token), so sending both
+      // is safe.
+      var headers = {};
+      var sec = teacherSecret();
+      if (sec) headers['x-teacher-secret'] = sec;
+      var token = (window.rosterClient && typeof window.rosterClient.token === 'function')
+        ? window.rosterClient.token() : null;
+      if (token) headers['Authorization'] = 'Bearer ' + token;
+      return headers;
+    }
+
+    function jsonOrErr(res) {
+      if (!res.ok) return res.json().then(function(j) { throw new Error(j && j.error ? j.error : res.statusText); });
+      return res.json();
+    }
+
+    function renderTscGrade(payload) {
+      var el = $('tsc-grade-card');
+      if (!payload || !payload.ok) { el.textContent = 'No grade data.'; return; }
+      var q = (payload.quarters && payload.quarters.Q4) || (payload.quarters && Object.values(payload.quarters).find(Boolean));
+      var html = [];
+      if (q) {
+        html.push('<div><strong>Current quarter:</strong> ' + escHtml(fmt1(q.quarterGrade)) +
+                  (q.ceiling != null ? ' &uarr; ' + escHtml(fmt1(q.ceiling)) : '') + '</div>');
+      }
+      // Per-unit grades
+      var units = payload.units || {};
+      var unitLine = Object.keys(units).sort().map(function(k) {
+        return k + ': ' + fmt1(units[k] && units[k].unitGrade);
+      }).join(' &nbsp; ');
+      if (unitLine) html.push('<div class="dim" style="font-size:0.82rem">' + unitLine + '</div>');
+      el.innerHTML = html.join('');
+    }
+
+    // Phase 4: per-student "why do Schoology and v3 differ" breakdown. Reads the
+    // reconciliation the deriver already attached to the loaded /class/grades
+    // payload (no extra fetch) for the gradebook's current quarter.
+    function _findStudentInLastPayload(studentId) {
+      var students = (lastGradesPayload && lastGradesPayload.students) || [];
+      for (var i = 0; i < students.length; i++) {
+        if (String(students[i].studentId) === String(studentId)) return students[i];
+      }
+      return null;
+    }
+
+    function renderTscReconcile(studentId) {
+      var el = $('tsc-reconcile-card');
+      if (!el) return;
+      var s = _findStudentInLastPayload(studentId);
+      var gb = s && s.gradebook;
+      var q = gb && gb.quarters && gb.quarters[currentQuarter];
+      if (!q || !q.reconciliation) {
+        el.innerHTML = '<span class="dim">No gradebook data for ' + escHtml(currentQuarter) + '.</span>';
+        return;
+      }
+      var rc = q.reconciliation;
+      var ca = q.categoryAverages || {};
+      function n(x) { return x == null ? '&mdash;' : escHtml(fmt1(x)); }
+
+      var deltaTxt = (rc.delta == null) ? '' : ((rc.delta > 0 ? '+' : '') + fmt1(rc.delta));
+      var deltaCls = (rc.delta == null || Math.abs(rc.delta) < 0.1) ? '' : (rc.delta > 0 ? 'gb-good' : 'gb-low');
+
+      var html = '';
+      html += '<div><strong>' + escHtml(currentQuarter) + '</strong> &nbsp; PC track ' + n(rc.pcAvg) +
+              ' &middot; Work track ' + n(rc.workAvg) + '</div>';
+      html += '<div>v3: <strong>' + n(rc.v3Total) + '</strong> &nbsp; Schoology: <strong>' + n(rc.schoologyTotal) + '</strong>' +
+              (deltaTxt ? ' &nbsp; <span class="' + deltaCls + '">&Delta; ' + escHtml(deltaTxt) + '</span>' : '') + '</div>';
+      html += '<div class="dim" style="font-size:0.82rem">' + escHtml(rc.reason) + '</div>';
+
+      var catOrder = ['Assessments', 'Assignments', 'Engagement', 'Lesson', 'Quizzes', 'Blooket', 'Progress Check', 'Posters'];
+      var catBits = catOrder.filter(function (c) { return ca[c] != null; })
+        .map(function (c) { return c + ' ' + fmt1(ca[c]); });
+      if (catBits.length) {
+        html += '<div class="dim" style="font-size:0.8rem">Schoology categories (blank-excluded): ' + escHtml(catBits.join(' · ')) + '</div>';
+      }
+
+      // v3 Work-track sub-breakdown: the ACTUAL v3 inputs (due-denominator, missing
+      // = 0), so you can compare them to the Schoology categories above and see
+      // where v3 is harsher. Shows quiz/blooket "taken/due" so the #2 fix (quiz-
+      // bearing denominator) is verifiable on a real student.
+      var sq = s.quarters && s.quarters[currentQuarter];
+      var wt = sq && sq.workTracks;
+      if (wt) {
+        var wtBits = [];
+        if (wt.lessons != null) wtBits.push('Lessons ' + fmt1(wt.lessons));
+        if (wt.quizzes != null) {
+          wtBits.push('Quizzes ' + fmt1(wt.quizzes) +
+            (sq.quizDue ? ' (' + (sq.quizDone || 0) + '/' + sq.quizDue + ' taken)' : ''));
+        }
+        if (wt.blooket != null) {
+          wtBits.push('Blooket ' + fmt1(wt.blooket) +
+            (sq.blooketDue ? ' (' + (sq.blooketDone || 0) + '/' + sq.blooketDue + ')' : ''));
+        }
+        if (wtBits.length) {
+          html += '<div class="dim" style="font-size:0.8rem">v3 Work track (due-denominator, missing=0): ' +
+            escHtml(wtBits.join(' · ')) + '</div>';
+        }
+      }
+      el.innerHTML = html;
+    }
+
+    function renderTscRecent(payload) {
+      if (window.teacherWorkspace) { window.teacherWorkspace.recent(payload); return; }
+      var el = $('tsc-recent-list');
+      el.innerHTML = '';
+      if (!payload || !payload.ok) {
+        el.innerHTML = '<li class="dim">No recent submissions.</li>';
+        return;
+      }
+      var items = payload.submissions || [];
+      if (items.length === 0) {
+        el.innerHTML = '<li class="dim">No recent submissions.</li>';
+        return;
+      }
+      items.forEach(function(row) {
+        var li = document.createElement('li');
+        var when = document.createElement('span');
+        when.className = 'dim mono';
+        when.style.fontSize = '0.78rem';
+        when.textContent = (row.recordedAt || '').slice(0, 10);
+        var what = document.createElement('span');
+        what.textContent = (row.itemId || '') + ' · ' + (row.source || '');
+        var score = document.createElement('span');
+        score.className = 'dim mono';
+        score.textContent = row.score == null ? '-' : String(row.score);
+        li.appendChild(when); li.appendChild(what); li.appendChild(score);
+        el.appendChild(li);
+      });
+    }
+
+    // Codex MAJOR fold: per-open request sequence number. Each open bumps
+    // _tscReqSeq; in-flight fetches verify they're still the active request
+    // before rendering. closeTscDrawer also bumps so a late response after
+    // close is dropped.
+    var _tscReqSeq = 0;
+
+    // P2: stash the studentId of the currently-open drawer so the View-as
+    // button click handler (wired once at script-eval) can read it.
+    var _tscCurrentStudentId = null;
+
+    // P6 section 4: full stub of the currently-open drawer (sibling to
+    // _tscCurrentStudentId from P1). Populated by openTscDrawer.
+    var _tscCurrentStudentStub = null;
+
+    // P12: pagination state for the Nudge History drawer section.
+    //   _tscNudgeHistoryOffset = number of rows already loaded for the
+    //     currently-open student. Reset to 0 on each openTscDrawer.
+    //   _tscNudgeHistoryStudentUsername = the username this offset
+    //     belongs to. Set on each openTscDrawer so a stale "Older" click
+    //     from a prior drawer can't query the new student.
+    //   _tscNudgeHistoryLoading = true while a fetch is in flight.
+    var _tscNudgeHistoryOffset = 0;
+    var _tscNudgeHistoryStudentUsername = null;
+    var _tscNudgeHistoryLoading = false;
+    var TSC_NUDGE_PAGE_SIZE = 20;
+
+    // ── Student message inbox (2026-09-09) ────────────────────────────────────
+    // Student→teacher messages were only visible inside ONE student's drawer, so
+    // "I did the quiz but can't see the grade" sat unread for two weeks. This strip
+    // lists every student message for the loaded section (newest first), badges the
+    // ones newer than the last "Mark all read", and opens the sender's drawer on click.
+    // Read-only + grade-inert. GET /teacher/nudge-inbox; polls every 60s while visible.
+    if (window.installWorksheetDiagnosticsPanel) window.installWorksheetDiagnosticsPanel({ headers: teacherAuthHeaders, url: svcUrl });
+
+    var INBOX_SEEN_KEY = 'tsc-inbox-seen-at';
+    var INBOX_POLL_MS = 60000;
+    var _inboxTimer = null;
+    var _inboxMessages = [];
+    var _inboxSection = '';
+    var _inboxOutcome = null;
+    var _inboxRequest = 0;
+
+    // Seen-marker is per section: the list is section-filtered, so "Mark all read" on
+    // PeriodB must not silently mark unseen PeriodE messages read.
+    function _inboxSeenKey() {
+      return INBOX_SEEN_KEY + ':' + (_inboxSection || 'all');
+    }
+
+    function _inboxSeenAt() {
+      try { return localStorage.getItem(_inboxSeenKey()) || ''; } catch (_) { return ''; }
+    }
+
+    function _inboxMarkRead() {
+      var newest = _inboxMessages.length ? String(_inboxMessages[0].createdAt) : new Date().toISOString();
+      try { localStorage.setItem(_inboxSeenKey(), newest); } catch (_) { /* private mode */ }
+      renderStudentInbox(_inboxMessages);
+    }
+
+    // Resolve a sender username to a drawer stub from the already-loaded class payloads.
+    function _inboxStubFor(username) {
+      var want = String(username || '').toLowerCase();
+      var pools = [lastPacingPayload, lastGradesPayload];
+      for (var p = 0; p < pools.length; p++) {
+        var students = (pools[p] && pools[p].students) || [];
+        for (var i = 0; i < students.length; i++) {
+          var st = students[i];
+          if (String(st.username || '').toLowerCase() === want) {
+            return { studentId: st.studentId, username: st.username, realName: st.realName || '', section: st.section || '' };
+          }
+        }
+      }
+      return null;
+    }
+
+    function _inboxWhen(iso) {
+      var d = new Date(iso);
+      if (isNaN(d.getTime())) return '';
+      return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' ' +
+             d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+    }
+
+    // Every rendered name carries identity, never a display-name lookup (names can repeat).
+    function studentNameHtml(stub, skill) {
+      stub = stub || {};
+      return '<button type="button" class="student-name" data-student-id="' + escHtml(stub.studentId || stub.student_id || '') +
+        '" data-username="' + escHtml(stub.username || stub.login_username || '') +
+        '" data-real-name="' + escHtml(stub.realName || stub.real_name || '') +
+        '" data-section="' + escHtml(stub.section || '') + '" data-skill="' + escHtml(skill || '') + '">' +
+        escHtml(stub.realName || stub.real_name || stub.username || stub.login_username || stub.studentId || stub.student_id || 'Student') + '</button>';
+    }
+    function studentNameElement(stub) {
+      var host = document.createElement('span');
+      host.innerHTML = studentNameHtml(stub);
+      return host.firstChild;
+    }
+    ;
+
+    document.addEventListener('click', function (event) {
+      var button = event.target.closest && event.target.closest('button.student-name');
+      if (!button) return;
+      event.stopPropagation();
+      var stub = { studentId: button.dataset.studentId, username: button.dataset.username,
+        realName: button.dataset.realName, section: button.dataset.section };
+      if (!stub.studentId) stub = _inboxStubFor(stub.username);
+      if (stub && stub.studentId) openTscDrawer(stub, button.dataset.skill);
+      else showInfo("Load this student's section to open their account.");
+    }, true);
+    function renderStudentInbox(messages) {
+      var strip = $('inbox-strip');
+      var list = $('inbox-list');
+      if (!strip || !list) return;
+      _inboxMessages = Array.isArray(messages) ? messages : [];
+      strip.hidden = false;
+      var seenAt = _inboxSeenAt();
+      var unread = 0;
+      list.innerHTML = '';
+      if (!_inboxMessages.length) {
+        var empty = document.createElement('li');
+        empty.className = 'inbox-empty';
+        empty.textContent = 'No student messages yet.';
+        list.appendChild(empty);
+      }
+      _inboxMessages.forEach(function (m) {
+        var isNew = !seenAt || String(m.createdAt) > seenAt;
+        if (isNew) unread++;
+        var li = document.createElement('li');
+        if (isNew) li.className = 'unread';
+        li.setAttribute('data-nudge-id', String(m.nudgeId || ''));
+        li.setAttribute('data-username', String(m.senderUsername || ''));
+        li.title = String(m.text || '');
+        var when = document.createElement('span');
+        when.className = 'inbox-when';
+        when.textContent = _inboxWhen(m.createdAt);
+        var stub = _inboxStubFor(m.senderUsername);
+        var who = document.createElement('span');
+        who.className = 'inbox-who';
+        who.appendChild(studentNameElement(stub || { username: m.senderUsername, realName: '@' + m.senderUsername }));
+        var text = document.createElement('span');
+        text.className = 'inbox-text';
+        text.textContent = String(m.text || '');     // textContent only — student text is untrusted
+        li.appendChild(when); li.appendChild(who); li.appendChild(text);
+        li.addEventListener('click', function () {
+          var st = _inboxStubFor(m.senderUsername);
+          if (st && st.studentId) { openTscDrawer(st); return; }
+          showInfo('@' + m.senderUsername + ' is not in the loaded roster — load their section, then click again. Message: ' + String(m.text || ''));
+        });
+        list.appendChild(li);
+      });
+      var badge = $('inbox-unread');
+      if (badge) {
+        badge.hidden = unread === 0;
+        badge.textContent = unread + ' new';
+      }
+      var meta = $('inbox-meta');
+      if (meta) meta.textContent = _inboxMessages.length ? (_inboxMessages.length + ' message' + (_inboxMessages.length === 1 ? '' : 's')) : '';
+    }
+
+    function loadStudentInbox(polling) {
+      if (polling && (_inboxOutcome === 401 || _inboxOutcome === 503)) return Promise.resolve();
+      // An explicit class load retries a disabled inbox; timer ticks never do.
+      if (!polling) _inboxOutcome = null;
+      var request = ++_inboxRequest;
+      var section = $('section-filter') ? $('section-filter').value.trim() : '';
+      var url = svcUrl() + '/teacher/nudge-inbox?limit=50' + (section ? '&section=' + encodeURIComponent(section) : '');
+      return Promise.resolve().then(function () { return fetch(url, { headers: teacherAuthHeaders() }); })
+        .then(function (res) {
+          if (request !== _inboxRequest) return null;
+          _inboxOutcome = res.status;
+          if (res.status === 401 || res.status === 503) {
+            if (_inboxTimer) clearInterval(_inboxTimer);
+            _inboxTimer = null;
+            throw new Error(String(res.status));
+          }
+          return jsonOrErr(res);
+        })
+        .then(function (j) {
+          if (request !== _inboxRequest || !j) return;
+          // Keep the marker bound to these messages while the input is being edited.
+          _inboxSection = section;
+          renderStudentInbox(j.messages || []);
+        })
+        .catch(function (err) {
+          if (request !== _inboxRequest) return;
+          var strip = $('inbox-strip');
+          if (strip) strip.hidden = false;
+          var meta = $('inbox-meta');
+          if (meta) meta.textContent = 'inbox unavailable (' + (err && err.message ? err.message : String(err)) + ')';
+        });
+    }
+
+    function startInboxPolling() {
+      if (_inboxTimer) clearInterval(_inboxTimer);
+      _inboxTimer = null;
+      if (_inboxOutcome === 401 || _inboxOutcome === 503) return;
+      _inboxTimer = setInterval(function () {
+        if (document.hidden) return;
+        loadStudentInbox(true);
+      }, INBOX_POLL_MS);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!Object.keys(teacherAuthHeaders()).length) return;
+      loadStudentInbox();
+      startInboxPolling();
+    });
+
+    (function wireInboxControls() {
+      var btn = $('inbox-mark-read');
+      if (btn) btn.addEventListener('click', _inboxMarkRead);
+    })();
+
+    function openTscDrawer(stub, skill) {
+      var drawer = $('tsc-drawer');
+      if (!drawer) return;
+
+      var reqId = ++_tscReqSeq;
+      _tscCurrentStudentId = stub && stub.studentId ? stub.studentId : null;
+      _tscCurrentStudentStub = stub || null;
+
+      // P12: reset nudge pagination state and hide the "Older" button for this new open.
+      _tscNudgeHistoryOffset = 0;
+      _tscNudgeHistoryStudentUsername = stub && stub.username ? stub.username : null;
+      _tscNudgeHistoryLoading = false;
+      var _olderBtnReset = $('tsc-nudges-older');
+      // Codex P12 BLOCKER fold: also restore the button text in case a
+      // stale in-flight older fetch left it on "Loading..." when the
+      // teacher switched students.
+      if (_olderBtnReset) {
+        _olderBtnReset.style.display = 'none';
+        _olderBtnReset.disabled = false;
+        _olderBtnReset.textContent = 'Load older';
+      }
+
+      // Populate header from the stub immediately so the user sees something.
+      $('tsc-drawer-title').textContent = stub.realName || stub.username || 'Student';
+      $('tsc-drawer-subtitle').textContent =
+        (stub.username ? '@' + stub.username : '') +
+        (stub.section ? ' -- ' + stub.section : '');
+
+      // Body: loading state. Codex P6 MAJOR fold: clear unlocks-list too so
+      // stale rows from a prior student do not linger between the open and
+      // the resolution of the /lesson-unlocks fetch.
+      // P7: same pattern for nudges-list.
+      $('tsc-grade-card').textContent = 'Loading...';
+      // Reconciliation reads the already-loaded class payload — render it now (sync).
+      renderTscReconcile(_tscCurrentStudentId);
+      $('tsc-recent-list').innerHTML = '';
+      var unlocksList = $('tsc-unlocks-list');
+      if (unlocksList) unlocksList.innerHTML = '';
+      var nudgesList = $('tsc-nudges-list');
+      if (nudgesList) nudgesList.innerHTML = '';
+
+      drawer.setAttribute('aria-hidden', 'false');
+      drawer.classList.add('tsc-open');
+      if (window.teacherWorkspace) window.teacherWorkspace.openStudent(stub, skill);
+
+      // Fetch grade + recent in parallel. Codex MAJOR fold: allSettled so a
+      // failure of one pane doesn't wipe the other's successful payload.
+      var base = svcUrl();
+      var headers = teacherAuthHeaders();
+      var sid = encodeURIComponent(stub.studentId);
+
+      Promise.allSettled([
+        fetch(base + '/teacher/student/' + sid + '/grade', { headers: headers }).then(jsonOrErr),
+        fetch(base + '/teacher/student/' + sid + '/recent?limit=100', { headers: headers }).then(jsonOrErr),
+        Promise.resolve({ ok: true, rows: [], lessonKeys: [] }),
+        fetch(base + '/teacher/nudge-history?studentUsername=' + encodeURIComponent(stub.username || '') + '&limit=20', { headers: headers }).then(jsonOrErr)
+      ]).then(function(results) {
+        // Stale-result guard.
+        if (reqId !== _tscReqSeq) return;
+        var gradeRes = results[0], recentRes = results[1], unlocksRes = results[2], nudgesRes = results[3];
+        if (gradeRes.status === 'fulfilled') {
+          renderTscGrade(gradeRes.value);
+        } else {
+          var gErr = gradeRes.reason;
+          $('tsc-grade-card').textContent = 'Error: ' + (gErr && gErr.message ? gErr.message : 'failed');
+        }
+        if (recentRes.status === 'fulfilled') {
+          renderTscRecent(recentRes.value);
+        } else {
+          $('tsc-recent-list').innerHTML = '<li class="dim">Error loading recent submissions.</li>';
+        }
+        if (unlocksRes.status === 'fulfilled') {
+          renderTscUnlocks(unlocksRes.value);
+        } else {
+          // unlocks endpoint may 503 if migration not run -- silently render empty state.
+          renderTscUnlocks({ ok: false, lessonKeys: [], rows: [] });
+        }
+        if (nudgesRes.status === 'fulfilled') {
+          renderTscNudges(nudgesRes.value);
+        } else {
+          // nudge-history endpoint may 503 if migration not run -- silently render empty state.
+          renderTscNudges({ ok: false, rows: [] });
+        }
+      });
+    }
+
+    function closeTscDrawer() {
+      var drawer = $('tsc-drawer');
+      if (!drawer) return;
+      // Codex MAJOR fold: invalidate any in-flight fetches.
+      _tscReqSeq++;
+      _tscCurrentStudentStub = null;
+      drawer.classList.remove('tsc-open');
+      drawer.setAttribute('aria-hidden', 'true');
+      if (window.teacherWorkspace) window.teacherWorkspace.closeStudent();
+    }
+
+    // ESC closes the drawer.
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeTscDrawer();
+    });
+
+    // Overlay-click and close-button click close the drawer.
+    document.getElementById('tsc-drawer').addEventListener('click', function(e) {
+      if (e.target && e.target.getAttribute('data-tsc-close')) closeTscDrawer();
+    });
+
+    // P2: View as student -> open the Desk in a new tab with the impersonation
+    // query param. The Desk's _viewAsBootstrap detects the param + hydrates
+    // viewAsContext into sessionStorage + reloads as the target student.
+    function _openViewAsTab(studentId) {
+      if (!studentId) return;
+      var url = './desk.html?viewAsUserId=' + encodeURIComponent(studentId);
+      try { window.open(url, '_blank', 'noopener'); } catch (_) {}
+    }
+    var __viewAsBtn = document.getElementById('tsc-action-view-as');
+    if (__viewAsBtn) __viewAsBtn.addEventListener('click', function() {
+      _openViewAsTab(_tscCurrentStudentId);
+    });
+
+    // T3 (P6 BUILD section 4.2): Render active lesson unlocks in the drawer section.
+    function renderTscUnlocks(payload) {
+      var el = $('tsc-unlocks-list');
+      if (!el) return;
+      el.innerHTML = '';
+      if (!payload || !payload.ok || !payload.rows || payload.rows.length === 0) {
+        el.innerHTML = '<li class="tsc-unlock-empty">No active overrides.</li>';
+        return;
+      }
+      payload.rows.forEach(function (row) {
+        var li = document.createElement('li');
+        var key = document.createElement('span');
+        key.className = 'tsc-unlock-key';
+        key.textContent = row.lesson_key;
+        var meta = document.createElement('span');
+        meta.className = 'tsc-unlock-meta';
+        var when = (row.unlocked_at || '').slice(0, 10);
+        var by = row.unlocked_by || 'teacher';
+        meta.textContent = when + ' \xB7 by ' + by + (row.reason ? ' \xB7 ' + row.reason : '');
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tsc-unlock-revoke';
+        btn.textContent = 'Revoke';
+        ;
+        li.appendChild(key); li.appendChild(meta); li.appendChild(btn);
+        el.appendChild(li);
+      });
+    }
+
+    // T3 (P6 BUILD section 4.2): Revoke a single lesson unlock row.
+    async function revokeUnlock(row, liEl) {
+      if (!_tscCurrentStudentStub) return;
+      // Confirm before destructive op.
+      if (!window.confirm('Revoke override for lesson ' + row.lesson_key + '?')) return;
+      try {
+        var res = await fetch(svcUrl() + '/teacher/lesson-unlock/revoke', {
+          method: 'POST',
+          headers: Object.assign({ 'Content-Type': 'application/json' }, teacherAuthHeaders()),
+          body: JSON.stringify({
+            studentUsername: _tscCurrentStudentStub.username,
+            lessonKey: row.lesson_key,
+          }),
+        });
+        var j = await res.json().catch(function () { return {}; });
+        if (!res.ok || !j.ok) {
+          showError('Revoke failed: ' + (j && j.error ? j.error : ('HTTP ' + res.status)));
+          return;
+        }
+        // Optimistic: fade the row out, then remove from DOM.
+        liEl.style.opacity = '0.4';
+        liEl.style.pointerEvents = 'none';
+        setTimeout(function () {
+          try { liEl.remove(); } catch (_) {}
+          // Codex P6 MINOR fold: if this was the last visible unlock, re-render
+          // the empty-state placeholder so the section does not end up blank.
+          var listEl = $('tsc-unlocks-list');
+          if (listEl && listEl.children.length === 0) {
+            listEl.innerHTML = '<li class="tsc-unlock-empty">No active overrides.</li>';
+          }
+        }, 240);
+      } catch (err) {
+        showError('Network error revoking: ' + (err && err.message ? err.message : 'unknown'));
+      }
+    }
+
+    // P7 (TEACHER_STUDENT_CONSOLE_P7_BUILD.md section 3.3): Render nudge history.
+    // XSS safety: all text from the row goes through textContent, never innerHTML.
+    // Arrow glyphs (>> / <<) are inline ASCII.
+    //
+    // P12: factored _buildNudgeLi so _loadOlderNudges can reuse the row builder
+    // without duplicating the DOM construction. renderTscNudges now also tracks
+    // the current offset and controls "Load older" button visibility.
+    function _buildNudgeLi(row) {
+      var li = document.createElement('li');
+      var arrow = document.createElement('span');
+      arrow.className = 'tsc-nudge-arrow ' +
+        (row.direction === 'teacher' ? 'tsc-nudge-teacher' : 'tsc-nudge-student');
+      arrow.textContent = row.direction === 'teacher' ? '>>' : '<<';
+      var block = document.createElement('div');
+      block.className = 'tsc-nudge-text-block';
+      var meta = document.createElement('span');
+      meta.className = 'tsc-nudge-meta';
+      var when = (row.created_at || '').slice(0, 16).replace('T', ' ');
+      var who = row.sender_username || 'unknown';
+      meta.textContent = when + ' \xB7 ' + who;
+      var text = document.createElement('span');
+      text.className = 'tsc-nudge-text';
+      text.textContent = row.text || '';
+      block.appendChild(meta);
+      block.appendChild(text);
+      li.appendChild(arrow);
+      li.appendChild(block);
+      return li;
+    }
+
+    function renderTscNudges(payload) {
+      var el = $('tsc-nudges-list');
+      if (!el) return;
+      el.innerHTML = '';
+      var olderBtn = $('tsc-nudges-older');
+      if (!payload || !payload.ok || !payload.rows || payload.rows.length === 0) {
+        el.innerHTML = '<li class="tsc-nudge-empty">No nudges yet.</li>';
+        if (olderBtn) olderBtn.style.display = 'none';
+        return;
+      }
+      payload.rows.forEach(function (row) {
+        el.appendChild(_buildNudgeLi(row));
+      });
+      // P12: if this page came back full, more history MIGHT exist.
+      _tscNudgeHistoryOffset = payload.rows.length;
+      if (olderBtn) {
+        olderBtn.style.display = (payload.rows.length >= TSC_NUDGE_PAGE_SIZE) ? '' : 'none';
+        olderBtn.disabled = false;
+      }
+    }
+
+    // ── Teacher chat (Phase 1): compose + send a message via POST /teacher/nudge ──
+    // The whole pipeline already exists (persisted; the student sees it in their
+    // "Message teacher…" inbox). This wires the previously-disabled Send button:
+    // to the open student, or — with "whole class" — to every active PeriodX student.
+    function _tscGenNudgeId() {
+      return 'n_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+    }
+    function _tscRefreshNudges() {
+      var u = _tscNudgeHistoryStudentUsername;
+      if (!u) return;
+      fetch(svcUrl() + '/teacher/nudge-history?studentUsername=' + encodeURIComponent(u) + '&limit=20', { headers: teacherAuthHeaders() })
+        .then(jsonOrErr).then(function (r) { renderTscNudges(r); }).catch(function () {});
+    }
+    async function _tscClassUsernames() {
+      // Broadcast recipients = every active student in the universal PeriodX section
+      // (minus the teacher). Public, no-auth — same source the sign-in dial uses.
+      try {
+        var res = await fetch(svcUrl() + '/roster/section/PeriodX');
+        var j = await res.json();
+        var list = (j && j.ok && Array.isArray(j.students)) ? j.students : [];
+        return list.filter(function (s) { return (s.role || 'student') !== 'teacher'; })
+                   .map(function (s) { return s.username; }).filter(Boolean);
+      } catch (_) { return []; }
+    }
+    async function _tscSendNudge() {
+      var ta = $('tsc-nudge-text'), statusEl = $('tsc-nudge-status'), sendBtn = $('tsc-nudge-send');
+      var broadcast = !!($('tsc-nudge-broadcast') && $('tsc-nudge-broadcast').checked);
+      var text = ((ta && ta.value) || '').trim();
+      if (statusEl) statusEl.textContent = '';
+      if (!text) { if (statusEl) statusEl.textContent = 'Type a message first.'; return; }
+      var recipients;
+      if (broadcast) {
+        recipients = await _tscClassUsernames();
+        if (!recipients.length) { if (statusEl) statusEl.textContent = 'Could not load the class list.'; return; }
+        if (!window.confirm('Send this message to all ' + recipients.length + ' students?')) { if (statusEl) statusEl.textContent = ''; return; }
+      } else {
+        if (!_tscNudgeHistoryStudentUsername) { if (statusEl) statusEl.textContent = 'Open a student first, or check "whole class".'; return; }
+        recipients = [_tscNudgeHistoryStudentUsername];
+      }
+      if (sendBtn) sendBtn.disabled = true;
+      if (statusEl) statusEl.textContent = 'Sending…';
+      var r = await postJson('/teacher/nudge', { nudgeId: _tscGenNudgeId(), recipientUsernames: recipients, text: text }, teacherSecret());
+      if (sendBtn) sendBtn.disabled = false;
+      if (r.networkError) { if (statusEl) statusEl.textContent = 'Send failed (network).'; return; }
+      if (r.status >= 200 && r.status < 300 && r.data && r.data.ok) {
+        if (ta) ta.value = '';
+        var cnt = $('tsc-nudge-count'); if (cnt) cnt.textContent = '280';
+        if (statusEl) statusEl.textContent = broadcast ? ('Sent to ' + recipients.length + ' students.') : 'Sent.';
+        if (!broadcast) _tscRefreshNudges();   // refresh the open thread
+      } else {
+        if (statusEl) statusEl.textContent = (r.data && r.data.error) || ('Send failed (' + r.status + ').');
+      }
+    }
+    (function _wireTscNudgeCompose() {
+      var btn = $('tsc-action-nudge');
+      if (btn) ;
+      var sendN = $('tsc-nudge-send'); if (sendN) sendN.addEventListener('click', _tscSendNudge);
+      var cancelN = $('tsc-nudge-cancel'); if (cancelN) cancelN.addEventListener('click', function () { var c = $('tsc-nudge-compose'); if (c) c.style.display = 'none'; });
+      var taN = $('tsc-nudge-text'); if (taN) taN.addEventListener('input', function () { var cnt = $('tsc-nudge-count'); if (cnt) cnt.textContent = String(280 - (taN.value || '').length); });
+    })();
+
+    // P12: async function to fetch and append the next page of nudge history.
+    async function _loadOlderNudges() {
+      if (!_tscCurrentStudentStub) return;
+      if (_tscNudgeHistoryLoading) return;
+      // Codex P12 BLOCKER fold: capture the username at click time. After
+      // each await the handler re-checks ownership before touching the DOM
+      // or the shared pagination state. Without this guard, a fast drawer
+      // switch (A -> B) while an older fetch was in flight would pollute
+      // B's drawer with A's older rows + corrupt _tscNudgeHistoryOffset.
+      var expectedUsername = _tscCurrentStudentStub.username;
+      // Sanity precondition: the click should only fire when the drawer
+      // is currently on this username (matches the state set by openTscDrawer).
+      if (expectedUsername !== _tscNudgeHistoryStudentUsername) return;
+
+      var olderBtn = $('tsc-nudges-older');
+      _tscNudgeHistoryLoading = true;
+      if (olderBtn) { olderBtn.disabled = true; olderBtn.textContent = 'Loading...'; }
+
+      // Helper: confirm the drawer is STILL on the captured student. Used
+      // after each await to abort the rest of the handler on a stale resolve.
+      function stillOurDrawer() {
+        return !!_tscCurrentStudentStub &&
+               _tscCurrentStudentStub.username === expectedUsername &&
+               _tscNudgeHistoryStudentUsername === expectedUsername;
+      }
+
+      try {
+        var headers = teacherAuthHeaders();
+        var url = svcUrl() + '/teacher/nudge-history?studentUsername=' +
+                  encodeURIComponent(expectedUsername) +
+                  '&limit=' + TSC_NUDGE_PAGE_SIZE +
+                  '&offset=' + _tscNudgeHistoryOffset;
+        var res = await fetch(url, { headers: headers });
+        if (!stillOurDrawer()) { _tscNudgeHistoryLoading = false; return; }
+        var j = null;
+        try { j = await res.json(); } catch (_) {}
+        if (!stillOurDrawer()) { _tscNudgeHistoryLoading = false; return; }
+        if (!res.ok || !j || !j.ok) {
+          // Re-enable + leave button in place so user can retry.
+          if (olderBtn) { olderBtn.disabled = false; olderBtn.textContent = 'Load older'; }
+          _tscNudgeHistoryLoading = false;
+          return;
+        }
+        var rows = Array.isArray(j.rows) ? j.rows : [];
+        var el = $('tsc-nudges-list');
+        if (el) { rows.forEach(function (row) { el.appendChild(_buildNudgeLi(row)); }); }
+        _tscNudgeHistoryOffset += rows.length;
+        if (olderBtn) {
+          olderBtn.textContent = 'Load older';
+          if (rows.length < TSC_NUDGE_PAGE_SIZE) {
+            // No more pages.
+            olderBtn.style.display = 'none';
+          } else {
+            olderBtn.disabled = false;
+          }
+        }
+      } catch (_) {
+        if (stillOurDrawer() && olderBtn) {
+          olderBtn.disabled = false;
+          olderBtn.textContent = 'Load older';
+        }
+      } finally {
+        _tscNudgeHistoryLoading = false;
+      }
+    }
+
+    // T1 (P6 BUILD section 4.1): Apply Remediation modal handlers.
+
+    function openRemediationModal() {
+      var modal = $('tsc-remediation-modal');
+      if (!modal || !_tscCurrentStudentStub) return;
+      // Populate the header with the student name from the drawer stub.
+      $('tsc-remediation-student-name').textContent =
+        _tscCurrentStudentStub.realName || _tscCurrentStudentStub.username || 'Student';
+      // Reset fields + status.
+      $('tsc-rem-unit').value = '';
+      $('tsc-rem-skill').value = '';
+      $('tsc-rem-notes').value = '';
+      var statusEl = $('tsc-remediation-status');
+      statusEl.textContent = '';
+      statusEl.classList.remove('is-error', 'is-success');
+      $('tsc-remediation-confirm').disabled = false;
+      modal.classList.add('tsc-modal-open');
+      modal.setAttribute('aria-hidden', 'false');
+      setTimeout(function () { $('tsc-rem-unit').focus(); }, 30);
+    }
+
+    function closeRemediationModal() {
+      var modal = $('tsc-remediation-modal');
+      if (!modal) return;
+      modal.classList.remove('tsc-modal-open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    async function submitRemediationProposal() {
+      if (!_tscCurrentStudentStub) return;
+      var unit = $('tsc-rem-unit').value.trim();
+      var skill = $('tsc-rem-skill').value.trim();
+      var notes = $('tsc-rem-notes').value.trim();
+      var statusEl = $('tsc-remediation-status');
+      statusEl.classList.remove('is-error', 'is-success');
+      if (!unit) { statusEl.textContent = 'Unit is required.'; statusEl.classList.add('is-error'); return; }
+      if (!/^U\d+$/.test(unit)) { statusEl.textContent = 'Unit must look like "U3".'; statusEl.classList.add('is-error'); return; }
+      if (!skill) { statusEl.textContent = 'Skill code is required.'; statusEl.classList.add('is-error'); return; }
+
+      var confirmBtn = $('tsc-remediation-confirm');
+      confirmBtn.disabled = true;
+      statusEl.textContent = 'Submitting...';
+
+      try {
+        var res = await fetch(svcUrl() + '/remediation/propose', {
+          method: 'POST',
+          headers: Object.assign({ 'Content-Type': 'application/json' }, teacherAuthHeaders()),
+          body: JSON.stringify({
+            studentId: _tscCurrentStudentStub.studentId,
+            unit: unit,
+            skill: skill,
+            notes: notes || undefined,
+            proposedBy: 'teacher-dashboard',
+          }),
+        });
+        if (res.status === 503) {
+          var j503 = await res.json().catch(function () { return {}; });
+          statusEl.textContent = (j503 && j503.error) || 'Remediation table not provisioned (run migration 0004).';
+          statusEl.classList.add('is-error');
+          confirmBtn.disabled = false;
+          return;
+        }
+        var j = await res.json().catch(function () { return {}; });
+        if (!res.ok || !j.ok) {
+          statusEl.textContent = (j && j.error) || ('HTTP ' + res.status);
+          statusEl.classList.add('is-error');
+          confirmBtn.disabled = false;
+          return;
+        }
+        statusEl.textContent = 'Proposed (assignment ' + (j.assignmentId || 'created') + ').';
+        statusEl.classList.add('is-success');
+        // Auto-close after 1.4 s so the user reads the success line.
+        setTimeout(closeRemediationModal, 1400);
+      } catch (err) {
+        statusEl.textContent = 'Network error: ' + (err && err.message ? err.message : 'unknown');
+        statusEl.classList.add('is-error');
+        confirmBtn.disabled = false;
+      }
+    }
+
+    // P12: Wire the "Load older" nudge history button on DOMContentLoaded.
+    document.addEventListener('DOMContentLoaded', function () {
+      var olderBtn = $('tsc-nudges-older');
+      if (olderBtn) olderBtn.addEventListener('click', _loadOlderNudges);
+    });
+
+    // Wire the remediation modal button + close affordances on DOMContentLoaded.
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = $('tsc-action-remediation');
+      if (btn) ;
+      var confirm = $('tsc-remediation-confirm');
+      if (confirm) confirm.addEventListener('click', submitRemediationProposal);
+      document.querySelectorAll('#tsc-remediation-modal [data-tsc-modal-close]')
+        .forEach(function (el) { el.addEventListener('click', closeRemediationModal); });
+      // ESC closes the modal when open. The capture-phase listener fires BEFORE
+      // the bubble-phase drawer ESC handler, and stopPropagation prevents the
+      // drawer from also closing behind the modal.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          var modal = $('tsc-remediation-modal');
+          if (modal && modal.classList.contains('tsc-modal-open')) {
+            e.stopPropagation();
+            closeRemediationModal();
+          }
+        }
+      }, true);
+    });
+
+    // P9 Wave B: deep-link via URL params (TEACHER_STUDENT_CONSOLE_P9_BUILD.md section 3).
+    // ?openDrawerFor=<sid> -> fetch profile + open drawer
+    // ?openRemediation=1   -> after drawer opens, click the Apply Remediation button
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var deeplinkSid = params.get('openDrawerFor');
+        var deeplinkRemediation = params.get('openRemediation') === '1';
+        if (!deeplinkSid) return;
+        function tryOpen() {
+          var headers = teacherAuthHeaders();
+          return fetch(svcUrl() + '/teacher/student/' + encodeURIComponent(deeplinkSid) + '/profile', { headers: headers })
+            .then(function (res) {
+              if (!res.ok) throw new Error('HTTP ' + res.status);
+              return res.json();
+            })
+            .then(function (j) {
+              if (!j || !j.ok) throw new Error(j && j.error ? j.error : 'profile load failed');
+              openTscDrawer({
+                studentId: j.studentId,
+                username: j.username,
+                realName: j.realName,
+                section: j.section,
+              });
+              if (deeplinkRemediation) {
+                // Wait for the drawer animation (220 ms cubic-bezier) + the
+                // remediation-button click handler to be wired before firing.
+                setTimeout(function () {
+                  var btn = $('tsc-action-remediation');
+                  if (btn && !btn.disabled) ;
+                }, 250);
+              }
+            })
+            .catch(function (err) {
+              // If the teacher secret is missing or the profile lookup fails,
+              // log and move on. The teacher can enter the secret + re-click
+              // the source link to retry. Don't crash the page.
+              console.warn('[deeplink] could not open drawer for', deeplinkSid, ':', err && err.message ? err.message : err);
+            });
+        }
+        // Allow the rest of the page (renderSessionStatus etc.) to render first.
+        setTimeout(tryOpen, 50);
+      } catch (_) {}
+    });
+
+    // Render session status on page load (after roster-client.js has run).
+    renderSessionStatus();
+  </script>
+  <script src="lib/chart.min.js"></script>
+  <script src="lib/chartjs-plugin-datalabels.min.js"></script>
+  <script src="lib/curriculum-charts.js"></script>
+  <script src="teacher-workspace.js"></script>
+</body>
+</html>

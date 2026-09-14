@@ -1,0 +1,172 @@
+## Task: Pre-initialized Callback Table + Keyboard IRQ Chain (Phase 24D)
+
+You are working on a TI-84 Plus CE ROM transpilation project. Phase 24C discovered that the ISR callback pointer at 0xD02AD7 evolves through interrupt cycling to reach 0x0040B2 (a real OS handler). Your job is to pre-initialize the callback table and test deeper ISR execution, then wire up a keyboard interrupt to trace the full key press → OS response chain.
+
+### Context
+
+Phase 24C key findings:
+- Handler 0x08C331 is an OS init routine that writes 262K bytes to system RAM
+- ISR cycling shows callback evolving: 0x000000 → 0x000010 → 0x0040B2
+- Cycle 3 hits missing block at 0x00AFF7 (may now be available after re-transpiling)
+- Boot only writes 6 bytes to RAM — callback table NOT initialized during boot
+- The ISR dispatch is self-bootstrapping through repeated interrupt handling
+
+The ISR path: 0x38 → 0x6F3 → 0x704 → 0x710 (reads callback from 0xD02AD7) → 0x1713 (calls callback) → callback handler → event loop → HALT
+
+### Files you MUST read first
+
+1. `TI-84_Plus_CE/test-harness.mjs` — Full file. Understand all 17 existing tests. You will ADD Tests 18-20 at the end (before the Summary section). Note the helper functions at the top (resetCpuState, hex, collectSeedAddresses, formatSeedAddress, etc.).
+
+2. `TI-84_Plus_CE/peripherals.js` — Full file. Understand keyboard port 0x01 handler, interrupt controller with triggerIRQ()/hasPendingIRQ(), and how keyboard state is exposed via `peripherals.keyboard`.
+
+3. `TI-84_Plus_CE/cpu-runtime.js` — Lines 750-1090. Understand interrupt dispatch: after each block, checks for pending IRQ (if IFF1), pushes PC, jumps to IM1 vector (0x0038).
+
+### Step 1: Pre-initialized callback with OS init (Test 18)
+
+Add Test 18 that:
+
+1. Creates a fresh 16MB-memory executor
+2. Runs handler 0x08C331 FIRST as an OS initialization pass:
+   - Set IY=0xD00080, SP=0xD40000, IM=1, MADL=1
+   - Run from 0x08C331 in ADL mode, maxSteps=5000, maxLoopIterations=200
+   - This should write to system RAM including the callback table
+3. After OS init, check what 0xD02AD7 contains (read 3 bytes as LE 24-bit address)
+4. Then boot from 0x000000 (keep the RAM state from init — don't zero memory!)
+5. After boot HALT, wake with IM1 IRQ (push return addr, run from 0x38)
+6. Run ISR with maxSteps=100,000
+7. Repeat ISR wake cycles up to 20 times or until execution reaches > 500 steps in a single cycle
+
+Track across all cycles:
+- Callback pointer value after each cycle
+- Unique blocks visited (cumulative)
+- Missing blocks
+- Dynamic targets
+- Code regions reached
+
+Report:
+```
+Test 18: Pre-initialized Callback Table
+========================================
+OS init (0x08C331): [steps] → [termination]
+  Callback after init: 0xD02AD7 = [value]
+  System RAM bytes written: [count]
+Boot: [steps] → [termination]
+  Callback after boot: 0xD02AD7 = [value]
+ISR Cycles:
+  Cycle  Steps  Termination  Last PC   Callback     New Blocks
+  0      [...]  [...]        [...]     [...]        [...]
+  ...
+Cumulative unique blocks: [count]
+Code regions:
+  [region breakdown]
+Missing blocks: [count, first 30]
+Dynamic targets: [count, first 30]
+```
+
+### Step 2: Keyboard interrupt simulation (Test 19)
+
+Add Test 19 that tests the full keyboard interrupt chain:
+
+1. Create fresh 16MB-memory executor
+2. Run OS init (0x08C331) to populate RAM
+3. Boot from 0x000000 to HALT
+4. Simulate pressing the ENTER key:
+   - Set keyboard matrix: `peripherals.keyboard.keyMatrix[0] = 0xFE` (bit 0 = ENTER, active low)
+   - Trigger keyboard IRQ: `peripherals.triggerIRQ()`
+   - Set IFF1=1 so the IRQ fires
+5. Continue execution from HALT address:
+   - `cpu.halted = false; cpu.iff1 = 1; cpu.iff2 = 1;`
+   - Push return address
+   - Run from 0x000038 (IM1 vector) with maxSteps=100,000
+6. Track:
+   - Does execution reach port 0x01 reads? (keyboard scan)
+   - What blocks are visited?
+   - Does the keyboard matrix value (0xFE) affect execution path?
+7. After ISR completes, release the key:
+   - `peripherals.keyboard.keyMatrix[0] = 0xFF`
+   - Run another ISR cycle
+   - Compare blocks visited with vs without key press
+
+Report:
+```
+Test 19: Keyboard Interrupt Simulation
+=======================================
+OS init: [steps]
+Boot: [steps] → halt
+Key press (ENTER):
+  Port 0x01 reads during ISR: [count]
+  Port 0x01 values read: [list]
+  ISR steps: [count]
+  Blocks visited: [count]
+  Reached keyboard scan code: [YES/NO]
+Key release:
+  ISR steps: [count]
+  Blocks different from key-press: [count]
+```
+
+### Step 3: Handler 0x0040B2 deep dive (Test 20)
+
+The callback evolved to 0x0040B2 during ISR cycling. Add Test 20 that:
+
+1. Creates fresh 16MB memory with OS init (run 0x08C331 first)
+2. Runs directly from 0x0040B2 in ADL mode with OS-like state
+3. maxSteps=100,000, collect all blocks/missing/dynamic
+4. Track I/O operations (especially port 0x01 reads/writes)
+5. Track memory reads from 0xD02000-0xD03000 range
+
+Report:
+```
+Test 20: Handler 0x0040B2 Deep Dive
+=====================================
+Steps: [count]
+Termination: [reason] at [address]
+Unique blocks: [count]
+Code regions: [breakdown]
+Port 0x01 accesses: [count, values]
+Other I/O: [unique ports accessed]
+Missing blocks: [count, first 30]
+Dynamic targets: [count, first 30]
+```
+
+### Step 4: Collect seeds
+
+After Tests 18-20, collect all new missing blocks and dynamic targets. Append to phase24b-seeds.txt with header:
+```
+# Phase 24D seeds — pre-initialized callback + keyboard chain
+# Generated by test-harness.mjs Tests 18-20
+```
+
+### Verification
+
+```bash
+node --check TI-84_Plus_CE/test-harness.mjs
+node TI-84_Plus_CE/test-harness.mjs
+```
+
+**CRITICAL**: All existing tests (1-17) must pass unchanged. Only ADD new tests. Do NOT modify peripherals.js, cpu-runtime.js, or ti84-math.mjs.
+
+### Important context
+
+- Memory: 16MB (`new Uint8Array(0x1000000)`) with `mem.set(romBytes)`
+- CPU: 24-bit registers, `runFrom(addr, mode, opts)` signature
+- `result.termination` for exit status
+- `PRELIFTED_BLOCKS` export from ROM.transpiled.js
+- `resetCpuState(cpu)`, `hex(v,w)`, `collectSeedAddresses()`, `formatSeedAddress()` — all defined at top of test-harness.mjs
+- `PHASE24B_SEEDS_PATH` — path to seeds file
+- `appendFileSync` from 'node:fs' — add to import if needed (readFileSync, writeFileSync already imported)
+- Flash port returns 0xD0, keyboard returns 0xFF (no keys) unless keyMatrix is modified
+- `peripherals.keyboard` is exposed: `{ groupSelect, keyMatrix }` — keyMatrix is Uint8Array(8), each entry is a key group (0xFF = no keys, active-low bits)
+- `peripherals.triggerIRQ()` sets a pending IRQ flag
+- CPU checks IRQ after each block if IFF1=1
+
+### Do NOT
+
+- Do NOT modify peripherals.js, cpu-runtime.js, ti84-math.mjs
+- Do NOT modify existing tests (1-17)
+- Do NOT add npm dependencies
+
+### Code style
+
+- Block-scoped `{}` following existing test patterns
+- Use existing helpers (resetCpuState, hex, etc.)
+- Descriptive console output with section headers

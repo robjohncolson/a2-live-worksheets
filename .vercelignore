@@ -1,0 +1,35 @@
+# Shared static publish exclusions; pages.yml also feeds this file to rsync.
+# Keep content/, lib/, data/, vendor/ and all page assets.
+node_modules
+roster-server
+state
+tests
+scripts
+docs
+dok
+deploy
+tools
+types
+coverage
+.git
+.github
+.gitnexus
+.pytest_cache
+.claude
+.codex*
+.vercel
+.env
+.env.*
+*.pem
+*.key
+*.log
+*.md
+*.py
+*.ps1
+*.skill
+package*.json
+vitest.config.*
+tsconfig*.json
+
+# Local dotfiles may contain agent prompts or credentials.
+.*

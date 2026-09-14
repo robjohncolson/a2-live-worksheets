@@ -1,0 +1,97 @@
+## Task: Add HALT-Wake Support to Executor
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. The executor's `runFrom()` terminates when it hits a HALT instruction (returns -1). Your job is to add an option that lets the executor automatically simulate an interrupt wake from HALT, enabling continuous boot-through-wake execution.
+
+### Files you MUST read first
+
+- `TI-84_Plus_CE/cpu-runtime.js` (entire file, ~840 lines) — the CPU class and `createExecutor()` function
+
+### Background
+
+On eZ80 hardware:
+- HALT stops the CPU until an interrupt fires
+- IM 1: maskable interrupt jumps to 0x0038 (requires IFF1=1, i.e. EI was executed)
+- NMI: non-maskable interrupt jumps to 0x0066 (always fires, ignores DI)
+- The interrupt pushes the return address (PC after HALT) and jumps to the vector
+
+### What to modify in cpu-runtime.js
+
+In the `runFrom()` method, find where HALT termination is handled:
+
+```javascript
+if (result < 0) {
+  termination = result === -1 ? 'halt' : 'sleep';
+  break;
+}
+```
+
+Add wake-from-HALT support by modifying this section:
+
+```javascript
+if (result < 0) {
+  if (result === -1 && opts.wakeFromHalt) {
+    // Simulate interrupt wake from HALT
+    const haltPc = pc;
+    const haltReturnPc = haltPc + 1; // PC after HALT instruction (approximate)
+    cpu.halted = false;
+
+    if (typeof opts.wakeFromHalt === 'object') {
+      // Custom wake config: { vector, returnPc }
+      cpu.push(opts.wakeFromHalt.returnPc ?? haltReturnPc);
+      pc = opts.wakeFromHalt.vector;
+      mode = opts.wakeFromHalt.mode ?? mode;
+    } else if (opts.wakeFromHalt === 'nmi') {
+      // NMI: push PC, jump to 0x0066
+      cpu.push(haltReturnPc);
+      pc = 0x000066;
+    } else {
+      // Default: IM 1 interrupt, jump to 0x0038
+      cpu.push(haltReturnPc);
+      cpu.iff1 = 1;
+      cpu.iff2 = 1;
+      pc = 0x000038;
+    }
+
+    // Only wake once — clear the option so we don't loop forever
+    opts.wakeFromHalt = null;
+
+    if (opts.onWake) {
+      opts.onWake(haltPc, pc, mode);
+    }
+
+    steps++;
+    continue;
+  }
+
+  termination = result === -1 ? 'halt' : 'sleep';
+  break;
+}
+```
+
+This supports three wake modes:
+- `wakeFromHalt: 'nmi'` — NMI wake (push PC, jump to 0x0066)
+- `wakeFromHalt: true` or `wakeFromHalt: 'im1'` — IM 1 wake (push PC, jump to 0x0038, enable interrupts)
+- `wakeFromHalt: { vector: 0x1234, returnPc: 0x5678, mode: 'adl' }` — custom vector
+
+The `opts.wakeFromHalt = null` line ensures we only wake once per run (prevents infinite HALT → wake → HALT loops).
+
+The `opts.onWake(haltPc, wakePc, mode)` callback lets the caller know when wake happens.
+
+### Important: handle the "approximate PC after HALT" issue
+
+The HALT instruction in the block returns -1, so we don't know the exact PC after HALT. The `haltPc` is the block's start PC, and the actual HALT instruction might be several bytes in. However, for the wake simulation, the return address doesn't need to be exact — the interrupt handler typically doesn't return to the HALT point anyway (it re-enters the main loop or sets up a new context).
+
+A reasonable approximation: use the block's start PC + 1. Or if the caller provides `returnPc` via the object form, use that.
+
+### Verification
+
+```bash
+node --check TI-84_Plus_CE/cpu-runtime.js
+```
+
+### Do NOT
+
+- Do NOT modify test-harness.mjs, peripherals.js, or transpile-ti84-rom.mjs
+- Do NOT run any tests
+- Do NOT add npm dependencies
+- Do NOT change existing behavior when `wakeFromHalt` is not provided

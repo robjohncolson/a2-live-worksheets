@@ -1,0 +1,167 @@
+## Task: Write eZ80 Decoder — Part 1: Core Opcodes + CB Prefix
+
+Write the first half of an eZ80 instruction decoder. This handles unprefixed opcodes and CB-prefix bit operations. Part 2 (separate task) will add DD/FD/ED prefix handling.
+
+### What to create
+
+**File: `TI-84_Plus_CE/ez80-decoder.js`**
+
+ES module with this structure:
+
+```javascript
+// Register tables
+const REGS8 = ['b', 'c', 'd', 'e', 'h', 'l', '(hl)', 'a'];
+const REGS16 = ['bc', 'de', 'hl', 'sp'];
+const REGS16_PUSH = ['bc', 'de', 'hl', 'af'];
+const ALU_OPS = ['add', 'adc', 'sub', 'sbc', 'and', 'xor', 'or', 'cp'];
+const CONDITIONS = ['nz', 'z', 'nc', 'c', 'po', 'pe', 'p', 'm'];
+const ROTATE_OPS = ['rlc', 'rrc', 'rl', 'rr', 'sla', 'sra', 'sll', 'srl'];
+
+function hex(v, w = 2) {
+  return '0x' + v.toString(16).padStart(w, '0');
+}
+
+function signedByte(b) {
+  return b < 128 ? b : b - 256;
+}
+
+function readImm(romBytes, pc, width) {
+  // width=2: little-endian 16-bit, width=3: little-endian 24-bit
+  if (width === 2) return romBytes[pc] | (romBytes[pc + 1] << 8);
+  return romBytes[pc] | (romBytes[pc + 1] << 8) | (romBytes[pc + 2] << 16);
+}
+
+// Returns { immWidth } based on mode and optional mode prefix
+function getImmWidth(mode, modePrefix) {
+  if (modePrefix === 'sis' || modePrefix === 'lis') return 2;
+  if (modePrefix === 'sil' || modePrefix === 'lil') return 3;
+  return mode === 'adl' ? 3 : 2;
+}
+
+export function decodeInstruction(romBytes, pc, mode) {
+  const startPc = pc;
+  let modePrefix = null;
+
+  // Check for eZ80 mode prefix
+  const first = romBytes[pc];
+  if (first === 0x40) { modePrefix = 'sis'; pc++; }
+  else if (first === 0x49) { modePrefix = 'lis'; pc++; }
+  else if (first === 0x52) { modePrefix = 'sil'; pc++; }
+  else if (first === 0x5b) { modePrefix = 'lil'; pc++; }
+
+  const op = romBytes[pc];
+  const immW = getImmWidth(mode, modePrefix);
+
+  // --- CB prefix: bit operations ---
+  if (op === 0xcb) {
+    return decodeCB(romBytes, startPc, pc + 1, mode);
+  }
+
+  // --- DD/FD prefix: indexed (handled in Part 2, stub for now) ---
+  if (op === 0xdd || op === 0xfd) {
+    return null; // Part 2 will handle
+  }
+
+  // --- ED prefix: extended (handled in Part 2, stub for now) ---
+  if (op === 0xed) {
+    return null; // Part 2 will handle
+  }
+
+  // --- Main opcode decode ---
+  return decodeMain(romBytes, startPc, pc, op, mode, modePrefix, immW);
+}
+```
+
+### `decodeMain` function
+
+Decode the 256 unprefixed opcodes. Use bit extraction:
+- `r1 = (op >> 3) & 7` — destination register or condition
+- `r2 = op & 7` — source register
+- `rr = (op >> 4) & 3` — register pair
+
+**Group 0x00-0x3F:** Misc, LD rr/imm, INC/DEC, LD r/imm, rotates, JR, ADD HL
+**Group 0x40-0x7F:** LD r, r (0x76 = HALT)
+**Group 0x80-0xBF:** ALU A, r
+**Group 0xC0-0xFF:** RET cc, POP, JP cc, CALL cc, PUSH, ALU A, imm, RST, misc
+
+For each instruction, return an object. Tag naming convention:
+- `'nop'`, `'halt'`, `'di'`, `'ei'`, `'scf'`, `'ccf'`, `'cpl'`, `'daa'`, `'exx'`, `'ex-af'`
+- `'ld-reg-reg'` with `dest` and `src`
+- `'ld-reg-imm'` with `dest` and `value`
+- `'ld-reg-ind'` with `dest` and `src` (src = 'hl', 'bc', 'de')
+- `'ld-ind-reg'` with `dest` (pair) and `src` (register)
+- `'ld-reg-mem'` with `dest` and `addr`
+- `'ld-mem-reg'` with `addr` and `src`
+- `'ld-pair-imm'` with `pair` and `value`
+- `'ld-pair-mem'` with `pair` and `addr` (LD rr, (nn) and LD (nn), rr)
+- `'ld-sp-hl'`
+- `'inc-reg'`, `'dec-reg'` with `reg`
+- `'inc-pair'`, `'dec-pair'` with `pair`
+- `'alu-reg'` with `op` ('add','adc','sub','sbc','and','xor','or','cp') and `src`
+- `'alu-imm'` with `op` and `value`
+- `'add-pair'` with `dest` ('hl') and `src` pair
+- `'push'`, `'pop'` with `pair`
+- `'jp'` with `target`, `terminates: true`
+- `'jp-conditional'` with `condition`, `target`, `fallthrough`, `terminates: true`
+- `'jr'` with `target`, `terminates: true`
+- `'jr-conditional'` with `condition`, `target`, `fallthrough`, `terminates: true`
+- `'djnz'` with `target`, `fallthrough`, `terminates: true`
+- `'call'` with `target`, `fallthrough`, `terminates: true`
+- `'call-conditional'` with `condition`, `target`, `fallthrough`, `terminates: true`
+- `'ret'`, `terminates: true`
+- `'ret-conditional'` with `condition`, `fallthrough`, `terminates: true`
+- `'rst'` with `target`, `fallthrough`, `terminates: true`
+- `'jp-indirect'` with `indirectRegister: 'hl'`, `terminates: true`
+- `'rlca'`, `'rrca'`, `'rla'`, `'rra'`
+- `'ex-de-hl'`, `'ex-sp-hl'`
+- `'out-imm'` with `port`
+- `'in-imm'` with `port`
+- `'im'` with `value` (0, 1, or 2)
+- `'ld-ind-imm'` with `value` (LD (HL), n)
+
+### `decodeCB` function
+
+Decode CB-prefixed bit operations:
+```javascript
+function decodeCB(romBytes, startPc, cbPc, mode) {
+  const op = romBytes[cbPc];
+  const reg = REGS8[op & 7];
+  const bit = (op >> 3) & 7;
+  const group = (op >> 6) & 3;
+  const length = cbPc + 1 - startPc;
+  // group 0: rotate/shift, group 1: BIT, group 2: RES, group 3: SET
+}
+```
+
+Tags:
+- group 0: `'rotate-reg'` with `op` (from ROTATE_OPS) and `reg`
+- group 1: `'bit-test'` with `bit` and `reg`
+- group 2: `'bit-res'` with `bit` and `reg`
+- group 3: `'bit-set'` with `bit` and `reg`
+
+When reg is '(hl)', use tags `'rotate-ind'`, `'bit-test-ind'`, `'bit-res-ind'`, `'bit-set-ind'`.
+
+### Fallthrough calculation
+
+For conditional jumps/calls: `fallthrough = startPc + totalLength`
+For JR: `target = pc + 2 + signedByte(displacement)` (where pc is the JR opcode position)
+For CALL/RET conditional: `fallthrough = startPc + totalLength`
+
+### Verification
+
+```bash
+node --check TI-84_Plus_CE/ez80-decoder.js
+```
+
+Then verify it handles basic decoding:
+```bash
+node -e "import('./TI-84_Plus_CE/ez80-decoder.js').then(m => { const rom = new Uint8Array([0x3e, 0x42, 0xfe, 0x05, 0xc9]); console.log(m.decodeInstruction(rom, 0, 'z80')); console.log(m.decodeInstruction(rom, 2, 'z80')); console.log(m.decodeInstruction(rom, 4, 'z80')); });"
+```
+
+Expected: LD A, 0x42 → CP 0x05 → RET
+
+### Do NOT
+
+- Do NOT modify any existing files
+- Do NOT implement DD/FD/ED prefix handling (that's Part 2)
+- Return `null` for DD, FD, ED prefixed opcodes — Part 2 will fill those in

@@ -1,0 +1,161 @@
+## Task: Add Missing Block Discovery to Executor + Test Harness
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. The executor runs lifted ROM blocks but stops when it hits a block that wasn't discovered during static analysis. Currently it only reports the LAST missing block. Your job is to make the executor collect ALL missing blocks encountered during a run, so they can be fed back as new seed entry points.
+
+### Files you MUST read first
+
+- `TI-84_Plus_CE/cpu-runtime.js` (entire file, ~800 lines) — the CPU class and `createExecutor()` function
+- `TI-84_Plus_CE/test-harness.mjs` (entire file, ~275 lines) — the test harness
+
+### What to modify in cpu-runtime.js
+
+In the `createExecutor()` function, in the `runFrom()` method's main loop, find where it checks for a missing block:
+
+```javascript
+const fn = compiledBlocks[key];
+if (!fn) {
+  termination = 'missing_block';
+  break;
+}
+```
+
+Change this so that instead of immediately breaking, it:
+1. Calls an optional `opts.onMissingBlock(pc, mode, steps)` callback
+2. Collects the missing key in a Set
+3. Tries to skip forward by searching for the next valid block at pc+1, pc+2, etc. (up to 16 bytes ahead)
+4. If no valid block found within 16 bytes, THEN break with 'missing_block'
+5. If a valid block IS found, continue execution from there
+
+Replace the missing block check with:
+
+```javascript
+const fn = compiledBlocks[key];
+
+if (!fn) {
+  if (opts.onMissingBlock) {
+    opts.onMissingBlock(pc, mode, steps);
+  }
+  missingBlocks.add(key);
+
+  // Try to skip ahead and find the next valid block (up to 16 bytes)
+  let skipped = false;
+  for (let offset = 1; offset <= 16; offset++) {
+    const tryPc = pc + offset;
+    const tryKey = tryPc.toString(16).padStart(6, '0') + ':' + mode;
+    if (compiledBlocks[tryKey]) {
+      pc = tryPc;
+      skipped = true;
+      break;
+    }
+  }
+  if (!skipped) {
+    termination = 'missing_block';
+    break;
+  }
+  steps++;
+  continue;
+}
+```
+
+Add `const missingBlocks = new Set();` at the top of `runFrom()` (next to the other variable declarations).
+
+Include `missingBlocks: [...missingBlocks]` in the return object (both return statements — the normal one and the error one).
+
+### What to modify in test-harness.mjs
+
+1. **Update the `runTest()` function** to pass `onMissingBlock` and collect missing blocks:
+
+   Before the `executor.runFrom()` call inside `runTest()`, add:
+   ```javascript
+   const missingBlocksFound = [];
+   ```
+
+   Add `onMissingBlock` to the options passed to `runFrom()`:
+   ```javascript
+   onMissingBlock: (pc, mode, step) => {
+     missingBlocksFound.push({ pc, mode, step });
+   },
+   ```
+
+   After printing the I/O log, add:
+   ```javascript
+   if (missingBlocksFound.length > 0) {
+     console.log(`\nMissing blocks encountered: ${missingBlocksFound.length}`);
+     const unique = [...new Set(missingBlocksFound.map(m => '0x' + m.pc.toString(16).padStart(6, '0') + ':' + m.mode))];
+     console.log(`  Unique missing: ${unique.length}`);
+     for (const key of unique.slice(0, 10)) {
+       console.log(`    ${key}`);
+     }
+     if (unique.length > 10) {
+       console.log(`    ... and ${unique.length - 10} more`);
+     }
+   }
+   ```
+
+   Include `missingBlocksFound` in the returned result from `runTest()`.
+
+2. **Add a "Discovery Summary" section** at the very end of the file (before `process.exit(0)`). This aggregates all missing blocks found across all tests:
+
+   ```javascript
+   // --- Discovery Summary ---
+   console.log(`\n${'='.repeat(60)}`);
+   console.log('DISCOVERY SUMMARY — Potential New Seeds');
+   console.log(`${'='.repeat(60)}`);
+
+   const allMissing = new Set();
+   // Gather from test4's result
+   if (test4.missingBlocks) {
+     for (const key of test4.missingBlocks) allMissing.add(key);
+   }
+   // Gather from multi-entry results
+   for (const r of multiResults) {
+     if (r.missingBlocksFound) {
+       for (const m of r.missingBlocksFound) {
+         allMissing.add('0x' + m.pc.toString(16).padStart(6, '0') + ':' + m.mode);
+       }
+     }
+   }
+
+   console.log(`  Total unique missing block addresses: ${allMissing.size}`);
+   const sorted = [...allMissing].sort();
+   for (const key of sorted.slice(0, 20)) {
+     console.log(`    ${key}`);
+   }
+   if (sorted.length > 20) {
+     console.log(`    ... and ${sorted.length - 20} more`);
+   }
+   ```
+
+3. **Update multiResults** to also capture missingBlocksFound. In the multi-entry for loop, add `onMissingBlock` to the `runFrom` options and store the results:
+
+   Before the `executor.runFrom()` in the multi-entry loop, add:
+   ```javascript
+   const epMissing = [];
+   ```
+
+   Add to the runFrom options:
+   ```javascript
+   onMissingBlock: (pc, mode, step) => {
+     epMissing.push({ pc, mode, step });
+   },
+   ```
+
+   In the `multiResults.push()` object, add:
+   ```javascript
+   missingBlocksFound: epMissing,
+   ```
+
+### Verification
+
+```bash
+node --check TI-84_Plus_CE/cpu-runtime.js
+node --check TI-84_Plus_CE/test-harness.mjs
+```
+
+### Do NOT
+
+- Do NOT modify peripherals.js or transpile-ti84-rom.mjs
+- Do NOT modify ROM.transpiled.js
+- Do NOT run the test harness
+- Do NOT add npm dependencies
+- Do NOT change existing test logic — only ADD the missing block tracking

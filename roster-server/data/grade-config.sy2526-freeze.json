@@ -1,0 +1,71 @@
+{
+  "note": "Frozen snapshot of PHASE3_CONFIG fields used for grade resolution at M2b archive time. useV3 remains env-driven at runtime via grade-config.js.",
+  "C": 85,
+  "feederWeights": {
+    "W": 1,
+    "Q": 2
+  },
+  "lessonFeederWeights": {
+    "ws": 1,
+    "W": 2,
+    "Q": 3
+  },
+  "frqBand": {
+    "E": 100,
+    "P": 70,
+    "I": 35
+  },
+  "frqDiagnosticCorrectThreshold": 0.5,
+  "quarters": {
+    "Q1": {
+      "units": [
+        1,
+        2,
+        3
+      ],
+      "start": "2026-09-09",
+      "end": "2026-11-13"
+    },
+    "Q2": {
+      "units": [
+        4,
+        5
+      ],
+      "start": "2026-11-14",
+      "end": "2027-01-29"
+    },
+    "Q3": {
+      "units": [
+        6,
+        7
+      ],
+      "start": "2027-01-30",
+      "end": "2027-04-09"
+    },
+    "Q4": {
+      "units": [
+        8,
+        9
+      ],
+      "start": "2027-04-10",
+      "end": "2027-06-23"
+    }
+  },
+  "schoolTz": "America/New_York",
+  "gradingWindowStart": "2026-09-01",
+  "diagnosticTheta": 0.65,
+  "useV3": false,
+  "v3LessonsExcludeQuiz": true,
+  "v3WorkWeights": {
+    "lessons": 0.3,
+    "quizzes": 0.3,
+    "blooket": 0.1
+  },
+  "v3Gates": {
+    "floor": 0.4,
+    "ceiling": 0.7
+  },
+  "v3FixQuizZero": true,
+  "v3FixCwsReveal": true,
+  "v3AheadOfScheduleLessons": "not-until-due"
+}

@@ -1,0 +1,35 @@
+Changes: 18 files, 229 symbols
+Affected processes: 30
+Risk level: critical
+
+Changed symbols:
+  Symbol localLessonState → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol _confirmOverrideGate → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol _isLessonComplete → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol _refreshLessonUnlocks → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol _isApClassroomAvailable → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol submitSignIn → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol _nfSubmitPassword → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol paintDonowCells → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol maybeBumpThenOpen → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol _resetGradeStateForIdentitySwitch → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol _walletLoadSummerSchedule → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol renderDoNowGrades → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol _renderCoachPanel → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol renderDoNow → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+  Symbol mergeSupabase → gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js
+... and 214 more
+
+Affected execution flows:
+  • StudentMark → _seedRng (7 steps) — changed: _seedRng, startNewGame
+  • StudentMark → ClearInterval (7 steps) — changed: close, closeGame
+  • StudentMark → CancelAnimationFrame (7 steps) — changed: close, closeGame
+  • StudentMark → _liveWs (7 steps) — changed: close, closeGame
+  • StudentMark → IsOpen (7 steps) — changed: _studyBreakScoreGameOnce, startNewGame
+  • StudentMark → ClearKeys (7 steps) — changed: startNewGame, clearKeys, resetBoardState
+  • StudentMark → _inLiveMatch (7 steps) — changed: updateHud, _inLiveMatch
+  • StudentMark → _announce (7 steps) — changed: updateHud
+  • Run → LookupTopic (6 steps) — changed: showResourcePanel
+  • Run → GetStudentEmail (6 steps) — changed: showResourcePanel
+
+Review: CRITICAL reported before commit. The 229 symbol / 30 process result includes pre-existing stale tracked shadows (baseline freshness tests fail for Desk, mobile-home, start-here, teacher-dashboard). Refreshed copies are exact line-preserving projections of current HTML; freshness suite passes 10/10. No functional edits were made to the three other HTML apps. Desk functional edits were audited in commit 1. Schedule changes are E dates and additive E groups only; focused B hash remains green. M2b changes only five artifact-hash fixtures; all numerical golden outputs remain unchanged (34 server regressions pass).

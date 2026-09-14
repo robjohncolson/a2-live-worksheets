@@ -1,0 +1,2590 @@
+{
+  "status": "Completed DOK implementation and verification; root suite retains existing failures and one resolved timing-only difference",
+  "started_from": "2aac485",
+  "commits": {
+    "generator": "e9f61854715a69f5f3ff6bd9023d8bab9c2fecc8",
+    "mechanical_migration": "5fe096c0975186e7790e55df81e003fcac3cfa37",
+    "hand_rewrites": "2504502cea449e28d163e25c6c16c47a9741c67d",
+    "artifacts": "the commit containing this record"
+  },
+  "mapping_counts": {
+    "minutes": 69,
+    "phase": 69,
+    "exit": 66,
+    "group_exit": 2,
+    "first_note": 14,
+    "start": 2,
+    "begin": 35,
+    "run_named": 17,
+    "do": 1,
+    "complete_stock": 13,
+    "first_sentence": 13,
+    "play_topic": 0,
+    "play_group": 2,
+    "group_commit": 2,
+    "group_work": 2,
+    "stem": 1
+  },
+  "mechanically_changed_files": 70,
+  "hand_rewritten_bullets": 65,
+  "hand_rewritten_original_lines": 66,
+  "hand_rewrite_files": 51,
+  "hand_rewrites": [
+    {
+      "file": "dok/lessons/1.1.yaml",
+      "before": "  - Complete the video follow-along about questions, variation, and context.",
+      "after": "  - \"Use the rules box to name the variable and compare the two sleep percentages.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.10.yaml",
+      "before": "  - Video follow-along from minute 5 (normal curves, empirical rule, and z-scores).",
+      "after": "  - \"At minute 5, read the rules box; have students start (a).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.10.yaml",
+      "before": "  - Commit to using or rejecting the model before the video.",
+      "after": "  - \"Commit to using or rejecting the model before any discussion.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.10.yaml",
+      "before": "  - Complete the video follow-along and check both model calculations.",
+      "after": "  - \"Use the printed rules to check both model calculations in (b).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.2.yaml",
+      "before": "  - Video follow-along from minute 5.",
+      "after": "  - \"At minute 5, read the rules box; have students start (a).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.2.yaml",
+      "before": "  - Video follow-along (individuals, variables, categorical vs quantitative).",
+      "after": "  - \"Use the definitions in the rules box to identify individuals and classify the variables.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.3.yaml",
+      "before": "  - Video follow-along from minute 5 (frequency vs. relative-frequency tables).",
+      "after": "  - \"At minute 5, read the rules box; have students start (a).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.3.yaml",
+      "before": "  - Video follow-along (build and read frequency and relative-frequency tables).",
+      "after": "  - \"Read the table and use the printed fraction rule to compare the clubs in (a) and (b).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.4.yaml",
+      "before": "  - Complete the video follow-along on categorical displays.",
+      "after": "  - \"Use the rules box to compare the counts and visible bar heights in (a) and (b).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.5.yaml",
+      "before": "  - Complete the video follow-along on quantitative displays and histogram construction.",
+      "after": "  - \"Use the rules box to read the bin widths and describe the groups and gaps in (a) and (b).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.7.yaml",
+      "before": "  - Show both recommendations without endorsement; start the video at minute 5.",
+      "after": "  - \"Show both claims without endorsement. At minute 5, read the rules box.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.7.yaml",
+      "before": "  - Choose with evidence, follow along, then finish (a)--(c) and the exit.",
+      "after": "  - \"Choose first; read the rules box; work (a)--(c); complete the exit; turn in.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.8.yaml",
+      "before": "  - Video follow-along from minute 5 (five-number summaries and boxplots).",
+      "after": "  - \"At minute 5, read the rules box; have students start (a).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.8.yaml",
+      "before": "  - Commit to Omar or Nia from the two displays before the video.",
+      "after": "  - \"Commit to Omar or Nia from the two displays before any discussion.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.8.yaml",
+      "before": "  - Complete the video follow-along on five-number summaries and boxplots.",
+      "after": "  - \"Use the rules box to read the quartiles and describe the dotplot in (a) and (b).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.9.yaml",
+      "before": "  - Video follow-along from minute 5.",
+      "after": "  - \"At minute 5, read the rules box; have students start (a).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/1.9.yaml",
+      "before": "  - 'Video follow-along (comparing distributions: center, variability, shape, unusual features).'",
+      "after": "  - \"Use the rules box to compare the classes in (a) and (b), with points and comparative words.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/2.1.yaml",
+      "before": "  - Complete the video follow-along about variable types, displays, and possible relationships.",
+      "after": "  - \"Use the rules box to name the variables and compare the within-group percentages.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/2.2.yaml",
+      "before": "  - Complete the video follow-along about two-way tables and bar-graph displays.",
+      "after": "  - \"Use the rules box to read the totals and compare the within-grade percentages.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/2.3.yaml",
+      "before": "  - Complete the video follow-along about joint, marginal, and conditional relative frequencies.",
+      "after": "  - \"Use the rules box to identify each denominator and calculate the requested percentages.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/2.4.yaml",
+      "before": "  - Commit to a reporting strategy, then complete the follow-along.",
+      "after": "  - \"Commit to a reporting strategy, then use the rules box to work (a) and (b).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/2.5.yaml",
+      "before": "  - Commit to a proposal, then complete the follow-along.",
+      "after": "  - \"Commit to a proposal, then use the rules box to compare the correlations and the plot.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/2.6.yaml",
+      "before": "  - Complete the follow-along, finish (a)--(c), revise, and turn in.",
+      "after": "  - \"Read the rules box, work (a)--(c), revise the first take, and turn in.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/2.7.yaml",
+      "before": "  - Commit to a judgment, complete the follow-along, finish (a)--(c), revise, and turn in.",
+      "after": "  - \"Commit to a judgment. Read the rules box, work (a)--(c), revise, and turn in.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/2.8.yaml",
+      "before": "  - Make a first claim, then complete the 2.8 follow-along.",
+      "after": "  - \"Make a first claim, then use the printed formulas to work (a) and (b).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/3.1.yaml",
+      "before": "  - Complete the video follow-along about trustworthy data collection.",
+      "after": "  - \"Use the rules box to identify the population and compare how students entered each poll.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/3.2.yaml",
+      "before": "  - Complete the video follow-along about populations, samples, observational studies, and experiments.",
+      "after": "  - \"Use the rules box to classify the plans and explain the outside factor in (b).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/3.3.yaml",
+      "before": "  - Complete the video follow-along about SRS, systematic, stratified, and cluster sampling.",
+      "after": "  - \"Use the printed definitions to name the methods and explain which one is an SRS.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/3.4.yaml",
+      "before": "  - Complete the video follow-along about undercoverage, nonresponse, voluntary response, and response\n    bias.",
+      "after": "  - \"Use the rules box to find the response rates and explain a possible bias in each survey.\"",
+      "old_lines": 2,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/3.5.yaml",
+      "before": "  - Complete the video follow-along about experimental units, treatments, responses, and design principles.",
+      "after": "  - \"Use the rules box to identify the units and response, then compare the two designs.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/3.6.yaml",
+      "before": "  - Complete the follow-along about blocking, matched pairs, significance, causation, and generalization.",
+      "after": "  - \"Use the rules box to identify the variables and compare the greenhouse differences.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/4.1.yaml",
+      "before": "  - Complete the follow-along about random patterns and simulation.",
+      "after": "  - \"Use the rules box to read the longest runs and calculate the simulation estimate.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/4.10.yaml",
+      "before": "  - Complete the follow-along about BINS and exact versus cumulative binomial probability.",
+      "after": "  - \"Use the rules box to define the binomial count and calculate the probability in (b).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/4.11.yaml",
+      "before": "  - Complete the follow-along about binomial mean, standard deviation, and interpretation.",
+      "after": "  - \"Use the printed formulas to find and interpret the binomial mean and standard deviation.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/4.2.yaml",
+      "before": "  - Complete the follow-along about outcomes, events, chance assignments, trials, and relative frequency.",
+      "after": "  - \"Use the rules box to list the event counts and check each simulation plan.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/4.3.yaml",
+      "before": "    - \"Complete the follow-along about sample spaces, long-run interpretations, intersections, and conditional probability.\"",
+      "after": "    - \"Use the rules box to list the sample space and compare the model probability with the observed fraction.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/4.4.yaml",
+      "before": "  - Complete the follow-along about intersections, mutually exclusive events, and conditional probability.",
+      "after": "  - \"Use the rules box to count the overlap, at least one food, and neither food.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/4.5.yaml",
+      "before": "  - Complete the follow-along about conditional probability and the general multiplication rule.",
+      "after": "  - \"Use the rules box to identify the given group before calculating each conditional percentage.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/4.6.yaml",
+      "before": "  - Complete the video follow-along about independence, intersections, and unions.",
+      "after": "  - \"Use the rules box and table to calculate the probabilities in (a) and (b).\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/4.8.yaml",
+      "before": "  - Complete the video follow-along about means, standard deviations, and their interpretations.",
+      "after": "  - \"Use the printed counts and formulas to check the route standard deviations and interpret one in minutes.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/5.1.yaml",
+      "before": "    - \"Complete the follow-along about statistics from repeated samples and predictable sample-to-sample variation.\"",
+      "after": "    - \"Use the rules box to identify the parameter and statistic, then describe the sample means.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/5.2.yaml",
+      "before": "    - \"Complete the follow-along about sampling variability, normal probabilities, and normal-model appropriateness.\"",
+      "after": "    - \"Use the rules box to compare the spreads and calculate both z-scores and percentiles.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/5.3.yaml",
+      "before": "    - \"Complete the follow-along about simulated sampling distributions, the CLT, and randomization distributions.\"",
+      "after": "    - \"Use the printed formulas to find the sampling mean and standard deviation for each sample size.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/5.4.yaml",
+      "before": "    - \"Complete the follow-along about point estimators, bias, and sampling variability.\"",
+      "after": "    - \"Use the rules box and table to compare the two estimates, their bias, and their spread.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/5.5.yaml",
+      "before": "    - \"Complete the follow-along about the center, spread, shape, and probabilities for sample proportions.\"",
+      "after": "    - \"Use the rules box to find the sampling mean and standard deviation and check both conditions.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/5.6.yaml",
+      "before": "    - \"Complete the follow-along about center, spread, shape, and probabilities for differences in sample proportions.\"",
+      "after": "    - \"Use the rules box to check Plan I and calculate its sampling standard deviation.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/5.7.yaml",
+      "before": "    - \"Complete the follow-along about center, standard deviation, normality, and probabilities for sample means.\"",
+      "after": "    - \"Use the rules box to check each model before calculating its normal tail probability.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/5.8.yaml",
+      "before": "    - \"Complete the follow-along, finish (a)--(c), revise, and turn in.\"",
+      "after": "    - \"Read the rules box, work (a)--(c), revise the first take, and turn in.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.1.yaml",
+      "before": "    - \"Complete the follow-along about chance explanations, normal models, and intervals for a proportion.\"",
+      "after": "    - \"Use the rules box to work (a) and (b); keep the chance explanation tied to the stated model.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.10.yaml",
+      "before": "    - \"Complete the follow-along about hypotheses, procedure selection, pooling, and conditions.\"",
+      "after": "    - \"Use the rules box to set up the hypotheses and check the procedure and conditions.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.11.yaml",
+      "before": "    - \"Complete the follow-along about pooled standard error, test statistic, p-value, and conclusion.\"",
+      "after": "    - \"Use the printed formulas to find the pooled standard error, test statistic, and p-value.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.2.yaml",
+      "before": "    - \"Begin the 6.1--6.2 video at minute 5; return at minute 33 to separate calculation from generalization.\"",
+      "after": "    - \"At minute 5, read the rules box and start (a). At minute 33, ask what the collection method lets them conclude.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.2.yaml",
+      "before": "    - \"Complete the follow-along, finish (a)--(c), revise, and turn in the sheet.\"",
+      "after": "    - \"Read the rules box, work (a)--(c), revise the first take, and turn in the sheet.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.3.yaml",
+      "before": "    - \"Begin the video at minute 5; return at minute 33 to compare the lower endpoint with both thresholds.\"",
+      "after": "    - \"At minute 5, read the rules box and start (a). At minute 33, ask students to compare the lower endpoint with both thresholds.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.3.yaml",
+      "before": "    - \"Complete the follow-along, finish (a)--(c), revise, and turn in the sheet.\"",
+      "after": "    - \"Read the rules box, work (a)--(c), revise the first take, and turn in the sheet.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.4.yaml",
+      "before": "    - \"Begin the video at minute 5; return at minute 33 to label each number's role.\"",
+      "after": "    - \"At minute 5, read the rules box and start (a). At minute 33, ask what each number represents.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.4.yaml",
+      "before": "    - \"Complete the follow-along, finish (a)--(c), revise, and turn in the sheet.\"",
+      "after": "    - \"Read the rules box, work (a)--(c), revise the first take, and turn in the sheet.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.5.yaml",
+      "before": "    - \"Complete the follow-along about test statistics, tail areas, and p-value interpretations.\"",
+      "after": "    - \"Use the rules box to choose the tail, calculate the statistic, and compare the two p-values.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.6.yaml",
+      "before": "    - \"Begin the video at minute 5; return at minute 33 to separate decision, effect size, and scope.\"",
+      "after": "    - \"At minute 5, read the rules box and start (a). At minute 33, ask students to separate the test decision, size of the difference, and scope of the conclusion.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.6.yaml",
+      "before": "    - \"Complete the follow-along, finish (a)--(c), revise, and turn in the sheet.\"",
+      "after": "    - \"Read the rules box, work (a)--(c), revise the first take, and turn in the sheet.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.7.yaml",
+      "before": "    - \"Begin the video at minute 5; return at minute 33 to translate each probability into a decision and true state.\"",
+      "after": "    - \"At minute 5, read the rules box and start (a). At minute 33, ask students to name the decision and true state for each probability.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.7.yaml",
+      "before": "    - \"Complete the follow-along, finish (a)--(c), revise, and turn in the sheet.\"",
+      "after": "    - \"Read the rules box, work (a)--(c), revise the first take, and turn in the sheet.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.8.yaml",
+      "before": "    - \"Begin the video at minute 5; return at minute 33 to separate variance, SE, and margin of error.\"",
+      "after": "    - \"At minute 5, read the rules box and start (a). At minute 33, ask students to distinguish variance, standard error, and margin of error.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.8.yaml",
+      "before": "    - \"Complete the follow-along, finish (a)--(c), revise, and turn in the sheet.\"",
+      "after": "    - \"Read the rules box, work (a)--(c), revise the first take, and turn in the sheet.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    },
+    {
+      "file": "dok/lessons/6.9.yaml",
+      "before": "    - \"Complete the follow-along about interval meaning, confidence level, and claim justification.\"",
+      "after": "    - \"Use the rules box to locate the thresholds and interpret the interval and confidence level.\"",
+      "old_lines": 1,
+      "new_lines": 1
+    }
+  ],
+  "content_audit": {
+    "protected_content_preserved": true,
+    "minutes_preserved": true,
+    "registry_changes": [
+      {
+        "file": "dok/registry/5.5.jsonl",
+        "id": "aps-5.5-d3-1",
+        "field": "stem",
+        "before": "Suppose a video platform has 5,000 active accounts and says that $p=0.08$ of them regularly use captions. An SRS of 100 accounts, selected without replacement, contains 14 regular caption users, so $\\widehat p=0.14$.\\par\\smallskip \\textbf{Jules:} ``Because $n=100>30$, $\\widehat p$ is approximately normal. I get $P(\\widehat p\\geq0.14)=0.0135$, which proves caption use increased.''\\par \\textbf{Nora:} ``Because $np=8<10$, a normal model is not justified. Therefore $\\widehat p$ is biased and this sample tells us nothing.''\\par\\smallskip A binomial calculator gives $P(X\\geq14)=0.0282$ for $X\\sim\\mathrm{Bin}(100,0.08)$. This closely approximates sampling from 5,000 accounts.",
+        "after": "Suppose a streaming platform has 5,000 active accounts and says that $p=0.08$ of them regularly use captions. An SRS of 100 accounts, selected without replacement, contains 14 regular caption users, so $\\widehat p=0.14$.\\par\\smallskip \\textbf{Jules:} ``Because $n=100>30$, $\\widehat p$ is approximately normal. I get $P(\\widehat p\\geq0.14)=0.0135$, which proves caption use increased.''\\par \\textbf{Nora:} ``Because $np=8<10$, a normal model is not justified. Therefore $\\widehat p$ is biased and this sample tells us nothing.''\\par\\smallskip A binomial calculator gives $P(X\\geq14)=0.0282$ for $X\\sim\\mathrm{Bin}(100,0.08)$. This closely approximates sampling from 5,000 accounts."
+      }
+    ],
+    "codemod_idempotent": true,
+    "remaining_prerequisites": []
+  },
+  "upstream_impact": [
+    {
+      "target": "load_lesson",
+      "result": {
+        "target": {
+          "id": "Function:dok/build_ladder.py:load_lesson",
+          "name": "load_lesson",
+          "type": "Function",
+          "filePath": "dok/build_ladder.py"
+        },
+        "direction": "upstream",
+        "impactedCount": 5,
+        "risk": "LOW",
+        "epistemic": "exact",
+        "summary": {
+          "direct": 3,
+          "processes_affected": 0,
+          "modules_affected": 0
+        },
+        "byDepthCounts": {
+          "1": 3,
+          "2": 1,
+          "3": 1
+        },
+        "affected_processes": [],
+        "affected_modules": [],
+        "byDepth": {
+          "1": [
+            {
+              "depth": 1,
+              "id": "Function:dok/build_ladder.py:build",
+              "name": "build",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            },
+            {
+              "depth": 1,
+              "id": "Function:dok/build_ladder.py:write_manifest",
+              "name": "write_manifest",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            },
+            {
+              "depth": 1,
+              "id": "Function:dok/build_ladder.py:validate_all",
+              "name": "validate_all",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ],
+          "2": [
+            {
+              "depth": 2,
+              "id": "Function:dok/build_ladder.py:main",
+              "name": "main",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ],
+          "3": [
+            {
+              "depth": 3,
+              "id": "File:dok/build_ladder.py",
+              "name": "build_ladder.py",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "target": "validate_item",
+      "result": {
+        "target": {
+          "id": "Function:dok/build_ladder.py:validate_item",
+          "name": "validate_item",
+          "type": "Function",
+          "filePath": "dok/build_ladder.py"
+        },
+        "direction": "upstream",
+        "impactedCount": 3,
+        "risk": "LOW",
+        "epistemic": "exact",
+        "summary": {
+          "direct": 1,
+          "processes_affected": 0,
+          "modules_affected": 0
+        },
+        "byDepthCounts": {
+          "1": 1,
+          "2": 1,
+          "3": 1
+        },
+        "affected_processes": [],
+        "affected_modules": [],
+        "byDepth": {
+          "1": [
+            {
+              "depth": 1,
+              "id": "Function:dok/build_ladder.py:validate_all",
+              "name": "validate_all",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ],
+          "2": [
+            {
+              "depth": 2,
+              "id": "Function:dok/build_ladder.py:main",
+              "name": "main",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ],
+          "3": [
+            {
+              "depth": 3,
+              "id": "File:dok/build_ladder.py",
+              "name": "build_ladder.py",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "target": "validate_lesson",
+      "result": {
+        "target": {
+          "id": "Function:dok/build_ladder.py:validate_lesson",
+          "name": "validate_lesson",
+          "type": "Function",
+          "filePath": "dok/build_ladder.py"
+        },
+        "direction": "upstream",
+        "impactedCount": 4,
+        "risk": "LOW",
+        "epistemic": "exact",
+        "summary": {
+          "direct": 2,
+          "processes_affected": 0,
+          "modules_affected": 0
+        },
+        "byDepthCounts": {
+          "1": 2,
+          "2": 1,
+          "3": 1
+        },
+        "affected_processes": [],
+        "affected_modules": [],
+        "byDepth": {
+          "1": [
+            {
+              "depth": 1,
+              "id": "Function:dok/build_ladder.py:build",
+              "name": "build",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            },
+            {
+              "depth": 1,
+              "id": "Function:dok/build_ladder.py:validate_all",
+              "name": "validate_all",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ],
+          "2": [
+            {
+              "depth": 2,
+              "id": "Function:dok/build_ladder.py:main",
+              "name": "main",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ],
+          "3": [
+            {
+              "depth": 3,
+              "id": "File:dok/build_ladder.py",
+              "name": "build_ladder.py",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "target": "emit_student",
+      "result": {
+        "target": {
+          "id": "Function:dok/build_ladder.py:emit_student",
+          "name": "emit_student",
+          "type": "Function",
+          "filePath": "dok/build_ladder.py"
+        },
+        "direction": "upstream",
+        "impactedCount": 0,
+        "risk": "LOW",
+        "epistemic": "exact",
+        "summary": {
+          "direct": 0,
+          "processes_affected": 0,
+          "modules_affected": 0
+        },
+        "byDepthCounts": {},
+        "affected_processes": [],
+        "affected_modules": [],
+        "byDepth": {}
+      }
+    },
+    {
+      "target": "emit_board",
+      "result": {
+        "target": {
+          "id": "Function:dok/build_ladder.py:emit_board",
+          "name": "emit_board",
+          "type": "Function",
+          "filePath": "dok/build_ladder.py"
+        },
+        "direction": "upstream",
+        "impactedCount": 0,
+        "risk": "LOW",
+        "epistemic": "exact",
+        "summary": {
+          "direct": 0,
+          "processes_affected": 0,
+          "modules_affected": 0
+        },
+        "byDepthCounts": {},
+        "affected_processes": [],
+        "affected_modules": [],
+        "byDepth": {}
+      }
+    },
+    {
+      "target": "emit_teacher",
+      "result": {
+        "target": {
+          "id": "Function:dok/build_ladder.py:emit_teacher",
+          "name": "emit_teacher",
+          "type": "Function",
+          "filePath": "dok/build_ladder.py"
+        },
+        "direction": "upstream",
+        "impactedCount": 0,
+        "risk": "LOW",
+        "epistemic": "exact",
+        "summary": {
+          "direct": 0,
+          "processes_affected": 0,
+          "modules_affected": 0
+        },
+        "byDepthCounts": {},
+        "affected_processes": [],
+        "affected_modules": [],
+        "byDepth": {}
+      }
+    },
+    {
+      "target": "build",
+      "result": {
+        "target": {
+          "id": "Function:dok/build_ladder.py:build",
+          "name": "build",
+          "type": "Function",
+          "filePath": "dok/build_ladder.py"
+        },
+        "direction": "upstream",
+        "impactedCount": 2,
+        "risk": "LOW",
+        "epistemic": "exact",
+        "summary": {
+          "direct": 1,
+          "processes_affected": 0,
+          "modules_affected": 0
+        },
+        "byDepthCounts": {
+          "1": 1,
+          "2": 1
+        },
+        "affected_processes": [],
+        "affected_modules": [],
+        "byDepth": {
+          "1": [
+            {
+              "depth": 1,
+              "id": "Function:dok/build_ladder.py:main",
+              "name": "main",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ],
+          "2": [
+            {
+              "depth": 2,
+              "id": "File:dok/build_ladder.py",
+              "name": "build_ladder.py",
+              "filePath": "dok/build_ladder.py",
+              "relationType": "CALLS",
+              "confidence": 0.85,
+              "processes": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "target": "test_board_contents",
+      "result": {
+        "target": {
+          "id": "Function:tests/test_dok_build.py:test_board_contents",
+          "name": "test_board_contents",
+          "type": "Function",
+          "filePath": "tests/test_dok_build.py"
+        },
+        "direction": "upstream",
+        "impactedCount": 0,
+        "risk": "LOW",
+        "epistemic": "exact",
+        "summary": {
+          "direct": 0,
+          "processes_affected": 0,
+          "modules_affected": 0
+        },
+        "byDepthCounts": {},
+        "affected_processes": [],
+        "affected_modules": [],
+        "byDepth": {}
+      }
+    },
+    {
+      "target": "test_group_tether_and_emission",
+      "result": {
+        "target": {
+          "id": "Function:tests/test_dok_build.py:test_group_tether_and_emission",
+          "name": "test_group_tether_and_emission",
+          "type": "Function",
+          "filePath": "tests/test_dok_build.py"
+        },
+        "direction": "upstream",
+        "impactedCount": 0,
+        "risk": "LOW",
+        "epistemic": "exact",
+        "summary": {
+          "direct": 0,
+          "processes_affected": 0,
+          "modules_affected": 0
+        },
+        "byDepthCounts": {},
+        "affected_processes": [],
+        "affected_modules": [],
+        "byDepth": {}
+      }
+    },
+    {
+      "target": "transform",
+      "result": {
+        "error": "Target 'Function:scripts/dok-video-free.mjs:transform' not found",
+        "target": {
+          "name": "transform"
+        },
+        "direction": "upstream",
+        "impactedCount": 0,
+        "risk": "UNKNOWN"
+      }
+    }
+  ],
+  "gitnexus_notes": [
+    "Initial stale-index refresh was retried with filesystem escalation after the user-level registry write was denied; index-only refresh then succeeded.",
+    "Initial staged check reported HIGH aggregate risk across 8 rendering flows, including duplicate baseline-copy symbols. Git staged scope contained only 7 intended files; user was warned before commit.",
+    "Pre-commit checks for mechanical and hand-edit commits reported no indexed symbol changes (YAML/JSONL data only)."
+  ],
+  "suites": {
+    "python": {
+      "command": "pytest tests/test_dok_build.py -q",
+      "passed": 577,
+      "failed": 0,
+      "temporary_paths": "pytest cache and fixtures redirected to system TEMP; no state scratch directories",
+      "final_run_after_rebuild": true
+    },
+    "codemod": {
+      "command": "npx vitest run tests/dok-video-free.test.js",
+      "passed": 4,
+      "failed": 0
+    },
+    "focused": {
+      "command": "npx vitest run tests/dok-coverage.test.js tests/dok-registry.test.js tests/dok-index.test.js tests/desk-dok-ladder-row.test.js tests/desk-teacher-dok-app.test.js",
+      "files": 5,
+      "passed": 362,
+      "failed": 0
+    },
+    "validation": {
+      "command": "python dok/build_ladder.py --validate",
+      "registry_rows": 73,
+      "lessons": 69,
+      "exit_code": 0
+    },
+    "root": {
+      "command": "npm test",
+      "exit_code": 1,
+      "passed": 10051,
+      "failed": 25,
+      "skipped": 1,
+      "files_passed": 297,
+      "files_failed": 17,
+      "baseline_comparison": {
+        "final_failures": [
+          "tests/classroom-structure.test.js > Live Classroom v1a - Desk integration > D3: the Teacher menu has a Live Classroom item opening teacher-classroom.html",
+          "tests/classroom-structure.test.js > KEYBOARD_AVATAR Phase 1 -- player controller wiring > Desk has the keyboard help-text strip below the board mount",
+          "tests/desk-self-signup.test.js > teacher onboarding + class gradebook (static) > the Teacher menu opens the Teacher Tools launcher, which wires the Roster Console",
+          "tests/desk-user-role.test.js > Desk: user-role gating + sign-in teacher checkbox > 12: Teacher Tools launcher reaches the teacher pages (roster console, dashboard, codegen)",
+          "tests/desk-verify-tools.test.js > Desk — verification tools surfaced > the Teacher Tools launcher wires the scan-to-verify tool (openVerifyQR)",
+          "tests/doge-payout-agent.test.js > DOGE payout agent config and RPC wrapper > lets environment override file config and keeps portable defaults",
+          "tests/doge-send-core.test.js > doge-send durable file journal > atomically creates, refuses overwrite, updates, and clears a mode-0600 journal",
+          "tests/lineage.test.js > data lineage manifest > points every automatic regeneration command at an existing script or test",
+          "tests/phase4-structure.test.js > teacher-dashboard.html — Phase 4a structure > declares it is a teacher dashboard (title)",
+          "tests/phase4-structure.test.js > teacher-dashboard.html — Phase 4a structure > teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys",
+          "tests/phase4b-structure.test.js > Phase 4b — teacher-dashboard.html remediation panel > teacher secret persistence is opt-in only; localStorage scoped to known keys (Phase 4a security posture, updated 2026-05-19)",
+          "tests/progress-reset-matrix-cleared-storage.test.js > matrix row: cleared storage recovers — CONTROL (a subsequent live success) > (7) flips to available, writes the latch, and the strict gate resumes",
+          "tests/progress-reset-matrix-latch.test.js > matrix row: strict-gate-still-strict — evidence present + genuinely incomplete predecessor stays LOCKED > D4 fail-open never leaks into the affirmative-server case",
+          "tests/progress-reset-matrix-loadstate.test.js > matrix row: 401 -> auth > classifies unavailable/auth, shows the Sign-in banner, and never clears the roster session",
+          "tests/progress-reset-matrix-loadstate.test.js > matrix row: 403 -> auth (classified identically to 401) > classifies unavailable/auth",
+          "tests/remaining-feature-contracts.test.js > F004 Start Here signed-in progress preview > renders the signed-out fallback when identity or service config is unavailable",
+          "tests/remaining-feature-contracts.test.js > F004 Start Here signed-in progress preview > fetches /grade with rosterClient.token() and renders quarter/unit progress for signed-in students",
+          "tests/remaining-feature-contracts.test.js > F061 public worksheet table of contents > index links TOC.html and TOC lists all 69 live worksheet files that exist on disk",
+          "tests/journeys/j1-signin-donow.journey.test.js > Desk journey J1 > J1 sign-in renders fake /grade values and sign-out clears the identity chip (supersedes desk-donow-card “renderDoNow fetches /donow with a Bearer token” and post-sign-in refresh pins)",
+          "tests/journeys/j2-shared-device.journey.test.js > Desk journey J2 > J2 reloads a shared device across A → B → A without leaking marks, due chip, or SRS state, then hydrates a fresh marks bucket from /donow (supersedes desk-calendar-sync per-student visibility and selfDone hydration behavior)",
+          "tests/journeys/j4-quick-check.journey.test.js > Desk journey J4 > J4 resumes answered snapshots without score inflation and commits one 8/10 Quick check (supersedes desk-blooket-flashcards it 55 “_bfSaveProgress persists the answered snapshot”, it 56 “answer saves after scoring and Next clears answered before saving”, it 57 “answer then Cancel resumes at the following card without another point”, it 58 “pass timer is canceled on close and resume commits the saved 80% once”, and it 58b “non-passing answer then Cancel resumes one card ahead without a commit”)",
+          "tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab 'network' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab '401' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab '403' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab '500' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)"
+        ],
+        "new_failures": [
+          "tests/journeys/j1-signin-donow.journey.test.js > Desk journey J1 > J1 sign-in renders fake /grade values and sign-out clears the identity chip (supersedes desk-donow-card “renderDoNow fetches /donow with a Bearer token” and post-sign-in refresh pins)"
+        ],
+        "baseline_failures_now_passing": [
+          "tests/journeys/harness.smoke.test.js > Desk journey harness smoke > boots the real Desk cleanly with Do Now and disk-backed roadmap tiles in under 3 seconds"
+        ],
+        "file_status_counts": {
+          "passed": 297,
+          "failed": 17
+        },
+        "assertion_status_counts": {
+          "passed": 10051,
+          "failed": 25,
+          "skipped": 1
+        },
+        "counts": {
+          "numTotalTestSuites": 1987,
+          "numPassedTestSuites": 1987,
+          "numFailedTestSuites": 0,
+          "numPendingTestSuites": 0,
+          "numTotalTests": 10077,
+          "numPassedTests": 10052,
+          "numFailedTests": 25,
+          "numPendingTests": 0,
+          "numTodoTests": 0
+        }
+      },
+      "timing_rerun": {
+        "command": "npx vitest run tests/journeys/j1-signin-donow.journey.test.js tests/journeys/harness.smoke.test.js tests/journeys/j2-shared-device.journey.test.js tests/journeys/j4-quick-check.journey.test.js",
+        "results": [
+          {
+            "file": "tests/journeys/harness.smoke.test.js",
+            "test": "boots the real Desk cleanly with Do Now and disk-backed roadmap tiles in under 3 seconds",
+            "status": "passed",
+            "failure_messages": []
+          },
+          {
+            "file": "tests/journeys/harness.smoke.test.js",
+            "test": "404s and records unmatched method+path pairs for every known remote origin",
+            "status": "passed",
+            "failure_messages": []
+          },
+          {
+            "file": "tests/journeys/j1-signin-donow.journey.test.js",
+            "test": "J1 sign-in renders fake /grade values and sign-out clears the identity chip (supersedes desk-donow-card “renderDoNow fetches /donow with a Bearer token” and post-sign-in refresh pins)",
+            "status": "passed",
+            "failure_messages": []
+          },
+          {
+            "file": "tests/journeys/j2-shared-device.journey.test.js",
+            "test": "J2 reloads a shared device across A → B → A without leaking marks, due chip, or SRS state, then hydrates a fresh marks bucket from /donow (supersedes desk-calendar-sync per-student visibility and selfDone hydration behavior)",
+            "status": "failed",
+            "failure_messages": [
+              "Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\"."
+            ]
+          },
+          {
+            "file": "tests/journeys/j4-quick-check.journey.test.js",
+            "test": "J4 resumes answered snapshots without score inflation and commits one 8/10 Quick check (supersedes desk-blooket-flashcards it 55 “_bfSaveProgress persists the answered snapshot”, it 56 “answer saves after scoring and Next clears answered before saving”, it 57 “answer then Cancel resumes at the following card without another point”, it 58 “pass timer is canceled on close and resume commits the saved 80% once”, and it 58b “non-passing answer then Cancel resumes one card ahead without a commit”)",
+            "status": "failed",
+            "failure_messages": [
+              "Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\"."
+            ]
+          },
+          {
+            "file": "tests/journeys/j4-quick-check.journey.test.js",
+            "test": "J4 opens a legacy snapshot without answered at its saved card (supersedes desk-blooket-flashcards it 59 “legacy snapshot without answered resumes at its saved index”)",
+            "status": "passed",
+            "failure_messages": []
+          }
+        ]
+      },
+      "assessment": "24 failures match the baseline by full name. The additional J1 5-second timeout passed on targeted rerun; the baseline harness timing failure passed in the final root run and targeted rerun. J2/J4 retain their baseline timeouts. No journey or Desk code changed.",
+      "reporter_note": "Vitest JSON numPassedTests includes the skipped test here; the passed/failed/skipped counts above come from individual assertion statuses."
+    }
+  },
+  "root_baseline": {
+    "command": "npm test",
+    "files_passed": 295,
+    "files_failed": 17,
+    "tests_passed": 9978,
+    "tests_failed": 25,
+    "tests_skipped": 1,
+    "failures": [
+      "tests/classroom-structure.test.js > Live Classroom v1a - Desk integration > D3: the Teacher menu has a Live Classroom item opening teacher-classroom.html",
+      "tests/classroom-structure.test.js > KEYBOARD_AVATAR Phase 1 -- player controller wiring > Desk has the keyboard help-text strip below the board mount",
+      "tests/desk-self-signup.test.js > teacher onboarding + class gradebook (static) > the Teacher menu opens the Teacher Tools launcher, which wires the Roster Console",
+      "tests/desk-user-role.test.js > Desk: user-role gating + sign-in teacher checkbox > 12: Teacher Tools launcher reaches the teacher pages (roster console, dashboard, codegen)",
+      "tests/desk-verify-tools.test.js > Desk — verification tools surfaced > the Teacher Tools launcher wires the scan-to-verify tool (openVerifyQR)",
+      "tests/doge-payout-agent.test.js > DOGE payout agent config and RPC wrapper > lets environment override file config and keeps portable defaults",
+      "tests/doge-send-core.test.js > doge-send durable file journal > atomically creates, refuses overwrite, updates, and clears a mode-0600 journal",
+      "tests/lineage.test.js > data lineage manifest > points every automatic regeneration command at an existing script or test",
+      "tests/phase4-structure.test.js > teacher-dashboard.html — Phase 4a structure > declares it is a teacher dashboard (title)",
+      "tests/phase4-structure.test.js > teacher-dashboard.html — Phase 4a structure > teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys",
+      "tests/phase4b-structure.test.js > Phase 4b — teacher-dashboard.html remediation panel > teacher secret persistence is opt-in only; localStorage scoped to known keys (Phase 4a security posture, updated 2026-05-19)",
+      "tests/progress-reset-matrix-cleared-storage.test.js > matrix row: cleared storage recovers — CONTROL (a subsequent live success) > (7) flips to available, writes the latch, and the strict gate resumes",
+      "tests/progress-reset-matrix-latch.test.js > matrix row: strict-gate-still-strict — evidence present + genuinely incomplete predecessor stays LOCKED > D4 fail-open never leaks into the affirmative-server case",
+      "tests/progress-reset-matrix-loadstate.test.js > matrix row: 401 -> auth > classifies unavailable/auth, shows the Sign-in banner, and never clears the roster session",
+      "tests/progress-reset-matrix-loadstate.test.js > matrix row: 403 -> auth (classified identically to 401) > classifies unavailable/auth",
+      "tests/remaining-feature-contracts.test.js > F004 Start Here signed-in progress preview > renders the signed-out fallback when identity or service config is unavailable",
+      "tests/remaining-feature-contracts.test.js > F004 Start Here signed-in progress preview > fetches /grade with rosterClient.token() and renders quarter/unit progress for signed-in students",
+      "tests/remaining-feature-contracts.test.js > F061 public worksheet table of contents > index links TOC.html and TOC lists all 69 live worksheet files that exist on disk",
+      "tests/journeys/harness.smoke.test.js > Desk journey harness smoke > boots the real Desk cleanly with Do Now and disk-backed roadmap tiles in under 3 seconds",
+      "tests/journeys/j2-shared-device.journey.test.js > Desk journey J2 > J2 reloads a shared device across A → B → A without leaking marks, due chip, or SRS state, then hydrates a fresh marks bucket from /donow (supersedes desk-calendar-sync per-student visibility and selfDone hydration behavior)",
+      "tests/journeys/j4-quick-check.journey.test.js > Desk journey J4 > J4 resumes answered snapshots without score inflation and commits one 8/10 Quick check (supersedes desk-blooket-flashcards it 55 “_bfSaveProgress persists the answered snapshot”, it 56 “answer saves after scoring and Next clears answered before saving”, it 57 “answer then Cancel resumes at the following card without another point”, it 58 “pass timer is canceled on close and resume commits the saved 80% once”, and it 58b “non-passing answer then Cancel resumes one card ahead without a commit”)",
+      "tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab 'network' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab '401' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab '500' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab '403' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)"
+    ],
+    "note": "npm.ps1 did not forward reporter arguments; counts and full failure names were extracted from its text log."
+  },
+  "pushed": false,
+  "unrelated_changes_preserved": true,
+  "scratch_directories_under_state_created": false,
+  "pagination_repair": "Shortened two rewritten 1.7 bullets after the first PDF audit found a one-bullet overflow. Recompiled 1.7 with compile.ps1; restored teacher key from 4 pages to the original 3. No layout or problem changes.",
+  "artifacts": {
+    "compile_command": "powershell -NoProfile -File dok/compile.ps1 -All",
+    "compile_summary": "all compiled.",
+    "completed_editions": 207,
+    "counts": {
+      "student": 69,
+      "board": 69,
+      "teacher": 69
+    },
+    "page_count_changes": [],
+    "preexisting_page_exceptions": [
+      {
+        "file": "dok/pdf/aps_1.1_1.2_1.4_1.7_board.pdf",
+        "pages": 2,
+        "sha256": "1ac6eb9ecd875083c5831c4c748de95c63666ef2da47dd0ae8c0f2d6f15c5b62"
+      },
+      {
+        "file": "dok/pdf/aps_1.1_1.2_1.4_1.7_teacher.pdf",
+        "pages": 5,
+        "sha256": "66cf4e1b9add3f20af4ce5753c2b16fb301f4946ae46d7af25a87607085782cf"
+      }
+    ],
+    "tex_matches_current_generator": true,
+    "tex_mismatches": [],
+    "unchanged_pdf_hashes": [],
+    "forbidden_pdf_words": [],
+    "recursive_video_hits": [],
+    "artifacts": [
+      {
+        "file": "dok/pdf/aps_1.1_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 93051,
+        "sha256": "5897648297f92ab221b69ee210b77e628fef23e4f4de23b8aff7a87141e744cc"
+      },
+      {
+        "file": "dok/pdf/aps_1.1_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 82084,
+        "sha256": "83a9380c43cca4ca61c8cb2acd0f1a329a09789ce2ff0711d026561b601985b2"
+      },
+      {
+        "file": "dok/pdf/aps_1.1_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 141456,
+        "sha256": "5e47d34788c648ba986deaf3fa0224c50f9cdca79878215bc5ef3a0f2cdcaad4"
+      },
+      {
+        "file": "dok/pdf/aps_1.10_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 102929,
+        "sha256": "f0ce23c7f54019589069f41c9592fa78a59c81ff23914b9804cbef9101c5f7a0"
+      },
+      {
+        "file": "dok/pdf/aps_1.10_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 91908,
+        "sha256": "25645ef01bd90d77571fee409e70c8cdb8c03db1dc8aa4152939f4b860c53a9a"
+      },
+      {
+        "file": "dok/pdf/aps_1.10_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 148771,
+        "sha256": "ad39e047c77fa8e0b886360b8020a82988c06d5f7be6964212f758b0ece1b2e5"
+      },
+      {
+        "file": "dok/pdf/aps_1.1_1.2_1.4_1.7_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 117997,
+        "sha256": "d89ee96ccdd1cec7c38aca3aee210177f7848a437332038ee8ca5b75d869d997"
+      },
+      {
+        "file": "dok/pdf/aps_1.1_1.2_1.4_1.7_board.pdf",
+        "edition": "board",
+        "pages": 2,
+        "bytes": 128803,
+        "sha256": "4f57cec27af67696e9281bacb6b886d5a1cd7ca125800c171430d666792442cd"
+      },
+      {
+        "file": "dok/pdf/aps_1.1_1.2_1.4_1.7_teacher.pdf",
+        "edition": "teacher",
+        "pages": 5,
+        "bytes": 185144,
+        "sha256": "d14bcd33f848a94a6c7bbdafb717f335b95881e48f66dbb9c32b7c5002605d24"
+      },
+      {
+        "file": "dok/pdf/aps_1.2_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 77661,
+        "sha256": "05408398ee254a345095193a3441a241aba5c2cd637494a429e954428c359fad"
+      },
+      {
+        "file": "dok/pdf/aps_1.2_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 77375,
+        "sha256": "f9906c3117a8acc90637134c4fd847599ec1f0858d1beecd141a03283bdc1907"
+      },
+      {
+        "file": "dok/pdf/aps_1.2_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 123604,
+        "sha256": "a42f4bee751fdb093b49f024d638d9cf72af8936bac662a124e964a0f92eb346"
+      },
+      {
+        "file": "dok/pdf/aps_1.3_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 81999,
+        "sha256": "9fb54323e7f3b1f33e27c8f918dc8dd1995c00bf7dd3812fd35dad5012ce5be1"
+      },
+      {
+        "file": "dok/pdf/aps_1.3_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 71943,
+        "sha256": "1309de88466ad11b75305673213c97464f24f11f6a1867c64d89bf32a734cb13"
+      },
+      {
+        "file": "dok/pdf/aps_1.3_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 150222,
+        "sha256": "477810bf2977cf52abb1b89cb0580463b019dab8fc116ec2fb2eaf2a5496a623"
+      },
+      {
+        "file": "dok/pdf/aps_1.4_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 93601,
+        "sha256": "917a23944fa356bd52b74d9cda306360564082887c9652e24ac9dd5306177d07"
+      },
+      {
+        "file": "dok/pdf/aps_1.4_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 92508,
+        "sha256": "eb3eaa707d9221286fe7b0df76fcb59843f0f5eb1a2570069cfe7082ad78f5e9"
+      },
+      {
+        "file": "dok/pdf/aps_1.4_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 146301,
+        "sha256": "31d576eff1a926b86578d6688c98b918605cf889934d0bff506b60845c7bc70e"
+      },
+      {
+        "file": "dok/pdf/aps_1.4_1.5_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 96007,
+        "sha256": "1bece523f4a0ba6d960c5c72acf81b21e24daee354423e6674ddaa4b6cda194f"
+      },
+      {
+        "file": "dok/pdf/aps_1.4_1.5_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 96836,
+        "sha256": "e98fcb47f3f86d1c4209cb53f345417f01712faaf38987f4712d62a1da8f4c0c"
+      },
+      {
+        "file": "dok/pdf/aps_1.4_1.5_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 184772,
+        "sha256": "751d8f682bdec461ed22b07319c701a436365205ce17e06efeeccca24ecd706c"
+      },
+      {
+        "file": "dok/pdf/aps_1.5_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 86035,
+        "sha256": "171f1a1df7bcc25da13577bf98fbc2beeadbdfa9dd0a05b2ae86a76d36c47160"
+      },
+      {
+        "file": "dok/pdf/aps_1.5_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 86103,
+        "sha256": "e250f43cdaccdde559a6183e062e5ad01b1dd4c0db77f12c97222b44ffae7dd7"
+      },
+      {
+        "file": "dok/pdf/aps_1.5_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 140503,
+        "sha256": "566c3ec3e0912afe01a167a05225acb72b10e93cc6668aff676b936d4aafdcb9"
+      },
+      {
+        "file": "dok/pdf/aps_1.6_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 86691,
+        "sha256": "6155cbefb8c38ea71b1fe2051819911cec75094f2effec0d827d55a97fa9a36d"
+      },
+      {
+        "file": "dok/pdf/aps_1.6_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 82146,
+        "sha256": "1822588232aab4ac0addfcacfd369cc6468a183c1f3332ff0ac2ba10c495e0d8"
+      },
+      {
+        "file": "dok/pdf/aps_1.6_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 140924,
+        "sha256": "a7e663a9bb2ab9cfce845cd29a5e5d5052850b0296c22e804d03ec4b7f0d0564"
+      },
+      {
+        "file": "dok/pdf/aps_1.7_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 124522,
+        "sha256": "0877a95a5737789963ea111409c1780a102c871ea26ad14f3f5d57d88d1049d3"
+      },
+      {
+        "file": "dok/pdf/aps_1.7_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 123645,
+        "sha256": "de0712a84e31f31b7ab4d64d93727614d8f450fea0d76c2af03899151e426cff"
+      },
+      {
+        "file": "dok/pdf/aps_1.7_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 198933,
+        "sha256": "e49ca417751134977de90d0e358e5a943e4fd46a9b97c79fa17be5b346a8925a"
+      },
+      {
+        "file": "dok/pdf/aps_1.7_1.8_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 113740,
+        "sha256": "a27c498f289dabf944ecfe2cd9df208dd3da473848518e73d4cdeb894856266a"
+      },
+      {
+        "file": "dok/pdf/aps_1.7_1.8_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 112944,
+        "sha256": "a79380e6c104f0bda1d0bf2a85635a923a85393e4797f79bb3329a496d86a8f9"
+      },
+      {
+        "file": "dok/pdf/aps_1.7_1.8_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 242962,
+        "sha256": "663e7d50b76ec804e24d2467899a436227fa2b5d4b7ab397fd8a125d53c711ee"
+      },
+      {
+        "file": "dok/pdf/aps_1.8_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 87368,
+        "sha256": "6800ecaf7b7ef727f246f3937f8b3c0d74187b9215d9b87a9099520767112ef6"
+      },
+      {
+        "file": "dok/pdf/aps_1.8_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 76846,
+        "sha256": "df872a4ebabfcc7d97bd12707133c44b7e06edbd104c223b7c2fe4a3b8afa285"
+      },
+      {
+        "file": "dok/pdf/aps_1.8_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 162002,
+        "sha256": "5c36f73e3167d0dce16a0ecd7b1ee525f5f2e2ccbb070dc526b03f88cd0f89fd"
+      },
+      {
+        "file": "dok/pdf/aps_1.9_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 116251,
+        "sha256": "ecc9ecb28d217cf2ffb24bf2517fb4ac7ca6f35b5cba54446d6722169ce6523b"
+      },
+      {
+        "file": "dok/pdf/aps_1.9_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 86261,
+        "sha256": "0e70bad74000f11565524c8cd2fddcf2cb06d9d16420c7ce1f266d947945df63"
+      },
+      {
+        "file": "dok/pdf/aps_1.9_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 143309,
+        "sha256": "7b69c1892193e0036e316f2cf21d0e7fa879727061a1a33c2ec1aed09968880f"
+      },
+      {
+        "file": "dok/pdf/aps_2.1_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 111419,
+        "sha256": "6f9b12d311ded32b64c97bac15f8fa823a9f90d8e9693e7e9f9d56dd40d06e5f"
+      },
+      {
+        "file": "dok/pdf/aps_2.1_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 106720,
+        "sha256": "21936b9ed8e0607b0ab78619775b07acd0e2829fc9ac701151b414914dbe7123"
+      },
+      {
+        "file": "dok/pdf/aps_2.1_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 147212,
+        "sha256": "596a599e87acf614e967806e5e658981efe8c55029eca5bcfac8b32e02a68a7a"
+      },
+      {
+        "file": "dok/pdf/aps_2.2_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 99893,
+        "sha256": "be60e857753dbb2353da70fea51ab3205daa64aa9c02033327fc64831d019504"
+      },
+      {
+        "file": "dok/pdf/aps_2.2_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 99443,
+        "sha256": "d19d2d1eee672ca2c8a969c467ca30997d9cabcf4273d5cd1e064539f6666e12"
+      },
+      {
+        "file": "dok/pdf/aps_2.2_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 156018,
+        "sha256": "e4da04ca7dfffb8abfa9f0acae878c56e032b214f325a586c817019746968e70"
+      },
+      {
+        "file": "dok/pdf/aps_2.3_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 102438,
+        "sha256": "d7ff62cf93960f814d01e55de648bc1d2721b8f3f5bcf38af18708d85dfbf8a5"
+      },
+      {
+        "file": "dok/pdf/aps_2.3_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 103372,
+        "sha256": "b5573db5da4c60655348e5dd3bd5a9e0bcd35c132b5214002538953dc54f9940"
+      },
+      {
+        "file": "dok/pdf/aps_2.3_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 153733,
+        "sha256": "e82338a23446bb14b1028b83553e0e41d2045030bae56055d930eab14fd384c2"
+      },
+      {
+        "file": "dok/pdf/aps_2.4_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 97622,
+        "sha256": "46d2a3c25dbc7d5dc7549bd18729538102909873a9ba795dbca9497e0d410cc1"
+      },
+      {
+        "file": "dok/pdf/aps_2.4_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 94037,
+        "sha256": "8ba181527f8204108c526bee760aaf4ef25c53b805891f0353aa241d1ed229ee"
+      },
+      {
+        "file": "dok/pdf/aps_2.4_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 151035,
+        "sha256": "4c0f8f96cf3fee2540c11bea60108f5ce3dd039d54f91b752a4afce60a4b06eb"
+      },
+      {
+        "file": "dok/pdf/aps_2.5_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 102041,
+        "sha256": "e86be2548c4422ddc0e203294a7c6a13c2eaa1d4634fd4397046ca19fac8fdf3"
+      },
+      {
+        "file": "dok/pdf/aps_2.5_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 92904,
+        "sha256": "f7acc576e89eac3f4f410a1ff59877e1e7a68cf6c9d646cddbc8e6fb1cb08e3f"
+      },
+      {
+        "file": "dok/pdf/aps_2.5_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 164727,
+        "sha256": "f85285f225f8d6e7291af0f7def225f55eb591e633098a70a1e26bd2502e52ff"
+      },
+      {
+        "file": "dok/pdf/aps_2.6_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 104347,
+        "sha256": "8615611cd7d220938de61b11ba19c73dc4c8f3d4c8a625912ba5abb21acf56fd"
+      },
+      {
+        "file": "dok/pdf/aps_2.6_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 103111,
+        "sha256": "9b9dd04de5b7ffe5eb58cfde0611ff0fada4620caddd23ea91f78dc03abd2a13"
+      },
+      {
+        "file": "dok/pdf/aps_2.6_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 152452,
+        "sha256": "7c34527ab648193aeaf7bd487aed71d3a5101ef903ea0e39d27fef3848ad162a"
+      },
+      {
+        "file": "dok/pdf/aps_2.7_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 105244,
+        "sha256": "130ef6b45a00bacc68666315c2bec35fb608c05e3be27a0b55a8ae96df7f1603"
+      },
+      {
+        "file": "dok/pdf/aps_2.7_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 103581,
+        "sha256": "d9a90b2f2bcc4cec15fab3028969d4fde1229f9a516a7fd6a37a44f4b91d9808"
+      },
+      {
+        "file": "dok/pdf/aps_2.7_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 154750,
+        "sha256": "f7c62b64ce0b06eb6bec90cba244a3dc74bf91eafbd439399c2374139d561850"
+      },
+      {
+        "file": "dok/pdf/aps_2.8_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 120713,
+        "sha256": "b240355e5d1c8e8bad5bc4593fb3316f4ef7863046ec0a5ca1f7afef1e766763"
+      },
+      {
+        "file": "dok/pdf/aps_2.8_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 111698,
+        "sha256": "49b3babd7ec24d6b1c2038b1f196d21afab6b93381ca62234c8fc33442230237"
+      },
+      {
+        "file": "dok/pdf/aps_2.8_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 171084,
+        "sha256": "35845ada162378a90bc7c66bb92f17c02f948ba27548555a11dff91ed4337eb8"
+      },
+      {
+        "file": "dok/pdf/aps_3.1_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 85531,
+        "sha256": "d6510051fb01955dc4ce7f31a3daf57bd021860db0047560eb6a7f0de2fefb22"
+      },
+      {
+        "file": "dok/pdf/aps_3.1_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 83952,
+        "sha256": "7e43c188a9dec630f2f2f56a2d48f4226e981de0437cf85156d5729d59d2efc3"
+      },
+      {
+        "file": "dok/pdf/aps_3.1_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 138129,
+        "sha256": "67c7ae8a12647c7b863affb4d470476b1e05c077fa4d3e4c34d8945b356ffb9f"
+      },
+      {
+        "file": "dok/pdf/aps_3.2_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 68983,
+        "sha256": "51efc4a7fc21b35786230c96cb934c00e4e112aa3cc6b4c600ab13bc9d2ebce8"
+      },
+      {
+        "file": "dok/pdf/aps_3.2_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 68290,
+        "sha256": "35608906db8a293c55dd0436f1567e11509e0f22ab31cd8a4ff495e9c478e15a"
+      },
+      {
+        "file": "dok/pdf/aps_3.2_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 128130,
+        "sha256": "0e12fa93d0a6b7d47bb9095e5e5330efa7b3b1fb4db7962f904f6711989ad2ff"
+      },
+      {
+        "file": "dok/pdf/aps_3.3_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 84825,
+        "sha256": "4e0ee9b376ad6d8a08961bd658d105e914c277c3a53658ca57907ff2f08f2f9b"
+      },
+      {
+        "file": "dok/pdf/aps_3.3_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 77556,
+        "sha256": "ae581338200bad933e3e15321b72e37f3ef36dfc7f6635d6467debe1eca8d63a"
+      },
+      {
+        "file": "dok/pdf/aps_3.3_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 127666,
+        "sha256": "20e6ced82682cb67665009dd259e33d439b4bdeb6e0b3733eec9e962fa4a9569"
+      },
+      {
+        "file": "dok/pdf/aps_3.4_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 95625,
+        "sha256": "9a0c7fdc4588d4d751a0180a0d8da9cbaa4929f1fb7b251ffb3d13f6d207ef7d"
+      },
+      {
+        "file": "dok/pdf/aps_3.4_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 87423,
+        "sha256": "06c53c3341fadc88188a15e6f4fcf3212e5fa87fb47592bb85deeaeac6be51a6"
+      },
+      {
+        "file": "dok/pdf/aps_3.4_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 149076,
+        "sha256": "c6ba09af1b291c687700cdcbf15d5fd1a680ecb54249659943677af75fbca8db"
+      },
+      {
+        "file": "dok/pdf/aps_3.5_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 71691,
+        "sha256": "4197f34ff8296fb9eb0f83686102824ec2235a45f6b18b099566a025ae8c10b2"
+      },
+      {
+        "file": "dok/pdf/aps_3.5_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 72620,
+        "sha256": "b396977dc8e221042dd388bf24e2bf4da8215618db0db44797625f68d41bf7ae"
+      },
+      {
+        "file": "dok/pdf/aps_3.5_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 129206,
+        "sha256": "a0eec3399be12ee8e6e43eb84a6d19cab687fc532dbf598430cd2fa5882ebe40"
+      },
+      {
+        "file": "dok/pdf/aps_3.6_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 74831,
+        "sha256": "d4c5392b69c3d16d2a030e60e4dcae96866940d7c420f2c1404be019554b8b23"
+      },
+      {
+        "file": "dok/pdf/aps_3.6_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 71223,
+        "sha256": "bbcf43069945c76b4f1bc3274e07a11f8f00443d82c0e5ff634f8125f8f6110c"
+      },
+      {
+        "file": "dok/pdf/aps_3.6_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 149716,
+        "sha256": "1124c52784fb7455f53a741ddd7f6ffa1ee8c3d43febc925f2af2c5a1d3ddefb"
+      },
+      {
+        "file": "dok/pdf/aps_4.1_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 78687,
+        "sha256": "511d69bfeff43c03a8a9e21146ee1018d4c470b71197e60586c5e19425671392"
+      },
+      {
+        "file": "dok/pdf/aps_4.1_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 71064,
+        "sha256": "301a862dd2a4619eb1ed18d72585cd06c0bc043948f6353098fa82798a036565"
+      },
+      {
+        "file": "dok/pdf/aps_4.1_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 136557,
+        "sha256": "4eed5600491b8bdb3e3da74d105d370943fe91d52a14343cf27aa24bfc0e4bfb"
+      },
+      {
+        "file": "dok/pdf/aps_4.10_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 125604,
+        "sha256": "9b49dee199ff0a6325c793587f34c8e36f4dd382b01224a6968ff26dcdd36978"
+      },
+      {
+        "file": "dok/pdf/aps_4.10_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 98796,
+        "sha256": "a44df40366c4e0b9d9cd2f9e29ae0411f79386b6d1f38a9fca179b92b8df898d"
+      },
+      {
+        "file": "dok/pdf/aps_4.10_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 163372,
+        "sha256": "2ff9f53e2489b676ebfcfd2f35896abc96f4acff96a323a319532f2ff6b48718"
+      },
+      {
+        "file": "dok/pdf/aps_4.11_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 115319,
+        "sha256": "b0e87c83e3d6d5b18a4f5e74705d515a5a6c9f3306f47920217090838abfae78"
+      },
+      {
+        "file": "dok/pdf/aps_4.11_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 89021,
+        "sha256": "49c2ba1f6a0c940adf78ef66cd0feaec3da80ff59e93626561c8ef410ad49668"
+      },
+      {
+        "file": "dok/pdf/aps_4.11_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 170195,
+        "sha256": "51a904a3dd3b399b830fab3e3140985276249c4b74cd039d6d7d3b19ec4a1544"
+      },
+      {
+        "file": "dok/pdf/aps_4.2_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 90273,
+        "sha256": "87cf98683de9f438b5a55538be95dee099ab29bcb6db35930b82d7bdc2065538"
+      },
+      {
+        "file": "dok/pdf/aps_4.2_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 89819,
+        "sha256": "74515e4313f793844f3ab3eefbae4bc33f7d22c76d42dee8ce27193f3de3f243"
+      },
+      {
+        "file": "dok/pdf/aps_4.2_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 146706,
+        "sha256": "3254fc1797f194ad478ee74d6858cbaeb60a7a707ee0cc04d99ec31d0b47e71f"
+      },
+      {
+        "file": "dok/pdf/aps_4.3_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 93620,
+        "sha256": "33b0f8fdde54d5861b329a56e837a9179d6e73f0d1a3187c1931a990c7832df7"
+      },
+      {
+        "file": "dok/pdf/aps_4.3_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 92363,
+        "sha256": "187ae22cedb059b5b27fd7a97c60368fee59cced282771f1eab108351e3aa3c4"
+      },
+      {
+        "file": "dok/pdf/aps_4.3_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 152199,
+        "sha256": "22d549df01866406678533354745d06e69ef115b562c96558f622fa73bb1da4f"
+      },
+      {
+        "file": "dok/pdf/aps_4.4_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 109244,
+        "sha256": "bbb930e0b2aab30e8e2e4adfd4ae9d16673dc6813a6dc071568cf65431f8cc1b"
+      },
+      {
+        "file": "dok/pdf/aps_4.4_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 99352,
+        "sha256": "6ccfdcc0d4626a45cd24f5bd2a4181efa2ef8d080250fe4f576a1ac6f42c5ef9"
+      },
+      {
+        "file": "dok/pdf/aps_4.4_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 149486,
+        "sha256": "38bbbea4b21d61b34187ed387091a4ae80220ddd6b512f7431e4f304254c0f49"
+      },
+      {
+        "file": "dok/pdf/aps_4.5_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 101855,
+        "sha256": "510b17722f4c64c77026a2310678ba8cc0564fa2469b5a4262f1cb1164b29576"
+      },
+      {
+        "file": "dok/pdf/aps_4.5_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 98423,
+        "sha256": "8ee565a29d00eea7eb068c6135f69f1f594e79cf1f6cec8eb9d7a44838ad9507"
+      },
+      {
+        "file": "dok/pdf/aps_4.5_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 151734,
+        "sha256": "df523d3df8e6a0c107e9bff9a15374bb89d037853b5e0c48199974c3ed9a9c1a"
+      },
+      {
+        "file": "dok/pdf/aps_4.6_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 107087,
+        "sha256": "eff26bed974850bcdb95e34b02a654bec39216fa271627a01fe19f7d398a3b2a"
+      },
+      {
+        "file": "dok/pdf/aps_4.6_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 106499,
+        "sha256": "9fd3c9e266a7ced844579da8e9f1dc8d174859df8d60d01cbca480e01d4ecbad"
+      },
+      {
+        "file": "dok/pdf/aps_4.6_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 151779,
+        "sha256": "7de8ea49d0820370b152196dfe72f9cee3587ade1f350c08964465b1de25d597"
+      },
+      {
+        "file": "dok/pdf/aps_4.7_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 111134,
+        "sha256": "8f1b2b552c2048125d618c2a78a9eb7c76fc30168feb97e33eeaba441f627837"
+      },
+      {
+        "file": "dok/pdf/aps_4.7_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 112015,
+        "sha256": "0ca1fe10dbb5b5d2392205962261a534b1ff759fdea2701ad40e970810e94a3c"
+      },
+      {
+        "file": "dok/pdf/aps_4.7_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 154245,
+        "sha256": "be61cefae05c8bff2e7f9f24e7aca570e7b9b2688d3e690fe7d890f93b27f385"
+      },
+      {
+        "file": "dok/pdf/aps_4.8_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 137929,
+        "sha256": "e858ead707c282178a425d3108eb9d1ae9eca614c1fc5732e14bf435cbebd5d3"
+      },
+      {
+        "file": "dok/pdf/aps_4.8_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 111077,
+        "sha256": "ce0d3c35aaa26b8a0d50a6cfc38a382dce5e30339d200edbe2116c54c250ae1a"
+      },
+      {
+        "file": "dok/pdf/aps_4.8_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 178703,
+        "sha256": "d0f52c6e19f23bd4c1a54f7b3852ada53f87fdb1804cf7ecdc1a49ea168e5db0"
+      },
+      {
+        "file": "dok/pdf/aps_5.1_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 93671,
+        "sha256": "806a440f65d71dece7107a5615f90c6463028d380189f87d54d3c458789f4653"
+      },
+      {
+        "file": "dok/pdf/aps_5.1_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 92481,
+        "sha256": "896ceb618747528287de7f42488fed26c82d1a1bbccd7dad46190e1ce7ca71bb"
+      },
+      {
+        "file": "dok/pdf/aps_5.1_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 143615,
+        "sha256": "f8e8fdbffe75e45506386060de80c9f789ffc4a3037dedaa1970c7f78b36e5ac"
+      },
+      {
+        "file": "dok/pdf/aps_5.2_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 103420,
+        "sha256": "0e99eb4a95ba25e82709a52c09cab5316b210e1c65337928ca90662c827ba12a"
+      },
+      {
+        "file": "dok/pdf/aps_5.2_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 93702,
+        "sha256": "191f40c78b5b27744c97d684d99165dd3dd95fa302c17039d1d7eb5ee8038a78"
+      },
+      {
+        "file": "dok/pdf/aps_5.2_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 161318,
+        "sha256": "ba1111898ed35494d06ba4c539ec1ff8a089cf41d61e624b150f7456d5c57a77"
+      },
+      {
+        "file": "dok/pdf/aps_5.3_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 120393,
+        "sha256": "336dcd6f6b0c2e8e375b571c9c68c4d5fe2e97725c94408f555665c421a2377e"
+      },
+      {
+        "file": "dok/pdf/aps_5.3_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 92636,
+        "sha256": "e80bec9a7a4c49574fbfd9967ada057afac1fee8346998f045dfb0a01d34a20e"
+      },
+      {
+        "file": "dok/pdf/aps_5.3_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 170545,
+        "sha256": "826a3f8d08b31f0085a8970822db842a23c96518f0c13555ed0c28dd827597e3"
+      },
+      {
+        "file": "dok/pdf/aps_5.4_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 106754,
+        "sha256": "2682d726ec90224d5a4cacf93862c8a86c4a3f9128d5b02f1105a1d55a8b4a58"
+      },
+      {
+        "file": "dok/pdf/aps_5.4_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 106118,
+        "sha256": "37e1131ab291e85fb5bdfc3a395e326d2bdabe488581dd6d16eb36b514d4c8ca"
+      },
+      {
+        "file": "dok/pdf/aps_5.4_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 163938,
+        "sha256": "cf7beb1ba3b617a7a776f4c2551782ff622afdcfddc541095fa331b77e71380c"
+      },
+      {
+        "file": "dok/pdf/aps_5.5_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 126685,
+        "sha256": "3fb27b3e7045839022020f7fa8c1fe2a7d86dff14e8e7d63906a818a61338964"
+      },
+      {
+        "file": "dok/pdf/aps_5.5_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 107777,
+        "sha256": "22cf1380a2171d0ea82d3f3dadbb7d7661f06fb4e32789af642d010279c96327"
+      },
+      {
+        "file": "dok/pdf/aps_5.5_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 178323,
+        "sha256": "200317a3e2d037f46c18905fdf432b71a29a16c3c4c828043b52f4b1500fc3fa"
+      },
+      {
+        "file": "dok/pdf/aps_5.6_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 153866,
+        "sha256": "94b16039e6ac6314cdbbab73b7ae9a43891fb23b01c8652e9052a55193d663b0"
+      },
+      {
+        "file": "dok/pdf/aps_5.6_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 118821,
+        "sha256": "26bf230d7eb3e13c99f8cf0c10e00375e484905f2eb94232c1209d0bda5e0fb0"
+      },
+      {
+        "file": "dok/pdf/aps_5.6_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 178709,
+        "sha256": "dab01da89705c66ffede4f3566793a76724c0ca2cc830edfdfcb06e6f2dfed20"
+      },
+      {
+        "file": "dok/pdf/aps_5.7_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 123331,
+        "sha256": "c5fbe6f2e37ad3fe8bb26e1048278849174c5e03f9d610506fe8eceec7c3be0b"
+      },
+      {
+        "file": "dok/pdf/aps_5.7_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 123462,
+        "sha256": "fd0c248992782d25654c1707e479b8d686803aa3495ce0cbb23a6166639513e7"
+      },
+      {
+        "file": "dok/pdf/aps_5.7_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 177009,
+        "sha256": "84dbefd2eff1ea031a80128191ccf3568d56739ba4d64a6d17016b64823a4e77"
+      },
+      {
+        "file": "dok/pdf/aps_5.8_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 146973,
+        "sha256": "b5e9c46b123cb89d448e6da9c4bf4b565d92e5f7b30f888af6e73325aa82657b"
+      },
+      {
+        "file": "dok/pdf/aps_5.8_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 110005,
+        "sha256": "0cb258e1af280fd5d4180b2a51b4d714361d4487cba5a4838a8370633cb7d7db"
+      },
+      {
+        "file": "dok/pdf/aps_5.8_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 184338,
+        "sha256": "336f5ec4f280cf90f339b2d40677f5a48b730530d8b726b1c5bfa804fbabdd23"
+      },
+      {
+        "file": "dok/pdf/aps_6.1_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 114053,
+        "sha256": "3abc6c74c32bd26573b3b741611ea6c628bcc4262bb192d2598dd543631396a7"
+      },
+      {
+        "file": "dok/pdf/aps_6.1_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 121018,
+        "sha256": "61cd498ed64e0f2eacc3b7d6f06dde5fa8572d97919930b95a05882d71de6870"
+      },
+      {
+        "file": "dok/pdf/aps_6.1_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 159725,
+        "sha256": "bde6f765e454a1b8b5aa9bfce684b7b700329534fea1680e63a1f5b920e6b768"
+      },
+      {
+        "file": "dok/pdf/aps_6.10_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 120455,
+        "sha256": "f506c8b5ad19799a315f78f2d16fc2523ec960993f2a46d82f612ad5da31df2d"
+      },
+      {
+        "file": "dok/pdf/aps_6.10_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 117807,
+        "sha256": "4cf1deb52c85638158d379912d71c8e9e27a8647c5a28083cb6e5a830d925a32"
+      },
+      {
+        "file": "dok/pdf/aps_6.10_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 203425,
+        "sha256": "250144eddf4f034e7fc0a1774af28056ed8e767f00a6a69e8d281bd91411baad"
+      },
+      {
+        "file": "dok/pdf/aps_6.11_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 130116,
+        "sha256": "6926926082bcb1dcf6aa0037ea82e00c49b625a88367938b0bcab892714b84b3"
+      },
+      {
+        "file": "dok/pdf/aps_6.11_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 117605,
+        "sha256": "27d85b09fa52bbed4cd635325634722808ae89beb0505fe9ec22ca80989d7431"
+      },
+      {
+        "file": "dok/pdf/aps_6.11_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 199889,
+        "sha256": "8333844b5e962aefa4d80c69751659a5cc0849dc758f55deb5e09a96d7b0e433"
+      },
+      {
+        "file": "dok/pdf/aps_6.2_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 120290,
+        "sha256": "4e44d33f6bd465c36e31c317997e68af7d8dc31f31f2c92d304a0d458a0d1207"
+      },
+      {
+        "file": "dok/pdf/aps_6.2_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 92898,
+        "sha256": "1ab01400b475d4e6feba959168e47530c32c0bf0912d2ebf81e6f8aebc600ac4"
+      },
+      {
+        "file": "dok/pdf/aps_6.2_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 154202,
+        "sha256": "b4be92f6b2355f50a14a993c17fd2681155e4144e5e474d1b517f55c0a1cf3b5"
+      },
+      {
+        "file": "dok/pdf/aps_6.3_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 113346,
+        "sha256": "a031045a43aeefaae66b5ce1502b303768760fc427119b5783b7709ec782a409"
+      },
+      {
+        "file": "dok/pdf/aps_6.3_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 91515,
+        "sha256": "e1b309bc759e0935ce95b2a6b4b1df54ab8724c7d598b45e87566ea58b2d88e1"
+      },
+      {
+        "file": "dok/pdf/aps_6.3_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 165256,
+        "sha256": "3416384a16aeb3bbbb90f7cd3572eced54e74000b9bf7e41f67d7b56f6fddc2f"
+      },
+      {
+        "file": "dok/pdf/aps_6.4_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 125518,
+        "sha256": "a0ba4e7e60223f28004d321ac82d52c1e43ebdb3e62375c168760692097bf5ba"
+      },
+      {
+        "file": "dok/pdf/aps_6.4_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 120859,
+        "sha256": "c4b23c269131aec0008c04ac61cf41d9b95bcd2d3badaeed190afd6b8ee08694"
+      },
+      {
+        "file": "dok/pdf/aps_6.4_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 194261,
+        "sha256": "ece22249ef5ef114ac645050e953febb8be8a7591a59ef8c2f275e3d676ba28d"
+      },
+      {
+        "file": "dok/pdf/aps_6.5_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 129779,
+        "sha256": "2ccd0c4130744cdc0a15f65cada38877ff6fbe2a3197a3c612d3b47a2d785152"
+      },
+      {
+        "file": "dok/pdf/aps_6.5_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 109458,
+        "sha256": "4c3a5dd55a724f70d9cd2ec7f6e5c7fcecaeb5872e18e455c4074f79e8ef09ef"
+      },
+      {
+        "file": "dok/pdf/aps_6.5_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 178882,
+        "sha256": "9cd1eeff9a8b99793e36519aa72967ad62f299f1bd04737c3bf3fc064ef3a933"
+      },
+      {
+        "file": "dok/pdf/aps_6.6_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 129341,
+        "sha256": "1468221568df4bd270dcbdbf6c133488b226fbfa64af4769787645e9d4f07ac3"
+      },
+      {
+        "file": "dok/pdf/aps_6.6_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 116985,
+        "sha256": "3aae3af46cbb383b4e5ec69872fd25beaa5f517c3a9888946b73f104255e0b95"
+      },
+      {
+        "file": "dok/pdf/aps_6.6_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 191400,
+        "sha256": "2399ea74136c6d089b5abbe992be0e1162c39da88b25f7a148ad9f6b691d90dc"
+      },
+      {
+        "file": "dok/pdf/aps_6.7_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 119146,
+        "sha256": "dd707d1d0a60253a18fa43b4e8cb9d4bfe7fbb4ea96ad45ef825a285818703aa"
+      },
+      {
+        "file": "dok/pdf/aps_6.7_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 110337,
+        "sha256": "50706996de3fbe1e88f6d91d85513d1b368823cdc487b5f475080ebd642d2627"
+      },
+      {
+        "file": "dok/pdf/aps_6.7_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 188614,
+        "sha256": "651b4ea2991ed01b616c462cebfaa99cf4713370eff7f34d92f3110a430f1dc5"
+      },
+      {
+        "file": "dok/pdf/aps_6.8_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 137802,
+        "sha256": "19826a80d886fe1870bdca4f2b10b1230232c50457a6b6675d351ab5b44b9bef"
+      },
+      {
+        "file": "dok/pdf/aps_6.8_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 110616,
+        "sha256": "382d060d6dbec6e2f20dc83ea115fefc58c32508e2c694443e105d40ebe6cc0c"
+      },
+      {
+        "file": "dok/pdf/aps_6.8_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 180354,
+        "sha256": "e05a661937b0e50a9c83b2e98fde298e6fd099c74ab33f7932b9439d09250ed9"
+      },
+      {
+        "file": "dok/pdf/aps_6.9_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 117278,
+        "sha256": "daa1c51951d6cc931ab8e0fddccacd529254a0571312ed37d635a0019b33764b"
+      },
+      {
+        "file": "dok/pdf/aps_6.9_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 107338,
+        "sha256": "73e7b8cd54b88253b79364c09fd5b60a507832aa222ac3ec586ef1d58739ac59"
+      },
+      {
+        "file": "dok/pdf/aps_6.9_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 160055,
+        "sha256": "23c85d5fcdbb7b5ea8f5b216bed0bb49bd6db2c640d768eaac0f594108ff8a94"
+      },
+      {
+        "file": "dok/pdf/aps_7.1_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 100306,
+        "sha256": "b613959afc2e7a3451947090f5a1568ba1c290bcd201cdc13268f3e0c4e45bc6"
+      },
+      {
+        "file": "dok/pdf/aps_7.1_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 99278,
+        "sha256": "559c7614d9c4b1424746bafb442b4538370b14a3eadb626f4199ebcf0426f1ca"
+      },
+      {
+        "file": "dok/pdf/aps_7.1_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 140982,
+        "sha256": "9f30d75efd7a66b9dcbf5f8ff37d5bf82fd9a90d8a7fe65ee91dd47a085db14f"
+      },
+      {
+        "file": "dok/pdf/aps_7.2_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 124994,
+        "sha256": "57b7c6720652a5d8772e8fc05b43c47f8a876e758306951ea8699f3446c2a83a"
+      },
+      {
+        "file": "dok/pdf/aps_7.2_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 115508,
+        "sha256": "031652bd9f182be8df1935a574819b9e1785b62e01689273ee1f7d6961a8db5c"
+      },
+      {
+        "file": "dok/pdf/aps_7.2_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 183717,
+        "sha256": "8b1110b6f999b9ba2021c200e2e115b036e9ac0d8a9792e892170413526f57d2"
+      },
+      {
+        "file": "dok/pdf/aps_7.3_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 93996,
+        "sha256": "c11c8a4c212f76579dc45d0aabe6059ef505ae05fe6545d4fd2858c03437bcb3"
+      },
+      {
+        "file": "dok/pdf/aps_7.3_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 91151,
+        "sha256": "7084d53ee35117b39f77b165cc4ef3010da1adbb8984363b5629e3cb761305b4"
+      },
+      {
+        "file": "dok/pdf/aps_7.3_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 150580,
+        "sha256": "aa594be1934df4d07264779955c2678c20b59e66618a5506ad1029d0d37d5dcd"
+      },
+      {
+        "file": "dok/pdf/aps_7.4_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 112400,
+        "sha256": "2ac4172e3cbe459ec8a44289b18b24e387849d1221685627fe4f36c947e273e9"
+      },
+      {
+        "file": "dok/pdf/aps_7.4_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 111306,
+        "sha256": "3e45841786f2ba4ec47f446b8ae5892b9cfb9278b3eea43f533210cadb644b00"
+      },
+      {
+        "file": "dok/pdf/aps_7.4_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 187429,
+        "sha256": "812a3c144474f001ce848f9077f509a6c6a9d2cf5be3f2ac55d7bb24be3bedba"
+      },
+      {
+        "file": "dok/pdf/aps_7.5_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 118609,
+        "sha256": "e7e672dcf235f6fd56f2ef9d1f59beff02201c462dbe9a7dc13122c70f28703a"
+      },
+      {
+        "file": "dok/pdf/aps_7.5_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 118447,
+        "sha256": "ee4d645df559b0bd067383595703c92c25359ce9d82746d82832ba44194dd596"
+      },
+      {
+        "file": "dok/pdf/aps_7.5_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 177309,
+        "sha256": "a7b2938fb06b826009d5e29983db9c87141ec210f526a73e80f3eb4f7bf89c81"
+      },
+      {
+        "file": "dok/pdf/aps_7.6_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 136779,
+        "sha256": "54b24058e6e3abfb8d0ebe5cd4d1ca0fc6950c9afbc70528cc10ba09a46f73e7"
+      },
+      {
+        "file": "dok/pdf/aps_7.6_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 110727,
+        "sha256": "708ec4b6c6afe682209d791f07ce99d5d000c3f0c117797bd0ff5abdac6c3921"
+      },
+      {
+        "file": "dok/pdf/aps_7.6_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 180961,
+        "sha256": "32eb3146efbcf1248e6ec7c50722d1874a215a1df673ab39ced3591dae77d707"
+      },
+      {
+        "file": "dok/pdf/aps_7.7_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 110090,
+        "sha256": "ae8a566704fcad2954b609f3a0beb9e3bf6acf318465341b9c675db4b1c8162f"
+      },
+      {
+        "file": "dok/pdf/aps_7.7_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 90606,
+        "sha256": "3c84dbac3429ad2cf0ebd9eed6d6550c870e65e7efca6205f3f9564a446fc8a8"
+      },
+      {
+        "file": "dok/pdf/aps_7.7_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 148047,
+        "sha256": "cd898028cde9588aa6882cd6e7d7681476c18aee705255733f37cf2d04d1f663"
+      },
+      {
+        "file": "dok/pdf/aps_7.8_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 124312,
+        "sha256": "5cf93a8f95e9a6267a91bcb81f74fb0dc9ac64d70e9574c902a66df557fba45c"
+      },
+      {
+        "file": "dok/pdf/aps_7.8_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 111356,
+        "sha256": "43e48857cbf2ac5c48b393f197784b6071e0f56f122025ced5869eab80b43719"
+      },
+      {
+        "file": "dok/pdf/aps_7.8_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 194407,
+        "sha256": "2cf1a6e42918fdc8547dc6e3dfd0fd5fa0b599e3064c1a2682cae1e15e6834d5"
+      },
+      {
+        "file": "dok/pdf/aps_7.9_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 127178,
+        "sha256": "7e8a735f6627646c78511df21ce364c6ba498d2a6dde704f98537763c66e4327"
+      },
+      {
+        "file": "dok/pdf/aps_7.9_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 119922,
+        "sha256": "83cb1cb6c19a439e1261ea3d1ce47c26441a9a39805cfbf3583b246df007d404"
+      },
+      {
+        "file": "dok/pdf/aps_7.9_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 182738,
+        "sha256": "78705f832ef3abfd75424dbd7f9879f8d9891c64a77c8b896f18fb5966f1b1b6"
+      },
+      {
+        "file": "dok/pdf/aps_8.1_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 127808,
+        "sha256": "50791af280da7fd39081ecc3ac2da779eff267d9caf45a96e4eed6b11f2d18d6"
+      },
+      {
+        "file": "dok/pdf/aps_8.1_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 109519,
+        "sha256": "dc2dfceee0bef84b0cc2dd31b85b7cba4a586f569c41706815e7dc4f9f025b0c"
+      },
+      {
+        "file": "dok/pdf/aps_8.1_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 150932,
+        "sha256": "3ff3e91a907a987f75aff9389725779592975d67fc983410b7858e06512609ea"
+      },
+      {
+        "file": "dok/pdf/aps_8.4_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 88005,
+        "sha256": "3c89670778a919ea7376b332b235b4cdba26e7cef6603caf55cdf46486797c04"
+      },
+      {
+        "file": "dok/pdf/aps_8.4_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 72499,
+        "sha256": "47be9cfd9543eaaab2ad562200f1345a031958a56931b3689541218e1d649d6d"
+      },
+      {
+        "file": "dok/pdf/aps_8.4_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 140733,
+        "sha256": "7369c1d6a34784259f17b7fd13d066e7539c2eff5e6a68ddc15407349a525700"
+      },
+      {
+        "file": "dok/pdf/aps_8.5_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 107434,
+        "sha256": "24f8484bc2bdd4c234d8b46021a3ebf4e4c054e948038234c32133d1b5c9bd48"
+      },
+      {
+        "file": "dok/pdf/aps_8.5_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 74787,
+        "sha256": "73b06a167968b300fdf4389733d470921989a1f038c160c19e99f4f0e2f59632"
+      },
+      {
+        "file": "dok/pdf/aps_8.5_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 166432,
+        "sha256": "2dfce19b84fdc45d2eb59c76868d5366276e951083423aef8d34521481990083"
+      },
+      {
+        "file": "dok/pdf/aps_8.6_student.pdf",
+        "edition": "student",
+        "pages": 2,
+        "bytes": 121012,
+        "sha256": "2f09f5193fb87173abcbdb67a1fbad7caac0aa382fff0a897a0b497a42dc63e2"
+      },
+      {
+        "file": "dok/pdf/aps_8.6_board.pdf",
+        "edition": "board",
+        "pages": 1,
+        "bytes": 112245,
+        "sha256": "5a28b7a5803e2532d2bcdb6916abc585b1c0dad36161e3af66ee54849ea910ca"
+      },
+      {
+        "file": "dok/pdf/aps_8.6_teacher.pdf",
+        "edition": "teacher",
+        "pages": 3,
+        "bytes": 169876,
+        "sha256": "8fdfe971a91a0e9feeca3edeaa7b5b400e74e5ba087f7a8141aebf008d46dc23"
+      }
+    ],
+    "recursive_scan_command": "grep -ril video dok/lessons dok/registry dok/tex",
+    "recursive_scan_exit": 1,
+    "passed": true,
+    "comment_cleanup": "Removed the only scan hit: an obsolete, non-rendering comment in dok/tex/preamble.sty. The scan was rerun after this comment-only correction; PDF checks were already clean."
+  },
+  "compile_notes": [
+    "All 207 distinct editions logged ok; compile.ps1 printed all compiled. and no FAIL/failed entries.",
+    "MiKTeX emitted log-file permission and update notices. The outer PowerShell invocation returned 1 after forwarding these stderr messages, despite every pdflatex pass succeeding and compile.ps1 completing its success path.",
+    "One targeted 1.7 recompilation restored its original teacher-key page count after shortening two hand-rewritten bullets.",
+    "A non-rendering preamble comment was corrected after the final recursive scan; it does not change PDF output."
+  ],
+  "visual_review": [
+    "Inspected rendered 1.6 student page 2 and teacher page 1, 1.4+1.5 board, and remediation board page 1.",
+    "All 207 PDF page counts match the starting PDFs, including the pre-existing two-page remediation board and five-page remediation teacher key."
+  ],
+  "gitnexus_final_staged": {
+    "changed_files": 420,
+    "changed_documentation_symbols": 17,
+    "affected_execution_flows": 0,
+    "risk": "LOW",
+    "notes": "Documentation headings include suffix matches in the pre-existing baseline copy. No code symbols appear in the final artifact commit."
+  },
+  "completed_at_utc": "2026-09-12T16:38:15.614045+00:00",
+  "unmet_functional_requirements": [],
+  "limitations": [
+    "Root npm test is not green: 24 failures persisted from baseline, plus a J1 timeout that passed on targeted rerun. Exact full-suite timing failure names varied; all names and rerun results are recorded.",
+    "The original remediation board and teacher key remain two and five pages respectively. All other boards are one page, student sheets two pages, and teacher keys three pages.",
+    "Full compile completed every edition successfully but emitted MiKTeX log permission/update notices; see compile_notes for the outer PowerShell exit status."
+  ]
+}

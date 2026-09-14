@@ -1,0 +1,43 @@
+You are modifying scripts/transpile-ti84-rom.mjs — a TI-84 Plus CE ROM-to-JavaScript byte-lift transpiler.
+
+After raising the block limit to 8192, 15 new cpu.unimplemented() stubs appeared. Your job is to add emitter support for ALL of them, then raise the block limit to 16384.
+
+IMPORTANT: Only edit scripts/transpile-ti84-rom.mjs. After editing, run: node scripts/transpile-ti84-rom.mjs to regenerate output.
+
+THE 15 NEW STUBS (by category):
+
+1. dec (ix+d) — indexed decrement, z80js renders as "dec ix-3" without parens (6 stubs)
+   Similar to the existing "inc ix-1" handler that was added earlier.
+   Add regex: /^dec (ix|iy)([+-]\d+)$/i
+   Emit: cpu.writeIndexed8('{reg}', {displacement}, (cpu.readIndexed8('{reg}', {displacement}) - 1) & 0xff);
+   Place near the existing indexed increment handler.
+
+2. and (ix+d) / and (iy+d) — indexed AND without parens (3 stubs)
+   z80js renders as "and ix+15", "and iy+15", "and iy+19"
+   Add regex: /^and (ix|iy)([+-]\d+)$/i
+   Emit: cpu.a &= cpu.readIndexed8('{reg}', {displacement}); cpu.updateLogicFlags(cpu.a);
+
+3. or (ix+d) — indexed OR without parens (2 stubs)
+   z80js renders as "or ix+18", "or ix+14"
+   Add regex: /^or (ix|iy)([+-]\d+)$/i
+   Emit: cpu.a |= cpu.readIndexed8('{reg}', {displacement}); cpu.updateLogicFlags(cpu.a);
+
+4. rl a — rotate left through carry of A register (2 stubs)
+   Add: if (mnemonic === 'rl a') return ['cpu.a = cpu.rotateShift8(\'rl\', cpu.a);'];
+   Note: rla already exists and is handled differently (non-CB version). This is the CB-prefixed version.
+
+5. sub.lil d — .lil prefixed subtract register (1 stub)
+   The existing subRegister regex is /^sub ([abcdehl]|a)$/i — it doesn't handle .lil suffix.
+   Change it to: /^sub(?:\.[a-z]+)? ([abcdehl]|a)$/i
+
+6. ld.sis (bc), a — .sis prefixed store (1 stub)
+   This might be partial text. The existing storeAToPair handler has /^ld \((bc|de)\), a$/i.
+   Change it to: /^ld(?:\.[a-z]+)? \((bc|de)\), a$/i
+   Also add .sis/.lil suffix tolerance to the loadAFromPair handler: /^ld(?:\.[a-z]+)? a, \((bc|de)\)$/i
+
+ALSO: After adding all emitter support, raise blockLimit from 8192 to 16384 in walkBlocks() options.
+
+AFTER EDITING:
+1. Run: node --check scripts/transpile-ti84-rom.mjs
+2. Run: node scripts/transpile-ti84-rom.mjs
+3. Report the new block count and covered bytes

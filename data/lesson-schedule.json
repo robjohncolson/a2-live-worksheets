@@ -1,0 +1,1203 @@
+{
+  "schemaVersion": 2,
+  "generatedBy": "scripts/build-lesson-schedule-sy2627.mjs",
+  "note": "lessons[].unit is the OLD 9-unit id (grades key off it); progressChecks/posters are keyed by the NEW CED-2026 unit (matches the Desk U{n}-PC ids and pc_bank). Bonus topics have null dates = never due.",
+  "calendar": {
+    "schoolYear": "SY2627",
+    "source": "desk.html SCHEDULE_DEFS[\"SY26-27\"] (see sy2627-calendar-intake.md)",
+    "firstDay": "2026-09-02",
+    "examDate": "2027-05-11",
+    "breaks": [
+      {
+        "from": "2026-09-04",
+        "to": "2026-09-04"
+      },
+      {
+        "from": "2026-09-07",
+        "to": "2026-09-07"
+      },
+      {
+        "from": "2026-10-12",
+        "to": "2026-10-12"
+      },
+      {
+        "from": "2026-11-03",
+        "to": "2026-11-03"
+      },
+      {
+        "from": "2026-11-11",
+        "to": "2026-11-11"
+      },
+      {
+        "from": "2026-11-26",
+        "to": "2026-11-27"
+      },
+      {
+        "from": "2026-12-24",
+        "to": "2026-12-25"
+      },
+      {
+        "from": "2026-12-28",
+        "to": "2027-01-01"
+      },
+      {
+        "from": "2027-01-18",
+        "to": "2027-01-18"
+      },
+      {
+        "from": "2027-02-15",
+        "to": "2027-02-19"
+      },
+      {
+        "from": "2027-03-26",
+        "to": "2027-03-26"
+      },
+      {
+        "from": "2027-04-19",
+        "to": "2027-04-23"
+      },
+      {
+        "from": "2027-05-31",
+        "to": "2027-05-31"
+      }
+    ],
+    "meetingDays": {
+      "B": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "E": [
+        1,
+        3,
+        5
+      ]
+    },
+    "quarters": {
+      "Q1": {
+        "start": "2026-09-02",
+        "end": "2026-11-06"
+      },
+      "Q2": {
+        "start": "2026-11-09",
+        "end": "2027-01-22"
+      },
+      "Q3": {
+        "start": "2027-01-25",
+        "end": "2027-04-14"
+      },
+      "Q4": {
+        "start": "2027-04-15",
+        "end": "2027-06-17"
+      }
+    },
+    "events": {
+      "B": [
+        {
+          "id": "Welcome",
+          "kind": "orientation",
+          "title": "Start Here — how grades & makeups work",
+          "date": "2026-09-03"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2026-10-13"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2026-10-19"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2026-11-13"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2026-12-11"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2026-12-18"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2027-01-08"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2027-01-22"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2027-02-05"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2027-02-12"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2027-03-01"
+        },
+        {
+          "id": "review-12",
+          "kind": "review",
+          "title": "Review: Units 1-2",
+          "date": "2027-03-16"
+        },
+        {
+          "id": "review-13",
+          "kind": "review",
+          "title": "Review: Units 3-4",
+          "date": "2027-03-18"
+        },
+        {
+          "id": "B-Work",
+          "kind": "work",
+          "title": "Work Day",
+          "date": "2027-03-19"
+        },
+        {
+          "id": "review-15",
+          "kind": "review",
+          "title": "Review: Unit 5 + FRQ Practice",
+          "date": "2027-03-22"
+        }
+      ],
+      "E": [
+        {
+          "id": "Welcome",
+          "kind": "orientation",
+          "title": "Start Here — how grades & makeups work",
+          "date": "2026-09-02"
+        },
+        {
+          "id": "review-2",
+          "kind": "review",
+          "title": "Review: Units 1-2",
+          "date": "2027-03-19"
+        },
+        {
+          "id": "review-3",
+          "kind": "review",
+          "title": "Review: Units 3-4",
+          "date": "2027-03-22"
+        },
+        {
+          "id": "review-4",
+          "kind": "review",
+          "title": "Review: Unit 5 + FRQ Practice",
+          "date": "2027-03-24"
+        }
+      ]
+    },
+    "workDays": {
+      "B": [
+        "2026-10-13",
+        "2026-10-19",
+        "2026-11-13",
+        "2026-12-11",
+        "2026-12-18",
+        "2027-01-08",
+        "2027-01-22",
+        "2027-02-05",
+        "2027-02-12",
+        "2027-03-01",
+        "2027-03-19"
+      ],
+      "E": []
+    },
+    "slackMeetingsBeforeExam": {
+      "B": 23,
+      "E": 16
+    }
+  },
+  "dayGroups": {
+    "B": [],
+    "E": [
+      [
+        "1.4",
+        "1.5"
+      ],
+      [
+        "1.7",
+        "1.8"
+      ],
+      [
+        "1.9",
+        "3.1"
+      ],
+      [
+        "2.1",
+        "2.2"
+      ],
+      [
+        "4.1",
+        "4.2"
+      ],
+      [
+        "4.7",
+        "4.8"
+      ],
+      [
+        "5.1",
+        "5.3"
+      ],
+      [
+        "5.4",
+        "5.5"
+      ],
+      [
+        "8.1",
+        "8.4"
+      ],
+      [
+        "5.7",
+        "7.1"
+      ],
+      [
+        "2.4",
+        "2.5"
+      ],
+      [
+        "2.6",
+        "2.7"
+      ]
+    ]
+  },
+  "lessons": {
+    "1.1": {
+      "unit": 1,
+      "topicKey": "1.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": "2026-09-08",
+        "E": "2026-09-09"
+      }
+    },
+    "1.2": {
+      "unit": 1,
+      "topicKey": "1.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": "2026-09-10",
+        "E": "2026-09-11"
+      }
+    },
+    "1.3": {
+      "unit": 1,
+      "topicKey": "1.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": "2026-09-11",
+        "E": "2026-09-14"
+      }
+    },
+    "1.4": {
+      "unit": 1,
+      "topicKey": "1.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2026-09-14",
+        "E": "2026-09-16"
+      }
+    },
+    "1.5": {
+      "unit": 1,
+      "topicKey": "1.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2026-09-15",
+        "E": "2026-09-16"
+      }
+    },
+    "1.6": {
+      "unit": 1,
+      "topicKey": "1.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": "2026-09-17",
+        "E": "2026-09-18"
+      }
+    },
+    "1.7": {
+      "unit": 1,
+      "topicKey": "1.7",
+      "worksheetKey": "7",
+      "periods": {
+        "B": "2026-09-21",
+        "E": "2026-09-23"
+      }
+    },
+    "1.8": {
+      "unit": 1,
+      "topicKey": "1.8",
+      "worksheetKey": "8",
+      "periods": {
+        "B": "2026-09-22",
+        "E": "2026-09-23"
+      }
+    },
+    "1.9": {
+      "unit": 1,
+      "topicKey": "1.9",
+      "worksheetKey": "9",
+      "periods": {
+        "B": "2026-09-24",
+        "E": "2026-09-25"
+      }
+    },
+    "1.10": {
+      "unit": 1,
+      "topicKey": "1.10",
+      "worksheetKey": "10",
+      "periods": {
+        "B": "2026-11-12",
+        "E": "2026-11-16"
+      }
+    },
+    "2.1": {
+      "unit": 2,
+      "topicKey": "2.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": "2026-10-15",
+        "E": "2026-10-19"
+      }
+    },
+    "2.2": {
+      "unit": 2,
+      "topicKey": "2.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": "2026-10-16",
+        "E": "2026-10-19"
+      }
+    },
+    "2.3": {
+      "unit": 2,
+      "topicKey": "2.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": "2026-10-20",
+        "E": "2026-10-21"
+      }
+    },
+    "2.4": {
+      "unit": 2,
+      "topicKey": "2.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2027-03-02",
+        "E": "2027-03-05"
+      }
+    },
+    "2.5": {
+      "unit": 2,
+      "topicKey": "2.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2027-03-04",
+        "E": "2027-03-05"
+      }
+    },
+    "2.6": {
+      "unit": 2,
+      "topicKey": "2.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": "2027-03-05",
+        "E": "2027-03-08"
+      }
+    },
+    "2.7": {
+      "unit": 2,
+      "topicKey": "2.7",
+      "worksheetKey": "7",
+      "periods": {
+        "B": "2027-03-08",
+        "E": "2027-03-08"
+      }
+    },
+    "2.8": {
+      "unit": 2,
+      "topicKey": "2.8",
+      "worksheetKey": "8",
+      "periods": {
+        "B": "2027-03-09",
+        "E": "2027-03-10"
+      }
+    },
+    "2.9": {
+      "unit": 2,
+      "topicKey": "2.9",
+      "worksheetKey": "9",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "3.1": {
+      "unit": 3,
+      "topicKey": "3.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": "2026-09-25",
+        "E": "2026-09-25"
+      }
+    },
+    "3.2": {
+      "unit": 3,
+      "topicKey": "3.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": "2026-09-28",
+        "E": "2026-09-28"
+      }
+    },
+    "3.3": {
+      "unit": 3,
+      "topicKey": "3.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": "2026-09-29",
+        "E": "2026-09-30"
+      }
+    },
+    "3.4": {
+      "unit": 3,
+      "topicKey": "3.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2026-10-01",
+        "E": "2026-10-02"
+      }
+    },
+    "3.5": {
+      "unit": 3,
+      "topicKey": "3.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2026-10-02",
+        "E": "2026-10-05"
+      }
+    },
+    "3.6": {
+      "unit": 3,
+      "topicKey": "3.6",
+      "worksheetKey": "6-7",
+      "periods": {
+        "B": "2026-10-05",
+        "E": "2026-10-07"
+      },
+      "combinedWith": [
+        "3.7"
+      ]
+    },
+    "3.7": {
+      "unit": 3,
+      "topicKey": "3.7",
+      "worksheetKey": "6-7",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "3.6"
+      ]
+    },
+    "4.1": {
+      "unit": 4,
+      "topicKey": "4.1",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": "2026-10-22",
+        "E": "2026-10-23"
+      },
+      "combinedWith": [
+        "4.2"
+      ]
+    },
+    "4.2": {
+      "unit": 4,
+      "topicKey": "4.2",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": "2026-10-23",
+        "E": "2026-10-23"
+      },
+      "combinedWith": [
+        "4.1"
+      ]
+    },
+    "4.3": {
+      "unit": 4,
+      "topicKey": "4.3",
+      "worksheetKey": "3-4-5",
+      "periods": {
+        "B": "2026-10-26",
+        "E": "2026-10-26"
+      },
+      "combinedWith": [
+        "4.4",
+        "4.5"
+      ]
+    },
+    "4.4": {
+      "unit": 4,
+      "topicKey": "4.4",
+      "worksheetKey": "3-4-5",
+      "periods": {
+        "B": "2026-10-27",
+        "E": "2026-10-28"
+      },
+      "combinedWith": [
+        "4.3",
+        "4.5"
+      ]
+    },
+    "4.5": {
+      "unit": 4,
+      "topicKey": "4.5",
+      "worksheetKey": "3-4-5",
+      "periods": {
+        "B": "2026-10-29",
+        "E": "2026-10-30"
+      },
+      "combinedWith": [
+        "4.3",
+        "4.4"
+      ]
+    },
+    "4.6": {
+      "unit": 4,
+      "topicKey": "4.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": "2026-11-02",
+        "E": "2026-11-04"
+      }
+    },
+    "4.7": {
+      "unit": 4,
+      "topicKey": "4.7",
+      "worksheetKey": "7-8",
+      "periods": {
+        "B": "2026-11-05",
+        "E": "2026-11-06"
+      },
+      "combinedWith": [
+        "4.8"
+      ]
+    },
+    "4.8": {
+      "unit": 4,
+      "topicKey": "4.8",
+      "worksheetKey": "7-8",
+      "periods": {
+        "B": "2026-11-06",
+        "E": "2026-11-06"
+      },
+      "combinedWith": [
+        "4.7"
+      ]
+    },
+    "4.9": {
+      "unit": 4,
+      "topicKey": "4.9",
+      "worksheetKey": "9",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "4.10": {
+      "unit": 4,
+      "topicKey": "4.10",
+      "worksheetKey": "10-12",
+      "periods": {
+        "B": "2026-11-09",
+        "E": "2026-11-09"
+      },
+      "combinedWith": [
+        "4.11",
+        "4.12"
+      ]
+    },
+    "4.11": {
+      "unit": 4,
+      "topicKey": "4.11",
+      "worksheetKey": "10-12",
+      "periods": {
+        "B": "2026-11-10",
+        "E": "2026-11-13"
+      },
+      "combinedWith": [
+        "4.10",
+        "4.12"
+      ]
+    },
+    "4.12": {
+      "unit": 4,
+      "topicKey": "4.12",
+      "worksheetKey": "10-12",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.10",
+        "4.11"
+      ]
+    },
+    "5.1": {
+      "unit": 5,
+      "topicKey": "5.1",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": "2026-11-17",
+        "E": "2026-11-20"
+      },
+      "combinedWith": [
+        "5.2"
+      ]
+    },
+    "5.2": {
+      "unit": 5,
+      "topicKey": "5.2",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": "2026-11-16",
+        "E": "2026-11-18"
+      },
+      "combinedWith": [
+        "5.1"
+      ]
+    },
+    "5.3": {
+      "unit": 5,
+      "topicKey": "5.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": "2026-11-19",
+        "E": "2026-11-20"
+      }
+    },
+    "5.4": {
+      "unit": 5,
+      "topicKey": "5.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2026-11-30",
+        "E": "2026-12-02"
+      }
+    },
+    "5.5": {
+      "unit": 5,
+      "topicKey": "5.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2026-12-01",
+        "E": "2026-12-02"
+      }
+    },
+    "5.6": {
+      "unit": 5,
+      "topicKey": "5.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": "2026-12-17",
+        "E": "2026-12-21"
+      }
+    },
+    "5.7": {
+      "unit": 5,
+      "topicKey": "5.7",
+      "worksheetKey": "7",
+      "periods": {
+        "B": "2027-01-25",
+        "E": "2027-01-27"
+      }
+    },
+    "5.8": {
+      "unit": 5,
+      "topicKey": "5.8",
+      "worksheetKey": "8",
+      "periods": {
+        "B": "2027-02-04",
+        "E": "2027-02-08"
+      }
+    },
+    "6.1": {
+      "unit": 6,
+      "topicKey": "6.1",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": "2026-12-03",
+        "E": "2026-12-04"
+      },
+      "combinedWith": [
+        "6.2"
+      ]
+    },
+    "6.2": {
+      "unit": 6,
+      "topicKey": "6.2",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": "2026-12-04",
+        "E": "2026-12-07"
+      },
+      "combinedWith": [
+        "6.1"
+      ]
+    },
+    "6.3": {
+      "unit": 6,
+      "topicKey": "6.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": "2026-12-07",
+        "E": "2026-12-09"
+      }
+    },
+    "6.4": {
+      "unit": 6,
+      "topicKey": "6.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2026-12-08",
+        "E": "2026-12-11"
+      }
+    },
+    "6.5": {
+      "unit": 6,
+      "topicKey": "6.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2026-12-10",
+        "E": "2026-12-14"
+      }
+    },
+    "6.6": {
+      "unit": 6,
+      "topicKey": "6.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": "2026-12-14",
+        "E": "2026-12-16"
+      }
+    },
+    "6.7": {
+      "unit": 6,
+      "topicKey": "6.7",
+      "worksheetKey": "7",
+      "periods": {
+        "B": "2026-12-15",
+        "E": "2026-12-18"
+      }
+    },
+    "6.8": {
+      "unit": 6,
+      "topicKey": "6.8",
+      "worksheetKey": "8",
+      "periods": {
+        "B": "2026-12-21",
+        "E": "2026-12-23"
+      }
+    },
+    "6.9": {
+      "unit": 6,
+      "topicKey": "6.9",
+      "worksheetKey": "9",
+      "periods": {
+        "B": "2026-12-22",
+        "E": "2027-01-04"
+      }
+    },
+    "6.10": {
+      "unit": 6,
+      "topicKey": "6.10",
+      "worksheetKey": "10",
+      "periods": {
+        "B": "2027-01-04",
+        "E": "2027-01-06"
+      }
+    },
+    "6.11": {
+      "unit": 6,
+      "topicKey": "6.11",
+      "worksheetKey": "11",
+      "periods": {
+        "B": "2027-01-05",
+        "E": "2027-01-08"
+      }
+    },
+    "7.1": {
+      "unit": 7,
+      "topicKey": "7.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": "2027-01-26",
+        "E": "2027-01-27"
+      }
+    },
+    "7.2": {
+      "unit": 7,
+      "topicKey": "7.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": "2027-01-28",
+        "E": "2027-01-29"
+      }
+    },
+    "7.3": {
+      "unit": 7,
+      "topicKey": "7.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": "2027-01-29",
+        "E": "2027-02-01"
+      }
+    },
+    "7.4": {
+      "unit": 7,
+      "topicKey": "7.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2027-02-01",
+        "E": "2027-02-03"
+      }
+    },
+    "7.5": {
+      "unit": 7,
+      "topicKey": "7.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2027-02-02",
+        "E": "2027-02-05"
+      }
+    },
+    "7.6": {
+      "unit": 7,
+      "topicKey": "7.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": "2027-02-08",
+        "E": "2027-02-10"
+      }
+    },
+    "7.7": {
+      "unit": 7,
+      "topicKey": "7.7",
+      "worksheetKey": "7",
+      "periods": {
+        "B": "2027-02-09",
+        "E": "2027-02-12"
+      }
+    },
+    "7.8": {
+      "unit": 7,
+      "topicKey": "7.8",
+      "worksheetKey": "8",
+      "periods": {
+        "B": "2027-02-11",
+        "E": "2027-02-22"
+      }
+    },
+    "7.9": {
+      "unit": 7,
+      "topicKey": "7.9",
+      "worksheetKey": "9",
+      "periods": {
+        "B": "2027-02-22",
+        "E": "2027-02-24"
+      }
+    },
+    "8.1": {
+      "unit": 8,
+      "topicKey": "8.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": "2027-01-07",
+        "E": "2027-01-11"
+      }
+    },
+    "8.2": {
+      "unit": 8,
+      "topicKey": "8.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "8.3": {
+      "unit": 8,
+      "topicKey": "8.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "8.4": {
+      "unit": 8,
+      "topicKey": "8.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2027-01-11",
+        "E": "2027-01-11"
+      }
+    },
+    "8.5": {
+      "unit": 8,
+      "topicKey": "8.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2027-01-12",
+        "E": "2027-01-13"
+      }
+    },
+    "8.6": {
+      "unit": 8,
+      "topicKey": "8.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": "2027-01-14",
+        "E": "2027-01-15"
+      }
+    },
+    "9.1": {
+      "unit": 9,
+      "topicKey": "9.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "9.2": {
+      "unit": 9,
+      "topicKey": "9.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "9.3": {
+      "unit": 9,
+      "topicKey": "9.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "9.4": {
+      "unit": 9,
+      "topicKey": "9.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "9.5": {
+      "unit": 9,
+      "topicKey": "9.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    }
+  },
+  "progressChecks": {
+    "1": {
+      "unit": 1,
+      "title": "Unit 1 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 0
+      },
+      "periods": {
+        "B": "2026-10-08",
+        "E": "2026-10-14"
+      },
+      "adminDay2": {
+        "B": "2026-10-09",
+        "E": "2026-10-16"
+      },
+      "mcqPartA": {
+        "B": "2026-09-18",
+        "E": "2026-09-21"
+      }
+    },
+    "2": {
+      "unit": 2,
+      "title": "Unit 2 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 0
+      },
+      "periods": {
+        "B": "2026-11-23",
+        "E": "2026-11-25"
+      },
+      "adminDay2": {
+        "B": "2026-11-24",
+        "E": "2026-11-30"
+      },
+      "mcqPartA": {
+        "B": "2026-10-30",
+        "E": "2026-11-02"
+      }
+    },
+    "3": {
+      "unit": 3,
+      "title": "Unit 3 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 0
+      },
+      "periods": {
+        "B": "2027-01-19",
+        "E": "2027-01-22"
+      },
+      "adminDay2": {
+        "B": "2027-01-21",
+        "E": "2027-01-25"
+      },
+      "mcqPartA": null
+    },
+    "4": {
+      "unit": 4,
+      "title": "Unit 4 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 0
+      },
+      "periods": {
+        "B": "2027-02-25",
+        "E": "2027-03-01"
+      },
+      "adminDay2": {
+        "B": "2027-02-26",
+        "E": "2027-03-03"
+      },
+      "mcqPartA": null
+    },
+    "5": {
+      "unit": 5,
+      "title": "Unit 5 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 0
+      },
+      "periods": {
+        "B": "2027-03-12",
+        "E": "2027-03-15"
+      },
+      "adminDay2": {
+        "B": "2027-03-15",
+        "E": "2027-03-17"
+      },
+      "mcqPartA": null
+    }
+  },
+  "posters": {
+    "1": {
+      "unit": 1,
+      "title": "Unit 1 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": "2026-10-06",
+        "E": "2026-10-09"
+      }
+    },
+    "2": {
+      "unit": 2,
+      "title": "Unit 2 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": "2026-11-20",
+        "E": "2026-11-23"
+      }
+    },
+    "3": {
+      "unit": 3,
+      "title": "Unit 3 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": "2027-01-15",
+        "E": "2027-01-20"
+      }
+    },
+    "4": {
+      "unit": 4,
+      "title": "Unit 4 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": "2027-02-23",
+        "E": "2027-02-26"
+      }
+    },
+    "5": {
+      "unit": 5,
+      "title": "Unit 5 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": "2027-03-11",
+        "E": "2027-03-12"
+      }
+    }
+  }
+}

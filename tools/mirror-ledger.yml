@@ -1,0 +1,67 @@
+# mirror-ledger.yml — TEMPLATE. Copy to a PRIVATE mirror repo as
+#   .github/workflows/mirror-ledger.yml
+# Do NOT put this under .github/workflows/ in the public follow-alongs repo — it would
+# publish student grade data. The mirror repo must be private.
+#
+# Secrets to set in the mirror repo (Settings → Secrets and variables → Actions):
+#   ROSTER_URL            e.g. https://roster-xxxx.up.railway.app
+#   ROSTER_TEACHER_SECRET the teacher key (x-teacher-secret; default 'apstats2627' unless TEACHER_KEY set)
+#
+# What it does daily (and on demand): pull GET /admin/snapshot (passing yesterday's
+# epoch root as ?prev= to chain), store snapshots/<date>.json + latest.json, and append
+# one anchor line to ANCHORS.md. Git itself is the redundant, versioned, timestamped,
+# off-Supabase copy. Restore later with: node tools/verify-ledger.mjs latest.json --rebuild ...
+# See GRADE_LEDGER_DURABILITY_SPEC.md.
+
+name: mirror-ledger
+on:
+  schedule:
+    - cron: "0 23 * * *"     # ~daily (23:00 UTC); add more lines for after-school pulls
+  workflow_dispatch: {}        # manual "back it up now"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mirror-ledger
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull + anchor snapshot
+        env:
+          ROSTER_URL: ${{ secrets.ROSTER_URL }}
+          TEACHER_SECRET: ${{ secrets.ROSTER_TEACHER_SECRET }}
+        run: |
+          set -euo pipefail
+          DATE="$(date -u +%F)"
+          mkdir -p snapshots
+          # Chain on yesterday's epoch root (if any) so the anchor chain is continuous.
+          PREV=""
+          if [ -f ANCHORS.md ]; then
+            PREV="$(tail -n1 ANCHORS.md | sed -n 's/.*root=\([0-9a-f]\{8,\}\).*/\1/p' || true)"
+          fi
+          curl -fsS -H "X-Teacher-Secret: $TEACHER_SECRET" \
+            "$ROSTER_URL/admin/snapshot?prev=${PREV}" -o "snapshots/$DATE.json"
+          cp "snapshots/$DATE.json" latest.json
+          # Self-contained anchor line (no repo deps): one line appended to ANCHORS.md.
+          node -e '
+            const fs = require("fs");
+            const s = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+            const recs = (s.students||[]).reduce((n,x)=>n+(((x.bundle&&x.bundle.records)||[]).length),0);
+            const e = s.epoch||{};
+            process.stdout.write(`${s.asOfDateNY}  root=${e.root||"-"}  prev=${e.prev||"-"}  students=${(s.students||[]).length}  records=${recs}  generatedAt=${new Date(s.generatedAt||Date.now()).toISOString()}\n`);
+          ' "snapshots/$DATE.json" >> ANCHORS.md
+
+      - name: Commit mirror
+        run: |
+          set -euo pipefail
+          git config user.name "grade-mirror"
+          git config user.email "grade-mirror@users.noreply.github.com"
+          git add -A
+          git commit -m "mirror $(date -u +%F)" || { echo "no change"; exit 0; }
+          git push

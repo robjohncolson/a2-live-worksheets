@@ -1,0 +1,255 @@
+{
+  "year": "SY2526",
+  "blooketPresenceLen": 0,
+  "blooketRequiredLen": 0,
+  "schedule_1_1_B": null,
+  "pcUnitsFromEvents": null,
+  "frozenConfig": {
+    "C": 85,
+    "feederWeights": {
+      "W": 1,
+      "Q": 2
+    },
+    "lessonFeederWeights": {
+      "ws": 1,
+      "W": 2,
+      "Q": 3
+    },
+    "frqBand": {
+      "E": 100,
+      "P": 70,
+      "I": 35
+    },
+    "frqDiagnosticCorrectThreshold": 0.5,
+    "quarters": {
+      "Q1": {
+        "units": [
+          1,
+          2,
+          3
+        ],
+        "start": "2026-09-09",
+        "end": "2026-11-13"
+      },
+      "Q2": {
+        "units": [
+          4,
+          5
+        ],
+        "start": "2026-11-14",
+        "end": "2027-01-29"
+      },
+      "Q3": {
+        "units": [
+          6,
+          7
+        ],
+        "start": "2027-01-30",
+        "end": "2027-04-09"
+      },
+      "Q4": {
+        "units": [
+          8,
+          9
+        ],
+        "start": "2027-04-10",
+        "end": "2027-06-23"
+      }
+    },
+    "schoolTz": "America/New_York",
+    "gradingWindowStart": "2026-09-01",
+    "diagnosticTheta": 0.65,
+    "useV3": false,
+    "v3LessonsExcludeQuiz": true,
+    "v3WorkWeights": {
+      "lessons": 0.3,
+      "quizzes": 0.3,
+      "blooket": 0.1
+    },
+    "v3Gates": {
+      "floor": 0.4,
+      "ceiling": 0.7
+    },
+    "v3FixQuizZero": true,
+    "v3FixCwsReveal": true,
+    "v3AheadOfScheduleLessons": "not-until-due"
+  },
+  "artHash": "c3d5ac70c1bbddbffa30f7c01552e0b7964f464a99c9ce7103a2cdafa72e0180",
+  "grade": {
+    "units": {
+      "U1": {
+        "W": null,
+        "Q": null,
+        "B": null,
+        "banked": null,
+        "unitGrade": null,
+        "graded": false
+      }
+    },
+    "quarters": {
+      "Q1": {
+        "units": [
+          1,
+          2,
+          3
+        ],
+        "unitGrades": {
+          "U1": null,
+          "U2": null,
+          "U3": null
+        },
+        "quarterGrade": null,
+        "quarterGradeBase": null,
+        "earlyBonus": 0,
+        "earlyLessons": 0,
+        "earlyKeys": [],
+        "aheadLessons": 0,
+        "aheadKeys": [],
+        "unitsGraded": 0,
+        "unitsTotal": 3,
+        "ceiling": null,
+        "lessonsDue": 0,
+        "lessonsGraded": 0,
+        "lessonsTotal": 0,
+        "pcAvg": null,
+        "workAvg": null,
+        "pcAvgRaw": null,
+        "workAvgRaw": null,
+        "workTracks": {
+          "lessons": null,
+          "quizzes": null,
+          "blooket": null
+        },
+        "blooketDue": 0,
+        "blooketDone": 0,
+        "blooketTodo": [],
+        "quizDue": 0,
+        "quizDone": 0,
+        "quizTodo": []
+      },
+      "Q2": {
+        "units": [
+          4,
+          5
+        ],
+        "unitGrades": {
+          "U4": null,
+          "U5": null
+        },
+        "quarterGrade": null,
+        "quarterGradeBase": null,
+        "earlyBonus": 0,
+        "earlyLessons": 0,
+        "earlyKeys": [],
+        "aheadLessons": 0,
+        "aheadKeys": [],
+        "unitsGraded": 0,
+        "unitsTotal": 2,
+        "ceiling": null,
+        "lessonsDue": 0,
+        "lessonsGraded": 0,
+        "lessonsTotal": 0,
+        "pcAvg": null,
+        "workAvg": null,
+        "pcAvgRaw": null,
+        "workAvgRaw": null,
+        "workTracks": {
+          "lessons": null,
+          "quizzes": null,
+          "blooket": null
+        },
+        "blooketDue": 0,
+        "blooketDone": 0,
+        "blooketTodo": [],
+        "quizDue": 0,
+        "quizDone": 0,
+        "quizTodo": []
+      },
+      "Q3": {
+        "units": [
+          6,
+          7
+        ],
+        "unitGrades": {
+          "U6": null,
+          "U7": null
+        },
+        "quarterGrade": null,
+        "quarterGradeBase": null,
+        "earlyBonus": 0,
+        "earlyLessons": 0,
+        "earlyKeys": [],
+        "aheadLessons": 0,
+        "aheadKeys": [],
+        "unitsGraded": 0,
+        "unitsTotal": 2,
+        "ceiling": null,
+        "lessonsDue": 0,
+        "lessonsGraded": 0,
+        "lessonsTotal": 0,
+        "pcAvg": null,
+        "workAvg": null,
+        "pcAvgRaw": null,
+        "workAvgRaw": null,
+        "workTracks": {
+          "lessons": null,
+          "quizzes": null,
+          "blooket": null
+        },
+        "blooketDue": 0,
+        "blooketDone": 0,
+        "blooketTodo": [],
+        "quizDue": 0,
+        "quizDone": 0,
+        "quizTodo": []
+      },
+      "Q4": {
+        "units": [
+          8,
+          9
+        ],
+        "unitGrades": {
+          "U8": null,
+          "U9": null
+        },
+        "quarterGrade": null,
+        "quarterGradeBase": null,
+        "earlyBonus": 0,
+        "earlyLessons": 0,
+        "earlyKeys": [],
+        "aheadLessons": 0,
+        "aheadKeys": [],
+        "unitsGraded": 0,
+        "unitsTotal": 2,
+        "ceiling": null,
+        "lessonsDue": 0,
+        "lessonsGraded": 0,
+        "lessonsTotal": 0,
+        "pcAvg": null,
+        "workAvg": null,
+        "pcAvgRaw": null,
+        "workAvgRaw": null,
+        "workTracks": {
+          "lessons": null,
+          "quizzes": null,
+          "blooket": null
+        },
+        "blooketDue": 0,
+        "blooketDone": 0,
+        "blooketTodo": [],
+        "quizDue": 0,
+        "quizDone": 0,
+        "quizTodo": []
+      }
+    },
+    "completion": {
+      "U1": {
+        "worksheet": 0,
+        "frq": 0,
+        "curriculum_quiz": 1
+      }
+    },
+    "lessonsCount": 0,
+    "hasBlooketSample": []
+  }
+}

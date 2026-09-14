@@ -1,0 +1,120 @@
+## Task: Instrument Executor for Indirect Jump Target Discovery
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. The transpiler walks control flow statically from seed entry points, but can't follow indirect jumps (`jp (hl)`, `jp (ix)`, `jp (iy)`, `ret` to computed addresses). The executor already tracks missing blocks — your job is to instrument it to also capture the TARGETS of indirect jumps and returns, creating a feedback loop for seed discovery.
+
+### Files you MUST read first
+
+- `TI-84_Plus_CE/cpu-runtime.js` (entire file, ~830 lines) — especially the `createExecutor()` function and the `runFrom()` loop
+- `TI-84_Plus_CE/test-harness.mjs` (entire file, ~300 lines) — to understand how results are collected
+
+### Background
+
+In the executor's main loop, after a block executes via `fn(cpu)`, the returned value is the next PC. For normal jumps/calls, this PC was statically known and a block exists for it. For indirect jumps, the PC is computed at runtime and may NOT have a corresponding compiled block.
+
+The executor already handles missing blocks (skip-ahead logic). But we want to capture ALL block transitions to identify:
+1. **Indirect jump targets** — PCs returned by blocks that weren't in the static exit list
+2. **Frequently visited blocks** — hot blocks that should be prioritized
+3. **New reachable addresses** — addresses that execution reaches but no block exists for
+
+### What to modify in cpu-runtime.js
+
+In the `runFrom()` method, add tracking infrastructure:
+
+1. **Add a `blockVisits` Map** at the top of `runFrom()` (alongside `missingBlocks`):
+   ```javascript
+   const blockVisits = new Map();  // key → visit count
+   const dynamicTargets = new Set();  // PCs reached via non-static exits
+   ```
+
+2. **Track block visits**: After `steps++`, increment the visit count:
+   ```javascript
+   blockVisits.set(key, (blockVisits.get(key) || 0) + 1);
+   ```
+
+3. **Detect dynamic targets**: After the block executes and returns a `result` (the next PC), check if that PC was in the block's static exit list. If NOT, it's a dynamic target:
+   ```javascript
+   const meta = blockMeta[key];
+   if (meta && meta.exits) {
+     const isStaticExit = meta.exits.some(e => e.target === result);
+     if (!isStaticExit && typeof result === 'number' && result >= 0) {
+       dynamicTargets.add(result);
+       if (opts.onDynamicTarget) {
+         opts.onDynamicTarget(result, mode, pc, steps);
+       }
+     }
+   }
+   ```
+
+   Place this AFTER the block executes (`result = fn(cpu)`) and AFTER the halt/sleep checks, but BEFORE `mode = resolveNextMode(...)`.
+
+4. **Include in return objects**: Add to both return statements:
+   ```javascript
+   blockVisits: Object.fromEntries(blockVisits),
+   dynamicTargets: [...dynamicTargets],
+   ```
+
+### What to modify in test-harness.mjs
+
+1. **Add dynamic target collection to multi-entry runs**: In the multi-entry for loop, add to the runFrom options:
+   ```javascript
+   onDynamicTarget: (targetPc, mode, fromPc, step) => {
+     epDynamic.push({ targetPc, mode, fromPc, step });
+   },
+   ```
+   (Add `const epDynamic = [];` before the runFrom call, and `dynamicTargets: epDynamic` in the multiResults.push object.)
+
+2. **Update the Discovery Summary section** to also report dynamic targets:
+
+   After the existing missing blocks reporting, add:
+   ```javascript
+   // Gather dynamic targets from multi-entry runs
+   const allDynamic = new Set();
+   for (const r of multiResults) {
+     if (r.dynamicTargets) {
+       for (const d of r.dynamicTargets) {
+         allDynamic.add('0x' + d.targetPc.toString(16).padStart(6, '0') + ':' + d.mode);
+       }
+     }
+   }
+
+   if (allDynamic.size > 0) {
+     console.log(`\n  Dynamic jump targets discovered: ${allDynamic.size}`);
+     const sortedDynamic = [...allDynamic].sort();
+     for (const key of sortedDynamic.slice(0, 30)) {
+       console.log(`    ${key}`);
+     }
+     if (sortedDynamic.length > 30) {
+       console.log(`    ... and ${sortedDynamic.length - 30} more`);
+     }
+   }
+   ```
+
+3. **Add a "Hot Blocks" section** after the Discovery Summary, using test4's results (the deepest single run):
+
+   ```javascript
+   // Hot blocks from Test 4 (deepest single-executor run)
+   if (test4.blockVisits) {
+     const visits = Object.entries(test4.blockVisits)
+       .sort((a, b) => b[1] - a[1])
+       .slice(0, 15);
+     console.log(`\n  Hot blocks (Test 4, top 15 by visit count):`);
+     for (const [key, count] of visits) {
+       console.log(`    ${key}: ${count} visits`);
+     }
+   }
+   ```
+
+### Verification
+
+```bash
+node --check TI-84_Plus_CE/cpu-runtime.js
+node --check TI-84_Plus_CE/test-harness.mjs
+```
+
+### Do NOT
+
+- Do NOT modify peripherals.js, coverage-analyzer.mjs, or transpile-ti84-rom.mjs
+- Do NOT modify ROM.transpiled.js
+- Do NOT run the test harness
+- Do NOT add npm dependencies
+- Do NOT remove or change existing test logic — only ADD instrumentation

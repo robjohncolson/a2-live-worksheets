@@ -1,0 +1,127 @@
+﻿{
+  "target": {
+    "id": "Function:dok/build_ladder.py:ced_topic_label",
+    "name": "ced_topic_label",
+    "type": "Function",
+    "filePath": "dok/build_ladder.py"
+  },
+  "direction": "upstream",
+  "impactedCount": 4,
+  "risk": "LOW",
+  "epistemic": "exact",
+  "summary": {
+    "direct": 2,
+    "processes_affected": 2,
+    "modules_affected": 1
+  },
+  "byDepthCounts": {
+    "1": 2,
+    "2": 2
+  },
+  "affected_processes": [
+    {
+      "name": "emit_teacher",
+      "type": "Function",
+      "filePath": "dok/build_ladder.py",
+      "affected_process_count": 3,
+      "total_hits": 4,
+      "earliest_broken_step": 1
+    },
+    {
+      "name": "emit_student",
+      "type": "Function",
+      "filePath": "dok/build_ladder.py",
+      "affected_process_count": 2,
+      "total_hits": 2,
+      "earliest_broken_step": 1
+    }
+  ],
+  "affected_modules": [
+    {
+      "name": "Dok",
+      "hits": 4,
+      "impact": "direct"
+    }
+  ],
+  "byDepth": {
+    "1": [
+      {
+        "depth": 1,
+        "id": "Function:dok/build_ladder.py:header_line",
+        "name": "header_line",
+        "filePath": "dok/build_ladder.py",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": [
+          {
+            "id": "proc_285_emit_teacher",
+            "label": "Emit_teacher → Ced_topic_label",
+            "processType": "cross_community",
+            "step": 2
+          }
+        ]
+      },
+      {
+        "depth": 1,
+        "id": "Function:dok/build_ladder.py:emit_board",
+        "name": "emit_board",
+        "filePath": "dok/build_ladder.py",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      }
+    ],
+    "2": [
+      {
+        "depth": 2,
+        "id": "Function:dok/build_ladder.py:emit_student",
+        "name": "emit_student",
+        "filePath": "dok/build_ladder.py",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": [
+          {
+            "id": "proc_201_emit_student",
+            "label": "Emit_student → Render_two_way",
+            "processType": "cross_community",
+            "step": 1
+          },
+          {
+            "id": "proc_74_emit_student",
+            "label": "Emit_student → _axis_size",
+            "processType": "cross_community",
+            "step": 1
+          }
+        ]
+      },
+      {
+        "depth": 2,
+        "id": "Function:dok/build_ladder.py:emit_teacher",
+        "name": "emit_teacher",
+        "filePath": "dok/build_ladder.py",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": [
+          {
+            "id": "proc_284_emit_teacher",
+            "label": "Emit_teacher → Latex_text",
+            "processType": "intra_community",
+            "step": 1
+          },
+          {
+            "id": "proc_283_emit_teacher",
+            "label": "Emit_teacher → Tutor_path",
+            "processType": "intra_community",
+            "step": 1
+          },
+          {
+            "id": "proc_285_emit_teacher",
+            "label": "Emit_teacher → Ced_topic_label",
+            "processType": "cross_community",
+            "step": 1
+          }
+        ]
+      }
+    ]
+  }
+}

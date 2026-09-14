@@ -1,0 +1,1521 @@
+{
+  "starting_commit": "221ba0f31d5d592e59f991f338ee528e3ceead82",
+  "source_commits": [
+    "a56b9caa24b118fb3d218d9375ff37ad127fa721",
+    "0fb602044455876450844147acf6cd9999c7a59c",
+    "06b36bc5c302f59217295e646b18c3276be2e982"
+  ],
+  "never_pushed": true,
+  "scratch_location": "C:\\Users\\rober\\AppData\\Local\\Temp\\dok-self-paced-run",
+  "fields_deleted_per_yaml": {
+    "dok/lessons/1.1.yaml": 6,
+    "dok/lessons/1.10.yaml": 6,
+    "dok/lessons/1.1_1.2_1.4_1.7.yaml": 6,
+    "dok/lessons/1.2.yaml": 6,
+    "dok/lessons/1.3.yaml": 6,
+    "dok/lessons/1.4.yaml": 6,
+    "dok/lessons/1.4_1.5.yaml": 6,
+    "dok/lessons/1.5.yaml": 6,
+    "dok/lessons/1.6.yaml": 6,
+    "dok/lessons/1.7.yaml": 6,
+    "dok/lessons/1.7_1.8.yaml": 6,
+    "dok/lessons/1.8.yaml": 6,
+    "dok/lessons/1.9.yaml": 6,
+    "dok/lessons/2.1.yaml": 6,
+    "dok/lessons/2.2.yaml": 6,
+    "dok/lessons/2.3.yaml": 6,
+    "dok/lessons/2.4.yaml": 6,
+    "dok/lessons/2.5.yaml": 6,
+    "dok/lessons/2.6.yaml": 6,
+    "dok/lessons/2.7.yaml": 6,
+    "dok/lessons/2.8.yaml": 6,
+    "dok/lessons/3.1.yaml": 6,
+    "dok/lessons/3.2.yaml": 6,
+    "dok/lessons/3.3.yaml": 6,
+    "dok/lessons/3.4.yaml": 6,
+    "dok/lessons/3.5.yaml": 6,
+    "dok/lessons/3.6.yaml": 6,
+    "dok/lessons/4.1.yaml": 6,
+    "dok/lessons/4.10.yaml": 6,
+    "dok/lessons/4.11.yaml": 6,
+    "dok/lessons/4.2.yaml": 6,
+    "dok/lessons/4.3.yaml": 6,
+    "dok/lessons/4.4.yaml": 6,
+    "dok/lessons/4.5.yaml": 6,
+    "dok/lessons/4.6.yaml": 6,
+    "dok/lessons/4.7.yaml": 6,
+    "dok/lessons/4.8.yaml": 6,
+    "dok/lessons/5.1.yaml": 6,
+    "dok/lessons/5.2.yaml": 6,
+    "dok/lessons/5.3.yaml": 6,
+    "dok/lessons/5.4.yaml": 6,
+    "dok/lessons/5.5.yaml": 6,
+    "dok/lessons/5.6.yaml": 6,
+    "dok/lessons/5.7.yaml": 6,
+    "dok/lessons/5.8.yaml": 6,
+    "dok/lessons/6.1.yaml": 6,
+    "dok/lessons/6.10.yaml": 6,
+    "dok/lessons/6.11.yaml": 6,
+    "dok/lessons/6.2.yaml": 6,
+    "dok/lessons/6.3.yaml": 6,
+    "dok/lessons/6.4.yaml": 6,
+    "dok/lessons/6.5.yaml": 6,
+    "dok/lessons/6.6.yaml": 6,
+    "dok/lessons/6.7.yaml": 6,
+    "dok/lessons/6.8.yaml": 6,
+    "dok/lessons/6.9.yaml": 6,
+    "dok/lessons/7.1.yaml": 6,
+    "dok/lessons/7.2.yaml": 6,
+    "dok/lessons/7.3.yaml": 6,
+    "dok/lessons/7.4.yaml": 6,
+    "dok/lessons/7.5.yaml": 6,
+    "dok/lessons/7.6.yaml": 6,
+    "dok/lessons/7.7.yaml": 6,
+    "dok/lessons/7.8.yaml": 6,
+    "dok/lessons/7.9.yaml": 6,
+    "dok/lessons/8.1.yaml": 6,
+    "dok/lessons/8.4.yaml": 6,
+    "dok/lessons/8.5.yaml": 6,
+    "dok/lessons/8.6.yaml": 6
+  },
+  "field_deletion_total": 414,
+  "stock_notes_rewritten": 14,
+  "hand_edits": {
+    "forbidden_phrase_cleanup": 0,
+    "additive_on_page_fixes": [
+      {
+        "topic": "5.2",
+        "part": "b",
+        "finding": "Normal-area calculation requires a lookup not printed independently of the competing claims.",
+        "field": "rules_callout.body",
+        "before": "For a normal random variable, $z=\\dfrac{x-\\mu}{\\sigma}$ tells how many standard deviations $x$ is from its mean.\nThe percentile of $x$ is the percent of values at or below $x$.\nUse a normal table or calculator to find the area to the left of the $z$-score; multiply that area by 100.\nA larger percentile means a higher standing relative to that school's scores.\n",
+        "addition": "Printed normal table: $P(Z\\leq0.8000)=0.788145$ and $P(Z\\leq1.3333)=0.908789$. These left areas supply the lookup needed above.",
+        "after": "For a normal random variable, $z=\\dfrac{x-\\mu}{\\sigma}$ tells how many standard deviations $x$ is from its mean.\nThe percentile of $x$ is the percent of values at or below $x$.\nUse a normal table or calculator to find the area to the left of the $z$-score; multiply that area by 100.\nA larger percentile means a higher standing relative to that school's scores.\nPrinted normal table: $P(Z\\leq0.8000)=0.788145$ and $P(Z\\leq1.3333)=0.908789$. These left areas supply the lookup needed above.\n"
+      },
+      {
+        "topic": "5.7",
+        "part": "b",
+        "finding": "Normal-area calculation requires a lookup not printed independently of the competing claims.",
+        "field": "rules_callout.body",
+        "before": "For an SRS of size $n$, $\\mu_{\\bar X}=\\mu$ and $\\sigma_{\\bar X}=\\sigma/\\sqrt n$ when\n$n\\leq0.10N$ for sampling without replacement. The sampling distribution of $\\bar X$ is\napproximately normal if the population is approximately normal (for any $n$)\n\\textbf{or} if the population is not normal but $n\\geq30$ (Central Limit Theorem).\nA normal tail probability describes the mean of an entire random sample, not one individual value.\nFor a normal probability, standardize with $z=(\\text{value}-\\text{mean})/\\text{SD}$ and use the appropriate normal tail.\n",
+        "addition": "Printed normal table: $P(Z\\leq1.5000)=0.933193$ and $P(Z\\leq3.0000)=0.998650$. A right-tail area is 1 minus the left area.",
+        "after": "For an SRS of size $n$, $\\mu_{\\bar X}=\\mu$ and $\\sigma_{\\bar X}=\\sigma/\\sqrt n$ when\n$n\\leq0.10N$ for sampling without replacement. The sampling distribution of $\\bar X$ is\napproximately normal if the population is approximately normal (for any $n$)\n\\textbf{or} if the population is not normal but $n\\geq30$ (Central Limit Theorem).\nA normal tail probability describes the mean of an entire random sample, not one individual value.\nFor a normal probability, standardize with $z=(\\text{value}-\\text{mean})/\\text{SD}$ and use the appropriate normal tail.\nPrinted normal table: $P(Z\\leq1.5000)=0.933193$ and $P(Z\\leq3.0000)=0.998650$. A right-tail area is 1 minus the left area.\n"
+      },
+      {
+        "topic": "5.8",
+        "part": "b",
+        "finding": "Normal-area calculation requires a lookup not printed independently of the competing claims.",
+        "field": "rules_callout.body",
+        "before": "For independent random samples, $\\mu_{\\bar X_1-\\bar X_2}=\\mu_1-\\mu_2$ and\n$\\sigma_{\\bar X_1-\\bar X_2}=\\sqrt{\\sigma_1^2/n_1+\\sigma_2^2/n_2}$ when each\nsample has $n\\leq0.10N$. Justify each component's shape: a normal population\nsupports a normal sample mean even for small $n$, while the Central Limit Theorem supports\na sample mean from a nonnormal population when its own $n\\geq30$. The two groups need not\nuse the same pathway. Interpret probabilities as outcomes from repeated pairs of samples.\nFor a normal probability, standardize with $z=(\\text{value}-\\text{mean})/\\text{SD}$ and use the appropriate normal tail.\n",
+        "addition": "Printed normal table: $P(Z\\leq1.9220)=0.972696$. A right-tail area is 1 minus the left area.",
+        "after": "For independent random samples, $\\mu_{\\bar X_1-\\bar X_2}=\\mu_1-\\mu_2$ and\n$\\sigma_{\\bar X_1-\\bar X_2}=\\sqrt{\\sigma_1^2/n_1+\\sigma_2^2/n_2}$ when each\nsample has $n\\leq0.10N$. Justify each component's shape: a normal population\nsupports a normal sample mean even for small $n$, while the Central Limit Theorem supports\na sample mean from a nonnormal population when its own $n\\geq30$. The two groups need not\nuse the same pathway. Interpret probabilities as outcomes from repeated pairs of samples.\nFor a normal probability, standardize with $z=(\\text{value}-\\text{mean})/\\text{SD}$ and use the appropriate normal tail.\nPrinted normal table: $P(Z\\leq1.9220)=0.972696$. A right-tail area is 1 minus the left area.\n"
+      },
+      {
+        "topic": "6.5",
+        "part": "b",
+        "finding": "Normal-area calculation requires a lookup not printed independently of the competing claims.",
+        "field": "rules_callout.body",
+        "before": "For a one-sample proportion test,\n$z=\\dfrac{\\hat p-p_0}{\\sqrt{p_0(1-p_0)/n}}$.\nThe p-value is the probability of a sample statistic \\textbf{as extreme or more extreme} than the observed one,\nin the direction of $H_a$, assuming $H_0$ and the probability model are true. Use the left tail for $H_a:p<p_0$,\nthe right tail for $H_a:p>p_0$, and both tails for $H_a:p\\neq p_0$.\nA p-value is a probability about possible sample results under $H_0$; it is not the probability that a hypothesis is true.\n",
+        "addition": "Printed normal table: $P(Z\\leq-1.7056)=0.044041$. For a symmetric normal curve, the two-sided area is twice the smaller tail area.",
+        "after": "For a one-sample proportion test,\n$z=\\dfrac{\\hat p-p_0}{\\sqrt{p_0(1-p_0)/n}}$.\nThe p-value is the probability of a sample statistic \\textbf{as extreme or more extreme} than the observed one,\nin the direction of $H_a$, assuming $H_0$ and the probability model are true. Use the left tail for $H_a:p<p_0$,\nthe right tail for $H_a:p>p_0$, and both tails for $H_a:p\\neq p_0$.\nA p-value is a probability about possible sample results under $H_0$; it is not the probability that a hypothesis is true.\nPrinted normal table: $P(Z\\leq-1.7056)=0.044041$. For a symmetric normal curve, the two-sided area is twice the smaller tail area.\n"
+      },
+      {
+        "topic": "6.6",
+        "part": "b",
+        "finding": "Normal-area calculation requires a lookup not printed independently of the competing claims.",
+        "field": "rules_callout.body",
+        "before": "For a one-proportion test, $z=(\\widehat p-p_0)/\\sqrt{p_0(1-p_0)/n}$; for $H_a:p<p_0$, use the left normal tail.\nIf the $p$-value is at most the predetermined $\\alpha$, reject $H_0$; otherwise fail to reject it.\nState evidence for $H_a$ in context. Failing to reject does not establish that $H_0$ is true.\nStatistical significance uses the evidence rule; practical importance asks whether an effect is large enough to matter.\nA random sample supports inference to its population. A cause requires a comparison with random assignment.\n",
+        "addition": "Printed normal table: $P(Z\\leq-1.8074)=0.035351$. The left area is the lower-tail probability.",
+        "after": "For a one-proportion test, $z=(\\widehat p-p_0)/\\sqrt{p_0(1-p_0)/n}$; for $H_a:p<p_0$, use the left normal tail.\nIf the $p$-value is at most the predetermined $\\alpha$, reject $H_0$; otherwise fail to reject it.\nState evidence for $H_a$ in context. Failing to reject does not establish that $H_0$ is true.\nStatistical significance uses the evidence rule; practical importance asks whether an effect is large enough to matter.\nA random sample supports inference to its population. A cause requires a comparison with random assignment.\nPrinted normal table: $P(Z\\leq-1.8074)=0.035351$. The left area is the lower-tail probability.\n"
+      },
+      {
+        "topic": "6.11",
+        "part": "b",
+        "finding": "Normal-area calculation requires a lookup not printed independently of the competing claims.",
+        "field": "rules_callout.body",
+        "before": "For $H_0:p_1-p_2=0$, pool $\\hat p_c=(x_1+x_2)/(n_1+n_2)$ and use\n$z=\\dfrac{(\\hat p_1-\\hat p_2)-0}{\\sqrt{\\hat p_c(1-\\hat p_c)(1/n_1+1/n_2)}}$.\nA two-sided test uses $P(|Z|\\ge |z|)$. The $p$-value assumes $H_0$ is true and measures\nhow often random chance would produce a difference at least as extreme. If the $p$-value is at most $\\alpha$, reject\n$H_0$; otherwise fail to reject it. A test against zero addresses whether a difference exists;\nit does not by itself establish that the difference exceeds a separate practical threshold.\n",
+        "addition": "Printed normal table: $P(Z\\leq2.0412)=0.979387$. A right-tail area is 1 minus the left area; the two-sided area is twice that tail.",
+        "after": "For $H_0:p_1-p_2=0$, pool $\\hat p_c=(x_1+x_2)/(n_1+n_2)$ and use\n$z=\\dfrac{(\\hat p_1-\\hat p_2)-0}{\\sqrt{\\hat p_c(1-\\hat p_c)(1/n_1+1/n_2)}}$.\nA two-sided test uses $P(|Z|\\ge |z|)$. The $p$-value assumes $H_0$ is true and measures\nhow often random chance would produce a difference at least as extreme. If the $p$-value is at most $\\alpha$, reject\n$H_0$; otherwise fail to reject it. A test against zero addresses whether a difference exists;\nit does not by itself establish that the difference exceeds a separate practical threshold.\nPrinted normal table: $P(Z\\leq2.0412)=0.979387$. A right-tail area is 1 minus the left area; the two-sided area is twice that tail.\n"
+      }
+    ],
+    "obsolete_comment_edits": 1,
+    "total": 7,
+    "physical_lines_added": 6,
+    "physical_lines_rewritten": 1
+  },
+  "phrase_list": [
+    "video",
+    "rules box",
+    "follow-along",
+    "scan the code",
+    "QR code",
+    "before we discuss",
+    "before the discussion",
+    "after the discussion",
+    "at minute",
+    "at the bell",
+    "turn in one sheet",
+    "Explore (",
+    "Do Now",
+    "class period",
+    "in class"
+  ],
+  "on_page_audit": {
+    "sheets": 69,
+    "focus_parts": 208,
+    "optional_items": 4,
+    "findings": 6,
+    "all_original_problem_content_preserved": true,
+    "audit_file": "state/dok-self-paced-audit.md"
+  },
+  "forbidden_phrase_hits": {
+    "yaml_registry_before": 365,
+    "yaml_registry_after": 0,
+    "tex_before": 714,
+    "tex_after": 0
+  },
+  "pdfs_rebuilt": 207,
+  "pdf_inventory": [
+    {
+      "file": "dok/pdf/aps_1.1_student.pdf",
+      "pages": 2,
+      "sha256": "524baf72cc54b56c52ea3b8ba4165cf1b725132a2b6a81ae5714efb7644168dd"
+    },
+    {
+      "file": "dok/pdf/aps_1.1_board.pdf",
+      "pages": 1,
+      "sha256": "cfdcd85fdd0cc094a4f165b6871c14760deac69a266480415dc15e247ad16c9c"
+    },
+    {
+      "file": "dok/pdf/aps_1.1_teacher.pdf",
+      "pages": 3,
+      "sha256": "3db473f74af9687a69c67c9d81cc10d907de8218c9cba690b39047d47e799bab"
+    },
+    {
+      "file": "dok/pdf/aps_1.10_student.pdf",
+      "pages": 2,
+      "sha256": "02d34ad10d5d5364faa12a83900a561bed69a22e59a462af528a26961546de65"
+    },
+    {
+      "file": "dok/pdf/aps_1.10_board.pdf",
+      "pages": 1,
+      "sha256": "91c41181d262250b53acab3c69b27cf7fd92f652e91cff89dd059c91e492ee41"
+    },
+    {
+      "file": "dok/pdf/aps_1.10_teacher.pdf",
+      "pages": 3,
+      "sha256": "c60cd2206981d09e060c8a9b304008d5ecdfd52b6f9942c5699490caacdcc87f"
+    },
+    {
+      "file": "dok/pdf/aps_1.1_1.2_1.4_1.7_student.pdf",
+      "pages": 2,
+      "sha256": "661fffc42e263e2b7976db0ac1d14aa5f7e4b213022b0e831b75739c951dc2b9"
+    },
+    {
+      "file": "dok/pdf/aps_1.1_1.2_1.4_1.7_board.pdf",
+      "pages": 2,
+      "sha256": "3aa185a7f79953536e634de5a73d9e1a4a6045853f049e73f1710576e2c93baf"
+    },
+    {
+      "file": "dok/pdf/aps_1.1_1.2_1.4_1.7_teacher.pdf",
+      "pages": 4,
+      "sha256": "a7e1f08e5ff2c763516054b2499c8f8062f7b715098ce33f6652d1c6d1b4351e"
+    },
+    {
+      "file": "dok/pdf/aps_1.2_student.pdf",
+      "pages": 2,
+      "sha256": "08dae6cd95253acfe0a7f7cc709df8d9a71bf8148041a7d46ce0c588103af982"
+    },
+    {
+      "file": "dok/pdf/aps_1.2_board.pdf",
+      "pages": 1,
+      "sha256": "06dc0b68b8851180ec8f242aa0ecd192af258ccbd76521b6310ed2b009c245e1"
+    },
+    {
+      "file": "dok/pdf/aps_1.2_teacher.pdf",
+      "pages": 3,
+      "sha256": "7c82832c471c48c4d269dd230128187f1ff62d249f6967764a211fa5fbea4eed"
+    },
+    {
+      "file": "dok/pdf/aps_1.3_student.pdf",
+      "pages": 2,
+      "sha256": "ef24f23afae08405b8a123610c205361d893616d8384f37f2adcb58911895f8a"
+    },
+    {
+      "file": "dok/pdf/aps_1.3_board.pdf",
+      "pages": 1,
+      "sha256": "5f4535315a043da7c0c1e6d1c173a9ea41fb0a61127000399fcd13c25b181d4f"
+    },
+    {
+      "file": "dok/pdf/aps_1.3_teacher.pdf",
+      "pages": 3,
+      "sha256": "a8d8b89337d62249d5d3466c83633ba1f02981c3f2e16283729df8c23f45e51f"
+    },
+    {
+      "file": "dok/pdf/aps_1.4_student.pdf",
+      "pages": 2,
+      "sha256": "e1295caf51bae3c1c76a760f181c12a4a1cd3d3bdef9ebc6452d20ea9bbaf4a7"
+    },
+    {
+      "file": "dok/pdf/aps_1.4_board.pdf",
+      "pages": 1,
+      "sha256": "e0f64559544a5841c7aa3ae8d3e65d706c7a751062c29c4a70461755bff3ef1b"
+    },
+    {
+      "file": "dok/pdf/aps_1.4_teacher.pdf",
+      "pages": 3,
+      "sha256": "5a7e5a3e50d882b6da6c2d388f34f183696077c0f18f3a77dfb33945568f4e32"
+    },
+    {
+      "file": "dok/pdf/aps_1.4_1.5_student.pdf",
+      "pages": 2,
+      "sha256": "23d2f7b5c6f75c3fdd06e97a878475eb1a02b5dcc867e291f231f23b87eee560"
+    },
+    {
+      "file": "dok/pdf/aps_1.4_1.5_board.pdf",
+      "pages": 1,
+      "sha256": "7676955c7d1c72bc68c6559e24bc1f3bc58e6f35efe29d2b27cb49ee73b14106"
+    },
+    {
+      "file": "dok/pdf/aps_1.4_1.5_teacher.pdf",
+      "pages": 3,
+      "sha256": "422e5429c8ec149d25f297a229f7d9419f133e9cfc6d67d657a92e9cd5a33173"
+    },
+    {
+      "file": "dok/pdf/aps_1.5_student.pdf",
+      "pages": 2,
+      "sha256": "aba28837f16a267638b5127886362944672078565b057c5ac5597badbcc5837a"
+    },
+    {
+      "file": "dok/pdf/aps_1.5_board.pdf",
+      "pages": 1,
+      "sha256": "c86b32c13d5cf1123a3ce795c357adad37c6202c434f2fdaf183ed952ce52256"
+    },
+    {
+      "file": "dok/pdf/aps_1.5_teacher.pdf",
+      "pages": 3,
+      "sha256": "763ec7062a472d1c147a586665ac1209b90aa775be653d77e4042459da10df0c"
+    },
+    {
+      "file": "dok/pdf/aps_1.6_student.pdf",
+      "pages": 2,
+      "sha256": "5a676ee10e2b0c86a526918ea9ce3027a619c6f6e617c1273dfbc833d4971bfc"
+    },
+    {
+      "file": "dok/pdf/aps_1.6_board.pdf",
+      "pages": 1,
+      "sha256": "4206ea9c99cfed1ab94f66a3e79f7a816bc7094c3a34bdf73c6e9801deb420e4"
+    },
+    {
+      "file": "dok/pdf/aps_1.6_teacher.pdf",
+      "pages": 3,
+      "sha256": "84ba215bfeed954e4920edfa72cddf04d2696e3e5a7c2f3f159f1a4e4cddc399"
+    },
+    {
+      "file": "dok/pdf/aps_1.7_student.pdf",
+      "pages": 2,
+      "sha256": "eccc9d777ba6dc44b36620d2d9b215328ad6b120fc82f9e2ab240b7c585af17d"
+    },
+    {
+      "file": "dok/pdf/aps_1.7_board.pdf",
+      "pages": 1,
+      "sha256": "a01527f861289a7aad996445351f8ab8dc2a5477b1eab77d6880dce364f45931"
+    },
+    {
+      "file": "dok/pdf/aps_1.7_teacher.pdf",
+      "pages": 3,
+      "sha256": "0381e5c1c91a77ce8080609cd3821d53e7fdbe1d5204f5b334a214625d0f0f76"
+    },
+    {
+      "file": "dok/pdf/aps_1.7_1.8_student.pdf",
+      "pages": 2,
+      "sha256": "e259cde6b7b7dc64637ad176f91b5d9252d2930b4d70382bb09f1d7dd4124bcf"
+    },
+    {
+      "file": "dok/pdf/aps_1.7_1.8_board.pdf",
+      "pages": 1,
+      "sha256": "f093b623147889d3f33794cb0b3d0551dbf4634784e57084314bbd8382242e45"
+    },
+    {
+      "file": "dok/pdf/aps_1.7_1.8_teacher.pdf",
+      "pages": 3,
+      "sha256": "0ce5551a78cac1b99edca4f180da341b165ca8db8ff6f6275a49426dd2799181"
+    },
+    {
+      "file": "dok/pdf/aps_1.8_student.pdf",
+      "pages": 2,
+      "sha256": "b4dfa177e9c31a04b75fef0424c5937563dd4fc8b5c36c9e2b30709508f8bad4"
+    },
+    {
+      "file": "dok/pdf/aps_1.8_board.pdf",
+      "pages": 1,
+      "sha256": "730a0d937cbfca4ddbb3c03733bf865631ef041fdd24bf499ad71659716388f6"
+    },
+    {
+      "file": "dok/pdf/aps_1.8_teacher.pdf",
+      "pages": 3,
+      "sha256": "384a06c187e94a2343e77ef12e0962a3c318b651f1e1bf0387b4ed4df57aac0e"
+    },
+    {
+      "file": "dok/pdf/aps_1.9_student.pdf",
+      "pages": 2,
+      "sha256": "5ac5a2a792802fb1dec01ef2c308d76f8c79aae70e76eaa6234225ecd3ae779b"
+    },
+    {
+      "file": "dok/pdf/aps_1.9_board.pdf",
+      "pages": 1,
+      "sha256": "65f235f28ceef6946f44e68cc3c8a7b6b38d51d95538b22057e3419998b59dec"
+    },
+    {
+      "file": "dok/pdf/aps_1.9_teacher.pdf",
+      "pages": 3,
+      "sha256": "0afb5eda970dc6340e7dfaffcdb8a1bd51f05789be1eb4d9f00abcc289aab9ed"
+    },
+    {
+      "file": "dok/pdf/aps_2.1_student.pdf",
+      "pages": 2,
+      "sha256": "82028895641dc66462d165b4073b6a85357d561f17d7fbf1c770563cb7f6f991"
+    },
+    {
+      "file": "dok/pdf/aps_2.1_board.pdf",
+      "pages": 1,
+      "sha256": "ef2ff25282bc031bbd6368a0e203162c1dae5c3717209098aa47cd973b74a607"
+    },
+    {
+      "file": "dok/pdf/aps_2.1_teacher.pdf",
+      "pages": 2,
+      "sha256": "09465c9a4fa517d00db6e9ba8c466a66f3a71b3305f1ae25d3e3f733b7d7303b"
+    },
+    {
+      "file": "dok/pdf/aps_2.2_student.pdf",
+      "pages": 2,
+      "sha256": "02cd30d0f3727b2626ae5d6d1b958a256da08fcd1ce16035be29d948efdf7e1f"
+    },
+    {
+      "file": "dok/pdf/aps_2.2_board.pdf",
+      "pages": 1,
+      "sha256": "31253b5cd3f9e5748c5db3fd5938d938fd3a6e3b300d8be094cd7753dfb20767"
+    },
+    {
+      "file": "dok/pdf/aps_2.2_teacher.pdf",
+      "pages": 3,
+      "sha256": "a3d734b47219c1ef1b6ddafac4c38d6a9ca255057cb37c8cd11a6111f7918d61"
+    },
+    {
+      "file": "dok/pdf/aps_2.3_student.pdf",
+      "pages": 2,
+      "sha256": "198993adbc6ad6a4a71e82fc249b9502bfd970cbaca1fc2b609034c45774e702"
+    },
+    {
+      "file": "dok/pdf/aps_2.3_board.pdf",
+      "pages": 1,
+      "sha256": "759af7a199a5f2d8c302b36654e51bfd9ff0aa89e0d939d312801a0503fbc1e8"
+    },
+    {
+      "file": "dok/pdf/aps_2.3_teacher.pdf",
+      "pages": 3,
+      "sha256": "20cb217c293c31b6f153e3070b807b7cd48adc34410524d1e6e4d0c63a40534b"
+    },
+    {
+      "file": "dok/pdf/aps_2.4_student.pdf",
+      "pages": 2,
+      "sha256": "44f19aa8bf281b92ae3f0f4e138becac1ad75eb9716f01102e69895a29c70c25"
+    },
+    {
+      "file": "dok/pdf/aps_2.4_board.pdf",
+      "pages": 1,
+      "sha256": "cd1372e73f1f8ef8e920e39b3dee433d4a9dd1e85efd7d1aead81048db17b111"
+    },
+    {
+      "file": "dok/pdf/aps_2.4_teacher.pdf",
+      "pages": 3,
+      "sha256": "a8fe0065fdf8022182e786adc69ddb5356b63a9e45b5ac9c6e8f2bdb8f0d17ea"
+    },
+    {
+      "file": "dok/pdf/aps_2.5_student.pdf",
+      "pages": 2,
+      "sha256": "61cf91853fbd09a842ffae85f0a018a76ff89febb4be28d10a132e2b80ab3e22"
+    },
+    {
+      "file": "dok/pdf/aps_2.5_board.pdf",
+      "pages": 1,
+      "sha256": "3c37512ccfe48497c7a1494b41ef24a6930d8e66fb0a5525eaf3955a4dffe5da"
+    },
+    {
+      "file": "dok/pdf/aps_2.5_teacher.pdf",
+      "pages": 3,
+      "sha256": "081e28471807b819493245934227f06666c0a3a50c80a9747759f5d34e02cd1e"
+    },
+    {
+      "file": "dok/pdf/aps_2.6_student.pdf",
+      "pages": 2,
+      "sha256": "841ce64feecfb2121fa58147206081f11d2313b76dca319094b9b4f404597b77"
+    },
+    {
+      "file": "dok/pdf/aps_2.6_board.pdf",
+      "pages": 1,
+      "sha256": "0df50ec2e182e9208dd7f253a6bca8e54184ca9590a61901f9fe9c67e38da64d"
+    },
+    {
+      "file": "dok/pdf/aps_2.6_teacher.pdf",
+      "pages": 3,
+      "sha256": "a54d2fe1baa4052556453c94eada24f839328560f2c480b75de0ea0d2e17acca"
+    },
+    {
+      "file": "dok/pdf/aps_2.7_student.pdf",
+      "pages": 2,
+      "sha256": "9d56c6cbaeb27869b5f591711b28996939db456b1d439607e7f30f41762e7f80"
+    },
+    {
+      "file": "dok/pdf/aps_2.7_board.pdf",
+      "pages": 1,
+      "sha256": "606c8d71958ee78b23fc74474e62f437f32b5ea82649b8e6ceb4e65d85d5ffb8"
+    },
+    {
+      "file": "dok/pdf/aps_2.7_teacher.pdf",
+      "pages": 3,
+      "sha256": "e26f1c6d0f638fa71ec079f014ae2fb8c777ca3c565ce1361acaacd2b8ef0566"
+    },
+    {
+      "file": "dok/pdf/aps_2.8_student.pdf",
+      "pages": 2,
+      "sha256": "92f4b06d7234c740bb67a9e85da8e185c9133bb935138309904ae390bf884066"
+    },
+    {
+      "file": "dok/pdf/aps_2.8_board.pdf",
+      "pages": 1,
+      "sha256": "74e1401318b903d5cc7961450095a05576dd5cf3275f329462b34cf882f5447e"
+    },
+    {
+      "file": "dok/pdf/aps_2.8_teacher.pdf",
+      "pages": 3,
+      "sha256": "9029fcdb377ae8461f96262aee928e7a346b0185876b8ed5e264b493a5ff2cd1"
+    },
+    {
+      "file": "dok/pdf/aps_3.1_student.pdf",
+      "pages": 2,
+      "sha256": "c92d8110824fadbecd45d46afc63dfa0512d61f6380d66364a619d160b4c09e1"
+    },
+    {
+      "file": "dok/pdf/aps_3.1_board.pdf",
+      "pages": 1,
+      "sha256": "2b63f33aed542febcc4b5365b4481c5d5d2402543a6d0dd0907cecf45c04c416"
+    },
+    {
+      "file": "dok/pdf/aps_3.1_teacher.pdf",
+      "pages": 3,
+      "sha256": "1cfca7badea6dccb3b4f3a5e2be9dc09e4bd971492fc506b384bea5a464cbf49"
+    },
+    {
+      "file": "dok/pdf/aps_3.2_student.pdf",
+      "pages": 2,
+      "sha256": "54b74e459d7d99b656be8123804ed720a22cca44de3a5127a039bed063fa55fa"
+    },
+    {
+      "file": "dok/pdf/aps_3.2_board.pdf",
+      "pages": 1,
+      "sha256": "f9ee454554749dca54b9426f5788f8e7470431f0c8991b7697fd698a67331589"
+    },
+    {
+      "file": "dok/pdf/aps_3.2_teacher.pdf",
+      "pages": 3,
+      "sha256": "5e4d62cd1848b018b75d1243d51eaddc9dfd56f09f1abce7ca88e5ee66f7200d"
+    },
+    {
+      "file": "dok/pdf/aps_3.3_student.pdf",
+      "pages": 2,
+      "sha256": "d11ebe140870c216f01673645e3a229db7be0e0f04b7aab51a1d2ee6654d5787"
+    },
+    {
+      "file": "dok/pdf/aps_3.3_board.pdf",
+      "pages": 1,
+      "sha256": "0e14bd610a160eb7080be5ae0f0b057684df3814c5ddd62a89be9f9ccdbb41d1"
+    },
+    {
+      "file": "dok/pdf/aps_3.3_teacher.pdf",
+      "pages": 3,
+      "sha256": "7c81f75047cd2e89b544e7a5e01baf29f306b8ad3640ec6d58a0b0ab52625ce9"
+    },
+    {
+      "file": "dok/pdf/aps_3.4_student.pdf",
+      "pages": 2,
+      "sha256": "b999cd2b95ad1afab62ad69be6d2fd06c59e011f71798f4155e136ad77a9b2a5"
+    },
+    {
+      "file": "dok/pdf/aps_3.4_board.pdf",
+      "pages": 1,
+      "sha256": "5fcb59b5ee74739016c01f0d2a2d0fb4c304d035b20441c376ec67f828613f98"
+    },
+    {
+      "file": "dok/pdf/aps_3.4_teacher.pdf",
+      "pages": 3,
+      "sha256": "1d99ce367a14eb82938a2d0d83ecfec55eaeabab957ae9e332d683ebe3156b9e"
+    },
+    {
+      "file": "dok/pdf/aps_3.5_student.pdf",
+      "pages": 2,
+      "sha256": "761b8b949aaeddc3ec99fcee8e8dbeb4ff1d5b41fb6f3c66b243d2d4fa0089bf"
+    },
+    {
+      "file": "dok/pdf/aps_3.5_board.pdf",
+      "pages": 1,
+      "sha256": "4ba4273e18befedbf3664f1c4c87eb2901d0c38c7ea773ae2c9e0ed11e6c40a9"
+    },
+    {
+      "file": "dok/pdf/aps_3.5_teacher.pdf",
+      "pages": 3,
+      "sha256": "b238d6b85219e8bc637cf7e81da71121cc9c9af8e63c80c3a9e0c5dbeab4d52e"
+    },
+    {
+      "file": "dok/pdf/aps_3.6_student.pdf",
+      "pages": 2,
+      "sha256": "a6ee701d019ca926de65850bc19351938b82fe0cbdce3901f344c0587181facb"
+    },
+    {
+      "file": "dok/pdf/aps_3.6_board.pdf",
+      "pages": 1,
+      "sha256": "5cf9e7c904f1d497dade38cd8cbbe7e0995dc6ab35df5d9753296916422357f6"
+    },
+    {
+      "file": "dok/pdf/aps_3.6_teacher.pdf",
+      "pages": 3,
+      "sha256": "ea1d60f65d9fa8df037a55df683db927185f3d43cb0c35102506de8d6aa32499"
+    },
+    {
+      "file": "dok/pdf/aps_4.1_student.pdf",
+      "pages": 2,
+      "sha256": "741ed40a9413a1f8c6f3cf0032d70bfcfb0d07727312cb6149f286ee7b308e87"
+    },
+    {
+      "file": "dok/pdf/aps_4.1_board.pdf",
+      "pages": 1,
+      "sha256": "f7ab649355e573c4213ab3fe979da1e3286c9d2e9933b4447ade263abd0d4529"
+    },
+    {
+      "file": "dok/pdf/aps_4.1_teacher.pdf",
+      "pages": 3,
+      "sha256": "5d66cd77799dbf785eaa7a9a367a9457fbf0bbeaf55c3b1d585cc396669df99f"
+    },
+    {
+      "file": "dok/pdf/aps_4.10_student.pdf",
+      "pages": 2,
+      "sha256": "0ab28ccfb2fad7bb82d2cbb733252a179f2f46427231b9aec2f53faf2ed634e7"
+    },
+    {
+      "file": "dok/pdf/aps_4.10_board.pdf",
+      "pages": 1,
+      "sha256": "d579f62a937b61414249c2700a41283c2dc61f0c52f5f5ac1c7df7f093cc3221"
+    },
+    {
+      "file": "dok/pdf/aps_4.10_teacher.pdf",
+      "pages": 3,
+      "sha256": "ce1876b96402b71d814333cd5573aad0407f6f77fa4becf04447f77faf155b55"
+    },
+    {
+      "file": "dok/pdf/aps_4.11_student.pdf",
+      "pages": 2,
+      "sha256": "06b614da4753b0a82f1c7b733d1987c12cb740994f7e131c10e986e8b18c0dcb"
+    },
+    {
+      "file": "dok/pdf/aps_4.11_board.pdf",
+      "pages": 1,
+      "sha256": "8b40d5e109474abe09ebbc8994d9986bc335dc16a0155d130fe94e68a33ccbd2"
+    },
+    {
+      "file": "dok/pdf/aps_4.11_teacher.pdf",
+      "pages": 3,
+      "sha256": "d900303960ba81f15809c368c60e790c2aeadbecf192853dd1b2a8a08c553f52"
+    },
+    {
+      "file": "dok/pdf/aps_4.2_student.pdf",
+      "pages": 2,
+      "sha256": "d60e94aa12c2f6128d469c3f5c3a5f5b770d4f15b2a5948a271c6b8135af40b5"
+    },
+    {
+      "file": "dok/pdf/aps_4.2_board.pdf",
+      "pages": 1,
+      "sha256": "9655e281439b0d55ec8686c1b048d5c795d4317d7187842745c1455e1ad38388"
+    },
+    {
+      "file": "dok/pdf/aps_4.2_teacher.pdf",
+      "pages": 3,
+      "sha256": "1226862057c704d5a886a5b27fcfeb9134791ef5ec17acee24f84f2c5b259404"
+    },
+    {
+      "file": "dok/pdf/aps_4.3_student.pdf",
+      "pages": 2,
+      "sha256": "c245f347d5a8e375c82ea2712e4de67f2cc69811c341a1dc811fb4a5d520f50a"
+    },
+    {
+      "file": "dok/pdf/aps_4.3_board.pdf",
+      "pages": 1,
+      "sha256": "d6932bfa1bd2da106a15126465996aab5d80a4a2df8a17f99f357b01e8db79bf"
+    },
+    {
+      "file": "dok/pdf/aps_4.3_teacher.pdf",
+      "pages": 4,
+      "sha256": "2326b213e3c5c95b30b9af63501a9f0d23b68857d7813423f17fc25c465acf08"
+    },
+    {
+      "file": "dok/pdf/aps_4.4_student.pdf",
+      "pages": 2,
+      "sha256": "a106f1ae53e6121c74d3e0d62a62d0ef40e2c6d939cdc633000844c4c98a75a8"
+    },
+    {
+      "file": "dok/pdf/aps_4.4_board.pdf",
+      "pages": 1,
+      "sha256": "e6fbdb2a162376c5fffa03249e4340ef517eb799b8bacf4d8d2944a02d2b30cd"
+    },
+    {
+      "file": "dok/pdf/aps_4.4_teacher.pdf",
+      "pages": 3,
+      "sha256": "d2675c3711025793a4d55681df85071bad9340ed9801854bdd90b55c4fc7a716"
+    },
+    {
+      "file": "dok/pdf/aps_4.5_student.pdf",
+      "pages": 2,
+      "sha256": "a9866bff406a4ff6da99e8bb89d401417538e69b0f77fd84d765d89adbc9b4cb"
+    },
+    {
+      "file": "dok/pdf/aps_4.5_board.pdf",
+      "pages": 1,
+      "sha256": "f9f320b741d3e554b7607ee86fc664b89cb8c09fd923cc1f7e09b29f329df8c3"
+    },
+    {
+      "file": "dok/pdf/aps_4.5_teacher.pdf",
+      "pages": 3,
+      "sha256": "3c154587582922e5ea4ad93d2887968d3399dfdff50168218e27bd3dc7070461"
+    },
+    {
+      "file": "dok/pdf/aps_4.6_student.pdf",
+      "pages": 2,
+      "sha256": "3df7a6f10c33da43db0d37dfc99b7611cd0c1d34ccaaddee9a19cd37e4dfa863"
+    },
+    {
+      "file": "dok/pdf/aps_4.6_board.pdf",
+      "pages": 1,
+      "sha256": "162c0c15205c286cba495112b7c6f1058bcc12f1e9d1e560a9b60494068e3ca1"
+    },
+    {
+      "file": "dok/pdf/aps_4.6_teacher.pdf",
+      "pages": 3,
+      "sha256": "601b2203c1c638425d2144d3a3d6f3f0ccce3edbb9e21dfa7ef0c41d53bf0219"
+    },
+    {
+      "file": "dok/pdf/aps_4.7_student.pdf",
+      "pages": 2,
+      "sha256": "40c88e222f8438327ec0eb03e2194929e2ec9cd0fc427cfdbdf3d7665ac5552e"
+    },
+    {
+      "file": "dok/pdf/aps_4.7_board.pdf",
+      "pages": 1,
+      "sha256": "b0bb174198f83d641fb9d674bf5a3f4e328dced65976efc3abebb617dca0926a"
+    },
+    {
+      "file": "dok/pdf/aps_4.7_teacher.pdf",
+      "pages": 3,
+      "sha256": "c15d0667270b3551802509ee5ad2a77e28f1f27f9bad652a5cd202c5ba5a0e82"
+    },
+    {
+      "file": "dok/pdf/aps_4.8_student.pdf",
+      "pages": 2,
+      "sha256": "2c5891cb1ccce740c52a029001218f3a16ef8e1ee0462f88b7928ab8264023f1"
+    },
+    {
+      "file": "dok/pdf/aps_4.8_board.pdf",
+      "pages": 1,
+      "sha256": "63a01479cafa8c8b713a0e80516da4fb507df71a4fc75c6f6931da002f04b377"
+    },
+    {
+      "file": "dok/pdf/aps_4.8_teacher.pdf",
+      "pages": 3,
+      "sha256": "edd1569ddbbd4ce6b3865e3ce08a0fda240ff8f646c2622967afefbf8b0d9f3e"
+    },
+    {
+      "file": "dok/pdf/aps_5.1_student.pdf",
+      "pages": 2,
+      "sha256": "b47b914a90d35c10b4f3cfa34fbbdbcccc7f0babc6124816a8bd1c670ef63abb"
+    },
+    {
+      "file": "dok/pdf/aps_5.1_board.pdf",
+      "pages": 1,
+      "sha256": "3e646b5e95cad427610b15d98ffa496ff7f3afbcb14705b5cd2e66edd675a652"
+    },
+    {
+      "file": "dok/pdf/aps_5.1_teacher.pdf",
+      "pages": 3,
+      "sha256": "95e12ce8adb67dc39374048bffea51d225cc5d4c9cca126966a048266a1c4a0f"
+    },
+    {
+      "file": "dok/pdf/aps_5.2_student.pdf",
+      "pages": 2,
+      "sha256": "f3479fad230c46923f76af8714d662de975be24dd9851611783dec37f34bb3a4"
+    },
+    {
+      "file": "dok/pdf/aps_5.2_board.pdf",
+      "pages": 1,
+      "sha256": "ecd70d9278470017e446cbc64d9d853004b872b3f9d45ce6274b40752bcae4b1"
+    },
+    {
+      "file": "dok/pdf/aps_5.2_teacher.pdf",
+      "pages": 3,
+      "sha256": "6a30e2a12cc38a0628b3ee2cbcc6faba4c0a645ec7d97776d8e0ca65665389a9"
+    },
+    {
+      "file": "dok/pdf/aps_5.3_student.pdf",
+      "pages": 2,
+      "sha256": "2d146de82cb7eb0f3f330748d71d4ca50772402a913bc70c1369717ee4c4fac3"
+    },
+    {
+      "file": "dok/pdf/aps_5.3_board.pdf",
+      "pages": 1,
+      "sha256": "2e4454ddf4d9e86581c7f46e6ace86be2420ec7120f72ce91ea2b1ce28c769f7"
+    },
+    {
+      "file": "dok/pdf/aps_5.3_teacher.pdf",
+      "pages": 3,
+      "sha256": "71b5e193202a801f7666648491af8bf54dbf01b2dabec083bb4251e63a972774"
+    },
+    {
+      "file": "dok/pdf/aps_5.4_student.pdf",
+      "pages": 2,
+      "sha256": "b7b1e375a1abc892d33bbaa5534095be64411761fded03748fd948e81028b11d"
+    },
+    {
+      "file": "dok/pdf/aps_5.4_board.pdf",
+      "pages": 1,
+      "sha256": "8b11cbee0d330e16cedea6ab7b5f9026cd764f4375b082017c40136201c5f959"
+    },
+    {
+      "file": "dok/pdf/aps_5.4_teacher.pdf",
+      "pages": 3,
+      "sha256": "5b6e62862de3a72b85757dfa48b18e36efe74c0c47351f923f47a9e30a20398b"
+    },
+    {
+      "file": "dok/pdf/aps_5.5_student.pdf",
+      "pages": 2,
+      "sha256": "cd4fa4213333a1fa012b3df6ef47cbef5cc6500057eaaeb5af319f94d8d45171"
+    },
+    {
+      "file": "dok/pdf/aps_5.5_board.pdf",
+      "pages": 1,
+      "sha256": "41738b0ee7451c53e8e00cbceefee87ba6b7611e024c4f5d962633b498856875"
+    },
+    {
+      "file": "dok/pdf/aps_5.5_teacher.pdf",
+      "pages": 3,
+      "sha256": "4715664c3929d61965a32b07953773050d24d0a173eaf2ba06ae883c4907f027"
+    },
+    {
+      "file": "dok/pdf/aps_5.6_student.pdf",
+      "pages": 2,
+      "sha256": "8f9d0dd68291ab78939b8a68776c0d547702ad0e602925e134be18bd15d4d4e7"
+    },
+    {
+      "file": "dok/pdf/aps_5.6_board.pdf",
+      "pages": 1,
+      "sha256": "7046fbdf6b98a63cdf4967cdcf7f88d9bd35fca1fc00751cc9d9fae87c19c38f"
+    },
+    {
+      "file": "dok/pdf/aps_5.6_teacher.pdf",
+      "pages": 4,
+      "sha256": "71486d1556413614764bbd1a653839490d018f73d19b8c757bd74350be39d647"
+    },
+    {
+      "file": "dok/pdf/aps_5.7_student.pdf",
+      "pages": 2,
+      "sha256": "e3d81c95bc8711d8684605150658f2482d81aad6492b96639aa4104ba06b4f0d"
+    },
+    {
+      "file": "dok/pdf/aps_5.7_board.pdf",
+      "pages": 1,
+      "sha256": "a95e3f76a0c7b6ca2680fc5cde3aac11ae4fa41c49cf71ab279af2d56fe4503e"
+    },
+    {
+      "file": "dok/pdf/aps_5.7_teacher.pdf",
+      "pages": 3,
+      "sha256": "d8718975299ed75ecd602626165efee804046342abe3b15b7676a0c69c70f1c1"
+    },
+    {
+      "file": "dok/pdf/aps_5.8_student.pdf",
+      "pages": 2,
+      "sha256": "42f5cb86602d6386dd0a7deeeb06d4a7436847aa2bcb5400d59090896e3c1262"
+    },
+    {
+      "file": "dok/pdf/aps_5.8_board.pdf",
+      "pages": 1,
+      "sha256": "1a540ba77d2f610a032cb0b851cc6e56cbbe1d806db346d92a4e98051f8ed1f5"
+    },
+    {
+      "file": "dok/pdf/aps_5.8_teacher.pdf",
+      "pages": 3,
+      "sha256": "261e509dc7e3fa2e5dd3f8f5773451810af048627a94cb55f8cda8e28b65cd55"
+    },
+    {
+      "file": "dok/pdf/aps_6.1_student.pdf",
+      "pages": 2,
+      "sha256": "410e956cd8d37645a65977d001d7925b22f1a7ecc0b38f2e9d6e326f5d8e8dd8"
+    },
+    {
+      "file": "dok/pdf/aps_6.1_board.pdf",
+      "pages": 1,
+      "sha256": "57945cf6951440498a921440fb82e3d22d2676db391d8e19f68698126a36a6e5"
+    },
+    {
+      "file": "dok/pdf/aps_6.1_teacher.pdf",
+      "pages": 3,
+      "sha256": "2011fba23be5c5a2772d5097f0b410fe5dceaf270a21a548f72648a593b17f4d"
+    },
+    {
+      "file": "dok/pdf/aps_6.10_student.pdf",
+      "pages": 2,
+      "sha256": "3d547bd41b886a19c132d6622fececea5cf33b1f4bc3671d2386fd83b8213642"
+    },
+    {
+      "file": "dok/pdf/aps_6.10_board.pdf",
+      "pages": 1,
+      "sha256": "8077a26ba9f26d78046e7ae1d8dad0a4bf0b03bfc6fee6e84038eb278e314652"
+    },
+    {
+      "file": "dok/pdf/aps_6.10_teacher.pdf",
+      "pages": 3,
+      "sha256": "0fd1071c98cab5ef03e90e5f0cf86f8aa009f5103028dd44ce5780e466991e8d"
+    },
+    {
+      "file": "dok/pdf/aps_6.11_student.pdf",
+      "pages": 2,
+      "sha256": "485e46f327e9f023e7ae51b92e05d33d4adcc0d4a2e05e1632aa150d2105da2e"
+    },
+    {
+      "file": "dok/pdf/aps_6.11_board.pdf",
+      "pages": 1,
+      "sha256": "0500591ad79d416be0259fb52571edada7a076283a7dd46799b0a912995fc09f"
+    },
+    {
+      "file": "dok/pdf/aps_6.11_teacher.pdf",
+      "pages": 4,
+      "sha256": "9170fdd3b2db19af43d618dbca4127b15600c2d82230c5f3bc3c2bdfc6617dff"
+    },
+    {
+      "file": "dok/pdf/aps_6.2_student.pdf",
+      "pages": 2,
+      "sha256": "f7d49c36de5b02aa6e4191a2d20e4b0f584e8309da0dba5eba6158eb7c6ca0de"
+    },
+    {
+      "file": "dok/pdf/aps_6.2_board.pdf",
+      "pages": 1,
+      "sha256": "42d908f11286fdc3c41fd0e27b15947b568ba16e8a7900ec155dcbdfac057ae2"
+    },
+    {
+      "file": "dok/pdf/aps_6.2_teacher.pdf",
+      "pages": 3,
+      "sha256": "9806b125dd88ba74a8c41fcfcd148ef47c404d1ca163e2b48eb3ba9a1970ceae"
+    },
+    {
+      "file": "dok/pdf/aps_6.3_student.pdf",
+      "pages": 2,
+      "sha256": "04ff611e7b06dbc53b70706999a34f592b061a493ea0e82e091ba344195fc176"
+    },
+    {
+      "file": "dok/pdf/aps_6.3_board.pdf",
+      "pages": 1,
+      "sha256": "fc9d6a51a7168289254c7fbb4741832ee3a9024bc42c04b90a076a5d382c3193"
+    },
+    {
+      "file": "dok/pdf/aps_6.3_teacher.pdf",
+      "pages": 3,
+      "sha256": "35882dee3360a5f9d772dff250434457f89881d867b26faa19ec5f681da328ea"
+    },
+    {
+      "file": "dok/pdf/aps_6.4_student.pdf",
+      "pages": 2,
+      "sha256": "f8d385360b47b11dec1b1598de704b7835a95668cf468322e783033164e64790"
+    },
+    {
+      "file": "dok/pdf/aps_6.4_board.pdf",
+      "pages": 1,
+      "sha256": "ad7578ce779f58412aef3e06a539d7c54c6868836529deee47e9586a3fcb6b63"
+    },
+    {
+      "file": "dok/pdf/aps_6.4_teacher.pdf",
+      "pages": 3,
+      "sha256": "1efdb9aca5f89ea0142b4c154549ad3bcaf970d733b7d1f94771a67349a16163"
+    },
+    {
+      "file": "dok/pdf/aps_6.5_student.pdf",
+      "pages": 2,
+      "sha256": "6bcb56804a261223429d92bcf80e4e65933101968c2264c61916aff934e8c26d"
+    },
+    {
+      "file": "dok/pdf/aps_6.5_board.pdf",
+      "pages": 1,
+      "sha256": "7ca28170d568fa2eeaf46eb6f17db57d481fb7841933d566c6e8efc15c8acbda"
+    },
+    {
+      "file": "dok/pdf/aps_6.5_teacher.pdf",
+      "pages": 4,
+      "sha256": "bbafca12f759eccedcee3068f5629eb88d69add43f7ce689872591d89507bbeb"
+    },
+    {
+      "file": "dok/pdf/aps_6.6_student.pdf",
+      "pages": 2,
+      "sha256": "308f5dfb9867d332bd13f3553006ba8934be983e31c19bd390c29052b2fe7acd"
+    },
+    {
+      "file": "dok/pdf/aps_6.6_board.pdf",
+      "pages": 1,
+      "sha256": "5b5bf9c2b5552b9216f87d160c7fbf5d3c74380053a816f86771f0528950a650"
+    },
+    {
+      "file": "dok/pdf/aps_6.6_teacher.pdf",
+      "pages": 3,
+      "sha256": "45bee1211dece6bb252e9aed46647bd2ee36285af998182683313a40f6bec7f5"
+    },
+    {
+      "file": "dok/pdf/aps_6.7_student.pdf",
+      "pages": 2,
+      "sha256": "7aa446a3b493dc3f986fcbb92d7f0a11efde3f21611cd96111b1ad3ec3fe187f"
+    },
+    {
+      "file": "dok/pdf/aps_6.7_board.pdf",
+      "pages": 1,
+      "sha256": "2ff5f7152ec624de307a456585decfd4e2877eb1be5bb0051100d71cc5e9050e"
+    },
+    {
+      "file": "dok/pdf/aps_6.7_teacher.pdf",
+      "pages": 3,
+      "sha256": "cb00ebe9c4f788d8f55c804462839b553bb26800b9c87fc6aa001955bf75ea0f"
+    },
+    {
+      "file": "dok/pdf/aps_6.8_student.pdf",
+      "pages": 2,
+      "sha256": "13e3806d5494bf0e78c5649f309c37336c779b1365f59c2b25eff7824e403c6d"
+    },
+    {
+      "file": "dok/pdf/aps_6.8_board.pdf",
+      "pages": 1,
+      "sha256": "a967c84d7559a697d5752cac934d369d7de2f5e4bfc4fb6155af3f7683c645e0"
+    },
+    {
+      "file": "dok/pdf/aps_6.8_teacher.pdf",
+      "pages": 3,
+      "sha256": "4129b6db9ebf5e3d0795d8e917e9e1e58a3632e3a0b061081116d1d074a0f279"
+    },
+    {
+      "file": "dok/pdf/aps_6.9_student.pdf",
+      "pages": 2,
+      "sha256": "dcba131118b0bd13128ac9057d70ce2b772b6f9da509a01cd0b408f66595a542"
+    },
+    {
+      "file": "dok/pdf/aps_6.9_board.pdf",
+      "pages": 1,
+      "sha256": "69f8ded93435d7927548cdc32efeafe2e1714dbba7f81e714459c566a8a06c2f"
+    },
+    {
+      "file": "dok/pdf/aps_6.9_teacher.pdf",
+      "pages": 4,
+      "sha256": "ea05d5bd6b232a07b6d39f18d73fc208eb24a112f026c4208a0e1fe694dde1b6"
+    },
+    {
+      "file": "dok/pdf/aps_7.1_student.pdf",
+      "pages": 2,
+      "sha256": "4e831d10ac5f5e50f9e60192dbb4af5cdbe75f4097698b49e851b2a5ddaff2c8"
+    },
+    {
+      "file": "dok/pdf/aps_7.1_board.pdf",
+      "pages": 1,
+      "sha256": "ad9615c6e176e8dd4d8c3d103876c097c2deaf331b6b0ca94ec5b8010f6f97fe"
+    },
+    {
+      "file": "dok/pdf/aps_7.1_teacher.pdf",
+      "pages": 2,
+      "sha256": "06a26b91ff610ec9f6858c88682d342c66759fd7f50218cdb2edbca844987604"
+    },
+    {
+      "file": "dok/pdf/aps_7.2_student.pdf",
+      "pages": 2,
+      "sha256": "8f6f6bdf58566b77849766c44675df08f6f468c48325ee047aac150ac149d2bb"
+    },
+    {
+      "file": "dok/pdf/aps_7.2_board.pdf",
+      "pages": 1,
+      "sha256": "c2dfc38ac9aa7035a87d565fe50284a8fe894368d12da24776621e5e71923fb6"
+    },
+    {
+      "file": "dok/pdf/aps_7.2_teacher.pdf",
+      "pages": 2,
+      "sha256": "3e9d37c476b9f449bee972aef2795f3fcd5daea973f071bb57ed3e94db2f3376"
+    },
+    {
+      "file": "dok/pdf/aps_7.3_student.pdf",
+      "pages": 2,
+      "sha256": "402273caa125074ec4ced3a34cd4b4e1362a111c85c8e154f503990bee34fa44"
+    },
+    {
+      "file": "dok/pdf/aps_7.3_board.pdf",
+      "pages": 1,
+      "sha256": "f4c54e6ffef8d25f9e2710338d87c8a39eefd5c34a1d9de85f9c8db09f7147f9"
+    },
+    {
+      "file": "dok/pdf/aps_7.3_teacher.pdf",
+      "pages": 3,
+      "sha256": "821ba49da0d1b6966bf0500f6e3d3950f13e8807ecd6a6d24bb47d82c515e559"
+    },
+    {
+      "file": "dok/pdf/aps_7.4_student.pdf",
+      "pages": 2,
+      "sha256": "bf7c52fdde680c755ceea52fdc1ef829ccb2c3f2c681b93a7b4572b4c9987d0b"
+    },
+    {
+      "file": "dok/pdf/aps_7.4_board.pdf",
+      "pages": 1,
+      "sha256": "88240ae249c787983a1391ce064054ced34e5df222c24e41674520ed5df80905"
+    },
+    {
+      "file": "dok/pdf/aps_7.4_teacher.pdf",
+      "pages": 3,
+      "sha256": "578219c10d2f6374f51dbdd4a4adbf84c357ebee76a83b3e95c7cc6c5d6db290"
+    },
+    {
+      "file": "dok/pdf/aps_7.5_student.pdf",
+      "pages": 2,
+      "sha256": "c7de9580d21b39889e9ae0577f77f9d6cb7d581945459a6cf1c4bc940efd68ed"
+    },
+    {
+      "file": "dok/pdf/aps_7.5_board.pdf",
+      "pages": 1,
+      "sha256": "9419b52178c68e338bb55eafd96e2973725a7ef674ee7c68154264f5fcd46fbd"
+    },
+    {
+      "file": "dok/pdf/aps_7.5_teacher.pdf",
+      "pages": 3,
+      "sha256": "d46834e3219be34395782ad04c4cd3ae2f769daaea459ff71cabd6927b3b3a6e"
+    },
+    {
+      "file": "dok/pdf/aps_7.6_student.pdf",
+      "pages": 2,
+      "sha256": "5a6df0a3782eaa2571955db9e61325542a933e03904020d3a039123f595c1ffd"
+    },
+    {
+      "file": "dok/pdf/aps_7.6_board.pdf",
+      "pages": 1,
+      "sha256": "bf493a464bc9bf6a0630fb68d1b16d7944c24a8a3520730ffb459cef01a68c3e"
+    },
+    {
+      "file": "dok/pdf/aps_7.6_teacher.pdf",
+      "pages": 3,
+      "sha256": "34891cb19313ee5e49c230683e6ea2f6bd7ac2154cb7161568db02b226972bd8"
+    },
+    {
+      "file": "dok/pdf/aps_7.7_student.pdf",
+      "pages": 2,
+      "sha256": "f5978909920c4c29526fcd2de298182c2089ce2866e009e7a75b11fc4593ada8"
+    },
+    {
+      "file": "dok/pdf/aps_7.7_board.pdf",
+      "pages": 1,
+      "sha256": "ec28ee1764273d78bc31bd09135119e4249cbb86e92c0ed6b758de31ff645286"
+    },
+    {
+      "file": "dok/pdf/aps_7.7_teacher.pdf",
+      "pages": 3,
+      "sha256": "ffed829398d8a0a7ae1e2154a81806c2ad6304975057ff64a92d6bff7e238099"
+    },
+    {
+      "file": "dok/pdf/aps_7.8_student.pdf",
+      "pages": 2,
+      "sha256": "24d0e90ed0f23c2446c3b436d00f0670f2746e84a6abf7d7028d73adb66dd70a"
+    },
+    {
+      "file": "dok/pdf/aps_7.8_board.pdf",
+      "pages": 1,
+      "sha256": "c4fb3a40d9a43d4a28cbb44f3ed2cc5e55706b870ced3cbdd5143f9eeb06cef5"
+    },
+    {
+      "file": "dok/pdf/aps_7.8_teacher.pdf",
+      "pages": 3,
+      "sha256": "68cc068125e3ed0c539301f421a5aa0d0761946cdd41126317b515044c892986"
+    },
+    {
+      "file": "dok/pdf/aps_7.9_student.pdf",
+      "pages": 2,
+      "sha256": "58a39b4dbd455c41239d0763723a7704b34e42e4dcfab0a576ea97ab24854b40"
+    },
+    {
+      "file": "dok/pdf/aps_7.9_board.pdf",
+      "pages": 1,
+      "sha256": "e11102348f46b741efda1fc294d143d327121b57bcb60090d95936b63e677d87"
+    },
+    {
+      "file": "dok/pdf/aps_7.9_teacher.pdf",
+      "pages": 3,
+      "sha256": "e2e2ef5ea4ea50be15958e00fca3d1842264db07e8a107c7f52c646e6d149bbd"
+    },
+    {
+      "file": "dok/pdf/aps_8.1_student.pdf",
+      "pages": 2,
+      "sha256": "971b0be070460a190b2b6d7dfbb53817d26bc060247ca581948c60ca7aaaf588"
+    },
+    {
+      "file": "dok/pdf/aps_8.1_board.pdf",
+      "pages": 1,
+      "sha256": "97a6e6ffb77372db58958f4b94eac9848c63e3b169ccf569458b24ed72a1f317"
+    },
+    {
+      "file": "dok/pdf/aps_8.1_teacher.pdf",
+      "pages": 2,
+      "sha256": "9d270b20da143ed758911bf769b95fc0b51a2c1d29fc7c9c0007098865a8302c"
+    },
+    {
+      "file": "dok/pdf/aps_8.4_student.pdf",
+      "pages": 2,
+      "sha256": "b4022df36d9474c6f131e43980eaed30fd8e49a21896787c096a2e7bf7b882dc"
+    },
+    {
+      "file": "dok/pdf/aps_8.4_board.pdf",
+      "pages": 1,
+      "sha256": "de176eb92303dc602c019a0005b149ff7912450c09ff411949eb341c6ecf351b"
+    },
+    {
+      "file": "dok/pdf/aps_8.4_teacher.pdf",
+      "pages": 2,
+      "sha256": "3c3fff22405b8facfb91dc3f568edc18fc248394415d6789427d6c6c113c047c"
+    },
+    {
+      "file": "dok/pdf/aps_8.5_student.pdf",
+      "pages": 2,
+      "sha256": "d73b1d2be5fafa1521fa211f79784e7d73894c9149cbdddbe038781732ad48c4"
+    },
+    {
+      "file": "dok/pdf/aps_8.5_board.pdf",
+      "pages": 1,
+      "sha256": "a76d9cc0e72dc0f2bec192878883807d2b815ad23ae5c06e637c4e68e476aeb7"
+    },
+    {
+      "file": "dok/pdf/aps_8.5_teacher.pdf",
+      "pages": 3,
+      "sha256": "097b406707c8227707f9828ea8b7588f29330ff215725975d3093abb4b49c233"
+    },
+    {
+      "file": "dok/pdf/aps_8.6_student.pdf",
+      "pages": 2,
+      "sha256": "2c8ce0dcae1aef2371379e7abe97bd51023d01d7e10adff89a62d6fb59e6042d"
+    },
+    {
+      "file": "dok/pdf/aps_8.6_board.pdf",
+      "pages": 1,
+      "sha256": "aa935b6580bd685b2c7051a662c7569b086a3deff13916502e85b41039469d8c"
+    },
+    {
+      "file": "dok/pdf/aps_8.6_teacher.pdf",
+      "pages": 3,
+      "sha256": "80144101f00c862f9a8591a70d9b8ed0f560377c004041dba6e94ddf87edb102"
+    }
+  ],
+  "student_page_counts": {
+    "dok/pdf/aps_1.1_student.pdf": 2,
+    "dok/pdf/aps_1.10_student.pdf": 2,
+    "dok/pdf/aps_1.1_1.2_1.4_1.7_student.pdf": 2,
+    "dok/pdf/aps_1.2_student.pdf": 2,
+    "dok/pdf/aps_1.3_student.pdf": 2,
+    "dok/pdf/aps_1.4_student.pdf": 2,
+    "dok/pdf/aps_1.4_1.5_student.pdf": 2,
+    "dok/pdf/aps_1.5_student.pdf": 2,
+    "dok/pdf/aps_1.6_student.pdf": 2,
+    "dok/pdf/aps_1.7_student.pdf": 2,
+    "dok/pdf/aps_1.7_1.8_student.pdf": 2,
+    "dok/pdf/aps_1.8_student.pdf": 2,
+    "dok/pdf/aps_1.9_student.pdf": 2,
+    "dok/pdf/aps_2.1_student.pdf": 2,
+    "dok/pdf/aps_2.2_student.pdf": 2,
+    "dok/pdf/aps_2.3_student.pdf": 2,
+    "dok/pdf/aps_2.4_student.pdf": 2,
+    "dok/pdf/aps_2.5_student.pdf": 2,
+    "dok/pdf/aps_2.6_student.pdf": 2,
+    "dok/pdf/aps_2.7_student.pdf": 2,
+    "dok/pdf/aps_2.8_student.pdf": 2,
+    "dok/pdf/aps_3.1_student.pdf": 2,
+    "dok/pdf/aps_3.2_student.pdf": 2,
+    "dok/pdf/aps_3.3_student.pdf": 2,
+    "dok/pdf/aps_3.4_student.pdf": 2,
+    "dok/pdf/aps_3.5_student.pdf": 2,
+    "dok/pdf/aps_3.6_student.pdf": 2,
+    "dok/pdf/aps_4.1_student.pdf": 2,
+    "dok/pdf/aps_4.10_student.pdf": 2,
+    "dok/pdf/aps_4.11_student.pdf": 2,
+    "dok/pdf/aps_4.2_student.pdf": 2,
+    "dok/pdf/aps_4.3_student.pdf": 2,
+    "dok/pdf/aps_4.4_student.pdf": 2,
+    "dok/pdf/aps_4.5_student.pdf": 2,
+    "dok/pdf/aps_4.6_student.pdf": 2,
+    "dok/pdf/aps_4.7_student.pdf": 2,
+    "dok/pdf/aps_4.8_student.pdf": 2,
+    "dok/pdf/aps_5.1_student.pdf": 2,
+    "dok/pdf/aps_5.2_student.pdf": 2,
+    "dok/pdf/aps_5.3_student.pdf": 2,
+    "dok/pdf/aps_5.4_student.pdf": 2,
+    "dok/pdf/aps_5.5_student.pdf": 2,
+    "dok/pdf/aps_5.6_student.pdf": 2,
+    "dok/pdf/aps_5.7_student.pdf": 2,
+    "dok/pdf/aps_5.8_student.pdf": 2,
+    "dok/pdf/aps_6.1_student.pdf": 2,
+    "dok/pdf/aps_6.10_student.pdf": 2,
+    "dok/pdf/aps_6.11_student.pdf": 2,
+    "dok/pdf/aps_6.2_student.pdf": 2,
+    "dok/pdf/aps_6.3_student.pdf": 2,
+    "dok/pdf/aps_6.4_student.pdf": 2,
+    "dok/pdf/aps_6.5_student.pdf": 2,
+    "dok/pdf/aps_6.6_student.pdf": 2,
+    "dok/pdf/aps_6.7_student.pdf": 2,
+    "dok/pdf/aps_6.8_student.pdf": 2,
+    "dok/pdf/aps_6.9_student.pdf": 2,
+    "dok/pdf/aps_7.1_student.pdf": 2,
+    "dok/pdf/aps_7.2_student.pdf": 2,
+    "dok/pdf/aps_7.3_student.pdf": 2,
+    "dok/pdf/aps_7.4_student.pdf": 2,
+    "dok/pdf/aps_7.5_student.pdf": 2,
+    "dok/pdf/aps_7.6_student.pdf": 2,
+    "dok/pdf/aps_7.7_student.pdf": 2,
+    "dok/pdf/aps_7.8_student.pdf": 2,
+    "dok/pdf/aps_7.9_student.pdf": 2,
+    "dok/pdf/aps_8.1_student.pdf": 2,
+    "dok/pdf/aps_8.4_student.pdf": 2,
+    "dok/pdf/aps_8.5_student.pdf": 2,
+    "dok/pdf/aps_8.6_student.pdf": 2
+  },
+  "students_over_two_pages": {},
+  "section_6_grep_pattern": "video|rules box|follow-along|scan the code|QR code|before we discuss|at minute|at the bell|turn in one sheet",
+  "section_6_grep_hits": [],
+  "commute_page_2_text_verbatim": "Work (a)–(c).\n\nDOK 1 (a) Name the most common travel mode or modes and their counts.\n\nDOK 2 (b) How many students have trips of at least 10 minutes? Explain how the histogram bars answer this and why they do not give each exact travel time.\n\nDOK 3 (c) ⋆ In three to five sentences, judge both reports. Choose a display for comparing travel modes and a display for describing travel times. Give one corrected numerical claim and explain what extra information is needed to connect long trips with bus travel.\n\nFrame: I would report __________________ because __________________; the display cannot establish __________________.\n\nTurn this sheet in whenever you finish — bonus credit. Part (c) is scored E / P / I.\n\n2",
+  "page_2_transcription_note": "Visually verified against the rendered PDF; underscores represent the three printed writing rules. Text extraction loses ligatures and dashes in these fonts.",
+  "unmet": [],
+  "suites": {
+    "generator_validate": {
+      "exit": 0,
+      "registry_rows": 73,
+      "lessons": 69
+    },
+    "focused_vitest": {
+      "passed": 362
+    },
+    "migration_vitest": {
+      "passed": 7
+    },
+    "pytest": {
+      "passed": 605,
+      "exit": 0
+    },
+    "root_npm_test": {
+      "exit": 1,
+      "counts": {
+        "passed": 10053,
+        "failed": 26,
+        "skipped": 1
+      },
+      "baseline_counts": {
+        "passed": 10051,
+        "failed": 25,
+        "skipped": 1
+      },
+      "failures": [
+        {
+          "file": "tests/classroom-structure.test.js",
+          "name": " Live Classroom v1a - Desk integration D3: the Teacher menu has a Live Classroom item opening teacher-classroom.html",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/classroom-structure.test.js",
+          "name": " KEYBOARD_AVATAR Phase 1 -- player controller wiring Desk has the keyboard help-text strip below the board mount",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/desk-self-signup.test.js",
+          "name": " teacher onboarding + class gradebook (static) the Teacher menu opens the Teacher Tools launcher, which wires the Roster Console",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/desk-user-role.test.js",
+          "name": " Desk: user-role gating + sign-in teacher checkbox 12: Teacher Tools launcher reaches the teacher pages (roster console, dashboard, codegen)",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/desk-verify-tools.test.js",
+          "name": " Desk — verification tools surfaced the Teacher Tools launcher wires the scan-to-verify tool (openVerifyQR)",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/doge-keys.test.js",
+          "name": " browser wallet generation matches the Node server and CLI for fixed scalar fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364140",
+          "baseline_match": false
+        },
+        {
+          "file": "tests/doge-payout-agent.test.js",
+          "name": " DOGE payout agent config and RPC wrapper lets environment override file config and keeps portable defaults",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/doge-send-core.test.js",
+          "name": " doge-send durable file journal atomically creates, refuses overwrite, updates, and clears a mode-0600 journal",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/lineage.test.js",
+          "name": " data lineage manifest points every automatic regeneration command at an existing script or test",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/phase4-structure.test.js",
+          "name": " teacher-dashboard.html — Phase 4a structure declares it is a teacher dashboard (title)",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/phase4-structure.test.js",
+          "name": " teacher-dashboard.html — Phase 4a structure teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/phase4b-structure.test.js",
+          "name": " Phase 4b — teacher-dashboard.html remediation panel teacher secret persistence is opt-in only; localStorage scoped to known keys (Phase 4a security posture, updated 2026-05-19)",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/progress-reset-matrix-cleared-storage.test.js",
+          "name": " matrix row: cleared storage recovers — CONTROL (a subsequent live success) (7) flips to available, writes the latch, and the strict gate resumes",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/progress-reset-matrix-latch.test.js",
+          "name": " matrix row: strict-gate-still-strict — evidence present + genuinely incomplete predecessor stays LOCKED D4 fail-open never leaks into the affirmative-server case",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/progress-reset-matrix-loadstate.test.js",
+          "name": " matrix row: 401 -> auth classifies unavailable/auth, shows the Sign-in banner, and never clears the roster session",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/progress-reset-matrix-loadstate.test.js",
+          "name": " matrix row: 403 -> auth (classified identically to 401) classifies unavailable/auth",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/remaining-feature-contracts.test.js",
+          "name": " F004 Start Here signed-in progress preview renders the signed-out fallback when identity or service config is unavailable",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/remaining-feature-contracts.test.js",
+          "name": " F004 Start Here signed-in progress preview fetches /grade with rosterClient.token() and renders quarter/unit progress for signed-in students",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/remaining-feature-contracts.test.js",
+          "name": " F061 public worksheet table of contents index links TOC.html and TOC lists all 69 live worksheet files that exist on disk",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/journeys/harness.smoke.test.js",
+          "name": " Desk journey harness smoke boots the real Desk cleanly with Do Now and disk-backed roadmap tiles in under 3 seconds",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/journeys/j2-shared-device.journey.test.js",
+          "name": " Desk journey J2 J2 reloads a shared device across A → B → A without leaking marks, due chip, or SRS state, then hydrates a fresh marks bucket from /donow (supersedes desk-calendar-sync per-student visibility and selfDone hydration behavior)",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/journeys/j4-quick-check.journey.test.js",
+          "name": " Desk journey J4 J4 resumes answered snapshots without score inflation and commits one 8/10 Quick check (supersedes desk-blooket-flashcards it 55 “_bfSaveProgress persists the answered snapshot”, it 56 “answer saves after scoring and Next clears answered before saving”, it 57 “answer then Cancel resumes at the following card without another point”, it 58 “pass timer is canceled on close and resume commits the saved 80% once”, and it 58b “non-passing answer then Cancel resumes one card ahead without a commit”)",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": " Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab 'network' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": " Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '401' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": " Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '403' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "baseline_match": true
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": " Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '500' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "baseline_match": true
+        }
+      ],
+      "baseline_failures_by_name": [
+        "FAIL  tests/classroom-structure.test.js > Live Classroom v1a - Desk integration > D3: the Teacher menu has a Live Classroom item opening teacher-classroom.html",
+        "FAIL  tests/classroom-structure.test.js > KEYBOARD_AVATAR Phase 1 -- player controller wiring > Desk has the keyboard help-text strip below the board mount",
+        "FAIL  tests/desk-self-signup.test.js > teacher onboarding + class gradebook (static) > the Teacher menu opens the Teacher Tools launcher, which wires the Roster Console",
+        "FAIL  tests/desk-user-role.test.js > Desk: user-role gating + sign-in teacher checkbox > 12: Teacher Tools launcher reaches the teacher pages (roster console, dashboard, codegen)",
+        "FAIL  tests/desk-verify-tools.test.js > Desk — verification tools surfaced > the Teacher Tools launcher wires the scan-to-verify tool (openVerifyQR)",
+        "FAIL  tests/doge-payout-agent.test.js > DOGE payout agent config and RPC wrapper > lets environment override file config and keeps portable defaults",
+        "FAIL  tests/doge-send-core.test.js > doge-send durable file journal > atomically creates, refuses overwrite, updates, and clears a mode-0600 journal",
+        "FAIL  tests/lineage.test.js > data lineage manifest > points every automatic regeneration command at an existing script or test",
+        "FAIL  tests/phase4-structure.test.js > teacher-dashboard.html — Phase 4a structure > declares it is a teacher dashboard (title)",
+        "FAIL  tests/phase4-structure.test.js > teacher-dashboard.html — Phase 4a structure > teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys",
+        "FAIL  tests/phase4b-structure.test.js > Phase 4b — teacher-dashboard.html remediation panel > teacher secret persistence is opt-in only; localStorage scoped to known keys (Phase 4a security posture, updated 2026-05-19)",
+        "FAIL  tests/progress-reset-matrix-cleared-storage.test.js > matrix row: cleared storage recovers — CONTROL (a subsequent live success) > (7) flips to available, writes the latch, and the strict gate resumes",
+        "FAIL  tests/progress-reset-matrix-latch.test.js > matrix row: strict-gate-still-strict — evidence present + genuinely incomplete predecessor stays LOCKED > D4 fail-open never leaks into the affirmative-server case",
+        "FAIL  tests/progress-reset-matrix-loadstate.test.js > matrix row: 401 -> auth > classifies unavailable/auth, shows the Sign-in banner, and never clears the roster session",
+        "FAIL  tests/progress-reset-matrix-loadstate.test.js > matrix row: 403 -> auth (classified identically to 401) > classifies unavailable/auth",
+        "FAIL  tests/remaining-feature-contracts.test.js > F004 Start Here signed-in progress preview > renders the signed-out fallback when identity or service config is unavailable",
+        "FAIL  tests/remaining-feature-contracts.test.js > F004 Start Here signed-in progress preview > fetches /grade with rosterClient.token() and renders quarter/unit progress for signed-in students",
+        "FAIL  tests/remaining-feature-contracts.test.js > F061 public worksheet table of contents > index links TOC.html and TOC lists all 69 live worksheet files that exist on disk",
+        "FAIL  tests/journeys/harness.smoke.test.js > Desk journey harness smoke > boots the real Desk cleanly with Do Now and disk-backed roadmap tiles in under 3 seconds",
+        "FAIL  tests/journeys/j2-shared-device.journey.test.js > Desk journey J2 > J2 reloads a shared device across A → B → A without leaking marks, due chip, or SRS state, then hydrates a fresh marks bucket from /donow (supersedes desk-calendar-sync per-student visibility and selfDone hydration behavior)",
+        "FAIL  tests/journeys/j4-quick-check.journey.test.js > Desk journey J4 > J4 resumes answered snapshots without score inflation and commits one 8/10 Quick check (supersedes desk-blooket-flashcards it 55 “_bfSaveProgress persists the answered snapshot”, it 56 “answer saves after scoring and Next clears answered before saving”, it 57 “answer then Cancel resumes at the following card without another point”, it 58 “pass timer is canceled on close and resume commits the saved 80% once”, and it 58b “non-passing answer then Cancel resumes one card ahead without a commit”)",
+        "FAIL  tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab 'network' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+        "FAIL  tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab '401' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+        "FAIL  tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab '403' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+        "FAIL  tests/journeys/j7-offline-grade.journey.test.js > Desk journey J7 > J7 cold reboot preserves the incident invariants after a real visible-tab '500' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)"
+      ],
+      "additional_failure": "doge-keys fixed-scalar browser wallet generation timed out after 5000 ms; entire file passed on isolated rerun",
+      "isolated_doge_keys_rerun": {
+        "passed": 28
+      }
+    }
+  },
+  "section_6_exact_grep": {
+    "exit": 1,
+    "hits": [],
+    "archived_stale_ignored_logs": [
+      "aps_1.1_1.2_1.3_board.log",
+      "aps_1.9_3.1_3.2_board.log",
+      "aps_3.3_3.4_board.log"
+    ],
+    "archive_directory": "C:\\Users\\rober\\AppData\\Local\\Temp\\dok-self-paced-run"
+  },
+  "gitnexus": {
+    "impact_risk": "LOW per changed production symbol; HIGH aggregate rendering-flow impact reported before commit one",
+    "detect_changes_before_commits": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "note": "Final staged check recorded before the artifact commit. The graph also maps some source hunks to an untracked baseline copy; Git staging was checked directly.",
+    "final_staged": {
+      "files": 419,
+      "symbols": 13,
+      "affected_processes": 0,
+      "risk": "LOW"
+    },
+    "compare_master": {
+      "files": 427,
+      "symbols": 23,
+      "affected_processes": 0,
+      "risk": "LOW",
+      "note": "Includes eight unrelated working-tree files excluded from the commit."
+    }
+  },
+  "build_warnings": [
+    "MiKTeX could not write its user-profile log and reported that updates have not been checked; all 207 edition builds returned success."
+  ]
+}

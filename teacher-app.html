@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Algebra 2 — Teacher</title>
+<!-- ANDROID Phase 4 §4 — the on-device TEACHER app: manage the device signing key
+     (generate → hardware-wrap → register its pubkey), grade pending FRQs into
+     device-SIGNED receipts, push them faithfully, and seal the daily epoch. Mobile
+     shell cloned from mobile-home.html; teacher dual-auth (x-teacher-secret + Bearer)
+     from teacher-dashboard.html. Ed25519 signing is in JS (receipt-sign.js); the key
+     lives biometric-gated + hardware-wrapped via the SecureKeyStore plugin. -->
+<style>
+  :root { --blue:#0b5cad; --ink:#1a1a1a; --bg:#f2f4f7; --card:#fff; --line:#dfe3e8; --good:#2a7a2a; --warn:#a33; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { margin:0; }
+  body { font-family:-apple-system,Roboto,"Segoe UI",sans-serif; background:var(--bg); color:var(--ink); }
+  header { position:sticky; top:0; background:var(--blue); color:#fff; z-index:5;
+           padding:calc(12px + env(safe-area-inset-top,0)) 16px 12px; box-shadow:0 2px 6px rgba(0,0,0,.15); }
+  header h1 { margin:0; font-size:18px; font-weight:700; }
+  header .who { font-size:12px; opacity:.9; margin-top:3px; }
+  header a.back { color:#fff; opacity:.85; font-size:12px; text-decoration:none; }
+  main { padding:10px 12px 60px; max-width:680px; margin:0 auto; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; margin:0 0 12px; }
+  .card h2 { margin:0 0 8px; font-size:15px; }
+  .muted { color:#667; font-size:12px; }
+  label { display:block; font-size:12px; color:#445; margin:8px 0 4px; }
+  input[type=text], input[type=password], input[type=number] {
+    width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:9px; font-size:15px; background:#fff; }
+  .btn { display:inline-block; padding:11px 14px; border-radius:9px; border:1px solid var(--line);
+         background:#eef3f9; font-size:14px; font-weight:600; color:var(--ink); cursor:pointer; }
+  .btn:active { background:#e2e9f2; }
+  .btn.primary { background:var(--blue); color:#fff; border-color:var(--blue); }
+  .btn.danger { background:#fbeaea; border-color:#e9b8b8; color:#a33; }
+  .btn[disabled] { opacity:.45; pointer-events:none; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .status { font-size:13px; margin:6px 0; }
+  .ok { color:var(--good); } .bad { color:var(--warn); }
+  .pill { display:inline-block; font-size:11px; padding:2px 7px; border-radius:10px; background:#eef; border:1px solid #ccd; }
+  .frq { border:1px solid var(--line); border-radius:9px; padding:10px; margin:8px 0; background:#fafbfc; }
+  .frq .meta { font-size:12px; color:#556; }
+  .frq .resp { font-size:13px; margin:6px 0; white-space:pre-wrap; word-break:break-word; }
+  .grade-btns .g { padding:8px 14px; border-radius:8px; border:1px solid var(--line); background:#fff; cursor:pointer; font-weight:700; }
+  .grade-btns .g.sel { background:var(--blue); color:#fff; border-color:var(--blue); }
+  .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; word-break:break-all; color:#445; }
+  #toast { position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#222; color:#fff;
+           padding:10px 16px; border-radius:10px; font-size:13px; max-width:90%; text-align:center; opacity:0;
+           transition:opacity .2s; pointer-events:none; z-index:60; }
+  #toast.show { opacity:.95; }
+  .hidden { display:none; }
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="mobile-home.html">‹ Lessons</a>
+  <h1>🔑 Teacher</h1>
+  <div class="who" id="who">On-device grading &amp; signing</div>
+</header>
+<main id="main">
+
+  <!-- 1. Access -->
+  <section class="card" id="auth-card">
+    <h2>Teacher access</h2>
+    <div class="muted">Enter the teacher secret (or sign in as a teacher in a worksheet). Stored only on this device.</div>
+    <label for="secret">Teacher secret</label>
+    <input type="password" id="secret" autocomplete="off" placeholder="teacher secret">
+    <div class="row" style="margin-top:10px">
+      <button class="btn primary" id="btn-connect">Connect</button>
+      <span class="status" id="auth-status"></span>
+    </div>
+  </section>
+
+  <!-- 2. Signing key -->
+  <section class="card hidden" id="key-card">
+    <h2>Device signing key</h2>
+    <div class="status" id="key-status">Checking…</div>
+    <div class="muted" id="biometric-note"></div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn" id="btn-generate">Generate signing key</button>
+      <button class="btn" id="btn-unlock">Unlock</button>
+      <button class="btn" id="btn-register">Register pubkey</button>
+      <button class="btn danger" id="btn-removekey">Remove</button>
+    </div>
+    <div class="mono" id="pubkey-line" style="margin-top:8px"></div>
+  </section>
+
+  <!-- 3. Grade pending FRQs -->
+  <section class="card hidden" id="grade-card">
+    <h2>Grade pending FRQs</h2>
+    <div class="row">
+      <button class="btn" id="btn-import">Import class work</button>
+      <span class="status" id="import-status"></span>
+    </div>
+    <div id="frq-list"></div>
+    <div class="row hidden" id="push-row" style="margin-top:10px">
+      <button class="btn primary" id="btn-push">Sign &amp; push grades</button>
+      <span class="status" id="push-status"></span>
+    </div>
+  </section>
+
+  <!-- 3b. Offline grading (mesh) — grade gossiped student submissions with no server -->
+  <section class="card hidden" id="offline-card">
+    <h2>Offline grading (mesh)</h2>
+    <div class="muted">Sync nearby student phones over Bluetooth/Wi-Fi, auto-grade their submitted work, judge FRQs, then sign — no internet needed. Grades gossip back to the students.</div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn" id="btn-offline-sync">📡 Sync nearby</button>
+      <button class="btn" id="btn-offline-grade">Grade submissions</button>
+      <span class="status" id="offline-status"></span>
+    </div>
+    <div class="mono" id="offline-summary" style="margin-top:8px"></div>
+    <div id="offline-frq-list"></div>
+    <div class="row hidden" id="offline-push-row" style="margin-top:10px">
+      <button class="btn primary" id="btn-offline-push">Sign &amp; emit offline grades</button>
+      <span class="status" id="offline-push-status"></span>
+    </div>
+  </section>
+
+  <!-- 4. Seal epoch -->
+  <section class="card hidden" id="seal-card">
+    <h2>Seal today</h2>
+    <div class="muted">Compute every student's head and sign the daily epoch anchor (the O(1)/day class seal).</div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn" id="btn-seal">Seal &amp; verify epoch</button>
+      <span class="status" id="seal-status"></span>
+    </div>
+    <div class="mono" id="seal-line" style="margin-top:8px"></div>
+  </section>
+
+</main>
+<div id="toast"></div>
+
+<script src="roster_config.js" onerror=""></script>
+<script src="roster-client.js" onerror=""></script>
+<script src="receipt-verify.js" onerror=""></script>
+<script src="receipt-sign.js" onerror=""></script>
+<script src="ledger-seal.js" onerror=""></script>
+<script src="secure-key.js" onerror=""></script>
+<!-- OFFLINE GRADING MESH Phase 3b — the teacher device grades gossiped student
+     submissions offline. Inert on the web (no GossipTransport / SecureKeyStore). -->
+<script src="student-key.js" onerror=""></script>
+<script src="ledger-store.js" onerror=""></script>
+<script src="submission-store.js" onerror=""></script>
+<script src="ledger-gossip.js" onerror=""></script>
+<script src="nearby-transport.js" onerror=""></script>
+<script src="grade-engine.bundle.js" onerror=""></script>
+<script src="submission-grader.js" onerror=""></script>
+<script>
+(function () {
+  'use strict';
+
+  var KEY_NAME = 'a2_teacher_signing_v1';
+  var PUBKEY_LS = 'a2_teacher_pubkey';
+  var SECRET_LS = 'a2_teacher_secret';
+
+  // In-memory unlocked private key (cleared on lock / reload). The JWK is never held;
+  // only the imported CryptoKey, recovered via a biometric unlock.
+  var _signingKey = null;
+  var _snapshot = null;
+  var _pending = [];        // [{studentId, username, itemId, response, attempt}]
+  var _grades = {};         // key(studentId|itemId) -> grade letter
+
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function toast(msg) { var t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(function () { t.classList.remove('show'); }, 2600); }
+
+  function svcUrl() {
+    var u = (typeof window.ROSTER_SERVICE_URL === 'string' && window.ROSTER_SERVICE_URL)
+      || (typeof window.RAILWAY_ROSTER_URL === 'string' && window.RAILWAY_ROSTER_URL)
+      || (typeof window.ROSTER_SERVER_URL === 'string' && window.ROSTER_SERVER_URL) || '';
+    return String(u).replace(/\/$/, '');
+  }
+  function teacherSecret() {
+    var v = $('secret') && $('secret').value;
+    return (v && v.trim()) || (function () { try { return localStorage.getItem(SECRET_LS) || ''; } catch (_) { return ''; } })();
+  }
+  function authHeaders() {
+    var h = { 'Content-Type': 'application/json' };
+    var s = teacherSecret(); if (s) h['x-teacher-secret'] = s;
+    try { var t = window.rosterClient && rosterClient.token && rosterClient.token(); if (t) h['Authorization'] = 'Bearer ' + t; } catch (_) {}
+    return h;
+  }
+  function fetchJson(path) {
+    return fetch(svcUrl() + path, { headers: authHeaders() }).then(function (r) {
+      return r.json().then(function (j) { return { status: r.status, body: j }; });
+    });
+  }
+  function postJson(path, body) {
+    return fetch(svcUrl() + path, { method: 'POST', headers: authHeaders(), body: JSON.stringify(body) }).then(function (r) {
+      return r.json().then(function (j) { return { status: r.status, body: j }; });
+    });
+  }
+
+  // ── Pure logic (unit-tested in tests/teacher-app.test.js) ─────────────────────
+
+  function _itemKey(studentId, itemId) { return String(studentId) + '|' + String(itemId); }
+
+  // Latest-attempt frq rows with a null score, across all students = the grading queue.
+  function _findPendingFrqs(snapshot) {
+    var out = [];
+    var students = (snapshot && snapshot.students) || [];
+    students.forEach(function (s) {
+      var recs = (s.bundle && s.bundle.records) || [];
+      var latest = {}; // itemId -> the highest-attempt frq row
+      recs.forEach(function (r) {
+        if (r.source !== 'frq') return;
+        var prev = latest[r.itemId];
+        var a = Number(r.attempt) || 1;
+        if (!prev || a >= (Number(prev.attempt) || 1)) latest[r.itemId] = r;
+      });
+      Object.keys(latest).forEach(function (itemId) {
+        var r = latest[itemId];
+        if (r.score === null || r.score === undefined) {
+          out.push({ studentId: s.studentId, username: s.username, itemId: itemId, response: r.response, attempt: Number(r.attempt) || 1 });
+        }
+      });
+    });
+    return out;
+  }
+
+  // E/P/I → 1/0.5/0; a 0..1 number passes through; anything else → null (ungraded).
+  function _scoreFromGrade(g) {
+    if (g === 'E') return 1;
+    if (g === 'P') return 0.5;
+    if (g === 'I') return 0;
+    // null/undefined/empty = ungraded (NOT 0) — guard before Number() (Number(null)===0
+    // would otherwise push a toggled-off FRQ as a 0/Incorrect).
+    if (g === null || g === undefined || g === '') return null;
+    var n = Number(g);
+    return (isFinite(n) && n >= 0 && n <= 1) ? n : null;
+  }
+
+  // Build the /admin/restore record from a pending item + score + the signed receipt.
+  function _buildGradeRecord(pending, score, signed) {
+    return {
+      studentId: pending.studentId,
+      source: 'frq',
+      itemId: pending.itemId,
+      response: pending.response,
+      score: score,
+      attempt: pending.attempt + 1,           // supersede via a new attempt (latest-wins)
+      recorded_at: new Date(signed.payload.ts).toISOString(),
+      receipt_id: signed.receiptId,
+      receipt_compact: signed.compact
+    };
+  }
+
+  // Receipt-bearing rows per student, shaped for LedgerSeal.buildHead.
+  function _rowsForHead(records) {
+    return (records || [])
+      .filter(function (r) { return r.receipt_id && r.receipt_compact; })
+      .map(function (r) { return { id: r.receipt_id, ts: Date.parse(r.recorded_at) || 0 }; });
+  }
+
+  // ── Key management ─────────────────────────────────────────────────────────
+
+  function setSection(id, show) { var el = $(id); if (el) el.classList[show ? 'remove' : 'add']('hidden'); }
+
+  function refreshKeyStatus() {
+    var has = window.SecureKeyStore ? SecureKeyStore.hasKey(KEY_NAME) : Promise.resolve(false);
+    return has.then(function (exists) {
+      var pub = '';
+      try { pub = localStorage.getItem(PUBKEY_LS) || ''; } catch (_) {}
+      $('key-status').innerHTML = exists
+        ? '<span class="ok">✓ Signing key present on this device.</span> ' + (_signingKey ? '<span class="pill">unlocked</span>' : '<span class="pill">locked</span>')
+        : '<span class="bad">No signing key yet — generate one.</span>';
+      $('pubkey-line').textContent = pub ? ('pubkey: ' + pub) : '';
+      $('btn-generate').disabled = exists;
+      $('btn-unlock').disabled = !exists;
+      $('btn-register').disabled = !pub;
+      $('btn-removekey').disabled = !exists;
+    }).then(function () {
+      if (window.SecureKeyStore) return SecureKeyStore.isBiometricAvailable().then(function (ok) {
+        $('biometric-note').textContent = ok ? 'Biometric / device-credential unlock available.' : 'No biometric/PIN enrolled — set a screen lock to protect the key.';
+      });
+    }).catch(function () {});
+  }
+
+  function generateKey() {
+    if (!window.ReceiptSign || !window.SecureKeyStore || !SecureKeyStore.available) { toast('Signing is only available in the app.'); return; }
+    toast('Generating key…');
+    ReceiptSign.generateKey().then(function (k) {
+      return ReceiptSign.exportPrivateJwk(k.privateKey).then(function (jwk) {
+        return SecureKeyStore.setKey(KEY_NAME, JSON.stringify(jwk), { requireAuth: true, title: 'Save teacher key', subtitle: 'Algebra 2 — teacher signing key' }).then(function () {
+          try { localStorage.setItem(PUBKEY_LS, k.publicKeyX); } catch (_) {}
+          _signingKey = k.privateKey;
+          toast('Key generated + stored. Now register its pubkey.');
+          return refreshKeyStatus();
+        });
+      });
+    }).catch(function (e) { toast('Generate failed: ' + (e && e.message || e)); });
+  }
+
+  function unlockKey() {
+    if (!window.SecureKeyStore || !SecureKeyStore.available) { toast('Unlock is only available in the app.'); return Promise.reject(); }
+    return SecureKeyStore.getKey(KEY_NAME, { requireAuth: true, title: 'Unlock teacher key', subtitle: 'Algebra 2 — teacher signing key' }).then(function (jwkStr) {
+      if (!jwkStr) { toast('No key stored.'); return Promise.reject(); }
+      return ReceiptSign.importPrivateKey(JSON.parse(jwkStr)).then(function (key) {
+        _signingKey = key; toast('Unlocked.'); return refreshKeyStatus();
+      });
+    }).catch(function (e) { if (e) toast('Unlock failed: ' + (e && e.message || e)); return Promise.reject(e); });
+  }
+
+  function ensureUnlocked() { return _signingKey ? Promise.resolve(_signingKey) : unlockKey().then(function () { return _signingKey; }); }
+
+  function registerKey() {
+    var pub = ''; try { pub = localStorage.getItem(PUBKEY_LS) || ''; } catch (_) {}
+    if (!pub) { toast('Generate a key first.'); return; }
+    toast('Registering pubkey…');
+    postJson('/receipts/trusted-issuers', { pubkey: pub, label: 'Teacher device' }).then(function (r) {
+      if (r.status === 200 && r.body && r.body.ok) toast('✓ Pubkey registered — device receipts are now trusted.');
+      else if (r.status === 401) toast('Register failed: check the teacher secret.');
+      else if (r.status === 503) toast('Register failed: run migration 0026 on the server.');
+      else toast('Register failed: ' + (r.body && r.body.error || r.status));
+    }).catch(function (e) { toast('Register failed: ' + (e && e.message || e)); });
+  }
+
+  function removeKey() {
+    if (!window.SecureKeyStore) return;
+    SecureKeyStore.removeKey(KEY_NAME).then(function () { _signingKey = null; try { localStorage.removeItem(PUBKEY_LS); } catch (_) {} toast('Key removed.'); return refreshKeyStatus(); });
+  }
+
+  // ── Grading ────────────────────────────────────────────────────────────────
+
+  function importWork() {
+    $('import-status').textContent = 'Importing…';
+    fetchJson('/admin/snapshot').then(function (r) {
+      if (r.status !== 200 || !r.body) { $('import-status').innerHTML = '<span class="bad">' + (r.status === 401 ? 'Check teacher secret.' : 'Import failed (' + r.status + ').') + '</span>'; return; }
+      _snapshot = r.body;
+      _pending = _findPendingFrqs(_snapshot);
+      _grades = {};
+      $('import-status').innerHTML = '<span class="ok">' + _pending.length + ' pending FRQ' + (_pending.length === 1 ? '' : 's') + '.</span>';
+      renderPending();
+    }).catch(function (e) { $('import-status').innerHTML = '<span class="bad">Import failed: ' + esc(e && e.message || e) + '</span>'; });
+  }
+
+  function renderPending() {
+    var host = $('frq-list'); host.innerHTML = '';
+    if (!_pending.length) { setSection('push-row', false); return; }
+    _pending.forEach(function (p) {
+      var key = _itemKey(p.studentId, p.itemId);
+      var div = document.createElement('div'); div.className = 'frq';
+      div.innerHTML = '<div class="meta">' + esc(p.username || p.studentId) + ' · <b>' + esc(p.itemId) + '</b></div>'
+        + '<div class="resp">' + esc(typeof p.response === 'string' ? p.response : JSON.stringify(p.response)) + '</div>';
+      var gb = document.createElement('div'); gb.className = 'grade-btns row';
+      ['E', 'P', 'I'].forEach(function (g) {
+        var b = document.createElement('button'); b.className = 'g' + (_grades[key] === g ? ' sel' : ''); b.textContent = g;
+        b.onclick = function () { _grades[key] = (_grades[key] === g ? null : g); renderPending(); };
+        gb.appendChild(b);
+      });
+      div.appendChild(gb);
+      host.appendChild(div);
+    });
+    var anyGraded = Object.keys(_grades).some(function (k) { return _scoreFromGrade(_grades[k]) != null; });
+    setSection('push-row', anyGraded);
+  }
+
+  function pushGrades() {
+    var toGrade = _pending.filter(function (p) { return _scoreFromGrade(_grades[_itemKey(p.studentId, p.itemId)]) != null; });
+    if (!toGrade.length) { toast('Grade at least one FRQ first.'); return; }
+    $('push-status').textContent = 'Unlocking…';
+    ensureUnlocked().then(function (key) {
+      $('push-status').textContent = 'Signing ' + toGrade.length + '…';
+      // Sign sequentially (one in-memory key; deterministic order).
+      var records = [];
+      return toGrade.reduce(function (chain, p) {
+        return chain.then(function () {
+          var score = _scoreFromGrade(_grades[_itemKey(p.studentId, p.itemId)]);
+          return ReceiptSign.signLedgerReceipt(key, { sid: p.studentId, src: 'frq', i: p.itemId, a: p.attempt + 1, e: 'practice', response: p.response, sc: score, g: 'self' })
+            .then(function (signed) { records.push(_buildGradeRecord(p, score, signed)); });
+        });
+      }, Promise.resolve()).then(function () {
+        $('push-status').textContent = 'Pushing…';
+        return postJson('/admin/restore', { records: records });
+      }).then(function (r) {
+        if (r.status === 200 && r.body && r.body.ok) {
+          $('push-status').innerHTML = '<span class="ok">✓ Restored ' + r.body.restored + ', skipped ' + r.body.skipped + '.</span>';
+          toast('Pushed ' + r.body.restored + ' graded FRQ' + (r.body.restored === 1 ? '' : 's') + '.');
+          importWork(); // refresh the queue
+        } else {
+          $('push-status').innerHTML = '<span class="bad">Push failed (' + r.status + ').</span>';
+        }
+      });
+    }).catch(function (e) { if (e) $('push-status').innerHTML = '<span class="bad">' + esc(e && e.message || 'unlock/sign failed') + '</span>'; });
+  }
+
+  // ── Seal epoch ─────────────────────────────────────────────────────────────
+
+  function todayNY() {
+    // America/New_York date string YYYY-MM-DD (matches admin-snapshot todayInTz).
+    try {
+      var parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+      return parts; // en-CA → YYYY-MM-DD
+    } catch (_) { return new Date().toISOString().slice(0, 10); }
+  }
+
+  function sealEpoch() {
+    if (!_snapshot) { toast('Import class work first.'); return; }
+    $('seal-status').textContent = 'Unlocking…';
+    ensureUnlocked().then(function (key) {
+      $('seal-status').textContent = 'Computing heads…';
+      var students = _snapshot.students || [];
+      // head per student from their receipt-bearing records.
+      return students.reduce(function (chain, s) {
+        return chain.then(function (heads) {
+          var rows = _rowsForHead((s.bundle && s.bundle.records) || []);
+          return LedgerSeal.buildHead(rows).then(function (head) { heads[s.studentId] = head || null; return heads; });
+        });
+      }, Promise.resolve({})).then(function (heads) {
+        $('seal-status').textContent = 'Signing epoch…';
+        return LedgerSeal.sealEpoch({ heads: heads, asOfDateNY: todayNY(), privateKey: key });
+      }).then(function (sealed) {
+        // The seal is signed by THIS device's key (its pubkey is in the server trust
+        // set once registered), so the server's verifySnapshot accepts it. Show the root.
+        $('seal-status').innerHTML = '<span class="ok">✓ Epoch sealed for ' + esc(sealed.epoch.d) + ' (' + sealed.epoch.cnt + ' students).</span>';
+        $('seal-line').textContent = 'root: ' + sealed.root;
+        toast('Epoch sealed.');
+      });
+    }).catch(function (e) { if (e) $('seal-status').innerHTML = '<span class="bad">' + esc(e && e.message || 'seal failed') + '</span>'; });
+  }
+
+  // ── Offline grading (mesh) — Phase 3b ────────────────────────────────────────
+  // The teacher device grades gossiped student submissions with no server: receive
+  // submissions over Nearby, auto-grade deterministic items against the cached full
+  // key + judge FRQs, sign each grade with THIS device's teacher key (carrying `sub`
+  // so the student device suppresses the graded submission, §0.7), and gossip the
+  // grades back. Runtime-only in the APK (GossipTransport + SecureKeyStore present).
+  var FULLKEY_LS = 'a2_teacher_fullkey_v1';   // cached { answerKey, worksheetKey, keyVersion }
+  var _offlineFrq = [];                            // [{ submission, letter }] awaiting E/P/I
+
+  function _meshBase() { return (window.ROSTER_SERVICE_URL) || ''; }
+  function _meshReady() {
+    return !!(window.SubmissionStore && window.LedgerStore && window.LedgerGossip
+      && window.ReceiptVerify && window.SubmissionGrader && window.ReceiptSign);
+  }
+
+  // Fetch + cache the FULL (unredacted) key while online; used to auto-grade offline.
+  function fetchFullKey() {
+    var base = _meshBase();
+    var secret = (localStorage.getItem(SECRET_LS) || '').trim();
+    if (!base) return Promise.resolve(_cachedFullKey());
+    var headers = {};
+    if (secret) headers['x-teacher-secret'] = secret;
+    try { var tok = rosterClient && rosterClient.token && rosterClient.token(); if (tok) headers['Authorization'] = 'Bearer ' + tok; } catch (_) {}
+    return fetch(base + '/grade/answer-key', { headers: headers })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !j.ok) return _cachedFullKey();
+        var pack = { answerKey: j.answerKey, worksheetKey: j.worksheetKey, keyVersion: j.keyVersion };
+        try { localStorage.setItem(FULLKEY_LS, JSON.stringify(pack)); } catch (_) {}
+        return pack;
+      })
+      .catch(function () { return _cachedFullKey(); });
+  }
+  function _cachedFullKey() {
+    try { return JSON.parse(localStorage.getItem(FULLKEY_LS) || 'null'); } catch (_) { return null; }
+  }
+
+  // Verify a submission on the student trust set (fail-closed).
+  function _verifySub(row) {
+    try { return Promise.resolve(ReceiptVerify.verifySubmissionRow(row)).catch(function () { return false; }); }
+    catch (_) { return Promise.resolve(false); }
+  }
+  function _verifyGrade(row) {
+    try { return Promise.resolve(ReceiptVerify.verifyLedgerRow(row)).catch(function () { return false; }); }
+    catch (_) { return Promise.resolve(false); }
+  }
+
+  // Sync issuer + student trust sets so submissions/grades verify, and cache the key.
+  function _offlineBoot() {
+    var base = _meshBase();
+    var p = Promise.resolve();
+    try {
+      if (window.StudentKey && StudentKey.syncTrustSet && rosterClient && rosterClient.token) {
+        p = StudentKey.syncTrustSet(base, rosterClient.token()).catch(function () {});
+      }
+    } catch (_) {}
+    // Register THIS device's teacher pubkey into the local issuer set so its own emitted
+    // grades verify on-device (mirrors the roster boot registration).
+    try {
+      var pub = localStorage.getItem(PUBKEY_LS);
+      if (pub && ReceiptVerify.registerIssuerKeys) ReceiptVerify.registerIssuerKeys([pub], { name: 'Teacher device', kind: 'desk' });
+    } catch (_) {}
+    return p.then(function () { return fetchFullKey(); });
+  }
+
+  // Read verified submissions, auto-grade (max-score per item, never-downgrade), and
+  // queue FRQs for E/P/I. Signs the AUTO grades + emits them; FRQs wait for judgment.
+  function gradeOfflineSubmissions() {
+    if (!_meshReady()) { $('offline-status').innerHTML = '<span class="bad">Open this in the Algebra 2 app.</span>'; return; }
+    $('offline-status').textContent = 'Reading submissions…';
+    return _offlineBoot().then(function (keyPack) {
+      return SubmissionStore.all().then(function (rows) {
+        // Verify each submission; keep only genuine ones.
+        return _filterAsync(rows, _verifySub).then(function (subs) {
+          return LedgerStore.all().then(function (grades) {
+            // recorded[sid|item] = the MAX score already recorded for that item (there
+            // may be several grade rows at different attempts) — so never-downgrade in
+            // planAutoGrades compares against the true recorded max, not the last row.
+            // Per (sid,item): the MAX recorded score (never-downgrade compares against it)
+            // and the MAX recorded GRADE attempt (the teacher-assigned attempt = that + 1).
+            var recorded = {};
+            var attemptsByKey = {};
+            grades.forEach(function (g) {
+              var k = String(g.student_id) + '|' + String(g.item_id);
+              var sc = (g.score == null) ? null : Number(g.score);
+              if (sc != null && isFinite(sc) && (!(k in recorded) || recorded[k] == null || sc > recorded[k])) recorded[k] = sc;
+              (attemptsByKey[k] = attemptsByKey[k] || []).push(g.attempt);
+            });
+            // §0.7: submissions already covered by a grade (its `sub` names them) are
+            // done — they must NOT re-surface in the FRQ queue as ungraded work.
+            var covered = SubmissionStore.coveredKeys(grades);
+            var inputs = keyPack ? { answerKey: keyPack.answerKey, worksheetKey: keyPack.worksheetKey } : {};
+            var autoPlans = SubmissionGrader.planAutoGrades(subs, inputs, recorded);
+            _offlineFrq = _pendingOfflineFrqs(subs, covered);
+            return _signAndEmit(autoPlans, keyPack, attemptsByKey).then(function (emitted) {
+              $('offline-summary').textContent = 'Verified ' + subs.length + ' submission(s) · auto-graded + emitted ' + emitted + ' · ' + _offlineFrq.length + ' FRQ(s) to judge.';
+              _renderOfflineFrqs();
+              // Phase 4: best-effort durability upload (no-op offline; never blocks).
+              try { _archiveSubmissions(subs); } catch (_) {}
+              $('offline-status').innerHTML = '<span class="ok">✓ Ready.</span>';
+            });
+          });
+        });
+      });
+    }).catch(function (e) { $('offline-status').innerHTML = '<span class="bad">' + esc(e && e.message || 'grading failed') + '</span>'; });
+  }
+
+  function _filterAsync(items, pred) {
+    var out = [];
+    return (items || []).reduce(function (chain, it) {
+      return chain.then(function () { return Promise.resolve(pred(it)).then(function (ok) { if (ok) out.push(it); }); });
+    }, Promise.resolve()).then(function () { return out; });
+  }
+
+  // Phase 4 hub reconcile (§4/§0.10): best-effort upload of the VERIFIED submissions to
+  // the server's append-only archive when online (durability + audit). The server
+  // re-verifies each student signature; archiving never writes a grade. No-op offline.
+  function _archiveSubmissions(subs) {
+    var base = _meshBase();
+    var secret = (localStorage.getItem(SECRET_LS) || '').trim();
+    if (!base || !subs || !subs.length) return Promise.resolve(null);
+    var headers = { 'Content-Type': 'application/json' };
+    if (secret) headers['x-teacher-secret'] = secret;
+    try { var tok = rosterClient && rosterClient.token && rosterClient.token(); if (tok) headers['Authorization'] = 'Bearer ' + tok; } catch (_) {}
+    return fetch(base + '/submissions/archive', {
+      method: 'POST', headers: headers,
+      body: JSON.stringify({ submissions: subs.map(function (s) {
+        return { student_id: s.student_id, source: s.source, item_id: s.item_id, response: s.response,
+          attempt: s.attempt, recorded_at: s.recorded_at, receipt_id: s.receipt_id, receipt_compact: s.receipt_compact };
+      }) })
+    }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+  }
+
+  // FRQ submissions needing human E/P/I: the highest-attempt verified FRQ per (sid,item)
+  // that is NOT already covered by a grade. A graded FRQ's submission is covered (its
+  // grade names it via `sub`), so it never re-surfaces in the queue — that prevents a
+  // teacher from accidentally re-grading (and silently downgrading) already-judged work.
+  function _pendingOfflineFrqs(subs, covered) {
+    var byKey = {};
+    subs.forEach(function (s) {
+      if (SubmissionGrader.gradeableKind(s.source) !== 'human') return;
+      if (covered && SubmissionStore.isCovered(s, covered)) return;   // already graded → skip
+      var key = String(s.student_id) + '|' + String(s.item_id);
+      var cur = byKey[key];
+      var a = Number(s.attempt) || 1;
+      if (!cur || a >= (Number(cur.attempt) || 1)) byKey[key] = s;
+    });
+    return Object.keys(byKey).map(function (k) { return { submission: byKey[k], letter: null }; });
+  }
+
+  // Sign each AUTO grade plan with the teacher key + emit to the local grades G-Set.
+  // attemptsByKey[sid|item] = the existing grade attempts, so the teacher-ASSIGNED
+  // attempt is max+1 (never the student's submission attempt — §0.4/§0.9).
+  function _signAndEmit(plans, keyPack, attemptsByKey) {
+    if (!plans || !plans.length) return Promise.resolve(0);
+    var kv = keyPack && keyPack.keyVersion;
+    attemptsByKey = attemptsByKey || {};
+    return ensureUnlocked().then(function (key) {
+      return plans.reduce(function (chain, plan) {
+        return chain.then(function (n) {
+          var akey = String(plan.submission.student_id) + '|' + String(plan.submission.item_id);
+          var fields = SubmissionGrader.buildGradeFields(plan.submission, { score: plan.score, keyVersion: kv, existingAttempts: attemptsByKey[akey] || [] });
+          return ReceiptSign.signLedgerReceipt(key, fields).then(function (signed) {
+            var row = {
+              student_id: fields.sid, source: fields.src, item_id: fields.i, score: plan.score,
+              attempt: fields.a, recorded_at: new Date(fields.ts).toISOString(),
+              receipt_id: signed.receiptId, receipt_compact: signed.compact
+            };
+            return _verifyGrade(row).then(function (ok) {
+              if (!ok) return n;                     // never emit a grade that doesn't verify
+              return Promise.resolve(LedgerStore.put(row)).then(function () { return n + 1; });
+            });
+          });
+        });
+      }, Promise.resolve(0));
+    });
+  }
+
+  function _renderOfflineFrqs() {
+    var host = $('offline-frq-list');
+    if (!host) return;
+    host.innerHTML = '';
+    if (!_offlineFrq.length) { setSection('offline-push-row', false); return; }
+    _offlineFrq.forEach(function (item, idx) {
+      var s = item.submission;
+      var div = document.createElement('div'); div.className = 'frq';
+      div.innerHTML = '<div class="mono muted">' + esc(s.item_id) + ' · ' + esc(String(s.student_id).slice(0, 8)) + '</div>'
+        + '<div style="margin:4px 0">' + esc(String(s.response == null ? '' : s.response).slice(0, 400)) + '</div>';
+      ['E', 'P', 'I'].forEach(function (letter) {
+        var b = document.createElement('button'); b.className = 'btn'; b.textContent = letter;
+        b.onclick = function () { _offlineFrq[idx].letter = letter; _renderOfflineFrqs(); };
+        if (item.letter === letter) b.classList.add('primary');
+        div.appendChild(b);
+      });
+      host.appendChild(div);
+    });
+    setSection('offline-push-row', _offlineFrq.some(function (i) { return i.letter; }));
+  }
+
+  // Sign + emit the human-graded FRQs (E/P/I → score) to the grades G-Set.
+  function pushOfflineFrqs() {
+    var graded = _offlineFrq.filter(function (i) { return i.letter; });
+    if (!graded.length) return;
+    var kv = (_cachedFullKey() || {}).keyVersion;
+    $('offline-push-status').textContent = 'Signing…';
+    ensureUnlocked().then(function (key) {
+      return graded.reduce(function (chain, item) {
+        return chain.then(function (n) {
+          var score = _scoreFromGrade(item.letter);
+          if (score === null) return n;
+          return LedgerStore.all().then(function (grades) {
+            var existing = grades.filter(function (g) { return String(g.student_id) === String(item.submission.student_id) && String(g.item_id) === String(item.submission.item_id); }).map(function (g) { return g.attempt; });
+            var fields = SubmissionGrader.buildGradeFields(item.submission, { score: score, keyVersion: kv, existingAttempts: existing });
+            return ReceiptSign.signLedgerReceipt(key, fields).then(function (signed) {
+              var row = { student_id: fields.sid, source: fields.src, item_id: fields.i, score: score, attempt: fields.a, recorded_at: new Date(fields.ts != null ? fields.ts : Date.now()).toISOString(), receipt_id: signed.receiptId, receipt_compact: signed.compact };
+              return Promise.resolve(LedgerStore.put(row)).then(function () { return n + 1; });
+            });
+          });
+        });
+      }, Promise.resolve(0));
+    }).then(function (n) {
+      $('offline-push-status').innerHTML = '<span class="ok">✓ Emitted ' + n + ' FRQ grade(s).</span>';
+      _offlineFrq = []; _renderOfflineFrqs();
+      toast('Offline grades signed. Sync nearby to send them back.');
+    }).catch(function (e) { if (e) $('offline-push-status').innerHTML = '<span class="bad">' + esc(e && e.message || 'push failed') + '</span>'; });
+  }
+
+  // Two-lane Nearby round (grades + submissions) — receive student submissions + send
+  // grades back. Mirrors mobile-home's syncNearby but with the teacher trust sets.
+  function offlineSyncNearby() {
+    if (!window.GossipTransport) { $('offline-status').innerHTML = '<span class="bad">Bluetooth/Nearby needs the app.</span>'; return; }
+    $('offline-status').textContent = '📡 Looking for nearby devices…';
+    _offlineBoot().then(function () {
+      var covered = null;
+      return LedgerStore.all().then(function (grades) {
+        covered = SubmissionStore.coveredKeys(grades);
+        return LedgerGossip.runLanes(window.GossipTransport, {
+          lanes: [
+            { lane: 'grades', getRows: function () { return LedgerStore.all(); }, verify: _verifyGrade, store: LedgerStore },
+            { lane: 'subs',
+              getRows: function () { return SubmissionStore.all().then(function (r) { return r.filter(function (x) { return !SubmissionStore.isCovered(x, covered); }); }); },
+              verify: SubmissionStore.floodCapVerify(SubmissionStore.suppressingVerify(_verifySub, covered)),
+              store: SubmissionStore }
+          ],
+          durationMs: 45000,
+          onPeer: function () { $('offline-status').textContent = '📡 Connected — syncing…'; }
+        });
+      });
+    }).then(function (r) {
+      if (!r || !r.available) $('offline-status').innerHTML = '<span class="bad">Nearby unavailable.</span>';
+      else $('offline-status').innerHTML = '<span class="ok">✓ Synced with ' + (r.peers || 0) + ' device(s) · +' + (r.received || 0) + ' record(s). Now tap Grade submissions.</span>';
+    }).catch(function (e) { $('offline-status').innerHTML = '<span class="bad">' + esc(e && e.message || 'sync failed') + '</span>'; });
+  }
+
+  // ── Wire up ────────────────────────────────────────────────────────────────
+
+  function connect() {
+    var s = $('secret').value.trim();
+    if (s) { try { localStorage.setItem(SECRET_LS, s); } catch (_) {} }
+    // Reveal the working sections; a 401 later tells the teacher if the secret is wrong.
+    setSection('key-card', true); setSection('grade-card', true); setSection('seal-card', true);
+    setSection('offline-card', true);
+    $('auth-status').innerHTML = '<span class="ok">Connected.</span>';
+    refreshKeyStatus();
+    // Warm the full-key cache while we have the network (best-effort).
+    try { fetchFullKey(); } catch (_) {}
+  }
+
+  function init() {
+    try { var saved = localStorage.getItem(SECRET_LS); if (saved && $('secret')) $('secret').value = saved; } catch (_) {}
+    $('btn-connect').onclick = connect;
+    $('btn-generate').onclick = generateKey;
+    $('btn-unlock').onclick = function () { unlockKey().catch(function () {}); };
+    $('btn-register').onclick = registerKey;
+    $('btn-removekey').onclick = removeKey;
+    $('btn-import').onclick = importWork;
+    $('btn-push').onclick = pushGrades;
+    $('btn-seal').onclick = sealEpoch;
+    $('btn-offline-sync').onclick = offlineSyncNearby;
+    $('btn-offline-grade').onclick = gradeOfflineSubmissions;
+    $('btn-offline-push').onclick = pushOfflineFrqs;
+    if (!window.SecureKeyStore || !SecureKeyStore.available) {
+      $('who').textContent = 'Open this in the Algebra 2 app to manage the signing key.';
+    }
+  }
+
+  // Expose the pure helpers for tests.
+  window.__teacherApp = {
+    _findPendingFrqs: _findPendingFrqs,
+    _scoreFromGrade: _scoreFromGrade,
+    _buildGradeRecord: _buildGradeRecord,
+    _rowsForHead: _rowsForHead,
+    _itemKey: _itemKey
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+</body>
+</html>

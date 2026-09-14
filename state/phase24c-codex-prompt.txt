@@ -1,0 +1,188 @@
+## Task: Deep Handler Exploration + OS Callback Table Research (Phase 24C)
+
+You are working on a TI-84 Plus CE ROM transpilation project. Phase 24A unlocked the ISR dispatch gate (block 0x000710 now reachable). Phase 24B discovered 45 new seed addresses and found that handler 0x08C331 runs 1000+ steps deep into OS code. Your job is to explore the deep handlers, trace memory writes to find the OS callback table initialization, and map the OS subsystems.
+
+### Context
+
+The ISR at 0x000710 reads a 24-bit callback pointer from RAM at 0xD02AD7 and calls it. Currently RAM is zeroed, so the callback goes to 0x000000 (reset). On real hardware, the OS boot initializes this pointer (and likely a table of handler addresses nearby) so the ISR dispatches to real event handlers.
+
+Phase 24B Test 13 probed ROM handler table addresses. Key findings:
+- **0x08C331**: Ran 1000 steps (hit max_steps), reached 0x06ACB2 — likely a major OS subsystem
+- **0x061DB6**: Ran 109 steps, reached new block at 0x00586A
+- **0x07C705**: Ran 86 steps, reached HALT — math library area
+- **0x07C897**: Ran 270 steps, reached missing block — deeper math
+
+### Files you MUST read first
+
+1. `TI-84_Plus_CE/test-harness.mjs` — Full file. Understand all 13 existing tests. You will ADD Tests 14-17 at the end (before the Summary section).
+
+2. `TI-84_Plus_CE/peripherals.js` — Full file. Understand flash handler (returns 0xD0), keyboard port 0x01, interrupt controller.
+
+3. `TI-84_Plus_CE/cpu-runtime.js` — Lines 750-1090. Understand createExecutor, runFrom, onBlock/onMissingBlock/onDynamicTarget callbacks.
+
+### Step 1: Deep exploration of handler 0x08C331 (Test 14)
+
+Add Test 14 to test-harness.mjs that:
+
+1. Creates a fresh executor with 16MB memory (`new Uint8Array(0x1000000)` with `romBytes` copied in)
+2. Sets up OS-like CPU state: IY=0xD00080, SP=0xD40000, IM=1, MADL=1
+3. Runs from 0x08C331 in ADL mode with HIGH step limit (500,000 steps)
+4. Collects ALL blocks visited, missing blocks, dynamic targets
+5. Tracks I/O operations (use cpu.onIoRead/onIoWrite)
+6. Tracks memory writes to the 0xD00000-0xD40000 range (system RAM) — wrap cpu.writeByte or add onBlock tracing to capture writes to key addresses:
+   - 0xD02AD7 (ISR callback pointer)
+   - 0xD02000-0xD03000 (likely callback table area)
+   - 0xD00080-0xD00100 (system vars at IY base)
+
+Report:
+```
+Test 14: Deep Handler 0x08C331
+================================
+Steps: [count]
+Termination: [reason] at [address]
+Unique blocks visited: [count]
+Code regions:
+  [region breakdown]
+Missing blocks: [count]
+  [first 30]
+Dynamic targets: [count]
+  [first 30]
+I/O operations: [count]
+  [first 20 unique port accesses]
+Memory writes to system RAM (0xD00000-0xD40000): [count]
+  Writes to 0xD02AD7 (callback ptr): [any?]
+  Writes to 0xD02000-0xD03000 range: [list first 20]
+  Writes to 0xD00080-0xD00100 range: [list first 20]
+```
+
+### Step 2: Explore other promising handlers (Test 15)
+
+Add Test 15 that probes these handlers with 10,000 steps each, using fresh 16MB memory per probe:
+
+```javascript
+const handlers = [
+  { addr: 0x061DB6, label: 'OS subsystem (109→0x586A)' },
+  { addr: 0x07C897, label: 'Math deep (270 steps)' },
+  { addr: 0x04C952, label: 'OS handler (33 steps)' },
+  { addr: 0x08C509, label: 'OS handler area' },
+  { addr: 0x08C67C, label: 'OS handler area' },
+  { addr: 0x06ACB2, label: 'Reached by 0x08C331' },
+  { addr: 0x00586A, label: 'Reached by 0x061DB6' },
+  { addr: 0x0019B6, label: 'Missing block from ISR' },
+  { addr: 0x0032D1, label: 'Missing block from ISR' },
+];
+```
+
+For each handler: reset CPU, set IY/SP/IM, run, report steps/termination/blocks/missing/dynamic in a table.
+
+### Step 3: Boot memory trace (Test 16)
+
+The boot sequence is only 62 steps because it hits HALT quickly. But during those 62 steps, it writes to various RAM locations. Add Test 16 that:
+
+1. Creates a fresh 16MB-memory executor
+2. Hooks `cpu.writeByte` (or uses the memory array directly) to log ALL writes to 0xD00000-0xD40000
+3. Boots from 0x000000 in z80 mode with 5000 steps
+4. After boot, dumps:
+   - All non-zero bytes in 0xD00080-0xD00100 (system vars)
+   - All non-zero bytes in 0xD02000-0xD03000 (potential callback table)
+   - The value at 0xD02AD7 (callback pointer)
+   - Any writes to 0xD005F8-0xD00640 (FP operand area)
+
+This tells us what the boot actually initializes in RAM.
+
+### Step 4: Extended boot with ISR cycling (Test 17)
+
+On real hardware, the boot HALTs, then an interrupt wakes it, the ISR runs, and execution continues. Add Test 17 that simulates multiple interrupt cycles:
+
+1. Boot from 0x000000 (62 steps to HALT)
+2. Wake with IM1 IRQ → ISR dispatches through 0x000710 → eventually re-HALTs
+3. Repeat wake cycle 10 times
+4. After each cycle, check:
+   - What address does 0xD02AD7 contain now?
+   - What new blocks were visited?
+   - Did any new code regions get touched?
+
+Use the executor's HALT detection to know when to inject the next IRQ. Between IRQ injections:
+```javascript
+cpu.halted = false;
+cpu.iff1 = 1;
+cpu.iff2 = 1;
+cpu.push(cpu.pc + 1);  // or current halt address + 1
+// Run from 0x000038 (IM1 vector)
+```
+
+Track cumulative blocks, missing blocks, and dynamic targets across all 10 cycles.
+
+Report:
+```
+Test 17: Extended Boot with ISR Cycling (10 cycles)
+=====================================================
+Cycle  Steps  Termination  Last PC   New Blocks  Callback (0xD02AD7)
+  0    62     halt         0x19B5    66          0x000000
+  1    46     halt         0x19B5    35          0x000000
+  ...
+Total unique blocks: [count]
+Total missing blocks: [count]
+Total dynamic targets: [count]
+New code regions discovered: [any beyond 0x00xxxx, 0x02xxxx, 0x04xxxx?]
+```
+
+### Step 5: Collect all seeds
+
+After Tests 14-17, collect ALL unique missing block addresses and dynamic target addresses. Append them to the existing `TI-84_Plus_CE/phase24b-seeds.txt` file (don't overwrite — append with a new header section):
+
+```
+# Phase 24C seeds — deep handler exploration + boot trace
+# Generated by test-harness.mjs Tests 14-17
+0xNNNNNN
+...
+```
+
+Filter: skip addresses ≤ 0 or ≥ 0x400000. Skip duplicates already in the file.
+
+### Verification
+
+```bash
+# Syntax check
+node --check TI-84_Plus_CE/test-harness.mjs
+
+# Run full test suite (ALL existing tests 1-13 must still pass!)
+node TI-84_Plus_CE/test-harness.mjs
+```
+
+**CRITICAL**: All existing tests (1-13) must continue to pass unchanged. Do NOT modify peripherals.js, cpu-runtime.js, or ti84-math.mjs. Only add new tests to test-harness.mjs and append to the seeds file.
+
+### Important context
+
+- Memory is 16MB (`new Uint8Array(0x1000000)`) — create fresh per test with `romBytes` copied in
+- CPU registers are 24-bit (BC/DE/HL have 24-bit backing stores)
+- `runFrom(startAddress, startMode, opts)` three-arg signature
+- `result.termination` (not `result.reason`) for exit status
+- `PRELIFTED_BLOCKS` is the export name from ROM.transpiled.js
+- `romBytes` is the decoded ROM (4MB Uint8Array) — use `mem.set(romBytes)` to copy into 16MB array
+- Timer interrupts: `timerInterrupt: false` for controlled tests
+- CPU memory access: `cpu.readByte(addr)`, `cpu.writeByte(addr, val)` — or just index into the memory array directly since CPU constructor takes the array
+- The CPU class stores memory as `this.memory` and masks with `this._memMask` — with 16MB memory (0x1000000), mask is 0xFFFFFF, so full 24-bit addressing works
+- Flash port returns 0xD0 (don't change). Keyboard returns 0xFF (don't change).
+- `resetCpuState(cpu)` helper is already defined at the top of test-harness.mjs
+- `hex(v, w)` helper is already defined
+- `collectSeedAddresses(...sources)` helper is already defined — pass arrays of numbers
+- `formatSeedAddress(value)` helper is already defined
+- `PHASE24B_SEEDS_PATH` constant is already defined — the path to phase24b-seeds.txt
+- Use `import { readFileSync, writeFileSync, appendFileSync } from 'node:fs'` — readFileSync and writeFileSync are already imported. If appendFileSync is needed, add it to the existing import.
+
+### Do NOT
+
+- Do NOT modify peripherals.js
+- Do NOT modify cpu-runtime.js
+- Do NOT modify ti84-math.mjs
+- Do NOT modify existing tests (1-13)
+- Do NOT add npm dependencies
+- Do NOT modify the transpiler
+
+### Code style
+
+- New tests in block-scoped `{}` following existing patterns
+- Use descriptive console output with section headers
+- Use the existing helper functions (resetCpuState, hex, etc.)
+- Early returns, flat structure

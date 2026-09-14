@@ -1,0 +1,16 @@
+{
+  "lessons": [
+    {
+      "id": "1.1",
+      "worksheet": "u1_lesson1_live.html"
+    },
+    {
+      "id": "3.6",
+      "worksheet": "u3_lesson6-7_live.html"
+    },
+    {
+      "id": "3.7",
+      "worksheet": "u3_lesson6-7_live.html"
+    }
+  ]
+}

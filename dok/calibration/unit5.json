@@ -1,0 +1,61 @@
+{
+  "_comment": "Authoring anchors for roadmap Unit 5. Core lessons are OLD 2.4-2.8 (NEW 5.1-5.5); Beyond the Exam lessons assigned to Unit 5 are OLD 2.9 and 9.1-9.5. Anchors describe released-FRQ patterns without quoting items.",
+  "unit": 5,
+  "dok2_anchors": [
+    {
+      "id": "u5-d2-describe-or-calculate-bivariate-association",
+      "shape": "Given paired quantitative data or a scatterplot, assign variables, construct or describe the display, and calculate or interpret correlation in context.",
+      "why_dok2": "The representation and target summary are supplied, so the student follows a standard construction, description, calculation, or interpretation path without adjudicating competing claims.",
+      "skills": ["2.A", "2.B", "2.C", "4.B"]
+    },
+    {
+      "id": "u5-d2-carry-out-regression-or-slope-inference-mechanics",
+      "shape": "Given a named regression model or slope-inference procedure, calculate and interpret a prediction, residual, coefficient, interval, test statistic, or p-value and check the stated conditions.",
+      "why_dok2": "The model or inference method is already selected; the student executes a known multistep procedure and communicates the requested result.",
+      "skills": ["1.D", "1.E", "1.F", "2.A", "2.B", "2.C", "3.D", "3.E", "4.B", "4.C"]
+    }
+  ],
+  "dok3_anchors": [
+    {
+      "id": "u5-d3-which-description-or-association-claim-is-warranted",
+      "shape": "Competing accounts of bivariate data are plausible; coordinate form, direction, strength, unusual observations, correlation, residual behavior, and study design to choose the warranted account and bound its scope or causal meaning.",
+      "why_dok3": "The student must reconcile graphical, numerical, and design evidence that support different parts of the competing accounts and trace the rejected account to a consequence.",
+      "skills": ["2.A", "2.B", "2.C", "4.B"],
+      "frq_patterns": [
+        "linear-label-vs-curved-pattern-description-and-consequence",
+        "high-correlation-vs-residual-pattern-which-model-is-warranted",
+        "association-sensitivity-and-causation-which-claim-is-warranted"
+      ]
+    },
+    {
+      "id": "u5-d3-which-prediction-or-fit-should-be-trusted",
+      "shape": "Several predictions or fitted models compete; choose the one justified by the data range, coefficient meanings, residual diagnostics, transformation, and influence of unusual observations, then explain the practical consequence of the rejected choice.",
+      "why_dok3": "The student aligns model evidence with the prediction purpose, weighs evidence that can point in different directions, and explains the consequence of extrapolation or unstable fit.",
+      "skills": ["2.A", "2.C", "4.B"],
+      "frq_patterns": [
+        "interpolation-vs-extrapolation-which-prediction-is-defensible",
+        "with-vs-without-unusual-point-which-fit-for-purpose",
+        "transformed-vs-untransformed-model-use-residual-evidence"
+      ]
+    },
+    {
+      "id": "u5-d3-which-slope-inference-conclusion-is-warranted",
+      "shape": "For a Beyond the Exam slope investigation, choose the question suggested by variation or adjudicate competing interval or test conclusions using residual-based conditions, inferential output, study design, and the population claim.",
+      "why_dok3": "No isolated calculation settles the investigation; the student must connect the question, diagnostic, inferential, and design evidence and explain how an unsupported conclusion would mislead a reader.",
+      "skills": ["1.A", "1.D", "1.E", "1.F", "3.D", "3.E", "4.A", "4.B", "4.C", "4.D", "4.E"],
+      "frq_patterns": [
+        "which-slope-question-is-supported-by-variation",
+        "which-slope-interval-claim-is-supported",
+        "which-slope-test-conclusion-is-warranted",
+        "slope-inference-condition-failure-and-consequence"
+      ]
+    }
+  ],
+  "not_dok3": [
+    "A longer calculation of correlation, a regression line, a prediction, a residual, or a slope-inference statistic after the model or method has been selected.",
+    "A complete direction-form-strength-unusual-features description that never asks the student to adjudicate a competing description or consequence.",
+    "An interpretation prompt that supplies the correct coefficient, interval, p-value, or conclusion and asks the student to restate it in context.",
+    "Lettered parts that separately graph, calculate, check conditions, and describe but never require a judgment about a model, claim, prediction, inference, or scope.",
+    "Calling a large absolute correlation proof of linear form or causation, or treating a slope interval or p-value as decisive without diagnostics and study design."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "WS-U1L1-reflect1": {
+    "elements": [
+      {
+        "id": "isolate-variable"
+      },
+      {
+        "id": "substitute-check"
+      }
+    ]
+  }
+}

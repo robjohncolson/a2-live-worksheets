@@ -1,0 +1,251 @@
+## Task: Write a Complete eZ80 Instruction Decoder
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. The current disassembler (z80js npm package) has bugs with eZ80-specific instructions — malformed hex output, broken indexed forms, missing mode prefixes. Your job is to write a complete replacement decoder that reads raw ROM bytes and produces structured instruction objects.
+
+### Files you MUST read first
+
+- `scripts/transpile-ti84-rom.mjs` — Read the FIRST 200 lines to understand the ROM byte access pattern (`romBytes[pc]`), the prefix table, and helper functions. Then read lines 780-860 (`decodeInstruction` function) to understand the current decode flow.
+
+### What to create
+
+**File: `TI-84_Plus_CE/ez80-decoder.js`**
+
+An ES module exporting a single function:
+
+```javascript
+export function decodeInstruction(romBytes, pc, mode) {
+  // Returns: { tag, dasm, length, ...fields }
+  // mode is 'z80' or 'adl' — affects immediate/address width
+}
+```
+
+### Output format
+
+Every returned object MUST have:
+- `tag` — string identifying the instruction type (used by emitter)
+- `dasm` — human-readable disassembly text (for comments)
+- `length` — total instruction length in bytes (including prefixes)
+
+Additional fields depend on the tag. Examples:
+
+```javascript
+// LD A, 0x42
+{ tag: 'ld-reg-imm', dest: 'a', value: 0x42, dasm: 'ld a, 0x42', length: 2 }
+
+// LD A, B
+{ tag: 'ld-reg-reg', dest: 'a', src: 'b', dasm: 'ld a, b', length: 1 }
+
+// LD A, (HL)
+{ tag: 'ld-reg-ind', dest: 'a', src: 'hl', dasm: 'ld a, (hl)', length: 1 }
+
+// LD A, (0x1234)
+{ tag: 'ld-reg-mem', dest: 'a', addr: 0x1234, dasm: 'ld a, (0x001234)', length: 4 }
+
+// LD (HL), A
+{ tag: 'ld-ind-reg', dest: 'hl', src: 'a', dasm: 'ld (hl), a', length: 1 }
+
+// CP 0x05
+{ tag: 'cp-imm', value: 0x05, dasm: 'cp 0x05', length: 2 }
+
+// ADD A, B
+{ tag: 'alu-reg', op: 'add', src: 'b', dasm: 'add a, b', length: 1 }
+
+// AND 0x0B
+{ tag: 'alu-imm', op: 'and', value: 0x0b, dasm: 'and 0x0b', length: 2 }
+
+// BIT 2, A
+{ tag: 'bit-test', bit: 2, reg: 'a', dasm: 'bit 2, a', length: 2 }
+
+// SET 5, (HL)
+{ tag: 'bit-set-ind', bit: 5, dasm: 'set 5, (hl)', length: 2 }
+
+// JR NZ, 0x1234
+{ tag: 'jr-conditional', condition: 'nz', target: 0x1234, fallthrough: 0x1236, dasm: 'jr nz, 0x001234', length: 2, terminates: true }
+
+// CALL 0x020110
+{ tag: 'call', target: 0x020110, fallthrough: 0x..., dasm: 'call 0x020110', length: 4, terminates: true }
+```
+
+### Instruction encoding reference
+
+**Unprefixed opcodes (no prefix byte):**
+
+Register encoding (bits 5-3 or 2-0): B=0, C=1, D=2, E=3, H=4, L=5, (HL)=6, A=7
+
+| Opcode range | Pattern | Instruction |
+|---|---|---|
+| 0x00 | 00000000 | NOP |
+| 0x01,0x11,0x21,0x31 | 00rr0001 nn nn | LD rr, nn (BC/DE/HL/SP) |
+| 0x02 | | LD (BC), A |
+| 0x03,0x13,0x23,0x33 | 00rr0011 | INC rr |
+| 0x04,0x0C,etc | 00rrr100 | INC r |
+| 0x05,0x0D,etc | 00rrr101 | DEC r |
+| 0x06,0x0E,etc | 00rrr110 nn | LD r, n |
+| 0x07 | | RLCA |
+| 0x08 | | EX AF, AF' |
+| 0x09,0x19,0x29,0x39 | 00rr1001 | ADD HL, rr |
+| 0x0A | | LD A, (BC) |
+| 0x0B,0x1B,0x2B,0x3B | 00rr1011 | DEC rr |
+| 0x0F | | RRCA |
+| 0x10 dd | | DJNZ d |
+| 0x12 | | LD (DE), A |
+| 0x17 | | RLA |
+| 0x18 dd | | JR d |
+| 0x1A | | LD A, (DE) |
+| 0x1F | | RRA |
+| 0x20 dd | | JR NZ, d |
+| 0x22 nn nn | | LD (nn), HL |
+| 0x27 | | DAA |
+| 0x28 dd | | JR Z, d |
+| 0x2A nn nn | | LD HL, (nn) |
+| 0x2F | | CPL |
+| 0x30 dd | | JR NC, d |
+| 0x32 nn nn | | LD (nn), A |
+| 0x36 nn | | LD (HL), n |
+| 0x37 | | SCF |
+| 0x38 dd | | JR C, d |
+| 0x3A nn nn | | LD A, (nn) |
+| 0x3F | | CCF |
+| 0x40-0x7F | 01dddsss | LD r, r (except 0x76=HALT) |
+| 0x76 | | HALT |
+| 0x80-0xBF | 10ooosss | ALU A, r (ADD=0,ADC=1,SUB=2,SBC=3,AND=4,XOR=5,OR=6,CP=7) |
+| 0xC0,0xC8,etc | 11ccc000 | RET cc |
+| 0xC1,0xD1,0xE1,0xF1 | 11rr0001 | POP rr (BC/DE/HL/AF) |
+| 0xC2,0xCA,etc | 11ccc010 nn nn | JP cc, nn |
+| 0xC3 nn nn | | JP nn |
+| 0xC4,0xCC,etc | 11ccc100 nn nn | CALL cc, nn |
+| 0xC5,0xD5,0xE5,0xF5 | 11rr0101 | PUSH rr |
+| 0xC6 nn | | ADD A, n |
+| 0xC7,0xCF,etc | 11ttt111 | RST t*8 |
+| 0xC9 | | RET |
+| 0xCD nn nn | | CALL nn |
+| 0xCE nn | | ADC A, n |
+| 0xD3 nn | | OUT (n), A |
+| 0xD6 nn | | SUB n |
+| 0xD9 | | EXX |
+| 0xDB nn | | IN A, (n) |
+| 0xDE nn | | SBC A, n |
+| 0xE3 | | EX (SP), HL |
+| 0xE6 nn | | AND n |
+| 0xE9 | | JP (HL) |
+| 0xEB | | EX DE, HL |
+| 0xEE nn | | XOR n |
+| 0xF3 | | DI |
+| 0xF6 nn | | OR n |
+| 0xF9 | | LD SP, HL |
+| 0xFB | | EI |
+| 0xFE nn | | CP n |
+
+**CB prefix (bit operations):**
+- 0x00-0x07: RLC r
+- 0x08-0x0F: RRC r
+- 0x10-0x17: RL r
+- 0x18-0x1F: RR r
+- 0x20-0x27: SLA r
+- 0x28-0x2F: SRA r
+- 0x30-0x37: SLL r (undocumented)
+- 0x38-0x3F: SRL r
+- 0x40-0x7F: BIT b, r
+- 0x80-0xBF: RES b, r
+- 0xC0-0xFF: SET b, r
+
+**DD/FD prefix (IX/IY indexed):**
+- DD = use IX, FD = use IY
+- Most HL-based instructions become IX/IY based
+- (HL) operand becomes (IX+d) or (IY+d) with displacement byte
+- H→IXH/IYH, L→IXL/IYL for register-only ops
+- DD CB d op / FD CB d op = indexed bit operations
+
+**ED prefix (extended):**
+- 0x38-0x3F: IN0/OUT0 (eZ80-specific, port is 8-bit immediate)
+- 0x40: IN B,(C) ... 0x78: IN A,(C)
+- 0x41: OUT (C),B ... 0x79: OUT (C),A
+- 0x42,0x52,0x62,0x72: SBC HL, rr
+- 0x43,0x53,0x63,0x73: LD (nn), rr
+- 0x44: NEG
+- 0x45: RETN
+- 0x46,0x56,0x5E: IM 0/1/2
+- 0x47: LD I, A
+- 0x4A,0x5A,0x6A,0x7A: ADC HL, rr
+- 0x4B,0x5B,0x6B,0x7B: LD rr, (nn)
+- 0x4D: RETI
+- 0x4F: LD R, A
+- 0x57: LD A, I
+- 0x5F: LD A, R
+- 0x67: RRD
+- 0x6F: RLD
+- 0xA0: LDI, 0xA1: CPI, 0xA8: LDD, 0xA9: CPD
+- 0xB0: LDIR, 0xB1: CPIR, 0xB8: LDDR, 0xB9: CPDR
+- eZ80-specific: 0x31-0x37 (LEA), 0x4C/0x54/0x55/0x64/0x65 (more LEA), 0x7D (STMIX), 0x7E (RSMIX), 0x76 (SLP), 0x64 (TST A,n), 0x74 (TSTIO), 0x34 (TST A,(HL)), 0x4C/0x54 etc (MLT rr), 0x93 (OTIMR)
+- Undefined ED opcodes → 2-byte NOP
+
+**eZ80 mode prefixes:**
+- 0x40 = .SIS (Z80 mode, 2-byte immediate)
+- 0x49 = .LIS (ADL mode, 2-byte immediate)
+- 0x52 = .SIL (Z80 mode, 3-byte immediate)
+- 0x5B = .LIL (ADL mode, 3-byte immediate)
+
+These precede the instruction and change the effective immediate width.
+
+### Address/immediate width
+
+In Z80 mode: 2-byte addresses/immediates (default)
+In ADL mode: 3-byte addresses/immediates (default)
+Mode prefixes override: .SIS/.LIS = 2-byte, .SIL/.LIL = 3-byte
+
+### Implementation approach
+
+Use a table-driven decoder:
+
+1. Read the first byte
+2. Check if it's a mode prefix (0x40, 0x49, 0x52, 0x5B) → consume and adjust immediate width
+3. Check if it's DD or FD → set index register, consume, check for doubled prefix (DD FD / FD DD)
+4. Check if it's CB → decode bit operation
+5. Check if it's ED → decode extended instruction
+6. Otherwise → decode from main opcode table
+
+For the main table, use the bit patterns described above. Extract register fields from bits 5-3 and 2-0. Use a `REGS` array: `['b','c','d','e','h','l','(hl)','a']`.
+
+### Control flow classification
+
+Instructions that terminate a block (set `terminates: true`):
+- JP, JR (unconditional)
+- JP cc, JR cc (conditional — also need `fallthrough` field)
+- CALL, CALL cc
+- RET, RET cc, RETN, RETI
+- RST
+- HALT
+- JP (HL), JP (IX), JP (IY)
+- DJNZ
+
+### Important edge cases
+
+1. **Doubled prefixes**: FD DD or DD FD — second prefix wins, first is consumed (adds 1 to length)
+2. **DD/FD + CB**: The displacement byte comes BEFORE the CB opcode: DD CB d op
+3. **Half-register access**: In DD-prefixed mode, H→IXH, L→IXL (but only for register-register ops, NOT for (IX+d) indexed ops)
+4. **Mode prefix + DD/FD**: Mode prefix can precede DD/FD, e.g., `.SIL LD IX, nn`
+5. **Undefined ED opcodes**: Return as NOP with length 2
+
+### Code style
+
+- ES module (export function)
+- No classes, use plain functions and lookup tables
+- No external dependencies
+- Early returns, flat structure
+- Helper function `hex(v, w)` for formatting
+
+### Size target
+
+Aim for 400-700 lines. Use compact lookup tables, not giant switch statements.
+
+### Verification
+
+```bash
+node --check TI-84_Plus_CE/ez80-decoder.js
+```
+
+### Do NOT
+
+- Do NOT modify any existing files
+- Do NOT add npm dependencies
+- Do NOT implement the emitter — only the decoder

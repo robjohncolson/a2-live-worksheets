@@ -1,0 +1,21 @@
+﻿{
+  "target": {
+    "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:copyTutorPromptPc",
+    "name": "copyTutorPromptPc",
+    "type": "Function",
+    "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js"
+  },
+  "direction": "upstream",
+  "impactedCount": 0,
+  "risk": "LOW",
+  "epistemic": "exact",
+  "summary": {
+    "direct": 0,
+    "processes_affected": 0,
+    "modules_affected": 0
+  },
+  "byDepthCounts": {},
+  "affected_processes": [],
+  "affected_modules": [],
+  "byDepth": {}
+}

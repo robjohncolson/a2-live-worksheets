@@ -1,0 +1,95 @@
+## Task: Wire Peripheral Model into Test Harness + Validate PLL Loop
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. Phase 7A has just been completed, which created:
+- `TI-84_Plus_CE/peripherals.js` — a peripheral bus with PLL, CPU control, GPIO, flash, and timer models
+- Modified `TI-84_Plus_CE/cpu-runtime.js` — `createExecutor(blocks, memory, options)` now accepts `options.peripherals`
+
+Your job is to wire the peripheral model into the test harness and validate that the PLL initialization loop resolves naturally (without needing the loop force-breaker).
+
+### Files you MUST read first
+
+- `TI-84_Plus_CE/test-harness.mjs` (164 lines) — the current test harness
+- `TI-84_Plus_CE/peripherals.js` — the new peripheral model (read to understand its API)
+- `TI-84_Plus_CE/cpu-runtime.js` — check the updated `createExecutor` signature
+
+### What to modify
+
+**File: `TI-84_Plus_CE/test-harness.mjs`**
+
+1. **Import the peripheral bus** at the top (after existing imports):
+   ```javascript
+   import { createPeripheralBus } from './peripherals.js';
+   ```
+
+2. **Create peripheral bus** before the executor creation:
+   ```javascript
+   const peripherals = createPeripheralBus({ trace: false, pllDelay: 2 });
+   ```
+
+3. **Pass peripherals to createExecutor**:
+   Change:
+   ```javascript
+   const executor = createExecutor(PRELIFTED_BLOCKS, romBytes);
+   ```
+   To:
+   ```javascript
+   const executor = createExecutor(PRELIFTED_BLOCKS, romBytes, { peripherals });
+   ```
+
+4. **Add a peripheral-specific test** (Test 4) after the existing Test 3 and before the Summary section. This test specifically validates that the PLL loop resolves:
+
+   ```javascript
+   // --- Test 4: Reset with peripherals — PLL should resolve naturally ---
+   console.log('\n--- Peripheral Validation ---');
+   const peripherals2 = createPeripheralBus({ trace: true, pllDelay: 2 });
+   const executor2 = createExecutor(PRELIFTED_BLOCKS, romBytes, { peripherals: peripherals2 });
+
+   // Set up I/O tracing on executor2
+   const ioLog2 = [];
+   executor2.cpu.onIoRead = (port, value) => { ioLog2.push({ op: 'read', port, value }); };
+   executor2.cpu.onIoWrite = (port, value) => { ioLog2.push({ op: 'write', port, value }); };
+
+   const test4 = executor2.runFrom(0x000000, 'z80', {
+     maxSteps: 5000,
+     maxLoopIterations: 200,  // Higher tolerance — PLL should resolve before this
+     onLoopBreak: (pc, mode, count, target) => {
+       console.log(`  ** UNEXPECTED LOOP BREAK at 0x${pc.toString(16).padStart(6,'0')}:${mode}`);
+     },
+   });
+
+   // Check PLL-specific I/O
+   const pllReads = ioLog2.filter(e => e.op === 'read' && e.port === 0x28);
+   const pllWrites = ioLog2.filter(e => e.op === 'write' && e.port === 0x28);
+   console.log(`  PLL writes: ${pllWrites.length}, PLL reads: ${pllReads.length}`);
+   console.log(`  PLL read values: ${pllReads.map(e => '0x' + e.value.toString(16).padStart(2,'0')).join(', ')}`);
+   console.log(`  Test 4 steps: ${test4.steps}, termination: ${test4.termination}`);
+   console.log(`  Loops forced: ${test4.loopsForced}`);
+   if (test4.loopsForced === 0) {
+     console.log('  SUCCESS: PLL loop resolved naturally (0 forced breaks)');
+   } else {
+     console.log('  PARTIAL: PLL loop still needed force-break');
+   }
+   ```
+
+5. **Update the Summary section** to include Test 4:
+   Add after the existing test3 summary line:
+   ```javascript
+   console.log(`  Test 4 (peripheral):   ${test4.steps} steps, terminated: ${test4.termination}, loops forced: ${test4.loopsForced}`);
+   ```
+
+### Verification
+
+After making changes, run:
+```bash
+node --check TI-84_Plus_CE/test-harness.mjs
+```
+
+This should pass with zero errors.
+
+### Do NOT
+
+- Do NOT modify peripherals.js or cpu-runtime.js (those are already done)
+- Do NOT modify transpile-ti84-rom.mjs or ROM.transpiled.js
+- Do NOT run the full test harness (that requires ROM.transpiled.js to be importable)
+- Do NOT add npm dependencies
+- Do NOT remove or change existing Tests 1-3

@@ -1,0 +1,21 @@
+﻿{
+  "target": {
+    "id": "Function:dok/build_ladder.py:emit_board",
+    "name": "emit_board",
+    "type": "Function",
+    "filePath": "dok/build_ladder.py"
+  },
+  "direction": "upstream",
+  "impactedCount": 0,
+  "risk": "LOW",
+  "epistemic": "exact",
+  "summary": {
+    "direct": 0,
+    "processes_affected": 0,
+    "modules_affected": 0
+  },
+  "byDepthCounts": {},
+  "affected_processes": [],
+  "affected_modules": [],
+  "byDepth": {}
+}

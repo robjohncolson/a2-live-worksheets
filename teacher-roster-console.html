@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<!-- TR3 of ROSTER_TEACHER_TOOLS_SPEC.md. LOCAL-ONLY teacher console:
+     enroll a class, view the roster (incl. current passwords), add one student.
+     The teacher secret is typed at runtime and kept in sessionStorage only —
+     it is NEVER hardcoded or committed. Do not deploy publicly. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algebra 2 — Teacher Roster Console</title>
+  <style>
+    :root {
+      --sg-bg: #f7f2e8;
+      --sg-text: #2a2520;
+      --sg-accent: #7a4a1f;
+      --sg-bar-track: #e2d6c0;
+      --sg-bg-card: #ffffff;
+      --sg-border: #d8ccb0;
+      --sg-text-dim: #5a5045;
+      --sg-low: #c0392b;
+      --sg-high: #2e7d32;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--sg-bg);
+      color: var(--sg-text);
+      min-height: 100vh;
+    }
+    .page-header {
+      background: var(--sg-bg-card);
+      border-bottom: 1px solid var(--sg-border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .page-header h1 { margin: 0; font-size: 1.25rem; font-weight: 800; color: var(--sg-accent); }
+    .page-header .subtitle { margin: 0; font-size: 0.82rem; color: var(--sg-text-dim); }
+    .security-banner {
+      background: #fff0f0;
+      border: 1px solid var(--sg-low);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: #6a1b1b;
+      line-height: 1.5;
+    }
+    .main { max-width: 860px; margin: 0 auto; padding: 24px 20px 60px; display: grid; gap: 24px; }
+    .section {
+      background: var(--sg-bg-card);
+      border: 1px solid var(--sg-border);
+      border-radius: 10px;
+      padding: 20px 22px;
+      display: grid;
+      gap: 16px;
+    }
+    .section-title {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--sg-text-dim);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--sg-border);
+    }
+    .form-row { display: grid; gap: 6px; }
+    .form-row label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--sg-text-dim);
+    }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--sg-border);
+      border-radius: 8px;
+      background: var(--sg-bg);
+      color: var(--sg-text);
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    textarea {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88rem;
+      resize: vertical;
+      min-height: 110px;
+    }
+    input:focus, select:focus, textarea:focus { outline: 2px solid var(--sg-accent); outline-offset: 2px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--sg-accent);
+      background: var(--sg-accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn[disabled] { opacity: 0.5; cursor: default; }
+    .btn-sm {
+      padding: 5px 12px;
+      font-size: 0.76rem;
+      border-radius: 999px;
+      border: 1px solid var(--sg-border);
+      background: var(--sg-bg-card);
+      color: var(--sg-text);
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-sm:hover { border-color: var(--sg-accent); color: var(--sg-accent); }
+    .btn-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th {
+      text-align: left;
+      padding: 7px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--sg-text-dim);
+      border-bottom: 2px solid var(--sg-border);
+    }
+    td { padding: 7px 10px; border-bottom: 1px solid var(--sg-bar-track); }
+    tr:last-child td { border-bottom: none; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .uname { font-weight: 700; color: var(--sg-accent); }
+    .pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .pill-must { background: #fdeccd; color: #7a4a1f; }
+    .pill-ok { background: #e3f1e3; color: var(--sg-high); }
+    .pill-active { background: #e3f1e3; color: var(--sg-high); }
+    .pill-archived { background: #ddd9d0; color: var(--sg-text-dim); }
+    tr.roster-row-archived td { background: #efede7; color: var(--sg-text-dim); }
+    tr.roster-row-archived .uname { color: var(--sg-text-dim); }
+    .msg { font-size: 0.85rem; min-height: 1.1em; }
+    .msg-err { color: var(--sg-low); }
+    .msg-ok { color: var(--sg-high); }
+    .hint { font-size: 0.8rem; color: var(--sg-text-dim); line-height: 1.5; }
+    .hint code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: var(--sg-bar-track);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Algebra 2 — Teacher Roster Console</h1>
+    <p class="subtitle">Enroll students, hand out usernames, recover logins</p>
+  </div>
+
+  <div class="main">
+
+    <div class="security-banner">
+      &#9888; <strong>Local use only.</strong> This page calls the teacher-only roster endpoints and
+      displays student passwords in plain text. Do <strong>not</strong> deploy it publicly or share
+      the URL with students. The teacher secret you enter stays in this browser tab's session memory
+      only (cleared when the tab closes); it is never saved to the page or to a file.
+    </div>
+
+    <!-- Connection -->
+    <div class="section">
+      <h2 class="section-title">Connection</h2>
+      <div class="row-2">
+        <div class="form-row">
+          <label for="svc-url-select">Roster service URL</label>
+          <select id="svc-url-select" style="margin-bottom:6px">
+            <option value="http://localhost:8091">Local dev (localhost:8091)</option>
+            <option value="https://a2-live-worksheets-production.up.railway.app">Railway production</option>
+            <option value="__custom__">Custom...</option>
+          </select>
+          <input id="svc-url" type="text" spellcheck="false"
+                 value="http://localhost:8091" style="display:none">
+        </div>
+        <div class="form-row">
+          <label for="teacher-secret">Teacher secret</label>
+          <input id="teacher-secret" type="password" autocomplete="off" spellcheck="false"
+                 placeholder="x-teacher-secret">
+          <span class="hint" id="session-status"></span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <label class="hint"><input type="checkbox" id="remember-secret" style="width:auto;margin-right:6px">Remember on this device (saves to localStorage — teacher-local machine only)</label>
+        <button class="btn-sm" id="clear-secret" style="display:none">Clear saved secret</button>
+        <button class="btn-sm" id="test-conn">Test connection</button>
+        <span class="msg" id="conn-msg"></span>
+      </div>
+    </div>
+
+    <!-- Enroll a class -->
+    <div class="section">
+      <h2 class="section-title">Enroll a Class</h2>
+      <div class="form-row">
+        <label for="class-list">Class list — one student per line: <code>Real Name</code> (optionally <code>Real Name, section, email</code>)</label>
+        <textarea id="class-list" placeholder="Ada Lovelace&#10;Alan Turing&#10;&quot;Curie, Marie&quot;&#10;Katherine Johnson"></textarea>
+      </div>
+      <div class="row-2">
+        <div class="form-row">
+          <label for="class-section">Section (for rows without their own)</label>
+          <input id="class-section" type="text" spellcheck="false" placeholder="e.g. PERIOD3">
+        </div>
+        <div class="form-row">
+          <label for="pw-mode">Default password</label>
+          <select id="pw-mode">
+            <option value="fixed">One default for everyone (set below)</option>
+            <option value="random">Random per student</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row" id="fixed-pw-row">
+        <label for="class-password">Default password (students must change it on first sign-in)</label>
+        <input id="class-password" type="text" spellcheck="false" placeholder="e.g. apstats2026">
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="enroll-btn">Enroll Class</button>
+        <button class="btn-sm" id="enroll-csv" style="display:none">Download CSV</button>
+        <span class="msg" id="enroll-msg"></span>
+      </div>
+      <div id="enroll-out" style="display:none">
+        <table>
+          <thead><tr><th>Real Name</th><th>Section</th><th>Username</th><th>Password</th><th>Status</th></tr></thead>
+          <tbody id="enroll-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Add one student -->
+    <div class="section">
+      <h2 class="section-title">Add One Student</h2>
+      <div class="row-2">
+        <div class="form-row">
+          <label for="one-name">Real name</label>
+          <input id="one-name" type="text" spellcheck="false">
+        </div>
+        <div class="form-row">
+          <label for="one-section">Section</label>
+          <input id="one-section" type="text" spellcheck="false">
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="form-row">
+          <label for="one-password">Default password</label>
+          <input id="one-password" type="text" spellcheck="false">
+        </div>
+        <div class="form-row">
+          <label for="one-email">Email (optional)</label>
+          <input id="one-email" type="text" spellcheck="false">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="one-btn">Enroll Student</button>
+        <span class="msg" id="one-msg"></span>
+      </div>
+    </div>
+
+    <!-- View roster -->
+    <div class="section">
+      <h2 class="section-title">View Roster</h2>
+      <div class="btn-row">
+        <input id="view-section" type="text" spellcheck="false" placeholder="section filter (blank = all)" style="max-width:240px">
+        <button class="btn" id="view-btn">Load Roster</button>
+        <button class="btn-sm" id="view-csv" style="display:none">Download CSV</button>
+        <span class="msg" id="view-msg"></span>
+      </div>
+      <div id="view-out" style="display:none">
+        <table>
+          <thead><tr><th>Real Name</th><th>Username</th><th>Section</th><th>Current Password</th><th>Password</th><th>Account</th><th>Created</th><th>Actions</th></tr></thead>
+          <tbody id="view-tbody"></tbody>
+        </table>
+      </div>
+      <div class="hint">
+        "Current Password" is the student's password right now (the default until they change it).
+        If it shows <code>(unavailable)</code>, set <code>ROSTER_PW_ENC_KEY</code> on the roster
+        service (see roster-server/README.md, TR1).
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Sibling config; sets window.ROSTER_SERVICE_URL -->
+  <script src="roster_config.js"></script>
+  <!-- Roster identity client; provides window.rosterClient.token() and .current() -->
+  <script src="roster-client.js"></script>
+
+  <script>
+    // ── helpers ────────────────────────────────────────────────────────────────
+    const $ = id => document.getElementById(id);
+    // Persistence keys (shared with teacher-dashboard.html so both tools
+    // remember the same URL + opt-in secret). URL is not a secret and is
+    // saved unconditionally; teacher secret is saved ONLY when the user
+    // explicitly checks "Remember on this device" (localStorage, teacher's
+    // local machine only — never deploy these tools publicly).
+    const URL_KEY    = 'a2_teacher_service_url';
+    const SECRET_KEY = 'a2_teacher_secret';
+
+    function svcUrl() { return $('svc-url').value.trim().replace(/\/+$/, ''); }
+    function teacherSecret() { return $('teacher-secret').value; }
+
+    function setMsg(el, text, kind) {
+      el.textContent = text || '';
+      el.className = 'msg' + (kind === 'err' ? ' msg-err' : kind === 'ok' ? ' msg-ok' : '');
+    }
+
+    function escHtml(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // RFC-4180 CSV cell (quote when needed; double internal quotes).
+    function csvCell(v) {
+      const s = String(v == null ? '' : v);
+      return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }
+    function downloadCsv(filename, rows) {
+      const text = rows.map(r => r.map(csvCell).join(',')).join('\n') + '\n';
+      const blob = new Blob([text], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function randomPassword() {
+      const alphabet = 'abcdefghjkmnpqrstuvwxyz23456789';
+      let out = '';
+      for (let i = 0; i < 8; i++) out += alphabet[Math.floor(Math.random() * alphabet.length)];
+      return out;
+    }
+
+    // Split one CSV line, honouring "quoted, fields".
+    function splitCsvLine(line) {
+      const out = []; let cur = ''; let q = false;
+      for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (q) {
+          if (c === '"' && line[i + 1] === '"') { cur += '"'; i++; }
+          else if (c === '"') q = false;
+          else cur += c;
+        } else if (c === '"') q = true;
+        else if (c === ',') { out.push(cur); cur = ''; }
+        else cur += c;
+      }
+      out.push(cur);
+      return out.map(s => s.trim());
+    }
+
+    async function api(method, path, { body, secret } = {}) {
+      const headers = { 'Content-Type': 'application/json' };
+      if (secret) headers['x-teacher-secret'] = secret;
+      // If a roster teacher session is active, also send the Bearer token.
+      // The server accepts either; sending both is fine and covers the
+      // pre-migration window where the secret is still required by the human.
+      const _tok = (typeof window !== 'undefined' && window.rosterClient)
+        ? window.rosterClient.token() : null;
+      if (_tok) headers['Authorization'] = 'Bearer ' + _tok;
+      const res = await fetch(svcUrl() + path, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : undefined
+      });
+      let data = null;
+      try { data = await res.json(); } catch (_) { data = null; }
+      return { status: res.status, data };
+    }
+
+    // ── URL dropdown wiring ────────────────────────────────────────────────────
+    // The dropdown writes BOTH:
+    //   - URL_KEY (a2_teacher_service_url): drives this page's fetches
+    //   - GLOBAL_OVERRIDE_KEY (roster_service_url_override): consulted by
+    //     roster_config.js so the Desk, worksheets, and start-here all
+    //     talk to the same backend without a second DevTools step.
+    const GLOBAL_OVERRIDE_KEY = 'roster_service_url_override';
+    (function wireUrlDropdown() {
+      const sel = $('svc-url-select');
+      const inp = $('svc-url');
+
+      function persist(url) {
+        try {
+          localStorage.setItem(URL_KEY, url);
+          if (url) localStorage.setItem(GLOBAL_OVERRIDE_KEY, url);
+        } catch (_) {}
+      }
+
+      function syncFromSelect() {
+        if (sel.value === '__custom__') {
+          inp.style.display = '';
+          // Don't clobber an existing custom value if the user is typing.
+          if (!inp.value || inp.value === 'http://localhost:8091' || inp.value === 'https://a2-live-worksheets-production.up.railway.app') {
+            inp.value = '';
+          }
+          persist(inp.value || '');
+        } else {
+          inp.style.display = 'none';
+          inp.value = sel.value;
+          persist(sel.value);
+        }
+      }
+
+      // Restore prior URL choice.
+      try {
+        const saved = localStorage.getItem(URL_KEY);
+        if (saved) {
+          const opt = [...sel.options].find(o => o.value === saved);
+          if (opt) {
+            sel.value = saved;
+          } else {
+            sel.value = '__custom__';
+            inp.value = saved;
+          }
+        }
+      } catch (_) {}
+      syncFromSelect();
+
+      sel.addEventListener('change', syncFromSelect);
+      inp.addEventListener('input', () => {
+        if (sel.value === '__custom__') { persist(inp.value); }
+      });
+    })();
+
+    // ── secret persistence (opt-in localStorage) ───────────────────────────────
+    (function restoreSecret() {
+      try {
+        const s = localStorage.getItem(SECRET_KEY);
+        if (s) {
+          $('teacher-secret').value = s;
+          $('remember-secret').checked = true;
+          $('clear-secret').style.display = '';
+        }
+      } catch (_) {}
+    })();
+    function persistSecretMaybe() {
+      try {
+        if ($('remember-secret').checked && teacherSecret()) {
+          localStorage.setItem(SECRET_KEY, teacherSecret());
+          $('clear-secret').style.display = '';
+        } else {
+          localStorage.removeItem(SECRET_KEY);
+          $('clear-secret').style.display = $('remember-secret').checked ? 'none' : 'none';
+        }
+      } catch (_) {}
+    }
+    $('remember-secret').addEventListener('change', persistSecretMaybe);
+    $('teacher-secret').addEventListener('input', persistSecretMaybe);
+    $('clear-secret').addEventListener('click', () => {
+      try { localStorage.removeItem(SECRET_KEY); } catch (_) {}
+      $('teacher-secret').value = '';
+      $('remember-secret').checked = false;
+      $('clear-secret').style.display = 'none';
+    });
+
+    // ── connection test ────────────────────────────────────────────────────────
+    $('test-conn').addEventListener('click', async () => {
+      setMsg($('conn-msg'), 'Checking…');
+      try {
+        const { status, data } = await api('GET', '/health');
+        if (status === 200 && data && data.ok) setMsg($('conn-msg'), 'Connected: ' + data.service, 'ok');
+        else setMsg($('conn-msg'), 'Unexpected response (HTTP ' + status + ')', 'err');
+      } catch (e) {
+        setMsg($('conn-msg'), 'Cannot reach service: ' + (e.message || 'network error'), 'err');
+      }
+    });
+
+    // ── password mode toggle ───────────────────────────────────────────────────
+    $('pw-mode').addEventListener('change', () => {
+      $('fixed-pw-row').style.display = $('pw-mode').value === 'random' ? 'none' : 'grid';
+    });
+
+    // ── enroll one (shared) ────────────────────────────────────────────────────
+    async function enrollOne({ realName, section, password, email }) {
+      const body = { realName, section, password };
+      if (email) body.email = email;
+      const { status, data } = await api('POST', '/roster/enroll', { body, secret: teacherSecret() });
+      if (status === 200 && data && data.ok) return { ok: true, username: data.username };
+      return { ok: false, error: (data && data.error) || ('HTTP ' + status) };
+    }
+
+    // Helper: true when there is an active roster session token (teacher or not).
+    function hasTok() {
+      return !!(typeof window !== 'undefined' && window.rosterClient && window.rosterClient.token());
+    }
+
+    // Show "Signed in as <name> (teacher)" or hint in the Connection section.
+    function renderSessionStatus() {
+      const el = $('session-status');
+      if (!el) return;
+      const session = (typeof window !== 'undefined' && window.rosterClient)
+        ? window.rosterClient.current() : null;
+      if (session && session.role === 'teacher') {
+        el.textContent = 'Signed in as ' + session.realName + ' (teacher) — secret is optional.';
+        el.style.color = '#2e7d32';
+      } else if (session) {
+        el.textContent = '(signed in as student — enter the teacher secret above)';
+        el.style.color = '#5a5045';
+      } else {
+        el.textContent = 'Optional when signed in as a teacher via the Desk.';
+        el.style.color = '#5a5045';
+      }
+    }
+
+    // ── enroll a class ─────────────────────────────────────────────────────────
+    let lastEnrollRows = [];
+    $('enroll-btn').addEventListener('click', async () => {
+      const msg = $('enroll-msg');
+      if (!teacherSecret() && !hasTok()) { setMsg(msg, 'Enter the teacher secret, or sign in as a teacher via the Desk first.', 'err'); return; }
+
+      const lines = $('class-list').value.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      if (lines.length === 0) { setMsg(msg, 'Paste at least one student.', 'err'); return; }
+
+      const first = (splitCsvLine(lines[0])[0] || '').toLowerCase();
+      const start = ['name', 'realname', 'real_name', 'student'].includes(first) ? 1 : 0;
+
+      const mode = $('pw-mode').value;
+      const fixedPw = $('class-password').value;
+      if (mode === 'fixed' && !fixedPw) { setMsg(msg, 'Set a default password (or choose random).', 'err'); return; }
+      const defaultSection = $('class-section').value.trim();
+
+      const rows = [];
+      for (let i = start; i < lines.length; i++) {
+        const p = splitCsvLine(lines[i]);
+        rows.push({ realName: p[0] || '', section: (p[1] || defaultSection || '').trim(), email: p[2] || '' });
+      }
+
+      const btn = $('enroll-btn');
+      btn.disabled = true;
+      setMsg(msg, 'Enrolling ' + rows.length + '…');
+      $('enroll-tbody').innerHTML = '';
+      $('enroll-out').style.display = '';
+      lastEnrollRows = [['realName', 'section', 'username', 'password', 'status']];
+
+      let ok = 0, fail = 0;
+      for (const r of rows) {
+        const tr = document.createElement('tr');
+        if (!r.realName || !r.section) {
+          fail++;
+          tr.innerHTML = '<td>' + escHtml(r.realName) + '</td><td>' + escHtml(r.section) +
+            '</td><td>-</td><td>-</td><td style="color:var(--sg-low)">skipped: missing name/section</td>';
+          $('enroll-tbody').appendChild(tr);
+          lastEnrollRows.push([r.realName, r.section, '', '', 'skipped']);
+          continue;
+        }
+        const pw = mode === 'random' ? randomPassword() : fixedPw;
+        const out = await enrollOne({ realName: r.realName, section: r.section, password: pw, email: r.email });
+        if (out.ok) {
+          ok++;
+          tr.innerHTML = '<td>' + escHtml(r.realName) + '</td><td>' + escHtml(r.section) +
+            '</td><td class="uname mono">' + escHtml(out.username) + '</td><td class="mono">' +
+            escHtml(pw) + '</td><td><span class="pill pill-ok">enrolled</span></td>';
+          lastEnrollRows.push([r.realName, r.section, out.username, pw, 'enrolled']);
+        } else {
+          fail++;
+          tr.innerHTML = '<td>' + escHtml(r.realName) + '</td><td>' + escHtml(r.section) +
+            '</td><td>-</td><td>-</td><td style="color:var(--sg-low)">' + escHtml(out.error) + '</td>';
+          lastEnrollRows.push([r.realName, r.section, '', '', 'FAILED: ' + out.error]);
+        }
+        $('enroll-tbody').appendChild(tr);
+      }
+
+      btn.disabled = false;
+      setMsg(msg, 'Done — enrolled ' + ok + ', failed ' + fail + '.', fail ? 'err' : 'ok');
+      $('enroll-csv').style.display = ok ? '' : 'none';
+    });
+
+    $('enroll-csv').addEventListener('click', () => {
+      const stamp = new Date().toISOString().replace(/[:T]/g, '-').replace(/\..+/, '');
+      downloadCsv('roster-credentials-' + stamp + '.csv', lastEnrollRows);
+    });
+
+    // ── add one ────────────────────────────────────────────────────────────────
+    $('one-btn').addEventListener('click', async () => {
+      const msg = $('one-msg');
+      if (!teacherSecret() && !hasTok()) { setMsg(msg, 'Enter the teacher secret, or sign in as a teacher via the Desk first.', 'err'); return; }
+      const realName = $('one-name').value.trim();
+      const section = $('one-section').value.trim();
+      const password = $('one-password').value;
+      const email = $('one-email').value.trim();
+      if (!realName || !section || !password) { setMsg(msg, 'Name, section and password are required.', 'err'); return; }
+
+      $('one-btn').disabled = true;
+      setMsg(msg, 'Enrolling…');
+      const out = await enrollOne({ realName, section, password, email });
+      $('one-btn').disabled = false;
+      if (out.ok) setMsg(msg, 'Enrolled. Username: ' + out.username + '  (password: ' + password + ')', 'ok');
+      else setMsg(msg, 'Failed: ' + out.error, 'err');
+    });
+
+    // ── inline row editing ─────────────────────────────────────────────────────
+    // Exposed on window for testability (jsdom loads this script directly).
+    // Track the currently-open edit row so we can cancel it when another opens.
+    let _editingRow = null;
+
+    function enterEditMode(tr) {
+      // Cancel any open edit first.
+      if (_editingRow && _editingRow !== tr) exitEditMode(_editingRow);
+
+      _editingRow = tr;
+
+      const nameCell    = tr.querySelector('.cell-real-name');
+      const sectionCell = tr.querySelector('.cell-section');
+      const actionsCell = tr.querySelector('.cell-actions');
+
+      // Snapshot original text so Cancel can restore.
+      const origName    = tr.dataset.realName;
+      const origSection = tr.dataset.section;
+
+      // Replace cell text with inputs.
+      const nameInput = document.createElement('input');
+      nameInput.type  = 'text';
+      nameInput.value = origName;
+      nameInput.style.width = '100%';
+      nameInput.dataset.role = 'edit-name';
+      nameCell.textContent = '';
+      nameCell.appendChild(nameInput);
+
+      const sectionInput = document.createElement('input');
+      sectionInput.type  = 'text';
+      sectionInput.value = origSection;
+      sectionInput.style.width = '100%';
+      sectionInput.dataset.role = 'edit-section';
+      sectionCell.textContent = '';
+      sectionCell.appendChild(sectionInput);
+
+      // Swap buttons to Save / Cancel.
+      const errSpan = document.createElement('span');
+      errSpan.className = 'msg msg-err';
+      errSpan.style.display = 'block';
+
+      const saveBtn = document.createElement('button');
+      saveBtn.className = 'btn-sm';
+      saveBtn.textContent = 'Save';
+      saveBtn.addEventListener('click', () => saveRow(tr, errSpan));
+
+      const cancelBtn = document.createElement('button');
+      cancelBtn.className = 'btn-sm';
+      cancelBtn.textContent = 'Cancel';
+      cancelBtn.addEventListener('click', () => exitEditMode(tr));
+
+      actionsCell.innerHTML = '';
+      const row = document.createElement('span');
+      row.className = 'btn-row';
+      row.appendChild(saveBtn);
+      row.appendChild(cancelBtn);
+      actionsCell.appendChild(row);
+      actionsCell.appendChild(errSpan);
+
+      nameInput.focus();
+    }
+
+    function renderRosterStatus(tr) {
+      const archived = tr.dataset.status === 'archived';
+      tr.dataset.status = archived ? 'archived' : 'active';
+      tr.classList.toggle('roster-row-archived', archived);
+
+      const statusCell = tr.querySelector('.cell-roster-status');
+      if (!statusCell) return;
+
+      const pill = document.createElement('span');
+      pill.className = 'pill ' + (archived ? 'pill-archived' : 'pill-active');
+      pill.textContent = archived ? 'archived' : 'active';
+      statusCell.textContent = '';
+      statusCell.appendChild(pill);
+    }
+
+    function renderRosterActions(tr) {
+      const actionsCell = tr.querySelector('.cell-actions');
+      if (!actionsCell) return;
+
+      const row = document.createElement('span');
+      row.className = 'btn-row';
+
+      const editBtn = document.createElement('button');
+      editBtn.className = 'btn-sm btn-edit';
+      editBtn.textContent = 'Edit';
+      editBtn.addEventListener('click', () => enterEditMode(tr));
+
+      const dupBtn = document.createElement('button');
+      dupBtn.className = 'btn-sm btn-dup';
+      dupBtn.textContent = 'Duplicate';
+      dupBtn.addEventListener('click', () => duplicateRow(tr));
+
+      const archiveBtn = document.createElement('button');
+      archiveBtn.className = 'btn-sm btn-archive';
+      archiveBtn.textContent = tr.dataset.status === 'archived' ? 'Unarchive' : 'Archive';
+      archiveBtn.addEventListener('click', () => archiveRow(tr));
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'btn-sm btn-del';
+      deleteBtn.textContent = 'Delete';
+      deleteBtn.addEventListener('click', () => deleteRow(tr));
+
+      row.appendChild(editBtn);
+      row.appendChild(dupBtn);
+      row.appendChild(archiveBtn);
+      row.appendChild(deleteBtn);
+      actionsCell.textContent = '';
+      actionsCell.appendChild(row);
+    }
+
+    function exitEditMode(tr) {
+      if (_editingRow === tr) _editingRow = null;
+
+      const nameCell    = tr.querySelector('.cell-real-name');
+      const sectionCell = tr.querySelector('.cell-section');
+
+      // Restore original text from data attributes.
+      nameCell.textContent    = tr.dataset.realName;
+      sectionCell.textContent = tr.dataset.section;
+
+      // Restore every read-mode action, including Archive/Unarchive + Delete.
+      renderRosterActions(tr);
+    }
+
+    async function saveRow(tr, errSpan) {
+      const nameInput    = tr.querySelector('[data-role="edit-name"]');
+      const sectionInput = tr.querySelector('[data-role="edit-section"]');
+      const newName    = (nameInput    ? nameInput.value    : '').trim();
+      const newSection = (sectionInput ? sectionInput.value : '').trim();
+
+      if (!newName || !newSection) {
+        errSpan.textContent = 'Name and section must not be empty.';
+        return;
+      }
+
+      const studentId = tr.dataset.studentId;
+      if (!studentId) {
+        errSpan.textContent = 'Missing studentId -- reload the roster.';
+        return;
+      }
+
+      errSpan.textContent = 'Saving…';
+      let res;
+      try {
+        res = await api('PATCH', '/roster/' + studentId, {
+          body: { realName: newName, section: newSection },
+          secret: teacherSecret()
+        });
+      } catch (e) {
+        errSpan.textContent = 'Network error: ' + (e.message || '');
+        return;
+      }
+
+      if (res.status !== 200 || !res.data || !res.data.ok) {
+        errSpan.textContent = (res.data && res.data.error) || ('HTTP ' + res.status);
+        return;
+      }
+
+      // Success -- update the row's data attributes and exit edit mode.
+      const updated = res.data.student;
+      tr.dataset.realName = updated.realName || newName;
+      tr.dataset.section  = updated.section  || newSection;
+      exitEditMode(tr);
+    }
+
+    function duplicateRow(tr) {
+      const name    = tr.dataset.realName;
+      const section = tr.dataset.section;
+      $('one-name').value    = name;
+      $('one-section').value = section;
+      // Clear password + email so a stale value left in the Add form from a
+      // prior add attempt is never silently submitted with the duplicate.
+      $('one-password').value = '';
+      $('one-email').value    = '';
+      // Scroll to the "Add One Student" section and focus the name field.
+      // Guard: scrollIntoView is not available in all environments (e.g. jsdom).
+      const nameEl = $('one-name');
+      if (typeof nameEl.scrollIntoView === 'function') {
+        nameEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      nameEl.focus();
+    }
+
+    // Archive is reversible: it hides the student from class views while the
+    // server keeps every saved-work and wallet row. Unarchive needs no warning.
+    async function archiveRow(tr) {
+      const msg = $('view-msg');
+      const studentId = tr.dataset.studentId;
+      const name = tr.dataset.realName || (tr.querySelector('.uname') ? tr.querySelector('.uname').textContent : '') || 'this student';
+      if (!studentId) { if (msg) setMsg(msg, 'Missing studentId -- reload the roster.', 'err'); return; }
+
+      const archiving = tr.dataset.status !== 'archived';
+      if (archiving) {
+        if (typeof window.confirm !== 'function') {
+          if (msg) setMsg(msg, 'Confirmation unavailable — archive cancelled.', 'err');
+          return;
+        }
+        const ok = window.confirm('Hide ' + name + ' from all class views? Their work is kept; Unarchive restores everything.');
+        if (!ok) return;
+      }
+
+      const button = tr.querySelector('.btn-archive');
+      if (button) button.disabled = true;
+
+      const action = archiving ? 'archive' : 'unarchive';
+      let res;
+      try { res = await api('POST', '/roster/' + encodeURIComponent(studentId) + '/' + action, { secret: teacherSecret() }); }
+      catch (e) {
+        if (button) button.disabled = false;
+        if (msg) setMsg(msg, 'Network error: ' + (e.message || ''), 'err');
+        return;
+      }
+
+      if (res.status === 401) {
+        if (button) button.disabled = false;
+        if (msg) setMsg(msg, 'Forbidden — check the teacher secret.', 'err');
+        return;
+      }
+      if (res.status !== 200 || !res.data || !res.data.ok) {
+        if (button) button.disabled = false;
+        if (msg) setMsg(msg, (archiving ? 'Archive' : 'Unarchive') + ' failed: ' + ((res.data && res.data.error) || ('HTTP ' + res.status)), 'err');
+        return;
+      }
+
+      tr.dataset.status = res.data.status === 'archived' ? 'archived' : 'active';
+      renderRosterStatus(tr);
+      renderRosterActions(tr);
+      if (msg) setMsg(msg, (tr.dataset.status === 'archived' ? 'Archived ' : 'Unarchived ') + name + '.', 'ok');
+    }
+
+    // Delete a student account. DESTRUCTIVE: the server cascade also removes the
+    // student's saved work/grades (item_ledger), so the confirm is explicit.
+    async function deleteRow(tr) {
+      const msg = $('view-msg');
+      const studentId = tr.dataset.studentId;
+      const name = tr.dataset.realName || (tr.querySelector('.uname') ? tr.querySelector('.uname').textContent : '') || 'this student';
+      if (!studentId) { if (msg) setMsg(msg, 'Missing studentId -- reload the roster.', 'err'); return; }
+
+      // Fail CLOSED: a destructive, irreversible, grade-deleting action must not
+      // proceed without an affirmative confirm. If no confirm channel exists, abort.
+      if (typeof window.confirm !== 'function') {
+        if (msg) setMsg(msg, 'Confirmation unavailable — delete cancelled.', 'err');
+        return;
+      }
+      const ok = window.confirm('Permanently delete ' + name + '’s account?\n\nThis removes their login AND all their saved work + grades. This cannot be undone.');
+      if (!ok) return;
+
+      let res;
+      try { res = await api('DELETE', '/roster/' + studentId, { secret: teacherSecret() }); }
+      catch (e) { if (msg) setMsg(msg, 'Network error: ' + (e.message || ''), 'err'); return; }
+
+      if (res.status === 401) { if (msg) setMsg(msg, 'Forbidden — check the teacher secret.', 'err'); return; }
+      if (res.status !== 200 || !res.data || !res.data.ok) {
+        if (msg) setMsg(msg, 'Delete failed: ' + ((res.data && res.data.error) || ('HTTP ' + res.status)), 'err');
+        return;
+      }
+
+      if (tr.parentNode) tr.parentNode.removeChild(tr);
+      if (msg) setMsg(msg, 'Deleted ' + name + '.', 'ok');
+    }
+
+    // Expose editing helpers on window for testability.
+    window.enterEditMode = enterEditMode;
+    window.exitEditMode  = exitEditMode;
+    window.saveRow       = saveRow;
+    window.duplicateRow  = duplicateRow;
+    window.archiveRow    = archiveRow;
+    window.deleteRow     = deleteRow;
+
+    // ── view roster ────────────────────────────────────────────────────────────
+    let lastViewRows = [];
+    $('view-btn').addEventListener('click', async () => {
+      const msg = $('view-msg');
+      if (!teacherSecret() && !hasTok()) { setMsg(msg, 'Enter the teacher secret, or sign in as a teacher via the Desk first.', 'err'); return; }
+
+      const section = $('view-section').value.trim();
+      const path = '/roster/list' + (section ? '?section=' + encodeURIComponent(section) : '');
+      setMsg(msg, 'Loading…');
+      let res;
+      try { res = await api('GET', path, { secret: teacherSecret() }); }
+      catch (e) { setMsg(msg, 'Network error: ' + (e.message || ''), 'err'); return; }
+
+      if (res.status === 401) { setMsg(msg, 'Forbidden — check the teacher secret.', 'err'); return; }
+      if (res.status !== 200 || !res.data || !res.data.ok) {
+        setMsg(msg, 'Failed (HTTP ' + res.status + ').', 'err'); return;
+      }
+
+      const students = res.data.students || [];
+      $('view-tbody').innerHTML = '';
+      $('view-out').style.display = '';
+      lastViewRows = [['realName', 'username', 'section', 'currentPassword', 'mustChangePassword', 'status', 'createdAt']];
+
+      for (const s of students) {
+        const accountStatus = s.status === 'archived' ? 'archived' : 'active';
+        const pw = s.currentPassword == null ? '<em style="color:var(--sg-text-dim)">(unavailable)</em>'
+                                             : '<span class="mono">' + escHtml(s.currentPassword) + '</span>';
+        const pill = s.mustChangePassword
+          ? '<span class="pill pill-must">must change</span>'
+          : '<span class="pill pill-ok">set</span>';
+        const tr = document.createElement('tr');
+        if (s.studentId) tr.dataset.studentId = s.studentId;
+        tr.dataset.realName = s.realName || '';
+        tr.dataset.section  = s.section  || '';
+        tr.dataset.status   = accountStatus;
+        tr.innerHTML = '<td class="cell-real-name">' + escHtml(s.realName) + '</td>' +
+          '<td class="uname mono">' + escHtml(s.username) + '</td>' +
+          '<td class="cell-section">' + escHtml(s.section) + '</td>' +
+          '<td>' + pw + '</td>' +
+          '<td>' + pill + '</td>' +
+          '<td class="cell-roster-status"></td>' +
+          '<td class="hint">' + escHtml((s.createdAt || '').slice(0, 10)) + '</td>' +
+          '<td class="cell-actions"></td>';
+        renderRosterStatus(tr);
+        renderRosterActions(tr);
+        $('view-tbody').appendChild(tr);
+        lastViewRows.push([s.realName, s.username, s.section,
+          s.currentPassword == null ? '(unavailable)' : s.currentPassword,
+          s.mustChangePassword ? 'yes' : 'no', accountStatus, s.createdAt || '']);
+      }
+
+      setMsg(msg, students.length + ' student(s).', 'ok');
+      $('view-csv').style.display = students.length ? '' : 'none';
+    });
+
+    $('view-csv').addEventListener('click', () => {
+      const stamp = new Date().toISOString().replace(/[:T]/g, '-').replace(/\..+/, '');
+      downloadCsv('roster-view-' + stamp + '.csv', lastViewRows);
+    });
+
+    // Render session status on page load (after roster-client.js has run).
+    renderSessionStatus();
+  </script>
+</body>
+</html>

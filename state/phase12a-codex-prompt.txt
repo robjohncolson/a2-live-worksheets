@@ -1,0 +1,164 @@
+## Task: Add Post-HALT Wake Continuation Tests
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. The ROM's reset vector boots, configures hardware (I/O ports), then reaches HALT (power-down) at 0x0019b5 in about 60 steps. On real hardware, the CPU then wakes from HALT when an interrupt fires. Your job is to add tests that simulate waking from HALT and continuing execution.
+
+### Files you MUST read first
+
+- `TI-84_Plus_CE/test-harness.mjs` (entire file, ~320 lines) — the test harness
+- `TI-84_Plus_CE/cpu-runtime.js` — understand how `createExecutor` and `runFrom` work
+
+### Background
+
+After the boot sequence:
+- `IM 1` is set (interrupt mode 1 → maskable interrupts jump to 0x0038)
+- `DI` was executed (maskable interrupts disabled)
+- NMI (non-maskable interrupt) jumps to 0x0066 regardless of DI
+- CPU halts at 0x0019b5
+
+On real eZ80 hardware:
+- NMI wakes the CPU: pushes PC to stack, jumps to 0x0066
+- Or: if EI is re-enabled, IM 1 interrupt jumps to 0x0038
+- The interrupt handler finds the hardware configured and proceeds with OS initialization
+
+### What to add to test-harness.mjs
+
+Add a new section **between Test 5 (multi-entry) and the Summary section**.
+
+**Test 6: Post-boot wake via NMI**
+
+```javascript
+// --- Test 6: Post-boot wake from HALT via NMI ---
+console.log('\n--- Post-Boot Wake Tests ---');
+
+// First, run boot to capture post-boot state
+const bootPeripherals = createPeripheralBus({ trace: false, pllDelay: 2 });
+const bootExecutor = createExecutor(PRELIFTED_BLOCKS, romBytes, { peripherals: bootPeripherals });
+const bootCpu = bootExecutor.cpu;
+
+const bootResult = bootExecutor.runFrom(0x000000, 'z80', {
+  maxSteps: 5000,
+  maxLoopIterations: 64,
+});
+
+console.log(`  Boot completed: ${bootResult.steps} steps, termination: ${bootResult.termination}`);
+console.log(`  Post-boot SP: 0x${bootCpu.sp.toString(16).padStart(6, '0')}`);
+console.log(`  Post-boot IM: ${bootCpu.im}, IFF1: ${bootCpu.iff1}`);
+
+// Simulate NMI: push current PC to stack, jump to 0x0066
+// NMI pushes the return address (PC after HALT = 0x0019b6) and jumps to 0x0066
+bootCpu.halted = false;
+bootCpu.push(0x0019b6); // return address after HALT
+const nmiIoLog = [];
+bootCpu.onIoRead = (port, value) => { nmiIoLog.push({ op: 'read', port, value }); };
+bootCpu.onIoWrite = (port, value) => { nmiIoLog.push({ op: 'write', port, value }); };
+
+const nmiDynamic = [];
+const test6 = bootExecutor.runFrom(0x000066, 'adl', {
+  maxSteps: 50000,
+  maxLoopIterations: 200,
+  onMissingBlock: (pc, mode, step) => {},
+  onDynamicTarget: (targetPc, mode, fromPc, step) => {
+    nmiDynamic.push({ targetPc, mode, fromPc });
+  },
+  onLoopBreak: (pc, mode, count, target) => {
+    console.log(`  [NMI] Loop break at 0x${pc.toString(16).padStart(6, '0')}:${mode}`);
+  },
+});
+
+console.log(`\n  Test 6 (NMI wake from 0x0066):`);
+console.log(`    Steps: ${test6.steps}, termination: ${test6.termination}`);
+console.log(`    Last PC: 0x${test6.lastPc.toString(16).padStart(6, '0')}:${test6.lastMode}`);
+console.log(`    I/O ops: ${nmiIoLog.length}, loops forced: ${test6.loopsForced}`);
+console.log(`    Dynamic targets: ${nmiDynamic.length}`);
+if (test6.missingBlocks && test6.missingBlocks.length > 0) {
+  console.log(`    Missing blocks: ${test6.missingBlocks.length}`);
+  for (const key of test6.missingBlocks.slice(0, 10)) {
+    console.log(`      ${key}`);
+  }
+}
+```
+
+**Test 7: Post-boot wake via IM 1 (simulated EI + interrupt)**
+
+```javascript
+// --- Test 7: Post-boot wake via IM 1 interrupt (simulate EI + IRQ) ---
+// Create fresh boot, but this time enable interrupts before waking
+const boot2Peripherals = createPeripheralBus({ trace: false, pllDelay: 2 });
+const boot2Executor = createExecutor(PRELIFTED_BLOCKS, romBytes, { peripherals: boot2Peripherals });
+const boot2Cpu = boot2Executor.cpu;
+
+boot2Executor.runFrom(0x000000, 'z80', {
+  maxSteps: 5000,
+  maxLoopIterations: 64,
+});
+
+// Simulate: EI then IM 1 interrupt fires
+boot2Cpu.halted = false;
+boot2Cpu.iff1 = 1;
+boot2Cpu.iff2 = 1;
+boot2Cpu.push(0x0019b6); // return address
+const im1IoLog = [];
+boot2Cpu.onIoRead = (port, value) => { im1IoLog.push({ op: 'read', port, value }); };
+boot2Cpu.onIoWrite = (port, value) => { im1IoLog.push({ op: 'write', port, value }); };
+
+const im1Dynamic = [];
+const test7 = boot2Executor.runFrom(0x000038, 'adl', {
+  maxSteps: 50000,
+  maxLoopIterations: 200,
+  onMissingBlock: (pc, mode, step) => {},
+  onDynamicTarget: (targetPc, mode, fromPc, step) => {
+    im1Dynamic.push({ targetPc, mode, fromPc });
+  },
+  onLoopBreak: (pc, mode, count, target) => {
+    console.log(`  [IM1] Loop break at 0x${pc.toString(16).padStart(6, '0')}:${mode}`);
+  },
+});
+
+console.log(`\n  Test 7 (IM1 wake from 0x0038):`);
+console.log(`    Steps: ${test7.steps}, termination: ${test7.termination}`);
+console.log(`    Last PC: 0x${test7.lastPc.toString(16).padStart(6, '0')}:${test7.lastMode}`);
+console.log(`    I/O ops: ${im1IoLog.length}, loops forced: ${test7.loopsForced}`);
+console.log(`    Dynamic targets: ${im1Dynamic.length}`);
+if (test7.missingBlocks && test7.missingBlocks.length > 0) {
+  console.log(`    Missing blocks: ${test7.missingBlocks.length}`);
+  for (const key of test7.missingBlocks.slice(0, 10)) {
+    console.log(`      ${key}`);
+  }
+}
+```
+
+**Update the Summary section** — add after the Test 5 line:
+```javascript
+console.log(`  Test 6 (NMI wake):     ${test6.steps} steps, terminated: ${test6.termination}, dynamic: ${nmiDynamic.length}`);
+console.log(`  Test 7 (IM1 wake):     ${test7.steps} steps, terminated: ${test7.termination}, dynamic: ${im1Dynamic.length}`);
+```
+
+**Update the Discovery Summary** — add NMI and IM1 dynamic targets to the aggregation:
+After the existing multiResults dynamic target gathering, add:
+```javascript
+for (const d of nmiDynamic) {
+  allDynamic.add('0x' + d.targetPc.toString(16).padStart(6, '0') + ':' + d.mode);
+}
+for (const d of im1Dynamic) {
+  allDynamic.add('0x' + d.targetPc.toString(16).padStart(6, '0') + ':' + d.mode);
+}
+// Also add missing blocks from wake tests
+if (test6.missingBlocks) {
+  for (const key of test6.missingBlocks) allMissing.add(key);
+}
+if (test7.missingBlocks) {
+  for (const key of test7.missingBlocks) allMissing.add(key);
+}
+```
+
+### Verification
+
+```bash
+node --check TI-84_Plus_CE/test-harness.mjs
+```
+
+### Do NOT
+
+- Do NOT modify cpu-runtime.js, peripherals.js, or transpile-ti84-rom.mjs
+- Do NOT run the test harness
+- Do NOT remove or change existing Tests 1-5

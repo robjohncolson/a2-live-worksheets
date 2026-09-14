@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Ledger">
+  <defs>
+    <linearGradient id="vh" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#FFE08A"/>
+      <stop offset=".55" stop-color="#F2B43D"/>
+      <stop offset="1" stop-color="#C9821B"/>
+    </linearGradient>
+  </defs>
+  <!-- crypto-style hex badge -->
+  <path d="M32 4 L54.5 17 V41 L32 54 L9.5 41 V17 Z" fill="url(#vh)" stroke="#7a4e0e" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- security keyhole -->
+  <circle cx="32" cy="24" r="5.5" fill="#4a2f0a"/>
+  <path d="M29.3 26.4 L34.7 26.4 L36.2 38 L27.8 38 Z" fill="#4a2f0a"/>
+  <!-- ledger register lines -->
+  <g stroke="#6b4410" stroke-width="2.3" stroke-linecap="round" opacity=".8">
+    <line x1="24" y1="43.5" x2="40" y2="43.5"/>
+    <line x1="24" y1="47.5" x2="36" y2="47.5"/>
+  </g>
+</svg>

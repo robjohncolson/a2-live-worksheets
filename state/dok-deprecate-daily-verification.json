@@ -1,0 +1,406 @@
+{
+  "status": "complete",
+  "base_commit": "da1336ad7d6c6a35b109f9d45b51d6e6c2cf2422",
+  "implementation_commits": [
+    "d5323233db2fb8633f532904bb395a0b8f1bb1bb",
+    "8696e952814c4824902b65f278816e8b81acc852",
+    "8438a88cedf8073139a7a81d73c6229b09e9ffb3"
+  ],
+  "verification_commit": "The commit containing this report (fourth commit in the sequence).",
+  "pushed": false,
+  "scratch_directories_under_state_created": false,
+  "archive_counts": {
+    "lessons": 68,
+    "registry": 68,
+    "tex": 204,
+    "pdf": 204
+  },
+  "archive_verification": {
+    "renames": 545,
+    "byte_identical_artifacts": 544,
+    "pending_header": "program deprecated 2026-09-12",
+    "all_destinations_exist": true,
+    "history_samples": [
+      "dok/archive/lessons/1.4_1.5.yaml",
+      "dok/archive/registry/1.1.jsonl",
+      "dok/archive/tex/aps_1.1_student.tex",
+      "dok/archive/pdf/aps_1.1_student.pdf",
+      "dok/archive/PENDING.md"
+    ],
+    "history_result": "git log --follow reaches pre-archive commits in each artifact category; all 545 moves recorded as renames."
+  },
+  "active_sheet": {
+    "topic": "1.1+1.2+1.4+1.7",
+    "misconceptions": [
+      "label:connects the number to the real question of whether flint s water was safe to drink or whether the threshold was exceeded",
+      "variable-vs-individual",
+      "counts-vs-percents",
+      "mean-resistant",
+      "label:states that unusual features are one of the important characteristics in a full distribution description"
+    ],
+    "generated": {
+      "by": "orchestrator+teacher",
+      "on": "2026-09-12",
+      "window_days": 42
+    },
+    "authored_yaml_content_unchanged": true,
+    "generated_tex_unchanged": true
+  },
+  "desk_functions_removed": [
+    {
+      "name": "_dokLadderRowHtml",
+      "former_callers": [
+        "showResourcePanel (single-lesson branch)",
+        "showResourcePanel (group branch)"
+      ]
+    },
+    {
+      "name": "link (nested helper)",
+      "former_callers": [
+        "_dokLadderRowHtml (three PDF links)"
+      ]
+    }
+  ],
+  "desk_inventory_authorization": "Explicit user authorization on resume: git grep caller inventory in PLAN replaces GitNexus impact for the unindexable Desk. See state/dok-deprecate-daily-PLAN.md.",
+  "verification": {
+    "validate": {
+      "exit_code": 0,
+      "registry_rows": 1,
+      "lessons": 1
+    },
+    "compile_all": {
+      "exit_code": 0,
+      "sheets": 1,
+      "pdf_editions": 3,
+      "warnings": "MiKTeX log permission and update-check warnings; all editions compiled successfully."
+    },
+    "focused_vitest": {
+      "files": 10,
+      "passed": 66,
+      "failed": 0,
+      "report": "test-results/dok-deprecate-focused.json"
+    },
+    "pytest": {
+      "passed": 64,
+      "failed": 0,
+      "warning": "Existing .pytest_cache permission warning",
+      "report": "test-results/dok-deprecate-python.xml"
+    },
+    "root_npm_test": {
+      "command": "npm test -- --reporter=json --outputFile=test-results/dok-deprecate-root-final.json --maxWorkers=2 --minWorkers=1",
+      "exit_code": 1,
+      "files": 315,
+      "files_passed": 296,
+      "files_failed": 19,
+      "reporter_tests_passed": 9705,
+      "reporter_tests_failed": 26,
+      "assertion_status_counts": {
+        "passed": 9697,
+        "failed": 26,
+        "skipped": 1,
+        "pending": 7
+      },
+      "report": "test-results/dok-deprecate-root-final.json",
+      "pre_existing_failures": [
+        {
+          "file": "tests/classroom-structure.test.js",
+          "name": "Live Classroom v1a - Desk integration D3: the Teacher menu has a Live Classroom item opening teacher-classroom.html",
+          "title": "D3: the Teacher menu has a Live Classroom item opening teacher-classroom.html",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/classroom-structure.test.js",
+          "name": "KEYBOARD_AVATAR Phase 1 -- player controller wiring Desk has the keyboard help-text strip below the board mount",
+          "title": "Desk has the keyboard help-text strip below the board mount",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/desk-nightly-review.test.js",
+          "name": "Desk \u2014 Nightly Review teacher surface (Phase 2) routes the legacy opener to Recent work and stops review polling",
+          "title": "routes the legacy opener to Recent work and stops review polling",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt"
+          ]
+        },
+        {
+          "file": "tests/desk-roster-signin.test.js",
+          "name": "TR2 \u2014 renderDoNow self-gates on mustChangePassword (static) init runs the force gate before renderDoNow()",
+          "title": "init runs the force gate before renderDoNow()",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt"
+          ]
+        },
+        {
+          "file": "tests/desk-self-signup.test.js",
+          "name": "teacher onboarding + class gradebook (static) the Teacher menu opens the Teacher Tools launcher, which wires the Roster Console",
+          "title": "the Teacher menu opens the Teacher Tools launcher, which wires the Roster Console",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/desk-student-dm.test.js",
+          "name": "Codex P13 fold regressions MINOR ASCII: P13 banner comment uses ASCII hyphens, not box-drawing chars",
+          "title": "MINOR ASCII: P13 banner comment uses ASCII hyphens, not box-drawing chars",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt"
+          ]
+        },
+        {
+          "file": "tests/desk-user-role.test.js",
+          "name": "Desk: user-role gating + sign-in teacher checkbox 12: Teacher Tools launcher reaches the teacher pages (roster console, dashboard, codegen)",
+          "title": "12: Teacher Tools launcher reaches the teacher pages (roster console, dashboard, codegen)",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/desk-verify-tools.test.js",
+          "name": "Desk \u2014 verification tools surfaced the Teacher Tools launcher wires the scan-to-verify tool (openVerifyQR)",
+          "title": "the Teacher Tools launcher wires the scan-to-verify tool (openVerifyQR)",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/doge-payout-agent.test.js",
+          "name": "DOGE payout agent config and RPC wrapper lets environment override file config and keeps portable defaults",
+          "title": "lets environment override file config and keeps portable defaults",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/doge-send-core.test.js",
+          "name": "doge-send durable file journal atomically creates, refuses overwrite, updates, and clears a mode-0600 journal",
+          "title": "atomically creates, refuses overwrite, updates, and clears a mode-0600 journal",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/lineage.test.js",
+          "name": "data lineage manifest points every automatic regeneration command at an existing script or test",
+          "title": "points every automatic regeneration command at an existing script or test",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/phase4-structure.test.js",
+          "name": "teacher-dashboard.html \u2014 Phase 4a structure declares it is a teacher dashboard (title)",
+          "title": "declares it is a teacher dashboard (title)",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/phase4-structure.test.js",
+          "name": "teacher-dashboard.html \u2014 Phase 4a structure teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys",
+          "title": "teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/phase4b-structure.test.js",
+          "name": "Phase 4b \u2014 teacher-dashboard.html remediation panel teacher secret persistence is opt-in only; localStorage scoped to known keys (Phase 4a security posture, updated 2026-05-19)",
+          "title": "teacher secret persistence is opt-in only; localStorage scoped to known keys (Phase 4a security posture, updated 2026-05-19)",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/progress-reset-matrix-cleared-storage.test.js",
+          "name": "matrix row: cleared storage recovers \u2014 CONTROL (a subsequent live success) (7) flips to available, writes the latch, and the strict gate resumes",
+          "title": "(7) flips to available, writes the latch, and the strict gate resumes",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/progress-reset-matrix-latch.test.js",
+          "name": "matrix row: strict-gate-still-strict \u2014 evidence present + genuinely incomplete predecessor stays LOCKED D4 fail-open never leaks into the affirmative-server case",
+          "title": "D4 fail-open never leaks into the affirmative-server case",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/progress-reset-matrix-loadstate.test.js",
+          "name": "matrix row: 401 -> auth classifies unavailable/auth, shows the Sign-in banner, and never clears the roster session",
+          "title": "classifies unavailable/auth, shows the Sign-in banner, and never clears the roster session",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/progress-reset-matrix-loadstate.test.js",
+          "name": "matrix row: 403 -> auth (classified identically to 401) classifies unavailable/auth",
+          "title": "classifies unavailable/auth",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/remaining-feature-contracts.test.js",
+          "name": "F004 Start Here signed-in progress preview renders the signed-out fallback when identity or service config is unavailable",
+          "title": "renders the signed-out fallback when identity or service config is unavailable",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/remaining-feature-contracts.test.js",
+          "name": "F004 Start Here signed-in progress preview fetches /grade with rosterClient.token() and renders quarter/unit progress for signed-in students",
+          "title": "fetches /grade with rosterClient.token() and renders quarter/unit progress for signed-in students",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/remaining-feature-contracts.test.js",
+          "name": "F061 public worksheet table of contents index links TOC.html and TOC lists all 69 live worksheet files that exist on disk",
+          "title": "index links TOC.html and TOC lists all 69 live worksheet files that exist on disk",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/teacher-workspace.test.js",
+          "name": "integrated teacher workspace embeds the dashboard, gates teachers and routes deprecated review to recent work",
+          "title": "embeds the dashboard, gates teachers and routes deprecated review to recent work",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt"
+          ]
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab 'network' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "title": "J7 cold reboot preserves the incident invariants after a real visible-tab 'network' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '401' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "title": "J7 cold reboot preserves the incident invariants after a real visible-tab '401' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '403' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "title": "J7 cold reboot preserves the incident invariants after a real visible-tab '403' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '500' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "title": "J7 cold reboot preserves the incident invariants after a real visible-tab '500' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "pre_existing_evidence": [
+            "state/e-wednesday-root-failure-names.txt",
+            "state/e-wednesday-root-final.json",
+            "state/exit-bonus-root-final.json",
+            "state/exit-bonus-root.json"
+          ]
+        }
+      ],
+      "pre_existing_suite_errors": [
+        {
+          "file": "tests/study-break-smoke.test.js",
+          "error": "Unexpected token '<'",
+          "pre_existing_evidence": "state/e-wednesday-root-failure-names.txt"
+        }
+      ],
+      "new_failures": [],
+      "note": "All final failure titles match prior reports. Initial unrestricted-concurrency run had 32 failed tests and a stale-shadow failure; regenerated shadows fixed the latter. Final root run and targeted lineage rerun both pass shadow freshness. JSON reporter summary counts include skipped/todo assertions; explicit assertion counts are retained."
+    },
+    "lineage_followup": {
+      "passed": 7,
+      "failed": 1,
+      "shadow_freshness": "passed after regenerating the two changed shadows",
+      "remaining_failure": "data lineage manifest > points every automatic regeneration command at an existing script or test: missing ../Agent/scripts/build-roadmap-data.mjs (pre-existing)"
+    },
+    "detect_changes": {
+      "commit_1": "No indexed changes",
+      "commit_2": "LOW, 6 symbols, 0 processes",
+      "commit_3": "LOW, 9 symbols, 0 processes; generated-shadow amendment LOW, 2 symbols, 0 processes",
+      "limitations": "Python hunk mapping contains stale/unrelated names; reviewed actual diffs. Desk inventory substituted as authorized.",
+      "comparison": "Compare against da1336ad returned LOW, 39 symbols, 0 processes; includes unrelated unstaged changes, which remain uncommitted. Staged checks isolate each task commit.",
+      "commit_4": "LOW, 20 documentation symbols, 0 processes; staged diff contains only task documentation and verification."
+    }
+  },
+  "unmet": []
+}

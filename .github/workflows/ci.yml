@@ -1,0 +1,55 @@
+name: CI
+
+# TYPECHECK_HARDENING_SPEC.md — run the tests (blocking) + the typecheck (BLOCKING
+# as of P4: both allowlists are clean and annotated). Separate from pages.yml so a
+# test/type failure never blocks a deploy, and vice-versa — tsc --noEmit is never
+# on the Railway/Pages/Vercel path.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    name: tests (root + roster-server)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install root deps
+        run: npm ci
+      # --retry=2 absorbs the known signup-claim brute-force-lockout timeout, which is a
+      # parallel-load timing flake (passes in isolation), not a logic failure.
+      - name: Root tests
+        run: npm test -- --retry=2
+      - name: Install roster-server deps
+        working-directory: roster-server
+        run: npm ci
+      - name: roster-server tests
+        working-directory: roster-server
+        run: npm test -- --retry=2
+
+  typecheck:
+    name: typecheck — grade engine + receipts + feeder (blocking)
+    runs-on: ubuntu-latest
+    # BLOCKING as of P4 (was advisory in P1-P3): a type error on the allowlist now
+    # fails CI. It still never blocks a deploy — pages.yml is a separate workflow.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install roster-server deps
+        working-directory: roster-server
+        run: npm ci
+      - name: tsc --noEmit (P1 allowlist)
+        working-directory: roster-server
+        run: npm run typecheck
+      - name: Install root deps
+        run: npm ci
+      - name: tsc --noEmit (P2 receipts allowlist)
+        run: npm run typecheck

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algebra 2 — Mr. Colson</title>
+<meta name="description" content="Algebra 2 class site: The Desk, worksheets, study tools, and teacher tools.">
+<style>
+  :root {
+    --platinum: #E5E3D2;
+    --plat-hi: #F3F1E8;
+    --plat-lo: #A9A79A;
+    --bevel-hi: #F3F1E8;
+    --bevel-lo: #6E6C62;
+    --chrome-border: #161616;
+    --stripe-dark: #161616;
+    --black: #161616;
+    --white: #F7F5EE;
+    --muted: #6E6C62;
+    --accent: #A8330A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Geneva', 'Lucida Grande', 'Arial', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--black);
+    min-height: 100vh;
+    background-color: #161616;
+    background-image: url("data:image/svg+xml,%3Csvg width='2' height='2' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' fill='%23666677'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23666677'/%3E%3C/svg%3E");
+    padding-bottom: 40px;
+  }
+
+  /* ── Menu bar (decorative) ─────────────────── */
+  .menu-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--black);
+    height: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 12px;
+    user-select: none;
+    cursor: default;
+  }
+  .menu-bar .apple { font-size: 14px; padding-right: 12px; }
+  .menu-bar .item { padding: 0 10px; }
+  .menu-bar .spacer { flex: 1; }
+
+  /* ── Mac window frame ──────────────────────── */
+  .mac-window {
+    max-width: 880px;
+    margin: 24px auto 0;
+    background: var(--platinum);
+    border: 1px solid var(--black);
+    border-radius: 2px;
+    box-shadow:
+      inset 1px 1px 0 0 var(--plat-hi),
+      inset -1px -1px 0 0 var(--plat-lo),
+      2px 2px 0 0 var(--black);
+    padding: 1px;
+  }
+  @media (max-width: 920px) { .mac-window { margin: 16px 10px 0; } }
+
+  .title-bar {
+    height: 19px;
+    margin: 1px 1px 0 1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      inset 0 1px 0 var(--bevel-hi),
+      inset 0 -1px 0 var(--bevel-lo);
+  }
+  .title-stripes {
+    position: absolute;
+    top: 2px; bottom: 2px; left: 0; right: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--platinum) 0, var(--platinum) 1px,
+      var(--stripe-dark) 1px, var(--stripe-dark) 2px
+    );
+  }
+  .title-text {
+    font-family: 'Chicago', 'Geneva', 'Arial', sans-serif;
+    font-size: 12px;
+    padding: 0 8px;
+    background: var(--platinum);
+    position: relative;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 85%;
+  }
+  .close-box {
+    position: absolute; left: 5px;
+    width: 13px; height: 13px;
+    background: var(--platinum);
+    border: 1px solid var(--chrome-border);
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-hi),
+      inset -1px -1px 0 var(--bevel-lo);
+  }
+
+  .window-content { padding: 18px 20px 22px; }
+  @media (max-width: 600px) { .window-content { padding: 14px 12px 18px; } }
+
+  /* ── Hero ──────────────────────────────────── */
+  .hero { text-align: center; padding: 10px 0 18px; border-bottom: 1px solid var(--plat-lo); }
+  .hero h1 {
+    font-family: 'Chicago', 'Geneva', 'Arial', sans-serif;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 1px;
+  }
+  .hero p { color: var(--muted); margin: 6px auto 16px; max-width: 480px; }
+  .hero-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+  /* ── Beveled buttons ───────────────────────── */
+  .btn {
+    display: inline-block;
+    font-family: 'Chicago', 'Geneva', 'Arial', sans-serif;
+    font-size: 12px;
+    color: var(--black);
+    text-decoration: none;
+    background: var(--platinum);
+    border: 1px solid var(--black);
+    border-radius: 6px;
+    padding: 7px 18px;
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-hi),
+      inset -1px -1px 0 var(--bevel-lo),
+      1px 1px 0 var(--black);
+    cursor: pointer;
+  }
+  .btn:active {
+    box-shadow:
+      inset 1px 1px 0 var(--bevel-lo),
+      inset -1px -1px 0 var(--bevel-hi);
+    transform: translate(1px, 1px);
+  }
+  .btn.primary { background: var(--white); border-width: 2px; padding: 6px 17px; }
+
+  /* ── Section headings ──────────────────────── */
+  h2 {
+    font-family: 'Chicago', 'Geneva', 'Arial', sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+    margin: 22px 0 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--plat-lo);
+  }
+  h2 small { font-family: 'Geneva', 'Arial', sans-serif; font-size: 11px; color: var(--muted); }
+
+  /* ── Student app cards (mini windows) ──────── */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 760px) { .cards { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .cards { grid-template-columns: 1fr; } }
+
+  a.card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--black);
+    background: var(--white);
+    border: 1px solid var(--black);
+    border-radius: 2px;
+    box-shadow: 1px 1px 0 var(--black);
+    padding: 1px;
+  }
+  a.card:hover { box-shadow: 2px 2px 0 var(--black); }
+  a.card:active { box-shadow: none; transform: translate(1px, 1px); }
+  .card .card-title-bar {
+    height: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--platinum);
+  }
+  .card .card-stripes {
+    position: absolute;
+    top: 2px; bottom: 2px; left: 2px; right: 2px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--platinum) 0, var(--platinum) 1px,
+      var(--stripe-dark) 1px, var(--stripe-dark) 2px
+    );
+  }
+  .card .card-name {
+    font-family: 'Chicago', 'Geneva', 'Arial', sans-serif;
+    font-size: 11px;
+    background: var(--platinum);
+    padding: 0 6px;
+    position: relative;
+    white-space: nowrap;
+  }
+  .card .card-body { padding: 9px 10px 10px; font-size: 12px; color: var(--muted); flex: 1; }
+  .card .card-body .ext {
+    display: inline-block;
+    font-size: 10px;
+    color: var(--white);
+    background: var(--chrome-border);
+    border-radius: 3px;
+    padding: 0 5px;
+    margin-top: 6px;
+  }
+
+  /* ── Quieter teacher / more lists ──────────── */
+  .quiet-list { list-style: none; }
+  .quiet-list li {
+    border-bottom: 1px dotted var(--plat-lo);
+    padding: 5px 0;
+  }
+  .quiet-list li:last-child { border-bottom: none; }
+  .quiet-list a {
+    font-family: 'Chicago', 'Geneva', 'Arial', sans-serif;
+    font-size: 12px;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .quiet-list a:hover { text-decoration: underline; }
+  .quiet-list .desc { color: var(--muted); font-size: 11px; }
+  .quiet-list .desc::before { content: "— "; }
+  .tag {
+    font-size: 9px;
+    color: var(--white);
+    background: var(--plat-lo);
+    border-radius: 3px;
+    padding: 0 4px;
+    vertical-align: middle;
+  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  footer {
+    text-align: center;
+    margin-top: 22px;
+    padding-top: 12px;
+    border-top: 1px solid var(--plat-lo);
+    color: var(--muted);
+    font-size: 11px;
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="menu-bar" aria-hidden="true">
+  <span class="apple">&#63743;</span>
+  <span class="item"><strong>Algebra 2</strong></span>
+  <span class="spacer"></span>
+  <span class="item">Mr. Colson</span>
+</div>
+
+<main class="mac-window">
+  <div class="title-bar">
+    <div class="title-stripes"></div>
+    <div class="close-box" aria-hidden="true"></div>
+    <span class="title-text">Algebra 2 — Mr. Colson</span>
+  </div>
+
+  <div class="window-content">
+
+    <div class="hero">
+      <h1>Algebra 2</h1>
+      
+      <div class="hero-buttons">
+        <a class="btn primary" href="start-here.html">Start Here</a>
+        <a class="btn" href="open-house.html">Open House handout</a>
+        <a class="btn" href="desk.html">Open The Desk</a>
+        <a class="btn" href="mobile-home.html">&#128241; Launcher</a>
+      </div>
+    </div>
+
+    <h2>For Students</h2>
+    <div class="cards">
+      <a class="card" href="desk.html">
+        <span class="card-title-bar"><span class="card-stripes"></span><span class="card-name">The Desk</span></span>
+        <span class="card-body">Your home base: roadmap, Do Now, grades</span>
+      </a>
+      <a class="card" href="mobile-home.html">
+        <span class="card-title-bar"><span class="card-stripes"></span><span class="card-name">&#128241; Launcher</span></span>
+        <span class="card-body">Simplified phone/laptop home: lessons and flashcards</span>
+      </a>
+      <a class="card" href="start-here.html">
+        <span class="card-title-bar"><span class="card-stripes"></span><span class="card-name">Start Here</span></span>
+        <span class="card-body">New? Orientation and how grading works</span>
+      </a>
+      <a class="card" href="TOC.html">
+        <span class="card-title-bar"><span class="card-stripes"></span><span class="card-name">Worksheets</span></span>
+        <span class="card-body">Algebra 2 lessons, Try-Its, checks, and flashcards</span>
+      </a>
+      <a class="card" href="study_guide_diagnostic.html">
+        <span class="card-title-bar"><span class="card-stripes"></span><span class="card-name">Diagnostic Study Guide</span></span>
+        <span class="card-body">Adaptive diagnostic that finds weak skills</span>
+      </a>
+      
+      
+      
+    </div>
+
+    <div class="two-col">
+      <section>
+        <h2>For Teachers</h2>
+        <ul class="quiet-list">
+          <li><a href="teacher-dashboard.html">Teacher Dashboard</a> <span class="desc">class grades, heatmap, remediation</span></li>
+          
+          
+          <li><a href="teacher-code-generator.html">Unit Code Generator</a> <span class="desc">unit unlock codes</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>More <small>&amp; clubs</small></h2>
+        <ul class="quiet-list">
+          
+          
+        </ul>
+      </section>
+    </div>
+
+    <footer>
+      &mdash; Mr. Colson &middot; <a href="mailto:colsonr@lynnschools.org">colsonr@lynnschools.org</a>
+    </footer>
+
+  </div>
+</main>
+
+</body>
+</html>

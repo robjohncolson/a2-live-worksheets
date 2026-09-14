@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verify a receipt</title>
+  <style>body{font:16px system-ui;max-width:44rem;margin:3rem auto;padding:0 1rem}textarea{box-sizing:border-box;width:100%;min-height:8rem}button{margin:1rem 0;padding:.6rem 1rem}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+  <script src="receipt-verify.js" defer></script>
+  <script src="verify-page.js" defer></script>
+</head>
+<body>
+  <h1>Verify a receipt</h1>
+  <p>Check the signature on a saved receipt or transcript.</p>
+  <form id="verify-form">
+    <label for="receipt">Receipt or verification link</label>
+    <textarea id="receipt" required spellcheck="false"></textarea>
+    <button type="submit">Verify signature</button>
+  </form>
+  <p id="verify-status" role="status" aria-live="polite"></p>
+  <pre id="verify-details"></pre>
+  <a href="desk.html">Back to the Desk</a>
+</body>
+</html>

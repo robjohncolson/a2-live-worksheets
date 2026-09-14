@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Import Offline Work — Teacher</title>
+<!-- OFFLINE_MODE_SPEC §4.D — teacher imports a student's emailed offline-work
+     bundle into the class ledger via POST /ledger/import. LOCAL-ONLY teacher tool;
+     do NOT link from public student pages. The teacher key is entered here and
+     never stored. -->
+<style>
+  body { font-family: Geneva, Verdana, sans-serif; background:#cfcfcf; color:#111; margin:0; padding:24px; }
+  .card { max-width:640px; margin:0 auto; background:#fff; border:2px solid #111; box-shadow:4px 4px 0 #111; padding:20px 22px; }
+  h1 { font-size:18px; margin:0 0 4px; }
+  .sub { font-size:12px; color:#555; margin:0 0 16px; }
+  label { display:block; font-size:12px; font-weight:bold; margin:12px 0 4px; }
+  input, textarea { width:100%; box-sizing:border-box; font-family:inherit; font-size:12px; padding:6px; border:1px solid #111; }
+  textarea { height:110px; font-family:monospace; }
+  #drop { border:2px dashed #888; padding:18px; text-align:center; font-size:12px; color:#666; margin-top:8px; cursor:pointer; }
+  #drop.over { border-color:#0a6; background:#eafff5; }
+  button { font-family:inherit; font-size:13px; padding:8px 16px; border:2px solid #111; background:#ffe24a;
+           box-shadow:2px 2px 0 #111; cursor:pointer; margin-top:14px; }
+  button:active { transform:translate(2px,2px); box-shadow:none; }
+  button:disabled { opacity:.5; cursor:default; box-shadow:none; }
+  #result { margin-top:16px; font-size:13px; }
+  .ok { color:#0a6; } .bad { color:#b00020; }
+  table { border-collapse:collapse; width:100%; font-size:12px; margin-top:8px; }
+  td, th { border:1px solid #ccc; padding:4px 6px; text-align:left; }
+  .note { font-size:11px; color:#666; margin-top:14px; line-height:1.5; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>📥 Import Offline Work</h1>
+    <p class="sub">Drop a student's emailed <code>a2_…json</code> file (or paste it), enter your teacher key, and import. Re-importing the same file is safe.</p>
+
+    <div id="drop">Drop the student's .json file here, or click to choose</div>
+    <input type="file" id="file" accept="application/json,.json" style="display:none">
+
+    <label for="bundle">Bundle JSON</label>
+    <textarea id="bundle" placeholder="Paste the exported JSON here, or drop the file above…"></textarea>
+
+    <label for="key">Teacher key</label>
+    <input type="password" id="key" autocomplete="off" placeholder="your teacher key (not stored)">
+
+    <button id="import" disabled>Import into the class ledger</button>
+    <div id="result"></div>
+
+    <p class="note">
+      Imported work is recorded at <strong>practice</strong> evidence tier (it was done on a
+      disconnected device — self-reported). The server de-duplicates, so importing the same
+      file twice will not double-count. This page is local-only — do not put it on a public link.
+    </p>
+  </div>
+
+  <script src="roster_config.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var $ = function (id) { return document.getElementById(id); };
+    var drop = $('drop'), file = $('file'), bundle = $('bundle'), key = $('key'), btn = $('import'), result = $('result');
+
+    function refresh() { btn.disabled = !(bundle.value.trim() && key.value.trim()); }
+    bundle.addEventListener('input', refresh);
+    key.addEventListener('input', refresh);
+
+    function loadFile(f) {
+      if (!f) return;
+      var r = new FileReader();
+      r.onload = function () { bundle.value = String(r.result || ''); refresh(); };
+      r.readAsText(f);
+    }
+    drop.addEventListener('click', function () { file.click(); });
+    file.addEventListener('change', function () { loadFile(file.files && file.files[0]); });
+    ['dragover', 'dragenter'].forEach(function (e) { drop.addEventListener(e, function (ev) { ev.preventDefault(); drop.classList.add('over'); }); });
+    ['dragleave', 'drop'].forEach(function (e) { drop.addEventListener(e, function (ev) { ev.preventDefault(); drop.classList.remove('over'); }); });
+    drop.addEventListener('drop', function (ev) { loadFile(ev.dataTransfer && ev.dataTransfer.files && ev.dataTransfer.files[0]); });
+
+    function show(html, cls) { result.className = cls || ''; result.innerHTML = ''; result.appendChild(html); }
+    function el(tag, text) { var n = document.createElement(tag); if (text != null) n.textContent = text; return n; }
+
+    btn.addEventListener('click', async function () {
+      var parsed;
+      try { parsed = JSON.parse(bundle.value); }
+      catch (e) { show(el('div', 'Not valid JSON: ' + (e && e.message)), 'bad'); return; }
+
+      var base = window.ROSTER_SERVICE_URL || null;
+      if (!base) { show(el('div', 'ROSTER_SERVICE_URL is not configured (roster_config.js).'), 'bad'); return; }
+
+      btn.disabled = true; show(el('div', 'Importing…'));
+      try {
+        var res = await fetch(base + '/ledger/import', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-teacher-secret': key.value.trim() },
+          body: JSON.stringify(parsed)
+        });
+        var data = null; try { data = await res.json(); } catch (_) { data = null; }
+        if (res.status === 401) { show(el('div', 'Teacher key rejected (401).'), 'bad'); return; }
+        if (!res.ok || !data || !data.ok) { show(el('div', 'Import failed' + (data && data.error ? ': ' + data.error : ' (' + res.status + ')')), 'bad'); return; }
+
+        var wrap = document.createElement('div');
+        var stu = (parsed && parsed.student) ? (parsed.student.realName || parsed.student.username || parsed.student.studentId) : 'unknown student';
+        wrap.appendChild(el('div', '✓ Imported for ' + stu + ': ' + data.imported + ' recorded, ' + data.skipped + ' skipped (of ' + data.total + ').'));
+        if (data.errors && data.errors.length) {
+          var t = document.createElement('table');
+          var hr = document.createElement('tr'); hr.appendChild(el('th', '#')); hr.appendChild(el('th', 'reason')); t.appendChild(hr);
+          data.errors.slice(0, 50).forEach(function (e2) { var tr = document.createElement('tr'); tr.appendChild(el('td', String(e2.index))); tr.appendChild(el('td', String(e2.reason))); t.appendChild(tr); });
+          wrap.appendChild(t);
+        }
+        show(wrap, 'ok');
+      } catch (e) {
+        show(el('div', 'Network error: ' + (e && e.message)), 'bad');
+      } finally {
+        refresh();
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "lessons": {
+    "1.5": ["histogram"],
+    "3.3": ["randint-sampling"],
+    "3.6": ["randint-assignment"],
+    "1.7": ["one-var-stats", "modified-boxplot"],
+    "1.10": ["normalcdf", "invnorm"],
+    "2.4": ["scatterplot"],
+    "2.7": ["residual-plot"],
+    "2.8": ["linreg-a-plus-bx"],
+    "4.10": ["binompdf", "binomcdf"],
+    "5.7": ["normalcdf-sampling", "invnorm-sampling"],
+    "6.2": ["one-propzint"],
+    "6.4": ["one-propztest"],
+    "6.8": ["two-propzint"],
+    "6.10": ["two-propztest"],
+    "7.2": ["t-interval-stats", "t-interval-data"],
+    "7.4": ["t-test-stats", "t-test-data"],
+    "7.6": ["two-samp-tint"],
+    "7.8": ["two-samp-ttest"],
+    "8.5": ["matrix-entry", "chi-square-test"]
+  },
+  "planned": {},
+  "bonus": {
+    "4.12": ["geometpdf", "geometcdf"],
+    "8.2": ["chi-square-gof-test"],
+    "9.2": ["linreg-tint"],
+    "9.5": ["linreg-ttest"]
+  },
+  "_bonusNote": "REMOVED-from-Fall-2026-CED procedures (2026-crosswalk.json marks topics 4.12/8.2/9.2/9.5 status:'bonus': geometric, chi-square GOF, slope inference). Not in `lessons` so they cannot be assigned as required practice (no Desk trainer chip, no #topic= Desk-launched deep link, no roster-server trainer-track credit for that topic). They stay fully reachable as free/bonus practice: the trainer's own SRS/browse UI lists every procedure in ti84-procedures-data.json regardless of this map, and a direct #procedure=<id> deep link still works for any of the five procedure ids. Unit 9 (linreg-tint, linreg-ttest) has no other trainer procedures, so it now has zero REQUIRED lessons by design — see tests/ti84-lesson-map.test.js's coverage-floor test, which counts bonus-mapped units as covered so this isn't flagged as an accidental drop."
+}

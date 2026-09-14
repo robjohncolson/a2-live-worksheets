@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Redirecting to Algebra 2 Calendar...</title>
+<script>
+  var params = new URLSearchParams(window.location.search);
+  var period = (params.get('period') || 'B').toUpperCase();
+  if (period !== 'B' && period !== 'E') period = 'B';
+  window.location.replace('desk.html?period=' + period);
+</script>
+</head>
+<body>
+<p>Redirecting to <a href="desk.html">Algebra 2 Calendar</a>...</p>
+</body>
+</html>

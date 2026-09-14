@@ -1,0 +1,47 @@
+{
+  "_comment": "Authoring anchors for NEW CED Unit 3 (Inference for Proportions & Categorical Data; OLD topics 5.4-5.6, 6.x, and 8.1/8.4-8.6). Describe what a DOK-2 and a DOK-3 look like here so authors rate by the same yardstick (spec §1.1-1.2). Anchors DESCRIBE released-FRQ patterns; they never quote an item.",
+  "unit": 3,
+  "dok2_anchors": [
+    {
+      "id": "u3-d2-sampling-distribution-mechanics",
+      "shape": "Given a population proportion, sample size, and sampling method, check the 10 percent and Large Counts conditions, then compute the center, standard deviation, z-score, or tail probability for a sample proportion.",
+      "why_dok2": "The model and target quantity are supplied, so the student follows a standard condition-check and calculation sequence with one statistical path.",
+      "skills": ["3.B", "3.C", "4.B"]
+    },
+    {
+      "id": "u3-d2-carry-out-named-categorical-procedure",
+      "shape": "Given the hypotheses or confidence level and a named one-proportion, two-proportion, or chi-square procedure, calculate the statistic, standard error, interval, p-value, or expected counts and state the result in context.",
+      "why_dok2": "Procedure selection and claim boundaries are already settled; the student executes a known multistep algorithm and communicates its numerical output.",
+      "skills": ["3.A", "3.B", "4.B"]
+    }
+  ],
+  "dok3_anchors": [
+    {
+      "id": "u3-d3-which-estimator-or-model-is-warranted",
+      "shape": "Two estimators or probability models compete; decide which is appropriate for the stated purpose by coordinating bias, variability, sampling method, and distribution conditions, then explain what the rejected criterion or approximation would mislead a reader into concluding.",
+      "why_dok3": "The student must weigh multiple relevant properties against a specific goal and trace the practical consequence of a tempting but incomplete rule; no single calculation determines the judgment.",
+      "skills": ["3.B", "3.C", "4.B"],
+      "frq_patterns": ["unbiased-vs-low-variability-which-estimator-for-the-purpose", "failed-large-counts-normal-tail-vs-valid-binomial-and-bias"]
+    },
+    {
+      "id": "u3-d3-which-categorical-procedure-answers-the-question",
+      "shape": "Several categorical-data procedures are plausible; select one- versus two-proportion inference or chi-square goodness-of-fit, homogeneity, or independence from the variables, samples, and question, and explain what an alternative procedure would test instead.",
+      "why_dok3": "The student translates a research question and study structure into a defensible procedure while ruling out alternatives that answer different questions.",
+      "skills": ["1.A", "1.B", "4.B"],
+      "frq_patterns": ["one-vs-two-proportion-which-procedure-fits", "chi-square-gof-vs-homogeneity-vs-independence"]
+    },
+    {
+      "id": "u3-d3-which-inference-conclusion-is-warranted",
+      "shape": "Two students interpret the same interval or test differently; decide which conclusion the evidence and conditions support, distinguish statistical significance from certainty or importance, and bound the conclusion to the population and design.",
+      "why_dok3": "The student coordinates a numerical result, procedure conditions, error risk, and scope of inference to adjudicate competing claims and explain the consequence of the overreach.",
+      "skills": ["4.A", "4.B", "4.C"],
+      "frq_patterns": ["fail-to-reject-is-not-evidence-the-null-is-true", "statistical-significance-vs-practical-importance", "confidence-interval-or-p-value-what-it-means-to-a-reader", "scope-of-inference-random-sample-vs-random-assignment"]
+    }
+  ],
+  "not_dok3": [
+    "A longer confidence-interval, test-statistic, or chi-square calculation with the correct procedure already named; more arithmetic does not add strategic thinking.",
+    "A conditions checklist that asks only whether each inequality is at least 10 or whether a sample is below 10 percent of the population.",
+    "An interpretation prompt that supplies the correct conclusion and asks the student to restate it in context.",
+    "Lettered parts that separately compute, check, and conclude but never ask the student to adjudicate a procedure, interpretation, or scope claim."
+  ]
+}

@@ -1,0 +1,211 @@
+## Task: Unlock ISR Dispatch + Keyboard Interrupt Wiring (Phase 24A)
+
+You are working on a TI-84 Plus CE ROM transpilation project. The ROM boots to power-down HALT successfully. IRQ wake works but the ISR always re-enters power-down due to a gate at block 0x000704. Your job is to unlock the OS event loop by fixing the flash port and wiring keyboard interrupts.
+
+### The Problem (READ THIS CAREFULLY)
+
+The IM1 handler (0x000038) dispatches through this path:
+
+```
+0x000038  EX AF, AF' / EXX / PUSH IX / PUSH IY / LD IY, 0xD00080 / JP 0x0006F3
+
+0x0006F3  IN0 A, (0x06)     ← flash port, currently returns 0x00
+          BIT 2, A           ← tests bit 2 (sets Z flag, does NOT change A)
+          JR Z, 0x000704     ← taken because bit 2 of 0x00 = 0
+
+0x000704  SET 6, (IY+27)     ← sets system flag, doesn't change A
+          NOP (ED 6E)        ← doesn't change A
+          CP 0xD0            ← compares A with 0xD0 — A IS STILL 0x00 from port 0x06!
+          JP NZ, 0x0019B5    ← ALWAYS TAKEN → power-down. This is the blocker.
+          ; falls through to 0x000710 (callback dispatch) — NEVER REACHED
+```
+
+**A is never modified between the IN0 at 0x0006F3 and the CP at 0x00070A.** The flash handler must return 0xD0 for the ISR to dispatch.
+
+### Hypothesis
+
+The boot sequence writes a value to port 0x06 during initialization. The current flash handler (`peripherals.js` line ~108) stores writes in `state.flash.lastWrite` but always returns `0x00`. If the OS writes 0xD0 during boot and the handler returned that value, the CP 0xD0 gate would pass.
+
+### Files you MUST read first
+
+1. `TI-84_Plus_CE/peripherals.js` — Full file. Understand `createFlashHandler()` (returns 0x00, stores writes), `createPeripheralBus()`, interrupt controller at 0x5000+. Note that port 0x01 is NOT registered (keyboard scan port needs to be added).
+
+2. `TI-84_Plus_CE/cpu-runtime.js` — Lines 750-1090. Understand `createExecutor()`, `runFrom()`, interrupt dispatch after each block, HALT wake logic. Note the `onBlock` callback and how I/O tracing works.
+
+3. `TI-84_Plus_CE/test-harness.mjs` — Full file. Understand how tests are structured: ROM loading, memory setup, executor creation, runFrom calls. Tests 6-8 show interrupt wake patterns.
+
+4. `TI-84_Plus_CE/ti84-math.mjs` — Lines 1-55, 100-135, 256-301. Understand `createMemory()` (16MB array), `resetCpu()`, `callFunction()` setup pattern with `timerInterrupt: false`.
+
+### Step 1: Verify the hypothesis — trace boot I/O writes to port 0x06
+
+Add a diagnostic test (Test 9 or similar) to `test-harness.mjs` that:
+
+1. Boots from 0x000000 with peripherals (same as Test 1-3)
+2. Enables I/O write tracing specifically for port 0x06
+3. Runs 5000 steps (enough to complete boot + PLL)
+4. Reports ALL writes to port 0x06 with their values and the step number
+
+Use the `onBlock` or I/O tracing hooks to capture port 0x06 writes. You can set up `cpu.onIoWrite` before running, or use the peripheral bus's trace mode, or add a custom wrapper.
+
+**Expected finding**: The boot writes some value to port 0x06 — possibly 0xD0, possibly something else. Record the exact value(s) and step(s).
+
+If the boot does NOT write to port 0x06: check if 0xD0 is written to a DIFFERENT port that also maps to the same register on real hardware, or if 0xD0 comes from a memory read. In that case, the flash handler may need to return a fixed 0xD0 rather than lastWrite.
+
+### Step 2: Fix the flash handler
+
+Based on Step 1 findings:
+
+**If boot writes 0xD0 to port 0x06**: Change `createFlashHandler()` to return `state.flash.lastWrite` instead of `0x00`:
+
+```javascript
+function createFlashHandler(state) {
+  return {
+    read() {
+      return state.flash.lastWrite;  // Was: return 0x00
+    },
+    write(port, value) {
+      state.flash.lastWrite = value;
+    },
+  };
+}
+```
+
+Also update the initial value: `flash: { lastWrite: 0x00 }` should stay 0x00 (before boot writes to it).
+
+**If boot does NOT write 0xD0**: Set flash handler to return 0xD0 unconditionally after boot, OR figure out what value is needed and how to derive it.
+
+### Step 3: Register keyboard scan port 0x01
+
+Add a keyboard handler to the peripheral bus. Port 0x01 is used for keyboard scanning:
+- Write: selects which key group to scan (bit pattern, active low)
+- Read: returns which keys in the selected group are pressed (active low: 0 = pressed)
+
+Initial implementation — no keys pressed:
+
+```javascript
+const keyboardState = { groupSelect: 0xFF, keyMatrix: new Uint8Array(8).fill(0xFF) };
+
+register(0x01, {
+  read() {
+    // Return key status for selected group(s)
+    // For now: 0xFF = no keys pressed
+    let result = 0xFF;
+    for (let g = 0; g < 8; g++) {
+      if (((keyboardState.groupSelect >> g) & 1) === 0) {
+        result &= keyboardState.keyMatrix[g];
+      }
+    }
+    return result;
+  },
+  write(port, value) {
+    keyboardState.groupSelect = value;
+  },
+});
+```
+
+Expose `keyboardState` through the peripheral bus return value so tests can simulate key presses:
+
+```javascript
+return {
+  read, write, register, getState,
+  tick, hasPendingIRQ, hasPendingNMI,
+  acknowledgeIRQ, acknowledgeNMI, triggerNMI, triggerIRQ,
+  keyboard: keyboardState,  // NEW — expose for key simulation
+};
+```
+
+### Step 4: Test ISR dispatch with keyboard interrupt
+
+Add a test that:
+
+1. Boots from 0x000000 with fixed flash handler, runs until HALT (~200 steps with PLL)
+2. Verifies boot completed (halted at 0x0019B5)
+3. Simulates a key press:
+   ```javascript
+   // Set keyboard interrupt bit (bit 10) in interrupt controller
+   // Since intcState is internal, trigger IRQ through the existing API
+   peripherals.triggerIRQ();
+   // Also set interrupt controller bit 10 if needed:
+   // Write to port 0x5000 area to set rawStatus bit 10
+   ```
+4. Continues execution from the HALT address with `wakeFromHalt: 'im1'` or by setting up IRQ dispatch
+5. Traces execution — reports which blocks are visited
+6. **KEY CHECK**: Does execution reach 0x000710 (callback dispatch)?
+   - If YES: the gate is unlocked! Report how many steps, what blocks were visited, and what happens after 0x000710
+   - If NO: report where it went instead and why (A value at CP, flags, etc.)
+
+### Step 5: Explore post-dispatch execution
+
+If the ISR dispatches past 0x000710:
+
+1. Run with a high step limit (50,000+)
+2. Collect dynamic targets and missing blocks
+3. Report new code regions discovered (addresses, block counts)
+4. Note if execution reaches any code in the 0x010000-0x0A0000 range (OS app code)
+5. Run coverage-analyzer.mjs after to show coverage impact
+
+This is the most important step — it tells us how much new ROM territory the keyboard interrupt unlocks.
+
+### Step 6: Report findings
+
+Print a clear summary at the end:
+
+```
+Phase 24A Results
+=================
+Flash port 0x06 boot writes: [list of (step, value) pairs]
+Flash handler fix: [what was changed]
+Port 0x01 keyboard handler: [registered, keyMatrix exposed]
+ISR dispatch test:
+  - Boot: [steps to HALT, halt address]
+  - IRQ wake: [steps after wake]
+  - Reached 0x000710: [YES/NO]
+  - If YES: post-dispatch execution [steps, new blocks, new regions]
+  - If NO: stopped at [address], A=[value], reason=[why]
+New coverage: [blocks before → blocks after, if applicable]
+```
+
+### Verification
+
+```bash
+# Syntax check
+node --check TI-84_Plus_CE/peripherals.js
+node --check TI-84_Plus_CE/test-harness.mjs
+
+# Run full test suite (existing tests must still pass!)
+node TI-84_Plus_CE/test-harness.mjs
+
+# If post-dispatch discovers new code, run coverage analysis
+node TI-84_Plus_CE/coverage-analyzer.mjs
+```
+
+**CRITICAL**: All existing tests (1-8) must continue to pass. The flash handler fix changes port 0x06 behavior, which could affect boot sequence timing or PLL validation. Verify explicitly.
+
+### Important context
+
+- Memory is 16MB (`new Uint8Array(0x1000000)`) since Phase 23
+- CPU registers are 24-bit (BC/DE/HL have 24-bit backing stores) since Phase 23
+- The executor uses `runFrom(startAddress, startMode, opts)` three-arg signature
+- `result.termination` (not `result.reason`) for exit status
+- `PRELIFTED_BLOCKS` (not `blocks`) is the export name from ROM.transpiled.js
+- Timer interrupts can be disabled with `timerInterrupt: false` in peripheral bus options — useful for controlled tests
+- The OS sets IY = 0xD00080 (system vars base). (IY+27) at 0xD0009B is a system flag byte.
+- Block 0x000710 reads a callback address from RAM at 0xD02AD7 — this will be uninitialized (0x000000) in our memory. The call to 0x001713 may fail if it tries to call the callback. That's OK for analysis — report what happens.
+- The interrupt controller at 0x5000+ has rawStatus, enableMask, masked status registers. Bit 10 = keyboard. The OS may need enableMask bit 10 set for keyboard IRQs to fire.
+
+### Do NOT
+
+- Do NOT modify cpu-runtime.js
+- Do NOT modify ti84-math.mjs
+- Do NOT modify the transpiler or regenerate ROM blocks
+- Do NOT add npm dependencies
+- Do NOT try to implement the full keyboard matrix mapping yet — just the port handler with "no keys pressed" default
+- Do NOT try to implement LCD rendering yet — that's Phase 24C
+
+### Code style
+
+- Keep changes to peripherals.js minimal and surgical
+- New tests in test-harness.mjs should follow existing test patterns
+- Use descriptive console output with section headers
+- Early returns, flat structure
+- Comments explaining the ISR dispatch mechanism

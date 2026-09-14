@@ -1,0 +1,98 @@
+[
+  {
+    "id": "7402140857",
+    "courseName": "24/25 Secondary Induction (Group Mentoring) Program",
+    "courseCode": null,
+    "sectionText": "Section 1",
+    "syncTarget": false,
+    "notes": "Lynn School District professional development"
+  },
+  {
+    "id": "7945383652",
+    "courseName": "Advisory",
+    "courseCode": "18_ADV",
+    "sectionText": "Section 207",
+    "syncTarget": false,
+    "notes": null
+  },
+  {
+    "id": "7945253900",
+    "courseName": "AI in Our World",
+    "courseCode": "18_LY631",
+    "sectionText": "Section 13",
+    "syncTarget": false,
+    "notes": null
+  },
+  {
+    "id": "7945312369",
+    "courseName": "Algebra II",
+    "courseCode": "18_LY312",
+    "sectionText": "Section 10",
+    "syncTarget": false,
+    "notes": "Used as P0 DOM-snapshot baseline (empty gradebook). NOT the Algebra 2 Period A target -- user passed this URL because it was the tab they had open."
+  },
+  {
+    "id": "7945312398",
+    "courseName": "Algebra II",
+    "courseCode": "18_LY312",
+    "sectionText": "Section 11",
+    "syncTarget": false,
+    "notes": null
+  },
+  {
+    "id": "7945275782",
+    "courseName": "Algebra 2",
+    "courseCode": "18_LY190",
+    "sectionText": "Section 1",
+    "syncTarget": true,
+    "notes": "Algebra 2 first section. 10 students enrolled. Maps to Period B or E per project memory (unit4_schedule_v4.html periods)."
+  },
+  {
+    "id": "7945275798",
+    "courseName": "Algebra 2",
+    "courseCode": "18_LY190",
+    "sectionText": "Section 2",
+    "syncTarget": true,
+    "notes": "Algebra 2 second section. Period mapping TBD by teacher."
+  },
+  {
+    "id": "7883794516",
+    "courseName": "High School MyCAP 2025/2026",
+    "courseCode": null,
+    "sectionText": "Master",
+    "syncTarget": false,
+    "notes": null
+  },
+  {
+    "id": "2956711758",
+    "courseName": "Courses, Data, MCAS, & howe2math platform",
+    "courseCode": null,
+    "sectionText": null,
+    "syncTarget": false,
+    "notes": "Resource group, not a course"
+  },
+  {
+    "id": "7402992337",
+    "courseName": "LEHS Math Department Resource",
+    "courseCode": null,
+    "sectionText": "Hired 24-25",
+    "syncTarget": false,
+    "notes": null
+  },
+  {
+    "id": "6850256567",
+    "courseName": null,
+    "courseCode": null,
+    "sectionText": "Teachers",
+    "syncTarget": false,
+    "notes": "Resource group"
+  },
+  {
+    "id": "8006711974",
+    "courseName": null,
+    "courseCode": null,
+    "sectionText": "Section 111",
+    "syncTarget": false,
+    "notes": "Unknown -- inspect in P1 if relevant"
+  }
+]

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Ledger">
+  <defs>
+    <linearGradient id="cb" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2BC4A8"/>
+      <stop offset="1" stop-color="#16826F"/>
+    </linearGradient>
+  </defs>
+  <!-- checkbook cover -->
+  <rect x="9" y="11" width="46" height="42" rx="5" fill="url(#cb)" stroke="#0d5949" stroke-width="2"/>
+  <!-- register page -->
+  <rect x="16" y="18" width="32" height="28" rx="2.5" fill="#f4fffb" stroke="#0d5949" stroke-width="1.2"/>
+  <!-- register lines -->
+  <g stroke="#9adfd0" stroke-width="2" stroke-linecap="round">
+    <line x1="20" y1="24" x2="44" y2="24"/>
+    <line x1="20" y1="30" x2="44" y2="30"/>
+    <line x1="20" y1="36" x2="37" y2="36"/>
+  </g>
+  <!-- dollar mark -->
+  <text x="38.5" y="43" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="bold" fill="#16826F">$</text>
+  <!-- entry checkmark -->
+  <path d="M19.5 35 l2.8 2.8 l5.5 -7" fill="none" stroke="#1a7f37" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

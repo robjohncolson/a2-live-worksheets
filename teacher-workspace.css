@@ -1,0 +1,62 @@
+.teacher-workspace { background:#e5e3d2; color:#24251f; font-family:Geneva,"Segoe UI",sans-serif; }
+.teacher-workspace [hidden] { display:none !important; }
+.teacher-workspace .main { max-width:1400px; padding:0 24px 32px; }
+.teacher-workspace .page-header { background:transparent; color:inherit; border:0; max-width:1400px; margin:auto; padding:24px; }
+.teacher-workspace .page-header h1 { font-size:1.55rem; }
+.teacher-workspace .subtitle { color:#57594e; }
+.teacher-workspace .section { border:1px solid #b6b7a7; border-radius:8px; box-shadow:none; background:#f7f5ee; margin:16px 0; }
+.workspace-toolbar,.workspace-nav { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.workspace-toolbar { margin-bottom:16px; }
+.workspace-toolbar label { font-size:.8rem; font-weight:600; }
+.workspace-toolbar input,.workspace-toolbar select { display:block; margin-top:5px; min-height:38px; }
+.workspace-toolbar input { width:300px; max-width:80vw; }
+.workspace-button { font:inherit; font-size:.86rem; border:1px solid #aaa998; border-radius:5px; padding:9px 12px; color:#30332a; background:#faf9f3; cursor:pointer; }
+.workspace-button:hover { background:#e9ecdf; }
+.workspace-button[aria-pressed=true] { background:#354e41; color:white; border-color:#354e41; }
+.teacher-workspace :focus-visible { outline:3px solid #24649c; outline-offset:3px; }
+.teacher-workspace .student-name { border:0; background:transparent; padding:4px 0; color:#254f41; text-decoration:underline; text-underline-offset:3px; font:inherit; font-weight:600; cursor:pointer; text-align:left; }
+.workspace-row { display:grid; grid-template-columns:minmax(150px,1fr) minmax(180px,1.5fr) minmax(140px,1fr); gap:12px; align-items:center; padding:14px 0; border-bottom:1px solid #ddded2; font-size:.88rem; }
+.workspace-row:last-child { border-bottom:0; }
+.workspace-tag { font-size:.78rem; color:#775524; }
+.workspace-empty { padding:14px 0; color:#5c6055; line-height:1.6; }
+.workspace-settings summary,#workspace-class-details>summary { cursor:pointer; padding:10px 0; font-weight:600; }
+.workspace-settings .row-2 { margin-top:12px; }
+#workspace-connection { padding:10px 18px; }
+.teacher-workspace .tsc-drawer-panel { width:min(900px,96vw); max-width:96vw; background:#f7f5ee; }
+.teacher-workspace .tsc-drawer-body { padding:18px 24px; }
+.teacher-workspace .tsc-actions { margin:14px 0; }
+.teacher-workspace .tsc-recent-list .workspace-saved-item { display:block; padding:14px 0; line-height:1.7; }
+.workspace-saved-item pre { white-space:pre-wrap; overflow-wrap:anywhere; background:#eeeee4; padding:12px; font:inherit; }
+.workspace-saved-item summary { cursor:pointer; }
+.workspace-worksheet-frame { width:100%; height:65vh; border:1px solid #aaa998; background:white; }
+.workspace-tool-frame { display:block; width:100%; height:75vh; border:1px solid #aaa998; margin-top:10px; background:white; }
+#workspace-worksheet .workspace-button { margin:5px; }
+@media(max-width:650px) { .teacher-workspace .main { padding:0 12px 24px; } .workspace-row { grid-template-columns:1fr; gap:4px; } .teacher-workspace .tsc-drawer-body { padding:14px; } }
+
+/* Keep the first class rows visible on a school laptop, without nesting card gaps. */
+.teacher-workspace .main { display:block; }
+.teacher-workspace .page-header { flex-wrap:wrap; padding:16px 24px; }
+.teacher-workspace .page-header h1 { color:#303c32; font-size:1.25rem; }
+.teacher-workspace .section { gap:10px; }
+.teacher-workspace .section h2 { margin:0 0 8px; font-size:1.15rem; }
+#workspace-connection { display:block; margin:12px 0; }
+#workspace-connection .btn-row { margin:4px 0; }
+#workspace-connection #info-banner { border:0; background:transparent; padding:4px 0; font-size:.8rem; }
+.teacher-workspace .btn { border-radius:5px; background:#354e41; }
+.teacher-workspace .tsc-actions { display:flex; flex-wrap:wrap; gap:8px; }
+.teacher-workspace .tsc-action-btn { width:auto; }
+.teacher-workspace .tsc-recent-list .workspace-saved-item { padding:14px; }
+
+/* Questions and answers stay readable in the narrow student drawer. */
+#workspace-evidence { min-width: 0; }
+#workspace-evidence pre, .workspace-question { white-space: pre-wrap; overflow-wrap: anywhere; }
+#workspace-evidence img { max-width: 100%; }
+#workspace-evidence table { width: 100%; font-size: .85rem; }
+#workspace-evidence td, #workspace-evidence th { padding: .3rem; border: 1px solid #8886; }
+.workspace-evidence-chart { position: relative; min-height: 250px; max-width: 100%; }
+.workspace-choice { margin: .35rem 0; }
+.skill-result-correct { color: #287544; font-weight: 600; }
+.skill-result-incorrect { color: #b34b35; font-weight: 600; }
+
+#workspace-evidence .workspace-empty { margin: .65rem 0; padding: 0; text-align: left; }
+#workspace-evidence .workspace-saved-item { margin-top: 1.5rem; }

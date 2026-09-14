@@ -1,0 +1,289 @@
+## Task: Build the TI-84 Function Call Harness (Phase 23)
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. The ROM has been decoded and transpiled to ~124,000 executable JavaScript blocks covering ~16.5% of the 4MB ROM. The CPU, decoder, emitter, peripherals, and interrupt model are all complete. All tests pass, zero stubs.
+
+Your job: build `ti84-math.mjs` — a module that converts JS numbers to TI-84 format, discovers OS function entry points, and calls ROM math functions directly. This is the bridge between the transpiled ROM and the AP Stats curriculum app.
+
+### Files you MUST read first
+
+1. `TI-84_Plus_CE/cpu-runtime.js` — Full file. Understand the `CPU` class (registers, ALU, stack, I/O), `createExecutor(blocks, memory, options)`, and `runFrom(pc, options)`. Pay attention to how memory is set up, how `runFrom` terminates (halt, missing_block, max_steps), and what it returns.
+
+2. `TI-84_Plus_CE/peripherals.js` — Full file. The executor needs a peripheral bus. Understand `createPeripheralBus(options)` and the built-in handlers (PLL, GPIO, flash, timers, interrupt controller).
+
+3. `TI-84_Plus_CE/test-harness.mjs` — Lines 1-100. See how tests load ROM blocks, create memory from the ROM file, set up peripherals, create an executor, and call `runFrom()`. Copy this pattern.
+
+4. `TI-84_Plus_CE/ROM.transpiled.js` — Lines 1-30. Understand the export format. It exports a `blocks` object keyed by hex address string.
+
+5. `scripts/transpile-ti84-rom.mjs` — Lines 1-30. See how `ROM.rom` is loaded as a binary buffer.
+
+### What to create
+
+**File: `TI-84_Plus_CE/ti84-math.mjs`**
+
+An ES module (~250-350 lines) with these sections:
+
+---
+
+#### Section 1: TI Float Codec (~80 lines)
+
+```javascript
+export function jsToTIReal(value)   // Returns Uint8Array(9)
+export function tiRealToJS(bytes)   // Returns number
+```
+
+**TI-84 Real Number Format (9-byte BCD):**
+
+```
+Byte:  [0]        [1]          [2]  [3]  [4]  [5]  [6]  [7]  [8]
+       type/sign   exponent    -------- BCD mantissa (14 digits) --------
+```
+
+- Byte 0: Bit 7 = negative. Lower bits = type (0x00 for real numbers).
+- Byte 1: Exponent in excess-0x80 notation. 0x80 = 10^0, 0x81 = 10^1, 0x7F = 10^-1.
+- Bytes 2-8: 14 BCD digits (2 per byte, high nibble first). Normalized so first digit is 1-9 (except zero).
+- Value = ±D₁.D₂D₃...D₁₄ × 10^(byte1 - 0x80)
+
+**`jsToTIReal(value)` algorithm:**
+1. If value is 0: return `[0x00, 0x80, 0, 0, 0, 0, 0, 0, 0]`
+2. Separate sign. Set byte 0 = 0x80 if negative, else 0x00
+3. Take abs(value). Find decimal exponent: `exp = Math.floor(Math.log10(abs))`
+4. Normalize mantissa: `mant = abs / 10^exp` (so 1.0 ≤ mant < 10.0)
+5. Set byte 1 = exp + 0x80
+6. Extract 14 decimal digits from mantissa:
+   - Multiply mantissa by 10^13 to get a 14-digit integer
+   - Round to nearest integer (handles JS float precision)
+   - Pack pairs of digits as BCD bytes into bytes 2-8
+7. Return Uint8Array(9)
+
+**`tiRealToJS(bytes)` algorithm:**
+1. If all of bytes 2-8 are zero: return 0
+2. Extract sign from byte 0 bit 7
+3. Extract exponent: `exp = byte1 - 0x80`
+4. Unpack 14 BCD digits from bytes 2-8 (high nibble, low nibble per byte)
+5. Build mantissa: `D₁.D₂D₃...D₁₄`
+6. Return `sign * mantissa * 10^exp`
+
+**Test vectors (codec must round-trip these exactly):**
+
+| JS value | Bytes (hex) |
+|---|---|
+| 0 | 00 80 00 00 00 00 00 00 00 |
+| 1 | 00 80 10 00 00 00 00 00 00 |
+| -1 | 80 80 10 00 00 00 00 00 00 |
+| 100 | 00 82 10 00 00 00 00 00 00 |
+| 0.5 | 00 7F 50 00 00 00 00 00 00 |
+| -42.7 | 80 81 42 70 00 00 00 00 00 |
+| 3.14159265359 | 00 80 31 41 59 26 53 59 00 |
+
+---
+
+#### Section 2: OP Register Constants (~10 lines)
+
+```javascript
+const OP1 = 0xD005F8;
+const OP2 = 0xD00601;
+const OP3 = 0xD0060A;
+const OP4 = 0xD00613;
+const OP5 = 0xD0061C;
+const OP6 = 0xD00625;
+const OP_SIZE = 9;
+```
+
+These are the fixed RAM addresses where TI-84 CE math functions read arguments and write results. Convention: inputs in OP1/OP2, result in OP1.
+
+---
+
+#### Section 3: System Call Discovery (~60 lines)
+
+```javascript
+export function discoverSystemCalls(romBytes)
+// Returns: Map<targetAddress, { count, sites: [srcAddress, ...] }>
+```
+
+Scan the raw ROM binary for RST 0x28 instructions (opcode byte 0xEF). For each occurrence at position `pos`:
+1. Read the 3 bytes at `pos+1` as a little-endian 24-bit address: `target = rom[pos+1] | (rom[pos+2] << 8) | (rom[pos+3] << 16)`
+2. Validate: target should be in ROM range (0x000000-0x3FFFFF) and at a reasonable code address (< 0x100000 for OS functions)
+3. Record the target and the call site
+
+After scanning, sort by frequency (descending). The top targets are core OS functions (math, display, memory operations).
+
+Print a summary table:
+```
+System Call Discovery
+=====================
+Address    Calls  (likely function)
+0x0XXXXX   247    ???
+0x0XXXXX   183    ???
+...
+Top 30 targets shown
+```
+
+---
+
+#### Section 4: Function Call Harness (~100 lines)
+
+```javascript
+export async function callFunction(entryPoint, args = [], options = {})
+// entryPoint: number (ROM address of the function)
+// args: number[] (JS values, written to OP1, OP2, OP3, ...)
+// options: { maxSteps?: number, trace?: boolean }
+// Returns: { result: number, rawResult: Uint8Array(9), steps: number, exitReason: string }
+```
+
+**Implementation:**
+
+```javascript
+export async function callFunction(entryPoint, args = [], options = {}) {
+  const { maxSteps = 10000, trace = false } = options;
+
+  // 1. Import ROM blocks and load ROM binary
+  const { blocks } = await import('./ROM.transpiled.js');
+  const romBytes = readFileSync(new URL('./ROM.rom', import.meta.url));
+
+  // 2. Create memory array (at least 0xD10000 to cover RAM)
+  //    Copy ROM bytes into lower region
+  //    RAM at 0xD00000+ is writable (zeroed initially)
+  const memSize = 0xD20000;
+  const memory = new Uint8Array(memSize);
+  memory.set(romBytes.subarray(0, Math.min(romBytes.length, memSize)));
+
+  // 3. Create peripheral bus
+  const peripherals = createPeripheralBus();
+
+  // 4. Create executor
+  const executor = createExecutor(blocks, memory, { peripherals, trace });
+
+  // 5. Write args to OP registers
+  for (let i = 0; i < args.length; i++) {
+    const addr = OP1 + i * OP_SIZE;
+    const tiBytes = jsToTIReal(args[i]);
+    memory.set(tiBytes, addr);
+  }
+
+  // 6. Set up CPU for function call
+  //    - SP at top of user RAM (0xD1A87F)
+  //    - Push sentinel return address 0xFFFFFF onto stack
+  //      When the function RETs, it jumps to 0xFFFFFF → missing_block → clean exit
+  //    Access the CPU through the executor to set SP and push
+  //    Look at how test-harness.mjs sets up CPU state — follow that pattern
+
+  // 7. Execute from entryPoint
+  const result = executor.runFrom(entryPoint, { maxSteps });
+
+  // 8. Read OP1 result
+  const rawResult = memory.slice(OP1, OP1 + OP_SIZE);
+
+  return {
+    result: tiRealToJS(rawResult),
+    rawResult: new Uint8Array(rawResult),
+    steps: result.steps,
+    exitReason: result.reason
+  };
+}
+```
+
+**CRITICAL — Sentinel return address pattern:**
+The function needs to RET cleanly. Push address 0xFFFFFF (or any address with no transpiled block) onto the stack before calling. When the function executes RET, it pops 0xFFFFFF, tries to jump there, finds no block → exits with `missing_block`. This is a clean termination signal, not an error.
+
+Check how `runFrom` and the executor handle the stack pointer. You may need to directly set `cpu.SP` and write the sentinel to the memory array at the SP location before calling `runFrom`. Study `cpu-runtime.js` to understand how to access CPU state before execution.
+
+---
+
+#### Section 5: Behavioral Function Identification (~40 lines)
+
+After discovery gives you the top ~30 system call targets, try calling each with known arithmetic inputs to identify which is which:
+
+```javascript
+async function identifyMathFunctions(candidates) {
+  const tests = [
+    { args: [2, 3],  expect: 5,    name: 'FPAdd' },
+    { args: [7, 3],  expect: 4,    name: 'FPSub' },
+    { args: [6, 7],  expect: 42,   name: 'FPMult' },
+    { args: [22, 7], expect: 22/7, name: 'FPDiv', tolerance: 1e-10 },
+  ];
+
+  for (const addr of candidates) {
+    for (const test of tests) {
+      try {
+        const { result, steps, exitReason } = await callFunction(addr, test.args, { maxSteps: 5000 });
+        const diff = Math.abs(result - test.expect);
+        if (diff < (test.tolerance || 1e-12)) {
+          console.log(`  0x${addr.toString(16).padStart(6,'0')} = ${test.name} (${steps} steps, exit: ${exitReason})`);
+        }
+      } catch (e) {
+        // Function crashed or isn't math — skip
+      }
+    }
+  }
+}
+```
+
+This is exploratory. Some candidates will crash, some will produce wrong results, some will hit max_steps. That's fine. We only need to find 4 functions (add/sub/mul/div) to prove the harness works.
+
+---
+
+#### Section 6: Self-Test (~50 lines)
+
+When run directly (`node TI-84_Plus_CE/ti84-math.mjs`), execute:
+
+1. **Codec round-trip tests**: For each test vector, verify `tiRealToJS(jsToTIReal(x))` equals x (within tolerance for floats that lose precision in BCD conversion).
+
+2. **Discovery scan**: Run `discoverSystemCalls()`, print the top 30 targets.
+
+3. **Behavioral identification**: Try the top 50 discovery targets against the arithmetic tests. Print any matches.
+
+4. **If any math function is found**: Run a few more test cases through it and print results.
+
+Wrap the self-test in:
+```javascript
+if (import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/'))) {
+  // ... self-test code
+}
+```
+
+(Use a flexible URL comparison that works on Windows with backslash paths.)
+
+---
+
+### Verification
+
+```bash
+# Syntax check
+node --check TI-84_Plus_CE/ti84-math.mjs
+
+# Full self-test (codec + discovery + function identification)
+node TI-84_Plus_CE/ti84-math.mjs
+```
+
+**Expected output:**
+1. All 7 codec round-trip tests pass
+2. Discovery reports N system call targets (expect 50-200 unique targets)
+3. Behavioral identification finds at least some candidate math functions
+4. If math functions found: arithmetic results match expected values
+
+---
+
+### Important context
+
+- The ROM is a TI-84 Plus CE ROM (eZ80 CPU in ADL mode = 24-bit addresses)
+- The transpiled blocks are at ~124,000 covering 16.5% of the ROM
+- NOT all OS functions may be in the transpiled blocks yet. If a discovered function entry point has no transpiled block, `callFunction` will exit immediately with `missing_block`. That's expected — it means we need to add that address as a seed and re-transpile. Report these as "needs transpilation" rather than treating them as errors.
+- The CPU runtime uses `cpu.SP`, `cpu.PC`, `cpu.IFF1`, etc. Read cpu-runtime.js carefully to understand the register interface.
+
+### Do NOT
+
+- Do NOT modify any existing files (cpu-runtime.js, peripherals.js, transpiler, test-harness, etc.)
+- Do NOT add npm dependencies
+- Do NOT re-generate the ROM or add new transpilation seeds
+- Do NOT implement high-level statistical functions (that's Phase 24+)
+- Do NOT hardcode function addresses — use discovery + behavioral testing
+- Do NOT try to implement the full interactive calculator — this is just the function call layer
+
+### Code style
+
+- ES module (`import`/`export`)
+- No classes — plain functions and `const`
+- Early returns, flat structure
+- `import { readFileSync } from 'node:fs'` for ROM binary access
+- Liberal comments explaining the TI float format and calling convention
+- Console output with clear section headers for self-test results

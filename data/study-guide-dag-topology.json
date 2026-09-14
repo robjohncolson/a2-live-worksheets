@@ -1,0 +1,2036 @@
+{
+  "generated": "2026-04-13T22:15:00.000Z",
+  "units": {
+    "1": {
+      "title": "Exploring One-Variable Data",
+      "examWeight": "15-23%",
+      "nodes": [
+        {
+          "id": "U1-VAR-1",
+          "unit": 1,
+          "lesson": 1,
+          "label": "Ask statistical questions",
+          "loIds": [
+            "VAR-1.A"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.A"
+          ],
+          "x": 0.5,
+          "y": 0.05
+        },
+        {
+          "id": "U1-VAR-2",
+          "unit": 1,
+          "lesson": 2,
+          "label": "Classify variables",
+          "loIds": [
+            "VAR-1.B",
+            "VAR-1.C"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "2.A"
+          ],
+          "x": 0.5,
+          "y": 0.1111
+        },
+        {
+          "id": "U1-UNC-3",
+          "unit": 1,
+          "lesson": 3,
+          "label": "Build frequency tables",
+          "loIds": [
+            "UNC-1.A",
+            "UNC-1.B"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "2.B",
+            "2.A"
+          ],
+          "x": 0.5,
+          "y": 0.2222
+        },
+        {
+          "id": "U1-UNC-4",
+          "unit": 1,
+          "lesson": 4,
+          "label": "Graph categorical data",
+          "loIds": [
+            "UNC-1.C",
+            "UNC-1.D",
+            "UNC-1.E"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "2.B",
+            "2.A",
+            "2.D"
+          ],
+          "x": 0.5,
+          "y": 0.3333
+        },
+        {
+          "id": "U1-UNC-5",
+          "unit": 1,
+          "lesson": 5,
+          "label": "Graph quantitative data",
+          "loIds": [
+            "UNC-1.F",
+            "UNC-1.G"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "2.A",
+            "2.B"
+          ],
+          "x": 0.5,
+          "y": 0.4444
+        },
+        {
+          "id": "U1-UNC-6",
+          "unit": 1,
+          "lesson": 6,
+          "label": "Describe distributions",
+          "loIds": [
+            "UNC-1.H"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "2.A"
+          ],
+          "x": 0.5,
+          "y": 0.5556
+        },
+        {
+          "id": "U1-UNC-7",
+          "unit": 1,
+          "lesson": 7,
+          "label": "Compute summary statistics",
+          "loIds": [
+            "UNC-1.I",
+            "UNC-1.J",
+            "UNC-1.K"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "2.C",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.6667
+        },
+        {
+          "id": "U1-UNC-8",
+          "unit": 1,
+          "lesson": 8,
+          "label": "Read boxplots",
+          "loIds": [
+            "UNC-1.L",
+            "UNC-1.M"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "2.B",
+            "2.A"
+          ],
+          "x": 0.5,
+          "y": 0.7778
+        },
+        {
+          "id": "U1-UNC-9",
+          "unit": 1,
+          "lesson": 9,
+          "label": "Compare distributions",
+          "loIds": [
+            "UNC-1.N",
+            "UNC-1.O"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "2.D"
+          ],
+          "x": 0.5,
+          "y": 0.8889
+        },
+        {
+          "id": "U1-VAR-10",
+          "unit": 1,
+          "lesson": 10,
+          "label": "Use normal distributions",
+          "loIds": [
+            "VAR-2.A",
+            "VAR-2.B",
+            "VAR-2.C"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "2.D",
+            "3.A"
+          ],
+          "x": 0.5,
+          "y": 0.95
+        }
+      ],
+      "edges": [
+        {
+          "from": "U1-VAR-1",
+          "to": "U1-VAR-2",
+          "kind": "sequence"
+        },
+        {
+          "from": "U1-VAR-2",
+          "to": "U1-UNC-3",
+          "kind": "sequence"
+        },
+        {
+          "from": "U1-UNC-3",
+          "to": "U1-UNC-4",
+          "kind": "sequence"
+        },
+        {
+          "from": "U1-UNC-4",
+          "to": "U1-UNC-5",
+          "kind": "sequence"
+        },
+        {
+          "from": "U1-UNC-5",
+          "to": "U1-UNC-6",
+          "kind": "sequence"
+        },
+        {
+          "from": "U1-UNC-6",
+          "to": "U1-UNC-7",
+          "kind": "sequence"
+        },
+        {
+          "from": "U1-UNC-7",
+          "to": "U1-UNC-8",
+          "kind": "sequence"
+        },
+        {
+          "from": "U1-UNC-8",
+          "to": "U1-UNC-9",
+          "kind": "sequence"
+        },
+        {
+          "from": "U1-UNC-9",
+          "to": "U1-VAR-10",
+          "kind": "sequence"
+        }
+      ]
+    },
+    "2": {
+      "title": "Exploring Two-Variable Data",
+      "examWeight": "5-7%",
+      "nodes": [
+        {
+          "id": "U2-VAR-1",
+          "unit": 2,
+          "lesson": 1,
+          "label": "Ask relationship questions",
+          "loIds": [
+            "VAR-1.D"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.A"
+          ],
+          "x": 0.5,
+          "y": 0.05
+        },
+        {
+          "id": "U2-UNC-2",
+          "unit": 2,
+          "lesson": 2,
+          "label": "Build two-way tables",
+          "loIds": [
+            "UNC-1.P"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "2.D"
+          ],
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "U2-UNC-3",
+          "unit": 2,
+          "lesson": 3,
+          "label": "Compare conditional proportions",
+          "loIds": [
+            "UNC-1.Q",
+            "UNC-1.R"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "2.C",
+            "2.D"
+          ],
+          "x": 0.5,
+          "y": 0.25
+        },
+        {
+          "id": "U2-UNC-4",
+          "unit": 2,
+          "lesson": 4,
+          "label": "Plot scatterplots",
+          "loIds": [
+            "UNC-1.S"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "2.B",
+            "2.A"
+          ],
+          "x": 0.3333,
+          "y": 0.375
+        },
+        {
+          "id": "U2-DAT-5",
+          "unit": 2,
+          "lesson": 4,
+          "label": "Describe associations",
+          "loIds": [
+            "DAT-1.A"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "2.B",
+            "2.A"
+          ],
+          "x": 0.6667,
+          "y": 0.375
+        },
+        {
+          "id": "U2-DAT-6",
+          "unit": 2,
+          "lesson": 5,
+          "label": "Interpret correlation",
+          "loIds": [
+            "DAT-1.B",
+            "DAT-1.C"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "2.C",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.5
+        },
+        {
+          "id": "U2-DAT-7",
+          "unit": 2,
+          "lesson": 6,
+          "label": "Predict with regression",
+          "loIds": [
+            "DAT-1.D"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "2.C"
+          ],
+          "x": 0.5,
+          "y": 0.625
+        },
+        {
+          "id": "U2-DAT-8",
+          "unit": 2,
+          "lesson": 7,
+          "label": "Analyze residuals",
+          "loIds": [
+            "DAT-1.E",
+            "DAT-1.F"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "2.B",
+            "2.A"
+          ],
+          "x": 0.5,
+          "y": 0.75
+        },
+        {
+          "id": "U2-DAT-9",
+          "unit": 2,
+          "lesson": 8,
+          "label": "Fit least-squares lines",
+          "loIds": [
+            "DAT-1.G",
+            "DAT-1.H"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "2.C",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.875
+        },
+        {
+          "id": "U2-DAT-10",
+          "unit": 2,
+          "lesson": 9,
+          "label": "Spot nonlinearity",
+          "loIds": [
+            "DAT-1.I",
+            "DAT-1.J"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "2.A",
+            "2.C"
+          ],
+          "x": 0.5,
+          "y": 0.95
+        }
+      ],
+      "edges": [
+        {
+          "from": "U2-VAR-1",
+          "to": "U2-UNC-2",
+          "kind": "sequence"
+        },
+        {
+          "from": "U2-UNC-2",
+          "to": "U2-UNC-3",
+          "kind": "sequence"
+        },
+        {
+          "from": "U2-UNC-3",
+          "to": "U2-UNC-4",
+          "kind": "sequence"
+        },
+        {
+          "from": "U2-DAT-5",
+          "to": "U2-DAT-6",
+          "kind": "sequence"
+        },
+        {
+          "from": "U2-DAT-6",
+          "to": "U2-DAT-7",
+          "kind": "sequence"
+        },
+        {
+          "from": "U2-DAT-7",
+          "to": "U2-DAT-8",
+          "kind": "sequence"
+        },
+        {
+          "from": "U2-DAT-8",
+          "to": "U2-DAT-9",
+          "kind": "sequence"
+        },
+        {
+          "from": "U2-DAT-9",
+          "to": "U2-DAT-10",
+          "kind": "sequence"
+        }
+      ]
+    },
+    "3": {
+      "title": "Collecting Data",
+      "examWeight": "12-15%",
+      "nodes": [
+        {
+          "id": "U3-VAR-1",
+          "unit": 3,
+          "lesson": 1,
+          "label": "Question data collection",
+          "loIds": [
+            "VAR-1.E"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.A"
+          ],
+          "x": 0.5,
+          "y": 0.05
+        },
+        {
+          "id": "U3-DAT-2",
+          "unit": 3,
+          "lesson": 2,
+          "label": "Identify study types",
+          "loIds": [
+            "DAT-2.A",
+            "DAT-2.B"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "1.C",
+            "4.A"
+          ],
+          "x": 0.5,
+          "y": 0.1667
+        },
+        {
+          "id": "U3-DAT-3",
+          "unit": 3,
+          "lesson": 3,
+          "label": "Choose random samples",
+          "loIds": [
+            "DAT-2.C",
+            "DAT-2.D"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "1.C"
+          ],
+          "x": 0.5,
+          "y": 0.3333
+        },
+        {
+          "id": "U3-DAT-4",
+          "unit": 3,
+          "lesson": 4,
+          "label": "Spot sampling bias",
+          "loIds": [
+            "DAT-2.E"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "1.C"
+          ],
+          "x": 0.5,
+          "y": 0.5
+        },
+        {
+          "id": "U3-VAR-5",
+          "unit": 3,
+          "lesson": 5,
+          "label": "Design experiments",
+          "loIds": [
+            "VAR-3.A",
+            "VAR-3.B",
+            "VAR-3.C"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.B",
+            "1.C"
+          ],
+          "x": 0.5,
+          "y": 0.6667
+        },
+        {
+          "id": "U3-VAR-6",
+          "unit": 3,
+          "lesson": 6,
+          "label": "Select experiment designs",
+          "loIds": [
+            "VAR-3.C",
+            "VAR-3.D"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.C"
+          ],
+          "x": 0.5,
+          "y": 0.8333
+        },
+        {
+          "id": "U3-VAR-7",
+          "unit": 3,
+          "lesson": 7,
+          "label": "Interpret experiments",
+          "loIds": [
+            "VAR-3.E"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.95
+        }
+      ],
+      "edges": [
+        {
+          "from": "U3-VAR-1",
+          "to": "U3-DAT-2",
+          "kind": "sequence"
+        },
+        {
+          "from": "U3-DAT-2",
+          "to": "U3-DAT-3",
+          "kind": "sequence"
+        },
+        {
+          "from": "U3-DAT-3",
+          "to": "U3-DAT-4",
+          "kind": "sequence"
+        },
+        {
+          "from": "U3-DAT-4",
+          "to": "U3-VAR-5",
+          "kind": "sequence"
+        },
+        {
+          "from": "U3-VAR-5",
+          "to": "U3-VAR-6",
+          "kind": "sequence"
+        },
+        {
+          "from": "U3-VAR-6",
+          "to": "U3-VAR-7",
+          "kind": "sequence"
+        }
+      ]
+    },
+    "4": {
+      "title": "Probability, Random Variables, and Probability Distributions",
+      "examWeight": "10-20%",
+      "nodes": [
+        {
+          "id": "U4-VAR-1",
+          "unit": 4,
+          "lesson": 1,
+          "label": "Notice random patterns",
+          "loIds": [
+            "VAR-1.F"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.A"
+          ],
+          "x": 0.5,
+          "y": 0.05
+        },
+        {
+          "id": "U4-UNC-2",
+          "unit": 4,
+          "lesson": 2,
+          "label": "Simulate probabilities",
+          "loIds": [
+            "UNC-2.A"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "3.A"
+          ],
+          "x": 0.5,
+          "y": 0.0909
+        },
+        {
+          "id": "U4-VAR-3",
+          "unit": 4,
+          "lesson": 3,
+          "label": "Find event probabilities",
+          "loIds": [
+            "VAR-4.A",
+            "VAR-4.B"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.A",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.1818
+        },
+        {
+          "id": "U4-VAR-4",
+          "unit": 4,
+          "lesson": 4,
+          "label": "Check exclusivity",
+          "loIds": [
+            "VAR-4.C"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.2727
+        },
+        {
+          "id": "U4-VAR-5",
+          "unit": 4,
+          "lesson": 5,
+          "label": "Compute conditional probability",
+          "loIds": [
+            "VAR-4.D"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.A"
+          ],
+          "x": 0.5,
+          "y": 0.3636
+        },
+        {
+          "id": "U4-VAR-6",
+          "unit": 4,
+          "lesson": 6,
+          "label": "Combine events",
+          "loIds": [
+            "VAR-4.E"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.A"
+          ],
+          "x": 0.5,
+          "y": 0.4545
+        },
+        {
+          "id": "U4-VAR-7",
+          "unit": 4,
+          "lesson": 7,
+          "label": "Build probability distributions",
+          "loIds": [
+            "VAR-5.A",
+            "VAR-5.B"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "2.B",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.5455
+        },
+        {
+          "id": "U4-VAR-8",
+          "unit": 4,
+          "lesson": 8,
+          "label": "Compute distribution parameters",
+          "loIds": [
+            "VAR-5.C",
+            "VAR-5.D"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.B",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.6364
+        },
+        {
+          "id": "U4-VAR-9",
+          "unit": 4,
+          "lesson": 9,
+          "label": "Combine random variables",
+          "loIds": [
+            "VAR-5.E",
+            "VAR-5.F"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.B",
+            "3.C"
+          ],
+          "x": 0.5,
+          "y": 0.7273
+        },
+        {
+          "id": "U4-UNC-10",
+          "unit": 4,
+          "lesson": 10,
+          "label": "Calculate binomial probabilities",
+          "loIds": [
+            "UNC-3.A",
+            "UNC-3.B"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "3.A"
+          ],
+          "x": 0.5,
+          "y": 0.8182
+        },
+        {
+          "id": "U4-UNC-11",
+          "unit": 4,
+          "lesson": 11,
+          "label": "Compute binomial parameters",
+          "loIds": [
+            "UNC-3.C",
+            "UNC-3.D"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "3.B",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.9091
+        },
+        {
+          "id": "U4-UNC-12",
+          "unit": 4,
+          "lesson": 12,
+          "label": "Use geometric distributions",
+          "loIds": [
+            "UNC-3.E",
+            "UNC-3.F",
+            "UNC-3.G"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "3.A",
+            "3.B",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.95
+        }
+      ],
+      "edges": [
+        {
+          "from": "U4-VAR-1",
+          "to": "U4-UNC-2",
+          "kind": "sequence"
+        },
+        {
+          "from": "U4-UNC-2",
+          "to": "U4-VAR-3",
+          "kind": "sequence"
+        },
+        {
+          "from": "U4-VAR-3",
+          "to": "U4-VAR-4",
+          "kind": "sequence"
+        },
+        {
+          "from": "U4-VAR-4",
+          "to": "U4-VAR-5",
+          "kind": "sequence"
+        },
+        {
+          "from": "U4-VAR-5",
+          "to": "U4-VAR-6",
+          "kind": "sequence"
+        },
+        {
+          "from": "U4-VAR-6",
+          "to": "U4-VAR-7",
+          "kind": "sequence"
+        },
+        {
+          "from": "U4-VAR-7",
+          "to": "U4-VAR-8",
+          "kind": "sequence"
+        },
+        {
+          "from": "U4-VAR-8",
+          "to": "U4-VAR-9",
+          "kind": "sequence"
+        },
+        {
+          "from": "U4-VAR-9",
+          "to": "U4-UNC-10",
+          "kind": "sequence"
+        },
+        {
+          "from": "U4-UNC-10",
+          "to": "U4-UNC-11",
+          "kind": "sequence"
+        },
+        {
+          "from": "U4-UNC-11",
+          "to": "U4-UNC-12",
+          "kind": "sequence"
+        }
+      ]
+    },
+    "5": {
+      "title": "Sampling Distributions",
+      "examWeight": "7-12%",
+      "nodes": [
+        {
+          "id": "U5-VAR-1",
+          "unit": 5,
+          "lesson": 1,
+          "label": "Compare sample statistics",
+          "loIds": [
+            "VAR-1.G"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.A"
+          ],
+          "x": 0.5,
+          "y": 0.05
+        },
+        {
+          "id": "U5-VAR-2",
+          "unit": 5,
+          "lesson": 2,
+          "label": "Reuse normal models",
+          "loIds": [
+            "VAR-6.A",
+            "VAR-6.B",
+            "VAR-6.C"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.A",
+            "3.C"
+          ],
+          "x": 0.5,
+          "y": 0.1429
+        },
+        {
+          "id": "U5-UNC-3",
+          "unit": 5,
+          "lesson": 3,
+          "label": "Model sampling distributions",
+          "loIds": [
+            "UNC-3.H"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "3.C"
+          ],
+          "x": 0.5,
+          "y": 0.2857
+        },
+        {
+          "id": "U5-UNC-4",
+          "unit": 5,
+          "lesson": 4,
+          "label": "Evaluate point estimates",
+          "loIds": [
+            "UNC-3.I",
+            "UNC-3.J"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "4.B",
+            "3.B"
+          ],
+          "x": 0.5,
+          "y": 0.4286
+        },
+        {
+          "id": "U5-UNC-5",
+          "unit": 5,
+          "lesson": 5,
+          "label": "Sample proportions",
+          "loIds": [
+            "UNC-3.K",
+            "UNC-3.L",
+            "UNC-3.M"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "3.B",
+            "3.C",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.5714
+        },
+        {
+          "id": "U5-UNC-6",
+          "unit": 5,
+          "lesson": 6,
+          "label": "Compare sample proportions",
+          "loIds": [
+            "UNC-3.N",
+            "UNC-3.O",
+            "UNC-3.P"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "3.B",
+            "3.C",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.7143
+        },
+        {
+          "id": "U5-UNC-7",
+          "unit": 5,
+          "lesson": 7,
+          "label": "Sample means",
+          "loIds": [
+            "UNC-3.Q",
+            "UNC-3.R",
+            "UNC-3.S"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "3.B",
+            "3.C",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.8571
+        },
+        {
+          "id": "U5-UNC-8",
+          "unit": 5,
+          "lesson": 8,
+          "label": "Compare sample means",
+          "loIds": [
+            "UNC-3.T",
+            "UNC-3.U",
+            "UNC-3.V"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "3.B",
+            "3.C",
+            "4.B"
+          ],
+          "x": 0.5,
+          "y": 0.95
+        }
+      ],
+      "edges": [
+        {
+          "from": "U5-VAR-1",
+          "to": "U5-VAR-2",
+          "kind": "sequence"
+        },
+        {
+          "from": "U5-VAR-2",
+          "to": "U5-UNC-3",
+          "kind": "sequence"
+        },
+        {
+          "from": "U5-UNC-3",
+          "to": "U5-UNC-4",
+          "kind": "sequence"
+        },
+        {
+          "from": "U5-UNC-4",
+          "to": "U5-UNC-5",
+          "kind": "sequence"
+        },
+        {
+          "from": "U5-UNC-5",
+          "to": "U5-UNC-6",
+          "kind": "sequence"
+        },
+        {
+          "from": "U5-UNC-6",
+          "to": "U5-UNC-7",
+          "kind": "sequence"
+        },
+        {
+          "from": "U5-UNC-7",
+          "to": "U5-UNC-8",
+          "kind": "sequence"
+        }
+      ]
+    },
+    "6": {
+      "title": "Inference for Categorical Data: Proportions",
+      "examWeight": "12-15%",
+      "nodes": [
+        {
+          "id": "U6-VAR-1",
+          "unit": 6,
+          "lesson": 1,
+          "label": "Ask shape questions",
+          "loIds": [
+            "VAR-1.H"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.A"
+          ],
+          "x": 0.5,
+          "y": 0.05
+        },
+        {
+          "id": "U6-UNC-2",
+          "unit": 6,
+          "lesson": 2,
+          "label": "Build proportion intervals",
+          "loIds": [
+            "UNC-4.A",
+            "UNC-4.B",
+            "UNC-4.C",
+            "UNC-4.D"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "1.D",
+            "4.C",
+            "3.D"
+          ],
+          "x": 0.5,
+          "y": 0.1
+        },
+        {
+          "id": "U6-UNC-3",
+          "unit": 6,
+          "lesson": 3,
+          "label": "Interpret proportion intervals",
+          "loIds": [
+            "UNC-4.F",
+            "UNC-4.G",
+            "UNC-4.H"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "4.B",
+            "4.D"
+          ],
+          "x": 0.5,
+          "y": 0.2
+        },
+        {
+          "id": "U6-VAR-4",
+          "unit": 6,
+          "lesson": 4,
+          "label": "Set proportion tests",
+          "loIds": [
+            "VAR-6.D",
+            "VAR-6.F"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.F",
+            "1.E",
+            "4.C"
+          ],
+          "x": 0.5,
+          "y": 0.3
+        },
+        {
+          "id": "U6-VAR-5",
+          "unit": 6,
+          "lesson": 5,
+          "label": "Compute proportion tests",
+          "loIds": [
+            "VAR-6.G"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.E",
+            "4.B"
+          ],
+          "x": 0.3333,
+          "y": 0.4
+        },
+        {
+          "id": "U6-DAT-6",
+          "unit": 6,
+          "lesson": 5,
+          "label": "Interpret p-values",
+          "loIds": [
+            "DAT-3.A"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "3.E",
+            "4.B"
+          ],
+          "x": 0.6667,
+          "y": 0.4
+        },
+        {
+          "id": "U6-DAT-7",
+          "unit": 6,
+          "lesson": 6,
+          "label": "Conclude proportion tests",
+          "loIds": [
+            "DAT-3.B"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "4.E"
+          ],
+          "x": 0.5,
+          "y": 0.5
+        },
+        {
+          "id": "U6-UNC-8",
+          "unit": 6,
+          "lesson": 7,
+          "label": "Analyze testing errors",
+          "loIds": [
+            "UNC-5.A",
+            "UNC-5.B",
+            "UNC-5.C"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "1.B",
+            "3.A",
+            "4.A"
+          ],
+          "x": 0.5,
+          "y": 0.6
+        },
+        {
+          "id": "U6-UNC-9",
+          "unit": 6,
+          "lesson": 8,
+          "label": "Build two-proportion intervals",
+          "loIds": [
+            "UNC-4.I",
+            "UNC-4.J",
+            "UNC-4.K"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "1.D",
+            "4.C",
+            "3.D"
+          ],
+          "x": 0.5,
+          "y": 0.7
+        },
+        {
+          "id": "U6-UNC-10",
+          "unit": 6,
+          "lesson": 9,
+          "label": "Justify proportion differences",
+          "loIds": [
+            "UNC-4.N"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "4.D"
+          ],
+          "x": 0.5,
+          "y": 0.8
+        },
+        {
+          "id": "U6-VAR-11",
+          "unit": 6,
+          "lesson": 10,
+          "label": "Set difference tests",
+          "loIds": [
+            "VAR-6.H",
+            "VAR-6.J"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.F"
+          ],
+          "x": 0.5,
+          "y": 0.9
+        },
+        {
+          "id": "U6-VAR-12",
+          "unit": 6,
+          "lesson": 11,
+          "label": "Run difference tests",
+          "loIds": [
+            "VAR-6.K"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.E"
+          ],
+          "x": 0.5,
+          "y": 0.95
+        }
+      ],
+      "edges": [
+        {
+          "from": "U6-VAR-1",
+          "to": "U6-UNC-2",
+          "kind": "sequence"
+        },
+        {
+          "from": "U6-UNC-2",
+          "to": "U6-UNC-3",
+          "kind": "sequence"
+        },
+        {
+          "from": "U6-UNC-3",
+          "to": "U6-VAR-4",
+          "kind": "sequence"
+        },
+        {
+          "from": "U6-VAR-4",
+          "to": "U6-VAR-5",
+          "kind": "sequence"
+        },
+        {
+          "from": "U6-DAT-6",
+          "to": "U6-DAT-7",
+          "kind": "sequence"
+        },
+        {
+          "from": "U6-DAT-7",
+          "to": "U6-UNC-8",
+          "kind": "sequence"
+        },
+        {
+          "from": "U6-UNC-8",
+          "to": "U6-UNC-9",
+          "kind": "sequence"
+        },
+        {
+          "from": "U6-UNC-9",
+          "to": "U6-UNC-10",
+          "kind": "sequence"
+        },
+        {
+          "from": "U6-UNC-10",
+          "to": "U6-VAR-11",
+          "kind": "sequence"
+        },
+        {
+          "from": "U6-VAR-11",
+          "to": "U6-VAR-12",
+          "kind": "sequence"
+        }
+      ]
+    },
+    "7": {
+      "title": "Inference for Quantitative Data: Means",
+      "examWeight": "10-18%",
+      "nodes": [
+        {
+          "id": "U7-VAR-1",
+          "unit": 7,
+          "lesson": 1,
+          "label": "Ask inference questions",
+          "loIds": [
+            "VAR-1.I"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.A"
+          ],
+          "x": 0.5,
+          "y": 0.05
+        },
+        {
+          "id": "U7-VAR-2",
+          "unit": 7,
+          "lesson": 2,
+          "label": "Describe t-distributions",
+          "loIds": [
+            "VAR-7.A"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.C",
+            "1.D",
+            "4.C",
+            "3.D"
+          ],
+          "x": 0.3333,
+          "y": 0.125
+        },
+        {
+          "id": "U7-UNC-3",
+          "unit": 7,
+          "lesson": 2,
+          "label": "Build mean intervals",
+          "loIds": [
+            "UNC-4.O",
+            "UNC-4.P",
+            "UNC-4.Q",
+            "UNC-4.R"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "3.C",
+            "1.D",
+            "4.C",
+            "3.D"
+          ],
+          "x": 0.6667,
+          "y": 0.125
+        },
+        {
+          "id": "U7-UNC-4",
+          "unit": 7,
+          "lesson": 3,
+          "label": "Interpret mean intervals",
+          "loIds": [
+            "UNC-4.S",
+            "UNC-4.T",
+            "UNC-4.U"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "4.B",
+            "4.D",
+            "4.A"
+          ],
+          "x": 0.5,
+          "y": 0.25
+        },
+        {
+          "id": "U7-VAR-5",
+          "unit": 7,
+          "lesson": 4,
+          "label": "Set mean tests",
+          "loIds": [
+            "VAR-7.B",
+            "VAR-7.C",
+            "VAR-7.D"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.E",
+            "1.F",
+            "4.C"
+          ],
+          "x": 0.5,
+          "y": 0.375
+        },
+        {
+          "id": "U7-VAR-6",
+          "unit": 7,
+          "lesson": 5,
+          "label": "Compute mean tests",
+          "loIds": [
+            "VAR-7.E"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.E",
+            "4.B",
+            "4.E"
+          ],
+          "x": 0.3333,
+          "y": 0.5
+        },
+        {
+          "id": "U7-DAT-7",
+          "unit": 7,
+          "lesson": 5,
+          "label": "Interpret mean p-values",
+          "loIds": [
+            "DAT-3.E",
+            "DAT-3.F"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "3.E",
+            "4.B",
+            "4.E"
+          ],
+          "x": 0.6667,
+          "y": 0.5
+        },
+        {
+          "id": "U7-UNC-8",
+          "unit": 7,
+          "lesson": 6,
+          "label": "Build mean-difference intervals",
+          "loIds": [
+            "UNC-4.V",
+            "UNC-4.W",
+            "UNC-4.X",
+            "UNC-4.Y"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "1.D",
+            "4.C",
+            "3.D"
+          ],
+          "x": 0.5,
+          "y": 0.625
+        },
+        {
+          "id": "U7-UNC-9",
+          "unit": 7,
+          "lesson": 7,
+          "label": "Interpret mean differences",
+          "loIds": [
+            "UNC-4.Z",
+            "UNC-4.AA"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "4.B",
+            "4.D"
+          ],
+          "x": 0.5,
+          "y": 0.75
+        },
+        {
+          "id": "U7-VAR-10",
+          "unit": 7,
+          "lesson": 8,
+          "label": "Set difference tests",
+          "loIds": [
+            "VAR-7.F",
+            "VAR-7.G",
+            "VAR-7.H"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.E",
+            "1.F",
+            "4.C"
+          ],
+          "x": 0.5,
+          "y": 0.875
+        },
+        {
+          "id": "U7-VAR-11",
+          "unit": 7,
+          "lesson": 9,
+          "label": "Run difference tests",
+          "loIds": [
+            "VAR-7.I"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.E",
+            "4.B",
+            "4.E"
+          ],
+          "x": 0.3333,
+          "y": 0.95
+        },
+        {
+          "id": "U7-DAT-12",
+          "unit": 7,
+          "lesson": 9,
+          "label": "Conclude mean tests",
+          "loIds": [
+            "DAT-3.G",
+            "DAT-3.H"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "3.E",
+            "4.B",
+            "4.E"
+          ],
+          "x": 0.6667,
+          "y": 0.95
+        }
+      ],
+      "edges": [
+        {
+          "from": "U7-VAR-1",
+          "to": "U7-VAR-2",
+          "kind": "sequence"
+        },
+        {
+          "from": "U7-UNC-3",
+          "to": "U7-UNC-4",
+          "kind": "sequence"
+        },
+        {
+          "from": "U7-UNC-4",
+          "to": "U7-VAR-5",
+          "kind": "sequence"
+        },
+        {
+          "from": "U7-VAR-5",
+          "to": "U7-VAR-6",
+          "kind": "sequence"
+        },
+        {
+          "from": "U7-DAT-7",
+          "to": "U7-UNC-8",
+          "kind": "sequence"
+        },
+        {
+          "from": "U7-UNC-8",
+          "to": "U7-UNC-9",
+          "kind": "sequence"
+        },
+        {
+          "from": "U7-UNC-9",
+          "to": "U7-VAR-10",
+          "kind": "sequence"
+        },
+        {
+          "from": "U7-VAR-10",
+          "to": "U7-VAR-11",
+          "kind": "sequence"
+        }
+      ]
+    },
+    "8": {
+      "title": "Inference for Categorical Data: Chi-Square",
+      "examWeight": "2-5%",
+      "nodes": [
+        {
+          "id": "U8-VAR-1",
+          "unit": 8,
+          "lesson": 1,
+          "label": "Ask count questions",
+          "loIds": [
+            "VAR-1.J"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.A"
+          ],
+          "x": 0.5,
+          "y": 0.05
+        },
+        {
+          "id": "U8-VAR-2",
+          "unit": 8,
+          "lesson": 2,
+          "label": "Set goodness-of-fit tests",
+          "loIds": [
+            "VAR-8.A",
+            "VAR-8.B",
+            "VAR-8.C",
+            "VAR-8.D",
+            "VAR-8.E"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.C",
+            "1.F",
+            "1.E",
+            "3.A",
+            "4.C"
+          ],
+          "x": 0.5,
+          "y": 0.2
+        },
+        {
+          "id": "U8-VAR-3",
+          "unit": 8,
+          "lesson": 3,
+          "label": "Run goodness-of-fit tests",
+          "loIds": [
+            "VAR-8.F",
+            "VAR-8.G"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.E",
+            "4.B",
+            "4.E"
+          ],
+          "x": 0.3333,
+          "y": 0.4
+        },
+        {
+          "id": "U8-DAT-4",
+          "unit": 8,
+          "lesson": 3,
+          "label": "Interpret chi-square tests",
+          "loIds": [
+            "DAT-3.I",
+            "DAT-3.J"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "3.E",
+            "4.B",
+            "4.E"
+          ],
+          "x": 0.6667,
+          "y": 0.4
+        },
+        {
+          "id": "U8-VAR-5",
+          "unit": 8,
+          "lesson": 4,
+          "label": "Calculate expected counts",
+          "loIds": [
+            "VAR-8.H"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.A"
+          ],
+          "x": 0.5,
+          "y": 0.6
+        },
+        {
+          "id": "U8-VAR-6",
+          "unit": 8,
+          "lesson": 5,
+          "label": "Set table tests",
+          "loIds": [
+            "VAR-8.I",
+            "VAR-8.J",
+            "VAR-8.K"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.F",
+            "1.E",
+            "4.C"
+          ],
+          "x": 0.5,
+          "y": 0.8
+        },
+        {
+          "id": "U8-VAR-7",
+          "unit": 8,
+          "lesson": 6,
+          "label": "Run table tests",
+          "loIds": [
+            "VAR-8.L",
+            "VAR-8.M"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.E",
+            "4.B",
+            "4.E"
+          ],
+          "x": 0.3333,
+          "y": 0.95
+        },
+        {
+          "id": "U8-DAT-8",
+          "unit": 8,
+          "lesson": 6,
+          "label": "Interpret table tests",
+          "loIds": [
+            "DAT-3.K",
+            "DAT-3.L"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "3.E",
+            "4.B",
+            "4.E"
+          ],
+          "x": 0.6667,
+          "y": 0.95
+        }
+      ],
+      "edges": [
+        {
+          "from": "U8-VAR-1",
+          "to": "U8-VAR-2",
+          "kind": "sequence"
+        },
+        {
+          "from": "U8-VAR-2",
+          "to": "U8-VAR-3",
+          "kind": "sequence"
+        },
+        {
+          "from": "U8-VAR-3",
+          "to": "U8-VAR-5",
+          "kind": "sequence"
+        },
+        {
+          "from": "U8-VAR-5",
+          "to": "U8-VAR-6",
+          "kind": "sequence"
+        },
+        {
+          "from": "U8-VAR-6",
+          "to": "U8-VAR-7",
+          "kind": "sequence"
+        }
+      ]
+    },
+    "9": {
+      "title": "Inference for Quantitative Data: Slopes",
+      "examWeight": "2-5%",
+      "nodes": [
+        {
+          "id": "U9-VAR-1",
+          "unit": 9,
+          "lesson": 1,
+          "label": "Ask scatterplot questions",
+          "loIds": [
+            "VAR-1.K"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.A"
+          ],
+          "x": 0.5,
+          "y": 0.05
+        },
+        {
+          "id": "U9-UNC-2",
+          "unit": 9,
+          "lesson": 2,
+          "label": "Build slope intervals",
+          "loIds": [
+            "UNC-4.AC",
+            "UNC-4.AD",
+            "UNC-4.AE",
+            "UNC-4.AF"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "1.D",
+            "4.C",
+            "3.D"
+          ],
+          "x": 0.5,
+          "y": 0.25
+        },
+        {
+          "id": "U9-UNC-3",
+          "unit": 9,
+          "lesson": 3,
+          "label": "Interpret slope intervals",
+          "loIds": [
+            "UNC-4.AG",
+            "UNC-4.AH",
+            "UNC-4.AI"
+          ],
+          "bigIdea": "UNC",
+          "skills": [
+            "4.B",
+            "4.D",
+            "4.A"
+          ],
+          "x": 0.5,
+          "y": 0.5
+        },
+        {
+          "id": "U9-VAR-4",
+          "unit": 9,
+          "lesson": 4,
+          "label": "Set slope tests",
+          "loIds": [
+            "VAR-7.J",
+            "VAR-7.K",
+            "VAR-7.L"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "1.E",
+            "1.F",
+            "4.C"
+          ],
+          "x": 0.5,
+          "y": 0.75
+        },
+        {
+          "id": "U9-VAR-5",
+          "unit": 9,
+          "lesson": 5,
+          "label": "Run slope tests",
+          "loIds": [
+            "VAR-7.M"
+          ],
+          "bigIdea": "VAR",
+          "skills": [
+            "3.E",
+            "4.B",
+            "4.E"
+          ],
+          "x": 0.3333,
+          "y": 0.95
+        },
+        {
+          "id": "U9-DAT-6",
+          "unit": 9,
+          "lesson": 5,
+          "label": "Interpret slope tests",
+          "loIds": [
+            "DAT-3.M",
+            "DAT-3.N"
+          ],
+          "bigIdea": "DAT",
+          "skills": [
+            "3.E",
+            "4.B",
+            "4.E"
+          ],
+          "x": 0.6667,
+          "y": 0.95
+        }
+      ],
+      "edges": [
+        {
+          "from": "U9-VAR-1",
+          "to": "U9-UNC-2",
+          "kind": "sequence"
+        },
+        {
+          "from": "U9-UNC-2",
+          "to": "U9-UNC-3",
+          "kind": "sequence"
+        },
+        {
+          "from": "U9-UNC-3",
+          "to": "U9-VAR-4",
+          "kind": "sequence"
+        },
+        {
+          "from": "U9-VAR-4",
+          "to": "U9-VAR-5",
+          "kind": "sequence"
+        }
+      ]
+    }
+  },
+  "crossUnitEdges": [
+    {
+      "from": "U1-VAR-10",
+      "to": "U2-VAR-1",
+      "kind": "handoff"
+    },
+    {
+      "from": "U2-DAT-5",
+      "to": "U9-UNC-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U3-VAR-5",
+      "to": "U4-UNC-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U3-VAR-6",
+      "to": "U4-UNC-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U3-VAR-7",
+      "to": "U4-UNC-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U4-VAR-7",
+      "to": "U5-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U4-VAR-8",
+      "to": "U5-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U4-VAR-9",
+      "to": "U5-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U4-UNC-10",
+      "to": "U5-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U4-UNC-11",
+      "to": "U5-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U4-UNC-12",
+      "to": "U5-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-3",
+      "to": "U6-UNC-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-4",
+      "to": "U6-UNC-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-5",
+      "to": "U6-UNC-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-6",
+      "to": "U6-UNC-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-7",
+      "to": "U6-UNC-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-8",
+      "to": "U6-UNC-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-3",
+      "to": "U7-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-4",
+      "to": "U7-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-5",
+      "to": "U7-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-6",
+      "to": "U7-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-7",
+      "to": "U7-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U5-UNC-8",
+      "to": "U7-UNC-3",
+      "kind": "handoff"
+    },
+    {
+      "from": "U6-VAR-12",
+      "to": "U8-VAR-2",
+      "kind": "handoff"
+    },
+    {
+      "from": "U7-VAR-11",
+      "to": "U9-UNC-2",
+      "kind": "handoff"
+    }
+  ],
+  "stats": {
+    "totalNodes": 85,
+    "totalEdges": 93,
+    "perUnit": {
+      "1": {
+        "nodes": 10,
+        "edges": 9
+      },
+      "2": {
+        "nodes": 10,
+        "edges": 8
+      },
+      "3": {
+        "nodes": 7,
+        "edges": 6
+      },
+      "4": {
+        "nodes": 12,
+        "edges": 11
+      },
+      "5": {
+        "nodes": 8,
+        "edges": 7
+      },
+      "6": {
+        "nodes": 12,
+        "edges": 10
+      },
+      "7": {
+        "nodes": 12,
+        "edges": 8
+      },
+      "8": {
+        "nodes": 8,
+        "edges": 5
+      },
+      "9": {
+        "nodes": 6,
+        "edges": 4
+      }
+    }
+  }
+}

@@ -1,0 +1,991 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-29T00:50:57.602Z",
+  "lessons": {
+    "1.1": {
+      "unit": 1,
+      "topicKey": "1.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "1.2": {
+      "unit": 1,
+      "topicKey": "1.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "1.3": {
+      "unit": 1,
+      "topicKey": "1.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "1.4": {
+      "unit": 1,
+      "topicKey": "1.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "1.5": {
+      "unit": 1,
+      "topicKey": "1.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "1.6": {
+      "unit": 1,
+      "topicKey": "1.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "1.7": {
+      "unit": 1,
+      "topicKey": "1.7",
+      "worksheetKey": "7",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "1.8": {
+      "unit": 1,
+      "topicKey": "1.8",
+      "worksheetKey": "8",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "1.9": {
+      "unit": 1,
+      "topicKey": "1.9",
+      "worksheetKey": "9",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "1.10": {
+      "unit": 1,
+      "topicKey": "1.10",
+      "worksheetKey": "10",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2.1": {
+      "unit": 2,
+      "topicKey": "2.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2.2": {
+      "unit": 2,
+      "topicKey": "2.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2.3": {
+      "unit": 2,
+      "topicKey": "2.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2.4": {
+      "unit": 2,
+      "topicKey": "2.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2.5": {
+      "unit": 2,
+      "topicKey": "2.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2.6": {
+      "unit": 2,
+      "topicKey": "2.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2.7": {
+      "unit": 2,
+      "topicKey": "2.7",
+      "worksheetKey": "7",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2.8": {
+      "unit": 2,
+      "topicKey": "2.8",
+      "worksheetKey": "8",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2.9": {
+      "unit": 2,
+      "topicKey": "2.9",
+      "worksheetKey": "9",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "3.1": {
+      "unit": 3,
+      "topicKey": "3.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "3.2": {
+      "unit": 3,
+      "topicKey": "3.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "3.3": {
+      "unit": 3,
+      "topicKey": "3.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "3.4": {
+      "unit": 3,
+      "topicKey": "3.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "3.5": {
+      "unit": 3,
+      "topicKey": "3.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "3.6": {
+      "unit": 3,
+      "topicKey": "3.6",
+      "worksheetKey": "6-7",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "3.7"
+      ]
+    },
+    "3.7": {
+      "unit": 3,
+      "topicKey": "3.7",
+      "worksheetKey": "6-7",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "3.6"
+      ]
+    },
+    "4.1": {
+      "unit": 4,
+      "topicKey": "4.1",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.2"
+      ]
+    },
+    "4.2": {
+      "unit": 4,
+      "topicKey": "4.2",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.1"
+      ]
+    },
+    "4.3": {
+      "unit": 4,
+      "topicKey": "4.3",
+      "worksheetKey": "3-4-5",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.4",
+        "4.5"
+      ]
+    },
+    "4.4": {
+      "unit": 4,
+      "topicKey": "4.4",
+      "worksheetKey": "3-4-5",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.3",
+        "4.5"
+      ]
+    },
+    "4.5": {
+      "unit": 4,
+      "topicKey": "4.5",
+      "worksheetKey": "3-4-5",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.3",
+        "4.4"
+      ]
+    },
+    "4.6": {
+      "unit": 4,
+      "topicKey": "4.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "4.7": {
+      "unit": 4,
+      "topicKey": "4.7",
+      "worksheetKey": "7-8",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.8"
+      ]
+    },
+    "4.8": {
+      "unit": 4,
+      "topicKey": "4.8",
+      "worksheetKey": "7-8",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.7"
+      ]
+    },
+    "4.9": {
+      "unit": 4,
+      "topicKey": "4.9",
+      "worksheetKey": "9",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "4.10": {
+      "unit": 4,
+      "topicKey": "4.10",
+      "worksheetKey": "10-12",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.11",
+        "4.12"
+      ]
+    },
+    "4.11": {
+      "unit": 4,
+      "topicKey": "4.11",
+      "worksheetKey": "10-12",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.10",
+        "4.12"
+      ]
+    },
+    "4.12": {
+      "unit": 4,
+      "topicKey": "4.12",
+      "worksheetKey": "10-12",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "4.10",
+        "4.11"
+      ]
+    },
+    "5.1": {
+      "unit": 5,
+      "topicKey": "5.1",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "5.2"
+      ]
+    },
+    "5.2": {
+      "unit": 5,
+      "topicKey": "5.2",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": null,
+        "E": null
+      },
+      "combinedWith": [
+        "5.1"
+      ]
+    },
+    "5.3": {
+      "unit": 5,
+      "topicKey": "5.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "5.4": {
+      "unit": 5,
+      "topicKey": "5.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "5.5": {
+      "unit": 5,
+      "topicKey": "5.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "5.6": {
+      "unit": 5,
+      "topicKey": "5.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "5.7": {
+      "unit": 5,
+      "topicKey": "5.7",
+      "worksheetKey": "7",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "5.8": {
+      "unit": 5,
+      "topicKey": "5.8",
+      "worksheetKey": "8",
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "6.1": {
+      "unit": 6,
+      "topicKey": "6.1",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": "2026-03-02",
+        "E": "2026-03-06"
+      },
+      "combinedWith": [
+        "6.2"
+      ]
+    },
+    "6.2": {
+      "unit": 6,
+      "topicKey": "6.2",
+      "worksheetKey": "1-2",
+      "periods": {
+        "B": "2026-03-02",
+        "E": "2026-03-06"
+      },
+      "combinedWith": [
+        "6.1"
+      ]
+    },
+    "6.3": {
+      "unit": 6,
+      "topicKey": "6.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": "2026-03-03",
+        "E": "2026-03-09"
+      }
+    },
+    "6.4": {
+      "unit": 6,
+      "topicKey": "6.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2026-03-05",
+        "E": "2026-03-11"
+      }
+    },
+    "6.5": {
+      "unit": 6,
+      "topicKey": "6.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2026-03-06",
+        "E": "2026-03-11"
+      }
+    },
+    "6.6": {
+      "unit": 6,
+      "topicKey": "6.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": "2026-03-09",
+        "E": "2026-03-13"
+      }
+    },
+    "6.7": {
+      "unit": 6,
+      "topicKey": "6.7",
+      "worksheetKey": "7",
+      "periods": {
+        "B": "2026-03-10",
+        "E": "2026-03-16"
+      }
+    },
+    "6.8": {
+      "unit": 6,
+      "topicKey": "6.8",
+      "worksheetKey": "8",
+      "periods": {
+        "B": "2026-03-12",
+        "E": "2026-03-18"
+      }
+    },
+    "6.9": {
+      "unit": 6,
+      "topicKey": "6.9",
+      "worksheetKey": "9",
+      "periods": {
+        "B": "2026-03-13",
+        "E": "2026-03-18"
+      }
+    },
+    "6.10": {
+      "unit": 6,
+      "topicKey": "6.10",
+      "worksheetKey": "10",
+      "periods": {
+        "B": "2026-03-16",
+        "E": "2026-03-20"
+      }
+    },
+    "6.11": {
+      "unit": 6,
+      "topicKey": "6.11",
+      "worksheetKey": "11",
+      "periods": {
+        "B": "2026-03-17",
+        "E": "2026-03-23"
+      }
+    },
+    "7.1": {
+      "unit": 7,
+      "topicKey": "7.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": "2026-03-19",
+        "E": "2026-03-25"
+      }
+    },
+    "7.2": {
+      "unit": 7,
+      "topicKey": "7.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": "2026-03-20",
+        "E": "2026-03-25"
+      }
+    },
+    "7.3": {
+      "unit": 7,
+      "topicKey": "7.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": "2026-03-23",
+        "E": "2026-03-27"
+      }
+    },
+    "7.4": {
+      "unit": 7,
+      "topicKey": "7.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2026-03-24",
+        "E": "2026-03-30"
+      }
+    },
+    "7.5": {
+      "unit": 7,
+      "topicKey": "7.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2026-03-26",
+        "E": "2026-04-01"
+      }
+    },
+    "7.6": {
+      "unit": 7,
+      "topicKey": "7.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": "2026-03-27",
+        "E": "2026-04-01"
+      }
+    },
+    "7.7": {
+      "unit": 7,
+      "topicKey": "7.7",
+      "worksheetKey": "7",
+      "periods": {
+        "B": "2026-03-30",
+        "E": "2026-04-06"
+      }
+    },
+    "7.8": {
+      "unit": 7,
+      "topicKey": "7.8",
+      "worksheetKey": "8",
+      "periods": {
+        "B": "2026-03-31",
+        "E": "2026-04-08"
+      }
+    },
+    "7.9": {
+      "unit": 7,
+      "topicKey": "7.9",
+      "worksheetKey": "9",
+      "periods": {
+        "B": "2026-04-02",
+        "E": "2026-04-08"
+      }
+    },
+    "8.1": {
+      "unit": 8,
+      "topicKey": "8.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": "2026-04-06",
+        "E": "2026-04-10"
+      }
+    },
+    "8.2": {
+      "unit": 8,
+      "topicKey": "8.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": "2026-04-07",
+        "E": "2026-04-13"
+      }
+    },
+    "8.3": {
+      "unit": 8,
+      "topicKey": "8.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": "2026-04-09",
+        "E": "2026-04-15"
+      }
+    },
+    "8.4": {
+      "unit": 8,
+      "topicKey": "8.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2026-04-10",
+        "E": "2026-04-15"
+      }
+    },
+    "8.5": {
+      "unit": 8,
+      "topicKey": "8.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2026-04-13",
+        "E": "2026-04-17"
+      }
+    },
+    "8.6": {
+      "unit": 8,
+      "topicKey": "8.6",
+      "worksheetKey": "6",
+      "periods": {
+        "B": "2026-04-14",
+        "E": "2026-04-27"
+      }
+    },
+    "9.1": {
+      "unit": 9,
+      "topicKey": "9.1",
+      "worksheetKey": "1",
+      "periods": {
+        "B": "2026-04-16",
+        "E": "2026-04-29"
+      }
+    },
+    "9.2": {
+      "unit": 9,
+      "topicKey": "9.2",
+      "worksheetKey": "2",
+      "periods": {
+        "B": "2026-04-17",
+        "E": "2026-04-29"
+      }
+    },
+    "9.3": {
+      "unit": 9,
+      "topicKey": "9.3",
+      "worksheetKey": "3",
+      "periods": {
+        "B": "2026-04-27",
+        "E": "2026-05-01"
+      }
+    },
+    "9.4": {
+      "unit": 9,
+      "topicKey": "9.4",
+      "worksheetKey": "4",
+      "periods": {
+        "B": "2026-04-28",
+        "E": "2026-05-04"
+      }
+    },
+    "9.5": {
+      "unit": 9,
+      "topicKey": "9.5",
+      "worksheetKey": "5",
+      "periods": {
+        "B": "2026-04-30",
+        "E": "2026-05-06"
+      }
+    }
+  },
+  "progressChecks": {
+    "1": {
+      "unit": 1,
+      "title": "Unit 1 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 1
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2": {
+      "unit": 2,
+      "title": "Unit 2 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 1
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "3": {
+      "unit": 3,
+      "title": "Unit 3 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 1
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "4": {
+      "unit": 4,
+      "title": "Unit 4 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 1
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "5": {
+      "unit": 5,
+      "title": "Unit 5 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 1
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "6": {
+      "unit": 6,
+      "title": "Unit 6 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 1
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "7": {
+      "unit": 7,
+      "title": "Unit 7 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 1
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "8": {
+      "unit": 8,
+      "title": "Unit 8 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 1
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "9": {
+      "unit": 9,
+      "title": "Unit 9 Progress Check",
+      "kind": "pc",
+      "duration": {
+        "adminDays": 2,
+        "reviewDays": 1
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    }
+  },
+  "posters": {
+    "1": {
+      "unit": 1,
+      "title": "Unit 1 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "2": {
+      "unit": 2,
+      "title": "Unit 2 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "3": {
+      "unit": 3,
+      "title": "Unit 3 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "4": {
+      "unit": 4,
+      "title": "Unit 4 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "5": {
+      "unit": 5,
+      "title": "Unit 5 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "6": {
+      "unit": 6,
+      "title": "Unit 6 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "7": {
+      "unit": 7,
+      "title": "Unit 7 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "8": {
+      "unit": 8,
+      "title": "Unit 8 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    },
+    "9": {
+      "unit": 9,
+      "title": "Unit 9 Poster",
+      "kind": "poster",
+      "duration": {
+        "longBlocks": 1,
+        "shortBlocks": 2
+      },
+      "periods": {
+        "B": null,
+        "E": null
+      }
+    }
+  }
+}

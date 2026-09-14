@@ -1,0 +1,61 @@
+{
+  "schema": "apstats-misconception-triage/v1",
+  "entries": {
+    "label:connects the number to the real question of whether flint s water was safe to drink or whether the threshold was exceeded": {
+      "label": "connects the number to the real question of whether flint s water was safe to drink or whether the threshold was exceeded",
+      "sheet": "1.1+1.2+1.4+1.7",
+      "sheetTitle": "Screen Time, Two Deletions",
+      "triagedAt": "2026-09-12",
+      "students": 0,
+      "sections": [
+        "PeriodB",
+        "PeriodE"
+      ]
+    },
+    "variable-vs-individual": {
+      "label": "Confuses the individuals with the variables",
+      "sheet": "1.1+1.2+1.4+1.7",
+      "sheetTitle": "Screen Time, Two Deletions",
+      "triagedAt": "2026-09-12",
+      "students": 0,
+      "sections": [
+        "PeriodB",
+        "PeriodE"
+      ]
+    },
+    "counts-vs-percents": {
+      "label": "Compares unequal groups using counts instead of percentages",
+      "sheet": "1.1+1.2+1.4+1.7",
+      "sheetTitle": "Screen Time, Two Deletions",
+      "triagedAt": "2026-09-12",
+      "students": 0,
+      "sections": [
+        "PeriodB",
+        "PeriodE"
+      ]
+    },
+    "mean-resistant": {
+      "label": "Treats the mean as resistant to outliers",
+      "sheet": "1.1+1.2+1.4+1.7",
+      "sheetTitle": "Screen Time, Two Deletions",
+      "triagedAt": "2026-09-12",
+      "students": 0,
+      "sections": [
+        "PeriodB",
+        "PeriodE"
+      ]
+    },
+    "label:states that unusual features are one of the important characteristics in a full distribution description": {
+      "label": "states that unusual features are one of the important characteristics in a full distribution description",
+      "sheet": "1.1+1.2+1.4+1.7",
+      "sheetTitle": "Screen Time, Two Deletions",
+      "triagedAt": "2026-09-12",
+      "students": 0,
+      "sections": [
+        "PeriodB",
+        "PeriodE"
+      ]
+    }
+  },
+  "weeklyRuns": []
+}

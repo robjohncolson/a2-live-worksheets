@@ -1,0 +1,26 @@
+{
+  "//": "TYPECHECK_HARDENING_SPEC.md P1 — checker only, no emit. Tight allowlist: the 5",
+  "// ": "pure grade-engine SOURCE modules. Per-file `// @ts-check` opts each in (checkJs",
+  "//  ": "off), so imports outside the list are loaded for types but never error-reported.",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"]
+  },
+  "include": [
+    "grade-config.js",
+    "scoring.js",
+    "lesson-grade.js",
+    "gradebook-grid.js",
+    "grade.js"
+  ]
+}

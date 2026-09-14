@@ -1,0 +1,141 @@
+Create TI-84_Plus_CE/cpu-runtime.js — a minimal CPU runtime scaffold for executing lifted Z80/eZ80 ROM blocks.
+
+The emitted blocks in ROM.transpiled.js call methods and access properties on a "cpu" object. Your job is to create a CPU class that implements all of them.
+
+IMPORTANT: Create ONLY TI-84_Plus_CE/cpu-runtime.js. Do NOT modify any other file.
+
+=== REGISTERS (properties) ===
+
+8-bit: a, b, c, d, e, h, l, f (flags register)
+16/24-bit pairs: bc, de, hl, sp, ix, iy, af
+Half-index: ixh, ixl, iyh, iyl
+Special: i (interrupt vector), im (interrupt mode), iff1, iff2, madl (mixed ADL mode)
+Computed: addressMask — returns 0xffffff in ADL mode, 0xffff in Z80 mode
+
+The register pairs must be getters/setters that compose from individual bytes:
+- bc = (b << 8) | c
+- de = (d << 8) | e
+- hl = (h << 8) | l
+- af = (a << 8) | f
+- sp, ix, iy are standalone 24-bit values
+- ixh = (ix >> 8) & 0xff, ixl = ix & 0xff (with setters)
+- iyh = (iy >> 8) & 0xff, iyl = iy & 0xff (with setters)
+
+Alternate register set: b2,c2,d2,e2,h2,l2 for EXX; a2,f2 for EX AF,AF'
+
+=== METHODS ===
+
+Memory:
+- read8(addr) — read byte from memory
+- write8(addr, value) — write byte to memory
+- readIndirect8(pair) — read byte at address in register pair (e.g. cpu.readIndirect8('hl'))
+- writeIndirect8(pair, value) — write byte
+- readIndirect24(pair) — read 24-bit word at address in register pair
+- writeIndirect24(pair, value) — write 24-bit word
+- readIndexed8(reg, displacement) — read byte at (ix/iy + displacement)
+- writeIndexed8(reg, displacement, value) — write byte at (ix/iy + displacement)
+- read16(addr) — read 16-bit LE word
+- write16(addr, value) — write 16-bit LE word
+- read24(addr) — read 24-bit LE word
+- write24(addr, value) — write 24-bit LE word
+
+ALU 8-bit:
+- add8(a, b) — add, set flags (Z,S,H,C,N=0,PV=overflow), return result
+- subtract8(a, b) — subtract, set flags, return result
+- addWithCarry8(a, b) — add with carry, return result
+- subtractWithBorrow8(a, b) — subtract with borrow (carry), return result
+- compare(a, b) — same as subtract8 but don't store result, just set flags
+- negate(a) — NEG: 0 - a, set flags, return result
+- decimalAdjustAccumulator(a) — DAA, return adjusted result
+- updateLogicFlags(result) — set Z,S,PV(parity),H=1,N=0,C=0 for AND/OR/XOR results
+- test(a, b) — TST: AND without storing, set flags
+
+ALU 16/24-bit:
+- addWord(a, b) — add word registers, set H and C flags only, return result
+- addWithCarryWord(a, b) — ADC HL,rr, set all flags, return result
+- subtractWithBorrowWord(a, b) — SBC HL,rr, set all flags, return result
+- multiplyBytes(pair) — MLT: multiply high and low bytes of pair, return 16-bit result
+
+Rotate/Shift:
+- rotateLeftCircular(a) — RLCA: bit7 to carry and bit0, return result
+- rotateRightCircular(a) — RRCA: bit0 to carry and bit7, return result
+- rotateLeftThroughCarry(a) — RLA: through carry, return result
+- rotateRightThroughCarry(a) — RRA: through carry, return result
+- rotateShift8(op, value) — CB-prefixed: op is 'rl','rr','rlc','rrc','sla','sra','srl','sll'. Set all flags including Z. Return result.
+
+Bit operations:
+- testBit(value, bit) — BIT: set Z flag based on bit
+- complementCarryFlag() — CCF: invert carry flag
+- setCarryFlag() — SCF: set carry flag
+
+Block transfer:
+- ldi() — LD, inc HL, inc DE, dec BC
+- ldir() — repeat LDI until BC=0
+- ldd() — LD, dec HL, dec DE, dec BC
+- lddr() — repeat LDD until BC=0
+- cpi() — compare A with (HL), inc HL, dec BC
+- cpir() — repeat CPI until match or BC=0
+
+BCD rotate:
+- rld() — rotate left digit: (HL) nibbles rotate with A
+- rrd() — rotate right digit
+
+I/O:
+- ioRead(port) — read from I/O port, return byte
+- ioWrite(port, value) — write to I/O port
+- ioReadPage0(port) — IN0: read from page-0 port
+- ioWritePage0(port, value) — OUT0: write to page-0 port
+- ioReadImmediate(a, port) — IN A,(n): read from port (A<<8)|n
+- testIo(mask) — TSTIO: test I/O
+- otimr() — OTIMR: output, increment, repeat
+
+Stack/Control:
+- push(value) — push word onto stack
+- pop() — pop word from stack, return value
+- call(target) — push return address, no jump (emitted code handles flow)
+- popReturn() — pop return address from stack, return it
+- checkCondition(cond) — evaluate flag condition ('z','nz','c','nc','po','pe','p','m'), return boolean
+- decrementAndCheckB() — DJNZ helper: dec B, return true if B != 0
+- halt() — halt CPU, return sentinel
+- sleep() — SLP: enter sleep mode, return sentinel
+
+Exchange:
+- swapMainAlternate() — EXX: swap BC,DE,HL with alternates
+- swapAf() — EX AF,AF': swap AF with alternate
+
+Misc:
+- unimplemented(pc, dasm) — log unimplemented instruction (stub)
+
+=== EXECUTOR ===
+
+Add a simple executor function that runs blocks:
+
+export function createExecutor(blocks, memory) {
+  const cpu = new CPU(memory);
+  return {
+    cpu,
+    runFrom(startAddress, maxSteps = 100000) {
+      let pc = startAddress;
+      let steps = 0;
+      while (steps < maxSteps) {
+        const key = pc.toString(16).padStart(6, '0') + ':adl';
+        const block = blocks[key];
+        if (!block) break;
+        // block.source contains a function — but it's stored as string in JSON
+        // For now, just log the block entry
+        steps++;
+        // The function returns the next PC
+        break; // placeholder
+      }
+      return { steps, lastPc: pc };
+    }
+  };
+}
+
+=== STYLE ===
+
+- ES module (export class CPU, export function createExecutor)
+- Clean, readable code — early returns, no cleverness
+- Use proper flag calculations (Z80 flag register: bit7=S, bit6=Z, bit5=Y, bit4=H, bit3=X, bit2=PV, bit1=N, bit0=C)
+- Memory should be a Uint8Array passed to the constructor
+- Default memory size: 4MB (0x400000) to match the ROM size

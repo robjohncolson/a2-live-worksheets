@@ -1,0 +1,46 @@
+{
+  "_comment": "Authoring anchors for NEW CED Unit 1 (Exploring One-Variable Data & Collecting Data; OLD topics 1.x + 3.x). Describe what a DOK-2 and a DOK-3 look like here so 66 authors rate by the same yardstick (spec §1.1-1.2). Anchors DESCRIBE released-FRQ patterns; they never quote an item.",
+  "unit": 1,
+  "dok2_anchors": [
+    {
+      "id": "u1-d2-describe-in-context",
+      "shape": "Given one display, describe shape / center / variability / unusual features in context with units.",
+      "why_dok2": "Multi-feature procedure with one path; the student applies SOCS, no judgment between alternatives.",
+      "skills": ["2.A", "2.B"]
+    },
+    {
+      "id": "u1-d2-compute-and-show",
+      "shape": "Compute a summary (median, IQR, z-score, percentile) from a table or list and state it in context.",
+      "why_dok2": "Known procedure, single answer; 'show your work' does not raise the level.",
+      "skills": ["3.A", "2.C"]
+    }
+  ],
+  "dok3_anchors": [
+    {
+      "id": "u1-d3-adjudicate-two-descriptions",
+      "shape": "Two plausible descriptions (or two displays, or two summaries) of the same data; decide which a reader should trust, cite the specific features that settle it, and say what you would report.",
+      "why_dok3": "Requires coordinating several features against competing claims and defending a choice; more than one feature is relevant and either claim can be partly defended.",
+      "skills": ["4.B"],
+      "frq_patterns": ["two-descriptions-adjudicate-then-choose-center", "which-display-for-this-question-justify"]
+    },
+    {
+      "id": "u1-d3-scope-of-what-data-can-support",
+      "shape": "A dataset and two claims made from it; decide which claim the data can actually support and what additional data the other would need (intro / sampling / bias days).",
+      "why_dok3": "Bounds a conclusion: the student must distinguish a descriptive statement from an inferential one and name the missing evidence.",
+      "skills": ["1.A", "4.A"],
+      "frq_patterns": ["claim-vs-data-support-bound-the-conclusion", "sampling-method-critique-and-fix"]
+    },
+    {
+      "id": "u1-d3-whose-procedure-and-so-what",
+      "shape": "Two students got different values for a statistic from the same data; find whose procedure is right AND explain what the wrong value would lead a reader to conclude.",
+      "why_dok3": "Error analysis plus consequence; the 'so what' requires reasoning about the reader, not just the arithmetic.",
+      "skills": ["3.A", "4.B"],
+      "frq_patterns": ["whose-computation-and-what-it-misleads"]
+    }
+  ],
+  "not_dok3": [
+    "A DOK-2 description with more bars, more decimals, or a nastier dataset (R2: DOK is not difficulty).",
+    "A DOK-3 whose decision is pre-made in the stem ('Ben is right; explain why') — that is DOK-2 (R3).",
+    "Lettered parts that each have exactly one procedure and never ask for a judgment."
+  ]
+}

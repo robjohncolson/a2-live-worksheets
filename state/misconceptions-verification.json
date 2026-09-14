@@ -1,0 +1,237 @@
+{
+  "schema": "apstats-misconceptions-verification/v1",
+  "date": "2026-09-11",
+  "startCommit": "336deef",
+  "commits": {
+    "maps": "96808e692970c18421535cfaf535b8c3feed83bd",
+    "server": "06041e99e67ebe14f0436c9f0a8f23791b637f16",
+    "dashboard": "92953b8f234bc3ede2c2c9308b04df18163af8be",
+    "verification": "commit containing this record"
+  },
+  "pushed": false,
+  "suites": {
+    "server": {
+      "files": 90,
+      "passed": 1758,
+      "failed": 0,
+      "skipped": 3,
+      "failures": []
+    },
+    "root": {
+      "files": 311,
+      "passed": 9966,
+      "failed": 23,
+      "skipped": 1,
+      "failures": [
+        {
+          "file": "tests/classroom-structure.test.js",
+          "name": "Live Classroom v1a - Desk integration D3: the Teacher menu has a Live Classroom item opening teacher-classroom.html",
+          "known": true
+        },
+        {
+          "file": "tests/classroom-structure.test.js",
+          "name": "KEYBOARD_AVATAR Phase 1 -- player controller wiring Desk has the keyboard help-text strip below the board mount",
+          "known": true
+        },
+        {
+          "file": "tests/desk-self-signup.test.js",
+          "name": "teacher onboarding + class gradebook (static) the Teacher menu opens the Teacher Tools launcher, which wires the Roster Console",
+          "known": true
+        },
+        {
+          "file": "tests/desk-user-role.test.js",
+          "name": "Desk: user-role gating + sign-in teacher checkbox 12: Teacher Tools launcher reaches the teacher pages (roster console, dashboard, codegen)",
+          "known": true
+        },
+        {
+          "file": "tests/desk-verify-tools.test.js",
+          "name": "Desk — verification tools surfaced the Teacher Tools launcher wires the scan-to-verify tool (openVerifyQR)",
+          "known": true
+        },
+        {
+          "file": "tests/doge-payout-agent.test.js",
+          "name": "DOGE payout agent config and RPC wrapper lets environment override file config and keeps portable defaults",
+          "known": true
+        },
+        {
+          "file": "tests/doge-send-core.test.js",
+          "name": "doge-send durable file journal atomically creates, refuses overwrite, updates, and clears a mode-0600 journal",
+          "known": true
+        },
+        {
+          "file": "tests/lineage.test.js",
+          "name": "data lineage manifest points every automatic regeneration command at an existing script or test",
+          "known": true
+        },
+        {
+          "file": "tests/phase4-structure.test.js",
+          "name": "teacher-dashboard.html — Phase 4a structure declares it is a teacher dashboard (title)",
+          "known": true
+        },
+        {
+          "file": "tests/phase4-structure.test.js",
+          "name": "teacher-dashboard.html — Phase 4a structure teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys",
+          "known": true
+        },
+        {
+          "file": "tests/phase4b-structure.test.js",
+          "name": "Phase 4b — teacher-dashboard.html remediation panel teacher secret persistence is opt-in only; localStorage scoped to known keys (Phase 4a security posture, updated 2026-05-19)",
+          "known": true
+        },
+        {
+          "file": "tests/progress-reset-matrix-cleared-storage.test.js",
+          "name": "matrix row: cleared storage recovers — CONTROL (a subsequent live success) (7) flips to available, writes the latch, and the strict gate resumes",
+          "known": true
+        },
+        {
+          "file": "tests/progress-reset-matrix-latch.test.js",
+          "name": "matrix row: strict-gate-still-strict — evidence present + genuinely incomplete predecessor stays LOCKED D4 fail-open never leaks into the affirmative-server case",
+          "known": true
+        },
+        {
+          "file": "tests/progress-reset-matrix-loadstate.test.js",
+          "name": "matrix row: 401 -> auth classifies unavailable/auth, shows the Sign-in banner, and never clears the roster session",
+          "known": true
+        },
+        {
+          "file": "tests/progress-reset-matrix-loadstate.test.js",
+          "name": "matrix row: 403 -> auth (classified identically to 401) classifies unavailable/auth",
+          "known": true
+        },
+        {
+          "file": "tests/remaining-feature-contracts.test.js",
+          "name": "F004 Start Here signed-in progress preview renders the signed-out fallback when identity or service config is unavailable",
+          "known": true
+        },
+        {
+          "file": "tests/remaining-feature-contracts.test.js",
+          "name": "F004 Start Here signed-in progress preview fetches /grade with rosterClient.token() and renders quarter/unit progress for signed-in students",
+          "known": true
+        },
+        {
+          "file": "tests/remaining-feature-contracts.test.js",
+          "name": "F061 public worksheet table of contents index links TOC.html and TOC lists all 69 live worksheet files that exist on disk",
+          "known": true
+        },
+        {
+          "file": "tests/journeys/j2-shared-device.journey.test.js",
+          "name": "Desk journey J2 J2 reloads a shared device across A → B → A without leaking marks, due chip, or SRS state, then hydrates a fresh marks bucket from /donow (supersedes desk-calendar-sync per-student visibility and selfDone hydration behavior)",
+          "known": true
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab 'network' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "known": true
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '401' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "known": true
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '403' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "known": true
+        },
+        {
+          "file": "tests/journeys/j7-offline-grade.journey.test.js",
+          "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '500' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+          "known": true
+        }
+      ]
+    }
+  },
+  "commands": {
+    "server": "cd roster-server && npm.cmd test -- --reporter=json --outputFile=../test-results/misconceptions-server-final.json --maxWorkers=2 --minWorkers=1",
+    "root": "npm.cmd test -- --reporter=json --outputFile=test-results/misconceptions-root-final.json --maxWorkers=2 --minWorkers=1",
+    "rubricCheck": "node scripts/build-misconception-rubric-map.mjs --check: passed",
+    "distractorCheck": "node scripts/build-misconception-distractor-map.mjs --check: passed",
+    "smoke": "node scripts/smoke-misconceptions.mjs: passed"
+  },
+  "vocabulary": {
+    "size": 57,
+    "reviewed": false,
+    "provenance": "codex-draft-2026-09-11"
+  },
+  "coverage": {
+    "rubricItems": 212,
+    "promptFiles": 69,
+    "rubricElements": {
+      "tagged": 75,
+      "total": 1333
+    },
+    "mcqs": 354,
+    "distractors": {
+      "tagged": 97,
+      "total": 1416
+    }
+  },
+  "smoke": {
+    "source": "synthetic fixture using real answer key and drafted maps",
+    "top5": [
+      {
+        "key": "categorical-quantitative",
+        "label": "Confuses categories with measured or counted quantities",
+        "students": 3
+      },
+      {
+        "key": "counts-vs-percents",
+        "label": "Compares unequal groups using counts instead of percentages",
+        "students": 3
+      },
+      {
+        "key": "expected-guaranteed",
+        "label": "Treats a long-run expected value as a guaranteed outcome",
+        "students": 3
+      },
+      {
+        "key": "random-selection-assignment",
+        "label": "Confuses random selection with random assignment",
+        "students": 3
+      },
+      {
+        "key": "sample-size-variability",
+        "label": "Expects larger samples to make sample statistics more variable",
+        "students": 3
+      }
+    ]
+  },
+  "gradeProtection": {
+    "goldenSnapshots": "unchanged; all M2b grading-invariance tests pass",
+    "gradingFunctions": "unchanged",
+    "config": "TEACHER_DIAGNOSTIC_CONFIG.misconceptions is separate from frozen PHASE3_CONFIG",
+    "generatedBundle": "refreshed only for diagnostic constant and source hash",
+    "protectedInputs": "No diffs against 336deef for answer-key.json, skill-map.json, skill-taxonomy-ced2026.json, or the 69 prompt files. Curriculum clone was read only.",
+    "ledgerWrites": false
+  },
+  "gitnexus": {
+    "refresh": "succeeded with refreshed shadows, 2 workers, 4096KB limit, and extended parser timeout",
+    "initialSymbolImpacts": {
+      "mountClass": "LOW; direct createApp; two impacted symbols",
+      "mountReview": "LOW; direct createApp; two impacted symbols"
+    },
+    "finalSymbolImpacts": {
+      "_paintReviewByItem": "LOW; one direct caller, six impacted symbols, zero named processes",
+      "misconceptionActions": "LOW; one direct caller, two impacted symbols, zero named processes"
+    },
+    "precommitChecks": "detect_changes run before each implementation commit; aggregate HIGH results were reported",
+    "comparisons": {
+      "master": "LOW; remaining workspace changes",
+      "startCommit": "CRITICAL; 35 files, 125 symbols, 21 processes; includes pre-existing dirty files, duplicate baseline graph nodes and shifted shadow locations"
+    },
+    "scopeReview": "Task-owned commit diffs reviewed separately; shared files staged via git add -p"
+  },
+  "notes": [
+    "Initial npm test runs completed; the first server run exposed diagnostic config in frozen grading snapshots, corrected without changing golden snapshots.",
+    "Initial root run had generated-artifact drift and load-sensitive timing failures; artifacts were refreshed and complete suites rerun with two workers. All final root failures match the supplied pre-existing failure names.",
+    "Known Desk journey J4 failure did not recur in the final root run.",
+    "Local grades-PeriodB.json and grades-PeriodE.json contained computed grades, not raw responses/frq_result. Smoke therefore uses synthetic students and real curriculum-derived maps.",
+    "No live endpoint smoke or deployment was performed; nothing was pushed.",
+    "Existing unrelated workspace edits remain outside these commits."
+  ],
+  "limitations": [
+    "Draft tags require teacher precision review; no reviewed flag was flipped.",
+    "Root suite remains red only for the 23 named pre-existing failures.",
+    "Aggregate GitNexus comparison includes unrelated workspace changes and baseline duplicates; initial HTML impact lookups were unavailable until shadows and index were refreshed."
+  ]
+}

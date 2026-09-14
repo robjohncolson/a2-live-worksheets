@@ -1,0 +1,330 @@
+{
+  "commits": {
+    "A": [
+      "1b10839f84f68f2edac6fd52c907368a427ffd40",
+      "d9a127f59e84bb4bde3fbba91b0b55ceb81f91e1"
+    ],
+    "B": [
+      "5406139b12047e695de782a92fbc1f3d38488ea4",
+      "commit containing this report"
+    ]
+  },
+  "suites": {
+    "focusedWorkAndPairing": {
+      "passed": 38,
+      "failed": 0,
+      "skipped": 0
+    },
+    "scheduleCheck": "pass; both copies match",
+    "root": {
+      "passed": 9874,
+      "failed": 24,
+      "skipped": 1
+    },
+    "rosterServer": {
+      "passed": 1739,
+      "failed": 0,
+      "skipped": 3
+    },
+    "pytest": {
+      "passed": 699,
+      "failed": 0,
+      "skipped": 0,
+      "newBestWinsTests": 26
+    }
+  },
+  "workDays": [
+    {
+      "date": "2026-10-13",
+      "before": "2.1"
+    },
+    {
+      "date": "2026-10-19",
+      "before": "2.3"
+    },
+    {
+      "date": "2026-11-13",
+      "before": "5.2"
+    },
+    {
+      "date": "2026-12-11",
+      "before": "6.6"
+    },
+    {
+      "date": "2026-12-18",
+      "before": "6.8"
+    },
+    {
+      "date": "2027-01-08",
+      "before": "8.4"
+    },
+    {
+      "date": "2027-01-22",
+      "before": "5.7"
+    },
+    {
+      "date": "2027-02-05",
+      "before": "7.6"
+    },
+    {
+      "date": "2027-02-12",
+      "before": "7.9"
+    },
+    {
+      "date": "2027-03-01",
+      "before": "2.4"
+    },
+    {
+      "date": "2027-03-19",
+      "before": "Review 1"
+    }
+  ],
+  "ePairs": [
+    {
+      "date": "2026-09-16",
+      "pair": "1.4+1.5"
+    },
+    {
+      "date": "2026-09-23",
+      "pair": "1.7+1.8"
+    },
+    {
+      "date": "2026-09-25",
+      "pair": "1.9+3.1"
+    },
+    {
+      "date": "2026-10-19",
+      "pair": "2.1+2.2"
+    },
+    {
+      "date": "2026-10-23",
+      "pair": "4.1+4.2"
+    },
+    {
+      "date": "2026-11-06",
+      "pair": "4.7+4.8"
+    },
+    {
+      "date": "2026-11-20",
+      "pair": "5.1+5.3"
+    },
+    {
+      "date": "2026-12-02",
+      "pair": "5.4+5.5"
+    },
+    {
+      "date": "2027-01-11",
+      "pair": "8.1+8.4"
+    },
+    {
+      "date": "2027-01-27",
+      "pair": "5.7+7.1"
+    },
+    {
+      "date": "2027-03-05",
+      "pair": "2.4+2.5"
+    },
+    {
+      "date": "2027-03-08",
+      "pair": "2.6+2.7"
+    }
+  ],
+  "pcDay2": {
+    "1": {
+      "B": "2026-10-09",
+      "E": "2026-10-16"
+    },
+    "2": {
+      "B": "2026-11-24",
+      "E": "2026-11-30"
+    },
+    "3": {
+      "B": "2027-01-21",
+      "E": "2027-01-25"
+    },
+    "4": {
+      "B": "2027-02-26",
+      "E": "2027-03-03"
+    },
+    "5": {
+      "B": "2027-03-15",
+      "E": "2027-03-17"
+    }
+  },
+  "reviewEnds": {
+    "B": "2027-03-22",
+    "E": "2027-03-24"
+  },
+  "bestWinsMatrix": [
+    {
+      "existing": null,
+      "target": 92,
+      "decision": "PUSH",
+      "lastSynced": 92
+    },
+    {
+      "existing": 95,
+      "target": 92,
+      "decision": "KEEP",
+      "lastSynced": 95
+    },
+    {
+      "existing": 100,
+      "target": 92,
+      "decision": "KEEP",
+      "lastSynced": 100
+    },
+    {
+      "existing": 40,
+      "target": 92,
+      "decision": "PUSH",
+      "lastSynced": 92
+    }
+  ],
+  "bestWinsChecks": [
+    "Second identical run: 4 skips, zero reads/writes",
+    "Later target 98: three pushes, kept 100 remains skipped",
+    "Equality and 1e-9 tolerance",
+    "Dry-run shows both numbers and performs no state or grade writes",
+    "Captured gradebook DOM parses 92, 92.5, blank and em dash without focus/typing",
+    "All component keys use the same rule",
+    "Failed writes do not advance last-synced"
+  ],
+  "knownRootFailures": [
+    {
+      "file": "tests/classroom-structure.test.js",
+      "name": "Live Classroom v1a - Desk integration D3: the Teacher menu has a Live Classroom item opening teacher-classroom.html",
+      "known": true
+    },
+    {
+      "file": "tests/classroom-structure.test.js",
+      "name": "KEYBOARD_AVATAR Phase 1 -- player controller wiring Desk has the keyboard help-text strip below the board mount",
+      "known": true
+    },
+    {
+      "file": "tests/desk-self-signup.test.js",
+      "name": "teacher onboarding + class gradebook (static) the Teacher menu opens the Teacher Tools launcher, which wires the Roster Console",
+      "known": true
+    },
+    {
+      "file": "tests/desk-user-role.test.js",
+      "name": "Desk: user-role gating + sign-in teacher checkbox 12: Teacher Tools launcher reaches the teacher pages (roster console, dashboard, codegen)",
+      "known": true
+    },
+    {
+      "file": "tests/desk-verify-tools.test.js",
+      "name": "Desk — verification tools surfaced the Teacher Tools launcher wires the scan-to-verify tool (openVerifyQR)",
+      "known": true
+    },
+    {
+      "file": "tests/doge-payout-agent.test.js",
+      "name": "DOGE payout agent config and RPC wrapper lets environment override file config and keeps portable defaults",
+      "known": true
+    },
+    {
+      "file": "tests/doge-send-core.test.js",
+      "name": "doge-send durable file journal atomically creates, refuses overwrite, updates, and clears a mode-0600 journal",
+      "known": true
+    },
+    {
+      "file": "tests/lineage.test.js",
+      "name": "data lineage manifest points every automatic regeneration command at an existing script or test",
+      "known": true
+    },
+    {
+      "file": "tests/phase4-structure.test.js",
+      "name": "teacher-dashboard.html — Phase 4a structure declares it is a teacher dashboard (title)",
+      "known": true
+    },
+    {
+      "file": "tests/phase4-structure.test.js",
+      "name": "teacher-dashboard.html — Phase 4a structure teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys",
+      "known": true
+    },
+    {
+      "file": "tests/phase4b-structure.test.js",
+      "name": "Phase 4b — teacher-dashboard.html remediation panel teacher secret persistence is opt-in only; localStorage scoped to known keys (Phase 4a security posture, updated 2026-05-19)",
+      "known": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-cleared-storage.test.js",
+      "name": "matrix row: cleared storage recovers — CONTROL (a subsequent live success) (7) flips to available, writes the latch, and the strict gate resumes",
+      "known": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-latch.test.js",
+      "name": "matrix row: strict-gate-still-strict — evidence present + genuinely incomplete predecessor stays LOCKED D4 fail-open never leaks into the affirmative-server case",
+      "known": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-loadstate.test.js",
+      "name": "matrix row: 401 -> auth classifies unavailable/auth, shows the Sign-in banner, and never clears the roster session",
+      "known": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-loadstate.test.js",
+      "name": "matrix row: 403 -> auth (classified identically to 401) classifies unavailable/auth",
+      "known": true
+    },
+    {
+      "file": "tests/remaining-feature-contracts.test.js",
+      "name": "F004 Start Here signed-in progress preview renders the signed-out fallback when identity or service config is unavailable",
+      "known": true
+    },
+    {
+      "file": "tests/remaining-feature-contracts.test.js",
+      "name": "F004 Start Here signed-in progress preview fetches /grade with rosterClient.token() and renders quarter/unit progress for signed-in students",
+      "known": true
+    },
+    {
+      "file": "tests/remaining-feature-contracts.test.js",
+      "name": "F061 public worksheet table of contents index links TOC.html and TOC lists all 69 live worksheet files that exist on disk",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j2-shared-device.journey.test.js",
+      "name": "Desk journey J2 J2 reloads a shared device across A → B → A without leaking marks, due chip, or SRS state, then hydrates a fresh marks bucket from /donow (supersedes desk-calendar-sync per-student visibility and selfDone hydration behavior)",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j4-quick-check.journey.test.js",
+      "name": "Desk journey J4 J4 resumes answered snapshots without score inflation and commits one 8/10 Quick check (supersedes desk-blooket-flashcards it 55 “_bfSaveProgress persists the answered snapshot”, it 56 “answer saves after scoring and Next clears answered before saving”, it 57 “answer then Cancel resumes at the following card without another point”, it 58 “pass timer is canceled on close and resume commits the saved 80% once”, and it 58b “non-passing answer then Cancel resumes one card ahead without a commit”)",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab 'network' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '401' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '403' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '500' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "known": true
+    }
+  ],
+  "dateDerivedUpdates": "Regenerated both schedule copies, Desk shadow, DOK pending list, date assertions and server golden hashes/due counts/quarter memberships. No grade-engine changes.",
+  "boundaries": [
+    "sync_section signature unchanged",
+    "daily_schoology_sync.ps1 unchanged",
+    "schoology_sync_lib.py and grade writer unchanged",
+    "E rule parameters, pacing arrays and unit boundaries unchanged",
+    "No live Schoology access",
+    "No scratch directories created under state",
+    "Unrelated working-tree changes excluded from commits"
+  ],
+  "limitations": [
+    "GitNexus refresh failed EPERM writing the user registry; CLI impact had missing Desk symbols, locks and ambiguous baseline copies. Used the prompt-authorized git-grep caller inventory and manual impact review; detect_changes ran before each commit.",
+    "Root suite retains exactly the 24 explicitly permitted pre-existing failures, listed by name."
+  ],
+  "pushed": false
+}

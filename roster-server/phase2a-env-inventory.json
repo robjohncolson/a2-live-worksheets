@@ -1,0 +1,386 @@
+[
+  {
+    "name": "ANSWER_KEY_PATH",
+    "decision": "KEEP",
+    "modules": [
+      "grade-contexts.js",
+      "server.js"
+    ]
+  },
+  {
+    "name": "BCRYPT_COST",
+    "decision": "KEEP",
+    "modules": [
+      "server.js",
+      "vitest.config.js"
+    ]
+  },
+  {
+    "name": "BLOCKCYPHER_TOKEN",
+    "decision": "DROP",
+    "modules": [
+      "doge-chain.js"
+    ]
+  },
+  {
+    "name": "BUYBACK_ENABLED",
+    "decision": "DROP",
+    "modules": [
+      "doge-wallet.js"
+    ]
+  },
+  {
+    "name": "FRQ_APPEAL_MAX_PER_MINUTE",
+    "decision": "KEEP",
+    "modules": [
+      "ledger.js"
+    ]
+  },
+  {
+    "name": "FRQ_CANARY_STUDENTS",
+    "decision": "KEEP",
+    "modules": [
+      "ledger.js"
+    ]
+  },
+  {
+    "name": "FRQ_GRADE_MODE",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "FRQ_GRADER_SECRET",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "FRQ_GRADER_URL",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "FRQ_RECORD_MAX_PER_MINUTE",
+    "decision": "KEEP",
+    "modules": [
+      "ledger.js"
+    ]
+  },
+  {
+    "name": "FRQ_STATUS_MAX_PER_MINUTE",
+    "decision": "KEEP",
+    "modules": [
+      "ledger.js"
+    ]
+  },
+  {
+    "name": "GIFTING_ENABLED",
+    "decision": "DROP",
+    "modules": [
+      "doge-wallet.js"
+    ]
+  },
+  {
+    "name": "GRADE_FREEZE_DIR",
+    "decision": "KEEP",
+    "modules": [
+      "grade-contexts.js"
+    ]
+  },
+  {
+    "name": "LESSON_SCHEDULE_PATH",
+    "decision": "KEEP",
+    "modules": [
+      "grade-contexts.js",
+      "server.js"
+    ]
+  },
+  {
+    "name": "NODE_ENV",
+    "decision": "KEEP",
+    "modules": [
+      "frq-worker.js",
+      "grade-contexts.js",
+      "server.js",
+      "doge-wallet.js"
+    ]
+  },
+  {
+    "name": "OPEN_SIGNUP_SECTIONS",
+    "decision": "KEEP",
+    "modules": [
+      "signup-config.js"
+    ]
+  },
+  {
+    "name": "PAYOUT_AGENT_KEY",
+    "decision": "DROP",
+    "modules": [
+      "retired wallet / payout configuration"
+    ]
+  },
+  {
+    "name": "PAYOUT_BATCH_CAP",
+    "decision": "DROP",
+    "modules": [
+      "payout.js"
+    ]
+  },
+  {
+    "name": "PC_FIGURES_MANIFEST_PATH",
+    "decision": "DROP",
+    "modules": [
+      "pc-figures.js"
+    ]
+  },
+  {
+    "name": "PC_FIGURES_SUPABASE_SERVICE_KEY",
+    "decision": "DROP",
+    "modules": [
+      "pc-figures.js"
+    ]
+  },
+  {
+    "name": "PC_FIGURES_SUPABASE_URL",
+    "decision": "DROP",
+    "modules": [
+      "pc-figures.js"
+    ]
+  },
+  {
+    "name": "PC_TRACK_ENABLED",
+    "decision": "DROP",
+    "modules": [
+      "grade-config.js"
+    ]
+  },
+  {
+    "name": "PORT",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "RAILWAY_GIT_COMMIT_SHA",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "RECEIPT_ISSUER_PRIVATE_KEY",
+    "decision": "KEEP",
+    "modules": [
+      "receipts.js"
+    ]
+  },
+  {
+    "name": "RETIRED_ISSUER_PUBKEYS",
+    "decision": "KEEP",
+    "modules": [
+      "receipts.js"
+    ]
+  },
+  {
+    "name": "REVIEW_GRANT_PUBKEY",
+    "decision": "KEEP",
+    "modules": [
+      "receipts.js"
+    ]
+  },
+  {
+    "name": "ROSTER_GRADER_SECRET",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "ROSTER_PROCTOR_SECRET",
+    "decision": "KEEP",
+    "modules": [
+      "ledger.js"
+    ]
+  },
+  {
+    "name": "ROSTER_PW_ENC_KEY",
+    "decision": "KEEP",
+    "modules": [
+      "crypto.js"
+    ]
+  },
+  {
+    "name": "ROSTER_SUPABASE_SERVICE_KEY",
+    "decision": "KEEP",
+    "modules": [
+      "db.js",
+      "ledger-db.js",
+      "lesson-unlock-db.js",
+      "nudge-db.js",
+      "remediation-db.js",
+      "worksheet-diagnostics.js",
+      "payout.js",
+      "pc-db.js",
+      "poll-archive-db.js",
+      "trainer-db.js"
+    ]
+  },
+  {
+    "name": "ROSTER_SUPABASE_URL",
+    "decision": "KEEP",
+    "modules": [
+      "db.js",
+      "ledger-db.js",
+      "lesson-unlock-db.js",
+      "nudge-db.js",
+      "remediation-db.js",
+      "worksheet-diagnostics.js",
+      "payout.js",
+      "pc-db.js",
+      "poll-archive-db.js",
+      "trainer-db.js"
+    ]
+  },
+  {
+    "name": "ROSTER_TEACHER_SECRET",
+    "decision": "KEEP",
+    "modules": [
+      "ledger.js",
+      "server.js",
+      "teacher-auth.js"
+    ]
+  },
+  {
+    "name": "ROSTER_TOKEN_SECRET",
+    "decision": "KEEP",
+    "modules": [
+      "token.js",
+      "worksheet-diagnostics.js"
+    ]
+  },
+  {
+    "name": "SIGNUP_CLAIM_MAX",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "SIGNUP_CLAIM_WINDOW_MS",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "SKILL_MAP_PATH",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "STAKES_ENABLED",
+    "decision": "DROP",
+    "modules": [
+      "doge-wallet.js"
+    ]
+  },
+  {
+    "name": "STUDENT_WALLET_OPTIN",
+    "decision": "DROP",
+    "modules": [
+      "retired wallet / payout configuration"
+    ]
+  },
+  {
+    "name": "TEACHER_KEY",
+    "decision": "KEEP",
+    "modules": [
+      "teacher-auth.js"
+    ]
+  },
+  {
+    "name": "TRAINER_DECK_ALLOWLIST",
+    "decision": "DROP",
+    "modules": [
+      "trainer.js"
+    ]
+  },
+  {
+    "name": "USE_V3_GRADING",
+    "decision": "KEEP",
+    "modules": [
+      "grade-config.js"
+    ]
+  },
+  {
+    "name": "VERIFY_IP_MAX",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "VERIFY_IP_WINDOW_MS",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "VERIFY_LOCKOUT_MAX",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "VERIFY_LOCKOUT_WINDOW_MS",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "VITEST",
+    "decision": "KEEP",
+    "modules": [
+      "grade-contexts.js"
+    ]
+  },
+  {
+    "name": "WALLET_KEY_SECRET",
+    "decision": "DROP",
+    "modules": [
+      "retired wallet / payout configuration"
+    ]
+  },
+  {
+    "name": "WORK_MANIFEST_PATH",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "WORKSHEET_KEY_PATH",
+    "decision": "KEEP",
+    "modules": [
+      "server.js"
+    ]
+  },
+  {
+    "name": "UPDATE_M2B_GOLDEN",
+    "decision": "KEEP",
+    "modules": [
+      "tests/m2b-grade-invariance.test.js"
+    ]
+  }
+]

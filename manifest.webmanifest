@@ -1,0 +1,31 @@
+{
+  "name": "Algebra 2 Desk",
+  "short_name": "Algebra 2",
+  "description": "Your Algebra 2 home hub: lessons, worksheets, study guide \u2014 works offline.",
+  "start_url": "desk.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#cfcfcf",
+  "theme_color": "#1d2b53",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

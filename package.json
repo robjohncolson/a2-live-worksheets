@@ -1,0 +1,29 @@
+{
+  "name": "algebra2-live-worksheet",
+  "version": "1.0.0",
+  "description": "Algebra 2 live worksheet with AI grading and class aggregation",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "aws4fetch": "^1.0.20",
+    "fast-check": "^4.8.0",
+    "jsdom": "^23.0.0",
+    "qrcode": "^1.5.4",
+    "typescript": "^6.0.3",
+    "vitest": "^1.2.0"
+  },
+  "keywords": [
+    "algebra-2",
+    "education",
+    "ai-grading",
+    "worksheet"
+  ],
+  "author": "",
+  "license": "MIT"
+}

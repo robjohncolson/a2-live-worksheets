@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<!-- sanity: ('pineapple_koala', 2) → 348BVD -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algebra 2 — Teacher Code Generator</title>
+  <style>
+    :root {
+      --sg-bg: #f7f2e8;
+      --sg-text: #2a2520;
+      --sg-accent: #7a4a1f;
+      --sg-bar-track: #e2d6c0;
+      --sg-bg-card: #ffffff;
+      --sg-border: #d8ccb0;
+      --sg-text-dim: #5a5045;
+      --sg-mastery-low: #c0392b;
+      --sg-mastery-mid: #d4a017;
+      --sg-mastery-high: #2e7d32;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--sg-bg);
+      color: var(--sg-text);
+      min-height: 100vh;
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      background: var(--sg-bg-card);
+      border-bottom: 1px solid var(--sg-border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .page-header h1 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--sg-accent);
+    }
+    .page-header .subtitle {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--sg-text-dim);
+      font-weight: 400;
+    }
+
+    /* ── Security disclaimer ── */
+    .security-banner {
+      background: #fffbe6;
+      border: 1px solid #d4a017;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: #5a4400;
+      line-height: 1.5;
+    }
+
+    /* ── Layout ── */
+    .main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+      display: grid;
+      gap: 28px;
+    }
+
+    /* ── Cards / sections ── */
+    .section {
+      background: var(--sg-bg-card);
+      border: 1px solid var(--sg-border);
+      border-radius: 10px;
+      padding: 22px 24px;
+      display: grid;
+      gap: 18px;
+    }
+    .section-title {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--sg-text-dim);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--sg-border);
+    }
+
+    /* ── Form rows ── */
+    .form-row {
+      display: grid;
+      gap: 8px;
+    }
+    .form-row label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--sg-text-dim);
+    }
+    .form-row input,
+    .form-row select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--sg-border);
+      border-radius: 8px;
+      background: var(--sg-bg);
+      color: var(--sg-text);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .form-row input:focus,
+    .form-row select:focus {
+      outline: 2px solid var(--sg-accent);
+      outline-offset: 2px;
+    }
+    .form-row textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--sg-border);
+      border-radius: 8px;
+      background: var(--sg-bg);
+      color: var(--sg-text);
+      font-size: 0.92rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      resize: vertical;
+      min-height: 120px;
+    }
+    .form-row textarea:focus {
+      outline: 2px solid var(--sg-accent);
+      outline-offset: 2px;
+    }
+
+    /* ── Two-column form layout ── */
+    .form-two-col {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-end: end;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--sg-accent);
+      background: var(--sg-accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn:active { opacity: 0.7; }
+    .btn-sm {
+      padding: 5px 12px;
+      font-size: 0.78rem;
+      border-radius: 999px;
+      border: 1px solid var(--sg-border);
+      background: var(--sg-bg-card);
+      color: var(--sg-text);
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .btn-sm:hover {
+      border-color: var(--sg-accent);
+      color: var(--sg-accent);
+    }
+
+    /* ── Code display ── */
+    .code-display {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .code-value {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--sg-accent);
+      background: var(--sg-bar-track);
+      border-radius: 10px;
+      padding: 12px 24px;
+      min-width: 200px;
+      text-align: center;
+    }
+    .code-value.empty {
+      color: var(--sg-text-dim);
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    /* ── All-units table ── */
+    .units-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .units-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--sg-bar-track);
+      font-size: 0.95rem;
+    }
+    .units-table tr:last-child td {
+      border-bottom: none;
+    }
+    .units-table .unit-label {
+      font-weight: 700;
+      color: var(--sg-text-dim);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      width: 80px;
+    }
+    .units-table .unit-code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--sg-accent);
+    }
+    .units-table .unit-code.loading {
+      color: var(--sg-text-dim);
+      font-size: 0.85rem;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+    .units-table .unit-actions {
+      text-align: right;
+      width: 90px;
+    }
+
+    /* ── Bulk table ── */
+    .bulk-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .bulk-table th {
+      text-align: left;
+      padding: 8px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--sg-text-dim);
+      border-bottom: 2px solid var(--sg-border);
+    }
+    .bulk-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--sg-bar-track);
+    }
+    .bulk-table tr:last-child td {
+      border-bottom: none;
+    }
+    .bulk-table .col-code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--sg-accent);
+    }
+    .bulk-table .col-actions {
+      text-align: right;
+    }
+
+    /* ── "Copied!" flash ── */
+    .copy-flash {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--sg-mastery-high);
+      margin-left: 8px;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+    .copy-flash.visible {
+      opacity: 1;
+    }
+
+    /* ── Error text ── */
+    .error-text {
+      font-size: 0.85rem;
+      color: var(--sg-mastery-low);
+    }
+
+    /* ── Hint text ── */
+    .hint-text {
+      font-size: 0.82rem;
+      color: var(--sg-text-dim);
+      line-height: 1.5;
+    }
+    .hint-text code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: var(--sg-bar-track);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Algebra 2 — Teacher Code Generator</h1>
+    <p class="subtitle">Generate per-student unit unlock codes</p>
+  </div>
+
+  <div class="main">
+
+    <!-- Security disclaimer -->
+    <div class="security-banner">
+      ⚠ This tool contains the unlock salt. Do not deploy publicly or share the URL with students.
+    </div>
+
+    <!-- ── Section 1: Single-student mode ── -->
+    <div class="section">
+      <h2 class="section-title">Single Code</h2>
+
+      <div class="form-row">
+        <label for="s1-username">Username</label>
+        <input id="s1-username" type="text" placeholder="e.g. pineapple_koala" autocomplete="off" spellcheck="false">
+      </div>
+
+      <div class="form-row">
+        <label for="s1-unit">Unit</label>
+        <select id="s1-unit">
+          <option value="2">Unit 2</option>
+          <option value="3">Unit 3</option>
+          <option value="4">Unit 4</option>
+          <option value="5">Unit 5</option>
+          <option value="6">Unit 6</option>
+          <option value="7">Unit 7</option>
+          <option value="8">Unit 8</option>
+          <option value="9">Unit 9</option>
+        </select>
+      </div>
+
+      <button class="btn" id="s1-generate-btn" type="button">Generate</button>
+
+      <div class="code-display">
+        <div class="code-value empty" id="s1-code-value">—</div>
+        <button class="btn-sm" id="s1-copy-btn" type="button" style="display:none">Copy</button>
+        <span class="copy-flash" id="s1-copy-flash">Copied!</span>
+      </div>
+      <div class="error-text" id="s1-error" style="display:none"></div>
+    </div>
+
+    <!-- ── Section 2: All codes for one student ── -->
+    <div class="section">
+      <h2 class="section-title">All Codes for One Student (U2–U9)</h2>
+
+      <div class="form-row">
+        <label for="s2-username">Username</label>
+        <input id="s2-username" type="text" placeholder="e.g. pineapple_koala" autocomplete="off" spellcheck="false">
+      </div>
+
+      <button class="btn" id="s2-generate-btn" type="button">Generate All (U2–U9)</button>
+
+      <div id="s2-output" style="display:none">
+        <table class="units-table" id="s2-table">
+          <tbody id="s2-tbody"></tbody>
+        </table>
+      </div>
+      <div class="error-text" id="s2-error" style="display:none"></div>
+    </div>
+
+    <!-- ── Section 3: Bulk CSV mode ── -->
+    <div class="section">
+      <h2 class="section-title">Bulk CSV</h2>
+
+      <div class="form-row">
+        <label for="s3-csv">Paste CSV (<code>username,unit</code> per line — header optional)</label>
+        <textarea id="s3-csv" placeholder="username,unit&#10;pineapple_koala,2&#10;zebra_penguin,3&#10;..."></textarea>
+      </div>
+
+      <button class="btn" id="s3-generate-btn" type="button">Generate Table</button>
+
+      <div id="s3-output" style="display:none">
+        <table class="bulk-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Unit</th>
+              <th>Code</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="s3-tbody"></tbody>
+        </table>
+      </div>
+      <div class="error-text" id="s3-error" style="display:none"></div>
+    </div>
+
+  </div><!-- /.main -->
+
+  <script>
+    // ── Constants ──────────────────────────────────────────────────────────────
+
+    const UNLOCK_SALT = 'apstats-unlock-v1-3f9a2c';
+
+    // ── Core hash algorithm ────────────────────────────────────────────────────
+
+    function normalizeUnlockInput(s) {
+      return String(s || '').trim().toLowerCase().replace(/\s+/g, ' ');
+    }
+
+    /**
+     * Crockford Base32 encode.
+     * Alphabet: '0123456789ABCDEFGHJKMNPQRSTVWXYZ' (no I, L, O, U).
+     * Process all bytes as a bit stream, group into 5-bit chunks.
+     */
+    function crockfordBase32(bytes) {
+      const ALPHA = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+      let bits = 0;
+      let value = 0;
+      let output = '';
+
+      for (const byte of bytes) {
+        value = (value << 8) | byte;
+        bits += 8;
+        while (bits >= 5) {
+          bits -= 5;
+          output += ALPHA[(value >> bits) & 31];
+        }
+      }
+
+      // Remaining bits (if any) — shift to MSB of a 5-bit group.
+      if (bits > 0) {
+        output += ALPHA[(value << (5 - bits)) & 31];
+      }
+
+      return output;
+    }
+
+    /**
+     * Deterministic per-student unlock code.
+     * Returns a 6-character Crockford Base32 string (uppercase).
+     */
+    async function generateUnlockCode(username, unit) {
+      const payload = `${UNLOCK_SALT}|${normalizeUnlockInput(username)}|${unit}`;
+      const bytes = new TextEncoder().encode(payload);
+      const digest = await crypto.subtle.digest('SHA-256', bytes);
+      return crockfordBase32(new Uint8Array(digest)).slice(0, 6).toUpperCase();
+    }
+
+    // ── Copy helper ────────────────────────────────────────────────────────────
+
+    function flashCopied(flashEl) {
+      flashEl.classList.add('visible');
+      setTimeout(() => flashEl.classList.remove('visible'), 1400);
+    }
+
+    async function copyText(text, flashEl) {
+      try {
+        await navigator.clipboard.writeText(text);
+        flashCopied(flashEl);
+      } catch {
+        // Fallback for browsers that block clipboard without user gesture.
+        alert('Copy failed — please select and copy manually:\n\n' + text);
+      }
+    }
+
+    // ── Section 1: Single code ─────────────────────────────────────────────────
+
+    const s1Username  = document.getElementById('s1-username');
+    const s1Unit      = document.getElementById('s1-unit');
+    const s1GenBtn    = document.getElementById('s1-generate-btn');
+    const s1CodeValue = document.getElementById('s1-code-value');
+    const s1CopyBtn   = document.getElementById('s1-copy-btn');
+    const s1CopyFlash = document.getElementById('s1-copy-flash');
+    const s1Error     = document.getElementById('s1-error');
+
+    let s1CurrentCode = '';
+
+    s1GenBtn.addEventListener('click', async () => {
+      const username = s1Username.value.trim();
+      s1Error.style.display = 'none';
+
+      if (!username) {
+        s1Error.textContent = 'Please enter a username.';
+        s1Error.style.display = '';
+        s1Username.focus();
+        return;
+      }
+
+      const unit = parseInt(s1Unit.value, 10);
+      s1GenBtn.disabled = true;
+      s1GenBtn.textContent = 'Generating…';
+
+      const code = await generateUnlockCode(username, unit);
+      s1CurrentCode = code;
+
+      s1CodeValue.textContent = code;
+      s1CodeValue.classList.remove('empty');
+      s1CopyBtn.style.display = '';
+      s1GenBtn.disabled = false;
+      s1GenBtn.textContent = 'Generate';
+    });
+
+    s1CopyBtn.addEventListener('click', () => {
+      if (s1CurrentCode) copyText(s1CurrentCode, s1CopyFlash);
+    });
+
+    // Enter key on inputs triggers generate.
+    [s1Username, s1Unit].forEach(el => {
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter') s1GenBtn.click();
+      });
+    });
+
+    // ── Section 2: All codes for one student ──────────────────────────────────
+
+    const s2Username = document.getElementById('s2-username');
+    const s2GenBtn   = document.getElementById('s2-generate-btn');
+    const s2Output   = document.getElementById('s2-output');
+    const s2Tbody    = document.getElementById('s2-tbody');
+    const s2Error    = document.getElementById('s2-error');
+
+    const ALL_UNITS = [2, 3, 4, 5, 6, 7, 8, 9];
+
+    s2GenBtn.addEventListener('click', async () => {
+      const username = s2Username.value.trim();
+      s2Error.style.display = 'none';
+
+      if (!username) {
+        s2Error.textContent = 'Please enter a username.';
+        s2Error.style.display = '';
+        s2Username.focus();
+        return;
+      }
+
+      s2GenBtn.disabled = true;
+      s2GenBtn.textContent = 'Generating…';
+
+      // Show table with "loading" placeholders immediately.
+      s2Tbody.innerHTML = '';
+      s2Output.style.display = '';
+
+      for (const unit of ALL_UNITS) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="unit-label">Unit ${unit}</td>
+          <td class="unit-code loading" id="s2-code-${unit}">computing…</td>
+          <td class="unit-actions" id="s2-actions-${unit}"></td>
+        `;
+        s2Tbody.appendChild(tr);
+      }
+
+      // Generate codes one at a time (avoids blocking the main thread for large batches).
+      for (const unit of ALL_UNITS) {
+        const code = await generateUnlockCode(username, unit);
+        const codeEl = document.getElementById(`s2-code-${unit}`);
+        const actionsEl = document.getElementById(`s2-actions-${unit}`);
+
+        codeEl.textContent = code;
+        codeEl.classList.remove('loading');
+
+        const flashId = `s2-flash-${unit}`;
+        actionsEl.innerHTML = `
+          <button class="btn-sm" onclick="s2Copy('${code}','${flashId}')">Copy</button>
+          <span class="copy-flash" id="${flashId}">Copied!</span>
+        `;
+      }
+
+      s2GenBtn.disabled = false;
+      s2GenBtn.textContent = 'Generate All (U2–U9)';
+    });
+
+    function s2Copy(code, flashId) {
+      const flashEl = document.getElementById(flashId);
+      copyText(code, flashEl);
+    }
+
+    s2Username.addEventListener('keydown', e => {
+      if (e.key === 'Enter') s2GenBtn.click();
+    });
+
+    // ── Section 3: Bulk CSV ────────────────────────────────────────────────────
+
+    const s3Csv    = document.getElementById('s3-csv');
+    const s3GenBtn = document.getElementById('s3-generate-btn');
+    const s3Output = document.getElementById('s3-output');
+    const s3Tbody  = document.getElementById('s3-tbody');
+    const s3Error  = document.getElementById('s3-error');
+
+    /**
+     * Parse CSV text into [{username, unit}] rows.
+     * Skips blank lines. Auto-detects a header row (first column is not a valid unit number).
+     */
+    function parseCSV(text) {
+      const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+      if (lines.length === 0) return [];
+
+      const rows = [];
+      let startIdx = 0;
+
+      // Auto-detect header: if first line's second field (unit) isn't a valid unit number,
+      // treat the first line as a header and skip it.
+      const firstFields = lines[0].split(',');
+      const firstUnit = parseInt((firstFields[1] || '').trim(), 10);
+      if (isNaN(firstUnit) || firstUnit < 2 || firstUnit > 9) {
+        startIdx = 1; // skip header
+      }
+
+      for (let i = startIdx; i < lines.length; i++) {
+        const parts = lines[i].split(',');
+        const username = (parts[0] || '').trim();
+        const unit = parseInt((parts[1] || '').trim(), 10);
+
+        if (!username) {
+          rows.push({ username, unit, error: 'Missing username' });
+          continue;
+        }
+        if (isNaN(unit) || unit < 2 || unit > 9) {
+          rows.push({ username, unit: NaN, error: `Invalid unit "${(parts[1] || '').trim()}" — must be 2–9` });
+          continue;
+        }
+
+        rows.push({ username, unit });
+      }
+
+      return rows;
+    }
+
+    s3GenBtn.addEventListener('click', async () => {
+      s3Error.style.display = 'none';
+      s3Output.style.display = 'none';
+
+      const rows = parseCSV(s3Csv.value);
+      if (rows.length === 0) {
+        s3Error.textContent = 'No valid rows found. Paste CSV in username,unit format.';
+        s3Error.style.display = '';
+        return;
+      }
+
+      s3GenBtn.disabled = true;
+      s3GenBtn.textContent = 'Generating…';
+      s3Tbody.innerHTML = '';
+      s3Output.style.display = '';
+
+      // Build placeholder rows.
+      rows.forEach((row, idx) => {
+        const tr = document.createElement('tr');
+        if (row.error) {
+          tr.innerHTML = `
+            <td>${escHtml(row.username)}</td>
+            <td>${isNaN(row.unit) ? '?' : row.unit}</td>
+            <td class="col-code" style="color:var(--sg-mastery-low)" colspan="2">${escHtml(row.error)}</td>
+          `;
+        } else {
+          tr.innerHTML = `
+            <td>${escHtml(row.username)}</td>
+            <td>${row.unit}</td>
+            <td class="col-code loading" id="s3-code-${idx}">computing…</td>
+            <td class="col-actions" id="s3-actions-${idx}"></td>
+          `;
+        }
+        s3Tbody.appendChild(tr);
+      });
+
+      // Fill codes.
+      for (let idx = 0; idx < rows.length; idx++) {
+        const row = rows[idx];
+        if (row.error) continue;
+
+        const code = await generateUnlockCode(row.username, row.unit);
+        const codeEl = document.getElementById(`s3-code-${idx}`);
+        const actionsEl = document.getElementById(`s3-actions-${idx}`);
+
+        codeEl.textContent = code;
+        codeEl.classList.remove('loading');
+
+        const flashId = `s3-flash-${idx}`;
+        actionsEl.innerHTML = `
+          <button class="btn-sm" onclick="s3Copy('${escAttr(code)}','${flashId}')">Copy</button>
+          <span class="copy-flash" id="${flashId}">Copied!</span>
+        `;
+      }
+
+      s3GenBtn.disabled = false;
+      s3GenBtn.textContent = 'Generate Table';
+    });
+
+    function s3Copy(code, flashId) {
+      const flashEl = document.getElementById(flashId);
+      copyText(code, flashEl);
+    }
+
+    // ── Utility ────────────────────────────────────────────────────────────────
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function escAttr(str) {
+      return String(str).replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "schema": "apstats-misconception-map/v1",
+  "reviewed": false,
+  "provenance": "codex-draft-2026-09-11",
+  "rubrics": {
+    "WS-U1L1-reflect1": {
+      "elements": [
+        {
+          "id": "isolate-variable"
+        },
+        {
+          "id": "substitute-check"
+        }
+      ]
+    }
+  },
+  "items": {
+    "WS-U1L1-reflect1": {
+      "isolate-variable": [],
+      "substitute-check": []
+    }
+  }
+}

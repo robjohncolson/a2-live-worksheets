@@ -1,0 +1,47 @@
+{
+  "_comment": "Authoring anchors for NEW CED Unit 2 (Probability, Random Variables & Sampling Distributions; OLD topics 4.x + 5.1-5.3). Describe what a DOK-2 and a DOK-3 look like here so authors rate by the same yardstick (spec §1.1-1.2). Anchors DESCRIBE released-FRQ patterns; they never quote an item.",
+  "unit": 2,
+  "dok2_anchors": [
+    {
+      "id": "u2-d2-compute-from-table-or-tree",
+      "shape": "Given a two-way table or tree diagram and a named event, compute the requested marginal, joint, union, or conditional probability and interpret it in context.",
+      "why_dok2": "The event and representation are supplied, so the student applies a known probability rule along one path and communicates the result.",
+      "skills": ["3.A", "4.B"]
+    },
+    {
+      "id": "u2-d2-simulate-and-estimate",
+      "shape": "Given a valid chance assignment and a stated event, carry out or read many simulated trials and use the successful-trial proportion to estimate its probability.",
+      "why_dok2": "The model, trial, and success event are already defined; the student executes the simulation procedure and calculates a relative frequency.",
+      "skills": ["3.A"]
+    }
+  ],
+  "dok3_anchors": [
+    {
+      "id": "u2-d3-which-probability-answers-the-question",
+      "shape": "Two students use different numerators or denominators from the same table or tree; decide which probability answers the question asked, distinguish conditional from joint or marginal probability, and explain what the other value tells a reader instead.",
+      "why_dok3": "The student must translate wording into an event, coordinate that event with the reference group, and adjudicate two plausible calculations rather than merely evaluate one expression.",
+      "skills": ["3.A", "4.B"],
+      "frq_patterns": ["marginal-vs-conditional-association-is-not-cause", "conditional-direction-confusion-p-a-given-b-vs-b-given-a"]
+    },
+    {
+      "id": "u2-d3-is-independence-warranted-from-data",
+      "shape": "Use data from a table or probability model to decide whether an independence claim is warranted, cite the two probabilities that settle it, and distinguish independence from mutually exclusive events.",
+      "why_dok3": "The student chooses an appropriate numerical comparison, uses it to assess a claim, and explains the consequence of confusing two different event relationships.",
+      "skills": ["3.A", "4.B"],
+      "frq_patterns": ["independent-vs-mutually-exclusive-decide-from-the-table", "is-independence-warranted-from-data"]
+    },
+    {
+      "id": "u2-d3-whose-simulation-design-is-valid",
+      "shape": "Two simulation plans differ in chance assignment, definition of one trial, or the event counted; diagnose each mismatch, decide which estimate is more informative, and repair the design for the question asked.",
+      "why_dok3": "The student must coordinate the real-world probability, repeated process, and target event while tracing how each design choice changes what its estimate means.",
+      "skills": ["3.A", "4.B"],
+      "frq_patterns": ["whose-simulation-design-is-valid-and-what-it-misestimates", "is-this-pattern-random-design-the-simulation"]
+    }
+  ],
+  "not_dok3": [
+    "A probability calculation with more branches, a larger table, or more decimals; added computation does not add strategic judgment.",
+    "A simulation-design question that supplies the assignment, one trial, and success event and asks only for the resulting estimate.",
+    "A claim-comparison question whose stem identifies the valid method before the student evaluates it.",
+    "Separate lettered parts that each ask for one rule or calculation but never require the student to choose, critique, or bound a conclusion."
+  ]
+}

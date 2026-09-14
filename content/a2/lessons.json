@@ -1,0 +1,91 @@
+[
+  {
+    "key": "1-1",
+    "topic": 1,
+    "title": "Key Features of Functions",
+    "sections": null,
+    "onenoteUrl": null,
+    "tryIts": [
+      {
+        "n": 1,
+        "registryId": "1-1-savvas-try-it-1-lesson-1-1",
+        "prompt": "What are the domain and range of each function? Write the domain and range in set-builder notation and interval notation.\n\na. (y=|x-4|)\n\nb. (y=6x-2x^2)"
+      },
+      {
+        "n": 2,
+        "registryId": "1-1-savvas-try-it-2-lesson-1-1",
+        "prompt": "What are the x- and y-intercepts of (g(x)=4-x^2)?"
+      },
+      {
+        "n": 3,
+        "registryId": "1-1-savvas-try-it-3-lesson-1-1",
+        "prompt": "a. For what interval(s) is (h(x)=2x+10) positive?\n\nb. For what interval(s) is (h(x)=2x+10) negative?"
+      },
+      {
+        "n": 4,
+        "registryId": "1-1-savvas-try-it-4-lesson-1-1",
+        "prompt": "For what values of (x) is each function increasing? For what values of (x) is it decreasing?\n\na. (f(x)=x^2-4x)\n\nb. (f(x)=-2x-3)"
+      },
+      {
+        "n": 5,
+        "registryId": "1-1-savvas-try-it-5-lesson-1-1",
+        "prompt": "What do the average rates of change of the function (y=|x|+2) over the intervals [-2, 0], [0, 3], and [-2, 3] indicate about the function?"
+      }
+    ],
+    "lessonCheck": [
+      {
+        "registryId": "1-1-savvas-q18",
+        "prompt": "Use the graph of the function for Exercises 18--22.\n\nIdentify the domain and range of the function. SEE EXAMPLE 1",
+        "type": "short",
+        "answer": "(-inf,inf); [-9,inf)|(-∞,∞); [-9,∞)",
+        "responseHint": "Enter domain; range (separate the two answers with a semicolon).",
+        "image": "content/a2/1-1/images/1-1_savvas_q18-22_graph.png"
+      },
+      {
+        "registryId": "1-1-savvas-q21",
+        "prompt": "Use the graph of the function for Exercises 18--22.\n\nOn what intervals is the function increasing? On what intervals is it decreasing? SEE EXAMPLE 4",
+        "type": "short",
+        "answer": "(-1,inf); (-inf,-1)|(-1,∞); (-∞,-1)",
+        "responseHint": "Enter increasing interval; decreasing interval (separate with a semicolon).",
+        "image": "content/a2/1-1/images/1-1_savvas_q18-22_graph.png"
+      },
+      {
+        "registryId": "1-1-savvas-q22",
+        "prompt": "Use the graph of the function for Exercises 18--22.\n\nWhat is the average rate of change over the interval (-3,2)? SEE EXAMPLE 5",
+        "type": "short",
+        "answer": "1",
+        "image": "content/a2/1-1/images/1-1_savvas_q18-22_graph.png"
+      },
+      {
+        "registryId": "1-1-savvas-q23",
+        "prompt": "Use the graph of the function for Exercises 23--27.\n\nIdentify the domain and range of the function. SEE EXAMPLE 1",
+        "type": "short",
+        "answer": "[-5,5]; [-1,2]",
+        "responseHint": "Enter domain; range (separate the two answers with a semicolon).",
+        "image": "content/a2/1-1/images/1-1_savvas_q23-27_graph.png"
+      },
+      {
+        "registryId": "1-1-savvas-q27",
+        "prompt": "Use the graph of the function for Exercises 23--27.\n\nWhat is the average rate of change over the interval (-1,5)? SEE EXAMPLE 5",
+        "type": "short",
+        "answer": "-1/2|-0.5",
+        "image": "content/a2/1-1/images/1-1_savvas_q23-27_graph.png"
+      },
+      {
+        "registryId": "1-1-savvas-q32",
+        "prompt": "SAT/ACT The graph shows the amount of money in an investment account. Which statement is true?",
+        "type": "mc",
+        "answer": "A",
+        "choices": [
+          "A. $6,000 was initially invested in the account.",
+          "B. $1,000 was initially invested in the account.",
+          "C. At Year 3, there was $0 in the account.",
+          "D. At Year 7, there was $0 in the account."
+        ],
+        "image": "content/a2/1-1/images/1-1_savvas_q32_graph.png"
+      }
+    ],
+    "deck": "content/a2/1-1/deck.csv",
+    "topicAssessmentKey": "T1"
+  }
+]

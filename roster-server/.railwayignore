@@ -1,0 +1,7 @@
+.env
+node_modules/
+tests/
+*.test.js
+
+.gitnexus/
+phase2a-*

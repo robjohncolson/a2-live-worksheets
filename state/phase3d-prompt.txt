@@ -1,0 +1,72 @@
+You are modifying scripts/transpile-ti84-rom.mjs — a TI-84 Plus CE ROM-to-JavaScript byte-lift transpiler.
+
+At 16384 blocks, 35 new cpu.unimplemented() stubs appeared. Your job is to add emitter support for as many as possible. Do NOT change the block limit.
+
+IMPORTANT: Only edit scripts/transpile-ti84-rom.mjs. After editing, run: node scripts/transpile-ti84-rom.mjs to regenerate output.
+
+THE REMAINING STUBS:
+
+1. rrd (rotate right digit, BCD) — many stubs
+   Add: if (mnemonic === 'rrd') return ['cpu.rrd();'];
+   Place near the existing rld handler.
+
+2. adc a, immediate — 1 stub (adc a, 0x00)
+   Add regex: /^adc a, (0x[0-9a-f]+)$/i
+   Emit: cpu.a = cpu.addWithCarry8(cpu.a, {value});
+
+3. rlc register — 1 stub (rlc h)
+   Add regex: /^rlc ([abcdehl])$/i
+   Emit: cpu.{reg} = cpu.rotateShift8('rlc', cpu.{reg});
+
+4. rrc a — 1 stub
+   Add: if (mnemonic === 'rrc a') return ['cpu.a = cpu.rotateShift8(\'rrc\', cpu.a);'];
+   Note: rrca already exists — this is the CB-prefixed version that updates all flags.
+
+5. rl register (for non-a registers) — add generic handler
+   The existing 'rl a' handler is a direct mnemonic match. Generalize it.
+   Add regex: /^rl ([abcdehl])$/i
+   Emit: cpu.{reg} = cpu.rotateShift8('rl', cpu.{reg});
+   Remove or keep the existing 'rl a' specific match — the regex will handle it.
+
+6. cp iyh — 1 stub
+   Add regex: /^cp (ixh|ixl|iyh|iyl)$/i
+   Emit: cpu.compare(cpu.a, cpu.{reg});
+
+7. Malformed indexed loads — 2 stubs: ld (ix+0x00E6), ld (ix+0xFFF9)
+   These have oversized displacements (eZ80 24-bit mode artifact). The text looks like
+   "ld (ix+0x00E6), r" but the displacement 0xE6 or 0xFFF9 suggests it was decoded in
+   ADL mode with a wider immediate. The existing indexed store/load regexes use
+   ([+-](?:0x[0-9a-f]+|\d+)) which should match these. Check if the full dasm text
+   includes the register part after the comma. If it doesn't (truncated text), add a
+   fallback regex to at least catch these:
+   /^ld \((ix|iy)\+(0x[0-9a-f]+)\), ([abcdehl])$/i  — might already exist
+   /^ld \((ix|iy)\+(0x[0-9a-f]+)\)$/i  — if no register, treat as indexed store with truncated operand
+   If these can't be fixed cleanly, skip them.
+
+8. Error disassembling — 4 stubs (FD ED 1F, ED DD, FD ED 33, FD ED 17)
+   These are truly unsupported instruction sequences in the z80js disassembler.
+   Add manual ED decoding for the ones that are valid eZ80 instructions:
+
+   In the manualEdInstruction() function:
+   - ED 17 with FD prefix: this is LD DE, (HL) in eZ80. Already handled by loadWordFromHlRegs.
+     The issue is the FD prefix before ED. Add handling in decodeInstruction: if op0 is 0xFD
+     and next byte is 0xED, consume the FD prefix and decode the ED instruction.
+
+   - ED 1F with FD prefix: this is LD (HL), DE in eZ80. Already handled by storeWordToHlRegs.
+
+   - ED 33 with FD prefix: this is LEA IY, IY+d in eZ80. Already handled.
+
+   - ED DD: this is just a nonsense prefix sequence. Skip it — leave as unimplemented.
+
+   For the FD ED cases: In decodeInstruction(), after the existing indexed/manual checks,
+   add a check: if op0 is 0xDD or 0xFD and the next byte is 0xED, then:
+   - Skip the DD/FD prefix byte
+   - Decode the ED instruction starting at pc+1
+   - Adjust the instruction length to include the skipped prefix
+
+   This is complex. If you can't implement it cleanly, skip this category.
+
+AFTER EDITING:
+1. Run: node --check scripts/transpile-ti84-rom.mjs
+2. Run: node scripts/transpile-ti84-rom.mjs
+3. Report new stub count

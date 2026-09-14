@@ -1,0 +1,133 @@
+## Task: Add Multi-Entry-Point Execution Tests to Test Harness
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. The test harness (`TI-84_Plus_CE/test-harness.mjs`) currently runs 4 tests — all from the reset vector (0x000000). Your job is to add tests from other known entry points to discover how deep the transpiled blocks reach from different starting locations.
+
+### Files you MUST read first
+
+- `TI-84_Plus_CE/test-harness.mjs` — the current test harness (read the full file to understand the structure)
+- `TI-84_Plus_CE/peripherals.js` — the peripheral model API
+
+### Current test harness structure
+
+The harness has:
+- A shared `executor` (with peripherals) and `runTest(label, startAddr, startMode, maxSteps)` function
+- Tests 1-3: all start from reset vector (0x000000:z80) with varying step limits
+- Test 4: peripheral validation (separate executor with tracing)
+- Summary section at the end
+- Compilation stats at the end
+
+### What to add
+
+Add a new section **between Test 4 and the Summary section**. This section runs `runTest()` from multiple entry points and collects results for a summary table.
+
+```javascript
+// --- Test 5: Multi-entry-point exploration ---
+console.log('\n--- Multi-Entry-Point Exploration ---');
+
+const entryPoints = [
+  // ISR handlers
+  { addr: 0x000008, mode: 'adl', label: 'RST 0x08' },
+  { addr: 0x000010, mode: 'adl', label: 'RST 0x10' },
+  { addr: 0x000018, mode: 'adl', label: 'RST 0x18' },
+  { addr: 0x000020, mode: 'adl', label: 'RST 0x20' },
+  { addr: 0x000028, mode: 'adl', label: 'RST 0x28' },
+  { addr: 0x000030, mode: 'adl', label: 'RST 0x30' },
+  { addr: 0x000038, mode: 'adl', label: 'RST 0x38 (NMI)' },
+
+  // OS entry
+  { addr: 0x020110, mode: 'adl', label: 'OS entry' },
+
+  // Function tables
+  { addr: 0x004000, mode: 'adl', label: 'Mid-ROM 0x4000' },
+  { addr: 0x021000, mode: 'adl', label: 'Mid-ROM 0x21000' },
+
+  // Additional regions
+  { addr: 0x000100, mode: 'adl', label: 'Post-vector 0x100' },
+  { addr: 0x000658, mode: 'adl', label: 'ADL startup 0x658' },
+  { addr: 0x000800, mode: 'adl', label: 'Region 0x800' },
+  { addr: 0x001afa, mode: 'adl', label: 'Region 0x1afa' },
+];
+
+const multiResults = [];
+
+for (const ep of entryPoints) {
+  // Use a quiet run — no block trace callback (too noisy for 14 tests)
+  // Reset CPU
+  cpu.a = 0; cpu.f = 0;
+  cpu.b = 0; cpu.c = 0;
+  cpu.d = 0; cpu.e = 0;
+  cpu.h = 0; cpu.l = 0;
+  cpu.sp = 0; cpu._ix = 0; cpu._iy = 0;
+  cpu.i = 0; cpu.im = 0;
+  cpu.iff1 = 0; cpu.iff2 = 0;
+  cpu.madl = 1;
+  cpu.halted = false;
+  cpu._callDepth = 0;
+  ioLog.length = 0;
+
+  const result = executor.runFrom(ep.addr, ep.mode, {
+    maxSteps: 5000,
+    maxLoopIterations: 64,
+  });
+
+  multiResults.push({
+    label: ep.label,
+    addr: ep.addr,
+    steps: result.steps,
+    termination: result.termination,
+    lastPc: result.lastPc,
+    lastMode: result.lastMode,
+    loopsForced: result.loopsForced || 0,
+    ioOps: ioLog.length,
+  });
+}
+
+// Print multi-entry table
+console.log('\n  Entry Point Results:');
+console.log('  ' + '-'.repeat(95));
+console.log('  ' + 'Label'.padEnd(22) + 'Address'.padEnd(12) + 'Steps'.padEnd(8) + 'Termination'.padEnd(18) + 'Last PC'.padEnd(12) + 'I/O Ops'.padEnd(10) + 'Loops');
+console.log('  ' + '-'.repeat(95));
+for (const r of multiResults) {
+  console.log(
+    '  ' +
+    r.label.padEnd(22) +
+    ('0x' + r.addr.toString(16).padStart(6, '0')).padEnd(12) +
+    String(r.steps).padEnd(8) +
+    r.termination.padEnd(18) +
+    ('0x' + r.lastPc.toString(16).padStart(6, '0')).padEnd(12) +
+    String(r.ioOps).padEnd(10) +
+    String(r.loopsForced)
+  );
+}
+console.log('  ' + '-'.repeat(95));
+
+// Highlight interesting results
+const deepRuns = multiResults.filter(r => r.steps > 100);
+const haltRuns = multiResults.filter(r => r.termination === 'halt');
+const missingRuns = multiResults.filter(r => r.termination === 'missing_block');
+console.log(`\n  Entries reaching >100 steps: ${deepRuns.length}/${multiResults.length}`);
+console.log(`  Entries reaching HALT: ${haltRuns.length}`);
+console.log(`  Entries hitting missing blocks: ${missingRuns.length}`);
+```
+
+### Update the Summary section
+
+Add after the Test 4 summary line:
+```javascript
+console.log(`  Test 5 (multi-entry): ${multiResults.length} entry points tested, ${deepRuns.length} reached >100 steps`);
+```
+
+### Verification
+
+After making changes, run:
+```bash
+node --check TI-84_Plus_CE/test-harness.mjs
+```
+
+### Do NOT
+
+- Do NOT modify peripherals.js or cpu-runtime.js
+- Do NOT modify transpile-ti84-rom.mjs or ROM.transpiled.js
+- Do NOT remove or change existing Tests 1-4
+- Do NOT run the full test harness
+- Do NOT add npm dependencies

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Algebra 2 · Teacher scoring and pacing</title>
+<link rel="stylesheet" href="a2-announcement.css">
+<style>body{font:16px system-ui;margin:16px;background:#f6f5ee}button,input,select{font:inherit;min-height:44px;min-width:44px;margin:3px}button{cursor:pointer}table{border-collapse:collapse}td,th{border:1px solid #aaa;padding:5px}th:first-child{position:sticky;left:0;background:#fff;max-width:100px;overflow-wrap:anywhere}td button{width:48px;height:48px}#grid{overflow:auto}input[type=number]{width:75px}.pending{background:#fff1b8}.badge{display:block;font-size:11px;color:#9a3200}fieldset{margin:15px 0}#message{min-height:24px}details p{white-space:pre-wrap}small{overflow-wrap:anywhere}</style>
+<a href="desk.html">← Desk</a><h1>Teacher scoring</h1>
+<span data-a2-announcement class="a2-announcement" hidden></span>
+<p>Sign in as a teacher on the Desk, or enter a teacher key for this page.</p>
+<label>Teacher key <input id="secret" type="password" autocomplete="off"></label>
+<label>Section <select id="section"><option>C</option><option>D</option><option>G</option></select></label>
+<label>Lesson <select id="lesson"></select></label><button id="load">Load</button>
+<nav><button id="tryits">Try-Its</button><button id="assessments">Topic assessments</button><button id="pacing">Pacing…</button></nav>
+<p id="message" role="status" aria-live="polite"></p><div id="grid"></div><div id="prompts"></div>
+<script src="roster_config.js"></script><script src="roster-client.js"></script><script src="offline-queue.js"></script><script src="a2-client.js"></script>
+<script src="grade-engine.bundle.js"></script><script src="a2-announcement.js"></script>
+<script>
+(function () {
+  const el = id => document.getElementById(id);
+  const api = (path, body, method) => A2Client.request(path, body, method, el('secret').value);
+  let lessons = [], mode = new URLSearchParams(location.search).get('mode') || 'tryits';
+  let sending = Promise.resolve();
+  function say(text) { el('message').textContent = text; }
+  async function send(record) {
+    try { await api('/ledger/record', record); A2Client.changed(); return { ok: true }; }
+    catch (error) { say(error.status ? error.message + ' — score remains queued for review.' : 'Offline — scores are saved on this device.'); return { ok: false }; }
+  }
+  function flush() {
+    sending = sending.catch(() => {}).then(() => OfflineQueue.drain(record => record.source === 'try-it' || record.source === 'topic-assessment' ? send(record) : Promise.resolve({ ok: false })));
+    return sending;
+  }
+  async function saveScore(student, itemId, source, score, control) {
+    const record = { source, itemId, studentId: student.studentId || student.student_id,
+      score, maxPoints: source === 'try-it' ? 2 : 100, lesson: el('lesson').value,
+      requestId: crypto.randomUUID(), ts: Date.now() };
+    control.classList.add('pending');
+    await OfflineQueue.enqueue(record); // Capture before the network request, including rapid taps.
+    say('Saving…'); await flush();
+    const pending = (await OfflineQueue.all()).some(row => row.requestId === record.requestId);
+    if (!pending) { control.classList.remove('pending'); say('Saved'); }
+  }
+  function text(tag, value, host) { const node = document.createElement(tag); node.textContent = value; host.append(node); return node; }
+  async function pacing() {
+    el('grid').textContent = ''; el('prompts').textContent = '';
+    A2Announcement.mountEditor(el('grid'), api);
+    const form = document.createElement('form'); el('grid').append(form);
+    lessons.forEach(lesson => {
+      const group = document.createElement('fieldset'); group.dataset.lesson = lesson.key; form.append(group);
+      text('legend', lesson.key + ' ' + lesson.title, group);
+      ['C', 'D', 'G'].forEach(section => { const label = text('label', section, group); const input = document.createElement('input'); input.type = 'date'; input.name = section; input.value = lesson.sections?.[section] || ''; label.append(input); });
+      const label = text('label', 'OneNote URL', group); const url = document.createElement('input'); url.type = 'url'; url.name = 'onenote'; url.placeholder = 'https://…'; url.value = lesson.onenoteUrl || ''; label.append(url);
+    });
+    const save = text('button', 'Save pacing', form); save.type = 'submit';
+    form.onsubmit = async event => {
+      event.preventDefault(); save.disabled = true;
+      try {
+        const changes = Array.from(form.querySelectorAll('fieldset')).map(group => ({ key: group.dataset.lesson,
+          sections: Object.fromEntries(['C','D','G'].map(section => [section, group.querySelector('[name="' + section + '"]').value || null])),
+          onenoteUrl: group.querySelector('[name=onenote]').value || null }));
+        lessons = (await api('/teacher/lessons', { lessons: changes }, 'PUT')).lessons;
+        say('Pacing saved'); A2Client.changed();
+      } catch (error) { say(error.message); } finally { save.disabled = false; }
+    };
+  }
+  async function load() {
+    try {
+      say('Loading…');
+      lessons = (await api('/teacher/lessons')).lessons;
+      const selected = el('lesson').value;
+      el('lesson').textContent = '';
+      const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
+      lessons.forEach(lesson => { const option = text('option', lesson.key + ' ' + lesson.title, el('lesson')); option.value = lesson.key; });
+      el('lesson').value = selected || lessons.find(lesson => lesson.sections?.[el('section').value] === today)?.key || lessons[0]?.key;
+      if (mode === 'pacing') { await pacing(); say(''); return; }
+      const roster = await api('/roster/list');
+      const students = (roster.students || roster.roster || []).filter(student => String(student.section).replace(/^Period/i, '') === el('section').value && student.role !== 'teacher');
+      const lesson = lessons.find(item => item.key === el('lesson').value);
+      el('grid').textContent = ''; el('prompts').textContent = '';
+      const table = document.createElement('table'); el('grid').append(table);
+      const header = document.createElement('tr'); table.append(header); text('th', 'Student', header);
+      const topics = [...new Set(lessons.map(item => item.topicAssessmentKey))];
+      (mode === 'assessments' ? topics.map(key => 'Topic assessment ' + key) : lesson.tryIts.map(item => 'Try-It ' + item.n)).forEach(label => text('th', label, header));
+      for (const student of students) {
+        const id = student.studentId || student.student_id;
+        const row = document.createElement('tr'); table.append(row); text('th', student.realName || student.real_name || student.username || student.login_username, row);
+        const status = await api('/lesson-status/' + lesson.key + '?studentId=' + encodeURIComponent(id));
+        if (mode === 'assessments') {
+          const ledger = await api('/ledger/student/' + encodeURIComponent(id));
+          const rows = ledger.rows || ledger.items || ledger.ledger || [];
+          for (const key of topics) {
+            const cell = document.createElement('td'); row.append(cell); const input = document.createElement('input'); input.type = 'number'; input.min = 0; input.max = 100; input.step = 'any'; input.setAttribute('aria-label', 'Topic assessment ' + key); cell.append(input);
+            const previous = rows.filter(item => item.source === 'topic-assessment' && item.item_id === 'TA-' + key).sort((a,b) => b.attempt - a.attempt)[0]; input.value = previous?.score ?? '';
+            input.onchange = () => { if (input.value !== '' && input.checkValidity()) saveScore(student, 'TA-' + key, 'topic-assessment', Number(input.value), input).catch(error => say(error.message)); };
+          }
+        } else status.tryIts.scores.forEach(item => {
+          const cell = document.createElement('td'); row.append(cell); const button = text('button', item.score == null ? '—' : item.score, cell);
+          button.setAttribute('aria-label', (student.realName || student.real_name) + ', Try-It ' + item.n);
+          let score = item.score;
+          if (item.rescoreRequested) text('span', 'Rescore requested', cell).className = 'badge';
+          button.onclick = () => { score = score == null ? 0 : (score + 1) % 3; button.textContent = score;
+            saveScore(student, item.itemId, 'try-it', score, button).then(() => { if (!button.classList.contains('pending')) cell.querySelector('.badge')?.remove(); }).catch(error => say(error.message)); };
+        });
+      }
+      if (mode === 'tryits') lesson.tryIts.forEach(item => { const details = document.createElement('details'); el('prompts').append(details); text('summary', 'Try-It ' + item.n, details); text('p', item.prompt, details); text('small', item.registryId, details); });
+      say(students.length + ' students'); await flush();
+    } catch (error) { say(error.message); }
+  }
+  el('load').onclick = load;
+  el('section').onchange = () => { el('lesson').textContent = ''; load(); };
+  el('lesson').onchange = load;
+  ['tryits','assessments','pacing'].forEach(view => { el(view).onclick = () => { mode = view; load(); }; });
+  window.addEventListener('online', async () => { await flush(); await load(); });
+  load();
+})();
+</script></html>

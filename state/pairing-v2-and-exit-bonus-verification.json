@@ -1,0 +1,242 @@
+{
+  "commits": {
+    "A": [
+      "c581816",
+      "2daef27"
+    ],
+    "B": [
+      "f664845",
+      "commit containing this report"
+    ]
+  },
+  "suites": {
+    "pairingVideo": {
+      "passed": 27
+    },
+    "videoCheck": "pass",
+    "scheduleCheck": "pass",
+    "root": {
+      "passed": 9862,
+      "failedKnown": 24,
+      "skipped": 1
+    },
+    "server": {
+      "passed": 1739,
+      "failed": 0,
+      "skipped": 3
+    },
+    "python": {
+      "passed": 672,
+      "failed": 0
+    },
+    "uiParity": {
+      "passed": 90
+    },
+    "bonusProperties": {
+      "passed": 40,
+      "monotonicityRuns": 600
+    }
+  },
+  "pairs": [
+    {
+      "date": "2026-09-16",
+      "pair": "1.4+1.5",
+      "videoMinutesRounded": 27
+    },
+    {
+      "date": "2026-09-23",
+      "pair": "1.7+1.8",
+      "videoMinutesRounded": 27
+    },
+    {
+      "date": "2026-09-25",
+      "pair": "1.9+3.1",
+      "videoMinutesRounded": 14
+    },
+    {
+      "date": "2026-10-19",
+      "pair": "2.1+2.2",
+      "videoMinutesRounded": 16
+    },
+    {
+      "date": "2026-10-21",
+      "pair": "2.3+4.1",
+      "videoMinutesRounded": 15
+    },
+    {
+      "date": "2026-10-26",
+      "pair": "4.3+4.4",
+      "videoMinutesRounded": 15
+    },
+    {
+      "date": "2026-11-02",
+      "pair": "4.6+4.7",
+      "videoMinutesRounded": 28
+    },
+    {
+      "date": "2026-11-06",
+      "pair": "4.10+4.11",
+      "videoMinutesRounded": 17
+    },
+    {
+      "date": "2026-11-13",
+      "pair": "5.2+5.1",
+      "videoMinutesRounded": 27
+    },
+    {
+      "date": "2026-11-25",
+      "pair": "5.4+5.5",
+      "videoMinutesRounded": 18
+    },
+    {
+      "date": "2027-01-06",
+      "pair": "8.1+8.4",
+      "videoMinutesRounded": 16
+    },
+    {
+      "date": "2027-01-22",
+      "pair": "5.7+7.1",
+      "videoMinutesRounded": 23
+    },
+    {
+      "date": "2027-03-01",
+      "pair": "2.4+2.5",
+      "videoMinutesRounded": 23
+    }
+  ],
+  "ePCDay2": "2027-03-15",
+  "eReviewEnd": "2027-03-22",
+  "maxLag": 9,
+  "B": "captured column hash unchanged",
+  "builtDOK": "both YAML sources unchanged, all six PDFs byte-identical",
+  "pendingDOK": 11,
+  "failures": [
+    {
+      "file": "tests/classroom-structure.test.js",
+      "name": "Live Classroom v1a - Desk integration D3: the Teacher menu has a Live Classroom item opening teacher-classroom.html",
+      "known": true
+    },
+    {
+      "file": "tests/classroom-structure.test.js",
+      "name": "KEYBOARD_AVATAR Phase 1 -- player controller wiring Desk has the keyboard help-text strip below the board mount",
+      "known": true
+    },
+    {
+      "file": "tests/desk-self-signup.test.js",
+      "name": "teacher onboarding + class gradebook (static) the Teacher menu opens the Teacher Tools launcher, which wires the Roster Console",
+      "known": true
+    },
+    {
+      "file": "tests/desk-user-role.test.js",
+      "name": "Desk: user-role gating + sign-in teacher checkbox 12: Teacher Tools launcher reaches the teacher pages (roster console, dashboard, codegen)",
+      "known": true
+    },
+    {
+      "file": "tests/desk-verify-tools.test.js",
+      "name": "Desk \u2014 verification tools surfaced the Teacher Tools launcher wires the scan-to-verify tool (openVerifyQR)",
+      "known": true
+    },
+    {
+      "file": "tests/doge-payout-agent.test.js",
+      "name": "DOGE payout agent config and RPC wrapper lets environment override file config and keeps portable defaults",
+      "known": true
+    },
+    {
+      "file": "tests/doge-send-core.test.js",
+      "name": "doge-send durable file journal atomically creates, refuses overwrite, updates, and clears a mode-0600 journal",
+      "known": true
+    },
+    {
+      "file": "tests/lineage.test.js",
+      "name": "data lineage manifest points every automatic regeneration command at an existing script or test",
+      "known": true
+    },
+    {
+      "file": "tests/phase4-structure.test.js",
+      "name": "teacher-dashboard.html \u2014 Phase 4a structure declares it is a teacher dashboard (title)",
+      "known": true
+    },
+    {
+      "file": "tests/phase4-structure.test.js",
+      "name": "teacher-dashboard.html \u2014 Phase 4a structure teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys",
+      "known": true
+    },
+    {
+      "file": "tests/phase4b-structure.test.js",
+      "name": "Phase 4b \u2014 teacher-dashboard.html remediation panel teacher secret persistence is opt-in only; localStorage scoped to known keys (Phase 4a security posture, updated 2026-05-19)",
+      "known": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-cleared-storage.test.js",
+      "name": "matrix row: cleared storage recovers \u2014 CONTROL (a subsequent live success) (7) flips to available, writes the latch, and the strict gate resumes",
+      "known": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-latch.test.js",
+      "name": "matrix row: strict-gate-still-strict \u2014 evidence present + genuinely incomplete predecessor stays LOCKED D4 fail-open never leaks into the affirmative-server case",
+      "known": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-loadstate.test.js",
+      "name": "matrix row: 401 -> auth classifies unavailable/auth, shows the Sign-in banner, and never clears the roster session",
+      "known": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-loadstate.test.js",
+      "name": "matrix row: 403 -> auth (classified identically to 401) classifies unavailable/auth",
+      "known": true
+    },
+    {
+      "file": "tests/remaining-feature-contracts.test.js",
+      "name": "F004 Start Here signed-in progress preview renders the signed-out fallback when identity or service config is unavailable",
+      "known": true
+    },
+    {
+      "file": "tests/remaining-feature-contracts.test.js",
+      "name": "F004 Start Here signed-in progress preview fetches /grade with rosterClient.token() and renders quarter/unit progress for signed-in students",
+      "known": true
+    },
+    {
+      "file": "tests/remaining-feature-contracts.test.js",
+      "name": "F061 public worksheet table of contents index links TOC.html and TOC lists all 69 live worksheet files that exist on disk",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j2-shared-device.journey.test.js",
+      "name": "Desk journey J2 J2 reloads a shared device across A \u2192 B \u2192 A without leaking marks, due chip, or SRS state, then hydrates a fresh marks bucket from /donow (supersedes desk-calendar-sync per-student visibility and selfDone hydration behavior)",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j4-quick-check.journey.test.js",
+      "name": "Desk journey J4 J4 resumes answered snapshots without score inflation and commits one 8/10 Quick check (supersedes desk-blooket-flashcards it 55 \u201c_bfSaveProgress persists the answered snapshot\u201d, it 56 \u201canswer saves after scoring and Next clears answered before saving\u201d, it 57 \u201canswer then Cancel resumes at the following card without another point\u201d, it 58 \u201cpass timer is canceled on close and resume commits the saved 80% once\u201d, and it 58b \u201cnon-passing answer then Cancel resumes one card ahead without a commit\u201d)",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab 'network' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '401' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '403' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "known": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": "Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '500' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "known": true
+    }
+  ],
+  "audit": "state/exit-bonus-audit.md",
+  "limitations": [
+    "GitNexus refresh failed at user registry write; authorized caller inventories and partial CLI graph used.",
+    "Canonical bundle is grade-engine.bundle.js at root, not the nonexistent roster-server path.",
+    "Python uses fresh workspace basetemp/cache after default Windows temp access failure."
+  ],
+  "pushed": false
+}

@@ -1,0 +1,91 @@
+## Task: Expand ROM Transpiler Coverage — Raise Block Limit + Add Seeds
+
+You are working on a TI-84 Plus CE ROM-to-JavaScript transpilation project. The transpiler at `scripts/transpile-ti84-rom.mjs` currently generates 32768 blocks at 5.2% ROM coverage. Your job is to raise the block limit and add more seed entry points to increase coverage.
+
+### File you MUST read first
+
+- `scripts/transpile-ti84-rom.mjs` (1976 lines) — the ROM transpiler
+
+Focus on these areas:
+- Line 1883-1886: `options` object with `blockLimit: 32768`
+- Lines 1858-1876: `seedEntries` array and `knownEntryAnchors`
+- The `walkBlocks()` function starting at line 1857
+
+### What to modify
+
+**1. Raise block limit (line 1885)**
+
+Change:
+```javascript
+blockLimit: 32768,
+```
+To:
+```javascript
+blockLimit: 65536,
+```
+
+**2. Add new seed entry points**
+
+Add these additional known entry anchors to the `knownEntryAnchors` array (after the existing entries). These are discovered from execution traces and known OS function tables:
+
+```javascript
+// ISR handlers (RST vector table continuations)
+{ pc: 0x000040, mode: 'adl' },
+{ pc: 0x000048, mode: 'adl' },
+{ pc: 0x000050, mode: 'adl' },
+{ pc: 0x000058, mode: 'adl' },
+{ pc: 0x000060, mode: 'adl' },
+{ pc: 0x000068, mode: 'adl' },
+
+// Known OS jump table entries
+{ pc: 0x020008, mode: 'adl' },
+{ pc: 0x020010, mode: 'adl' },
+{ pc: 0x020018, mode: 'adl' },
+{ pc: 0x020020, mode: 'adl' },
+{ pc: 0x020028, mode: 'adl' },
+{ pc: 0x020030, mode: 'adl' },
+{ pc: 0x020038, mode: 'adl' },
+{ pc: 0x020040, mode: 'adl' },
+
+// Mid-ROM function regions
+{ pc: 0x004100, mode: 'adl' },
+{ pc: 0x004200, mode: 'adl' },
+{ pc: 0x005000, mode: 'adl' },
+{ pc: 0x008000, mode: 'adl' },
+{ pc: 0x010000, mode: 'adl' },
+
+// Graphics/display routines
+{ pc: 0x021100, mode: 'adl' },
+{ pc: 0x021200, mode: 'adl' },
+{ pc: 0x021400, mode: 'adl' },
+
+// Upper ROM regions
+{ pc: 0x050000, mode: 'adl' },
+{ pc: 0x060000, mode: 'adl' },
+{ pc: 0x080000, mode: 'adl' },
+{ pc: 0x0A0000, mode: 'adl' },
+{ pc: 0x0C0000, mode: 'adl' },
+{ pc: 0x100000, mode: 'adl' },
+{ pc: 0x200000, mode: 'adl' },
+{ pc: 0x300000, mode: 'adl' },
+```
+
+Add a comment above these new entries: `// Phase 9A: additional seeds for coverage expansion`
+
+### Verification
+
+After making changes, run:
+```bash
+node --check scripts/transpile-ti84-rom.mjs
+```
+
+This should pass with zero errors.
+
+### Do NOT
+
+- Do NOT run `node scripts/transpile-ti84-rom.mjs` (regeneration is a separate step that takes significant time)
+- Do NOT modify any files in TI-84_Plus_CE/
+- Do NOT modify ROM.transpiled.js or ROM.transpiled.report.json
+- Do NOT add npm dependencies
+- Do NOT change any existing seed entries — only ADD new ones
+- Do NOT modify the block-building logic, emitters, or decoders

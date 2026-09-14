@@ -1,0 +1,101 @@
+﻿{
+  "target": {
+    "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_lessonDateMap",
+    "name": "_lessonDateMap",
+    "type": "Function",
+    "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js"
+  },
+  "direction": "upstream",
+  "impactedCount": 7,
+  "risk": "LOW",
+  "epistemic": "exact",
+  "summary": {
+    "direct": 1,
+    "processes_affected": 0,
+    "modules_affected": 1
+  },
+  "byDepthCounts": {
+    "1": 1,
+    "2": 3,
+    "3": 3
+  },
+  "affected_processes": [],
+  "affected_modules": [
+    {
+      "name": "Gitnexus-shadow",
+      "hits": 7,
+      "impact": "direct"
+    }
+  ],
+  "byDepth": {
+    "1": [
+      {
+        "depth": 1,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:renderMyGradebook",
+        "name": "renderMyGradebook",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      }
+    ],
+    "2": [
+      {
+        "depth": 2,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_walletPaint",
+        "name": "_walletPaint",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 2,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:openMyGradebook",
+        "name": "openMyGradebook",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 2,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_selectClassStudent",
+        "name": "_selectClassStudent",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      }
+    ],
+    "3": [
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_walletRenderGroupedReceipts",
+        "name": "_walletRenderGroupedReceipts",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:renderWallet",
+        "name": "renderWallet",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      },
+      {
+        "depth": 3,
+        "id": "Function:gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js:_renderClassSectionStudents",
+        "name": "_renderClassSectionStudents",
+        "filePath": "gitnexus-shadow/ap_stats_roadmap_square_mode.inline.js",
+        "relationType": "CALLS",
+        "confidence": 0.85,
+        "processes": []
+      }
+    ]
+  }
+}

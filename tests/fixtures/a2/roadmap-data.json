@@ -1,0 +1,28 @@
+{
+  "lessons": {
+    "1.1": {
+      "topic": "1.1",
+      "title": "Linear equations",
+      "status": "ready",
+      "urls": {
+        "worksheet": "u1_lesson1_live.html",
+        "blooket": "u1_l1_blooket.csv"
+      },
+      "periods": {
+        "B": {
+          "posted": true
+        },
+        "E": {
+          "posted": true
+        }
+      }
+    }
+  },
+  "calendar": [
+    {
+      "date": "2026-08-18",
+      "B": "1.1",
+      "E": "1.1"
+    }
+  ]
+}

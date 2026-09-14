@@ -1,0 +1,976 @@
+{
+  "railwayServerUrl": "https://a2-live-worksheets-production.up.railway.app",
+  "worksheets": [
+    {
+      "filename": "u1_lesson10_live.html",
+      "prefix": "WS-U1L10",
+      "promptsFile": "ai-grading-prompts-u1-l10.js",
+      "builderName": "buildReflectionPromptU1L10",
+      "contextName": "LESSON_CONTEXT_U1L10",
+      "rubricsName": "RUBRICS_U1L10",
+      "topic": "Algebra 2 - Topic 1.10: which is about normal",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u1_lesson1_live.html",
+      "prefix": "WS-U1L1",
+      "promptsFile": "ai-grading-prompts-u1-l1.js",
+      "builderName": "buildReflectionPromptU1L1",
+      "contextName": "LESSON_CONTEXT_U1L1",
+      "rubricsName": "RUBRICS_U1L1",
+      "topic": "Algebra 2 - Topic 1.1: Topic 1.1",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u1_lesson2_live.html",
+      "prefix": "WS-U1L2",
+      "promptsFile": "ai-grading-prompts-u1-l2.js",
+      "builderName": "buildReflectionPromptU1L2",
+      "contextName": "LESSON_CONTEXT_U1L2",
+      "rubricsName": "RUBRICS_U1L2",
+      "topic": "Algebra 2 - Topic 1.2: The Language of Variation: Variables",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u1_lesson3_live.html",
+      "prefix": "WS-U1L3",
+      "promptsFile": "ai-grading-prompts-u1-l3.js",
+      "builderName": "buildReflectionPromptU1L3",
+      "contextName": "LESSON_CONTEXT_U1L3",
+      "rubricsName": "RUBRICS_U1L3",
+      "topic": "Algebra 2 - Topic 1.3: Representing a Categorical Variable with Tables",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u1_lesson4_live.html",
+      "prefix": "WS-U1L4",
+      "promptsFile": "ai-grading-prompts-u1-l4.js",
+      "builderName": "buildReflectionPromptU1L4",
+      "contextName": "LESSON_CONTEXT_U1L4",
+      "rubricsName": "RUBRICS_U1L4",
+      "topic": "Algebra 2 - Topic 1.4: Representing a Categorical Variable with Graphs",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u1_lesson5_live.html",
+      "prefix": "WS-U1L5",
+      "promptsFile": "ai-grading-prompts-u1-l5.js",
+      "builderName": "buildReflectionPromptU1L5",
+      "contextName": "LESSON_CONTEXT_U1L5",
+      "rubricsName": "RUBRICS_U1L5",
+      "topic": "Algebra 2 - Topic 1.5: Topic 1.5",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u1_lesson6_live.html",
+      "prefix": "WS-U1L6",
+      "promptsFile": "ai-grading-prompts-u1-l6.js",
+      "builderName": "buildReflectionPromptU1L6",
+      "contextName": "LESSON_CONTEXT_U1L6",
+      "rubricsName": "RUBRICS_U1L6",
+      "topic": "Algebra 2 - Topic 1.6: Topic 1.6",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u1_lesson7_live.html",
+      "prefix": "WS-U1L7",
+      "promptsFile": "ai-grading-prompts-u1-l7.js",
+      "builderName": "buildReflectionPromptU1L7",
+      "contextName": "LESSON_CONTEXT_U1L7",
+      "rubricsName": "RUBRICS_U1L7",
+      "topic": "Algebra 2 - Topic 1.7: Topic 1.7",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u1_lesson8_live.html",
+      "prefix": "WS-U1L8",
+      "promptsFile": "ai-grading-prompts-u1-l8.js",
+      "builderName": "buildReflectionPromptU1L8",
+      "contextName": "LESSON_CONTEXT_U1L8",
+      "rubricsName": "RUBRICS_U1L8",
+      "topic": "Algebra 2 - Topic 1.8: Topic 1.8",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u1_lesson9_live.html",
+      "prefix": "WS-U1L9",
+      "promptsFile": "ai-grading-prompts-u1-l9.js",
+      "builderName": "buildReflectionPromptU1L9",
+      "contextName": "LESSON_CONTEXT_U1L9",
+      "rubricsName": "RUBRICS_U1L9",
+      "topic": "Algebra 2 - Topic 1.9: Topic 1.9",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u2_lesson1_live.html",
+      "prefix": "WS-U2L1",
+      "promptsFile": "ai-grading-prompts-u2-l1.js",
+      "builderName": "buildReflectionPromptU2L1",
+      "contextName": "LESSON_CONTEXT_U2L1",
+      "rubricsName": "RUBRICS_U2L1",
+      "topic": "Algebra 2 - Introducing Statistics: Are Variables Related?",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u2_lesson2_live.html",
+      "prefix": "WS-U2L2",
+      "promptsFile": "ai-grading-prompts-u2-l2.js",
+      "builderName": "buildReflectionPromptU2L2",
+      "contextName": "LESSON_CONTEXT_U2L2",
+      "rubricsName": "RUBRICS_U2L2",
+      "topic": "Algebra 2 - Representing Two Categorical Variables",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u2_lesson3_live.html",
+      "prefix": "WS-U2L3",
+      "promptsFile": "ai-grading-prompts-u2-l3.js",
+      "builderName": "buildReflectionPromptU2L3",
+      "contextName": "LESSON_CONTEXT_U2L3",
+      "rubricsName": "RUBRICS_U2L3",
+      "topic": "Algebra 2 - Statistics for Two Categorical Variables",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u2_lesson4_live.html",
+      "prefix": "WS-U2L4",
+      "promptsFile": "ai-grading-prompts-u2-l4.js",
+      "builderName": "buildReflectionPromptU2L4",
+      "contextName": "LESSON_CONTEXT_U2L4",
+      "rubricsName": "RUBRICS_U2L4",
+      "topic": "Algebra 2 - Representing the Relationship Between Two Quantitative Variables",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u2_lesson5_live.html",
+      "prefix": "WS-U2L5",
+      "promptsFile": "ai-grading-prompts-u2-l5.js",
+      "builderName": "buildReflectionPromptU2L5",
+      "contextName": "LESSON_CONTEXT_U2L5",
+      "rubricsName": "RUBRICS_U2L5",
+      "topic": "Algebra 2 - Correlation",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u2_lesson6_live.html",
+      "prefix": "WS-U2L6",
+      "promptsFile": "ai-grading-prompts-u2-l6.js",
+      "builderName": "buildReflectionPromptU2L6",
+      "contextName": "LESSON_CONTEXT_U2L6",
+      "rubricsName": "RUBRICS_U2L6",
+      "topic": "Algebra 2 - Linear Regression Models",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u2_lesson7_live.html",
+      "prefix": "WS-U2L7",
+      "promptsFile": "ai-grading-prompts-u2-l7.js",
+      "builderName": "buildReflectionPromptU2L7",
+      "contextName": "LESSON_CONTEXT_U2L7",
+      "rubricsName": "RUBRICS_U2L7",
+      "topic": "Algebra 2 - Residuals",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u2_lesson8_live.html",
+      "prefix": "WS-U2L8",
+      "promptsFile": "ai-grading-prompts-u2-l8.js",
+      "builderName": "buildReflectionPromptU2L8",
+      "contextName": "LESSON_CONTEXT_U2L8",
+      "rubricsName": "RUBRICS_U2L8",
+      "topic": "Algebra 2 - Least Squares Regression",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "reflect3",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u2_lesson9_live.html",
+      "prefix": "WS-U2L9",
+      "promptsFile": "ai-grading-prompts-u2-l9.js",
+      "builderName": "buildReflectionPromptU2L9",
+      "contextName": "LESSON_CONTEXT_U2L9",
+      "rubricsName": "RUBRICS_U2L9",
+      "topic": "Algebra 2 - Analyzing Departures from Linearity",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u3_lesson1_live.html",
+      "prefix": "WS-U3L1",
+      "promptsFile": "ai-grading-prompts-u3-l1.js",
+      "builderName": "buildReflectionPromptU3L1",
+      "contextName": "LESSON_CONTEXT_U3L1",
+      "rubricsName": "RUBRICS_U3L1",
+      "topic": "Algebra 2 - Introducing Statistics: Do the Data We Collected Tell the Truth?",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u3_lesson2_live.html",
+      "prefix": "WS-U3L2",
+      "promptsFile": "ai-grading-prompts-u3-l2.js",
+      "builderName": "buildReflectionPromptU3L2",
+      "contextName": "LESSON_CONTEXT_U3L2",
+      "rubricsName": "RUBRICS_U3L2",
+      "topic": "Algebra 2 - Introduction to Planning a Study",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u3_lesson3_live.html",
+      "prefix": "WS-U3L3",
+      "promptsFile": "ai-grading-prompts-u3-l3.js",
+      "builderName": "buildReflectionPromptU3L3",
+      "contextName": "LESSON_CONTEXT_U3L3",
+      "rubricsName": "RUBRICS_U3L3",
+      "topic": "Algebra 2 - Random Sampling and Data Collection",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u3_lesson4_live.html",
+      "prefix": "WS-U3L4",
+      "promptsFile": "ai-grading-prompts-u3-l4.js",
+      "builderName": "buildReflectionPromptU3L4",
+      "contextName": "LESSON_CONTEXT_U3L4",
+      "rubricsName": "RUBRICS_U3L4",
+      "topic": "Algebra 2 - Potential Problems with Sampling",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u3_lesson5_live.html",
+      "prefix": "WS-U3L5",
+      "promptsFile": "ai-grading-prompts-u3-l5.js",
+      "builderName": "buildReflectionPromptU3L5",
+      "contextName": "LESSON_CONTEXT_U3L5",
+      "rubricsName": "RUBRICS_U3L5",
+      "topic": "Algebra 2 - Introduction to Experimental Design",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u3_lesson6-7_live.html",
+      "prefix": "WS-U3L6-7",
+      "promptsFile": "ai-grading-prompts.js",
+      "builderName": "buildReflectionPrompt",
+      "contextName": "LESSON_CONTEXT",
+      "rubricsName": "REFLECTION_RUBRICS",
+      "topic": "Algebra 2 - Experimental Design",
+      "textareaIds": [
+        "reflect53",
+        "reflect54a",
+        "reflect54b",
+        "reflect55",
+        "reflect56",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u4_lesson1-2-3_live.html",
+      "prefix": "WS-U4L1-3",
+      "promptsFile": "ai-grading-prompts-u4-l3.js",
+      "builderName": "buildReflectionPromptU4L3",
+      "contextName": "LESSON_CONTEXT_U4L3",
+      "rubricsName": "REFLECTION_RUBRICS_U4L3",
+      "topic": "Algebra 2 - Probability & Simulation",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "reflect3",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u4_lesson1-2_live.html",
+      "prefix": "WS-U4L1-2",
+      "promptsFile": "ai-grading-prompts-u4.js",
+      "builderName": "buildReflectionPromptU4",
+      "contextName": "LESSON_CONTEXT_U4",
+      "rubricsName": "REFLECTION_RUBRICS_U4",
+      "topic": "Algebra 2 - Probability & Simulation",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u4_lesson10-12_live.html",
+      "prefix": "WS-U4L10-12",
+      "promptsFile": "ai-grading-prompts-u4-l10-12.js",
+      "builderName": "buildReflectionPromptU4L1012",
+      "contextName": "LESSON_CONTEXT_U4L1012",
+      "rubricsName": "REFLECTION_RUBRICS_U4L1012",
+      "topic": "Algebra 2 - Binomial & Geometric Distributions",
+      "textareaIds": [
+        "reflect1",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u4_lesson3-4-5_live.html",
+      "prefix": "WS-U4L3-5",
+      "promptsFile": "ai-grading-prompts-u4-l345.js",
+      "builderName": "buildReflectionPromptU4L345",
+      "contextName": "LESSON_CONTEXT_U4L345",
+      "rubricsName": "REFLECTION_RUBRICS_U4L345",
+      "topic": "Algebra 2 - Probability",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "reflect3",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u4_lesson6_live.html",
+      "prefix": "WS-U4L6",
+      "promptsFile": "ai-grading-prompts-u4-l6.js",
+      "builderName": "buildReflectionPromptU4L6",
+      "contextName": "LESSON_CONTEXT_U4L6",
+      "rubricsName": "REFLECTION_RUBRICS_U4L6",
+      "topic": "Algebra 2 - Independent Events & Unions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u4_lesson7-8_live.html",
+      "prefix": "WS-U4L7-8",
+      "promptsFile": "ai-grading-prompts-u4-l7-8.js",
+      "builderName": "buildReflectionPromptU4L78",
+      "contextName": "LESSON_CONTEXT_U4L78",
+      "rubricsName": "REFLECTION_RUBRICS_U4L78",
+      "topic": "Algebra 2 - Random Variables & Probability Distributions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u4_lesson9_live.html",
+      "prefix": "WS-U4L9",
+      "promptsFile": "ai-grading-prompts-u4-l9.js",
+      "builderName": "buildReflectionPromptU4L9",
+      "contextName": "LESSON_CONTEXT_U4L9",
+      "rubricsName": "REFLECTION_RUBRICS_U4L9",
+      "topic": "Algebra 2 - Combining Random Variables",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u5_lesson1-2_live.html",
+      "prefix": "WS-U5L1-2",
+      "promptsFile": "ai-grading-prompts-u5-l1-2.js",
+      "builderName": "buildReflectionPromptU5L12",
+      "contextName": "LESSON_CONTEXT_U5L12",
+      "rubricsName": "RUBRICS_U5L12",
+      "topic": "Algebra 2 - Sampling Distributions & Normal Distribution",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u5_lesson3_live.html",
+      "prefix": "WS-U5L3",
+      "promptsFile": "ai-grading-prompts-u5-l3.js",
+      "builderName": "buildReflectionPromptU5L3",
+      "contextName": "LESSON_CONTEXT_U5L3",
+      "rubricsName": "RUBRICS_U5L3",
+      "topic": "Algebra 2 - Central Limit Theorem & Randomization Distributions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u5_lesson4_live.html",
+      "prefix": "WS-U5L4",
+      "promptsFile": "ai-grading-prompts-u5-l4.js",
+      "builderName": "buildReflectionPromptU5L4",
+      "contextName": "LESSON_CONTEXT_U5L4",
+      "rubricsName": "RUBRICS_U5L4",
+      "topic": "Algebra 2 - Biased and Unbiased Point Estimates",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u5_lesson5_live.html",
+      "prefix": "WS-U5L5",
+      "promptsFile": "ai-grading-prompts-u5-l5.js",
+      "builderName": "buildReflectionPromptU5L5",
+      "contextName": "LESSON_CONTEXT_U5L5",
+      "rubricsName": "RUBRICS_U5L5",
+      "topic": "Algebra 2 - Sampling Distributions for Sample Proportions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u5_lesson6_live.html",
+      "prefix": "WS-U5L6",
+      "promptsFile": "ai-grading-prompts-u5-l6.js",
+      "builderName": "buildReflectionPromptU5L6",
+      "contextName": "LESSON_CONTEXT_U5L6",
+      "rubricsName": "RUBRICS_U5L6",
+      "topic": "Algebra 2 - Sampling Distributions for Differences in Sample Proportions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u5_lesson7_live.html",
+      "prefix": "WS-U5L7",
+      "promptsFile": "ai-grading-prompts-u5-l7.js",
+      "builderName": "buildReflectionPromptU5L7",
+      "contextName": "LESSON_CONTEXT_U5L7",
+      "rubricsName": "RUBRICS_U5L7",
+      "topic": "Algebra 2 - Sampling Distributions for Sample Means",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u5_lesson8_live.html",
+      "prefix": "WS-U5L8",
+      "promptsFile": "ai-grading-prompts-u5-l8.js",
+      "builderName": "buildReflectionPromptU5L8",
+      "contextName": "LESSON_CONTEXT_U5L8",
+      "rubricsName": "RUBRICS_U5L8",
+      "topic": "Algebra 2 - Sampling Distributions for Differences in Sample Means",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u6_lesson1-2_live.html",
+      "prefix": "WS-U6L1-2",
+      "promptsFile": "ai-grading-prompts-u6-l1-2.js",
+      "builderName": "buildReflectionPromptU6L12",
+      "contextName": "LESSON_CONTEXT_U6L12",
+      "rubricsName": "RUBRICS_U6L12",
+      "topic": "Algebra 2 - Inference for Proportions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u6_lesson10_live.html",
+      "prefix": "WS-U6L10",
+      "promptsFile": "ai-grading-prompts-u6-l10.js",
+      "builderName": "buildReflectionPromptU6L10",
+      "contextName": "LESSON_CONTEXT_U6L10",
+      "rubricsName": "RUBRICS_U6L10",
+      "topic": "Algebra 2 - Setting Up a Test for the Difference of Two Population Proportion",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u6_lesson11_live.html",
+      "prefix": "WS-U6L11",
+      "promptsFile": "ai-grading-prompts-u6-l11.js",
+      "builderName": "buildReflectionPromptU6L11",
+      "contextName": "LESSON_CONTEXT_U6L11",
+      "rubricsName": "RUBRICS_U6L11",
+      "topic": "Algebra 2 - Carrying Out a Test for the Difference of Two Population Proportions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u6_lesson3_live.html",
+      "prefix": "WS-U6L3",
+      "promptsFile": "ai-grading-prompts-u6-l3.js",
+      "builderName": "buildReflectionPromptU6L3",
+      "contextName": "LESSON_CONTEXT_U6L3",
+      "rubricsName": "RUBRICS_U6L3",
+      "topic": "Algebra 2 - Inference for Proportions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u6_lesson4_live.html",
+      "prefix": "WS-U6L4",
+      "promptsFile": "ai-grading-prompts-u6-l4.js",
+      "builderName": "buildReflectionPromptU6L4",
+      "contextName": "LESSON_CONTEXT_U6L4",
+      "rubricsName": "RUBRICS_U6L4",
+      "topic": "Algebra 2 - Inference for Proportions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u6_lesson5_live.html",
+      "prefix": "WS-U6L5",
+      "promptsFile": "ai-grading-prompts-u6-l5.js",
+      "builderName": "buildReflectionPromptU6L5",
+      "contextName": "LESSON_CONTEXT_U6L5",
+      "rubricsName": "RUBRICS_U6L5",
+      "topic": "Algebra 2 - Interpreting p-Values",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u6_lesson6_live.html",
+      "prefix": "WS-U6L6",
+      "promptsFile": "ai-grading-prompts-u6-l6.js",
+      "builderName": "buildReflectionPromptU6L6",
+      "contextName": "LESSON_CONTEXT_U6L6",
+      "rubricsName": "RUBRICS_U6L6",
+      "topic": "Algebra 2 - Concluding a Test for a Population Proportion",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u6_lesson7_live.html",
+      "prefix": "WS-U6L7",
+      "promptsFile": "ai-grading-prompts-u6-l7.js",
+      "builderName": "buildReflectionPromptU6L7",
+      "contextName": "LESSON_CONTEXT_U6L7",
+      "rubricsName": "RUBRICS_U6L7",
+      "topic": "Algebra 2 - Potential Errors When Performing Tests",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u6_lesson8_live.html",
+      "prefix": "WS-U6L8",
+      "promptsFile": "ai-grading-prompts-u6-l8.js",
+      "builderName": "buildReflectionPromptU6L8",
+      "contextName": "LESSON_CONTEXT_U6L8",
+      "rubricsName": "RUBRICS_U6L8",
+      "topic": "Algebra 2 - Confidence Intervals for the Difference of Two Proportions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u6_lesson9_live.html",
+      "prefix": "WS-U6L9",
+      "promptsFile": "ai-grading-prompts-u6-l9.js",
+      "builderName": "buildReflectionPromptU6L9",
+      "contextName": "LESSON_CONTEXT_U6L9",
+      "rubricsName": "RUBRICS_U6L9",
+      "topic": "Algebra 2 - Justifying a Claim Based on a Confidence Interval for a Difference of Population Proportions",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u7_lesson1_live.html",
+      "prefix": "WS-U7L1",
+      "promptsFile": "ai-grading-prompts-u7-l1.js",
+      "builderName": "buildReflectionPromptU7L1",
+      "contextName": "LESSON_CONTEXT_U7L1",
+      "rubricsName": "RUBRICS_U7L1",
+      "topic": "Algebra 2 - Introducing Statistics: Should I Worry About Error?",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u7_lesson2_live.html",
+      "prefix": "WS-U7L2",
+      "promptsFile": "ai-grading-prompts-u7-l2.js",
+      "builderName": "buildReflectionPromptU7L2",
+      "contextName": "LESSON_CONTEXT_U7L2",
+      "rubricsName": "RUBRICS_U7L2",
+      "topic": "Algebra 2 - Constructing a Confidence Interval for a Population Mean",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u7_lesson3_live.html",
+      "prefix": "WS-U7L3",
+      "promptsFile": "ai-grading-prompts-u7-l3.js",
+      "builderName": "buildReflectionPromptU7L3",
+      "contextName": "LESSON_CONTEXT_U7L3",
+      "rubricsName": "RUBRICS_U7L3",
+      "topic": "Algebra 2 - Justifying a Claim About a Population Mean Based on a Confidence Interval",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u7_lesson4_live.html",
+      "prefix": "WS-U7L4",
+      "promptsFile": "ai-grading-prompts-u7-l4.js",
+      "builderName": "buildReflectionPromptU7L4",
+      "contextName": "LESSON_CONTEXT_U7L4",
+      "rubricsName": "RUBRICS_U7L4",
+      "topic": "Algebra 2 - Setting Up a Test for a Population Mean",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u7_lesson5_live.html",
+      "prefix": "WS-U7L5",
+      "promptsFile": "ai-grading-prompts-u7-l5.js",
+      "builderName": "buildReflectionPromptU7L5",
+      "contextName": "LESSON_CONTEXT_U7L5",
+      "rubricsName": "RUBRICS_U7L5",
+      "topic": "Algebra 2 - Carrying Out a Test for a Population Mean",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u7_lesson6_live.html",
+      "prefix": "WS-U7L6",
+      "promptsFile": "ai-grading-prompts-u7-l6.js",
+      "builderName": "buildReflectionPromptU7L6",
+      "contextName": "LESSON_CONTEXT_U7L6",
+      "rubricsName": "RUBRICS_U7L6",
+      "topic": "Algebra 2 - Confidence Intervals for the Difference of Two Means",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u7_lesson7_live.html",
+      "prefix": "WS-U7L7",
+      "promptsFile": "ai-grading-prompts-u7-l7.js",
+      "builderName": "buildReflectionPromptU7L7",
+      "contextName": "LESSON_CONTEXT_U7L7",
+      "rubricsName": "RUBRICS_U7L7",
+      "topic": "Algebra 2 - Justifying a Claim About the Difference of Two Means Based on a Confidence Interval",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u7_lesson8_live.html",
+      "prefix": "WS-U7L8",
+      "promptsFile": "ai-grading-prompts-u7-l8.js",
+      "builderName": "buildReflectionPromptU7L8",
+      "contextName": "LESSON_CONTEXT_U7L8",
+      "rubricsName": "RUBRICS_U7L8",
+      "topic": "Algebra 2 - Setting Up a Test for the Difference of Two Population Means",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u7_lesson9_live.html",
+      "prefix": "WS-U7L9",
+      "promptsFile": "ai-grading-prompts-u7-l9.js",
+      "builderName": "buildReflectionPromptU7L9",
+      "contextName": "LESSON_CONTEXT_U7L9",
+      "rubricsName": "RUBRICS_U7L9",
+      "topic": "Algebra 2 - Carrying Out a Test for the Difference of Two Population Means",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u8_lesson1_live.html",
+      "prefix": "WS-U8L1",
+      "promptsFile": "ai-grading-prompts-u8-l1.js",
+      "builderName": "buildReflectionPromptU8L1",
+      "contextName": "LESSON_CONTEXT_U8L1",
+      "rubricsName": "RUBRICS_U8L1",
+      "topic": "Algebra 2 - Introducing Statistics: Are My Results Unexpected?",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u8_lesson2_live.html",
+      "prefix": "WS-U8L2",
+      "promptsFile": "ai-grading-prompts-u8-l2.js",
+      "builderName": "buildReflectionPromptU8L2",
+      "contextName": "LESSON_CONTEXT_U8L2",
+      "rubricsName": "RUBRICS_U8L2",
+      "topic": "Algebra 2 - Setting Up a Chi-Square Goodness of Fit Test",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u8_lesson3_live.html",
+      "prefix": "WS-U8L3",
+      "promptsFile": "ai-grading-prompts-u8-l3.js",
+      "builderName": "buildReflectionPromptU8L3",
+      "contextName": "LESSON_CONTEXT_U8L3",
+      "rubricsName": "RUBRICS_U8L3",
+      "topic": "Algebra 2 - Carrying Out a Chi-Square Goodness of Fit Test",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u8_lesson4_live.html",
+      "prefix": "WS-U8L4",
+      "promptsFile": "ai-grading-prompts-u8-l4.js",
+      "builderName": "buildReflectionPromptU8L4",
+      "contextName": "LESSON_CONTEXT_U8L4",
+      "rubricsName": "RUBRICS_U8L4",
+      "topic": "Algebra 2 - Expected Counts in Two-Way Tables",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u8_lesson5_live.html",
+      "prefix": "WS-U8L5",
+      "promptsFile": "ai-grading-prompts-u8-l5.js",
+      "builderName": "buildReflectionPromptU8L5",
+      "contextName": "LESSON_CONTEXT_U8L5",
+      "rubricsName": "RUBRICS_U8L5",
+      "topic": "Algebra 2 - Setting Up a Chi-Square Test for Homogeneity or Independence",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u8_lesson6_live.html",
+      "prefix": "WS-U8L6",
+      "promptsFile": "ai-grading-prompts-u8-l6.js",
+      "builderName": "buildReflectionPromptU8L6",
+      "contextName": "LESSON_CONTEXT_U8L6",
+      "rubricsName": "RUBRICS_U8L6",
+      "topic": "Algebra 2 - Carrying Out a Chi-Square Test for Homogeneity or Independence",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u9_lesson1_live.html",
+      "prefix": "WS-U9L1",
+      "promptsFile": "ai-grading-prompts-u9-l1.js",
+      "builderName": "buildReflectionPromptU9L1",
+      "contextName": "LESSON_CONTEXT_U9L1",
+      "rubricsName": "RUBRICS_U9L1",
+      "topic": "Algebra 2 - Introducing Statistics: Do Those Points Align?",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u9_lesson2_live.html",
+      "prefix": "WS-U9L2",
+      "promptsFile": "ai-grading-prompts-u9-l2.js",
+      "builderName": "buildReflectionPromptU9L2",
+      "contextName": "LESSON_CONTEXT_U9L2",
+      "rubricsName": "RUBRICS_U9L2",
+      "topic": "Algebra 2 - Confidence Intervals for the Slope of a Regression Model",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u9_lesson3_live.html",
+      "prefix": "WS-U9L3",
+      "promptsFile": "ai-grading-prompts-u9-l3.js",
+      "builderName": "buildReflectionPromptU9L3",
+      "contextName": "LESSON_CONTEXT_U9L3",
+      "rubricsName": "RUBRICS_U9L3",
+      "topic": "Algebra 2 - Justifying a Claim About the Slope of a Regression Model Based on a Confidence Interval",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u9_lesson4_live.html",
+      "prefix": "WS-U9L4",
+      "promptsFile": "ai-grading-prompts-u9-l4.js",
+      "builderName": "buildReflectionPromptU9L4",
+      "contextName": "LESSON_CONTEXT_U9L4",
+      "rubricsName": "RUBRICS_U9L4",
+      "topic": "Algebra 2 - Setting Up a Test for the Slope",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    },
+    {
+      "filename": "u9_lesson5_live.html",
+      "prefix": "WS-U9L5",
+      "promptsFile": "ai-grading-prompts-u9-l5.js",
+      "builderName": "buildReflectionPromptU9L5",
+      "contextName": "LESSON_CONTEXT_U9L5",
+      "rubricsName": "RUBRICS_U9L5",
+      "topic": "Algebra 2 - Carrying Out a Test for the Slope of a Regression Model",
+      "textareaIds": [
+        "reflect1",
+        "reflect2",
+        "exitTicket"
+      ]
+    }
+  ]
+}

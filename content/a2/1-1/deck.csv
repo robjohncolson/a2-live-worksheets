@@ -1,0 +1,15 @@
+Question #,Question Text,Answer 1,Answer 2,Answer 3,Answer 4,Time Limit (sec),Correct Answer(s),source
+1,A square bracket in interval notation means the endpoint is ___.,included,excluded,unbounded,unknown,20,1,1-1-savvas-concept-box-lesson-1-1
+2,An interval written with parentheses has endpoints that are ___.,excluded,included,integers,zeros,20,1,1-1-savvas-concept-box-lesson-1-1
+3,Which notation describes elements using a variable and a condition?,set-builder notation,interval notation,function notation,scientific notation,20,1,1-1-savvas-concept-box-lesson-1-1
+4,A continuous set of real numbers can be written using its minimum and maximum in ___.,interval notation,set-builder notation,a ratio,a table of integers,20,1,1-1-savvas-concept-box-lesson-1-1
+5,Which symbol marks an interval with no upper bound?,∞,0,1,−1,20,1,1-1-savvas-concept-box-lesson-1-1
+6,"On a number line, an included boundary is drawn as a ___.",solid circle,open circle,dashed line,square bracket,20,1,1-1-savvas-concept-box-lesson-1-1-2
+7,A positive rate of change tells you the outputs are ___.,increasing,always above zero,constant,decreasing,20,1,1-1-savvas-concept-box-lesson-1-1-3
+8,"To decide where a graph rises or falls, trace it in which direction?",left to right,right to left,top to bottom,bottom to top,20,1,1-1-savvas-concept-box-lesson-1-1-4
+9,"What ratio gives the average rate of change on [a,b]?",(f(b) − f(a)) / (b − a),(b − a) / (f(b) − f(a)),f(b) + f(a),b + a,20,1,1-1-savvas-concept-box-lesson-1-1-5
+10,"For y = mx + b, the average rate of change on any interval equals ___.",m,b,x,y,20,1,1-1-savvas-concept-box-lesson-1-1-6
+11,"For y = x², which values can be inputs?",all real numbers,only positive numbers,only integers,only zero,20,1,1-1-savvas-concept-summary-lesson-1-1
+12,What is the range of y = |x|?,"[0,∞)","(−∞,0]","(0,∞)","(−∞,∞)",20,1,1-1-savvas-concept-summary-lesson-1-1
+13,How many x-intercepts does y = 1 have?,0,1,2,infinitely many,20,1,1-1-savvas-concept-summary-lesson-1-1
+14,Where does y = x² change from decreasing to increasing?,x = 0,x = 1,x = −1,at every input,20,1,1-1-savvas-concept-summary-lesson-1-1

@@ -1,0 +1,59 @@
+﻿// @vitest-environment node
+import {it,expect} from 'vitest';
+import {readFileSync,existsSync} from 'node:fs';
+import {JSDOM} from 'jsdom';
+const html=readFileSync(new URL('../desk.html',import.meta.url),'utf8');
+it('renders district scores, minimum counts, grade and ceiling as text',()=>{
+ const dom=new JSDOM('<main></main>',{runScripts:'outside-only'});
+ const start=html.indexOf('function renderA2Categories('),end=html.indexOf('function renderMyGradebook(',start);
+ dom.window.eval(html.slice(start,end));
+ dom.window.renderA2Categories(dom.window.document.querySelector('main'),{quarterGrade:84,ceiling:96,
+ categoryBreakdown:{assessments:{score:80,count:3,minimum:4,bonusWindowExcluded:2,bonusWindowIgnored:{count:1,itemIds:["LC-B"]}},assignments:{score:90,count:8,minimum:10},engagement:{score:80,count:9,minimum:10}}});
+ const text=dom.window.document.body.textContent;
+ expect(text).toContain('2 bonus not attempted ? 1 bonus not counted');
+ expect(text).toContain('Topic assessments can be retaken any number of times.');
+ expect(text).toContain('Assessments 3 of 4 minimum');expect(text).toContain('Assignments 8 of 10 minimum');
+ expect(text).toContain('Engagement 9 of 10 minimum');expect(text).toContain('84.0%');expect(text).toContain('96.0%');dom.window.close();
+});
+it('renders exactly three ledger-backed lesson chips',()=>{
+ const dom=new JSDOM('<div></div>',{runScripts:'outside-only'});
+ dom.window._gradeLessonsCache=[{lessonKey:'1.1',tryIts:{scored:3,total:5,points:5},lessonCheck:90,flashcardPassed:true}];
+ const a=html.indexOf('function renderA2LessonChips('),b=html.indexOf('function renderA2Categories(',a);
+ dom.window.eval(html.slice(a,b));dom.window.renderA2LessonChips(dom.window.document.querySelector('div'),'1.1');
+ expect([...dom.window.document.querySelectorAll('span')].map(n=>n.textContent)).toEqual(['Try-Its 3/5 scored, 5 points','Lesson check 90%','Flashcards passed']);dom.window.close();
+});
+it('ships the renamed Desk and three section controls',()=>{
+ expect(existsSync(new URL('../desk.html',import.meta.url))).toBe(true);
+ expect(existsSync(new URL('../ap_stats_roadmap_square_mode.html',import.meta.url))).toBe(false);
+ for(const section of ['C','D','G']) expect(html).toContain(`setP('${section}')`);
+ const manifest=JSON.parse(readFileSync(new URL('../manifest.webmanifest',import.meta.url)));
+ expect(manifest.name).toBe('Algebra 2 Desk');
+});
+
+it('pins the five short orientation sections and grading table', () => {
+ const start=readFileSync(new URL('../start-here.html',import.meta.url),'utf8');
+ const dom=new JSDOM(start);
+ const doc=dom.window.document;
+ expect([...doc.querySelectorAll('h2')].slice(0,5).map(n=>n.textContent)).toEqual([
+  'An average day','What gets graded','How the number is computed','Right now (through Fri Sep 18)','Dates']);
+ expect([...doc.querySelectorAll('tbody tr')].map(n=>n.cells[0].textContent)).toEqual(['Try-Its','Lesson check','Flashcard deck','Topic assessment']);
+ expect(doc.body.textContent).toContain('Add/drop is open through Friday, Sep 18. Work due on or before Sep 18 can only raise your grade: I count it only when it helps, and I never count it against you. After Sep 18, due work you have not attempted counts as zero.');
+ expect(doc.body.textContent).toContain('Topic assessments can be retaken any number of times.');
+ expect(doc.body.textContent).toContain('The latest score replaces the earlier one.');
+ expect(doc.body.textContent).toContain('Makeup and retake times are announced in class.');
+ expect(doc.body.textContent).not.toMatch(/\bAP\b|Progress Check|video|Blooket warm/i);
+ const prose=[...doc.querySelectorAll('section')].slice(0,5).flatMap(n=>[...n.querySelectorAll('p')]).map(n=>n.textContent).join(' ');
+ expect(prose.split(/\s+/).length).toBeGreaterThanOrEqual(325);
+ expect(prose.split(/\s+/).length).toBeLessThanOrEqual(450);
+ dom.window.close();
+});
+it('shows the configured bonus date read-only in the teacher header', () => {
+ const source=readFileSync(new URL('../teacher-dashboard.html',import.meta.url),'utf8');
+ const dom=new JSDOM(source,{runScripts:'outside-only'});
+ const script=[...dom.window.document.scripts].find(n=>n.textContent.includes('const bonusWindowDate'));
+ dom.window.GradeEngine={PHASE3_CONFIG:{bonusOnlyThrough:'2026-09-18'}};
+ dom.window.eval(script.textContent);
+ expect(dom.window.document.getElementById('bonus-window-setting').textContent).toBe('Bonus-only through Sep 18 (only-raise)');
+ expect(source).toContain('Topic assessments can be retaken any number of times.');
+ dom.window.close();
+});

@@ -1,0 +1,662 @@
+{
+  "schema": "apstats-misconceptions/v1",
+  "reviewed": false,
+  "provenance": "codex-draft-2026-09-11",
+  "tags": {
+    "variable-vs-individual": {
+      "label": "Confuses the individuals with the variables",
+      "skills": [
+        "2.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "numeric-label": {
+      "label": "Treats numeric labels as quantitative measurements",
+      "skills": [
+        "2.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "counts-vs-percents": {
+      "label": "Compares unequal groups using counts instead of percentages",
+      "skills": [
+        "3.C",
+        "4.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "majority-vs-plurality": {
+      "label": "Calls the largest category a majority without checking 50 percent",
+      "skills": [
+        "4.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "histogram-exact-values": {
+      "label": "Reads exact individual values from histogram bins",
+      "skills": [
+        "3.A",
+        "4.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "discrete-vs-continuous": {
+      "label": "Confuses discrete counts with continuous measurements",
+      "skills": [
+        "2.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "mean-resistant": {
+      "label": "Treats the mean as resistant to outliers",
+      "skills": [
+        "3.B",
+        "4.C"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "iqr-vs-range": {
+      "label": "Confuses the middle 50 percent with the full range",
+      "skills": [
+        "3.B",
+        "4.C"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "boxplot-whiskers": {
+      "label": "Extends boxplot whiskers through identified outliers",
+      "skills": [
+        "3.A",
+        "4.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "skew-mean-median": {
+      "label": "Reverses how skew pulls the mean relative to the median",
+      "skills": [
+        "4.C"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "zscore-percent": {
+      "label": "Interprets a z-score as a percentage",
+      "skills": [
+        "3.B",
+        "4.D"
+      ],
+      "units": [
+        1,
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "normal-tail": {
+      "label": "Uses the wrong tail of a normal distribution",
+      "skills": [
+        "3.C"
+      ],
+      "units": [
+        1,
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "conditional-denominator": {
+      "label": "Uses the overall total for a conditional percentage",
+      "skills": [
+        "3.C",
+        "4.A"
+      ],
+      "units": [
+        1,
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "conditioning-direction": {
+      "label": "Reverses which event is given in a conditional probability",
+      "skills": [
+        "3.C"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "association-from-totals": {
+      "label": "Infers association from unequal group totals",
+      "skills": [
+        "4.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "explanatory-response": {
+      "label": "Reverses the explanatory and response variables",
+      "skills": [
+        "2.A",
+        "3.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "correlation-strength-sign": {
+      "label": "Confuses correlation direction with strength",
+      "skills": [
+        "4.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "correlation-causation": {
+      "label": "Treats correlation as proof of causation",
+      "skills": [
+        "4.B"
+      ],
+      "units": [
+        1,
+        2
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "correlation-linearity": {
+      "label": "Uses correlation without checking whether the pattern is linear",
+      "skills": [
+        "4.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "extrapolation": {
+      "label": "Trusts predictions beyond the observed explanatory values",
+      "skills": [
+        "4.D"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "residual-sign": {
+      "label": "Reverses actual minus predicted or its interpretation",
+      "skills": [
+        "3.B",
+        "4.D"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "residual-pattern": {
+      "label": "Treats a patterned residual plot as support for a linear model",
+      "skills": [
+        "4.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "least-squares": {
+      "label": "Minimizes raw residuals instead of squared residuals",
+      "skills": [
+        "3.B"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "rsquared-points": {
+      "label": "Interprets r-squared as the percent of points on the line",
+      "skills": [
+        "4.D"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "intercept-context": {
+      "label": "Assumes the intercept is meaningful when zero is outside the context",
+      "skills": [
+        "4.D"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "leverage-residual": {
+      "label": "Confuses a large residual with high leverage",
+      "skills": [
+        "4.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "sample-population": {
+      "label": "Confuses the observed sample with the target population",
+      "skills": [
+        "2.A"
+      ],
+      "units": [
+        2
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "selection-bias": {
+      "label": "Treats an unrepresentative sample as representative",
+      "skills": [
+        "2.B"
+      ],
+      "units": [
+        2
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "large-sample-bias": {
+      "label": "Assumes a large sample removes selection bias",
+      "skills": [
+        "2.B"
+      ],
+      "units": [
+        2
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "observational-causation": {
+      "label": "Claims an observational study establishes cause and effect",
+      "skills": [
+        "2.B",
+        "4.B"
+      ],
+      "units": [
+        2
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "stratified-cluster": {
+      "label": "Confuses sampling within every stratum with selecting whole clusters",
+      "skills": [
+        "2.B"
+      ],
+      "units": [
+        2
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "nonresponse-voluntary": {
+      "label": "Confuses nonresponse with voluntary response bias",
+      "skills": [
+        "2.B"
+      ],
+      "units": [
+        2
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "random-selection-assignment": {
+      "label": "Confuses random selection with random assignment",
+      "skills": [
+        "2.B"
+      ],
+      "units": [
+        2
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "blocking-randomization": {
+      "label": "Forms blocks randomly instead of using a relevant characteristic",
+      "skills": [
+        "2.B"
+      ],
+      "units": [
+        2
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "short-run-balance": {
+      "label": "Expects random outcomes to balance out in the short run",
+      "skills": [
+        "4.D"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "expected-guaranteed": {
+      "label": "Treats a long-run expected value as a guaranteed outcome",
+      "skills": [
+        "4.D"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "independent-disjoint": {
+      "label": "Treats independent events as mutually exclusive",
+      "skills": [
+        "3.C"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "addition-overlap": {
+      "label": "Adds event probabilities without subtracting their overlap",
+      "skills": [
+        "3.C"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "replacement-independence": {
+      "label": "Assumes repeated draws without replacement keep the same probabilities",
+      "skills": [
+        "3.C"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "binomial-geometric": {
+      "label": "Confuses a fixed number of trials with waiting for first success",
+      "skills": [
+        "2.C"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "sd-addition": {
+      "label": "Adds standard deviations instead of adding independent variances",
+      "skills": [
+        "3.D"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "sampling-individual": {
+      "label": "Confuses a sampling distribution with individual observations",
+      "skills": [
+        "4.C",
+        "4.D"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "sample-size-variability": {
+      "label": "Expects larger samples to make sample statistics more variable",
+      "skills": [
+        "3.D",
+        "4.C"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "unbiased-exact": {
+      "label": "Thinks an unbiased estimator gives the exact parameter every time",
+      "skills": [
+        "4.D"
+      ],
+      "units": [
+        3
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "normality-conditions": {
+      "label": "Uses the wrong normality conditions for the statistic",
+      "skills": [
+        "4.E"
+      ],
+      "units": [
+        3,
+        4,
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "confidence-probability": {
+      "label": "Assigns a confidence percentage as a probability to a fixed parameter in one interval",
+      "skills": [
+        "4.F"
+      ],
+      "units": [
+        4,
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "confidence-data": {
+      "label": "Interprets a confidence interval as containing a percentage of individual data",
+      "skills": [
+        "4.F"
+      ],
+      "units": [
+        4,
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "confidence-width": {
+      "label": "Expects higher confidence to produce a narrower interval",
+      "skills": [
+        "2.D"
+      ],
+      "units": [
+        4,
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "hypotheses-statistics": {
+      "label": "Writes hypotheses about sample statistics instead of population parameters",
+      "skills": [
+        "2.E"
+      ],
+      "units": [
+        4,
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "alternative-direction": {
+      "label": "Chooses a hypothesis direction that does not match the question",
+      "skills": [
+        "2.E"
+      ],
+      "units": [
+        4,
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "pvalue-null-probability": {
+      "label": "Interprets a p-value as the probability a hypothesis is true",
+      "skills": [
+        "4.F"
+      ],
+      "units": [
+        4,
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "pvalue-extreme": {
+      "label": "Counts only the exact observed outcome when interpreting a p-value",
+      "skills": [
+        "4.F"
+      ],
+      "units": [
+        4,
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "accept-null": {
+      "label": "Treats failure to reject as proof that the null hypothesis is true",
+      "skills": [
+        "4.G"
+      ],
+      "units": [
+        4,
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "pvalue-decision": {
+      "label": "Reverses the comparison of p-value and significance level",
+      "skills": [
+        "4.G"
+      ],
+      "units": [
+        4,
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "paired-independent": {
+      "label": "Treats paired observations as independent samples",
+      "skills": [
+        "2.C"
+      ],
+      "units": [
+        5
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "chi-square-expected": {
+      "label": "Uses observed counts when expected counts are required",
+      "skills": [
+        "3.E",
+        "4.E"
+      ],
+      "units": [
+        4
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    },
+    "categorical-quantitative": {
+      "label": "Confuses categories with measured or counted quantities",
+      "skills": [
+        "2.A"
+      ],
+      "units": [
+        1
+      ],
+      "reviewed": false,
+      "provenance": "codex-draft-2026-09-11"
+    }
+  }
+}

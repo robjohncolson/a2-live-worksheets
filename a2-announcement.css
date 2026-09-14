@@ -1,0 +1,5 @@
+.a2-announcement:not([hidden]) { display: inline-block; margin: 4px 0; padding: 4px 8px; border: 1px solid currentColor; border-radius: 4px; background: var(--second, #fff); font-size: 12px; overflow-wrap: anywhere; }
+.a2-announcement[hidden] { display: none; }
+.a2-announcement-editor { margin: 16px 0; max-width: 640px; }
+.a2-announcement-editor textarea { display: block; box-sizing: border-box; width: 100%; min-height: 80px; font: inherit; }
+.a2-announcement-editor small { display: block; margin: 6px 0; }

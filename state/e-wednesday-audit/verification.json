@@ -1,0 +1,270 @@
+{
+  "baseline": "94394648329204c91087338b2cd1199f83bc7a0a",
+  "commits": {
+    "generatorDesk": "0c1e70b",
+    "scheduleAndRegressions": "d136b02",
+    "dok": "commit containing this report"
+  },
+  "suites": {
+    "focusedWednesday": {
+      "passed": 21,
+      "failed": 0
+    },
+    "scheduleCheck": "both JSON copies match",
+    "root": {
+      "passed": 9848,
+      "failed": 25,
+      "skipped": 1
+    },
+    "server": {
+      "passed": 1720,
+      "failed": 0,
+      "skipped": 3
+    },
+    "python": {
+      "passed": 671,
+      "failed": 0
+    },
+    "dokAndShadows": {
+      "passed": 296
+    },
+    "finalDokPython": {
+      "passed": 487,
+      "failed": 0
+    }
+  },
+  "rootFailures": [
+    {
+      "file": "tests/classroom-structure.test.js",
+      "name": " Live Classroom v1a - Desk integration D3: the Teacher menu has a Live Classroom item opening teacher-classroom.html",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/classroom-structure.test.js",
+      "name": " KEYBOARD_AVATAR Phase 1 -- player controller wiring Desk has the keyboard help-text strip below the board mount",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/desk-self-signup.test.js",
+      "name": " teacher onboarding + class gradebook (static) the Teacher menu opens the Teacher Tools launcher, which wires the Roster Console",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/desk-user-role.test.js",
+      "name": " Desk: user-role gating + sign-in teacher checkbox 12: Teacher Tools launcher reaches the teacher pages (roster console, dashboard, codegen)",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/desk-verify-tools.test.js",
+      "name": " Desk — verification tools surfaced the Teacher Tools launcher wires the scan-to-verify tool (openVerifyQR)",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/doge-payout-agent.test.js",
+      "name": " DOGE payout agent config and RPC wrapper lets environment override file config and keeps portable defaults",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/doge-send-core.test.js",
+      "name": " doge-send durable file journal atomically creates, refuses overwrite, updates, and clears a mode-0600 journal",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/lineage.test.js",
+      "name": " data lineage manifest points every automatic regeneration command at an existing script or test",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/phase4-structure.test.js",
+      "name": " teacher-dashboard.html — Phase 4a structure declares it is a teacher dashboard (title)",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/phase4-structure.test.js",
+      "name": " teacher-dashboard.html — Phase 4a structure teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/phase4b-structure.test.js",
+      "name": " Phase 4b — teacher-dashboard.html remediation panel teacher secret persistence is opt-in only; localStorage scoped to known keys (Phase 4a security posture, updated 2026-05-19)",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-cleared-storage.test.js",
+      "name": " matrix row: cleared storage recovers — CONTROL (a subsequent live success) (7) flips to available, writes the latch, and the strict gate resumes",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-latch.test.js",
+      "name": " matrix row: strict-gate-still-strict — evidence present + genuinely incomplete predecessor stays LOCKED D4 fail-open never leaks into the affirmative-server case",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-loadstate.test.js",
+      "name": " matrix row: 401 -> auth classifies unavailable/auth, shows the Sign-in banner, and never clears the roster session",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/progress-reset-matrix-loadstate.test.js",
+      "name": " matrix row: 403 -> auth (classified identically to 401) classifies unavailable/auth",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/remaining-feature-contracts.test.js",
+      "name": " F004 Start Here signed-in progress preview renders the signed-out fallback when identity or service config is unavailable",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/remaining-feature-contracts.test.js",
+      "name": " F004 Start Here signed-in progress preview fetches /grade with rosterClient.token() and renders quarter/unit progress for signed-in students",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/remaining-feature-contracts.test.js",
+      "name": " F061 public worksheet table of contents index links TOC.html and TOC lists all 69 live worksheet files that exist on disk",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/journeys/harness.smoke.test.js",
+      "name": " Desk journey harness smoke boots the real Desk cleanly with Do Now and disk-backed roadmap tiles in under 3 seconds",
+      "baselineReproduced": false,
+      "isolatedRerun": "passed (startup 3410ms exceeded 3000ms only during full run)"
+    },
+    {
+      "file": "tests/journeys/j2-shared-device.journey.test.js",
+      "name": " Desk journey J2 J2 reloads a shared device across A → B → A without leaking marks, due chip, or SRS state, then hydrates a fresh marks bucket from /donow (supersedes desk-calendar-sync per-student visibility and selfDone hydration behavior)",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/journeys/j4-quick-check.journey.test.js",
+      "name": " Desk journey J4 J4 resumes answered snapshots without score inflation and commits one 8/10 Quick check (supersedes desk-blooket-flashcards it 55 “_bfSaveProgress persists the answered snapshot”, it 56 “answer saves after scoring and Next clears answered before saving”, it 57 “answer then Cancel resumes at the following card without another point”, it 58 “pass timer is canceled on close and resume commits the saved 80% once”, and it 58b “non-passing answer then Cancel resumes one card ahead without a commit”)",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": " Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab 'network' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": " Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '401' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": " Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '403' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "baselineReproduced": true
+    },
+    {
+      "file": "tests/journeys/j7-offline-grade.journey.test.js",
+      "name": " Desk journey J7 J7 cold reboot preserves the incident invariants after a real visible-tab '500' /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)",
+      "baselineReproduced": true
+    }
+  ],
+  "pairs": [
+    {
+      "date": "2026-09-16",
+      "topics": [
+        "1.4",
+        "1.5"
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "topics": [
+        "1.7",
+        "1.8"
+      ]
+    },
+    {
+      "date": "2026-10-07",
+      "topics": [
+        "3.5",
+        "3.6"
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "topics": [
+        "4.2",
+        "4.3"
+      ]
+    },
+    {
+      "date": "2026-12-16",
+      "topics": [
+        "6.2",
+        "6.3"
+      ]
+    },
+    {
+      "date": "2027-01-06",
+      "topics": [
+        "5.6",
+        "6.8"
+      ]
+    },
+    {
+      "date": "2027-01-20",
+      "topics": [
+        "8.4",
+        "8.5"
+      ]
+    },
+    {
+      "date": "2027-02-03",
+      "topics": [
+        "7.1",
+        "7.2"
+      ]
+    },
+    {
+      "date": "2027-02-24",
+      "topics": [
+        "7.7",
+        "7.8"
+      ]
+    },
+    {
+      "date": "2027-03-10",
+      "topics": [
+        "2.5",
+        "2.6"
+      ]
+    }
+  ],
+  "periodB": "Original B-field lines byte-identical; SHA256 a212bb52dcca76c7b968a9b07eb882c80fa20432df6f589c84defb70bbc7f142",
+  "ePcDay2": [
+    "2026-10-16",
+    "2026-12-07",
+    "2027-01-29",
+    "2027-03-05",
+    "2027-03-22"
+  ],
+  "eReviewEnd": "2027-03-31",
+  "dokBuilt": [
+    "1.4+1.5",
+    "1.7+1.8"
+  ],
+  "dokPending": [
+    "3.5+3.6",
+    "4.2+4.3",
+    "6.2+6.3",
+    "5.6+6.8",
+    "8.4+8.5",
+    "7.1+7.2",
+    "7.7+7.8",
+    "2.5+2.6"
+  ],
+  "pdfPages": {
+    "eachStudent": 2,
+    "eachBoard": 1,
+    "eachTeacher": 3
+  },
+  "singleTopicCompatibility": "66 lessons, all three editions produce byte-identical TeX with baseline builder under the same schedule",
+  "limitations": [
+    "Root suite retains 24 independently reproduced baseline failures and one timing flake that passes in isolation.",
+    "Eight group sheets explicitly pending under the authorized allowance."
+  ],
+  "pushed": false
+}
