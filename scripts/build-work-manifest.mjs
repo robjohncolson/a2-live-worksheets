@@ -3,7 +3,7 @@
  * Node 18+ ESM, zero external dependencies.
  *
  * CLI: node scripts/build-work-manifest.mjs
- * CLI is disabled until an A2 manifest generator is authored; it writes nothing.
+ * Legacy CLI is disabled; use node scripts/build-a2-work-manifest.mjs.
  * The exported legacy builder remains available for fixture-based tests.
  *
  * Deterministic: two runs are byte-identical except the single line
@@ -325,6 +325,6 @@ export function buildWorkManifest(root) {
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
 
 if (isMain) {
-  console.error('A2 manifest generator not yet available');
+  console.error('A2 manifest generator not yet available through this legacy CLI; use node scripts/build-a2-work-manifest.mjs');
   process.exitCode = 1;
 }

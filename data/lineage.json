@@ -116,26 +116,35 @@
       "id": "work-manifest-root",
       "path": "data/work-manifest.json",
       "kind": "derived",
-      "description": "Live CED-ordered repository work manifest used for Do Now task order.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": [
-        "tests/work-manifest.test.js"
+      "description": "Published Algebra 2 work in classroom order: Try-Its, lesson check, flashcards.",
+      "inputs": [
+        "a2-lesson-targets",
+        "a2-lessons-source"
       ],
-      "notes": "Old item IDs are preserved while core lessons are reordered into five CED units. Legacy AP generator depends on stripped inputs and is unavailable for A2. generator removed with the AP content strip (2026-09-16); A2 generator pending"
+      "regenerate": "node scripts/build-a2-work-manifest.mjs",
+      "pinnedBy": [
+        "tests/a2-work-manifest.test.js",
+        "roster-server/tests/donow.test.js",
+        "tests/desk-donow-card.test.js"
+      ],
+      "notes": "Both deployment copies are byte-identical; only the generated timestamp varies between builds."
     },
     {
       "id": "work-manifest-server",
       "path": "roster-server/data/work-manifest.json",
       "kind": "derived",
-      "description": "Byte-identical work manifest bundled into the roster-server deployment.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": [
-        "tests/work-manifest.test.js",
-        "roster-server/tests/donow.test.js"
+      "description": "Published Algebra 2 work in classroom order: Try-Its, lesson check, flashcards.",
+      "inputs": [
+        "a2-lesson-targets",
+        "a2-lessons-source"
       ],
-      "notes": "Railway deploys roster-server as its root, so the bundled copy is required. Legacy AP generator depends on stripped inputs and is unavailable for A2. generator removed with the AP content strip (2026-09-16); A2 generator pending"
+      "regenerate": "node scripts/build-a2-work-manifest.mjs",
+      "pinnedBy": [
+        "tests/a2-work-manifest.test.js",
+        "roster-server/tests/donow.test.js",
+        "tests/desk-donow-card.test.js"
+      ],
+      "notes": "Both deployment copies are byte-identical; only the generated timestamp varies between builds."
     },
     {
       "id": "blooket-topic-csv",
@@ -407,6 +416,17 @@
         "tests/a2-calendar.test.js"
       ],
       "notes": "Also depends on content/a2/lessons.json. Replaces the empty stub left by the content strip; the AP crosswalk in js/ced2026-crosswalk.js stays for inherited tests and is overridden per lesson at runtime."
+    },
+    {
+      "id": "a2-lessons-source",
+      "path": "content/a2/lessons.json",
+      "kind": "source",
+      "description": "Published Algebra 2 lesson model and ledger item numbering.",
+      "inputs": [],
+      "regenerate": null,
+      "pinnedBy": [
+        "tests/a2-work-manifest.test.js"
+      ]
     }
   ]
 }

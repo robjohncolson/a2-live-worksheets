@@ -18,6 +18,45 @@ import { loadCedLabels } from './fixtures/ced2026-labels.js';
 const REPO_ROOT = resolve(__dirname, '..');
 const DESK_PATH = resolve(REPO_ROOT, 'desk.html');
 
+describe('A2 Do Now actions', () => {
+  it.each([
+    ['try-it', 'Try-Its (scored in class)'],
+    ['lesson-check', 'Lesson Check'],
+    ['flashcard', 'Flashcards'],
+  ])('renders %s with the A2 title and correct action', async (source, activityLabel) => {
+    const dom = new JSDOM('<div id="donow-card"><span id="donow-msg"></span></div>');
+    const launches = [];
+    const sandbox = {
+      document: dom.window.document,
+      window: { ROSTER_SERVICE_URL: 'https://roster.example', rosterClient: { token: () => 'token' } },
+      REGISTRY: { lessons: { '1.1': { title: 'Key Features of Functions' } } },
+      cedLabel: () => ({ text: 'inherited AP title' }),
+      // A deck pass must not suppress the remaining check or Try-Its.
+      getStudentMarks: () => ({}),
+      localLessonState: () => 'done',
+      _calNextUp: null,
+      fetch: async () => ({ json: async () => ({ ok: true,
+        nextTask: { unit: 'U1', lesson: '1.1', activity: source, source, done: 0, total: 1 },
+      }) }),
+      openBlooketFlashcards: (...args) => launches.push(args),
+    };
+    createContext(sandbox);
+    runInContext(fnBody(readFileSync(DESK_PATH, 'utf8'), 'renderDoNow') + '\nthis.run = renderDoNow;', sandbox);
+    await sandbox.run();
+    const msg = dom.window.document.getElementById('donow-msg');
+    expect(msg.textContent).toContain('Do Now: 1-1 · Key Features of Functions — ' + activityLabel);
+    if (source === 'try-it') {
+      expect(msg.querySelector('a, button')).toBeNull();
+    } else if (source === 'lesson-check') {
+      expect(msg.querySelector('a').getAttribute('href')).toBe('check.html?lesson=1-1');
+    } else {
+      msg.querySelector('button').click();
+      expect(launches).toEqual([[null, '1.1']]);
+    }
+    dom.window.close();
+  });
+});
+
 let html;
 let document;
 

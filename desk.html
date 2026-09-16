@@ -6728,7 +6728,8 @@ async function renderDoNow() {
     // Same fix family as the speed-bump's BUG-B local-done check.
     try {
       var _dnMarks = (typeof getStudentMarks === 'function') ? getStudentMarks() : null;
-      if (nt && nt.lesson && _dnMarks && typeof localLessonState === 'function'
+      if (nt && !['try-it', 'lesson-check', 'flashcard'].includes(nt.source)
+          && nt.lesson && _dnMarks && typeof localLessonState === 'function'
           && localLessonState(nt.lesson, _dnMarks) === 'done') {
         if (_calNextUp) {
           show('Do Now: ' + cedLabel(_calNextUp).text + ' — keep going.', 'todo');
@@ -6776,6 +6777,30 @@ async function renderDoNow() {
     // Malformed/partial nextTask (no unit) → quiet fallback, never "undefined".
     if (!nt.unit) {
       show('Could not load your Do Now right now. It will refresh automatically.', 'signin');
+      return;
+    }
+
+    if (nt.lesson && ['try-it', 'lesson-check', 'flashcard'].includes(nt.source)) {
+      var lessonKey = nt.lesson.replace('.', '-');
+      var entry = typeof REGISTRY !== 'undefined' && REGISTRY.lessons
+        ? REGISTRY.lessons[nt.lesson] : null;
+      var label = entry && entry.title
+        ? lessonKey + ' · ' + entry.title : cedLabel(nt.lesson).text;
+      var activityLabel = nt.source === 'try-it' ? 'Try-Its (scored in class)'
+        : nt.source === 'lesson-check' ? 'Lesson Check' : 'Flashcards';
+      show('Do Now: ' + label + ' — ' + activityLabel, 'todo');
+      if (nt.source === 'try-it') return;
+
+      var action = document.createElement(nt.source === 'lesson-check' ? 'a' : 'button');
+      action.textContent = nt.source === 'lesson-check' ? 'Open Lesson Check' : 'Open Flashcards';
+      if (nt.source === 'lesson-check') {
+        action.href = 'check.html?lesson=' + encodeURIComponent(lessonKey);
+      } else {
+        action.type = 'button';
+        action.onclick = function () { openBlooketFlashcards(null, nt.lesson); };
+      }
+      msg.appendChild(document.createTextNode(' '));
+      msg.appendChild(action);
       return;
     }
 
@@ -14431,7 +14456,7 @@ function hTip(){tip.style.display="none";}
   loadYear(cYear);
 })();
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-16-30ul';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-16-fsoh';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

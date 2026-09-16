@@ -89,7 +89,9 @@ export function computeDonow(ledgerRows, manifest) {
     }
     if (!topic) continue;
     // CR- = quiz, BL- = blooket (flashcard pass), WS- = worksheet.
-    const artifact = /^CR-/.test(row.item_id) ? 'quiz'
+    const artifact = /^TI-/.test(row.item_id) ? 'try-it'
+      : /^LC-/.test(row.item_id) ? 'lesson-check'
+      : /^CR-/.test(row.item_id) ? 'quiz'
       : /^BL-/.test(row.item_id) ? 'blooket'
       : 'worksheet';
     if (!selfDoneByTopic.has(topic)) selfDoneByTopic.set(topic, new Set());
@@ -171,13 +173,16 @@ export function computeDonow(ledgerRows, manifest) {
   }
 
   // ── nextTask: earliest incomplete activity ────────────────────────────────
-  const firstIncomplete = allActivities.find(a => a.state !== 'done');
+  const firstIncomplete = allActivities.find(a => a.total > 0 && a.state !== 'done');
   const nextTask = firstIncomplete
     ? {
         unit:     firstIncomplete.unit,
         lesson:   firstIncomplete.lesson,
         activity: firstIncomplete.activity,
         source:   firstIncomplete.source,
+        itemIds:  firstIncomplete.itemIds,
+        done:     firstIncomplete.done,
+        total:    firstIncomplete.total,
         progress: { done: firstIncomplete.done, total: firstIncomplete.total },
         reason:   'earliest-incomplete'
       }
