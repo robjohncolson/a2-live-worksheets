@@ -52,13 +52,13 @@ C Mon/Tue/Thu, D Mon/Wed/Fri, G Tue/Wed/Thu/Fri; district holidays shift a due d
 
 | Lesson | Window | C due | D due | G due |
 |---|---|---|---|---|
-| 1-1 | Sep 2 - Sep 15 | 2026-09-15 | 2026-09-14 | 2026-09-15 |
-| 1-2 | Sep 16 - Sep 29 | 2026-09-29 | 2026-09-28 | 2026-09-29 |
-| 1-5 | Sep 30 - Oct 13 | 2026-10-13 | 2026-10-09 | 2026-10-13 |
-| 1-6 | Oct 14 - Oct 27 | 2026-10-27 | 2026-10-26 | 2026-10-27 |
+| 1-1 | Sep 2 - Sep 25 (extended a week, 2026-09-16 decision) | 2026-09-24 | 2026-09-25 | 2026-09-25 |
+| 1-2 | Sep 28 - Oct 9 | 2026-10-08 | 2026-10-09 | 2026-10-09 |
+| 1-5 | Oct 12 - Oct 23 | 2026-10-22 | 2026-10-23 | 2026-10-23 |
+| 1-6 | Oct 26 - Nov 6 | 2026-11-05 | 2026-11-06 | 2026-11-06 |
 
-1-3 and 1-4 are brief lessons and are not scheduled or published. Topic 1 assessment follows
-1-6, before Q1 closes on Nov 6. Dates can be overridden per section from the teacher pacing
+1-3 and 1-4 are brief lessons and are not scheduled or published. 1-6 now ends on the Q1 close
+(Nov 6), so the Topic 1 assessment lands in the first days of Q2 unless a window is shortened. Dates can be overridden per section from the teacher pacing
 tool without editing the file.
 
 ## Per-lesson classification

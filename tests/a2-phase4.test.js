@@ -29,7 +29,7 @@ describe('shared interval normalizer', () => {
   });
 });
 it('ships six traced items, five verbatim Try-Its and a clean 14-card traced deck', () => {
-  expect(lessons[0].sections).toEqual({ C: '2026-09-15', D: '2026-09-14', G: '2026-09-15' });
+  expect(lessons[0].sections).toEqual({ C: '2026-09-24', D: '2026-09-25', G: '2026-09-25' });
   expect(lessons[0].lessonCheck.map(item => item.registryId)).toEqual([18,21,22,23,27,32].map(n => '1-1-savvas-q' + n));
   expect(lessons[0].tryIts.map(item => item.n)).toEqual([1,2,3,4,5]);
   const report = JSON.parse(execFileSync(process.execPath, ['scripts/lint-blooket-deck.mjs', '--csv', lessons[0].deck], { encoding: 'utf8' }));
