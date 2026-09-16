@@ -19,18 +19,19 @@ describe('teacher app without nearby mesh', () => {
     try {
       Object.defineProperty(window.document, 'readyState', { value: 'complete' });
       window.ROSTER_SERVICE_URL = 'https://roster.example';
-      window.fetch = vi.fn().mockResolvedValue({
+      const fetch = vi.fn().mockResolvedValue({
         status: 200,
         json: async () => ({ students: [{ studentId: 's1', username: 'Student', bundle: {
           records: [{ source: 'frq', itemId: 'lesson-response', response: 'My answer', score: null, attempt: 1 }],
         } }] }),
       });
+      window.fetch = fetch;
       for (const script of window.document.querySelectorAll('script:not([src])')) window.eval(script.textContent);
       window.document.getElementById('btn-connect').click();
       expect(window.document.getElementById('grade-card').classList.contains('hidden')).toBe(false);
       window.document.getElementById('btn-import').click();
       await vi.waitFor(() => expect(window.document.getElementById('frq-list').textContent).toContain('My answer'));
-      expect(window.fetch.mock.calls[0][0]).toBe('https://roster.example/admin/snapshot');
+      expect(fetch.mock.calls[0][0]).toBe('https://roster.example/admin/snapshot');
     } finally {
       window.close();
     }
@@ -147,10 +148,11 @@ describe('teacher app without nearby mesh', () => {
     const exported = { student: { studentId: 's1', realName: 'Student' }, records: [] };
     try {
       window.ROSTER_SERVICE_URL = 'https://roster.example';
-      window.fetch = vi.fn().mockResolvedValue({
+      const fetch = vi.fn().mockResolvedValue({
         status: 200, ok: true,
         json: async () => ({ ok: true, imported: 1, skipped: 0, total: 1 }),
       });
+      window.fetch = fetch;
       for (const script of window.document.querySelectorAll('script:not([src])')) window.eval(script.textContent);
       const file = window.document.getElementById('file');
       Object.defineProperty(file, 'files', { value: [new window.File([JSON.stringify(exported)], 'offline.json', { type: 'application/json' })] });
@@ -162,7 +164,7 @@ describe('teacher app without nearby mesh', () => {
       await vi.waitFor(() => expect(button.disabled).toBe(false));
       button.click();
       await vi.waitFor(() => expect(window.document.getElementById('result').textContent).toContain('1 recorded'));
-      expect(window.fetch).toHaveBeenCalledWith('https://roster.example/ledger/import', {
+      expect(fetch).toHaveBeenCalledWith('https://roster.example/ledger/import', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-teacher-secret': 'teacher-test-key' },
         body: JSON.stringify(exported),

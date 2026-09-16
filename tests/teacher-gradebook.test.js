@@ -5,7 +5,7 @@
 //
 // @vitest-environment node
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { JSDOM } from 'jsdom';
 import { readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
@@ -16,36 +16,30 @@ const html = readFileSync(resolve(here, '../teacher-dashboard.html'), 'utf8');
 
 function synthPayload() {
   const columns = [
-    { key: 'FA:1.1', kind: 'followalong', category: 'Lesson', title: '1.1 Follow-Along', unit: 1, topicKeys: ['1.1'] },
-    { key: 'FA:1.2', kind: 'followalong', category: 'Lesson', title: '1.2 Follow-Along', unit: 1, topicKeys: ['1.2'] },
-    { key: 'QUIZ:1.2', kind: 'quiz', category: 'Quizzes', title: '1.2 Quiz', unit: 1, topicKeys: ['1.2'] },
-    { key: 'BL:1.1', kind: 'blooket', category: 'Blooket', title: '1.1 Blooket', unit: 1, topicKeys: ['1.1'] },
-    { key: 'PC:U1', kind: 'pc', category: 'Progress Check', title: 'Unit 1 Progress Check', unit: 1, topicKeys: [] },
-    { key: 'POSTER:U1', kind: 'poster', category: 'Posters', title: 'Unit 1 Poster', unit: 1, topicKeys: [] },
+    { key: 'LC:1-1', kind: 'lesson_check', category: 'Assessments', title: '1-1 Lesson Check', maxPoints: 10, topicKeys: ['1-1'] },
+    { key: 'TA:T1', kind: 'topic_assessment', category: 'Assessments', title: 'Topic 1 Assessment', maxPoints: 100, topicKeys: [] },
+    { key: 'TI:1-1', kind: 'try_it', category: 'Assignments', title: '1-1 Try-It', maxPoints: 2, topicKeys: ['1-1'] },
+    { key: 'BL:1-1', kind: 'flashcard', category: 'Engagement', title: '1-1 Lesson Deck', maxPoints: 1, topicKeys: ['1-1'] },
   ];
   const gradebook = {
-    weights: { Lesson: 15, Quizzes: 15, Blooket: 5, 'Progress Check': 50, Posters: 15 },
-    quarters: {
-      Q1: {
-        columns,
-        cells: { 'FA:1.1': 88, 'FA:1.2': 90, 'QUIZ:1.2': 78, 'BL:1.1': 95, 'PC:U1': 80, 'POSTER:U1': null },
-        categoryAverages: { Lesson: 89, Quizzes: 78, Blooket: 95, 'Progress Check': 80 },
-        schoologyTotal: 82.7,
-        v3Total: 91.2,
-        reconciliation: {
-          pcAvg: 90, workAvg: 70, schoologyTotal: 82.7, v3Total: 91.2, delta: 8.5, branch: 'max',
-          reason: 'Both tracks clear the 40 floor, so v3 takes the higher (PC 90), while Schoology averages the categories (82.7).',
-        },
+    weights: { Assessments: 50, Assignments: 40, Engagement: 10 },
+    quarters: { Q1: {
+      columns,
+      cells: { 'LC:1-1': 8, 'TA:T1': 80, 'TI:1-1': 1, 'BL:1-1': 1 },
+      categoryAverages: { Assessments: 80, Assignments: 50, Engagement: 100 },
+      schoologyTotal: 70,
+      v3Total: 70,
+      formula: 'district',
+      reconciliation: {
+        schoologyTotal: 70, v3Total: 70, delta: 0, branch: 'district',
+        reason: 'Assessments 50%, Assignments 40%, Engagement 10%.',
       },
-    },
+    } },
   };
-  return {
-    ok: true,
-    students: [
-      { studentId: 's1', realName: 'Ana Smith', username: 'apple_cat', section: 'PeriodB',
-        quarters: { Q1: { quarterGrade: 91.2 } }, units: {}, completion: {}, lessons: [], gradebook },
-    ],
-  };
+  return { ok: true, students: [
+    { studentId: 's1', realName: 'Ana Smith', username: 'apple_cat', section: 'C',
+      quarters: { Q1: { quarterGrade: 70 } }, units: {}, completion: {}, lessons: [], gradebook },
+  ] };
 }
 
 describe('teacher-dashboard in-app gradebook grid', () => {
@@ -63,6 +57,8 @@ describe('teacher-dashboard in-app gradebook grid', () => {
     await new Promise((r) => setTimeout(r, 30));
   });
 
+  afterAll(() => win.close());
+
   it('exposes renderGradebook and has the grid mount points', () => {
     expect(typeof win.renderGradebook).toBe('function');
     expect(doc.getElementById('gb-thead')).toBeTruthy();
@@ -71,10 +67,8 @@ describe('teacher-dashboard in-app gradebook grid', () => {
 
   
 
-  it('renders surviving component cells, student identity, both totals and their difference', () => {
+  it('renders surviving component cells, student identity, matching district totals', () => {
     const payload = synthPayload();
-    const quarter = payload.students[0].gradebook.quarters.Q1;
-    quarter.columns = quarter.columns.filter(column => ['followalong', 'quiz', 'blooket'].includes(column.kind));
     win.renderGradebook(payload);
     expect(doc.getElementById('gb-wrap').style.display).not.toBe('none');
     expect(doc.getElementById('gb-empty').style.display).toBe('none');
@@ -84,14 +78,16 @@ describe('teacher-dashboard in-app gradebook grid', () => {
     expect(rows[0].querySelector('td').textContent).toContain('Ana Smith');
     const totals = rows[0].querySelectorAll('td.gb-tot');
     expect(totals).toHaveLength(2);
-    expect(totals[0].textContent).toContain('82.7');
-    expect(totals[1].textContent).toContain('91.2');
-    expect(totals[1].textContent).toContain('8.5');
+    expect(totals[0].textContent).toContain('70');
+    expect(totals[1].textContent).toContain('70');
+    expect(rows[0].querySelector('.gb-delta')).toBeNull();
+    expect(rows[0].dataset.section).toBe('C');
+    expect(doc.getElementById('gb-thead').textContent).not.toMatch(/Progress Check|Poster/);
   });
 
-  it('renders a 105-point follow-along without clipping the number', () => {
+  it('renders a 105-point synthetic assessment without clipping the number', () => {
     const payload = synthPayload();
-    payload.students[0].gradebook.quarters.Q1.cells['FA:1.1'] = 105;
+    payload.students[0].gradebook.quarters.Q1.cells['TA:T1'] = 105;
     win.renderGradebook(payload);
     expect([...doc.querySelectorAll('#gb-tbody td.gb-cell')].some(td => td.textContent.includes('105'))).toBe(true);
   });
@@ -99,41 +95,36 @@ describe('teacher-dashboard in-app gradebook grid', () => {
   
 
   function payloadWithDue() {
-    const columns = [
-      { key: 'FA:1.1', kind: 'followalong', category: 'Lesson', title: '1.1 FA', unit: 1, topicKeys: ['1.1'], due: true },
-      { key: 'FA:1.9', kind: 'followalong', category: 'Lesson', title: '1.9 FA', unit: 1, topicKeys: ['1.9'], due: false },
-      { key: 'POSTER:U1', kind: 'poster', category: 'Posters', title: 'U1 Poster', unit: 1, topicKeys: [], due: false },
-    ];
-    const gradebook = { weights: { Lesson: 15, Posters: 15 }, quarters: { Q1: {
-      columns, cells: { 'FA:1.1': 88, 'FA:1.9': null, 'POSTER:U1': null },
-      categoryAverages: { Lesson: 88 }, schoologyTotal: 88, v3Total: 88, reconciliation: {},
-    } } };
-    return { ok: true, students: [{ studentId: 's1', realName: 'Ana', username: 'a', section: 'PeriodX', gradebook }] };
+    const payload = synthPayload();
+    const quarter = payload.students[0].gradebook.quarters.Q1;
+    quarter.columns.forEach(column => { column.due = true; });
+    quarter.columns.push({ key: 'LC:1-9', kind: 'lesson_check', category: 'Assessments', title: '1-9 Lesson Check', maxPoints: 10, topicKeys: ['1-9'], due: false });
+    quarter.cells['LC:1-9'] = null;
+    return payload;
   }
 
   it('date-gates: hides a future, not-started column + notes how many were hidden', () => {
     win.renderGradebook(payloadWithDue());
     const titles = Array.from(doc.querySelectorAll('#gb-thead th.gb-col')).map((th) => th.getAttribute('title'));
-    expect(titles).toContain('1.1 FA');        // due → shown
-    expect(titles).not.toContain('1.9 FA');    // future + not started → hidden
-    expect(titles).not.toContain('U1 Poster'); // future + not started → hidden
+    expect(titles).toContain('1-1 Lesson Check');        // due → shown
+    expect(titles).not.toContain('1-9 Lesson Check');    // future + not started → hidden
     expect(doc.getElementById('gb-scope').textContent).toMatch(/hidden/i);
   });
 
   it('date-gates: keeps a future column that some student HAS started', () => {
     const p = payloadWithDue();
-    p.students[0].gradebook.quarters.Q1.cells['FA:1.9'] = 75; // started despite due:false
+    p.students[0].gradebook.quarters.Q1.cells['LC:1-9'] = 7.5; // started despite due:false
     win.renderGradebook(p);
     const titles = Array.from(doc.querySelectorAll('#gb-thead th.gb-col')).map((th) => th.getAttribute('title'));
-    expect(titles).toContain('1.9 FA');
+    expect(titles).toContain('1-9 Lesson Check');
   });
 
   it('colors cells by the grade-rules bands (90+ deep green, <40 red)', () => {
     const p = synthPayload();
-    p.students[0].gradebook.quarters.Q1.cells['QUIZ:1.2'] = 30; // below the 40 floor
+    p.students[0].gradebook.quarters.Q1.cells['TA:T1'] = 30; // below the 40 floor
     win.renderGradebook(p);
-    expect(doc.querySelector('#gb-tbody td.gb-cell.gb-top')).toBeTruthy(); // BL:1.1 = 95
-    expect(doc.querySelector('#gb-tbody td.gb-cell.gb-low')).toBeTruthy(); // QUIZ:1.2 = 30
+    expect(doc.querySelector('#gb-tbody td.gb-cell.gb-top')).toBeTruthy(); // BL:1-1 = 1 / 1
+    expect(doc.querySelector('#gb-tbody td.gb-cell.gb-low')).toBeTruthy(); // TA:T1 = 30 / 100
   });
 
   it('shows the empty note when no gradebook data is present', () => {
@@ -142,18 +133,17 @@ describe('teacher-dashboard in-app gradebook grid', () => {
     expect(doc.getElementById('gb-empty').style.display).toBe('');
   });
 
-  it('renders the per-student Schoology-vs-v3 reconciliation in the drawer', () => {
+  it('renders the per-student district category reconciliation in the drawer', () => {
     win.lastGradesPayload = synthPayload();
     win.currentQuarter = 'Q1';
     win.renderTscReconcile('s1');
     const card = doc.getElementById('tsc-reconcile-card');
-    expect(card.textContent).toContain('PC track');
-    expect(card.textContent).toContain('Work track');
-    expect(card.textContent).toContain('v3');
     expect(card.textContent).toContain('Schoology');
-    expect(card.textContent).toContain('Δ'); // delta shown
-    expect(card.textContent.toLowerCase()).toContain('higher'); // max-branch reason
-    expect(card.textContent).toContain('Schoology categories'); // Schoology category averages line
+    expect(card.textContent).toContain('70');
+    for (const category of ['Assessments 80', 'Assignments 50', 'Engagement 100']) {
+      expect(card.textContent).toContain(category);
+    }
+    expect(card.textContent).toContain('Assessments 50%, Assignments 40%, Engagement 10%.');
   });
 });
 

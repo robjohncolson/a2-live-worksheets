@@ -281,5 +281,46 @@ class TestComputeSyncActions(unittest.TestCase):
         self.assertEqual(result['skip'], ['k2'])
 
 
+class TestA2ItemPolicy(unittest.TestCase):
+    def test_item_ids_classify_to_district_kinds(self):
+        expected = {
+            "LC-U1-L1": "lesson_check",
+            "TA-U1": "topic_assessment",
+            "TI-U1-L1-1": "try_it",
+            "BL-U1-L1-DESK_DONE": "flashcard",
+        }
+        for key, kind in expected.items():
+            with self.subTest(key=key):
+                self.assertEqual(lib.classify_lesson_key(key), kind)
+
+    def test_district_categories_and_raw_maxima(self):
+        expected = {
+            "lesson_check": ("Assessments", 10),
+            "topic_assessment": ("Assessments", 100),
+            "try_it": ("Assignments", 2),
+            "flashcard": ("Engagement", 1),
+        }
+        self.assertEqual(set(lib.KIND_TO_CATEGORY), set(expected))
+        for kind, (category, points) in expected.items():
+            with self.subTest(kind=kind):
+                self.assertEqual(lib.KIND_TO_CATEGORY[kind], category)
+                self.assertEqual(lib.assignment_points(kind), points)
+
+    def test_titles_preserve_item_identity_or_explicit_topic_name(self):
+        self.assertEqual(lib.assignment_title("lesson_check", "LC-U1-L1"),
+                         "Lesson check LC-U1-L1")
+        self.assertEqual(lib.assignment_title("topic_assessment", "TA-U1", "Topic 1"),
+                         "Topic assessment Topic 1")
+        self.assertEqual(lib.assignment_title("try_it", "TI-U1-L1-1"),
+                         "Try-It TI-U1-L1-1")
+        self.assertEqual(lib.assignment_title("flashcard", "BL-U1-L1-DESK_DONE"),
+                         "Flashcards BL-U1-L1-DESK_DONE")
+
+    def test_changed_teacher_score_is_a_sync_action_even_when_lower(self):
+        key = ("fixture", "TI-U1-L1-1")
+        self.assertEqual(lib.compute_sync_actions({key: 0}, {key: 2}),
+                         {"push": [key], "skip": []})
+
+
 if __name__ == '__main__':
     unittest.main()

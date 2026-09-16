@@ -196,6 +196,9 @@ hence D4.
 | U20 B15 calendar/lesson display | 8 files | adapted/restored to the applyA2Pacing contract; no subject change | committed |
 | U20 B16 Desk interaction | 4 files | adapted; no subject change | same commit |
 | U20 B17 teacher feedback | 7 files | adapted; exposed a rebrand miss — the teacher workspace period filter still offered Period B/E (teacher-workspace.js now C/D/G) | same commit, PWA stamp bumped |
+| U20 B14 offline recovery | 2 files | adapted (task timed out after applying edits; tests verified green) | committed |
+| U20 B18 grade presentation | 5 files | adapted (task timed out after applying edits); phase4-structure narrowed to one assertion (teacher inbox-seen localStorage key not in the allowlist) — still a baseline failure, fixed next round | same commit |
+| U20 B19 Schoology | 6 Python files | adapted on top of the Phase 5 ports; pytest 155 | same commit |
 | Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.

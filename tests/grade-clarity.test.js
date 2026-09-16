@@ -1,4 +1,4 @@
-// grade-clarity.test.js — pins the student-facing grade explanation (v3 two-track)
+// grade-clarity.test.js — pins the student-facing district grade explanation
 // and the Desk "how grades work" modal, plus guards against the stale band labels
 // and the old "PC only raises / two pieces count" framing that v3 contradicts.
 //
@@ -13,8 +13,8 @@ const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const START = readFileSync(resolve(repo, 'start-here.html'), 'utf8');
 const DESK = readFileSync(resolve(repo, 'desk.html'), 'utf8');
 
-describe('start-here.html — v3 two-track grade explanation', () => {
-  it('quarter band labels are the SY2627 date windows (units straddle quarters in CED order)', () => {
+describe('start-here.html — district grade explanation', () => {
+  it('quarter band labels are the SY2627 date windows', () => {
     expect(START).toContain('November 6');
     expect(START).toContain('January 22');
     // The stale unit-list mappings must be gone.
@@ -27,11 +27,22 @@ describe('start-here.html — v3 two-track grade explanation', () => {
 
   
 
+  it('explains district weights, quarterly minima, and missing due work', () => {
+    for (const category of ['Assessments 50%', 'Assignments 40%', 'Engagement 10%']) {
+      expect(START).toContain(category);
+    }
+    expect(START).toContain('4 Assessments, 10 Assignments, and 10 Engagement items');
+    expect(START).toContain('100-point topic assessment');
+    expect(START).toContain('10-point lesson check');
+    expect(START).toContain('Unattempted due work counts as zero after the lesson day');
+    expect(DESK).toContain('Unattempted due work counts as zero after the lesson day');
+  });
+
   it('exposes the how-your-grade anchor for the Desk deep-link', () => {
     expect(START).toMatch(/<section\s+id="how-your-grade"/);
   });
 
-  it('drops the old model framing that v3 contradicts', () => {
+  it('omits retired Progress Check grade policies', () => {
     expect(START).not.toContain('only</em> raise your unit grade, never lower it');
     expect(START).not.toContain('Two pieces count toward your grade');
     expect(START).not.toContain('Progress Check is how you top each unit off');
@@ -51,7 +62,7 @@ describe('desk.html — Desk "how grades work" modal', () => {
     expect(DESK).toMatch(/openGradeHelp\s*\(\s*\)/);
   });
 
-  it('the modal carries the two-track + Schoology framing and links to start-here', () => {
+  it('the modal carries district weights and links to start-here', () => {
     expect(DESK).toContain('Assessments 50%');
     expect(DESK).toContain('Assignments 40%');
     expect(DESK).toContain('Engagement 10%');
