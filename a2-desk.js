@@ -42,7 +42,9 @@
         const published = await (await fetch('content/a2/lessons.json')).json();
         if (Array.isArray(published)) lessons = published;
       }
-      try { lessons = (await A2Client.request('/lessons')).lessons; } catch (_) { /* Published model remains readable offline. */ }
+      try { const live = (await A2Client.request('/lessons')).lessons; if (Array.isArray(live) && live.length) lessons = live; } catch (_) { /* Published model remains readable offline. */ }
+      // Feed the two-week windows to the Desk calendar (no-op when nothing changed).
+      if (typeof applyA2Pacing === 'function') { try { applyA2Pacing(lessons); } catch (_) { /* calendar is optional */ } }
       const statuses = identity ? await Promise.all(lessons.map(lesson => A2Client.request('/lesson-status/' + lesson.key))) : [];
       if (version !== generation) return;
       host.textContent = '';

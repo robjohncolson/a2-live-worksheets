@@ -40,6 +40,9 @@
             --u7: #DAF0E6;  --u7-t: #161616;
             --u8: #F1D9B8;  --u8-t: #161616;
             --u9: #DAF0CF;  --u9-t: #161616;
+            --u10: #E6E0D0; --u10-t: #161616;
+            --u11: #D6E6F0; --u11-t: #161616;
+            --u12: #F0DDE6; --u12-t: #161616;
             --bonus: #EADDF4; --bonus-t: #48285E;
             --rev: #F1F0CF; --rev-t: #161616;
             --exam-bg: #161616; --exam-t: #E5E3D2;
@@ -6857,7 +6860,12 @@ function cedTeacherBridgeAllowed() {
         return !!who && who.role === 'teacher';
     } catch (_) { return false; }
 }
-// PHASE 4: replace this empty calendar configuration with the A2 lesson schedule.
+// SY26-27 Algebra 2 calendar. Closures come from lynn-public-schools-2026-2027.md
+// (months are 0-based). Pacing is filled at runtime by applyA2Pacing() from the
+// published lesson model (content/a2/lessons.json, overlaid by /lessons): each lesson
+// occupies every meeting day of its section from the day after the previous lesson's
+// due date through its own due date (about two weeks). Section course ids live in
+// tools/schoology_sync_section.py, not here.
 const SCHEDULE_DEFS = {
   'SY26-27': {
     label: '2026–27', school: 'Lynn English High School',
@@ -6867,10 +6875,75 @@ const SCHEDULE_DEFS = {
       D: { label: 'Section D', meetsDays: [1, 3, 5], schoologyCourse: null },
       G: { label: 'Section G', meetsDays: [2, 3, 4, 5], schoologyCourse: null }
     },
-    daysOff: [], pacing: { C: LESSONS, D: LESSONS, G: LESSONS }, units: []
+    daysOff: [
+      [[2026,8,4]],                    // School Closed (Fri Sep 4)
+      [[2026,8,7]],                    // Labor Day
+      [[2026,9,12]],                   // Indigenous Peoples' Day
+      [[2026,10,3]],                   // Teacher in-service (no students)
+      [[2026,10,11]],                  // Veterans Day
+      [[2026,10,26],[2026,10,27]],     // Thanksgiving Recess
+      [[2026,11,24],[2026,11,25]],     // School Closed Dec 24-25
+      [[2026,11,28],[2027,0,1]],       // Winter Recess
+      [[2027,0,18]],                   // MLK Jr. Day
+      [[2027,1,15],[2027,1,19]],       // February Vacation
+      [[2027,2,26]],                   // Good Friday
+      [[2027,3,19],[2027,3,23]],       // April Vacation
+      [[2027,4,31]]                    // Memorial Day
+    ],
+    pacing: { C: LESSONS, D: LESSONS, G: LESSONS },
+    units: [
+      {id:1,label:"Linear Functions & Systems"},{id:2,label:"Quadratics"},{id:3,label:"Polynomials"},
+      {id:4,label:"Rational Functions"},{id:5,label:"Radicals & Inverses"},{id:6,label:"Exponentials & Logs"},
+      {id:7,label:"Trigonometry"},{id:8,label:"Trig Equations & Identities"},{id:9,label:"Conics"},
+      {id:10,label:"Matrices"},{id:11,label:"Statistics"},{id:12,label:"Probability"}
+    ]
   }
 };
 let S = [];
+let _a2PacingSignature = '';
+// Fill each section's pacing queue from the lesson model and rebuild the calendar.
+// Called by a2-desk.js whenever the lesson list (with pacing overlay) is loaded.
+function applyA2Pacing(lessons) {
+  if (!Array.isArray(lessons)) return false;
+  const def = SCHEDULE_DEFS['SY26-27'];
+  const signature = JSON.stringify(lessons.map(l => [l.key, l.title, l.sections]));
+  if (signature === _a2PacingSignature) return false;
+  _a2PacingSignature = signature;
+  const offSet = buildOffSet(def.daysOff || []);
+  const rangeStart = dateFromArr(def.range.start);
+  const dayKey = dt => dt.getFullYear() + '-' + dt.getMonth() + '-' + dt.getDate();
+  // The published model is the label authority: overlay each lesson's title onto the
+  // registry so the calendar never shows the inherited AP crosswalk text for a key,
+  // even before (or without) roadmap-data.json.
+  if (typeof REGISTRY === 'object' && REGISTRY && REGISTRY.lessons) {
+    for (const lesson of lessons) {
+      const topic = String(lesson.key).replace('-', '.');
+      const unit = Number(String(lesson.key).split('-')[0]);
+      REGISTRY.lessons[topic] = Object.assign(REGISTRY.lessons[topic] || {}, { title: lesson.title,
+        ced2026: { status: 'core', newUnit: unit, newTopic: topic, newLabel: lesson.title, bonusUnit: null } });
+    }
+  }
+  for (const section of Object.keys(def.periods)) {
+    const queue = [];
+    let cursor = new Date(rangeStart);
+    const dated = lessons.filter(l => l.sections && l.sections[section])
+      .sort((a, b) => a.sections[section].localeCompare(b.sections[section]));
+    for (const lesson of dated) {
+      const [y, m, dd] = lesson.sections[section].split('-').map(Number);
+      const due = new Date(y, m - 1, dd);
+      if (due < cursor) continue;
+      const cell = d(lesson.key.replace('-', '.'), lesson.title, Number(lesson.key.split('-')[0]));
+      for (let dt = new Date(cursor); dt <= due; dt.setDate(dt.getDate() + 1)) {
+        if (!def.periods[section].meetsDays.includes(dt.getDay()) || offSet.has(dayKey(dt))) continue;
+        queue.push(cell);
+      }
+      cursor = new Date(due); cursor.setDate(cursor.getDate() + 1);
+    }
+    def.pacing[section] = queue;
+  }
+  if (cYear === 'SY26-27' && typeof loadYear === 'function') loadYear('SY26-27');
+  return true;
+}
 // Date-driven default: summer prep now, auto-roll to SY26-27 once that school year begins.
 function computeDefaultYear(){
   // DN3c / decision D5: ONE school-year calendar. The summer-prep value is

@@ -69,8 +69,8 @@
       result = { id: '★', label, unit: null, bonus: true,
         bonusUnit: entry.bonusUnit || null, text: '★ Beyond the Exam · ' + label,
         day: null, days: 1, mapped: true };
-    } else if (entry && entry.status === 'core' && /^[1-5]\.\d+$/.test(entry.newTopic)
-      && Number.isInteger(entry.newUnit) && entry.newUnit >= 1 && entry.newUnit <= 5) {
+    } else if (entry && entry.status === 'core' && /^\d{1,2}\.\d+$/.test(entry.newTopic)
+      && Number.isInteger(entry.newUnit) && entry.newUnit >= 1 && entry.newUnit <= 12) {  // A2 has 12 topics
       const group = folded[entry.newTopic] || [key];
       const day = group.length > 1 ? group.indexOf(key) + 1 : null;
       const label = String(entry.newLabel || 'Lesson');
@@ -105,7 +105,7 @@
       const label = cedLabel(key, registry);
       if (!label.mapped) continue;
       if (label.bonus) bonus = true;
-      else if (/^[1-5]\.\d+$/.test(label.id)) topics.add(label.id);
+      else if (/^\d{1,2}\.\d+$/.test(label.id)) topics.add(label.id);
     }
     const ordered = [...topics].sort(compareTopics);
     const ranges = [];

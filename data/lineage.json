@@ -640,6 +640,16 @@
       "regenerate": null,
       "pinnedBy": ["tests/a2-lesson-targets.test.js"],
       "notes": "Hand-maintained with docs/a2-lesson-targets.md; drives lesson authoring order, never grading."
+    },
+    {
+      "id": "a2-roadmap-data",
+      "path": "roadmap-data.json",
+      "kind": "derived",
+      "description": "Desk registry for Algebra 2: every Savvas lesson with its topic/title label overlay and, for published lessons, the check link, deck and per-section due dates.",
+      "inputs": ["a2-lesson-targets"],
+      "regenerate": "node scripts/build-a2-roadmap-data.mjs",
+      "pinnedBy": ["tests/a2-calendar.test.js"],
+      "notes": "Also depends on content/a2/lessons.json. Replaces the empty stub left by the content strip; the AP crosswalk in js/ced2026-crosswalk.js stays for inherited tests and is overridden per lesson at runtime."
     }
   ]
 }

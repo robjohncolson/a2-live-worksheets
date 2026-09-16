@@ -1,4 +1,1146 @@
 {
-  "lessons": {},
-  "calendar": []
+  "generatedAt": "2026-09-16T14:26:13.662Z",
+  "registryVersion": "a2-1",
+  "lessons": {
+    "1.1": {
+      "topic": "Lesson 1-1",
+      "title": "Key Features of Functions",
+      "unit": 1,
+      "plan": "keep",
+      "published": true,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 1,
+        "newTopic": "1.1",
+        "newLabel": "Key Features of Functions",
+        "bonusUnit": null
+      },
+      "urls": {
+        "check": "check.html?lesson=1-1",
+        "deck": "content/a2/1-1/deck.csv"
+      },
+      "periods": {
+        "C": {
+          "date": "2026-09-24"
+        },
+        "D": {
+          "date": "2026-09-25"
+        },
+        "G": {
+          "date": "2026-09-25"
+        }
+      }
+    },
+    "1.2": {
+      "topic": "Lesson 1-2",
+      "title": "Transformations of Functions",
+      "unit": 1,
+      "plan": "keep",
+      "published": true,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 1,
+        "newTopic": "1.2",
+        "newLabel": "Transformations of Functions",
+        "bonusUnit": null
+      },
+      "urls": {
+        "check": "check.html?lesson=1-2",
+        "deck": "content/a2/1-2/deck.csv"
+      },
+      "periods": {
+        "C": {
+          "date": "2026-10-08"
+        },
+        "D": {
+          "date": "2026-10-09"
+        },
+        "G": {
+          "date": "2026-10-09"
+        }
+      }
+    },
+    "1.3": {
+      "topic": "Lesson 1-3",
+      "title": "Piecewise-Defined Functions",
+      "unit": 1,
+      "plan": "brief",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 1,
+        "newTopic": "1.3",
+        "newLabel": "Piecewise-Defined Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "1.4": {
+      "topic": "Lesson 1-4",
+      "title": "Arithmetic Sequences and Series",
+      "unit": 1,
+      "plan": "brief",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 1,
+        "newTopic": "1.4",
+        "newLabel": "Arithmetic Sequences and Series",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "1.5": {
+      "topic": "Lesson 1-5",
+      "title": "Solving Equations and Inequalities by Graphing",
+      "unit": 1,
+      "plan": "keep",
+      "published": true,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 1,
+        "newTopic": "1.5",
+        "newLabel": "Solving Equations and Inequalities by Graphing",
+        "bonusUnit": null
+      },
+      "urls": {
+        "check": "check.html?lesson=1-5",
+        "deck": "content/a2/1-5/deck.csv"
+      },
+      "periods": {
+        "C": {
+          "date": "2026-10-22"
+        },
+        "D": {
+          "date": "2026-10-23"
+        },
+        "G": {
+          "date": "2026-10-23"
+        }
+      }
+    },
+    "1.6": {
+      "topic": "Lesson 1-6",
+      "title": "Linear Systems",
+      "unit": 1,
+      "plan": "keep",
+      "published": true,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 1,
+        "newTopic": "1.6",
+        "newLabel": "Linear Systems",
+        "bonusUnit": null
+      },
+      "urls": {
+        "check": "check.html?lesson=1-6",
+        "deck": "content/a2/1-6/deck.csv"
+      },
+      "periods": {
+        "C": {
+          "date": "2026-11-05"
+        },
+        "D": {
+          "date": "2026-11-06"
+        },
+        "G": {
+          "date": "2026-11-06"
+        }
+      }
+    },
+    "2.1": {
+      "topic": "Lesson 2-1",
+      "title": "Vertex Form of a Quadratic Function",
+      "unit": 2,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 2,
+        "newTopic": "2.1",
+        "newLabel": "Vertex Form of a Quadratic Function",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "2.2": {
+      "topic": "Lesson 2-2",
+      "title": "Standard Form of a Quadratic Function",
+      "unit": 2,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 2,
+        "newTopic": "2.2",
+        "newLabel": "Standard Form of a Quadratic Function",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "2.3": {
+      "topic": "Lesson 2-3",
+      "title": "Factored Form of a Quadratic Function",
+      "unit": 2,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 2,
+        "newTopic": "2.3",
+        "newLabel": "Factored Form of a Quadratic Function",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "2.4": {
+      "topic": "Lesson 2-4",
+      "title": "Complex Numbers and Operations",
+      "unit": 2,
+      "plan": "brief",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 2,
+        "newTopic": "2.4",
+        "newLabel": "Complex Numbers and Operations",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "2.5": {
+      "topic": "Lesson 2-5",
+      "title": "Completing the Square",
+      "unit": 2,
+      "plan": "brief",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 2,
+        "newTopic": "2.5",
+        "newLabel": "Completing the Square",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "2.6": {
+      "topic": "Lesson 2-6",
+      "title": "Quadratic Formula",
+      "unit": 2,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 2,
+        "newTopic": "2.6",
+        "newLabel": "Quadratic Formula",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "2.7": {
+      "topic": "Lesson 2-7",
+      "title": "Linear-Quadratic Systems",
+      "unit": 2,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 2,
+        "newTopic": "2.7",
+        "newLabel": "Linear-Quadratic Systems",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "3.1": {
+      "topic": "Lesson 3-1",
+      "title": "Graphing Polynomial Functions",
+      "unit": 3,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 3,
+        "newTopic": "3.1",
+        "newLabel": "Graphing Polynomial Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "3.2": {
+      "topic": "Lesson 3-2",
+      "title": "Adding, Subtracting, and Multiplying Polynomials",
+      "unit": 3,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 3,
+        "newTopic": "3.2",
+        "newLabel": "Adding, Subtracting, and Multiplying Polynomials",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "3.3": {
+      "topic": "Lesson 3-3",
+      "title": "Polynomial Identities / Binomial Theorem",
+      "unit": 3,
+      "plan": "brief",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 3,
+        "newTopic": "3.3",
+        "newLabel": "Polynomial Identities / Binomial Theorem",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "3.4": {
+      "topic": "Lesson 3-4",
+      "title": "Dividing Polynomials",
+      "unit": 3,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 3,
+        "newTopic": "3.4",
+        "newLabel": "Dividing Polynomials",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "3.5": {
+      "topic": "Lesson 3-5",
+      "title": "Zeros of Polynomial Functions",
+      "unit": 3,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 3,
+        "newTopic": "3.5",
+        "newLabel": "Zeros of Polynomial Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "3.6": {
+      "topic": "Lesson 3-6",
+      "title": "Theorems About Roots of Polynomial Equations",
+      "unit": 3,
+      "plan": "skip",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 3,
+        "newTopic": "3.6",
+        "newLabel": "Theorems About Roots of Polynomial Equations",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "3.7": {
+      "topic": "Lesson 3-7",
+      "title": "Transformations of Polynomial Functions",
+      "unit": 3,
+      "plan": "brief",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 3,
+        "newTopic": "3.7",
+        "newLabel": "Transformations of Polynomial Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "4.1": {
+      "topic": "Lesson 4-1",
+      "title": "Inverse Variation and the Reciprocal Function",
+      "unit": 4,
+      "plan": "brief",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 4,
+        "newTopic": "4.1",
+        "newLabel": "Inverse Variation and the Reciprocal Function",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "4.2": {
+      "topic": "Lesson 4-2",
+      "title": "Graphing Rational Functions",
+      "unit": 4,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 4,
+        "newTopic": "4.2",
+        "newLabel": "Graphing Rational Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "4.3": {
+      "topic": "Lesson 4-3",
+      "title": "Multiplying and Dividing Rational Expressions",
+      "unit": 4,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 4,
+        "newTopic": "4.3",
+        "newLabel": "Multiplying and Dividing Rational Expressions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "4.4": {
+      "topic": "Lesson 4-4",
+      "title": "Adding and Subtracting Rational Expressions",
+      "unit": 4,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 4,
+        "newTopic": "4.4",
+        "newLabel": "Adding and Subtracting Rational Expressions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "4.5": {
+      "topic": "Lesson 4-5",
+      "title": "Solving Rational Equations",
+      "unit": 4,
+      "plan": "keep",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 4,
+        "newTopic": "4.5",
+        "newLabel": "Solving Rational Equations",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "5.1": {
+      "topic": "Lesson 5-1",
+      "title": "nth Roots, Radicals, and Rational Exponents",
+      "unit": 5,
+      "plan": "bridge",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 5,
+        "newTopic": "5.1",
+        "newLabel": "nth Roots, Radicals, and Rational Exponents",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "5.2": {
+      "topic": "Lesson 5-2",
+      "title": "Properties of Exponents and Radicals",
+      "unit": 5,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 5,
+        "newTopic": "5.2",
+        "newLabel": "Properties of Exponents and Radicals",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "5.3": {
+      "topic": "Lesson 5-3",
+      "title": "Graphing Radical Functions",
+      "unit": 5,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 5,
+        "newTopic": "5.3",
+        "newLabel": "Graphing Radical Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "5.4": {
+      "topic": "Lesson 5-4",
+      "title": "Solving Radical Equations",
+      "unit": 5,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 5,
+        "newTopic": "5.4",
+        "newLabel": "Solving Radical Equations",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "5.5": {
+      "topic": "Lesson 5-5",
+      "title": "Function Operations",
+      "unit": 5,
+      "plan": "bridge",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 5,
+        "newTopic": "5.5",
+        "newLabel": "Function Operations",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "5.6": {
+      "topic": "Lesson 5-6",
+      "title": "Inverse Relations and Functions",
+      "unit": 5,
+      "plan": "bridge",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 5,
+        "newTopic": "5.6",
+        "newLabel": "Inverse Relations and Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "6.1": {
+      "topic": "Lesson 6-1",
+      "title": "Key Features of Exponential Functions",
+      "unit": 6,
+      "plan": "bridge",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 6,
+        "newTopic": "6.1",
+        "newLabel": "Key Features of Exponential Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "6.2": {
+      "topic": "Lesson 6-2",
+      "title": "Exponential Models",
+      "unit": 6,
+      "plan": "bridge",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 6,
+        "newTopic": "6.2",
+        "newLabel": "Exponential Models",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "6.3": {
+      "topic": "Lesson 6-3",
+      "title": "Logarithms",
+      "unit": 6,
+      "plan": "bridge",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 6,
+        "newTopic": "6.3",
+        "newLabel": "Logarithms",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "6.4": {
+      "topic": "Lesson 6-4",
+      "title": "Logarithmic Functions",
+      "unit": 6,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 6,
+        "newTopic": "6.4",
+        "newLabel": "Logarithmic Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "6.5": {
+      "topic": "Lesson 6-5",
+      "title": "Properties of Logarithms",
+      "unit": 6,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 6,
+        "newTopic": "6.5",
+        "newLabel": "Properties of Logarithms",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "6.6": {
+      "topic": "Lesson 6-6",
+      "title": "Exponential and Logarithmic Equations",
+      "unit": 6,
+      "plan": "bridge",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 6,
+        "newTopic": "6.6",
+        "newLabel": "Exponential and Logarithmic Equations",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "6.7": {
+      "topic": "Lesson 6-7",
+      "title": "Geometric Sequences and Series",
+      "unit": 6,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 6,
+        "newTopic": "6.7",
+        "newLabel": "Geometric Sequences and Series",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "7.1": {
+      "topic": "Lesson 7-1",
+      "title": "Trigonometric Functions and Acute Angles",
+      "unit": 7,
+      "plan": "bridge",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 7,
+        "newTopic": "7.1",
+        "newLabel": "Trigonometric Functions and Acute Angles",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "7.2": {
+      "topic": "Lesson 7-2",
+      "title": "Angles and the Unit Circle",
+      "unit": 7,
+      "plan": "bridge",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 7,
+        "newTopic": "7.2",
+        "newLabel": "Angles and the Unit Circle",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "7.3": {
+      "topic": "Lesson 7-3",
+      "title": "Trigonometric Functions and Real Numbers",
+      "unit": 7,
+      "plan": "bridge",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 7,
+        "newTopic": "7.3",
+        "newLabel": "Trigonometric Functions and Real Numbers",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "7.4": {
+      "topic": "Lesson 7-4",
+      "title": "Graphing Sine and Cosine Functions",
+      "unit": 7,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 7,
+        "newTopic": "7.4",
+        "newLabel": "Graphing Sine and Cosine Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "7.5": {
+      "topic": "Lesson 7-5",
+      "title": "Graphing Other Trigonometric Functions",
+      "unit": 7,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 7,
+        "newTopic": "7.5",
+        "newLabel": "Graphing Other Trigonometric Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "7.6": {
+      "topic": "Lesson 7-6",
+      "title": "Translating Trigonometric Functions",
+      "unit": 7,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 7,
+        "newTopic": "7.6",
+        "newLabel": "Translating Trigonometric Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "8.1": {
+      "topic": "Lesson 8-1",
+      "title": "Solving Trigonometric Equations Using Inverses",
+      "unit": 8,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 8,
+        "newTopic": "8.1",
+        "newLabel": "Solving Trigonometric Equations Using Inverses",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "8.2": {
+      "topic": "Lesson 8-2",
+      "title": "Law of Sines and Law of Cosines",
+      "unit": 8,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 8,
+        "newTopic": "8.2",
+        "newLabel": "Law of Sines and Law of Cosines",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "8.3": {
+      "topic": "Lesson 8-3",
+      "title": "Trigonometric Identities",
+      "unit": 8,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 8,
+        "newTopic": "8.3",
+        "newLabel": "Trigonometric Identities",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "8.4": {
+      "topic": "Lesson 8-4",
+      "title": "The Complex Plane",
+      "unit": 8,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 8,
+        "newTopic": "8.4",
+        "newLabel": "The Complex Plane",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "8.5": {
+      "topic": "Lesson 8-5",
+      "title": "Polar Form of Complex Numbers",
+      "unit": 8,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 8,
+        "newTopic": "8.5",
+        "newLabel": "Polar Form of Complex Numbers",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "9.1": {
+      "topic": "Lesson 9-1",
+      "title": "Parabolas",
+      "unit": 9,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 9,
+        "newTopic": "9.1",
+        "newLabel": "Parabolas",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "9.2": {
+      "topic": "Lesson 9-2",
+      "title": "Circles",
+      "unit": 9,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 9,
+        "newTopic": "9.2",
+        "newLabel": "Circles",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "9.3": {
+      "topic": "Lesson 9-3",
+      "title": "Ellipses",
+      "unit": 9,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 9,
+        "newTopic": "9.3",
+        "newLabel": "Ellipses",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "9.4": {
+      "topic": "Lesson 9-4",
+      "title": "Hyperbolas",
+      "unit": 9,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 9,
+        "newTopic": "9.4",
+        "newLabel": "Hyperbolas",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "10.1": {
+      "topic": "Lesson 10-1",
+      "title": "Operations With Matrices",
+      "unit": 10,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 10,
+        "newTopic": "10.1",
+        "newLabel": "Operations With Matrices",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "10.2": {
+      "topic": "Lesson 10-2",
+      "title": "Matrix Multiplication",
+      "unit": 10,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 10,
+        "newTopic": "10.2",
+        "newLabel": "Matrix Multiplication",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "10.3": {
+      "topic": "Lesson 10-3",
+      "title": "Vectors",
+      "unit": 10,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 10,
+        "newTopic": "10.3",
+        "newLabel": "Vectors",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "10.4": {
+      "topic": "Lesson 10-4",
+      "title": "Inverses and Determinants",
+      "unit": 10,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 10,
+        "newTopic": "10.4",
+        "newLabel": "Inverses and Determinants",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "10.5": {
+      "topic": "Lesson 10-5",
+      "title": "Inverse Matrices and Systems of Equations",
+      "unit": 10,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 10,
+        "newTopic": "10.5",
+        "newLabel": "Inverse Matrices and Systems of Equations",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "11.1": {
+      "topic": "Lesson 11-1",
+      "title": "Statistical Questions and Variables",
+      "unit": 11,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 11,
+        "newTopic": "11.1",
+        "newLabel": "Statistical Questions and Variables",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "11.2": {
+      "topic": "Lesson 11-2",
+      "title": "Statistical Studies and Sampling Methods",
+      "unit": 11,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 11,
+        "newTopic": "11.2",
+        "newLabel": "Statistical Studies and Sampling Methods",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "11.3": {
+      "topic": "Lesson 11-3",
+      "title": "Data Distributions",
+      "unit": 11,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 11,
+        "newTopic": "11.3",
+        "newLabel": "Data Distributions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "11.4": {
+      "topic": "Lesson 11-4",
+      "title": "Normal Distributions",
+      "unit": 11,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 11,
+        "newTopic": "11.4",
+        "newLabel": "Normal Distributions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "11.5": {
+      "topic": "Lesson 11-5",
+      "title": "Margin of Error",
+      "unit": 11,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 11,
+        "newTopic": "11.5",
+        "newLabel": "Margin of Error",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "11.6": {
+      "topic": "Lesson 11-6",
+      "title": "Introduction to Hypothesis Testing",
+      "unit": 11,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 11,
+        "newTopic": "11.6",
+        "newLabel": "Introduction to Hypothesis Testing",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "12.1": {
+      "topic": "Lesson 12-1",
+      "title": "Probability Events",
+      "unit": 12,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 12,
+        "newTopic": "12.1",
+        "newLabel": "Probability Events",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "12.2": {
+      "topic": "Lesson 12-2",
+      "title": "Conditional Probability",
+      "unit": 12,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 12,
+        "newTopic": "12.2",
+        "newLabel": "Conditional Probability",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "12.3": {
+      "topic": "Lesson 12-3",
+      "title": "Permutations and Combinations",
+      "unit": 12,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 12,
+        "newTopic": "12.3",
+        "newLabel": "Permutations and Combinations",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "12.4": {
+      "topic": "Lesson 12-4",
+      "title": "Probability Distributions",
+      "unit": 12,
+      "plan": "later",
+      "published": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 12,
+        "newTopic": "12.4",
+        "newLabel": "Probability Distributions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    }
+  }
 }
