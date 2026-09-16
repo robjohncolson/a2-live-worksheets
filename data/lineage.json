@@ -630,6 +630,16 @@
       "regenerate": "node scripts/sync-server-shared.mjs",
       "pinnedBy": ["roster-server/tests/deployment.test.js"],
       "notes": "Railway deploys roster-server as its root; content/a2/lessons.json is the source."
+    },
+    {
+      "id": "a2-lesson-targets",
+      "path": "data/a2-lesson-targets.json",
+      "kind": "source",
+      "description": "Per-lesson Precalculus-prerequisite and SAT-relevance ratings plus the SY26-27 keep/brief/skip/bridge plan from the September 2026 PLC drafts.",
+      "inputs": [],
+      "regenerate": null,
+      "pinnedBy": ["tests/a2-lesson-targets.test.js"],
+      "notes": "Hand-maintained with docs/a2-lesson-targets.md; drives lesson authoring order, never grading."
     }
   ]
 }

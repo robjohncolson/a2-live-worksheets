@@ -80,6 +80,9 @@ TI-84 trainer, AP Classroom Progress-Check path, video links.**
   course ID from the environment and the three district categories.
 
 ## Content pipeline (Lesson_planning repo, unchanged)
+Which lessons get authored, and in what order, follows `docs/a2-lesson-targets.md`
+(Precalculus-prerequisite and SAT ratings per Savvas lesson, the compressed Topics 1-4 plan, and
+the Topics 5-7 bridge list; machine-readable in `data/a2-lesson-targets.json`).
 TE PDF → `pdftoppm` → Codex `codex exec -i` transcription to `a2_{lesson}_TE.tex` (exemplar
 `a2_5-4_TE.tex`) → `ingest_lesson_from_latex.py` → hand-written calibration from the TE Item
 Analysis → `qb_append.py`. Lesson 1-1 is done (71 rows, 2026-09-13).
