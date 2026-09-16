@@ -48,6 +48,39 @@ it('teacher offline queue keeps different students separate and the latest tap f
     expect((await queue.all()).map(row => [row.studentId,row.score])).toEqual([['a',0],['b',2]]);
   } finally { dom.window.close(); }
 });
+it('supporting IXL skills are https links, prerequisites first, and never graded', () => {
+  for (const lesson of lessons) {
+    const skills = lesson.supportingSkills || [];
+    for (const item of skills) {
+      expect(item.name).toBeTruthy();
+      expect(item.url).toMatch(/^https:\/\/www\.ixl\.com\//);
+      expect(['prereq', 'core']).toContain(item.level);
+    }
+    const firstCore = skills.findIndex(item => item.level === 'core');
+    expect(skills.slice(firstCore < 0 ? skills.length : firstCore).some(item => item.level === 'prereq')).toBe(false);
+  }
+  expect(lessons[0].supportingSkills.map(item => item.name)).toEqual(['Graph inequalities on number lines', 'Domain and range']);
+  // The server's lesson schedule has no IXL item, so a jam cannot reach the ledger.
+  expect(readFileSync('roster-server/a2-lessons.js', 'utf8')).not.toMatch(/ixl|supportingSkills/i);
+});
+it('the Desk lesson tile links the supporting IXL skills for signed-out and today views', async () => {
+  const html = '<div id="a2-today"></div><div id="a2-lessons"></div><div id="a2-gradebook-scores"></div><dialog id="a2-profile"><form id="a2-profile-form"><select></select></form><p id="a2-profile-message"></p></dialog>';
+  const dom = new JSDOM(html, { url: 'https://desk.test/desk.html', runScripts: 'outside-only' });
+  try {
+    const win = dom.window;
+    const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
+    const dated = lessons.map(lesson => ({ ...lesson, sections: { C: today } }));
+    win.fetch = async () => ({ json: async () => dated });
+    win.A2Client = { request: async path => (path === '/lessons' ? { lessons: dated } : { tryIts: { scores: [] } }), chips: () => [], changed() {} };
+    win.rosterClient = { current: () => ({ section: 'PeriodC' }), token: () => 't' };
+    win.eval(readFileSync('a2-desk.js', 'utf8'));
+    await new Promise(resolve => setTimeout(resolve, 20));
+    const tileLinks = [...win.document.querySelectorAll('.a2-lesson-tile .a2-skills a')];
+    expect(tileLinks.map(a => a.textContent)).toEqual(['Graph inequalities on number lines (prerequisite)', 'Domain and range']);
+    expect(tileLinks.every(a => a.target === '_blank' && a.rel === 'noopener' && a.href.startsWith('https://www.ixl.com/'))).toBe(true);
+    expect(win.document.querySelectorAll('#a2-today .a2-skills a')).toHaveLength(2);
+  } finally { dom.window.close(); }
+});
 it('signed-out check renders registry items but cannot submit', async () => {
   const dom = new JSDOM(readFileSync('check.html', 'utf8'), { url: 'https://desk.test/check.html?lesson=1-1', runScripts: 'outside-only' });
   try {

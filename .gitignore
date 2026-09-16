@@ -136,3 +136,6 @@ state/_pack_test/
 !A2_FORK_BASELINE.md
 !A2_FORK_PLAN.md
 !docs/apstats-history/
+
+# Local Schoology sync fixtures/logs (may contain student data)
+tools/.schoology-sync-logs/

@@ -6,6 +6,18 @@
   function paintChips(host, status) {
     A2Client.chips(status).forEach(text => node('span', text, host).className = 'a2-lesson-chip');
   }
+  // IXL Group Jam supporting skills: prerequisite skills first, then on-level.
+  // Links only; a jam produces no ledger row and never touches the grade.
+  function skills(host, lesson) {
+    const list = Array.isArray(lesson.supportingSkills) ? lesson.supportingSkills.filter(item => item && item.url && item.name) : [];
+    if (!list.length) return;
+    const row = node('p', 'IXL skills: ', host); row.className = 'a2-skills';
+    list.forEach((item, i) => {
+      if (i) node('span', ' · ', row);
+      const link = node('a', item.name + (item.level === 'prereq' ? ' (prerequisite)' : ''), row);
+      link.href = item.url; link.target = '_blank'; link.rel = 'noopener'; link.dataset.level = item.level || 'core';
+    });
+  }
   function scores(host, status) {
     status.tryIts.scores.forEach(item => {
       const line = node('div', 'Try-It ' + item.n + ': ' + (item.score == null ? 'unscored' : item.score + '/2') + ' ', host);
@@ -41,6 +53,7 @@
       lessons.forEach((lesson, i) => {
         const tile = node('article', '', host); tile.className = 'a2-lesson-tile'; tile.dataset.lesson = lesson.key;
         node('h3', lesson.key + ' · ' + lesson.title, tile);
+        skills(tile, lesson);
         const link = node('a', 'Open lesson check', tile); link.href = 'check.html?lesson=' + lesson.key;
         const deck = node('button', 'Flashcards', tile); deck.disabled = !identity;
         deck.onclick = () => openBlooketFlashcards(null, lesson.key.replace('-', '.'));
@@ -51,6 +64,7 @@
         if (lesson.sections?.[section] === today) {
           node('strong', 'Today: ' + lesson.key + ' · ' + lesson.title, todayHost);
           if (lesson.onenoteUrl) { const notes = node('a', ' OneNote lesson notes', todayHost); notes.href = lesson.onenoteUrl; notes.target = '_blank'; notes.rel = 'noopener'; }
+          skills(todayHost, lesson);
           if (status) paintChips(todayHost, status);
         }
       });

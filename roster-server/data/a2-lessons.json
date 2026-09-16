@@ -5,6 +5,18 @@
     "title": "Key Features of Functions",
     "sections": null,
     "onenoteUrl": null,
+    "supportingSkills": [
+      {
+        "name": "Graph inequalities on number lines",
+        "url": "https://www.ixl.com/math/grade-8/graph-inequalities-on-number-lines?lmsPlatform=3",
+        "level": "prereq"
+      },
+      {
+        "name": "Domain and range",
+        "url": "https://www.ixl.com/math/algebra-2/domain-and-range?lmsPlatform=3",
+        "level": "core"
+      }
+    ],
     "tryIts": [
       {
         "n": 1,
