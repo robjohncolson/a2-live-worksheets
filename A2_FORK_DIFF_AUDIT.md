@@ -19,7 +19,7 @@ batch depends on another task in the same batch.
 | AP repo | `robjohncolson/apstats-live-worksheet` |
 | Fork snapshot commit | `68d3e61` (2026-09-13, "Flashcards open straight into the full timed deck") |
 | Local checkout | `C:/Users/rober/Downloads/Projects/.apstats-base` (cloned 2026-09-16, `core.longpaths=true`) |
-| AP HEAD since the fork | 3 commits (Schoology sync folder + form read-back, APStat Park) — reviewed separately in Phase 5 |
+| AP HEAD since the fork | 11 commits, 196 files (Phase 5 plan: 6 port, 14 need adaptation, 176 skip) — `state/fork-diff/phase5-port-plan.md` |
 | Inventory | `state/fork-diff-inventory.txt` (ONLY_IN_AP / ONLY_IN_A2 / MODIFIED, one path per line) |
 
 First-pass counts (2026-09-16): AP 2779 tracked files, A2 1040. Only in AP 2095 (573 `dok/`,
@@ -172,6 +172,7 @@ hence D4.
 | D6 | Android app shell (`android-app/`) was deleted without being named in the plan. Retire? | Retire; note in plan |
 | D7 | Server tests force the old formula off (`roster-server/vitest.config.js`). Add district-formula coverage? | Yes, in the tests batch |
 | D8 | The 30 one-off `scripts/wire-*.mjs` migration scripts and `build-android.mjs`: already applied before the fork; leave deleted? | Leave deleted; note in plan |
+| D10 | AP commit 72766e6 softened FRQ grading (reflection floor, "can only raise" band). A2 has no reflections yet; port the mechanics now, or hold until A2 reflections exist? | Hold |
 | D9 | Calendar cell click opens the inherited resource panel with no links. Open the lesson check instead? | Yes |
 
 
@@ -181,11 +182,12 @@ hence D4.
 |---|---|---|---|
 | A+B Desk chrome/behaviour + mobile home | U1 U2 U3 U4 U5 U8 U10 U13 | review: safe with 2 fixes (Section G styling, behavioural tests) + walker jump sound restored for fidelity | committed a03b1ef; 11 chrome tests |
 | D + D2 tooling/pages cleanup | U12 U14 (guarded, no change) U18 U19 | review: safe with 6 fixes (orphan regrade test + workflow removed, lineage pruned, host-matrix probes, behavioural teacher-app test, CLI test) | committed with the PWA stamp bump |
+| E Do Now manifest | U23 | review: safe as-is (0 findings) | committed be0a615 |
 | Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.
 
-Remaining: U6 U7 U9 U11 (await D1-D3), U16 (D4), U15 (server skill map, low priority), U20 (tests batch), U23 (A2 work manifest + Do Now deep links), Phase 5 (post-fork AP commits), Phase 6 (freeze test).
+Remaining: U6 U7 U9 U11 (await D1-D3), U16 (D4), U15 (server skill map, low priority), U20 (tests batch), Phase 5 steps 1-3 in progress (Schoology readiness/read-back + Assignments folder; roster-client updateSection + Desk section reconciliation), step 5 held (D10), Phase 6 (freeze test).
 
 ### Phase 2 visual pairs (orchestrator, 2026-09-16, signed-out) — screenshots in `state/fork-diff/shots/`
 
