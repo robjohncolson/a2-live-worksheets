@@ -62,3 +62,14 @@ it('warns about wildcard only when CORS_ORIGINS is unset', () => {
   createApp({});
   expect(warn.mock.calls.flat().join(' ')).not.toContain('CORS_ORIGINS is unset');
 });
+
+it('bundles byte-identical copies of the browser-shared files it imports', () => {
+  // Railway deploys roster-server as its root; regenerate with node scripts/sync-server-shared.mjs.
+  const root = new URL('../../', import.meta.url);
+  for (const [source, bundled] of [
+    ['lib/a2-answers.js', 'roster-server/lib/a2-answers.js'],
+    ['content/a2/lessons.json', 'roster-server/data/a2-lessons.json'],
+  ]) {
+    expect(readFileSync(new URL(bundled, root), 'utf8'), bundled).toBe(readFileSync(new URL(source, root), 'utf8'));
+  }
+});

@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { createServiceClient } from './ledger-db.js';
 
 export function loadA2Lessons() {
-  return JSON.parse(readFileSync(new URL('../content/a2/lessons.json', import.meta.url), 'utf8'));
+  return JSON.parse(readFileSync(new URL('./data/a2-lessons.json', import.meta.url), 'utf8'));
 }
 
 export function overlayLessons(lessons, overlay = {}) {

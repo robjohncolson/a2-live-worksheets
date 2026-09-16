@@ -610,6 +610,26 @@
       "regenerate": "node scripts/build-offline-pack.mjs",
       "pinnedBy": ["tests/build-offline-pack.test.js", "tests/offline-pack-flashcards.test.js"],
       "notes": "LOCAL-ONLY output. The builder excludes full answer keys from student packs."
+    },
+    {
+      "id": "a2-answers-server",
+      "path": "roster-server/lib/a2-answers.js",
+      "kind": "derived",
+      "description": "Byte-identical copy of the shared answer normalizer bundled into the roster-server deployment.",
+      "inputs": [],
+      "regenerate": "node scripts/sync-server-shared.mjs",
+      "pinnedBy": ["roster-server/tests/deployment.test.js"],
+      "notes": "Railway deploys roster-server as its root; lib/a2-answers.js is the source and is also served to the Chromebook runner."
+    },
+    {
+      "id": "a2-lessons-server",
+      "path": "roster-server/data/a2-lessons.json",
+      "kind": "derived",
+      "description": "Byte-identical copy of content/a2/lessons.json bundled into the roster-server deployment.",
+      "inputs": [],
+      "regenerate": "node scripts/sync-server-shared.mjs",
+      "pinnedBy": ["roster-server/tests/deployment.test.js"],
+      "notes": "Railway deploys roster-server as its root; content/a2/lessons.json is the source."
     }
   ]
 }

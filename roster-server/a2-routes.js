@@ -1,4 +1,4 @@
-import '../lib/a2-answers.js';
+import './lib/a2-answers.js';
 import { loadA2Lessons, overlayLessons, lessonScheduleFromModel, validatePacing, createA2Store } from './a2-lessons.js';
 import { requireTeacher } from './teacher-auth.js';
 import { verifyToken } from './token.js';
