@@ -3,7 +3,7 @@ const DEFAULT_USERS = [
     studentId: 'stu-alpha',
     username: 'alpha_otter',
     realName: 'Alpha Otter',
-    section: 'PeriodX',
+    section: 'C',
     role: 'student',
     password: '1234',
     spriteHue: 42,
@@ -12,7 +12,7 @@ const DEFAULT_USERS = [
     studentId: 'stu-beta',
     username: 'beta_fox',
     realName: 'Beta Fox',
-    section: 'PeriodX',
+    section: 'C',
     role: 'student',
     password: '1234',
     spriteHue: 210,
@@ -21,7 +21,7 @@ const DEFAULT_USERS = [
     studentId: 'teacher-one',
     username: 'teacher_one',
     realName: 'Teacher One',
-    section: 'PeriodX',
+    section: 'C',
     role: 'teacher',
     password: 'teacher-pass',
     spriteHue: 0,
@@ -40,27 +40,19 @@ const STATIC_ROUTE_KEYS = new Set([
   'GET /receipts/issuer',
   'GET /donow',
   'POST /ledger/record',
-  'GET /poll-archive',
   'GET /class/review-queue',
   'GET /class/review-by-item',
   'POST /class/review',
   'GET /class/grades',
 ]);
 
-const TRAINER_DECK_ID_RE = /^[a-z0-9-]{1,64}$/;
-const TRAINER_STATE_MAX_CHARS = 262_144;
-const DEFAULT_TRAINER_DECK_ALLOWLIST = [
-  'ap-stats-formulas',
-  'joyo-kanji',
-  'jlpt-n5',
-  'formula-lab',
-];
+const FLASHCARD_STATE_MAX_BYTES = 262_144;
 
 function isStaticRoute(method, path) {
   if (STATIC_ROUTE_KEYS.has(`${method} ${path}`)) return true;
   if (method === 'GET' && /^\/roster\/section\/[^/]+$/.test(path)) return true;
   if (method === 'GET' && /^\/teacher\/student\/[^/]+\/profile$/.test(path)) return true;
-  if (method === 'GET' && /^\/teacher\/student\/[^/]+\/(grade|donow|poll-archive)$/.test(path)) return true;
+  if (method === 'GET' && /^\/teacher\/student\/[^/]+\/(grade|donow)$/.test(path)) return true;
   if (method === 'GET' && /^\/ledger\/student\/[^/]+$/.test(path)) return true;
   if (/^(GET|PUT)$/.test(method) && path === '/flashcards/state') return true;
   return method === 'GET' && /^\/class\/review-item\/[^/]+$/.test(path);
@@ -82,7 +74,7 @@ function normalizeUser(user, index) {
     studentId: user.studentId || `stu-${index + 1}`,
     username,
     realName: user.realName || username,
-    section: user.section || 'PeriodX',
+    section: user.section || 'C',
     role: user.role || 'student',
     password: user.password == null ? '1234' : String(user.password),
     spriteHue: typeof user.spriteHue === 'number' ? user.spriteHue : null,
@@ -172,25 +164,15 @@ async function responseFromOverride(override, request, state) {
   return jsonResponse(value == null ? { ok: true } : value);
 }
 
-function mergeTrainerState(current, delta) {
-  const merged = { ...(current || {}), ...(delta || {}) };
-  if ((current && current.srs) || (delta && delta.srs)) {
-    merged.srs = { ...((current && current.srs) || {}), ...((delta && delta.srs) || {}) };
-  }
-  if (typeof current?.resetRev === 'number' || typeof delta?.resetRev === 'number') {
-    merged.resetRev = Math.max(Number(current?.resetRev || 0), Number(delta?.resetRev || 0));
-  }
-  return merged;
-}
-
 /**
  * In-memory implementation of the roster-server surfaces used by Desk journeys.
  * Mutate `fake.state` between steps, or provide `routes`/`failures` handlers, to
  * script a journey. Reuse one fake across two `bootDesk` calls for cross-device
- * tests; ledger and trainer state are deliberately shared by the fake instance.
+ * tests; ledger and flashcard state are deliberately shared by the fake instance.
  */
 export function createFakeRoster(initial = {}) {
   const users = (initial.users || DEFAULT_USERS).map(normalizeUser);
+  const flashcardStates = initial.flashcardStates || initial.trainerStates || new Map();
   const state = {
     users,
     requests: [],
@@ -198,12 +180,9 @@ export function createFakeRoster(initial = {}) {
     unhandledRequests: [],
     ledgerRecords: [],
     ledgerByStudentId: initial.ledgerByStudentId || new Map(),
-    trainerStates: initial.trainerStates || new Map(),
-    trainerAllowlist: new Set(
-      initial.trainerAllowlist
-        || initial.trainerDeckAllowlist
-        || DEFAULT_TRAINER_DECK_ALLOWLIST,
-    ),
+    flashcardStates,
+    // Compatibility for the existing J8 read-only snapshot consumer. No trainer routes.
+    trainerStates: flashcardStates,
     trainerWriteSequence: Number(initial.trainerWriteSequence) || 0,
     grades: initial.grades ?? initial.grade ?? {},
     donow: initial.donow ?? {},
@@ -295,7 +274,7 @@ export function createFakeRoster(initial = {}) {
     }
 
     if (method === 'GET' && url.pathname === '/roster/open-sections') {
-      return jsonResponse({ ok: true, sections: [{ value: 'PeriodX', label: 'Period X' }] });
+      return jsonResponse({ ok: true, sections: ['C', 'D', 'G'].map(section => ({ value: section, label: section })) });
     }
 
     if (method === 'GET' && url.pathname.startsWith('/roster/section/')) {
@@ -401,57 +380,42 @@ export function createFakeRoster(initial = {}) {
     }
 
     if (/^(GET|PUT)$/.test(method) && url.pathname === '/flashcards/state') {
-      const deckId = 'ap-stats-flashcards';
-      if (!TRAINER_DECK_ID_RE.test(deckId)) {
-        return jsonResponse({ ok: false, error: 'bad deckId' }, 400);
-      }
+      const token = (request.headers.authorization || '').replace(/^Bearer\s+/i, '')
+        || url.searchParams.get('token') || body?.token;
+      const user = state.users.find(candidate => state.tokenFor(candidate) === token);
+      if (!user) return jsonResponse({ ok: false, error: 'forbidden' }, 401);
 
+      const headers = { 'Cache-Control': 'no-store' };
+      const current = state.flashcardStates.get(user.studentId) || null;
       if (method === 'GET') {
-        const auth = request.headers.authorization || '';
-        const bearer = /^Bearer\s+(.+)$/i.exec(auth)?.[1]?.trim() || null;
-        const user = bearer
-          ? state.users.find((candidate) => state.tokenFor(candidate) === bearer)
-          : null;
-        if (!user) return jsonResponse({ ok: false, error: 'forbidden' }, 401);
-
-        const key = `${user.studentId}:${deckId}`;
-        const current = state.trainerStates.get(key) || null;
-        if (!current) return jsonResponse({ ok: true, found: false });
+        if (!current) return jsonResponse({ ok: true, found: false }, 200, headers);
         return jsonResponse({
           ok: true,
           found: true,
           state: current.state,
           updatedAt: current.updatedAt,
-        });
+        }, 200, headers);
       }
 
-      
-
-      const writeToken = (request.headers.authorization || '').replace(/^Bearer\s+/i, '') || (body && body.token);
-      const user = writeToken
-        ? state.users.find((candidate) => state.tokenFor(candidate) === writeToken)
-        : null;
-      if (!user) return jsonResponse({ ok: false, error: 'invalid token' }, 401);
-      const key = `${user.studentId}:${deckId}`;
-      const current = state.trainerStates.get(key) || null;
-      if (method === 'PUT') {
-        if (!body?.state || typeof body.state !== 'object' || Array.isArray(body.state)) {
-          return jsonResponse({ ok: false, error: 'state object is required' }, 400);
-        }
-        if (Buffer.byteLength(JSON.stringify(body.state), 'utf8') > TRAINER_STATE_MAX_CHARS) {
-          return jsonResponse({ ok: false, error: 'state too large' }, 413);
-        }
-        if ((current?.updatedAt || null) !== body.baseUpdatedAt) {
-          return jsonResponse({ ok: false, error: 'stale', updatedAt: current?.updatedAt || null }, 409);
-        }
-        const updatedAt = nextTrainerUpdatedAt();
-        state.trainerStates.set(key, { state: body.state, updatedAt });
-        return jsonResponse({ ok: true, updatedAt });
+      if (!body?.state || typeof body.state !== 'object' || Array.isArray(body.state)) {
+        return jsonResponse({ ok: false, error: 'state must be a JSON object' }, 400, headers);
       }
-    }
-
-    if (method === 'GET' && (url.pathname === '/poll-archive' || /^\/teacher\/student\/[^/]+\/poll-archive$/.test(url.pathname))) {
-      return jsonResponse({ ok: true, polls: [] });
+      const baseUpdatedAt = body.baseUpdatedAt;
+      if (baseUpdatedAt !== null && (typeof baseUpdatedAt !== 'string' || !Number.isFinite(Date.parse(baseUpdatedAt)))) {
+        return jsonResponse({ ok: false, error: 'baseUpdatedAt must be null or a timestamp' }, 400, headers);
+      }
+      if (Buffer.byteLength(JSON.stringify(body.state), 'utf8') > FLASHCARD_STATE_MAX_BYTES) {
+        return jsonResponse({ ok: false, error: 'state too large' }, 413, headers);
+      }
+      if ((current?.updatedAt || null) !== baseUpdatedAt) {
+        return jsonResponse({ ok: false, error: 'stale' }, 409, headers);
+      }
+      const updatedAt = new Date(Math.max(
+        Date.parse(nextTrainerUpdatedAt()),
+        Date.parse(baseUpdatedAt || '') + 1 || 0,
+      )).toISOString();
+      state.flashcardStates.set(user.studentId, { state: body.state, updatedAt });
+      return jsonResponse({ ok: true, updatedAt }, 200, headers);
     }
 
     if (url.pathname.startsWith('/class/')) {

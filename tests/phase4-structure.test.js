@@ -64,7 +64,7 @@ describe('teacher-dashboard.html — Phase 4a structure', () => {
     expect(DASH).toMatch(/x-teacher-secret/i);
   });
 
-  it('teacher-secret persistence is OPT-IN only; localStorage writes are scoped to two known keys', () => {
+  it('teacher-secret persistence is OPT-IN only; localStorage writes are scoped to known keys', () => {
     // Updated 2026-05-19: the original Phase-4a posture was zero persistence.
     // To make local-only e2e testing usable (Railway-down day, plus general
     // teacher convenience) the dashboard now:
@@ -74,24 +74,26 @@ describe('teacher-dashboard.html — Phase 4a structure', () => {
     //       explicitly checks an opt-in "Remember on this device" checkbox.
     // The exact key names are pinned here so a future regression (e.g. an
     // accidental rename or an extra setItem call) is caught — the assertion
-    // is now "ONLY these two keys may be set," not "no setItem at all."
+    // is now "ONLY these known keys may be set," not "no setItem at all."
 
     // No sessionStorage / cookie writes — those were never opt-in surfaces.
     expect(DASH).not.toMatch(/sessionStorage\.setItem/);
     expect(DASH).not.toMatch(/document\.cookie\s*=/);
 
-    // Every localStorage.setItem call must target one of the three known
+    // Every localStorage.setItem call must target one of the four known
     // keys: URL_KEY (this page's URL choice), SECRET_KEY (opt-in secret),
     // and GLOBAL_OVERRIDE_KEY (the same key roster_config.js consults so
     // Desk + worksheets + start-here pick up the same backend in one click).
-    const setItemCalls = [...DASH.matchAll(/localStorage\.setItem\s*\(\s*([A-Z_][A-Z0-9_]*|['"][^'"]+['"])/g)];
+    // _inboxSeenKey() derives tsc-inbox-seen-at:<section>; its value is an
+    // inbox-seen timestamp and stores no credential.
+    const setItemCalls = [...DASH.matchAll(/localStorage\.setItem\s*\(\s*(_inboxSeenKey\(\)|[A-Z_][A-Z0-9_]*|['"][^'"]+['"])/g)];
     expect(setItemCalls.length, 'localStorage.setItem must appear at least once (for URL persistence)').toBeGreaterThan(0);
-    const ALLOWED_KEYS = new Set(['URL_KEY', 'SECRET_KEY', 'GLOBAL_OVERRIDE_KEY']);
+    const ALLOWED_KEYS = new Set(['URL_KEY', 'SECRET_KEY', 'GLOBAL_OVERRIDE_KEY', '_inboxSeenKey()']);
     for (const m of setItemCalls) {
       const target = m[1];
       expect(
         ALLOWED_KEYS.has(target),
-        `localStorage.setItem(${target}, ...) targets an unknown key — only URL_KEY, SECRET_KEY, and GLOBAL_OVERRIDE_KEY are allowed`
+        `localStorage.setItem(${target}, ...) targets an unknown key — only URL_KEY, SECRET_KEY, GLOBAL_OVERRIDE_KEY, and _inboxSeenKey() are allowed`
       ).toBe(true);
     }
 

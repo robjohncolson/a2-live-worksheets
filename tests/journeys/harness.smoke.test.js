@@ -68,3 +68,27 @@ describe('Desk journey harness smoke', () => {
     }
   });
 });
+
+
+describe('A2 journey asset and service routing', () => {
+  it('serves A2 lesson assets and AI responses on the shared roster origin', async () => {
+    const harness = await bootDesk({
+      curriculum: { '/api/ai/coach': { ok: true, reply: 'Isolate the variable.' } },
+    });
+    try {
+      const response = await harness.window.fetch('content/a2/lessons.json');
+      expect(response.status).toBe(200);
+      expect(await response.json()).toEqual(JSON.parse(readFileSync(
+        resolve(import.meta.dirname, '../../content/a2/lessons.json'), 'utf8',
+      )));
+      const coached = await harness.window.fetch(`${CURRICULUM_URL}/api/ai/coach`, {
+        method: 'POST', body: JSON.stringify({ message: 'Help with an equation' }),
+      });
+      expect(coached.status).toBe(200);
+      expect(await coached.json()).toEqual({ ok: true, reply: 'Isolate the variable.' });
+      expect(harness.unhandled).toEqual([]);
+    } finally {
+      harness.teardown();
+    }
+  });
+});

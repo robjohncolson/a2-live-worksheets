@@ -7,13 +7,6 @@ import { createFakeRoster } from './fake-roster.js';
 
 const URL = 'https://roster.test/ledger/record';
 const TRAINER_URL = 'https://roster.test/flashcards/state';
-const PRODUCTION_TRAINER_ALLOWLIST = [
-  'ap-stats-formulas',
-  'joyo-kanji',
-  'jlpt-n5',
-  'formula-lab',
-];
-const JOURNEY_TRAINER_ALLOWLIST = [...PRODUCTION_TRAINER_ALLOWLIST, 'ap-stats-flashcards'];
 const VALID_BODY = {
   token: 'token:alpha_otter',
   source: 'worksheet',
@@ -45,10 +38,6 @@ async function trainerRequest(fake, method, {
     body: body ? JSON.stringify(body) : undefined,
   });
   return { status: response.status, body: await response.json() };
-}
-
-function createTrainerFake() {
-  return createFakeRoster({ trainerAllowlist: JOURNEY_TRAINER_ALLOWLIST });
 }
 
 describe('fake-roster POST /ledger/record production contract', () => {
@@ -115,6 +104,71 @@ describe('fake-roster /flashcards/state production contract', () => {
     const body = { token: 'token:alpha_otter', baseUpdatedAt: null };
     expect((await trainerRequest(fake, 'PUT', { body: { ...body, state: [] } })).status).toBe(400);
     expect((await trainerRequest(fake, 'PUT', { body: { ...body, state: { text: 'é'.repeat(262144) } } })).status).toBe(413);
-    expect(fake.state.trainerStates.size).toBe(0);
+    expect(fake.state.flashcardStates.size).toBe(0);
+  });
+});
+
+
+describe('fake-roster A2 retained routes', () => {
+  it('serves scripted lessons, announcements, and C/D/G sections', async () => {
+    const lessons = [{ key: '1-1', title: 'Linear equations', published: true }];
+    const fake = createFakeRoster({ lessons });
+    expect(await (await fake.fetch('https://roster.test/lessons')).json())
+      .toEqual({ ok: true, lessons });
+    expect(await (await fake.fetch('https://roster.test/announcement')).json())
+      .toEqual({ text: null });
+    expect(await (await fake.fetch('https://roster.test/roster/open-sections')).json())
+      .toEqual({ ok: true, sections: ['C', 'D', 'G'].map(section => ({ value: section, label: section })) });
+  });
+
+  it('does not route trainer PATCH or removed classroom poll archives', async () => {
+    const fake = createFakeRoster();
+    for (const [method, path] of [
+      ['PATCH', '/flashcards/state'],
+      ['GET', '/trainer/state/ap-stats-flashcards'],
+      ['GET', '/poll-archive'],
+      ['GET', '/teacher/student/stu-alpha/poll-archive'],
+    ]) {
+      expect(fake.handles(method, path)).toBe(false);
+      expect((await fake.fetch(`https://roster.test${path}`, { method })).status).toBe(404);
+    }
+  });
+});
+
+describe('fake-roster flashcard CAS details', () => {
+  it('matches auth and validation errors without creating state', async () => {
+    const fake = createFakeRoster();
+    expect(await trainerRequest(fake, 'PUT', { body: { state: {}, baseUpdatedAt: null } }))
+      .toEqual({ status: 401, body: { ok: false, error: 'forbidden' } });
+    const token = 'token:alpha_otter';
+    for (const state of [null, [], 'bad']) {
+      expect(await trainerRequest(fake, 'PUT', { body: { token, state, baseUpdatedAt: null } }))
+        .toEqual({ status: 400, body: { ok: false, error: 'state must be a JSON object' } });
+    }
+    for (const baseUpdatedAt of [undefined, 0, '', 'bad']) {
+      expect(await trainerRequest(fake, 'PUT', { body: { token, state: {}, baseUpdatedAt } }))
+        .toEqual({ status: 400, body: { ok: false, error: 'baseUpdatedAt must be null or a timestamp' } });
+    }
+    expect(fake.state.flashcardStates.size).toBe(0);
+  });
+
+  it('uses query auth, marks private reads no-store, and preserves state on stale writes', async () => {
+    const fake = createFakeRoster();
+    const url = `${TRAINER_URL}?token=token:alpha_otter`;
+    const state = { v: 1, e: [['algebra-round', 0]] };
+    const first = await trainerRequest(fake, 'PUT', { url, body: { state, baseUpdatedAt: null } });
+    expect(first.status).toBe(200);
+    expect(await trainerRequest(fake, 'PUT', { url, body: { state: {}, baseUpdatedAt: null } }))
+      .toEqual({ status: 409, body: { ok: false, error: 'stale' } });
+    const response = await fake.fetch(url);
+    expect(response.headers.get('Cache-Control')).toBe('no-store');
+    expect(await response.json()).toEqual({ ok: true, found: true, state, updatedAt: first.body.updatedAt });
+    const second = await trainerRequest(fake, 'PUT', {
+      url, body: { state: { v: 2 }, baseUpdatedAt: first.body.updatedAt },
+    });
+    expect(second.status).toBe(200);
+    expect(Date.parse(second.body.updatedAt)).toBeGreaterThan(Date.parse(first.body.updatedAt));
+    expect(fake.state.flashcardStates.get('stu-alpha').state).toEqual({ v: 2 });
+    expect(fake.state.ledgerRecords).toEqual([]);
   });
 });

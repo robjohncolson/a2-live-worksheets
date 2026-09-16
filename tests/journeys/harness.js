@@ -75,7 +75,7 @@ function mimeFor(path) {
 }
 
 function isFetchableRepoFile(path) {
-  if (/^content\/a2\/[^/]+\.json$/i.test(path)) return true;
+  if (/^content\/a2\/(?:[^/]+\/)*[^/]+\.json$/i.test(path)) return true;
   if (path === 'roadmap-data.json' || path === 'version.json') return true;
   if (/^data\/[^/]+\.json$/i.test(path)) return true;
   if (/^lib\/[^/]+\.js$/i.test(path)) return true;
@@ -368,7 +368,9 @@ function makeFetchRouter({ requests, unhandled, roster, opts }) {
       }
     }
 
-    if (url.origin === rosterOrigin) {
+    // The A2 roster and AI endpoints share an origin; let known AI routes
+    // reach their scripted curriculum responses below.
+    if (url.origin === rosterOrigin && !isCurriculumRoute(method, url.pathname)) {
       if (typeof roster.handles === 'function' && !roster.handles(method, url.pathname)) {
         return unhandledResponse(unhandled, method, url);
       }
@@ -410,13 +412,6 @@ function makeFetchRouter({ requests, unhandled, roster, opts }) {
       return new Response(JSON.stringify(value), { status: 200, headers: { 'Content-Type': 'application/json' } });
     }
 
-    // Third-party price feed the Desk's DOGE wallet polls at boot (js/wallet_logic.js
-    // → api.coingecko.com). Deterministic stub; opts.dogeUsd overrides the price.
-    if (url.hostname === 'api.coingecko.com') {
-      const usd = typeof opts.dogeUsd === 'number' ? opts.dogeUsd : 0.0699;
-      return new Response(JSON.stringify({ dogecoin: { usd } }), { status: 200, headers: { 'Content-Type': 'application/json' } });
-    }
-
     return unhandledResponse(unhandled, method, url);
   };
 }
@@ -448,7 +443,7 @@ function normalizeViewAs(value, roster) {
     studentId,
     username: source.username || user?.username || '',
     realName: source.realName || user?.realName || '',
-    section: source.section || user?.section || 'PeriodX',
+    section: source.section || user?.section || 'C',
     readOnly: true,
     enteredAt: new Date('2026-08-18T12:00:00.000Z').getTime(),
   };

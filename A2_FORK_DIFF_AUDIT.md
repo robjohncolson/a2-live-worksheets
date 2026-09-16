@@ -84,7 +84,7 @@ tests deleted with content that still cover kept code (restore with A2 fixtures)
 and scripts (build/bump/lint) that kept code depends on. Each batch: Codex implements with a
 test per restored behaviour, then a second Codex task reviews the diff (`--task-type review`)
 before the orchestrator runs both suites, bumps the PWA build stamp, commits and pushes.
-Root suite must stay at the baseline's six inherited failures or better; server suite green.
+Root suite must stay at the baseline's inherited failures or better (six at the start; five since phase4-structure was fixed on 2026-09-16); server suite green.
 
 ### Phase 5 — post-fork AP commits
 Diff AP `68d3e61..HEAD`. Schoology sync improvements (assignment folder, form read-back)
@@ -199,6 +199,11 @@ hence D4.
 | U20 B14 offline recovery | 2 files | adapted (task timed out after applying edits; tests verified green) | committed |
 | U20 B18 grade presentation | 5 files | adapted (task timed out after applying edits); phase4-structure narrowed to one assertion (teacher inbox-seen localStorage key not in the allowlist) — still a baseline failure, fixed next round | same commit |
 | U20 B19 Schoology | 6 Python files | adapted on top of the Phase 5 ports; pytest 155 | same commit |
+| U20 B13 journey fixtures | harness, fake roster, smoke, j9 | adapted; no production change | committed |
+| U20 B20 tooling/assets | lineage + host matrix tests restored | restored lineage test exposed one lineage entry missing its notes field (data fixed) | same commit |
+| U20 B21 content/presentation | 5 files incl. test_dok_build.py | adapted with synthetic A2 fixtures | same commit |
+| U20 B22 cosmetic | tango-theme test restored | no subject change | same commit |
+| phase4-structure | accepted baseline failure | allowlisted the teacher inbox-seen localStorage key; **now passes** — baseline is five inherited failures | same commit |
 | Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.

@@ -426,7 +426,8 @@
       "regenerate": null,
       "pinnedBy": [
         "tests/a2-work-manifest.test.js"
-      ]
+      ],
+      "notes": "Authored lesson model; content/a2/lessons.json is hand-maintained and mirrored into roster-server by scripts/sync-server-shared.mjs."
     }
   ]
 }

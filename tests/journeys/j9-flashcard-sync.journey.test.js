@@ -11,14 +11,6 @@ import { bootDesk } from './harness.js';
 const NOW = '2026-08-18T12:00:00.000Z';
 const TOPIC = '1.1';
 const CSV_FILE = 'u1_l1_blooket.csv';
-const DECK_ID = 'ap-stats-flashcards';
-const TRAINER_ALLOWLIST = [
-  'ap-stats-formulas',
-  'joyo-kanji',
-  'jlpt-n5',
-  'formula-lab',
-  DECK_ID,
-];
 const KID = 'alpha_otter';
 const OTHER_STUDENT = 'beta_fox';
 const KID_LOG_KEY = `a2_srs_log_${KID}`;
@@ -332,7 +324,6 @@ describe('Desk journey J9', () => {
     expect(FLAGS.flags.flashcardSync.enabled).toBe(true);
     const sharedRoster = createFakeRoster({
       grades: gradeFixture(),
-      trainerAllowlist: TRAINER_ALLOWLIST,
     });
     let deviceA;
     let deviceB;
@@ -373,8 +364,8 @@ describe('Desk journey J9', () => {
       expect(aPuts[0].body.token).toBe('token:alpha_otter');
       expect(aPuts[0].body.baseUpdatedAt).toBeNull();
       assertWireState(aPuts[0].body.state, aLog, KID);
-      expect(sharedRoster.state.trainerStates).toHaveProperty('size', 1);
-      const rowAfterA = sharedRoster.state.trainerStates.get(`stu-alpha:${DECK_ID}`);
+      expect(sharedRoster.state.flashcardStates).toHaveProperty('size', 1);
+      const rowAfterA = sharedRoster.state.flashcardStates.get('stu-alpha');
       expect(rowAfterA.state).toEqual(aPuts[0].body.state);
 
       deviceB = await bootDesk({
@@ -384,7 +375,7 @@ describe('Desk journey J9', () => {
         roster: sharedRoster,
       });
       expect(deviceB.roster).toBe(sharedRoster);
-      // A fresh device has only the Desk's own boot caches (year, DOGE price,
+      // A fresh device has only the Desk's own boot caches (year,
       // registry/overlay caches) — no student-scoped a2_* keys yet.
       {
         const ls = deviceB.window.localStorage;
@@ -409,7 +400,7 @@ describe('Desk journey J9', () => {
       deviceB.clock.advance(3_001);
       await settleRoster(deviceB);
 
-      const rowAfterB = sharedRoster.state.trainerStates.get(`stu-alpha:${DECK_ID}`);
+      const rowAfterB = sharedRoster.state.flashcardStates.get('stu-alpha');
       assertWireState(rowAfterB.state, bLog, KID);
       expect(wireKeys(rowAfterB.state)).toEqual(logKeys(bLog));
       expect(rowAfterB.state.email).toBe(KID);
@@ -437,7 +428,7 @@ describe('Desk journey J9', () => {
       await settleSignIn(deviceB, OTHER_STUDENT);
 
       expect(readLog(deviceB, OTHER_LOG_KEY)).toEqual([]);
-      expect(sharedRoster.state.trainerStates.has(`stu-beta:${DECK_ID}`)).toBe(false);
+      expect(sharedRoster.state.flashcardStates.has('stu-beta')).toBe(false);
       expect(trainerRequests(sharedRoster, 'PUT')).toHaveLength(putCountBeforeIdentitySwitch);
       const putsAfterSwitch = sharedRoster.state.requests
         .filter((request) => request.method === 'PUT' && request.path === '/flashcards/state')

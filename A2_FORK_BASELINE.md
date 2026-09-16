@@ -2622,3 +2622,11 @@ Unsure / left in place:
   migrations. Standalone migration execution must explicitly select schema a2.
 - The inherited teacher seed in migration 0005 remains; on a fresh empty schema
   its username-specific update affects no rows.
+
+
+## 2026-09-16 — fork-diff audit
+
+See A2_FORK_DIFF_AUDIT.md. tests/phase4-structure.test.js now passes (the teacher inbox-seen
+localStorage key is allowlisted), so the accepted inherited root failures are five:
+tests/journeys/j7-offline-grade.journey.test.js, tests/phase4b-structure.test.js and the three
+tests/progress-reset-matrix-*.test.js files. Server suite 82/82, Python 194 passed.
