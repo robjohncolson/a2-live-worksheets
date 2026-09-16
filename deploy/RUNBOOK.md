@@ -134,6 +134,21 @@ required. This preparation has not created any cloud resources or applied SQL.
    no missing-category errors appear, and no grades or assignments were written.
    No live Schoology sync is authorized by this preparation.
 
+## Every content or script change: bump the build stamp
+
+The Desk is a PWA whose service worker (`sw.js`) serves scripts, styles, JSON and lesson
+content cache-first, keyed by a build stamp. A push that changes any of those without a
+new stamp leaves every Chromebook that has already opened the Desk on the old files.
+Before committing such a change run:
+
+```sh
+node scripts/bump-build.mjs
+```
+
+It rewrites the stamp in `sw.js`, `desk.html` (`APP_BUILD`) and `version.json` together;
+`tests/pwa.test.js` fails if they drift. Students pick the new build up on their next
+visit (the worker activates immediately and refreshes on the following load).
+
 ## Rollback
 
 Pause A2 first: Railway → `a2-live-worksheets` → Deployments → active deployment's
