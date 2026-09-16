@@ -202,10 +202,19 @@ describe('A2 Desk chrome restorations', () => {
     dom.window.close();
   });
 
+  it('retains the D3 verifier overlay and its Escape closer', () => {
+    expect(fn('openVerifyQR')).toContain("panel.id = 'verify-qr-overlay'");
+    expect(fn('openVerifyQR')).toContain("card.id = 'verify-qr-card'");
+    expect(fn('openVerifyQR')).toContain("qr.id = 'verify-qr'");
+    expect(fn('_escCloseTopModal')).toMatch(
+      /'verify-qr-overlay':\s*function\s*\(\)\s*\{\s*_escHide\('verify-qr-overlay'\)/
+    );
+  });
+
   it('contains none of the retired U10 identifiers', () => {
     for (const identifier of ['_fetchPollArchive', '_renderTodayTopics', 'openGame',
       'game-overlay', 'game-split', 'guest-pass-overlay', 'reconcile-qr-overlay',
-      'verify-qr-overlay', 'openVerifyQR', '_phase3SyncNearbyClick', '.doge-dropdown']) {
+      '_phase3SyncNearbyClick', '.doge-dropdown']) {
       expect(html, identifier).not.toContain(identifier);
     }
   });

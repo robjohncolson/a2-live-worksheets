@@ -11,12 +11,15 @@ const response = data => ({ ok: true, status: 200, json: async () => data });
 // Legacy WS IDs and worksheet filenames below are synthetic protocol fixtures.
 const saved = { itemId: 'WS-U1L1-Q1', source: 'worksheet', recordedAt: '2026-09-10T14:00:00Z', score: 1, response: '<img src=x onerror=alert(1)>' };
 const student = { studentId: 's1', username: 'apple_cat', realName: 'Same Name', section: 'PeriodC', schoologyUid: '123', savedWork: { available: true, recent: [saved], pendingGrading: 0 }, gradebook: { quarters: {} } };
-async function make() {
+async function make({ embedded = false } = {}) {
   const errors = [];
   const virtualConsole = new VirtualConsole(); virtualConsole.on('jsdomError', e => errors.push(e.message));
   const dom = new JSDOM(html.replace(/<script[^>]*src=[\s\S]*?<\/script>/g, ''), { url: 'https://example.test/teacher-dashboard.html', runScripts: 'dangerously', pretendToBeVisual: true, virtualConsole });
   doms.push(dom);
   const w = dom.window;
+  if (embedded) {
+    Object.defineProperty(w, 'parent', { configurable: true, value: { postMessage: vi.fn() } });
+  }
   const fetchMock = vi.fn(async url => {
     if (url === 'data/work-manifest.json') return response({ units: [{ lessons: [{ lesson: '1.1', activities: [{ activity: 'worksheet', itemIds: [saved.itemId] }] }] }] });
     if (url.includes('/recent?')) return response({ ok: true, submissions: [saved] });
@@ -176,5 +179,46 @@ describe('skill evidence navigation', () => {
     expect(doc.getElementById('workspace-evidence').textContent).toContain('Question text unavailable');
     expect(doc.getElementById('workspace-evidence').textContent).toContain('Saved FRQ score: 50%');
     expect(doc.getElementById('workspace-evidence').textContent).toContain(saved.response);
+  });
+});
+
+
+describe('teacher receipt scan launcher', () => {
+  it('sends the scan action handled by the Desk verifier bridge', async () => {
+    const { w, doc } = await make({ embedded: true });
+    const post = w.parent.postMessage;
+    const scan = Array.from(doc.querySelectorAll('button')).find(button => button.textContent === 'Verify receipt (scan)');
+    expect(scan).toBeTruthy();
+    scan.click();
+    expect(post).toHaveBeenCalledWith({ type: 'teacher-workspace', action: 'scan' }, w.location.origin);
+    expect(desk).toContain("if (event.data.action === 'scan') { openVerifyQR(); return; }");
+  });
+});
+
+
+describe('teacher workspace tools', () => {
+  it('sends the embedded checkin action handled by the Desk bridge', async () => {
+    const { w, doc } = await make({ embedded: true });
+    const checkin = Array.from(doc.querySelectorAll('#workspace-tool-buttons button')).find(button => button.textContent === 'Grade check-in');
+    expect(checkin).toBeTruthy();
+    checkin.click();
+    expect(w.parent.postMessage).toHaveBeenCalledWith({ type: 'teacher-workspace', action: 'checkin' }, w.location.origin);
+    expect(desk).toContain("if (event.data.action === 'checkin') { destroyTeacherTools(); openGradeCheckin(); }");
+  });
+
+  it('opens the local paste verifier and never targets inherited AP tools', async () => {
+    const { w, doc } = await make({ embedded: true });
+    const buttons = Array.from(doc.querySelectorAll('#workspace-tool-buttons button'));
+    const paste = buttons.find(button => button.textContent === 'Verify receipt (paste)');
+    expect(paste).toBeTruthy();
+    paste.click();
+    expect(doc.querySelector('#workspace-tool iframe').getAttribute('src')).toBe('verify.html');
+    expect(doc.querySelector('#workspace-tool iframe').src).toBe(new URL('verify.html', w.location.href).href);
+    for (const button of buttons) {
+      button.click();
+      for (const frame of doc.querySelectorAll('#workspace-tool iframe')) {
+        expect(frame.src).not.toContain('robjohncolson.github.io/curriculum_render');
+      }
+    }
   });
 });

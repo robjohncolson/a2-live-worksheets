@@ -10980,11 +10980,6 @@ function _receiptPayload(r) {
     }
 }
 
-var WALLET_ISSUERS = [
-    { name: 'Quiz Server', pubkey: 'yFByWH5a7OwhF2KOD3SLd1BE4MlHEN_JDtDaMwW-Eg4' },
-    { name: 'The A2 Desk', pubkey: 'DRfEbaWByfatxMq26iHrw4wxt4MIpypZlbB3GeBFSO4' }
-];
-
 function _walletB64UrlBytes(value) {
     var s = String(value || '').replace(/-/g, '+').replace(/_/g, '/');
     while (s.length % 4) s += '=';
@@ -10996,26 +10991,12 @@ function _walletB64UrlBytes(value) {
 
 async function _walletVerifyReceiptCompact(compact) {
     try {
-        if (!compact || !window.crypto || !crypto.subtle) return null;
-        var parts = String(compact).split('.');
-        if (parts.length !== 2 || !parts[0] || !parts[1]) return null;
-        var data = _walletB64UrlBytes(parts[0]);
-        var sig = _walletB64UrlBytes(parts[1]);
-        for (var i = 0; i < WALLET_ISSUERS.length; i++) {
-            var issuer = WALLET_ISSUERS[i];
-            var key = await crypto.subtle.importKey(
-                'jwk',
-                { kty: 'OKP', crv: 'Ed25519', x: issuer.pubkey, ext: true },
-                { name: 'Ed25519' },
-                false,
-                ['verify']
-            );
-            if (await crypto.subtle.verify({ name: 'Ed25519' }, key, sig, data)) {
-                return { ok: true, issuer: issuer.name };
-            }
-        }
-    } catch (_) {}
-    return { ok: false, issuer: '' };
+        if (!compact || !window.ReceiptVerify) return { ok: false, issuer: '' };
+        var result = await window.ReceiptVerify.verifyReceipt(compact, { includeTestKeys: false });
+        return { ok: result.ok, issuer: result.issuer ? result.issuer.name : '', payload: result.payload };
+    } catch (_) {
+        return { ok: false, issuer: '' };
+    }
 }
 
 function _receiptSourceIcon(src) {
@@ -11058,81 +11039,210 @@ function _toggleReceiptQr(btn, slot, url) {
     if (!showing) _renderReceiptQr(slot, url);
 }
 
-function renderMyReceipts() {
-    var body = document.getElementById('my-receipts-body');
-    if (!body) return;
-    body.innerHTML = '';
-    var rows = _readDeskReceipts();
-    if (!rows.length) {
-        var empty = document.createElement('div');
-        empty.style.cssText = 'padding:10px 4px;color:#555';
-        empty.textContent = 'No receipts yet — receipts appear as your work is recorded.';
-        body.appendChild(empty);
+// Academic receipts: local recovery plus the durable ledger, grouped by study session.
+var _deskReceiptsRenderVersion = 0;
+
+function _receiptAccountKey() {
+    var client = window.rosterClient;
+    var token = client && client.token ? client.token() : '';
+    var viewed = typeof _viewAsContext === 'function' ? _viewAsContext() : null;
+    return String(token || '') + ':' + String(viewed && viewed.studentId || '');
+}
+
+function _receiptTime(r) {
+    var payload = _receiptPayload(r) || {};
+    return Number(r.ts || payload.ts) || 0;
+}
+
+async function _loadDeskReceipts() {
+    var local = _readDeskReceipts();
+    var durable = [];
+    try {
+        if (window.gradebookClient && typeof window.gradebookClient.fetchReceipts === 'function') {
+            durable = await window.gradebookClient.fetchReceipts();
+        }
+    } catch (_) {}
+    try { await _loadReviewMarksForSelf(); } catch (_) {}
+    var ids = new Set(), compacts = new Set();
+    // Server metadata wins; matching either id or compact represents the same receipt.
+    return (Array.isArray(durable) ? durable : []).concat(local).filter(function (r) {
+        if (!r || !r.compact || compacts.has(r.compact) || (r.id && ids.has(r.id))) return false;
+        if (r.id) ids.add(r.id);
+        compacts.add(r.compact);
+        return true;
+    }).sort(function (a, b) { return _receiptTime(b) - _receiptTime(a); });
+}
+
+function _receiptGroupId(dim, key) {
+    return String(dim || 'session') + ':' + String(key || '');
+}
+
+function _receiptSubgroupId(dim, groupKey, subgroupKey) {
+    return _receiptGroupId(dim, JSON.stringify([groupKey, subgroupKey]));
+}
+
+function _receiptGroups(receipts) {
+    var groups = [];
+    receipts.slice().sort(function (a, b) { return _receiptTime(a) - _receiptTime(b); }).forEach(function (r) {
+        var ts = _receiptTime(r);
+        var group = groups[groups.length - 1];
+        if (!group || ts - group.to > 25 * 60 * 1000) {
+            group = { key: String(ts), from: ts, to: ts, receipts: [] };
+            groups.push(group);
+        }
+        group.to = ts;
+        group.receipts.push(r);
+    });
+    return groups.reverse();
+}
+
+function _receiptRenderGroupedReceipts(host, receipts) {
+    // Display only the fields covered by the compact signature. Wrapper metadata
+    // may be stale or tampered with; decoding alone does not establish trust.
+    receipts = receipts.map(function (r) {
+        return Object.assign({}, _receiptPayload(r) || {}, { compact: r.compact, id: r.id });
+    });
+    var signatureChecks = [];
+    host.textContent = '';
+    if (!receipts.length) {
+        host.textContent = 'No receipts yet ? receipts appear as your work is recorded.';
         return;
     }
-    rows.forEach(function (r) {
-        var payload = _receiptPayload(r) || {};
-        var url = _receiptVerifyUrl(r);
-        var row = document.createElement('div');
-        row.style.cssText = 'border:1px solid #777;background:#fff;margin:0 0 6px;padding:6px;box-shadow:1px 1px 0 #aaa';
-
-        var top = document.createElement('div');
-        top.style.cssText = 'display:flex;gap:6px;align-items:flex-start;justify-content:space-between';
-
-        var main = document.createElement('div');
-        main.style.cssText = 'min-width:0;line-height:1.35';
-        var title = document.createElement('div');
-        title.style.cssText = 'font-weight:bold;word-break:break-word';
-        title.textContent = _receiptSourceIcon(r.src || payload.src) + ' ' + cedDisplayText(r.i || payload.i || 'Receipt');
-        main.appendChild(title);
-
-        var meta = document.createElement('div');
-        meta.style.cssText = 'color:#444;word-break:break-word';
-        var parts = [];
-        var score = r.sc;
-        if ((score === undefined || score === null || score === '') && payload.sc !== undefined) score = payload.sc;
-        if (score !== undefined && score !== null && score !== '') parts.push('score ' + score);
-        var date = _formatReceiptDate(r.ts || payload.ts);
-        if (date) parts.push(date);
-        if (r.id) parts.push(String(r.id).slice(0, 12));
-        meta.textContent = parts.join(' • ');
-        main.appendChild(meta);
-
-        if (_isProctoredReceipt(r)) {
-            var badge = document.createElement('span');
-            badge.style.cssText = 'display:inline-block;margin-top:4px;padding:1px 5px;border:1px solid #000;background:#ddd;font-size:10px';
-            badge.textContent = 'proctored';
-            main.appendChild(badge);
-        }
-
-        var actions = document.createElement('div');
-        actions.style.cssText = 'white-space:nowrap;text-align:right';
-        var verify = document.createElement('a');
-        verify.href = url;
-        verify.target = '_blank';
-        verify.rel = 'noopener';
-        verify.style.cssText = 'color:var(--accent-ink);text-decoration:underline';
-        verify.textContent = 'Verify ✓';
-        actions.appendChild(verify);
-        actions.appendChild(document.createTextNode(' '));
-        var qrBtn = document.createElement('button');
-        qrBtn.className = 's7btn';
-        qrBtn.type = 'button';
-        qrBtn.style.cssText = 'font-size:10px;padding:1px 5px';
-        qrBtn.textContent = 'QR';
-        actions.appendChild(qrBtn);
-
-        top.appendChild(main);
-        top.appendChild(actions);
-        row.appendChild(top);
-
-        var qr = document.createElement('div');
-        qr.style.cssText = 'display:none;margin-top:6px';
-        row.appendChild(qr);
-        qrBtn.onclick = function () { _toggleReceiptQr(qrBtn, qr, url); };
-
-        body.appendChild(row);
+    _receiptGroups(receipts).forEach(function (group) {
+        var section = document.createElement('details');
+        section.className = 'receipt-session';
+        section.dataset.group = _receiptGroupId('session', group.key);
+        section.open = true;
+        var heading = document.createElement('summary');
+        heading.textContent = 'Session ' + (_formatReceiptDate(group.from) || 'Unknown date') + ' ? ' + group.receipts.length + ' receipts';
+        section.appendChild(heading);
+        _receiptAppendSessionQRRow(section, group);
+        var sources = new Map();
+        group.receipts.forEach(function (r) {
+            var payload = _receiptPayload(r) || {};
+            var source = String(r.src || payload.src || 'Academic work');
+            if (!sources.has(source)) sources.set(source, []);
+            sources.get(source).push(r);
+        });
+        sources.forEach(function (rows, source) {
+            var subgroup = document.createElement('details');
+            subgroup.className = 'receipt-source';
+            subgroup.dataset.group = _receiptSubgroupId('session', group.key, source);
+            subgroup.open = true;
+            var label = document.createElement('summary');
+            label.textContent = source + ' ? ' + rows.length;
+            subgroup.appendChild(label);
+            rows.slice().reverse().forEach(function (r) {
+                var payload = _receiptPayload(r) || {};
+                var row = _walletReceiptRow(r);
+                row.classList.add('academic-receipt');
+                var info = document.createElement('div');
+                var attempt = r.a == null ? payload.a : r.a;
+                info.textContent = 'Source: ' + source + ' ? Attempt: ' + (attempt == null ? 'not recorded' : attempt)
+                    + ' ? Issued: ' + (_formatReceiptDate(_receiptTime(r)) || 'not recorded');
+                row.appendChild(info);
+                var status = document.createElement('div');
+                status.className = 'receipt-signature-status';
+                status.textContent = 'Signature: checking...';
+                row.appendChild(status);
+                signatureChecks.push(Promise.resolve(_walletVerifyReceiptCompact(r.compact)).then(function (result) {
+                    status.textContent = result && result.ok
+                        ? 'Signature: verified' : 'Signature: not verified';
+                }, function () { status.textContent = 'Signature: not verified'; }));
+                var link = document.createElement('a');
+                link.textContent = 'Open receipt verifier';
+                link.href = _receiptVerifyUrl(r);
+                link.target = '_blank';
+                link.rel = 'noopener';
+                row.appendChild(link);
+                subgroup.appendChild(row);
+            });
+            section.appendChild(subgroup);
+        });
+        host.appendChild(section);
     });
+    return Promise.all(signatureChecks);
+}
+
+async function _receiptLoadCommits() {
+    var base = window.ROSTER_SERVICE_URL;
+    var client = window.rosterClient;
+    var token = client && client.token ? client.token() : null;
+    // /commits is a self-only route; do not show a teacher's chain in view-as.
+    if (typeof _viewAsContext === 'function' && _viewAsContext()) return [];
+    if (!base || !token) return [];
+    var res = await fetch(base + '/commits', { headers: { Authorization: 'Bearer ' + token } });
+    if (!res.ok) throw new Error('Session receipts are unavailable. Try again online.');
+    var data = await res.json();
+    return data && data.ok && Array.isArray(data.commits) ? data.commits : [];
+}
+
+async function _receiptShowSessionQR(group, host, btn) {
+    if (host.firstChild) { host.textContent = ''; return; }
+    var account = _receiptAccountKey();
+    btn.disabled = true;
+    try {
+        var commits = await _receiptLoadCommits();
+        if (account !== _receiptAccountKey()) return;
+        var compacts = new Set(group.receipts.map(function (r) { return r.compact; }));
+        var matches = commits.filter(function (c) {
+            return c.manifest && Array.isArray(c.receipts) && c.receipts.length
+                && c.receipts.every(function (compact) { return compacts.has(compact); });
+        });
+        if (!matches.length) {
+            host.textContent = 'No signed session available yet. Sign in and sync your work, then try again.';
+            return;
+        }
+        matches.forEach(function (commit) {
+            var row = document.createElement('div');
+            var label = document.createElement('div');
+            label.textContent = 'Commit #' + commit.seq + ' ? ' + commit.cnt + ' items';
+            row.appendChild(label);
+            var actions = document.createElement('div');
+            var button = document.createElement('button');
+            button.type = 'button'; button.className = 's7btn'; button.textContent = 'Show QR';
+            var deep = _ledgerB64url(JSON.stringify({ v: 1, m: commit.manifest, r: commit.receipts }));
+            button.setAttribute('data-deep', deep);
+            button.onclick = function () { window._commitShowQR(button); };
+            var link = document.createElement('a');
+            link.textContent = 'Verify session'; link.target = '_blank'; link.rel = 'noopener';
+            link.href = new URL('verify.html', window.location.href).href + '#commit=' + encodeURIComponent(deep);
+            var qr = document.createElement('div'); qr.className = 'commit-qr-host';
+            actions.appendChild(button); actions.appendChild(link); actions.appendChild(qr);
+            row.appendChild(actions); host.appendChild(row);
+        });
+    } catch (_) {
+        host.textContent = 'Could not load signed sessions. Try again online.';
+    } finally { btn.disabled = false; }
+}
+
+function _receiptAppendSessionQRRow(host, group) {
+    var row = document.createElement('div'); row.className = 'receipt-session-qr';
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 's7btn'; btn.textContent = 'Verify / QR this session';
+    var qrHost = document.createElement('div');
+    btn.onclick = function () { return _receiptShowSessionQR(group, qrHost, btn); };
+    row.appendChild(btn); row.appendChild(qrHost); host.appendChild(row);
+}
+
+async function renderMyReceipts() {
+    var body = document.getElementById('my-receipts-body');
+    if (!body) return;
+    var version = ++_deskReceiptsRenderVersion;
+    var account = _receiptAccountKey();
+    body.textContent = '';
+    _reviewByItem = {};
+    var print = document.createElement('button');
+    print.type = 'button'; print.className = 's7btn'; print.id = 'receipts-print-summary';
+    print.textContent = 'Print Sealed Summary';
+    print.onclick = function () { return printSealedSummary(); };
+    body.appendChild(print);
+    var feed = document.createElement('div'); feed.className = 'academic-receipt-feed';
+    body.appendChild(feed);
+    _receiptRenderGroupedReceipts(feed, _readDeskReceipts());
+    var receipts = await _loadDeskReceipts();
+    if (version !== _deskReceiptsRenderVersion || account !== _receiptAccountKey()) return;
+    await _receiptRenderGroupedReceipts(feed, receipts);
 }
 
 function openMyReceipts() {
@@ -11628,6 +11738,7 @@ window.addEventListener('message', function (event) {
     if (event.data.action === 'close') { destroyTeacherTools(); return; }
     if (!_deskIsTeacher()) return;
     
+    if (event.data.action === 'scan') { openVerifyQR(); return; }
     if (event.data.action === 'checkin') { destroyTeacherTools(); openGradeCheckin(); }
 });
 
@@ -13744,6 +13855,41 @@ window._renderScanQR = function(host, text){
     } else { box.textContent = 'QR library missing'; }
     box.addEventListener('click', function(){ window._showBigQR(text); });
 };
+function openVerifyQR() {
+    var url = new URL('verify.html', window.location.href).href;
+    var panel = document.getElementById('verify-qr-overlay');
+    if (!panel) {
+        panel = document.createElement('div');
+        panel.id = 'verify-qr-overlay';
+        panel.setAttribute('role', 'dialog');
+        panel.setAttribute('aria-modal', 'true');
+        panel.setAttribute('aria-label', 'Verify a receipt');
+        panel.style.cssText = 'position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center';
+        var card = document.createElement('div'); card.id = 'verify-qr-card';
+        card.style.cssText = 'background:white;color:#111;max-width:340px;width:90%;border:2px solid black;padding:16px';
+        var close = document.createElement('button');
+        close.type = 'button'; close.textContent = 'Close';
+        close.onclick = function () { _escHide('verify-qr-overlay'); };
+        card.appendChild(close);
+        var title = document.createElement('h2'); title.textContent = 'Verify a receipt'; card.appendChild(title);
+        var help = document.createElement('p');
+        help.textContent = 'Scan with your phone to open the verifier, then use its camera to scan a receipt or sealed summary.';
+        card.appendChild(help);
+        var qr = document.createElement('div'); qr.id = 'verify-qr'; card.appendChild(qr);
+        var link = document.createElement('a'); link.href = url;
+        link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Open on this device'; card.appendChild(link);
+        panel.appendChild(card);
+        panel.addEventListener('click', function (event) { if (event.target === panel) _escHide('verify-qr-overlay'); });
+        document.body.appendChild(panel);
+        if (typeof QRCode === 'function') {
+            new QRCode(qr, { text: url, width: 170, height: 170, correctLevel: QRCode.CorrectLevel && QRCode.CorrectLevel.L });
+        } else { qr.textContent = url; }
+    }
+    panel.style.display = 'flex';
+    panel.querySelector('button').focus();
+}
+window.openVerifyQR = openVerifyQR;
+
 window._commitShowQR = function(btn){
     var host = btn.parentElement.querySelector('.commit-qr-host');
     if (!host) return;
@@ -13804,6 +13950,7 @@ function _escCloseTopModal() {
         'bf-overlay':           function () { if (typeof closeBlooketFlashcards === 'function')  closeBlooketFlashcards(); },
         'override-gate-modal':  function () { if (typeof _hideOverrideGateModal === 'function')  _hideOverrideGateModal(); },
         'big-qr-overlay':       function () { _escHide('big-qr-overlay'); },
+        'verify-qr-overlay':    function () { _escHide('verify-qr-overlay'); },
     };
     var topId = null, topZ = -Infinity;
     for (var id in closers) {
@@ -14506,7 +14653,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-16-f7xo';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-16-801w';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

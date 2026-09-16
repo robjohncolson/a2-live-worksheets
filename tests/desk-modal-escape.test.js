@@ -53,9 +53,9 @@ const GAP_NAMED = {
   'override-gate-modal': '_hideOverrideGateModal',
 };
 // The remaining QR overlay opens as flex and needs no cleanup.
-const GAP_DIRECT = ['big-qr-overlay'];
+const GAP_DIRECT = ['big-qr-overlay', 'verify-qr-overlay'];
 const SELF_HANDLED = ['day-grade-overlay', 'grade-help-overlay', 'my-gradebook-overlay', 'my-receipts-overlay', 'student-dm-modal', 'teacher-nudge-modal'];
-const REMOVED_IDS = ['game-overlay', 'guest-pass-overlay', 'reconcile-qr-overlay', 'verify-qr-overlay'];
+const REMOVED_IDS = ['game-overlay', 'guest-pass-overlay', 'reconcile-qr-overlay'];
 const ALL_IDS = [...Object.keys(GAP_NAMED), ...GAP_DIRECT, ...SELF_HANDLED];
 
 let calls;

@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Verify a receipt</title>
   <style>body{font:16px system-ui;max-width:44rem;margin:3rem auto;padding:0 1rem}textarea{box-sizing:border-box;width:100%;min-height:8rem}button{margin:1rem 0;padding:.6rem 1rem}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+  <script src="lib/html5-qrcode.min.js" defer></script>
+  <script src="roster_config.js" defer></script>
   <script src="receipt-verify.js" defer></script>
   <script src="verify-page.js" defer></script>
 </head>
 <body>
   <h1>Verify a receipt</h1>
   <p>Check the signature on a saved receipt or transcript.</p>
+  <button id="scan-receipt" type="button">Scan receipt with camera</button>
+  <button id="stop-scan" type="button" hidden>Stop camera</button>
+  <div id="receipt-camera" style="max-width:400px"></div>
+  <p id="scan-status" role="status" aria-live="polite"></p>
   <form id="verify-form">
     <label for="receipt">Receipt or verification link</label>
     <textarea id="receipt" required spellcheck="false"></textarea>
@@ -19,5 +25,72 @@
   <p id="verify-status" role="status" aria-live="polite"></p>
   <pre id="verify-details"></pre>
   <a href="desk.html">Back to the Desk</a>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var scanner = null;
+    var stoppedScanners = new WeakSet();
+    var starting = false;
+    var generation = 0;
+    var start = document.getElementById('scan-receipt');
+    var stop = document.getElementById('stop-scan');
+    var status = document.getElementById('scan-status');
+    async function stopCamera() {
+      generation++;
+      var active = scanner;
+      scanner = null;
+      try {
+        if (active && active.isScanning && !stoppedScanners.has(active)) {
+          stoppedScanners.add(active);
+          await active.stop();
+        }
+      } catch (_) {}
+      try { if (active) active.clear(); } catch (_) {}
+      start.disabled = starting;
+      stop.hidden = true;
+    }
+    start.addEventListener('click', async function () {
+      if (starting || scanner) return;
+      if (typeof Html5Qrcode !== 'function') {
+        status.textContent = 'Camera scanner unavailable. Paste your receipt below.';
+        return;
+      }
+      starting = true;
+      start.disabled = true;
+      var run = ++generation;
+      var active = new Html5Qrcode('receipt-camera', { formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE] });
+      scanner = active;
+      status.textContent = 'Allow camera access, then point at a receipt QR.';
+      var accepted = false;
+      try {
+        await active.start({ facingMode: 'environment' }, { fps: 10, qrbox: 250 }, async function (decoded) {
+          if (accepted || run !== generation) return;
+          accepted = true;
+          // Treat decoded text as input; never navigate to a scanned URL.
+          document.getElementById('receipt').value = decoded;
+          document.getElementById('verify-form').requestSubmit();
+          status.textContent = 'Receipt scanned.';
+          await stopCamera();
+        }, function () {});
+        if (run !== generation) {
+          // A decode may already have stopped this scanner while start settled.
+          if (active.isScanning && !stoppedScanners.has(active)) {
+            stoppedScanners.add(active);
+            await active.stop();
+          }
+          active.clear();
+        } else { stop.hidden = false; }
+      } catch (_) {
+        status.textContent = 'Could not start the camera. Allow camera access or paste your receipt below.';
+        await stopCamera();
+      } finally {
+        starting = false;
+        start.disabled = !!scanner;
+      }
+    });
+    stop.addEventListener('click', function () { status.textContent = 'Camera stopped.'; stopCamera(); });
+    window.addEventListener('pagehide', stopCamera);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stopCamera(); });
+  });
+  </script>
 </body>
 </html>

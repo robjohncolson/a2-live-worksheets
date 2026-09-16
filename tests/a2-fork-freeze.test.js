@@ -145,7 +145,8 @@ describe('frozen Algebra 2 fork classification', () => {
       expect(['STRIP-CONTENT', 'STRIP-FEATURE', 'HISTORY'], row.path).toContain(row.class);
     }
     expect(Object.keys(AUDIT.decisions).sort()).toEqual(Array.from({ length: 10 }, (_, i) => `D${i + 1}`).sort());
-    for (const [decision, status] of Object.entries(AUDIT.decisions)) expect(status, decision).toBe('pending');
+    // Each decision carries a recorded status: 'pending', or 'accepted/held <date>: <what>' once the teacher decides.
+    for (const [decision, status] of Object.entries(AUDIT.decisions)) expect(status, decision).toMatch(/^(pending|(accepted|held) \d{4}-\d{2}-\d{2}: .+)$/);
     expect(AUDIT.a2Additions.some(path => path.startsWith('docs/apstats-history/'))).toBe(false);
   });
 

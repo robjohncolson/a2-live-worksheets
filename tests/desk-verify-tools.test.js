@@ -1,5 +1,5 @@
 // Local receipt and transcript verification remains public.
-// The removed teacher scan bridge is not part of the A2 Desk.
+// The teacher scan bridge opens this same public verifier.
 // @vitest-environment node
 import { describe, it, expect, vi } from 'vitest';
 import { readFileSync } from 'node:fs';

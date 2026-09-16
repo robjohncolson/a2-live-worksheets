@@ -367,7 +367,7 @@
     });
     var tools = $('workspace-tool-buttons');
     tools.appendChild(button('Roster & enrollment', function () { openTool('teacher-roster-console.html', 'Roster and enrollment'); }));
-    tools.appendChild(button('Verify receipt (paste)', function () { openTool('https://robjohncolson.github.io/curriculum_render/verify.html', 'Verify receipt'); }));
+    tools.appendChild(button('Verify receipt (paste)', function () { openTool('verify.html', 'Verify receipt'); }));
     if (window.parent !== window) {
       tools.appendChild(button('Verify receipt (scan)', function () { window.parent.postMessage({ type: 'teacher-workspace', action: 'scan' }, location.origin); }));
       tools.appendChild(button('Grade check-in', function () { window.parent.postMessage({ type: 'teacher-workspace', action: 'checkin' }, location.origin); }));

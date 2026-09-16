@@ -205,6 +205,8 @@ hence D4.
 | U20 B22 cosmetic | tango-theme test restored | no subject change | same commit |
 | phase4-structure | accepted baseline failure | allowlisted the teacher inbox-seen localStorage key; **now passes** — baseline is five inherited failures | same commit |
 | U20 B02-B05, B08 grade fixtures, golden grades, resolver snapshots, exit-ticket isolation, roster/teacher server | 20 files | adapted to A2 district/v3 contracts with hand-derived expected grades, C/D/G dates, synthetic exit-ticket fixture; automatic golden blessing removed; one harness fix (teacher-endpoints fixture) | committed |
+| G server district-formula coverage | D7 | new district test mode (12 HTTP-level tests), `npm test` runs both modes | committed d8aa76a |
+| F1 receipts + scan verifier | U6 U7 U11 (D2 D3) | review: safe with 2 fixes (hardcoded issuer list bypassing registered keys; unsigned metadata beside a verified badge) — both fixed; workspace paste verifier now local; scan bridge test simulates embedding | committed with the PWA stamp bump |
 | Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.

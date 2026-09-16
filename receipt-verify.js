@@ -80,6 +80,34 @@
     return ISSUERS.filter(function (issuer) { return includeTestKeys || !issuer.test; });
   }
 
+  // Fetch trust material only from the configured roster service, never from
+  // receipt fields or scanned URLs. Keep historical registered keys on rotation.
+  var issuerHydrations = new Map();
+  async function hydrateIssuerKeys() {
+    var base = String(root.ROSTER_SERVICE_URL || '').replace(/\/+$/, '');
+    if (!base || typeof root.fetch !== 'function') return;
+    if (issuerHydrations.has(base)) return issuerHydrations.get(base);
+    var pending = (async function () {
+      try {
+        var options = {};
+        if (root.AbortSignal && typeof root.AbortSignal.timeout === 'function') {
+          options.signal = root.AbortSignal.timeout(5000);
+        }
+        var response = await root.fetch(base + '/health', options);
+        if (!response.ok) throw new Error('Roster health unavailable');
+        var health = await response.json();
+        var pubkey = health && health.receipts && health.receipts.pubkey;
+        if (typeof pubkey !== 'string' || !pubkey) throw new Error('No roster issuer key');
+        registerIssuerKeys([pubkey], { name: 'Roster', kind: 'roster' });
+      } catch (_) {
+        // An offline attempt must not prevent a later online refresh.
+        issuerHydrations.delete(base);
+      }
+    })();
+    issuerHydrations.set(base, pending);
+    return pending;
+  }
+
   // Verify one compact receipt ("payloadB64url.sigB64url"). Returns
   // { ok, issuer, payload, receiptId }. ok=false means no known production
   // (or, with includeTestKeys, test) issuer signed these exact bytes.
@@ -100,6 +128,7 @@
     catch (e) { throw new Error('Receipt payload is not valid JSON.'); }
     if (payload.v !== 1) throw new Error('Unknown receipt version: ' + payload.v);
 
+    await hydrateIssuerKeys();
     var issuer = null;
     var candidates = issuersForRun(!!options.includeTestKeys);
     for (var i = 0; i < candidates.length; i++) {
@@ -343,6 +372,7 @@
     verifyLedgerRow: verifyLedgerRow,
     registerStudentKeys: registerStudentKeys,
     registerIssuerKeys: registerIssuerKeys,
+    hydrateIssuerKeys: hydrateIssuerKeys,
     verifySubmissionRow: verifySubmissionRow,
     sha256HexText: sha256HexText,
     parseVerifyTarget: parseVerifyTarget
