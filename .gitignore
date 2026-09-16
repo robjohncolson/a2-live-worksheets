@@ -27,6 +27,10 @@ tmpclaude-*
 .env
 .gitnexus
 
+# Student PII — never commit rosters or credentials
+*_roster.pdf
+roster-local/
+
 # Schoology sync local state (use SupabaseStateStore in prod)
 tools/.schoology-sync-state.json
 TI-84_Plus_CE/ROM.transpiled.js
