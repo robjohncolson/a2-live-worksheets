@@ -6,7 +6,7 @@ The roster, academic ledger, receipts, transcripts, flashcards, teacher feedback
 
 Content is authored in `../Lesson_planning`; see `A2_FORK_PLAN.md` for the Savvas transcription and question-bank pipeline. Lesson 1-1 is published in `content/a2/`; later lessons remain unpublished until authored content is ready.
 
-Run `npx vitest run` at root, `npx vitest run` from `roster-server/`, and `pytest tests/` at root. Named inherited failures and phase results live in `A2_FORK_BASELINE.md`.
+Run `npx vitest run` at root, `npm test` from `roster-server/` (runs the legacy v3-forced suite and the district-formula suite; `npm run test:district` alone for the production formula), and `pytest tests/` at root. Named inherited failures and phase results live in `A2_FORK_BASELINE.md`.
 
 
 Historical architecture and removed-feature documents are in `docs/apstats-history/`; use `A2_FORK_PLAN.md` and `A2_FORK_BASELINE.md` for the current Algebra 2 implementation.

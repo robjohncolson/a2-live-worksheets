@@ -1,7 +1,8 @@
-import { defineConfig } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
+    exclude: [...configDefaults.exclude, 'tests/district/**'],
     // BCRYPT_COST=4 (vs prod 12): the bcrypt-heavy auth paths (signup, change-
     // password, PIN, and the brute-force lockout which hashes many times) are the
     // root of the "passes isolated, flakes under load" tax — cost-12 bcryptjs is

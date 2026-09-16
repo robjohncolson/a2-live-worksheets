@@ -6,7 +6,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "vitest run",
+    "test": "node scripts/test-modes.js",
+    "test:legacy": "vitest run --config vitest.config.js",
+    "test:district": "vitest run --config vitest.district.config.js",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
