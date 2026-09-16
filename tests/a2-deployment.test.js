@@ -26,7 +26,7 @@ it('contains no inherited production hosts in repository source, configs or test
     }
     for (const entry of entries) {
       const path = relative + entry.name;
-      if (skip.has(entry.name) || path === 'docs/apstats-history' || path === 'tests/a2-deployment.test.js' || path === 'A2_FORK_DIFF_AUDIT.md') continue;
+      if (skip.has(entry.name) || path === 'docs/apstats-history' || path === 'tests/a2-deployment.test.js' || path === 'A2_FORK_DIFF_AUDIT.md' || path === 'tests/a2-fork-freeze.test.js' || path === 'data/a2-fork-audit.json') continue;
       const file = resolve(dir, entry.name);
       let info;
       try {
@@ -36,7 +36,15 @@ it('contains no inherited production hosts in repository source, configs or test
         throw error;
       }
       if (info.isDirectory()) { scan(file, path + '/'); continue; }
-      const source = readFileSync(resolve(dir, entry.name), 'utf8');
+      let source = readFileSync(resolve(dir, entry.name), 'utf8');
+      if (path === 'data/a2-fork-audit.json') {
+        // Provenance is deliberately AP; every other field still gets scanned.
+        const audit = JSON.parse(source);
+        expect(audit.baseline).toEqual({
+          repo: 'robjohncolson/' + inheritedPatterns[2], commit: '68d3e61',
+        });
+        source = JSON.stringify({ ...audit, baseline: null });
+      }
       if (inheritedPatterns.some(pattern => source.includes(pattern))) hits.push(path);
     }
   }

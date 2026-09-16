@@ -1,0 +1,7055 @@
+{
+  "version": 1,
+  "baseline": {
+    "repo": "robjohncolson/apstats-live-worksheet",
+    "commit": "68d3e61"
+  },
+  "removed": [
+    {
+      "path": ".batch-a-frq-decomp.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".batch-a2-frq-decomp-audit.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".batch-b-frq-logic.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".batch-c-frq-render.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".codex-prompt-worksheet-grading-25920-1774525493129-1cbf38cb82983.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".codex-prompt-worksheet-grading-4124-1774231133238-2166975ffa3ff.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".plan-session77.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session89-codex-review.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session89-codex-review.result.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session89-fix-brief.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session89-fix-result.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session89-frq-audit.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session89-plan.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session89-result.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session90-codex-review.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session90-codex-review.result.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session90-fix-brief.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session90-fix-result.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session90-missing-pictures.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session90-plan.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session90-question-audit.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".session90-result.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".study-guide-spec-focused.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".study-guide-spec-html.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".study-guide-spec-v2.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".study-guide-spec-v4.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".study-guide-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".v4-batch-a.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".v4-batch-b.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".v4-batch-c.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".v4-batch-m1.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".v4-batch-m2.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".v4-logic-block.js",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".v5-batch-a.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".v5-batch-m.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": ".v5-ladder-block.js",
+      "class": "HISTORY"
+    },
+    {
+      "path": "84plusCE.webp",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "AI_TUTOR_FANOUT_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "AI_TUTOR_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "AI_TUTOR_U1_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "AI_WORKSHEET_GRADING_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ANDROID_PACKET_APP_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ANDROID_PHASE2_LEDGER_MERGE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ANDROID_PHASE3_GOSSIP_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ANDROID_PHASE4_TEACHER_KEY_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ANDROID_PHASE5_PLAY_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ANDROID_PHASE6B_QR_BT_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ANDROID_PHASE6_QR_SYNC_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "AVATAR_MENU_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "BLOOKET_BACKFILL_CHECKLIST.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "BLOOKET_DECK_REVIEW_2026-08-18.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "BLOOKET_IMPORT_P2_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "BLOOKET_MAKEUP_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CALENDAR_CED2026_RELABEL_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CALENDAR_FOCUS_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CALENDAR_FOCUS_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CALENDAR_POLISH_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CALENDAR_POLISH_PROPOSAL.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CALENDAR_POLISH_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CALENDAR_SYNC_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CANDY_LEDGER_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CANDY_POKE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CANDY_RETURN_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CONCEPT_POSTERS_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CONTINUATION_PROMPT.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "CR_SY2627_ATTENUATION_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DESK_DONOW_DN1_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DESK_DONOW_DN2C_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DESK_DONOW_DN3_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DESK_DONOW_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DESK_GRADE_CHECKIN_IMPLEMENTATION_PROMPT.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DESK_GRADE_CHECKIN_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DESK_MODAL_POLISH_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DOGE6.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "DOGE_GIFTING_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DOGE_PAYOUT_RAIL_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DOGE_PRESENCE_SUBMENU_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DOGE_WALLET_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DOK_DAY_SHEETS_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DOK_DEPRECATE_DAILY_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DOK_SELF_PACED_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "DOK_VIDEO_FREE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "Doge-Asset.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ENRICHED_PASS_ROLLOUT_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "E_WEDNESDAY_DOUBLE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "FLASHCARD_IMPROVEMENT_BRAINSTORM.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "FLASHCARD_REWORK_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "FLASHCARD_TIMED_DECK_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "FRQ_GRADE_TICKETS_RUNBOOK.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "FRQ_GRADE_TICKETS_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_FEEDER_ID_AUDIT.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_GRADING_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_PHASE0_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_PHASE1_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_PHASE2_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_PHASE3_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_PHASE4B_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_PHASE4_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_PHASE5_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_PHASE6_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_TAGGING_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_TAGGING_T1_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_TAGGING_T2_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_TAGGING_T2_FULLRUN_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADEBOOK_TAGGING_T3_QUEUE.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADE_FIX_F1_F3_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADE_LEDGER_DURABILITY_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADE_PIPELINE_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADE_PIPELINE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADE_SIMULATION_FINDINGS.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADE_SIMULATION_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "GRADING_MODEL_V3_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ICON_MOTION_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "INCIDENT_2026-07-20_PROGRESS_RESET.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "KEYBOARD_AVATAR_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LEDGER_HEAL_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LEVEL_DESIGN_RECIPE.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LEVEL_EDITOR_V1_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_R3_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_SCALING_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_SCALING_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V1A_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V1B_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V1C_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V2_1_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V2_1_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V2_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V3_P12_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V3_P3_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V3_P4_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V3_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V4_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V5_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V6_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V7_10_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V7_11_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V7_14_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V7_15_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V7_1_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V7_7_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V7_8_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V7_9_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V7_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "LIVE_CLASSROOM_V7_PICO_PARITY_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "MODAL_ESCAPE_AUDIT.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "Mac-OS-Sounds/CrashMacQuadra.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/Sosumi.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupAppleII.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupAppleIIc.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupAppleIIgs.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupEMate300.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupIntelPreT2Mac.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupIntelT2Mac.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupMacI.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupMacII.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupMacLC.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupMacQuadra.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupMacQuadraAV.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupPowerMac.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupPowerMacCard.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupPowerMacPCI.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupTwentiethAnniversaryMac.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "Mac-OS-Sounds/StartupiPhone.wav",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "NIGHTLY_REVIEW_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "NIGHTLY_REVIEW_V2_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "OFFLINE_GRADING_MESH_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "OFFLINE_MODE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "PC_FRQ_GRADING_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "PC_MAKEUP_DELIVERY_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "PERSISTENT_ANSWERS_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "PREVIEW_AS_STUDENT_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "PROGRESS_RESET_DEPLOYMENT_RUNBOOK.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "PROGRESS_RESET_DISPATCH_LEDGER.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "PROGRESS_RESET_FIX_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "PROGRESS_RESET_REGRESSION_MATRIX.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "QUARTERS_BY_DATE_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "QUARTERS_BY_DATE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "QUIZ_AI_EXCEPTION_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "QUIZ_PARTIAL_CREDIT_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "RECEIPTS_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "RECEIPT_TABS_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "RELIABILITY_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ROSTER_ARCHIVE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ROSTER_MGMT_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ROSTER_MGMT_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ROSTER_TEACHER_TOOLS_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ROSTER_TEACHER_TOOLS_TR1_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "RUBRIC_AUDIT_2026-08-19.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "SCHEDULE_HANDOFF.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "SCHEDULE_PACKING_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "SCHOOLOGY_UID_BRIDGE_P4B_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "SELL_DOGE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "SESSIONS_ARCHIVE.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "SIGNIN_WALL_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "STATE_MACHINES.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "STUDENT_SELF_SIGNUP_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "STUDENT_WALLET_ONBOARDING_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "STUDY_BREAK_STAKES_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "SY2627_ACTIVATION_RUNBOOK.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_AUTH_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_CHAT_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P10_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P11_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P13_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P1_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P2_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P3_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P4_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P5_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P6_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P8_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TEACHER_STUDENT_CONSOLE_P9_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TETRIS_HARDENING_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_GRADE_INTEGRATION_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_MATRIX_ENTRY_LOOP_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TASK1_DATA_TRUST_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TASK2_ROSTER_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TASK3_ROBUSTNESS_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TASK4_NATIVE_TWOPROP_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TRAINER_AUTOFILL_REWRITE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TRAINER_DESK_LINK_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TRAINER_FIX_PLAN.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TRAINER_REVIEW_FINDINGS.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TRAINER_SERVING_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TRAINER_SPIKE_RESULT.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TRAINER_STUDENT_STATE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TRAINER_TEMPLATES_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TRAINER_UNIT3_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TI84_TRAINER_WEEK1_SPIKE_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "TIGHTEN_PLAN.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "U1_1_MECHANIC_FIRST_DESIGN.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WALLET_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WALLET_COLOR_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WALLET_CONSERVATION_AUDIT_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WALLET_CONSERVATION_FINDINGS.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WALLET_GENERATE_EXPORT_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WALLET_GENERATE_EXPORT_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WALLET_LOADING_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WALLET_LOADING_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WALLET_REDESIGN_SPEC.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WHY_SO_LOW_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "WORKSHEET_COMPLETION_GATE_BUILD.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "a2_3-3/lesson_3-3_quiz.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "activity-bridge.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "activity-colorbox-grid.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "activity-colorbox.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "activity-level.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ai-tutor/u1_l10.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u1_l3.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u1_l4.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u1_l5.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u1_l6.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u1_l7.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u1_l8.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u1_l9.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u2_l2.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u2_l3.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u2_l4.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u2_l5.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u2_l6.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u2_l7.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u2_l8.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u2_l9.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u2_pc.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u3_l2.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u3_l3.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u3_l4.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u3_l5.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u3_l6.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u3_l7.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u3_pc.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l10.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l11.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l12.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l2.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l3.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l4.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l5.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l6.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l7.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l8.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_l9.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u4_pc.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u5_l2.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u5_l3.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u5_l4.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u5_l5.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u5_l7.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u5_l8.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u5_pc.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_l10.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_l11.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_l2.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_l3.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_l4.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_l5.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_l6.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_l7.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_l8.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_l9.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u6_pc.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u7_l2.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u7_l3.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u7_l4.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u7_l5.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u7_l6.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u7_l7.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u7_l8.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u7_l9.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u7_pc.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u8_l2.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u8_l3.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u8_l4.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u8_l5.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u8_l6.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u8_pc.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u9_l2.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u9_l4.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u9_l5.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ai-tutor/u9_pc.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ap-stats-video-crosswalk.csv",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ap-stats-video-crosswalk.md",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ap_stats_pacing_mar23_may7.xlsx",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "apstat-park/README.md",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "apstat-park/board-scene.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "apstat-park/browser-smoke.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "apstat-park/panel.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "apstat-park/remote-motion.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "apstat-park/remote-motion.test.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "apstat-park/replica.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "apstat_1_framework.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "apstat_2_framework.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "apstat_3_framework.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "apstat_4_framework.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "apstat_5_framework.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "apstat_6_framework.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "apstat_7_framework.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "apstat_8_framework.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "apstat_9_framework.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "button.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "canvas_engine.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "cemu_after_enter.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "cemu_boot.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "cemu_boot_ocr.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "cemu_state_check.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "cemu_window.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "classroom-board.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "code-to-website-workshop.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "codex-cemu-verification-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-clutch-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-layout-fix-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-layout-fix-v2-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-native-integration-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-native-port-prompts.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-rom-disassembly-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-rom-state-machine-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-ti84-mobile-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-ti84-trainer-v1-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-ti84-trainer-v2-rom-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "codex-v3-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "coin_0.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "coin_1.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "coin_2.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "concept-posters/Makefile",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/README.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/RENDER_LOG.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/apstats-poster.sty",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/clean_rendered.py",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/make_letter.py",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p01-variables-displays.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p02-summary-statistics.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p03-collecting-data.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p04-two-categorical-variables.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p05-probability-rules.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p06-random-variables.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p07-normal-distribution.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p08-sampling-distributions.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p09-confidence-intervals.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p10-significance-tests.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p11-proportions-toolbox.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p12-chi-square-tests.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p13-means-toolbox.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p14-scatterplots-correlation-lsrl.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/p15-residuals-model-fit.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/qa-summary.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/apstats-concept-poster-mockups-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/apstats-concept-poster-mockups.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p01-variables-displays-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p01-variables-displays.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p01-variables-displays.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p02-summary-statistics-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p02-summary-statistics.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p02-summary-statistics.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p03-collecting-data-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p03-collecting-data.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p03-collecting-data.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p04-two-categorical-variables-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p04-two-categorical-variables.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p04-two-categorical-variables.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p05-probability-rules-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p05-probability-rules.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p05-probability-rules.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p06-random-variables-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p06-random-variables.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p06-random-variables.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p07-normal-distribution-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p07-normal-distribution.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p07-normal-distribution.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p08-sampling-distributions-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p08-sampling-distributions.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p08-sampling-distributions.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p09-confidence-intervals-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p09-confidence-intervals.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p09-confidence-intervals.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p10-significance-tests-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p10-significance-tests.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p10-significance-tests.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p11-proportions-toolbox-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p11-proportions-toolbox.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p11-proportions-toolbox.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p12-chi-square-tests-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p12-chi-square-tests.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p12-chi-square-tests.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p13-means-toolbox-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p13-means-toolbox.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p13-means-toolbox.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p14-scatterplots-correlation-lsrl-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p14-scatterplots-correlation-lsrl.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p14-scatterplots-correlation-lsrl.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p15-residuals-model-fit-letter.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p15-residuals-model-fit.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/rendered/p15-residuals-model-fit.png",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "concept-posters/verify_posters.py",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "css/teacher-wallet-loading.css",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "data/skill-map.pilot-u1.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "data/skill-map.review-queue.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "data/skill-map.review-queue.pilot-u1.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "doge-keys.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "doge-presence-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "dok/AUDIT_2026-09.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/ROUNDS.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/PENDING.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/README.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.1.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.10.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.2.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.3.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.4.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.4_1.5.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.5.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.6.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.7.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.7_1.8.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.8.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/1.9.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/2.1.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/2.2.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/2.3.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/2.4.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/2.5.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/2.6.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/2.7.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/2.8.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/3.1.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/3.2.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/3.3.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/3.4.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/3.5.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/3.6.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/4.1.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/4.10.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/4.11.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/4.2.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/4.3.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/4.4.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/4.5.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/4.6.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/4.7.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/4.8.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/5.1.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/5.2.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/5.3.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/5.4.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/5.5.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/5.6.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/5.7.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/5.8.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.1.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.10.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.11.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.2.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.3.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.4.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.5.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.6.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.7.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.8.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/6.9.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/7.1.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/7.2.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/7.3.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/7.4.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/7.5.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/7.6.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/7.7.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/7.8.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/7.9.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/8.1.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/8.4.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/8.5.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/lessons/8.6.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.10_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.10_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.10_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.1_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.1_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.1_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.2_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.2_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.2_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.3_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.3_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.3_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.4_1.5_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.4_1.5_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.4_1.5_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.4_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.4_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.4_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.5_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.5_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.5_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.6_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.6_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.6_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.7_1.8_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.7_1.8_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.7_1.8_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.7_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.7_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.7_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.8_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.8_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.8_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.9_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.9_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_1.9_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.1_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.1_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.1_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.2_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.2_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.2_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.3_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.3_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.3_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.4_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.4_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.4_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.5_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.5_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.5_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.6_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.6_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.6_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.7_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.7_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.7_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.8_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.8_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_2.8_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.1_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.1_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.1_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.2_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.2_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.2_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.3_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.3_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.3_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.4_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.4_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.4_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.5_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.5_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.5_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.6_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.6_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_3.6_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.10_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.10_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.10_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.11_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.11_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.11_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.1_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.1_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.1_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.2_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.2_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.2_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.3_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.3_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.3_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.4_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.4_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.4_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.5_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.5_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.5_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.6_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.6_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.6_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.7_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.7_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.7_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.8_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.8_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_4.8_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.1_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.1_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.1_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.2_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.2_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.2_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.3_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.3_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.3_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.4_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.4_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.4_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.5_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.5_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.5_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.6_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.6_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.6_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.7_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.7_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.7_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.8_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.8_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_5.8_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.10_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.10_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.10_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.11_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.11_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.11_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.1_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.1_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.1_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.2_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.2_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.2_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.3_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.3_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.3_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.4_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.4_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.4_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.5_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.5_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.5_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.6_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.6_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.6_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.7_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.7_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.7_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.8_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.8_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.8_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.9_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.9_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_6.9_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.1_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.1_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.1_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.2_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.2_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.2_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.3_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.3_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.3_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.4_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.4_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.4_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.5_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.5_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.5_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.6_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.6_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.6_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.7_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.7_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.7_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.8_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.8_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.8_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.9_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.9_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_7.9_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.1_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.1_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.1_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.4_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.4_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.4_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.5_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.5_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.5_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.6_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.6_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/pdf/aps_8.6_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.1.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.10.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.2.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.3.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.4.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.4_1.5.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.5.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.6.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.7.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.7_1.8.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.8.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/1.9.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/2.1.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/2.2.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/2.3.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/2.4.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/2.5.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/2.6.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/2.7.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/2.8.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/3.1.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/3.2.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/3.3.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/3.4.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/3.5.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/3.6.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/4.1.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/4.10.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/4.11.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/4.2.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/4.3.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/4.4.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/4.5.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/4.6.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/4.7.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/4.8.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/5.1.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/5.2.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/5.3.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/5.4.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/5.5.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/5.6.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/5.7.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/5.8.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.1.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.10.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.11.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.2.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.3.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.4.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.5.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.6.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.7.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.8.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/6.9.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/7.1.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/7.2.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/7.3.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/7.4.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/7.5.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/7.6.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/7.7.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/7.8.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/7.9.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/8.1.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/8.4.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/8.5.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/registry/8.6.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.10_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.10_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.10_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.1_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.1_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.1_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.2_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.2_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.2_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.3_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.3_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.3_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.4_1.5_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.4_1.5_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.4_1.5_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.4_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.4_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.4_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.5_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.5_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.5_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.6_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.6_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.6_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.7_1.8_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.7_1.8_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.7_1.8_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.7_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.7_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.7_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.8_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.8_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.8_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.9_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.9_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_1.9_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.1_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.1_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.1_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.2_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.2_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.2_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.3_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.3_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.3_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.4_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.4_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.4_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.5_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.5_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.5_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.6_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.6_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.6_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.7_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.7_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.7_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.8_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.8_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_2.8_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.1_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.1_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.1_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.2_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.2_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.2_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.3_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.3_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.3_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.4_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.4_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.4_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.5_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.5_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.5_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.6_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.6_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_3.6_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.10_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.10_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.10_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.11_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.11_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.11_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.1_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.1_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.1_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.2_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.2_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.2_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.3_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.3_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.3_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.4_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.4_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.4_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.5_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.5_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.5_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.6_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.6_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.6_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.7_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.7_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.7_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.8_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.8_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_4.8_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.1_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.1_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.1_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.2_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.2_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.2_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.3_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.3_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.3_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.4_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.4_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.4_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.5_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.5_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.5_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.6_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.6_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.6_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.7_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.7_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.7_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.8_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.8_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_5.8_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.10_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.10_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.10_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.11_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.11_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.11_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.1_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.1_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.1_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.2_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.2_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.2_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.3_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.3_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.3_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.4_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.4_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.4_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.5_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.5_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.5_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.6_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.6_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.6_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.7_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.7_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.7_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.8_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.8_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.8_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.9_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.9_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_6.9_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.1_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.1_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.1_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.2_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.2_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.2_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.3_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.3_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.3_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.4_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.4_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.4_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.5_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.5_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.5_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.6_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.6_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.6_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.7_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.7_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.7_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.8_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.8_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.8_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.9_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.9_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_7.9_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.1_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.1_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.1_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.4_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.4_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.4_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.5_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.5_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.5_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.6_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.6_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/archive/tex/aps_8.6_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/numeric-units-1-3.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/numeric-units-1-3.py",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/numeric-units-2-4.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/numeric-units-2-4.py",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/numeric-units-7-8.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/numeric-units-7-8.py",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/pdf-pages.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/units-1-3.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/units-2-4.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/units-5-6-numbers.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/units-5-6.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/units-7-8.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/audit-support/verify-units-5-6.py",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/lessons/1.1_1.2_1.4_1.7.yaml",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/pdf/aps_1.1_1.2_1.4_1.7_board.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/pdf/aps_1.1_1.2_1.4_1.7_student.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/pdf/aps_1.1_1.2_1.4_1.7_teacher.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/registry/1.1_1.2_1.4_1.7.jsonl",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/tex/aps_1.1_1.2_1.4_1.7_board.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/tex/aps_1.1_1.2_1.4_1.7_student.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/tex/aps_1.1_1.2_1.4_1.7_teacher.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "dok/tex/preamble.sty",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "door_closed.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "door_open.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "formal/grade-model/README.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "formal/grade-model/crosscheck.rkt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "formal/grade-model/grade-model.rkt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "formal/wallet-model/README.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "formal/wallet-model/cases.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "formal/wallet-model/crosscheck.rkt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "formal/wallet-model/wallet-model.rkt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "grade-substrate-ced2026-fix-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "icons/calc.jpg",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "icons/formula.jpg",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "icons/icon-formulas.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "icons/icon-quiz.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "icons/icon-tetris.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "icons/icon-ti84.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "icons/quiz.jpg",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "js/student-wallet-print.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "js/student-wallet.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "js/teacher-wallet-loading.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "js/wallet-print-sheets.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "js/wallet-qr-scanner.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "js/wallet_logic.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "key.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "mit_python_vid2/slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "mit_python_vid2/transcript.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "multiplayer-enhancements-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "offline-video.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "pico_sprite1.json",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "postbreak_calendar.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "probe-signal-reports/2026-04-14.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "qr-fountain.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "qr-sync.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "resized_screen.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roadmap-apps-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "roster-server/data/pc-figures-manifest.json",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/data/ti84-lesson-map.json",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/docs/cors-allowlist.patch",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/doge-chain.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/doge-econ.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/doge-wallet.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/lib/doge-keys.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0016_item_ledger_trainer_source.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0017_trainer_state.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0019_doge_wallet.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0020_doge_chain_cache.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0021_doge_gifting.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0022_retire_candy_eaten.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0023_doge_sell.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0024_tetris_stakes.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0032_payout_batch.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0033_wallet_address_proposals.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0034_candy_return.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/migrations/0035_wallet_custody.sql",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/payout.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/pc-db.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/pc-figures.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/pc.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/poll-archive-db.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/poll-archive.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/scripts/load-pc-bank.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/doge-chain.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/doge-wallet.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/fixtures/pg-wallet.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/fixtures/wallet-world.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/payout-conservation.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/pc-figures.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/pc-item-typing.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/wallet-conservation-pg.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/wallet-conservation.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/wallet-proposals-pg.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/wallet-proposals.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/wallet-stakes-conservation.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tests/wallet-stakes-routes.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/tools/wallet-model-emit-cases.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/trainer-db.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/trainer.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "roster-server/wallet-custody.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "schedule-resource-links-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "scripts/apply-ced2026-overlay.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/audit-feeder-ids.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/audit-question-context.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/build-ced2026-label-data.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/build-frq-rubrics.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/build-summer-inserts.py",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/build-teacher-question-catalog.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/build-ti84-template-samples.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/build-ti84-trainer.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/build-topic-schedule-sy2627.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/build-video-catalog.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/build-video-minutes-const.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/build-worksheet-key.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/compress-videos.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/dn2b-wire-feeders.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/dok-self-paced.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/dok-video-free.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/fetch-offline-videos.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/fixtures/topic-schedule-sy2627.fixture.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/smoke-trainer-ledger.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/ti84-trainer-runtime.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/ti84-trainer-styles.css",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/weekly-dok.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/wire-ai-worksheet-grade.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/wire-ti84-practice-links.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "scripts/wire-worksheet-script-paths.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "scripts/wire-worksheet-viewas.mjs",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "sprite_sheet.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "student-facing-surface-audit-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "student-facing-surface-implementation-plan.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "student-host-matrix-and-quiz-packaging.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "study-guide-dag-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "supabase-content-summer-2026.sql",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "supabase-summer-2026.sql",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "sy2627-schedule-reframe-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "syllabus/apstats-syllabus-sy2627.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "syllabus/apstats-syllabus-sy2627.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "teacher-classroom.html",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/activity-bridge.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/activity-colorbox-grid.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/activity-colorbox.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/activity-level.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/appeal-clamp-live.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/audit-feeder-ids.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/avatar-popup-cockpit.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/avatar-popup-inline-expansions.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/broadcast-nudge-cockpit.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/canvas-engine-resume.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/canvas-engine-scenes.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/classroom-board-activity.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/classroom-board-choicepad.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/classroom-board-gate.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/classroom-board-level.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/classroom-board-scroll.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/classroom-board-tally-chute.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/classroom-board-tally-threshold.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/classroom-board-terrain.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/classroom-board-zone5.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/cockpit-activity.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/cockpit-level.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/cockpit-nudge-panel.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/cockpit-select-students.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/doge-keys.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/doge-payout-agent.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/doge-send-core.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/doge-send.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/doge-wallet-gen.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/doge-wallet-logic.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/dok-index.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/dok-registry.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/dok-self-paced.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/dok-video-free.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/grade-pipeline-w3-prompts.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/grading-prompts-u4.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/grading-prompts.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/ledger-gossip-lanes.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ledger-gossip.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/level-editor-lint.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/level-editor-sim.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/level-editor.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/nearby-transport.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/p10-cockpit-polish.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/poll-archive-cockpit.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/qr-fountain.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/qr-sync.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/skill-map-tiny-pools.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/student-wallet.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-expected-accuracy.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-leniency.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-lesson-map-sync.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-list-transfer.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-math-prb.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-plot.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-procedure-data-integrity.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-reference-values.json",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-skill-taxonomy.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-state-machine.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-template-accuracy.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-template-reference-values.json",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-template-samples.json",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-templates.property.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/ti84-worksheet-links.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/v3-p4-doorways.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/video-catalog.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/video-ondemand.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/wallet-logic.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tests/weekly-dok-run.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/weekly-dok-select.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/worksheet-completion-tracker.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/worksheet-graded-note.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/worksheet-ledger-heal.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/worksheet-revise-hint.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tests/worksheet-viewas-module.test.js",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "ti84-answer-verification-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-cemu-screenshots/01_stat_edit.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-cemu-screenshots/02_stat_calc.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-cemu-screenshots/03_stat_tests.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-cemu-screenshots/04_1propztest_wizard.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-cemu-screenshots/05_tinterval_wizard.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-cemu-screenshots/06_chi2test_wizard.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-cemu-screenshots/07_distr_menu.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-cemu-screenshots/08_normalcdf_wizard.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-cemu-screenshots/09_invnorm_wizard.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-cemu-screenshots/test_capture.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-clutch-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-mobile-layout-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-native-integration-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-native-port-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-pattern-recognition-data.json",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-plot.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-rom-disassembly-results.json",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-rom-disassembly-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-rom-wizard-fields.md",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-state-machine-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-state-machine.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-pattern-recognition-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-trainer-research-prompt.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-trainer-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-trainer-v2/CEMU_BUILD.md",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/README.md",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/app.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/bridge.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/build.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/data-templates.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/generated/data-patterns.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/generated/data-procedures.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/generated/state-machine.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/index.html",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/keypad-layout.json",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/event-bus.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/field-tables.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/form-engine.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/manifest.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/menu-nav.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/menu-tables.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/result-formatter.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/screen-renderer.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/stat-math.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/tests/form-engine.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/tests/menu-nav.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/tests/result-formatter.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/tests/stat-math.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/tests/ti84-native.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/tests/verify-all-procedures.test.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/ti84-native.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/native/vitest.config.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/rom-config.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/spike-harness.html",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/standalone.html",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/style.css",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/wasm/README.md",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/wasm/WebCEmu.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-trainer-v2/wasm/WebCEmu.wasm",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84-v3-spec.md",
+      "class": "HISTORY"
+    },
+    {
+      "path": "ti84-verify.html",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "ti84_trainer.html",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/doge-payout-agent.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/doge-payout-agent.service",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/doge-send.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/doge-wallet-gen.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/lib/doge-keys.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/lib/doge-send-core.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/payout-agent.config.example.json",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/pico_park_atlas.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/register_payout_agent_task.ps1",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/register_weekly_dok.ps1",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tools/sprite-regions.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/ti84_template_reference.py",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "tools/weekly-dok-author-prompt.md",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "tools/weekly_dok.ps1",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-1-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-1-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-10-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-10-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-10-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-10-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-10-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-10-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-2-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-2-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-3-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-3-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-4-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-4-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-4-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-4-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-5-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-5-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-6-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-6-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-7-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-7-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-7-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-7-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-8-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-8-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-9-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1/apstat_1-9-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1_l10_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1_l2_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1_l3_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1_l4_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1_l5_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1_l6_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1_l7_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1_l8_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u1_l9_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-1-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-1-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-2-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-2-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-3-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-3-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-4-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-4-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-4-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-4-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-5-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-5-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-6-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-6-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-6-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-6-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-7-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-7-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-7-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-7-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-8-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-8-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-8-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-8-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-8-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-8-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-9-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-9-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-9-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2/apstat_2-9-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2_l1_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2_l2_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2_l4_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2_l5_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2_l6_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2_l7_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2_l8_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u2_l9_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-1-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-1-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-2-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-2-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-3-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-3-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-3-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-3-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-4-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-4-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-5-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-5-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-5-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-5-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-5-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3/apstat_3-5-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3_l1_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3_l2_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3_l3_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3_l4_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3_l5_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u3_random_block_review.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_l11_l12/4-10_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_l11_l12/4-10_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_l11_l12/4-11_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_l11_l12/4-11_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_l11_l12/4-12-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_l11_l12/4-12-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_l11_l12/4-12-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_l11_l12/4-12-2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_l11_l12_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l10_l12_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l11_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l12_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l1_l2/u4l1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l1_l2/u4l1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l1_l2/u4l2v1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l1_l2/u4l2v1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l1_l2/u4l2v2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l1_l2/u4l2v2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l3_l4_l5/u4l3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l3_l4_l5/u4l3_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l3_l4_l5/u4l4_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l3_l4_l5/u4l4_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l3_l4_l5/u4l5_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l3_l4_l5/u4l5_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l3_l4_l5_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l6/u4-6-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l6/u4-6-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l6/u4-6-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l6/u4-6-2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l6/u4-6-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l6/u4-6-3_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l6_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l7_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l7_l8/4-7-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l7_l8/4-7-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l7_l8/4-7-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l7_l8/4-7-2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l7_l8/4-8_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l7_l8/4-8_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l7_l8_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l8_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l9/4-9-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l9/4-9-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l9/4-9-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l9/4-9-2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_l9_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_lesson6_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_poster/example_poster_1.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_poster/example_poster_2.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_poster/example_poster_3.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_poster/example_poster_4.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_poster/poster_problems_reference.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u4_poster/unit4_poster_job_cards_scalable.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-2-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-2-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-2-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-2-2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-2-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-2-3_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-3-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-3-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-3-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-3-2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-4-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-4-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-5-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-5-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-5-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-5-2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-6-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-6-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-6-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-6-2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-7-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-7-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-7-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-7-2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-8-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-8-1_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-8-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5/apstat_5-8-2_transcript.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5_l1_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5_l1_l2_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5_l2_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5_l3_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5_l4_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5_l5_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5_l6_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5_l7_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u5_l8_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6-proportion-inference-plan.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-11-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-11-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-11-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-11-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-11-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-11-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-2-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-2-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-2-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-2-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-2-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-2-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-3-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-3-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-3-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-3-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-3-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-3-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-4-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-4-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-4-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-4-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-5-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-5-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-5-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-5-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-6-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-6-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-6-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-6-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-7-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-7-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-7-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-7-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-8-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-8-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-8-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-8-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-9-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-9-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-9-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6/apstat_6-9-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6_l10_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6_l11_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6_l1_l2_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6_l3_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6_l4_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6_l5_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6_l6_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6_l7_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6_l8_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u6_l9_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-1-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-1-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-2-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-2-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-2-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-2-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-2-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-2-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-3-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-3-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-3-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-3-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-3-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-3-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-4-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-4-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-4-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-4-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-5-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-5-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-5-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-5-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-5-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-5-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-6-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-6-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-6-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-6-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-7-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-7-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-7-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-7-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-7-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-7-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-7-4_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-7-4_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-8-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-8-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-9-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7/apstat_7-9-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7_l1_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7_l2_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7_l3_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7_l4_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7_l5_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7_l6_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7_l7_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7_l8_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u7_l9_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-1-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-1-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-2-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-2-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-2-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-2-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-2-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-2-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-3-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-3-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-3-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-3-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-3-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-3-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-4-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-4-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-5-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-5-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-5-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-5-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-6-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-6-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-6-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-6-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-6-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8/apstat_8-6-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8_l1_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8_l2_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8_l3_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8_l4_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8_l5_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u8_l6_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/__pycache__/animations_9_3.cpython-313.pyc",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/animations_9_3.py",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-1-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-1-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-2-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-2-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-2-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-2-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-2-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-2-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-3-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-3-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-3-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-3-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-4-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-4-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-4-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-4-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-5-1_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-5-1_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-5-2_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-5-2_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-5-3_slides.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/apstat_9-5-3_transcription.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/partial_movie_files/DoesZeroMatter/partial_movie_file_list.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/partial_movie_files/InterpretingCIForSlope/partial_movie_file_list.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/partial_movie_files/RealEstateCalculation/partial_movie_file_list.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/partial_movie_files/ThreeIntervalsCompared/partial_movie_file_list.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/046dcb2a9a6313a5.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/07405860adc345b5.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/09d554022a23d88e.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/116b9f2d3b53f6a1.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/161467277aee9f81.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/2b7ffb3c38a5a6e0.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/2b7ffb3c38a5a6e0.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/31d3165490bf3404.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/31d3165490bf3404.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/320c38130627b27e.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/39dbc67b6a0691a2.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/410ed915b4df0fe3.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/41c344a69de69b93.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/42889f3dc82f5a26.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/475b695bd7515b73.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/4ff4d66c108da97c.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/5683d89f396abe50.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/5683d89f396abe50.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/58c8c9694b235521.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/5d2ea8afcc38589e.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/64d6c5660978ebc4.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/66e1bc57a83e0f07.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/66e1bc57a83e0f07.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/688742fd6d16819d.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/6ecf9f51170c1a70.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/6ecf9f51170c1a70.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/74a6b526edf7f754.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/7a1361b2e4fcc988.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/833a5804c1ed4713.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/88675e7b6dc21909.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/8de07035cb22c903.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/8de07035cb22c903.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/927968179fdf750e.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/96cc7ac74d077738.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/b1b08b594c533fa7.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/b330e3953bf029d7.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/b330e3953bf029d7.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/b47c9feb1c667bc8.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/b47c9feb1c667bc8.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/ba96de15f98acfc8.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/ba96de15f98acfc8.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/bb46829039ad75ba.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/c5e3cbe14369a33d.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/c6de2a76152099d2.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/c9928143851de515.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/d122c6777079d7c3.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/d79e6a6e856723b0.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/ddd6a89d8cc1a91a.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/e2eeacc7209fdce6.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/ec2b01090b1fbb55.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/ec2b01090b1fbb55.tex",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/ef076044b4a14f40.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/f1ed39b46441d8f3.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/f20e895b0f696ad7.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/f28f3a31b4cecc04.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9/media/temp_files/f5ed167009edff0e.svg",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9_l1_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9_l2_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9_l3_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9_l4_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "u9_l5_blooket.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "unit4_5_schedule_v11.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "unit4_5_schedule_v12.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "unit4_schedule_v7.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "unit4_schedule_v9.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "unit4guide/Statistics_Unit4.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "unit4guide/ap-statistics-course-and-exam-description.pdf",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "unit4guide/blooket_template.csv",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "unit4guide/unit4.json",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "unit4guide/unit4_framework.txt",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "verify_boot.png",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "video-ingest-whisper.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "video-ingest.mjs",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "video-ondemand.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "video-store.js",
+      "class": "STRIP-FEATURE"
+    },
+    {
+      "path": "week21_calendar.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "week_apr13_calendar.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "week_apr27_calendar.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "week_apr6_calendar.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "week_mar16_calendar.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "week_mar23_calendar.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "week_mar2_calendar.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "week_mar30_calendar.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "week_mar9_calendar.html",
+      "class": "STRIP-CONTENT"
+    },
+    {
+      "path": "week_may4_calendar.html",
+      "class": "STRIP-CONTENT"
+    }
+  ],
+  "restoredFromBaseline": [
+    "Mac-OS-Sounds/Laugh.wav",
+    "Mac-OS-Sounds/PowerMacBeep.wav",
+    "Mac-OS-Sounds/Quack.wav",
+    "Mac-OS-Sounds/Single-Click.wav",
+    "Mac-OS-Sounds/Wild-Eep.wav",
+    "roster-server/tests/bundle-parity.test.js",
+    "roster-server/tests/derive-quarter-bands.test.js",
+    "roster-server/tests/fixtures/exit-ticket-without-golden.json",
+    "sprite.png",
+    "tests/audit-script.test.js",
+    "tests/ced2026-desk-labels.test.js",
+    "tests/ced2026-surfaces.test.js",
+    "tests/content-validation.test.js",
+    "tests/desk-calendar-ced2026-render.test.js",
+    "tests/desk-calendar-ced2026.test.js",
+    "tests/desk-grade-checkin.test.js",
+    "tests/desk-menu-sprite-hue.test.js",
+    "tests/desk-verify-tools.test.js",
+    "tests/desk-wallet-sessions-only.test.js",
+    "tests/framework-parse.test.js",
+    "tests/frq-rubrics-bundle.test.js",
+    "tests/gradebook-feeder-wiring.test.js",
+    "tests/lineage.test.js",
+    "tests/mesh-grade-loop-e2e.test.js",
+    "tests/mesh-robustness.test.js",
+    "tests/mesh-submission-verify.test.js",
+    "tests/mobile-home-quiz-resolve.test.js",
+    "tests/mobile-home-submissions.test.js",
+    "tests/tango-theme.test.js",
+    "tests/teacher-auth-desk.test.js",
+    "tests/teacher-student-console-dashboard-deeplink.test.js",
+    "tests/teacher-student-console-drawer.test.js",
+    "tests/teacher-student-console-nudges-pagination.test.js",
+    "tests/teacher-student-console-nudges.test.js",
+    "tests/teacher-student-console-remediation.test.js",
+    "tests/teacher-student-console-unlocks.test.js",
+    "tests/test_dok_build.py",
+    "tests/worksheet-hydration.test.js",
+    "tests/worksheet-identity-clean.test.js",
+    "tests/worksheet-signin-wall.test.js"
+  ],
+  "a2Additions": [
+    "A2_FORK_BASELINE.md",
+    "A2_FORK_PLAN.md",
+    "README.md",
+    "a2-announcement.css",
+    "a2-announcement.js",
+    "a2-client.js",
+    "a2-desk.js",
+    "check.html",
+    "check.js",
+    "content/a2/1-1/deck.csv",
+    "content/a2/1-1/deck.sources.json",
+    "content/a2/1-1/images/1-1_savvas_q18-22_graph.png",
+    "content/a2/1-1/images/1-1_savvas_q23-27_graph.png",
+    "content/a2/1-1/images/1-1_savvas_q32_graph.png",
+    "content/a2/1-2/deck.csv",
+    "content/a2/1-2/deck.sources.json",
+    "content/a2/1-2/images/1-2_graph_of_f_try-it-4.png",
+    "content/a2/1-2/images/1-2_train_distance_graph.png",
+    "content/a2/1-5/deck.csv",
+    "content/a2/1-5/deck.sources.json",
+    "content/a2/1-6/deck.csv",
+    "content/a2/1-6/deck.sources.json",
+    "content/a2/lessons.json",
+    "content/a2/source-docs/1-2_Transformations_of_Functions.docx",
+    "content/a2/source-docs/1-3_Piecewise-Defined_Functions.docx",
+    "content/a2/source-docs/1-4_Arithmetic_Sequences_and_Series.docx",
+    "content/a2/source-docs/1-5_Solving_Equations_and_Inequalities_by_Graphing.docx",
+    "content/a2/source-docs/1-6_Linear_Systems.docx",
+    "data/a2-lesson-targets.json",
+    "data/blooket-difficulty.json",
+    "data/blooket-topic-csv.json",
+    "data/remediation-sheets.json",
+    "deploy/RUNBOOK.md",
+    "deploy/supabase_a2_bootstrap.sql",
+    "docs/a2-lesson-targets.md",
+    "lib/a2-answers.js",
+    "lib/worksheet-ai-grade.js",
+    "lib/worksheet-hydration.js",
+    "open-house.html",
+    "roadmap-data.json",
+    "roster-server/a2-lessons.js",
+    "roster-server/a2-routes.js",
+    "roster-server/a2-v3-grade.js",
+    "roster-server/announcements.js",
+    "roster-server/data/a2-lessons.json",
+    "roster-server/district-grade.js",
+    "roster-server/district-ledger.js",
+    "roster-server/docs/cors.md",
+    "roster-server/docs/phase2a-strip.md",
+    "roster-server/flashcard-state.js",
+    "roster-server/lib/a2-answers.js",
+    "roster-server/migrations/0036_flashcard_state.sql",
+    "roster-server/migrations/0037_a2_ledger_sources.sql",
+    "roster-server/migrations/0038_a2_lessons.sql",
+    "roster-server/migrations/0039_announcements.sql",
+    "roster-server/phase2a-env-inventory.json",
+    "roster-server/phase2a-inventory.json",
+    "roster-server/phase2a-route-inventory.json",
+    "roster-server/phase2a-tests.json",
+    "roster-server/tests/a2-ledger-migration.test.js",
+    "roster-server/tests/a2-phase4.test.js",
+    "roster-server/tests/a2-receipts.test.js",
+    "roster-server/tests/announcements.test.js",
+    "roster-server/tests/bootstrap-sql.test.js",
+    "roster-server/tests/deployment-clients.test.js",
+    "roster-server/tests/deployment.test.js",
+    "roster-server/tests/district-grade.test.js",
+    "roster-server/tests/feature-strip.test.js",
+    "roster-server/tests/flashcard-state-store.test.js",
+    "roster-server/tests/flashcard-state.test.js",
+    "scripts/build-a2-roadmap-data.mjs",
+    "scripts/build-bootstrap-sql.mjs",
+    "scripts/build-open-house.mjs",
+    "scripts/sync-server-shared.mjs",
+    "teacher-tryits.html",
+    "tests/a2-announcement.test.js",
+    "tests/a2-calendar.test.js",
+    "tests/a2-deployment.test.js",
+    "tests/a2-lesson-targets.test.js",
+    "tests/a2-phase4.test.js",
+    "tests/a2-secrets.test.js",
+    "tests/a2-surfaces.test.js",
+    "tests/fixtures/a2/blooket-lessons.json",
+    "tests/fixtures/a2/crosswalk.empty.json",
+    "tests/fixtures/a2/crosswalk.json",
+    "tests/fixtures/a2/data/lesson-questions.json",
+    "tests/fixtures/a2/data/lesson-rubrics.json",
+    "tests/fixtures/a2/data/misconception-distractor-map.json",
+    "tests/fixtures/a2/data/misconception-rubric-map.json",
+    "tests/fixtures/a2/data/misconceptions.json",
+    "tests/fixtures/a2/data/skill-map.json",
+    "tests/fixtures/a2/data/work-manifest.json",
+    "tests/fixtures/a2/lessons-index.json",
+    "tests/fixtures/a2/remediation-manifest.empty.json",
+    "tests/fixtures/a2/roadmap-data.json",
+    "tests/fixtures/a2/roster-server/data/misconception-distractor-map.json",
+    "tests/fixtures/a2/roster-server/data/misconception-rubric-map.json",
+    "tests/fixtures/a2/roster-server/data/misconceptions.json",
+    "tests/fixtures/a2/roster-server/data/work-manifest.json",
+    "tests/fixtures/a2/topic-csv.json",
+    "tests/fixtures/a2/u1_l1_blooket.csv",
+    "tests/fixtures/a2/u1_lesson1_live.html",
+    "tests/fixtures/a2/u3_l6_l7_blooket.csv",
+    "tests/fixtures/a2/work-manifest.empty.json",
+    "tests/journeys/a2-check.journey.test.js",
+    "tests/open-house.test.js",
+    "tests/test_a2_schoology.py",
+    "tests/verify-page.test.js",
+    "verify-page.js",
+    "verify.html"
+  ],
+  "decisions": {
+    "D1": "pending",
+    "D2": "pending",
+    "D3": "pending",
+    "D4": "pending",
+    "D5": "pending",
+    "D6": "pending",
+    "D7": "pending",
+    "D8": "pending",
+    "D9": "pending",
+    "D10": "pending"
+  }
+}

@@ -209,7 +209,21 @@ hence D4.
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.
 
-Remaining: U6 U7 U9 U11 (await D1-D3), U16 (D4), U15 (server skill map, low priority), U20 (tests batch), Phase 5 steps 1-3 shipped; step 5 (grading policy) held on D10; step 6 (DOK builder) deferred to Lesson_planning; Phase 6 (freeze test).
+Remaining: U6 U7 U9 U11 (await D1-D3), U16 (D4), U15 (server skill map, low priority), U20 (tests batch), Phase 5 steps 1-3 shipped; step 5 (grading policy) held on D10; step 6 (DOK builder) deferred to Lesson_planning; Phase 6 shipped.
+
+
+### Phase 6 freeze (2026-09-16)
+
+`data/a2-fork-audit.json` records the final classification (AP baseline 68d3e61): 1720 paths intentionally
+removed (STRIP-CONTENT / STRIP-FEATURE / HISTORY), 40 paths restored from the baseline during Phase 4/U20,
+110 A2 additions (including the kept AP-named stubs `data/blooket-*.json` that the Desk and Mobile Home
+fetch), and the D1-D10 decision statuses. `tests/a2-fork-freeze.test.js` fails if a removed path reappears
+untracked, a restored path disappears, any kept runtime file loads/imports/reads a removed path, or a file
+named in the plan's deletion lists exists without a classification. Any future strip or restoration must
+update the manifest.
+
+Final gate: root 882 files with the five inherited failures only (phase4-structure fixed), server 82/82
+(1441), Python 194.
 
 ### Phase 2 visual pairs (orchestrator, 2026-09-16, signed-out) — screenshots in `state/fork-diff/shots/`
 

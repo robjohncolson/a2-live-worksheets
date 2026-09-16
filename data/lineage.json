@@ -428,6 +428,18 @@
         "tests/a2-work-manifest.test.js"
       ],
       "notes": "Authored lesson model; content/a2/lessons.json is hand-maintained and mirrored into roster-server by scripts/sync-server-shared.mjs."
+    },
+    {
+      "id": "a2-fork-audit",
+      "path": "data/a2-fork-audit.json",
+      "kind": "source",
+      "description": "Frozen approved fork removals, baseline restorations, A2 additions, and pending teacher decisions.",
+      "inputs": [],
+      "regenerate": null,
+      "pinnedBy": [
+        "tests/a2-fork-freeze.test.js"
+      ],
+      "notes": "Hand-maintained from Phase 1a files.json and Phase 4 restoration outcomes. Restored sounds override the original strip list; roadmap-data.json is an A2 replacement at an inherited path. UNINTENDED and UNCLEAR removals remain unresolved, not approved strips. Review changes against A2_FORK_PLAN.md and A2_FORK_DIFF_AUDIT.md; never regenerate from the current tree."
     }
   ]
 }
