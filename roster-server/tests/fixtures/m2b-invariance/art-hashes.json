@@ -1,5 +1,10 @@
 {
-  "sy2627": "c3d5ac70c1bbddbffa30f7c01552e0b7964f464a99c9ce7103a2cdafa72e0180",
-  "sy2526": "c3d5ac70c1bbddbffa30f7c01552e0b7964f464a99c9ce7103a2cdafa72e0180",
-  "sy2627_legacy_lessons_only": "c3d5ac70c1bbddbffa30f7c01552e0b7964f464a99c9ce7103a2cdafa72e0180"
+  "note": "Fixed empty-artifact SHA-256 vector; nonempty A2 sensitivity is asserted by the consumer.",
+  "input": {
+    "answerKeyDoc": {},
+    "lessonSchedule": {},
+    "blooketPresence": [],
+    "blooketRequired": []
+  },
+  "expected": "fb02b16378bc69aeaf244241534ac14a9089eafc32cdccb85445ae93739ec88f"
 }

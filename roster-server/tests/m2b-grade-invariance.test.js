@@ -1,251 +1,173 @@
 // @vitest-environment node
-/**
- * M2b H — AUDITABLE invariance harness.
- *
- * Snapshots computeGrade JSON via resolveProductionGradeInputs (NOT bare module
- * defaults) for four ledger scenarios + one SY2526-PC ledger. Also covers:
- *   - env LESSON_SCHEDULE_PATH override via the RESOLVER itself
- *   - transcript artifactHash via the REAL transcript.js export
- *   - full frozen config including useV3
- *   - hasBlooketSample via lessonKey (buildLessonsArray field)
- *
- * Expected outputs: tests/fixtures/m2b-invariance/*.json
- * Regenerate: UPDATE_M2B_GOLDEN=1 npx vitest run tests/m2b-grade-invariance.test.js
- */
-import { describe, it, expect, afterEach } from 'vitest';
-import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync } from 'node:fs';
+// Resolver snapshots use hand-derived A2 contracts, never UPDATE-style blessing.
+// Legacy fixture filenames are stable batch paths, not AP content or behavior.
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { readFileSync, writeFileSync, mkdtempSync, rmSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
+import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { computeGrade } from '../grade.js';
+import { computeGrade, BLOOKET_REQUIRED } from '../grade.js';
 import { resolveProductionGradeInputs } from '../grade-contexts.js';
 import { artifactHash } from '../transcript.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const FIX_DIR = resolve(here, 'fixtures/m2b-invariance');
-const UPDATE = process.env.UPDATE_M2B_GOLDEN === '1';
+const AS_OF = Date.parse('2026-10-15T16:00:00.000Z');
+const ENV_KEYS = ['LESSON_SCHEDULE_PATH', 'GRADE_FREEZE_DIR'];
+let tempDir;
+let originalEnv;
 
-function loadAnswerKey() {
-  const p = resolve(here, '../data/answer-key.json');
-  return JSON.parse(readFileSync(p, 'utf8'));
+function readGolden(name) {
+  return JSON.parse(readFileSync(resolve(FIX_DIR, name), 'utf8'));
 }
 
-function answerKeyMap(doc) {
-  return (doc && doc.answerKey && typeof doc.answerKey === 'object') ? doc.answerKey : doc;
-}
-
-function row(item_id, response, extra = {}) {
-  return {
-    student_id: 'inv-student',
-    source: extra.source || 'curriculum_quiz',
-    item_id,
-    response,
-    unit: extra.unit ?? null,
-    score: extra.score ?? null,
-    attempt: extra.attempt ?? 1,
-    recorded_at: extra.recorded_at || '2026-10-15T12:00:00.000Z',
+function installScenario(fixture) {
+  const schedulePath = resolve(tempDir, 'schedule.json');
+  writeFileSync(schedulePath, JSON.stringify(fixture.schedule));
+  process.env.LESSON_SCHEDULE_PATH = schedulePath;
+  if (fixture.year !== 'SY2526') return;
+  process.env.GRADE_FREEZE_DIR = tempDir;
+  const freezes = {
+    'grade-config.sy2526-freeze.json': fixture.config,
+    'lesson-schedule.sy2526-freeze.json': fixture.schedule,
+    'blooket-lessons.sy2526-freeze.json': { topics: [], requiredTopics: [], allTopics: [] },
   };
+  for (const [name, doc] of Object.entries(freezes)) {
+    writeFileSync(resolve(tempDir, name), JSON.stringify(doc));
+  }
 }
 
-function scenarios() {
-  return {
-    empty: [],
-    quiz_partial: [
-      row('U1-L1-Q01', 'B', { unit: '1' }),
-      row('U1-L1-Q02', 'C', { unit: '1' }),
-    ],
-    frq_work: [
-      row('WS-U1L1-reflect1', null, { source: 'worksheet', unit: 'U1', score: 1 }),
-      row('WS-U1L1-reflect2', null, { source: 'worksheet', unit: 'U1', score: 0.5 }),
-    ],
-    mixed: [
-      row('U1-L1-Q01', 'B', { unit: '1' }),
-      row('U1-L1-Q02', 'A', { unit: '1' }),
-      row('WS-U1L1-reflect1', null, { source: 'worksheet', unit: 'U1', score: 1 }),
-      row('BL-U1L1', null, { source: 'blooket', unit: 'U1', score: 0.85 }),
-    ],
-    sy2526_pc: [
-      row('U1-PC-MCQ-A-Q01', 'A', { source: 'progress_check', unit: '1' }),
-      row('U1-PC-MCQ-A-Q02', 'D', { source: 'progress_check', unit: '1' }),
-      row('U1-L1-Q01', 'B', { unit: '1' }),
-    ],
-  };
+function gradeViaResolver(fixture, section, asOf = AS_OF) {
+  const prod = resolveProductionGradeInputs(fixture.year);
+  const config = fixture.year === 'SY2526'
+    ? prod.config
+    : { ...prod.config, useDistrictFormula: true, useV3: false };
+  const grade = computeGrade(fixture.rows, prod.answerKey?.answerKey || {}, config, {
+    lessonSchedule: prod.lessonSchedule,
+    eventSchedule: prod.eventSchedule,
+    // Historical resolver has no event schedule. Supply an explicit synthetic
+    // topic assessment definition so missing mastery still counts in gate tests.
+    ...(fixture.year === 'SY2526' ? { items: fixture.schedule.topicAssessments } : {}),
+    section, asOf,
+    blooketPresence: prod.blooketPresence,
+    blooketRequired: prod.blooketRequired,
+  });
+  return { prod, grade };
 }
 
 function projectGrade(g) {
-  // buildLessonsArray emits lessonKey (not topicKey/id).
-  const keyOf = (L) => L.lessonKey || L.topicKey || L.id;
+  const quarter = g.quarters.Q1;
   return {
-    units: g.units,
-    quarters: g.quarters,
-    completion: g.completion,
-    lessonsCount: Array.isArray(g.lessons) ? g.lessons.length : 0,
-    hasBlooketSample: (g.lessons || [])
-      .filter((L) => L && (keyOf(L) === '1.1' || keyOf(L) === '2.9'))
-      .map((L) => ({
-        topic: keyOf(L),
-        hasBlooket: !!L.hasBlooket,
-      }))
-      .sort((a, b) => String(a.topic).localeCompare(String(b.topic))),
+    formula: g.formula,
+    quarterGrade: quarter.quarterGrade,
+    lessonsDue: quarter.lessonsDue,
+    lessonsGraded: quarter.lessonsGraded,
+    lessonsTotal: quarter.lessonsTotal,
+    points: Object.fromEntries(g.items.map(item => [item.itemId, item.points])),
   };
 }
 
-function pinConfig(cfg) {
-  // Full frozen config (deep-equal against grade-config.sy2526-freeze.json minus note).
-  return JSON.parse(JSON.stringify(cfg));
-}
+beforeEach(() => {
+  originalEnv = Object.fromEntries(ENV_KEYS.map(key => [key, process.env[key]]));
+  for (const key of ENV_KEYS) delete process.env[key];
+  tempDir = mkdtempSync(resolve(tmpdir(), 'a2-m2b-'));
+});
 
-function gradeViaResolver(year, rows, { configOverride } = {}) {
-  const prod = resolveProductionGradeInputs(year);
-  const answerKeyDoc = loadAnswerKey();
-  const answerKey = answerKeyMap(answerKeyDoc);
-  const schedule = prod.lessonSchedule;
-  const config = configOverride ? { ...prod.config, ...configOverride } : prod.config;
-  const grade = computeGrade(rows, answerKey, config, {
-    lessonSchedule: schedule,
-    eventSchedule: prod.eventSchedule || null, // SY2627: PC dates keyed by NEW unit (null for the frozen year)
-    section: 'B',
-    asOf: new Date('2026-10-20T16:00:00.000Z').getTime(),
-    blooketPresence: prod.blooketPresence,
-    blooketRequired: prod.blooketRequired,
-  });
-  // REAL transcript path (not a local reimplementation)
-  const artHash = artifactHash({
-    answerKeyDoc,
-    lessonSchedule: schedule,
-    blooketPresence: prod.blooketPresence,
-    blooketRequired: prod.blooketRequired,
-  });
-  return {
-    year: prod.year,
-    blooketPresenceLen: prod.blooketPresence.length,
-    blooketRequiredLen: prod.blooketRequired.length,
-    schedule_1_1_B: schedule && schedule['1.1'] ? schedule['1.1'].periods.B : null,
-    pcUnitsFromEvents: prod.eventSchedule && prod.eventSchedule.progressChecks ? Object.keys(prod.eventSchedule.progressChecks) : null,
-    frozenConfig: pinConfig(prod.config),
-    artHash,
-    grade: projectGrade(grade),
-  };
-}
-
-function readGolden(name) {
-  const p = resolve(FIX_DIR, name);
-  if (!existsSync(p)) return null;
-  return JSON.parse(readFileSync(p, 'utf8'));
-}
-
-function writeGolden(name, obj) {
-  mkdirSync(FIX_DIR, { recursive: true });
-  writeFileSync(resolve(FIX_DIR, name), JSON.stringify(obj, null, 2) + '\n', 'utf8');
-}
-
-function assertOrUpdate(name, actual) {
-  if (UPDATE) {
-    writeGolden(name, actual);
-    return;
+afterEach(() => {
+  for (const key of ENV_KEYS) {
+    if (originalEnv[key] === undefined) delete process.env[key];
+    else process.env[key] = originalEnv[key];
   }
-  const expected = readGolden(name);
-  expect(expected, `missing golden ${name} — run with UPDATE_M2B_GOLDEN=1`).toBeTruthy();
-  expect(actual).toEqual(expected);
-}
+  rmSync(tempDir, { recursive: true, force: true });
+});
 
-describe('M2b auditable invariance (resolver path)', () => {
-  const prevEnv = process.env.LESSON_SCHEDULE_PATH;
-  afterEach(() => {
-    if (prevEnv === undefined) delete process.env.LESSON_SCHEDULE_PATH;
-    else process.env.LESSON_SCHEDULE_PATH = prevEnv;
-  });
-
-  it('SY2627: four ledger scenarios snapshot via resolver', () => {
-    const sc = scenarios();
-    for (const name of ['empty', 'quiz_partial', 'frq_work', 'mixed']) {
-      const actual = gradeViaResolver('SY2627', sc[name]);
-      expect(actual.year).toBe('SY2627');
-      expect(actual.blooketPresenceLen).toBe(0);
-      expect(actual.blooketRequiredLen).toBe(0);
-      // Presence sample must be non-empty when schedule produces lessons
-      if (actual.grade.lessonsCount > 0) {
-        expect(actual.grade.hasBlooketSample.length).toBeGreaterThan(0);
+describe('A2 resolver grade contracts', () => {
+  for (const name of ['empty', 'quiz_partial', 'frq_work', 'mixed', 'env-schedule-override']) {
+    it.each(['C', 'D', 'G'])(`${name}: resolver schedule and district points for %s`, section => {
+      const fixture = readGolden(`sy2627-${name}.json`);
+      installScenario(fixture);
+      const { prod, grade } = gradeViaResolver(fixture, section);
+      expect(prod.year).toBe('SY2627');
+      expect(prod.lessonSchedule).toEqual(fixture.schedule.lessons);
+      expect(prod.eventSchedule).toEqual(fixture.schedule.topicAssessments
+        ? { topicAssessments: fixture.schedule.topicAssessments } : null);
+      expect(prod.blooketPresence).toEqual([]);
+      expect(prod.blooketRequired).toEqual([]);
+      expect(projectGrade(grade)).toEqual(fixture.expected);
+      expect(grade.items.map(item => item.maxPoints)).toEqual(
+        name === 'mixed' ? [10, 2, 2, 1, 100] : [10, 2, 2, 1]);
+      expect(prod.config.a2Categories).toEqual({
+        assessments: { weight: 0.5, min: 4 },
+        assignments: { weight: 0.4, min: 10 },
+        engagement: { weight: 0.1, min: 10 },
+      });
+      if (name === 'env-schedule-override') {
+        expect(grade.items.every(item => item.quarter === 'Q2' && !item.due)).toBe(true);
+        expect(grade.quarters.Q2.lessonsTotal).toBe(1);
+      } else {
+        expect(grade.items.every(item => item.quarter === 'Q1' && item.due)).toBe(true);
+        expect(grade.quarters.Q1.categoryBreakdown.assessments.minimumMet).toBe(false);
       }
-      assertOrUpdate(`sy2627-${name}.json`, actual);
-    }
+    });
+  }
+
+  it.each(['D', 'G'])('Wednesday is a lesson day for %s; missing work becomes zero the next day', section => {
+    const fixture = readGolden('sy2627-empty.json');
+    installScenario(fixture);
+    const onDay = gradeViaResolver(fixture, section, Date.parse('2026-10-14T16:00:00Z')).grade;
+    expect(onDay.quarters.Q1.quarterGrade).toBeNull();
+    expect(onDay.items.every(item => !item.due)).toBe(true);
+    expect(gradeViaResolver(fixture, section).grade.quarters.Q1.quarterGrade).toBe(0);
   });
 
-  
-
-  it('SY2526 + useV3:true override exercises V3 math on frozen empty A2 fixtures', () => {
-    const actual = gradeViaResolver('SY2526', scenarios().sy2526_pc, {
-      configOverride: { useV3: true },
-    });
-    expect(actual.blooketRequiredLen).toBe(0);
-    // V3 surface fields should appear on quarters when useV3 is on
-    const q1 = actual.grade.quarters && actual.grade.quarters.Q1;
-    expect(q1).toBeTruthy();
-    assertOrUpdate('sy2526-pc-v3.json', actual);
+  it('historical year keeps the full synthetic frozen config and explicitly selects A2 v3', () => {
+    const fixture = readGolden('sy2526-pc-v3.json');
+    installScenario(fixture);
+    const { prod, grade } = gradeViaResolver(fixture, 'D');
+    expect(prod.year).toBe('SY2526');
+    expect(prod.config).toEqual(fixture.config);
+    expect(prod.lessonSchedule).toEqual(fixture.schedule.lessons);
+    expect(prod.eventSchedule).toBeNull();
+    expect(projectGrade(grade)).toEqual(fixture.expected);
+    expect(grade.quarters.Q1.masteryAvg).toBe(100);
+    expect(grade.quarters.Q1.workAvg).toBe(100);
+    const missingMastery = { ...fixture, rows: fixture.rows.filter(row => row.source !== 'topic-assessment') };
+    expect(gradeViaResolver(missingMastery, 'D').grade.quarters.Q1.quarterGrade).toBeCloseTo(70);
+    prod.config.v3Gates.floor = 0.99;
+    prod.lessonSchedule['1.1'].periods.D = '2099-01-01';
+    expect(resolveProductionGradeInputs('SY2526').config).toEqual(fixture.config);
+    expect(resolveProductionGradeInputs('SY2526').lessonSchedule).toEqual(fixture.schedule.lessons);
   });
 
-  it('env LESSON_SCHEDULE_PATH override via resolveProductionGradeInputs (no injection)', () => {
-    const tmp = resolve(here, 'fixtures/_tmp-m2b-sched-override.json');
-    const overrideDoc = {
-      lessons: {
-        '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { B: '2099-06-01', E: '2099-06-01' } },
-        '1.2': { unit: 1, topicKey: '1.2', worksheetKey: '2', periods: { B: '2099-06-02', E: '2099-06-02' } },
-        '2.9': { unit: 2, topicKey: '2.9', worksheetKey: '9', periods: { B: '2099-06-03', E: '2099-06-03' } },
-      },
-    };
-    writeFileSync(tmp, JSON.stringify(overrideDoc), 'utf8');
-    try {
-      process.env.LESSON_SCHEDULE_PATH = tmp;
-      // No schedule override injection — resolver must honor env itself.
-      const actual = gradeViaResolver('SY2627', scenarios().mixed);
-      expect(actual.schedule_1_1_B).toBe('2099-06-01');
-      assertOrUpdate('sy2627-env-schedule-override.json', actual);
-    } finally {
-      try { unlinkSync(tmp); } catch (_) { /* ignore */ }
-    }
+  it('default live resolver retains the bundled empty A2 schedule', () => {
+    const prod = resolveProductionGradeInputs('SY2627');
+    const bundled = JSON.parse(readFileSync(resolve(here, '../data/lesson-schedule.json'), 'utf8'));
+    expect(prod.lessonSchedule).toEqual(bundled.lessons);
+    const grade = computeGrade([], prod.answerKey.answerKey, { ...prod.config, useDistrictFormula: true }, {
+      section: 'C', lessonSchedule: prod.lessonSchedule, eventSchedule: prod.eventSchedule, asOf: AS_OF,
+    });
+    expect(grade.formula).toBe('district');
+    expect(grade.lessons).toEqual([]);
+    expect(grade.quarters.Q1.quarterGrade).toBeNull();
   });
 
-  it('artHash via REAL transcript.artifactHash; legacy blooketLessons matches computeGrade', () => {
-    const answerKeyDoc = loadAnswerKey();
-    const prod26 = resolveProductionGradeInputs('SY2627');
-    const prod25 = resolveProductionGradeInputs('SY2526');
-    const h26 = artifactHash({
-      answerKeyDoc,
-      lessonSchedule: prod26.lessonSchedule,
-      blooketPresence: prod26.blooketPresence,
-      blooketRequired: prod26.blooketRequired,
-    });
-    const h25 = artifactHash({
-      answerKeyDoc,
-      lessonSchedule: prod25.lessonSchedule,
-      blooketPresence: prod25.blooketPresence,
-      blooketRequired: prod25.blooketRequired,
-    });
-    expect(h26).toMatch(/^[a-f0-9]{64}$/);
-    expect(h25).toMatch(/^[a-f0-9]{64}$/);
-    expect(h26).toBe(h25);
-
-    // Legacy single-list mount: artHash uses resolveBlooketLists — required falls
-    // to module BLOOKET_REQUIRED (67), presence = the list. Must NOT treat the
-    // list as both.
-    const legacyOnly = artifactHash({
-      answerKeyDoc,
-      lessonSchedule: prod26.lessonSchedule,
-      blooketLessons: prod26.blooketPresence, // presence-only legacy
-    });
-    const explicitBoth = artifactHash({
-      answerKeyDoc,
-      lessonSchedule: prod26.lessonSchedule,
-      blooketPresence: prod26.blooketPresence,
-      blooketRequired: prod26.blooketRequired,
-    });
-    // Same presence + module-required (67) path — should equal explicit both when
-    // module REQUIRED matches prod required (live SY2627).
-    expect(legacyOnly).toBe(explicitBoth);
-
-    assertOrUpdate('art-hashes.json', {
-      sy2627: h26,
-      sy2526: h25,
-      sy2627_legacy_lessons_only: legacyOnly,
-    });
+  it('real transcript hashes are stable and bind A2 schedule, answers, presence and requirements', () => {
+    const vector = readGolden('art-hashes.json');
+    expect(artifactHash(vector.input)).toBe(vector.expected);
+    const fixture = readGolden('sy2627-mixed.json');
+    installScenario(fixture);
+    const prod = resolveProductionGradeInputs('SY2627');
+    const input = { answerKeyDoc: { answerKey: { 'LC-U1-L1-Q1': { answerKey: '2' } } },
+      lessonSchedule: prod.lessonSchedule, blooketPresence: ['1.1'], blooketRequired: [] };
+    const original = artifactHash(input);
+    expect(original).toMatch(/^[a-f0-9]{64}$/);
+    expect(artifactHash(JSON.parse(JSON.stringify(input)))).toBe(original);
+    expect(artifactHash({ ...input, answerKeyDoc: {} })).not.toBe(original);
+    expect(artifactHash({ ...input, lessonSchedule: {} })).not.toBe(original);
+    expect(artifactHash({ ...input, blooketPresence: [] })).not.toBe(original);
+    expect(artifactHash({ ...input, blooketRequired: ['1.1'] })).not.toBe(original);
+    const { blooketPresence, blooketRequired, ...legacyInput } = input;
+    expect(artifactHash({ ...legacyInput, blooketLessons: blooketPresence })).toBe(
+      artifactHash({ ...input, blooketRequired: BLOOKET_REQUIRED }));
   });
 });

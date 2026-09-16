@@ -1,10 +1,7 @@
 {
+  "note": "Synthetic historical resolver compatibility only. No Progress Check rows or AP curriculum. Both A2 v3 tracks are complete.",
   "year": "SY2526",
-  "blooketPresenceLen": 0,
-  "blooketRequiredLen": 0,
-  "schedule_1_1_B": null,
-  "pcUnitsFromEvents": null,
-  "frozenConfig": {
+  "config": {
     "C": 85,
     "feederWeights": {
       "W": 1,
@@ -28,38 +25,38 @@
           2,
           3
         ],
-        "start": "2026-09-09",
-        "end": "2026-11-13"
+        "start": "2026-09-02",
+        "end": "2026-11-06"
       },
       "Q2": {
         "units": [
           4,
           5
         ],
-        "start": "2026-11-14",
-        "end": "2027-01-29"
+        "start": "2026-11-09",
+        "end": "2027-01-22"
       },
       "Q3": {
         "units": [
           6,
           7
         ],
-        "start": "2027-01-30",
-        "end": "2027-04-09"
+        "start": "2027-01-25",
+        "end": "2027-04-14"
       },
       "Q4": {
         "units": [
           8,
           9
         ],
-        "start": "2027-04-10",
-        "end": "2027-06-23"
+        "start": "2027-04-15",
+        "end": "2027-06-17"
       }
     },
     "schoolTz": "America/New_York",
     "gradingWindowStart": "2026-09-01",
     "diagnosticTheta": 0.65,
-    "useV3": false,
+    "useV3": true,
     "v3LessonsExcludeQuiz": true,
     "v3WorkWeights": {
       "lessons": 0.3,
@@ -72,184 +69,90 @@
     },
     "v3FixQuizZero": true,
     "v3FixCwsReveal": true,
-    "v3AheadOfScheduleLessons": "not-until-due"
+    "v3AheadOfScheduleLessons": "not-until-due",
+    "useDistrictFormula": false,
+    "dueAfterLessonDay": true
   },
-  "artHash": "c3d5ac70c1bbddbffa30f7c01552e0b7964f464a99c9ce7103a2cdafa72e0180",
-  "grade": {
-    "units": {
-      "U1": {
-        "W": null,
-        "Q": null,
-        "B": null,
-        "banked": null,
-        "unitGrade": null,
-        "graded": false
+  "schedule": {
+    "lessons": {
+      "1.1": {
+        "unit": 1,
+        "topicKey": "1.1",
+        "worksheetKey": "1",
+        "tryItCount": 2,
+        "periods": {
+          "C": "2026-10-13",
+          "D": "2026-10-14",
+          "G": "2026-10-14"
+        }
       }
     },
-    "quarters": {
-      "Q1": {
-        "units": [
-          1,
-          2,
-          3
-        ],
-        "unitGrades": {
-          "U1": null,
-          "U2": null,
-          "U3": null
-        },
-        "quarterGrade": null,
-        "quarterGradeBase": null,
-        "earlyBonus": 0,
-        "earlyLessons": 0,
-        "earlyKeys": [],
-        "aheadLessons": 0,
-        "aheadKeys": [],
-        "unitsGraded": 0,
-        "unitsTotal": 3,
-        "ceiling": null,
-        "lessonsDue": 0,
-        "lessonsGraded": 0,
-        "lessonsTotal": 0,
-        "pcAvg": null,
-        "workAvg": null,
-        "pcAvgRaw": null,
-        "workAvgRaw": null,
-        "workTracks": {
-          "lessons": null,
-          "quizzes": null,
-          "blooket": null
-        },
-        "blooketDue": 0,
-        "blooketDone": 0,
-        "blooketTodo": [],
-        "quizDue": 0,
-        "quizDone": 0,
-        "quizTodo": []
-      },
-      "Q2": {
-        "units": [
-          4,
-          5
-        ],
-        "unitGrades": {
-          "U4": null,
-          "U5": null
-        },
-        "quarterGrade": null,
-        "quarterGradeBase": null,
-        "earlyBonus": 0,
-        "earlyLessons": 0,
-        "earlyKeys": [],
-        "aheadLessons": 0,
-        "aheadKeys": [],
-        "unitsGraded": 0,
-        "unitsTotal": 2,
-        "ceiling": null,
-        "lessonsDue": 0,
-        "lessonsGraded": 0,
-        "lessonsTotal": 0,
-        "pcAvg": null,
-        "workAvg": null,
-        "pcAvgRaw": null,
-        "workAvgRaw": null,
-        "workTracks": {
-          "lessons": null,
-          "quizzes": null,
-          "blooket": null
-        },
-        "blooketDue": 0,
-        "blooketDone": 0,
-        "blooketTodo": [],
-        "quizDue": 0,
-        "quizDone": 0,
-        "quizTodo": []
-      },
-      "Q3": {
-        "units": [
-          6,
-          7
-        ],
-        "unitGrades": {
-          "U6": null,
-          "U7": null
-        },
-        "quarterGrade": null,
-        "quarterGradeBase": null,
-        "earlyBonus": 0,
-        "earlyLessons": 0,
-        "earlyKeys": [],
-        "aheadLessons": 0,
-        "aheadKeys": [],
-        "unitsGraded": 0,
-        "unitsTotal": 2,
-        "ceiling": null,
-        "lessonsDue": 0,
-        "lessonsGraded": 0,
-        "lessonsTotal": 0,
-        "pcAvg": null,
-        "workAvg": null,
-        "pcAvgRaw": null,
-        "workAvgRaw": null,
-        "workTracks": {
-          "lessons": null,
-          "quizzes": null,
-          "blooket": null
-        },
-        "blooketDue": 0,
-        "blooketDone": 0,
-        "blooketTodo": [],
-        "quizDue": 0,
-        "quizDone": 0,
-        "quizTodo": []
-      },
-      "Q4": {
-        "units": [
-          8,
-          9
-        ],
-        "unitGrades": {
-          "U8": null,
-          "U9": null
-        },
-        "quarterGrade": null,
-        "quarterGradeBase": null,
-        "earlyBonus": 0,
-        "earlyLessons": 0,
-        "earlyKeys": [],
-        "aheadLessons": 0,
-        "aheadKeys": [],
-        "unitsGraded": 0,
-        "unitsTotal": 2,
-        "ceiling": null,
-        "lessonsDue": 0,
-        "lessonsGraded": 0,
-        "lessonsTotal": 0,
-        "pcAvg": null,
-        "workAvg": null,
-        "pcAvgRaw": null,
-        "workAvgRaw": null,
-        "workTracks": {
-          "lessons": null,
-          "quizzes": null,
-          "blooket": null
-        },
-        "blooketDue": 0,
-        "blooketDone": 0,
-        "blooketTodo": [],
-        "quizDue": 0,
-        "quizDone": 0,
-        "quizTodo": []
+    "topicAssessments": [
+      {
+        "itemId": "TA-U1",
+        "source": "topic-assessment",
+        "periods": {
+          "C": "2026-10-13",
+          "D": "2026-10-14",
+          "G": "2026-10-14"
+        }
       }
+    ]
+  },
+  "rows": [
+    {
+      "student_id": "a2-resolver-student",
+      "item_id": "LC-U1-L1",
+      "source": "lesson-check",
+      "score": 10,
+      "recorded_at": "2026-10-14T16:00:00.000Z",
+      "attempt": 1
     },
-    "completion": {
-      "U1": {
-        "worksheet": 0,
-        "frq": 0,
-        "curriculum_quiz": 1
-      }
+    {
+      "student_id": "a2-resolver-student",
+      "item_id": "TI-U1-L1-1",
+      "source": "try-it",
+      "score": 2,
+      "recorded_at": "2026-10-14T16:00:00.000Z",
+      "attempt": 1
     },
-    "lessonsCount": 0,
-    "hasBlooketSample": []
+    {
+      "student_id": "a2-resolver-student",
+      "item_id": "TI-U1-L1-2",
+      "source": "try-it",
+      "score": 2,
+      "recorded_at": "2026-10-14T16:00:00.000Z",
+      "attempt": 1
+    },
+    {
+      "student_id": "a2-resolver-student",
+      "item_id": "BL-U1-L1-DESK_DONE",
+      "source": "flashcard",
+      "score": 100,
+      "recorded_at": "2026-10-14T16:00:00.000Z",
+      "attempt": 1
+    },
+    {
+      "student_id": "a2-resolver-student",
+      "item_id": "TA-U1",
+      "source": "topic-assessment",
+      "score": 100,
+      "recorded_at": "2026-10-14T16:00:00.000Z",
+      "attempt": 1
+    }
+  ],
+  "expected": {
+    "formula": "v3",
+    "quarterGrade": 100,
+    "lessonsDue": 1,
+    "lessonsGraded": 1,
+    "lessonsTotal": 1,
+    "points": {
+      "LC-U1-L1": 10,
+      "TI-U1-L1-1": 2,
+      "TI-U1-L1-2": 2,
+      "BL-U1-L1-DESK_DONE": 1,
+      "TA-U1": 100
+    }
   }
 }

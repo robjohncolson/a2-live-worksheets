@@ -18,19 +18,19 @@ const TEACHER = 'teacher-secret-fixture';
 const TEST_PRIVATE_KEY = 'MC4CAQAwBQYDK2VwBCIEIIq2JsDpBMHpUzaFF6mPR0vUv1T2gzXGX7k/AQSYjyl0';
 
 const FIXTURE_ANSWER_KEY = {
-  generatedFrom: 'curriculum_render/data/curriculum.js (READ-ONLY)',
+  generatedFrom: 'inline synthetic Algebra 2 diagnostics',
   answerKey: {
     'U1-L1-Q01': { answerKey: 'B', type: 'multiple-choice', unit: '1' },
     'U1-L1-Q02': { answerKey: 'C', type: 'multiple-choice', unit: '1' },
     'U2-L1-Q01': { answerKey: 'A', type: 'multiple-choice', unit: '2' },
-    'U1-PC-MCQ-A-Q01': { answerKey: 'A', type: 'multiple-choice', unit: '1' },
+    'U1-L1-Q03': { answerKey: 'A', type: 'multiple-choice', unit: '1' },
   },
 };
 const FIXTURE_SKILL_MAP = {
   'U1-L1-Q01': { skill: '1.A' },
   'U1-L1-Q02': { skill: '1.A' },
   'U2-L1-Q01': { skill: '2.B' },
-  'U1-PC-MCQ-A-Q01': { skill: '1.C' },
+  'U1-L1-Q03': { skill: '1.C' },
 };
 
 // Fake roster db exposing listRoster (used by /class/* and /roster/list).
@@ -154,7 +154,7 @@ async function startServer({
   process.env.NODE_ENV = 'test';
   const rosterDb = createFakeRosterDb(roster, rosterOpts);
   const ledgerDb = createFakeLedgerDb(ledger, ledgerOpts);
-  const app = createApp(rosterDb, ledgerDb, fakeLoadManifest, loadAnswerKey, loadSkillMap, bkt === undefined ? realBkt : bkt);
+  const app = createApp(rosterDb, ledgerDb, fakeLoadManifest, loadAnswerKey, loadSkillMap, bkt === undefined ? realBkt : bkt, null, null, { useDistrictFormula: true, bonusOnlyThrough: null });
   const server = new TestServer(app);
   await server.start();
   return { server, rosterDb, ledgerDb };
@@ -173,7 +173,7 @@ afterEach(async () => {
 // ── Auth ──────────────────────────────────────────────────────────────────────
 describe('GET /class/grades — auth', () => {
   it('401 without x-teacher-secret', async () => {
-    const ctx = await startServer({ roster: [{ student_id: 's1', real_name: 'A', login_username: 'a', section: 'P1' }] });
+    const ctx = await startServer({ roster: [{ student_id: 's1', real_name: 'A', login_username: 'a', section: 'C' }] });
     srv = ctx.server;
     expect((await srv.get('/class/grades')).status).toBe(401);
   });
@@ -187,18 +187,18 @@ describe('GET /class/grades — auth', () => {
 describe('GET /class/grades — fan-out', () => {
   it('per-student computeGrade across the roster, plus the section filter', async () => {
     const roster = [
-      { student_id: 's1', real_name: 'Alice',  login_username: 'alpha_fox',  section: 'P1' },
-      { student_id: 's2', real_name: 'Bob',    login_username: 'beta_owl',   section: 'P1' },
-      { student_id: 's3', real_name: 'Carmen', login_username: 'gamma_bear', section: 'P2' },
+      { student_id: 's1', real_name: 'Alice',  login_username: 'alpha_fox',  section: 'C' },
+      { student_id: 's2', real_name: 'Bob',    login_username: 'beta_owl',   section: 'C' },
+      { student_id: 's3', real_name: 'Carmen', login_username: 'gamma_bear', section: 'D' },
     ];
     const ledger = {
-      s1: [
-        makeRow('s1', 'U1-L1-Q01', 'B'),                // Q correct
-        makeRow('s1', 'U1-L1-Q02', 'X'),                // Q wrong
-        makeRow('s1', 'WS-U1L1-r1', 'a', { source: 'frq', unit: 'U1', score: 1 }),
-      ],
-      s2: [makeRow('s2', 'U1-L1-Q01', 'B')],            // single correct → Q=100, B=Q, banked 85
-      s3: [],                                            // ungraded
+      s1: [makeRow('s1', 'TA-U1', 'Polynomial assessment', {
+        source: 'topic-assessment', score: 60, recorded_at: '2026-09-03T12:00:00Z',
+      })],
+      s2: [makeRow('s2', 'TA-U1', 'Polynomial assessment', {
+        source: 'topic-assessment', score: 100, recorded_at: '2026-09-03T12:00:00Z',
+      })],
+      s3: [],
     };
     const ctx = await startServer({ roster, ledger }); srv = ctx.server;
 
@@ -207,23 +207,25 @@ describe('GET /class/grades — fan-out', () => {
     expect(r.status).toBe(200);
     expect(r.body.students).toHaveLength(3);
     const byId = Object.fromEntries(r.body.students.map(s => [s.studentId, s]));
-    expect(byId.s1.units.U1.Q).toBe(50);
-    expect(byId.s1.units.U1.W).toBe(100);
-    expect(byId.s1.units.U1.banked).toBeCloseTo(66.7, 1);
-    expect(byId.s2.units.U1.banked).toBe(85);
-    expect(byId.s3.units).toEqual({});
-    expect(r.body.config.C).toBe(85);
+    expect(byId.s1.formula).toBe('district');
+    expect(byId.s1.quarters.Q1.quarterGrade).toBe(60);
+    expect(byId.s2.quarters.Q1.quarterGrade).toBe(100);
+    expect(byId.s3.quarters.Q1.quarterGrade).toBeNull();
+    expect(byId.s1.quarters.Q1.categoryBreakdown.assessments).toMatchObject({
+      earned: 60, possible: 100, count: 1, minimum: 4, minimumMet: false,
+    });
+    expect(byId.s1.gradebook.weights).toEqual({ Assessments: 50, Assignments: 40, Engagement: 10 });
 
-    // section=P1 → only Alice + Bob
-    r = await srv.get('/class/grades?section=P1', { 'x-teacher-secret': TEACHER });
+    // section=C → only Alice + Bob
+    r = await srv.get('/class/grades?section=C', { 'x-teacher-secret': TEACHER });
     expect(r.body.students.map(s => s.studentId).sort()).toEqual(['s1', 's2']);
-    expect(r.body.section).toBe('P1');
+    expect(r.body.section).toBe('C');
   });
 
   it('excludes role=teacher rows from the class fan-out (a self-signup teacher is not a student)', async () => {
     const roster = [
-      { student_id: 's1', real_name: 'Alice', login_username: 'alpha_fox', section: 'P1' },
-      { student_id: 't1', real_name: 'Ms Teacher', login_username: 'teach_owl', section: 'P1', role: 'teacher' },
+      { student_id: 's1', real_name: 'Alice', login_username: 'alpha_fox', section: 'C' },
+      { student_id: 't1', real_name: 'Ms Teacher', login_username: 'teach_owl', section: 'C', role: 'teacher' },
     ];
     const ctx = await startServer({ roster, ledger: { s1: [], t1: [] } }); srv = ctx.server;
     const r = await srv.get('/class/grades', { 'x-teacher-secret': TEACHER });
@@ -233,7 +235,7 @@ describe('GET /class/grades — fan-out', () => {
   });
 
   it('opts into saved-work metadata without changing the normal grade export', async () => {
-    const roster = [{ student_id: 's1', real_name: 'Alice', login_username: 'alpha_fox', section: 'P1' }];
+    const roster = [{ student_id: 's1', real_name: 'Alice', login_username: 'alpha_fox', section: 'C' }];
     const ctx = await startServer({ roster, ledger: { s1: [] } }); srv = ctx.server;
     const normal = await srv.get('/class/grades', { 'x-teacher-secret': TEACHER });
     expect(normal.body.students[0]).not.toHaveProperty('savedWork');
@@ -246,8 +248,8 @@ describe('GET /class/grades — fan-out', () => {
 
   it('includeStaff=1 keeps teacher rows (pacing-overview opt-in) tagged with role', async () => {
     const roster = [
-      { student_id: 's1', real_name: 'Alice', login_username: 'alpha_fox', section: 'P1' },
-      { student_id: 't1', real_name: 'Ms Teacher', login_username: 'teach_owl', section: 'P1', role: 'teacher' },
+      { student_id: 's1', real_name: 'Alice', login_username: 'alpha_fox', section: 'C' },
+      { student_id: 't1', real_name: 'Ms Teacher', login_username: 'teach_owl', section: 'C', role: 'teacher' },
     ];
     const ctx = await startServer({ roster, ledger: { s1: [], t1: [] } }); srv = ctx.server;
     const r = await srv.get('/class/grades?includeStaff=1', { 'x-teacher-secret': TEACHER });
@@ -262,20 +264,20 @@ describe('GET /class/grades — fan-out', () => {
 
   it('per-student ledger throw is tolerated (one bad student does not 500 the class)', async () => {
     const roster = [
-      { student_id: 'ok',  real_name: 'OK', login_username: 'a', section: 'P1' },
-      { student_id: 'bad', real_name: 'X',  login_username: 'b', section: 'P1' },
+      { student_id: 'ok',  real_name: 'OK', login_username: 'a', section: 'C' },
+      { student_id: 'bad', real_name: 'X',  login_username: 'b', section: 'C' },
     ];
     const ctx = await startServer({
       roster,
-      ledger: { ok: [makeRow('ok', 'U1-L1-Q01', 'B')] },
+      ledger: { ok: [makeRow('ok', 'TA-U1', 'Algebra', { source: 'topic-assessment', score: 80, recorded_at: '2026-09-03T12:00:00Z' })] },
       ledgerOpts: { throwForStudentId: 'bad' },
     });
     srv = ctx.server;
     const r = await srv.get('/class/grades', { 'x-teacher-secret': TEACHER });
     expect(r.status).toBe(200);
-    expect(r.body.students.find(s => s.studentId === 'ok').units.U1).toBeDefined();
+    expect(r.body.students.find(s => s.studentId === 'ok').quarters.Q1.quarterGrade).toBe(80);
     // bad student appears with empty units (graceful degrade, not 500)
-    expect(r.body.students.find(s => s.studentId === 'bad').units).toEqual({});
+    expect(r.body.students.find(s => s.studentId === 'bad').quarters.Q1.quarterGrade).toBeNull();
   });
 
   
@@ -296,8 +298,8 @@ describe('GET /class/grades — fan-out', () => {
 // ── P4b: schoologyUid bridge surfaced on /class/grades ─────────────────────────
 describe('GET /class/grades — schoologyUid bridge', () => {
   const roster = [
-    { student_id: 's1', real_name: 'Alice', login_username: 'a', section: 'P1' },
-    { student_id: 's2', real_name: 'Bob',   login_username: 'b', section: 'P1' },
+    { student_id: 's1', real_name: 'Alice', login_username: 'a', section: 'C' },
+    { student_id: 's2', real_name: 'Bob',   login_username: 'b', section: 'C' },
   ];
 
   it('carries schoologyUid when the db maps the student, null when unmapped', async () => {
@@ -336,17 +338,17 @@ describe('GET /class/grades — schoologyUid bridge', () => {
 describe('GET /class/mastery — heatmap', () => {
   it('per-student mastery + heatmap pctWeak across the section', async () => {
     const roster = [
-      { student_id: 's1', real_name: 'A', login_username: 'a', section: 'P1' },
-      { student_id: 's2', real_name: 'B', login_username: 'b', section: 'P1' },
-      { student_id: 's3', real_name: 'C', login_username: 'c', section: 'P1' },
+      { student_id: 's1', real_name: 'A', login_username: 'a', section: 'C' },
+      { student_id: 's2', real_name: 'B', login_username: 'b', section: 'C' },
+      { student_id: 's3', real_name: 'C', login_username: 'c', section: 'C' },
     ];
     // s1 + s2 = one correct in 1.A → folded pKnow ≈0.607 < θ=0.65 → BOTH weak in 1.A.
-    // s3 = 3 corrects in 1.A → folded pKnow well above θ → NOT weak.
+    // s3 = 2 corrects in 1.A → folded pKnow well above θ → NOT weak.
     // s1 also has 2.B (wrong) → weak in 2.B (and only s1 has any 2.B evidence).
     const ledger = {
       s1: [makeRow('s1', 'U1-L1-Q01', 'B'), makeRow('s1', 'U2-L1-Q01', 'X')],
       s2: [makeRow('s2', 'U1-L1-Q01', 'B')],
-      s3: [makeRow('s3', 'U1-L1-Q01', 'B'), makeRow('s3', 'U1-L1-Q02', 'C'), makeRow('s3', 'U1-PC-MCQ-A-Q01', 'A', { source: 'pc' })],
+      s3: [makeRow('s3', 'U1-L1-Q01', 'B'), makeRow('s3', 'U1-L1-Q02', 'C'), makeRow('s3', 'U1-L1-Q03', 'A', { source: 'curriculum_quiz' })],
     };
     const ctx = await startServer({ roster, ledger }); srv = ctx.server;
     const r = await srv.get('/class/mastery', { 'x-teacher-secret': TEACHER });
@@ -394,7 +396,7 @@ describe('GET /class/mastery — heatmap', () => {
 describe('class endpoints — read-only', () => {
   it('neither /class/grades nor /class/mastery writes to the ledger store', async () => {
     const ctx = await startServer({
-      roster: [{ student_id: 's1', real_name: 'A', login_username: 'a', section: 'P1' }],
+      roster: [{ student_id: 's1', real_name: 'A', login_username: 'a', section: 'C' }],
       ledger: { s1: [makeRow('s1', 'U1-L1-Q01', 'B')] },
     });
     srv = ctx.server;
@@ -404,9 +406,9 @@ describe('class endpoints — read-only', () => {
   });
 });
 
-// ── Quarter close (freeze) + bonus deltas (PC makeup [D]) ─────────────────────
+// ── Quarter close (freeze) + district assessment deltas ─────────────────────
 describe('POST /class/quarter/close + GET /class/quarter/deltas (freeze/delta)', () => {
-  const ROSTER = [{ student_id: 's1', login_username: 'stu_one', real_name: 'One', section: 'P1' }];
+  const ROSTER = [{ student_id: 's1', login_username: 'stu_one', real_name: 'One', section: 'C' }];
 
   it('non-teacher → 401 (both routes)', async () => {
     const ctx = await startServer({ roster: ROSTER }); srv = ctx.server;
@@ -421,7 +423,7 @@ describe('POST /class/quarter/close + GET /class/quarter/deltas (freeze/delta)',
   });
 
   it('close freezes each student’s quarter grade + is idempotent (first close wins)', async () => {
-    const ledger = { s1: [makeRow('s1', 'WS-U1L1-r1', 'a', { source: 'frq', unit: 'U1', score: 1 })] };
+    const ledger = { s1: [makeRow('s1', 'TA-U1', 'a', { source: 'topic-assessment', recorded_at: '2026-09-03T12:00:00Z', score: 100 })] };
     const ctx = await startServer({ roster: ROSTER, ledger }); srv = ctx.server;
     const r1 = await srv.post('/class/quarter/close', { 'x-teacher-secret': TEACHER }, { quarter: 'Q1' });
     expect(r1.status).toBe(200);
@@ -436,12 +438,12 @@ describe('POST /class/quarter/close + GET /class/quarter/deltas (freeze/delta)',
   });
 
   it('deltas surface a POST-close improvement (current > frozen), positive only', async () => {
-    // freeze with a weak FRQ, then a corrected attempt supersedes → current rises.
-    const ledger = { s1: [makeRow('s1', 'WS-U1L1-r1', 'a', { source: 'frq', unit: 'U1', score: 0 })] };
+    // freeze with a zero-point topic assessment, then a corrected attempt supersedes → current rises.
+    const ledger = { s1: [makeRow('s1', 'TA-U1', 'a', { source: 'topic-assessment', recorded_at: '2026-09-03T12:00:00Z', score: 0 })] };
     const ctx = await startServer({ roster: ROSTER, ledger }); srv = ctx.server;
     await srv.post('/class/quarter/close', { 'x-teacher-secret': TEACHER }, { quarter: 'Q1' });
     const frozen = ctx.rosterDb._snapStore[0].frozen_grade;
-    ctx.ledgerDb._store.s1.push(makeRow('s1', 'WS-U1L1-r1', 'a', { source: 'frq', unit: 'U1', score: 1, attempt: 2 }));
+    ctx.ledgerDb._store.s1.push(makeRow('s1', 'TA-U1', 'a', { source: 'topic-assessment', recorded_at: '2026-09-03T12:00:00Z', score: 100, attempt: 2 }));
     const d = await srv.get('/class/quarter/deltas?quarter=Q1', { 'x-teacher-secret': TEACHER });
     expect(d.status).toBe(200);
     expect(d.body.deltas).toHaveLength(1);
@@ -453,7 +455,7 @@ describe('POST /class/quarter/close + GET /class/quarter/deltas (freeze/delta)',
   });
 
   it('a student NOT frozen for the quarter yields no delta', async () => {
-    const ledger = { s1: [makeRow('s1', 'WS-U1L1-r1', 'a', { source: 'frq', unit: 'U1', score: 1 })] };
+    const ledger = { s1: [makeRow('s1', 'TA-U1', 'a', { source: 'topic-assessment', recorded_at: '2026-09-03T12:00:00Z', score: 100 })] };
     const ctx = await startServer({ roster: ROSTER, ledger }); srv = ctx.server;
     const d = await srv.get('/class/quarter/deltas?quarter=Q1', { 'x-teacher-secret': TEACHER });
     expect(d.status).toBe(200);
@@ -478,7 +480,7 @@ describe('POST /class/quarter/close + GET /class/quarter/deltas (freeze/delta)',
   });
 
   it('coerces a STRING frozen_grade (PostgREST numeric serialization) — delta stays numeric', async () => {
-    const ledger = { s1: [makeRow('s1', 'WS-U1L1-r1', 'a', { source: 'frq', unit: 'U1', score: 1 })] };
+    const ledger = { s1: [makeRow('s1', 'TA-U1', 'a', { source: 'topic-assessment', recorded_at: '2026-09-03T12:00:00Z', score: 100 })] };
     const ctx = await startServer({ roster: ROSTER, ledger }); srv = ctx.server;
     // Real PostgREST returns a `numeric` column as a STRING; the fake returns a number,
     // so inject the string shape here to prove the delta math coerces it.

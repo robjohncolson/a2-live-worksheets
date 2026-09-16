@@ -1,0 +1,53 @@
+{
+  "description": "Synthetic A2 inputs, not a captured AP grade. All dates follow the bonus-only window; D/G meet on Wednesday.",
+  "opts": {
+    "asOf": "2026-10-10T16:00:00Z",
+    "lessonSchedule": {
+      "1.1": {
+        "unit": 1,
+        "worksheetKey": "1",
+        "tryItCount": 1,
+        "periods": { "C": "2026-10-01", "D": "2026-09-30", "G": "2026-09-30" }
+      }
+    },
+    "items": [
+      { "itemId": "TA-U1", "source": "topic-assessment", "dueDate": "2026-10-02" }
+    ]
+  },
+  "legacyExitRows": [
+    { "item_id": "WS-U1L1-exitTicket", "source": "frq", "score": 1, "attempt": 1 },
+    { "item_id": "WS-U1L1-exitTicket", "source": "frq", "score": 0, "attempt": 2 },
+    { "item_id": "WS-U1L2-exitTicket", "source": "frq", "score": 0.5 },
+    { "item_id": "WS-U1L3-exitTicket", "source": "frq", "score": null },
+    { "item_id": "WS-U1L4-exitTicket", "source": "frq", "score": "not a score" }
+  ],
+  "cases": [
+    { "name": "missing all due work", "rows": [], "districtGrade": 0 },
+    {
+      "name": "perfect feeders", "districtGrade": 100,
+      "rows": [
+        { "item_id": "LC-U1-L1", "source": "lesson-check", "score": 10 },
+        { "item_id": "TI-U1-L1-1", "source": "try-it", "score": 2 },
+        { "item_id": "BL-U1-L1-DESK_DONE", "source": "flashcard", "score": 100 },
+        { "item_id": "TA-U1", "source": "topic-assessment", "score": 100 }
+      ]
+    },
+    {
+      "name": "partial Try-It", "districtGrade": 80,
+      "rows": [
+        { "item_id": "LC-U1-L1", "source": "lesson-check", "score": 10 },
+        { "item_id": "TI-U1-L1-1", "source": "try-it", "score": 1 },
+        { "item_id": "BL-U1-L1-DESK_DONE", "source": "flashcard", "score": 100 },
+        { "item_id": "TA-U1", "source": "topic-assessment", "score": 100 }
+      ]
+    },
+    {
+      "name": "missing topic assessment", "districtGrade": 54.54545454545455,
+      "rows": [
+        { "item_id": "LC-U1-L1", "source": "lesson-check", "score": 10 },
+        { "item_id": "TI-U1-L1-1", "source": "try-it", "score": 2 },
+        { "item_id": "BL-U1-L1-DESK_DONE", "source": "flashcard", "score": 100 }
+      ]
+    }
+  ]
+}

@@ -1,1016 +1,179 @@
 {
-  "asOf": "2026-10-15",
-  "builtFrom": {
-    "generator": "build-golden-synthetic.mjs/v1"
-  },
-  "schema": "apstats-golden-synthetic/v1",
+  "schema": "a2-golden-synthetic/v2",
+  "asOf": "2026-09-25",
   "students": [
     {
-      "id": "synthetic-01-all-sources",
+      "id": "a2-full",
+      "section": "C",
       "records": [
         {
+          "item_id": "LC-U1-L1",
+          "source": "lesson-check",
+          "score": 10,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
           "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
+          "unit": "U1",
+          "response": null
+        },
+        {
+          "item_id": "TI-U1-L1-1",
+          "source": "try-it",
+          "score": 2,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
+          "attempt": 1,
+          "unit": "U1",
+          "response": null
+        },
+        {
           "item_id": "BL-U1-L1-DESK_DONE",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
+          "source": "flashcard",
           "score": 80,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
+          "recorded_at": "2026-09-24T16:00:00.000Z",
+          "attempt": 1,
+          "unit": "U1",
+          "response": null
         },
         {
+          "item_id": "TA-U1",
+          "source": "topic-assessment",
+          "score": 100,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
           "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.75,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U2L1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.4,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U2"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U3L1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.9,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U3"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "a",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U2-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "b",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U2"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U3-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "a",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U3"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1-L1-DESK_DONE",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L1-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.5,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U2L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.5,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U2"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U2L1-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U2"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U3L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U3"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U3L1-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U3"
+          "unit": "U1",
+          "response": null
         }
-      ],
-      "reviews": [],
-      "section": "PeriodB"
+      ]
     },
     {
-      "id": "synthetic-02-floor-040",
+      "id": "a2-floor",
+      "section": "D",
       "records": [
         {
+          "item_id": "LC-U1-L1",
+          "source": "lesson-check",
+          "score": 5,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
           "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
+          "unit": "U1",
+          "response": null
+        },
+        {
+          "item_id": "TI-U1-L1-1",
+          "source": "try-it",
           "score": 1,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
+          "recorded_at": "2026-09-24T16:00:00.000Z",
+          "attempt": 1,
+          "unit": "U1",
+          "response": null
         },
         {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L2",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L5",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "a",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L2-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "a",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L5-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "a",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L1-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L2-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L2-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L5-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L5-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U1"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodE"
-    },
-    {
-      "id": "synthetic-03-ceiling-070",
-      "records": [
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L2",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L5",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "b",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L2-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "b",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L5-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "b",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L2-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L5-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodE"
-    },
-    {
-      "id": "synthetic-04-weight-sensitive",
-      "records": [
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.5,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L2",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.5,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L5",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.5,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "b",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L2-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "b",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L5-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "b",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L1-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L2-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L2-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L5-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L5-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U1"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodE"
-    },
-    {
-      "id": "synthetic-05-ahead",
-      "records": [
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U3L1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.8,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U3"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U3-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "a",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U3"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U3L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U3"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U3L1-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U3"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodB"
-    },
-    {
-      "id": "synthetic-06-behind",
-      "records": [],
-      "reviews": [],
-      "section": "PeriodB"
-    },
-    {
-      "id": "synthetic-07-quiz-right",
-      "records": [
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "a",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodE"
-    },
-    {
-      "id": "synthetic-08-quiz-wrong",
-      "records": [
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U1-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "b",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U1"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodE"
-    },
-    {
-      "id": "synthetic-09-empty-work",
-      "records": [],
-      "reviews": [],
-      "section": "PeriodB"
-    },
-    {
-      "id": "synthetic-10-blooket-game",
-      "records": [
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
           "item_id": "BL-U1-L1-DESK_DONE",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 80,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
+          "source": "flashcard",
+          "score": 0,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
+          "attempt": 1,
+          "unit": "U1",
+          "response": null
         },
         {
+          "item_id": "TA-U1",
+          "source": "topic-assessment",
+          "score": 80,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
           "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U1L1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.6,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U1"
+          "unit": "U1",
+          "response": null
         }
-      ],
-      "reviews": [],
-      "section": "PeriodE"
+      ]
     },
     {
-      "id": "synthetic-11-desk-done",
+      "id": "a2-cap",
+      "section": "G",
       "records": [
         {
+          "item_id": "LC-U1-L1",
+          "source": "lesson-check",
+          "score": 0,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
           "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1-L2-DESK_DONE",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodE"
-    },
-    {
-      "id": "synthetic-12-blooket-makeup",
-      "records": [
+          "unit": "U1",
+          "response": null
+        },
         {
+          "item_id": "TI-U1-L1-1",
+          "source": "try-it",
+          "score": 0,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
           "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
+          "unit": "U1",
+          "response": null
+        },
+        {
           "item_id": "BL-U1-L1-DESK_DONE",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
+          "source": "flashcard",
+          "score": 0,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
+          "attempt": 1,
+          "unit": "U1",
+          "response": null
+        },
+        {
+          "item_id": "TA-U1",
+          "source": "topic-assessment",
+          "score": 100,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
+          "attempt": 1,
+          "unit": "U1",
+          "response": null
+        }
+      ]
+    },
+    {
+      "id": "a2-missing",
+      "section": "C",
+      "records": []
+    },
+    {
+      "id": "a2-work",
+      "section": "G",
+      "records": [
+        {
+          "item_id": "LC-U1-L1",
+          "source": "lesson-check",
+          "score": 10,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
+          "attempt": 1,
+          "unit": "U1",
+          "response": null
+        },
+        {
+          "item_id": "TI-U1-L1-1",
+          "source": "try-it",
+          "score": 0,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
+          "attempt": 1,
+          "unit": "U1",
+          "response": null
+        },
+        {
+          "item_id": "BL-U1-L1-DESK_DONE",
+          "source": "flashcard",
           "score": 80,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
+          "recorded_at": "2026-09-24T16:00:00.000Z",
+          "attempt": 1,
+          "unit": "U1",
+          "response": null
+        },
+        {
+          "item_id": "TA-U1",
+          "source": "topic-assessment",
+          "score": 0,
+          "recorded_at": "2026-09-24T16:00:00.000Z",
+          "attempt": 1,
+          "unit": "U1",
+          "response": null
         }
-      ],
-      "reviews": [],
-      "section": "PeriodE"
-    },
-    {
-      "id": "synthetic-13-period-b-due",
-      "records": [
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U2L1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.7,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U2"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U2-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "a",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U2"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U2L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U2"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U2L1-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U2"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodB"
-    },
-    {
-      "id": "synthetic-14-period-e-not-due",
-      "records": [
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "BLOOKET-U2L1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 0.7,
-          "skill": null,
-          "source": "blooket",
-          "topic": null,
-          "unit": "U2"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U2-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "a",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U2"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U2L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U2"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U2L1-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U2"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodE"
-    },
-    {
-      "id": "synthetic-15-worksheet",
-      "records": [
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L5-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodE"
-    },
-    {
-      "id": "synthetic-16-units-1-3",
-      "records": [
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "U3-L1-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": "a",
-          "score": null,
-          "skill": null,
-          "source": "curriculum_quiz",
-          "topic": null,
-          "unit": "U3"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U1L2-Q1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "worksheet",
-          "topic": null,
-          "unit": "U1"
-        },
-        {
-          "attempt": 1,
-          "evidence_tier": "practice",
-          "graded_at": "2026-10-14T16:00:00.000Z",
-          "item_id": "WS-U2L1-reflect1",
-          "recorded_at": "2026-10-14T16:00:00.000Z",
-          "response": null,
-          "score": 1,
-          "skill": null,
-          "source": "frq",
-          "topic": null,
-          "unit": "U2"
-        }
-      ],
-      "reviews": [],
-      "section": "PeriodB"
+      ]
     }
   ]
 }

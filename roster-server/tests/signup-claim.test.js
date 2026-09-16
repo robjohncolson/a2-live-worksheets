@@ -137,6 +137,21 @@ describe('GET /roster/open-sections', () => {
 // ── POST /roster/claim ────────────────────────────────────────────────────────
 
 describe('POST /roster/claim', () => {
+  it.each(['C', 'D', 'G'])('claims and signs in to Algebra 2 section %s', async section => {
+    const username = `section_${section.toLowerCase()}`;
+    const claim = await srv.request('POST', '/roster/claim', {
+      body: validClaim({ section, username }),
+    });
+    expect(claim.status).toBe(200);
+    expect(claim.body.section).toBe(section);
+    expect(db.store.get(username).section).toBe(section);
+    const session = await srv.request('POST', '/roster/verify', {
+      body: { username, password: '1234' },
+    });
+    expect(session.status).toBe(200);
+    expect(session.body.section).toBe(section);
+  });
+
   it('claims a username, returns a verify-shaped session, and signs in (mustChangePassword=false)', async () => {
     const res = await srv.request('POST', '/roster/claim', { body: validClaim() });
     expect(res.status).toBe(200);

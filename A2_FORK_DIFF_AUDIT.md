@@ -204,6 +204,7 @@ hence D4.
 | U20 B21 content/presentation | 5 files incl. test_dok_build.py | adapted with synthetic A2 fixtures | same commit |
 | U20 B22 cosmetic | tango-theme test restored | no subject change | same commit |
 | phase4-structure | accepted baseline failure | allowlisted the teacher inbox-seen localStorage key; **now passes** — baseline is five inherited failures | same commit |
+| U20 B02-B05, B08 grade fixtures, golden grades, resolver snapshots, exit-ticket isolation, roster/teacher server | 20 files | adapted to A2 district/v3 contracts with hand-derived expected grades, C/D/G dates, synthetic exit-ticket fixture; automatic golden blessing removed; one harness fix (teacher-endpoints fixture) | committed |
 | Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.

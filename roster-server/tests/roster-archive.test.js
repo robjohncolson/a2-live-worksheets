@@ -2,7 +2,6 @@
 // Mirrors roster-edit.test.js: an in-memory db, createApp(), a real HTTP server,
 // and fetch. Each ROSTER_ARCHIVE_SPEC invariant is named A1-A6 below.
 
-import { readFileSync } from 'node:fs';
 import http from 'node:http';
 
 import bcrypt from 'bcryptjs';
@@ -10,15 +9,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createDb } from '../db.js';
 import { createApp } from '../server.js';
-import { bootGoldenApp } from './golden/boot.js';
-import { firstDiffPath } from './golden/firstDiffPath.js';
-import { stripVolatile } from './golden/volatile.js';
 
 const TEACHER_SECRET = 'roster-archive-teacher';
 const ACTIVE_ID = '11111111-1111-4111-8111-111111111111';
 const ARCHIVE_ID = '22222222-2222-4222-8222-222222222222';
 const UNKNOWN_ID = '99999999-9999-4999-8999-999999999999';
-const SECTION = 'PeriodB';
+const SECTION = 'C';
 const PASSWORD = 'testpass1';
 
 const ANSWER_KEY = {
@@ -34,8 +30,6 @@ function createArchiveFakeDb() {
   const setRosterStatusCalls = [];
   const childTables = {
     item_ledger: [],
-    doge_account: [],
-    doge_ledger: [],
     remediation_assignment: [],
     roster_alias: [],
   };
@@ -107,19 +101,6 @@ function createArchiveFakeDb() {
       row.status = status;
       row.updated_at = new Date(Date.parse('2026-09-01T00:00:00.000Z') + statusUpdateCounter * 1000).toISOString();
       return { data: { student_id: studentId, status }, error: null };
-    },
-
-    async listDogeAccounts(studentIds) {
-      const allowed = Array.isArray(studentIds) ? new Set(studentIds) : null;
-      const rows = allowed
-        ? childTables.doge_account.filter((row) => allowed.has(row.student_id))
-        : childTables.doge_account;
-      return { data: structuredClone(rows), error: null };
-    },
-
-    async getDogeAccount(studentId) {
-      const data = childTables.doge_account.find((row) => row.student_id === studentId) || null;
-      return { data: data ? structuredClone(data) : null, error: null };
     },
 
     async listReviewMarksByStudents() {
@@ -217,11 +198,6 @@ async function seedArchiveFixture(db) {
     },
   );
 
-  db.childTables.doge_account.push(
-    { student_id: ACTIVE_ID, candy_given: 0, doge_balance: 1, doge_sent: 0, doge_cost_basis: 0 },
-    { student_id: ARCHIVE_ID, candy_given: 0, doge_balance: 2, doge_sent: 0, doge_cost_basis: 0 },
-  );
-  db.childTables.doge_ledger.push({ student_id: ARCHIVE_ID, kind: 'buy_doge', doge_delta: 2 });
   db.childTables.remediation_assignment.push({ student_id: ARCHIVE_ID, skill: '1.A' });
   db.childTables.roster_alias.push({ student_id: ARCHIVE_ID, alias: 'archive-student' });
 }
@@ -234,17 +210,6 @@ async function bootArchiveApp() {
   process.env.ROSTER_PW_ENC_KEY = 'a'.repeat(64);
   process.env.RECEIPT_ISSUER_PRIVATE_KEY = '';
   delete process.env.TEACHER_KEY;
-
-  const nativeFetch = globalThis.fetch;
-  vi.spyOn(globalThis, 'fetch').mockImplementation((input, init) => {
-    if (String(input).startsWith('https://api.coingecko.com/')) {
-      return Promise.resolve(new Response(JSON.stringify({ dogecoin: { usd: 0.10 } }), {
-        status: 200,
-        headers: { 'content-type': 'application/json' },
-      }));
-    }
-    return nativeFetch(input, init);
-  });
 
   const db = createArchiveFakeDb();
   await seedArchiveFixture(db);
@@ -416,6 +381,20 @@ describe('roster archive HTTP contract', () => {
     const restoredStudent = restored.body.students.find((student) => student.studentId === ARCHIVE_ID);
 
     expect(JSON.stringify(restoredStudent)).toBe(JSON.stringify(baselineStudent));
+  });
+
+  it('A6: explicit active status preserves the same class grades as legacy active rows', async () => {
+    const before = await ctx.server.request('GET', `/class/grades?section=${SECTION}`, {
+      headers: teacherHeader(),
+    });
+    expect(before.status).toBe(200);
+    expect(before.body.students.map(student => student.studentId)).toEqual([ACTIVE_ID, ARCHIVE_ID]);
+    for (const row of ctx.db.store.values()) delete row.status;
+    const after = await ctx.server.request('GET', `/class/grades?section=${SECTION}`, {
+      headers: teacherHeader(),
+    });
+    expect(after.status).toBe(200);
+    expect(after.body.students).toEqual(before.body.students);
   });
 
   it('A4: archived login gets the friendly 403 while active login is unchanged', async () => {
@@ -597,27 +576,3 @@ describe('real db archive query payloads', () => {
   });
 });
 
-describe('A6 gradebook golden master', () => {
-  it('keeps the synthetic GET /class/grades golden byte-for-byte when the roster is all active', async () => {
-    const fixtureDirectory = new URL('./fixtures/golden-synthetic/', import.meta.url);
-    const studentsDoc = JSON.parse(readFileSync(new URL('students.json', fixtureDirectory), 'utf8'));
-    const inputs = JSON.parse(readFileSync(new URL('inputs.json', fixtureDirectory), 'utf8'));
-    const expected = JSON.parse(readFileSync(new URL('expected.json', fixtureDirectory), 'utf8'));
-
-    const app = await bootGoldenApp({
-      studentsDoc,
-      inputs,
-      configOverrides: inputs.configOverrides,
-    });
-
-    try {
-      const actual = stripVolatile(await app.getClassGrades());
-      expect(
-        firstDiffPath(actual, expected.classGrades),
-        'GET /class/grades changed in an all-active fixture world',
-      ).toBeNull();
-    } finally {
-      await app.close();
-    }
-  });
-});

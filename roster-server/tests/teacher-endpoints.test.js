@@ -3,11 +3,23 @@
 // Teacher-gated (x-teacher-secret). Pure fake-db + http loopback; NO network/Supabase.
 // Mirrors class.test.js harness verbatim (lines 1-80).
 
-import { describe, it, expect, beforeAll, afterEach } from 'vitest';
+import { describe, it, expect, beforeAll, afterEach, vi } from 'vitest';
 import http from 'http';
 import { randomBytes } from 'crypto';
 import { createApp } from '../server.js';
 import { signToken } from '../token.js';
+
+// Only the content catalog is synthetic; preserve other filesystem reads.
+vi.mock('node:fs/promises', async importOriginal => {
+  const actual = await importOriginal();
+  return { ...actual, readFile: async (path, ...args) => {
+    if (!String(path).endsWith('/data/teacher-question-catalog.json')) return actual.readFile(path, ...args);
+    return JSON.stringify({ questions: {
+      'U1-L2-Q01': { prompt: 'Expand 2(x + 3).', attachments: { choices: ['2x + 6', '2x + 3', 'x + 6'] } },
+      'WS-U1L1-r1': { prompt: 'Explain how to distribute a negative coefficient.' },
+    } });
+  } };
+});
 
 let realBkt;
 beforeAll(async () => {
@@ -18,12 +30,11 @@ beforeAll(async () => {
 const TEACHER = 'teacher-secret-fixture';
 
 const FIXTURE_ANSWER_KEY = {
-  generatedFrom: 'curriculum_render/data/curriculum.js (READ-ONLY)',
+  generatedFrom: 'inline synthetic Algebra 2 diagnostics',
   answerKey: {
     'U1-L1-Q01': { answerKey: 'B', type: 'multiple-choice', unit: '1' },
     'U1-L1-Q02': { answerKey: 'C', type: 'multiple-choice', unit: '1' },
     'U2-L1-Q01': { answerKey: 'A', type: 'multiple-choice', unit: '2' },
-    'U1-PC-MCQ-A-Q01': { answerKey: 'A', type: 'multiple-choice', unit: '1' },
   },
 };
 
@@ -79,7 +90,6 @@ const okSkillMap = async () => ({
   'U1-L1-Q01': { skill: '1.A' },
   'U1-L1-Q02': { skill: '1.A' },
   'U2-L1-Q01': { skill: '2.B' },
-  'U1-PC-MCQ-A-Q01': { skill: '1.C' },
 });
 
 class TestServer {
@@ -102,16 +112,13 @@ async function startServer({
   roster = [], ledger = {},
   loadAnswerKey = okAnswerKey, loadSkillMap = okSkillMap, bkt,
   rosterOpts = {}, ledgerOpts = {},
-  pollArchiveDb = null,
 } = {}) {
   process.env.ROSTER_TOKEN_SECRET = `tok-${randomBytes(16).toString('hex')}`;
   process.env.ROSTER_TEACHER_SECRET = TEACHER;
   process.env.NODE_ENV = 'test';
   const rosterDb = createFakeRosterDb(roster, rosterOpts);
   const ledgerDb = createFakeLedgerDb(ledger, ledgerOpts);
-  // createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMap, bkt,
-  //           remediationDb, lessonSchedule, configOverrides, worksheetBlankCounts, pollArchiveDb)
-  const app = createApp(rosterDb, ledgerDb, fakeLoadManifest, loadAnswerKey, loadSkillMap, bkt === undefined ? realBkt : bkt, null, null, null, null, pollArchiveDb);
+  const app = createApp(rosterDb, ledgerDb, fakeLoadManifest, loadAnswerKey, loadSkillMap, bkt === undefined ? realBkt : bkt, null, null, { useDistrictFormula: true, bonusOnlyThrough: null });
   const server = new TestServer(app);
   await server.start();
   return { server, rosterDb, ledgerDb };
@@ -129,7 +136,7 @@ const FIXTURE_STUDENT = {
   student_id: 'stu_abc123',
   login_username: 'papaya-otter',
   real_name: 'Jane Doe',
-  section: 'PeriodB',
+  section: 'C',
 };
 
 // ── GET /teacher/student/:studentId/profile ───────────────────────────────────
@@ -153,7 +160,7 @@ describe('GET /teacher/student/:studentId/profile', () => {
     expect(r.body.studentId).toBe('stu_abc123');
     expect(r.body.username).toBe('papaya-otter');
     expect(r.body.realName).toBe('Jane Doe');
-    expect(r.body.section).toBe('PeriodB');
+    expect(r.body.section).toBe('C');
     expect(r.body.role).toBe('student');
   });
 
@@ -212,11 +219,9 @@ describe('GET /teacher/student/:studentId/grade', () => {
 
   it('200 → envelope shape with quarters/units/completion populated for fixture ledger', async () => {
     const ledger = {
-      stu_abc123: [
-        makeRow('stu_abc123', 'U1-L1-Q01', 'B'),
-        makeRow('stu_abc123', 'U1-L1-Q02', 'X'),
-        makeRow('stu_abc123', 'WS-U1L1-r1', 'good answer', { source: 'frq', unit: 'U1', score: 1 }),
-      ],
+      stu_abc123: [makeRow('stu_abc123', 'TA-U1', 'Polynomial assessment', {
+        source: 'topic-assessment', score: 75, recorded_at: '2026-09-03T12:00:00Z',
+      })],
     };
     const ctx = await startServer({ roster: [FIXTURE_STUDENT], ledger });
     srv = ctx.server;
@@ -226,7 +231,7 @@ describe('GET /teacher/student/:studentId/grade', () => {
     expect(r.body.studentId).toBe('stu_abc123');
     expect(r.body.username).toBe('papaya-otter');
     expect(r.body.realName).toBe('Jane Doe');
-    expect(r.body.section).toBe('PeriodB');
+    expect(r.body.section).toBe('C');
     expect(r.body.asOf).toBeDefined();
     expect(r.body.quarters).toBeDefined();
     expect(r.body.units).toBeDefined();
@@ -236,9 +241,10 @@ describe('GET /teacher/student/:studentId/grade', () => {
     expect(r.body.config.feederWeights).toBeDefined();
     expect(r.body.config.frqBand).toBeDefined();
     expect(r.body.config.quarters).toBeDefined();
-    // Units should have U1 data from the fixture ledger
-    expect(r.body.units.U1).toBeDefined();
-    expect(r.body.units.U1.Q).toBe(50); // 1 correct out of 2
+    expect(r.body.formula).toBe('district');
+    expect(r.body.quarters.Q1.quarterGrade).toBe(75);
+    expect(r.body.quarters.Q1.categoryBreakdown.assessments).toMatchObject({ earned: 75, possible: 100 });
+    expect(r.body.items).toContainEqual(expect.objectContaining({ itemId: 'TA-U1', points: 75, maxPoints: 100 }));
   });
 
   it('404 when studentId is unknown', async () => {
@@ -263,9 +269,7 @@ describe('GET /teacher/student/:studentId/grade', () => {
   it('lessonSchedule + section are threaded to computeGrade (section from roster)', async () => {
     // A fake lesson schedule — format matches what grade.js expects.
     const fakeSchedule = {
-      lessons: {
-        'u1.l1': { unit: 1, lessonKey: 'l1', dueDates: { PeriodB: '2020-01-01' } },
-      },
+      '1.1': { unit: 1, worksheetKey: '1', periods: { C: '2026-09-03', D: '2026-09-04', G: '2026-09-02' } },
     };
     const ctx = await startServer({ roster: [FIXTURE_STUDENT], ledger: {} });
     // Re-create with a lessonSchedule injected (need to rebuild the server manually).
@@ -277,7 +281,8 @@ describe('GET /teacher/student/:studentId/grade', () => {
     const rosterDb = createFakeRosterDb([FIXTURE_STUDENT]);
     const ledgerDb = createFakeLedgerDb({});
     const { createApp: ca } = await import('../server.js');
-    const app = ca(rosterDb, ledgerDb, fakeLoadManifest, okAnswerKey, okSkillMap, realBkt, undefined, fakeSchedule);
+    // Match startServer: Vitest disables district grading by default.
+    const app = ca(rosterDb, ledgerDb, fakeLoadManifest, okAnswerKey, okSkillMap, realBkt, undefined, fakeSchedule, { useDistrictFormula: true, bonusOnlyThrough: null });
     const server = new TestServer(app);
     await server.start();
     srv = server;
@@ -285,9 +290,11 @@ describe('GET /teacher/student/:studentId/grade', () => {
     const r = await server.get('/teacher/student/stu_abc123/grade', { 'x-teacher-secret': TEACHER });
     expect(r.status).toBe(200);
     expect(r.body.ok).toBe(true);
-    // section from roster row is threaded through (PeriodB)
-    expect(r.body.section).toBe('PeriodB');
-    expect(r.body.quarters).toBeDefined();
+    expect(r.body.formula).toBe('district');
+    expect(r.body.section).toBe('C');
+    expect(r.body.items).toContainEqual(expect.objectContaining({
+      itemId: 'LC-U1-L1', dueDate: '2026-09-03', quarter: 'Q1', maxPoints: 10,
+    }));
   });
 });
 
@@ -411,7 +418,7 @@ describe('GET /teacher/student/:studentId/recent', () => {
     expect(r.body.studentId).toBe('stu_abc123');
     expect(r.body.username).toBe('papaya-otter');
     expect(r.body.realName).toBe('Jane Doe');
-    expect(r.body.section).toBe('PeriodB');
+    expect(r.body.section).toBe('C');
     expect(r.body.submissions).toEqual([]);
   });
 });
@@ -426,7 +433,7 @@ describe('Token-based teacher auth (Authorization: Bearer)', () => {
     student_id: 'stu_teacher',
     login_username: 'apple-fox',
     real_name: 'Mr. Colson',
-    section: 'PeriodB',
+    section: 'C',
   };
 
   for (const endpoint of ['profile', 'grade', 'recent']) {
@@ -515,12 +522,11 @@ const FIXTURE_MANIFEST = {
         {
           lesson: 'L1',
           activities: [
-            { activity: 'worksheet', source: 'u1_lesson1_live', itemIds: ['WS-U1L1-Q1', 'WS-U1L1-Q2'] },
-            { activity: 'quiz',      source: 'curriculum_quiz',  itemIds: ['U1-L1-Q01', 'U1-L1-Q02'] },
+            { activity: 'try-it', source: 'try-it', itemIds: ['TI-U1-L1-1', 'TI-U1-L1-2'] },
+            { activity: 'lesson-check', source: 'lesson-check', itemIds: ['LC-U1-L1'] },
           ],
         },
       ],
-      pc: { activity: 'pc', source: 'curriculum_pc', itemIds: ['U1-PC-MCQ-A-Q01'] },
     },
   ],
 };
@@ -560,11 +566,11 @@ describe('GET /teacher/student/:studentId/donow', () => {
     // nextTask points to the first activity since ledger is empty.
     expect(r.body.nextTask).not.toBeNull();
     expect(r.body.nextTask.unit).toBe('U1');
-    expect(r.body.nextTask.activity).toBe('worksheet');
+    expect(r.body.nextTask.activity).toBe('try-it');
   });
 
   it('200 with token-auth (Bearer) — same envelope', async () => {
-    const TEACHER_ROW = { student_id: 'stu_teacher2', login_username: 'mango-fox', real_name: 'Mr. T', section: 'PeriodB' };
+    const TEACHER_ROW = { student_id: 'stu_teacher2', login_username: 'mango-fox', real_name: 'Mr. T', section: 'C' };
     process.env.ROSTER_TOKEN_SECRET = `tok-${randomBytes(16).toString('hex')}`;
     process.env.ROSTER_TEACHER_SECRET = TEACHER;
     process.env.NODE_ENV = 'test';
@@ -620,46 +626,6 @@ describe('GET /teacher/student/:studentId/donow', () => {
   });
 });
 
-// ── Wave 2A: GET /teacher/student/:studentId/poll-archive ─────────────────────
-
-// Minimal fake pollArchiveDb (mirrors poll-archive.test.js pattern exactly).
-function makeTableMissingError() {
-  return { code: '42P01', message: 'relation "poll_archive" does not exist' };
-}
-
-function createFakePollArchiveDb({ tableMissing = false, rows = [] } = {}) {
-  const store = [...rows];
-  const state = { tableMissing };
-  function maybeMissing() {
-    return state.tableMissing ? { data: null, error: makeTableMissingError() } : null;
-  }
-  return {
-    state,
-    async listPollArchive(section, _date) {
-      const miss = maybeMissing(); if (miss) return miss;
-      return { data: store.filter(r => r.section === section), error: null };
-    },
-    // insertPollArchive / deletePollArchive are not exercised by the teacher endpoint
-    // but must exist if other routes call them (no-op stubs are fine here).
-    async insertPollArchive() { const miss = maybeMissing(); if (miss) return miss; return { data: {}, error: null }; },
-    async deletePollArchive() { const miss = maybeMissing(); if (miss) return miss; return { data: null, error: null }; },
-  };
-}
-
-const FIXTURE_POLL_ROW = {
-  id: 'pa-001',
-  poll_id: 'poll-abc',
-  section: 'PeriodB',
-  poll_date: '2026-05-22',
-  question: 'What is the p-value?',
-  options: ['< 0.05', '> 0.05'],
-  tally: [10, 2],
-  blind: false,
-  created_at: '2026-05-22T12:00:00.000Z',
-};
-
-
-
 
 describe('teacher skill evidence', () => {
   const path = '/teacher/student/stu_abc123/recent?skill=1.A';
@@ -674,22 +640,22 @@ describe('teacher skill evidence', () => {
     const rows = [
       makeRow(sid, 'U1-L2-Q01', 'B', { recorded_at: '2026-09-01T00:00:00Z' }),
       makeRow(sid, 'U1-L2-Q01', 'A', { attempt: 2, recorded_at: '2026-09-02T00:00:00Z' }),
-      makeRow(sid, 'WS-U1L1-exitTicket', 'Saved explanation', { source: 'frq', score: .5 }),
-      makeRow(sid, 'WS-U1L1-exitTicket', 'Ungraded', { source: 'frq', score: null }),
-      makeRow(sid, 'WS-U1L1-exitTicket', 'Plain worksheet', { source: 'worksheet', score: 1 }),
+      makeRow(sid, 'WS-U1L1-r1', 'Saved explanation', { source: 'frq', score: .5 }),
+      makeRow(sid, 'WS-U1L1-r1', 'Ungraded', { source: 'frq', score: null }),
+      makeRow(sid, 'WS-U1L1-r1', 'Plain worksheet', { source: 'worksheet', score: 1 }),
       ...Array.from({ length: 110 }, () => makeRow(sid, 'U2-L1-Q01', 'A')),
     ];
     const key = { answerKey: { ...FIXTURE_ANSWER_KEY.answerKey, 'U1-L2-Q01': { answerKey: 'B' } } };
-    const map = { 'U1-L2-Q01': { skill: '1.A' }, 'WS-U1L1-exitTicket': { skill: '1.A' }, 'U2-L1-Q01': { skill: '2.B' } };
+    const map = { 'U1-L2-Q01': { skill: '1.A' }, 'WS-U1L1-r1': { skill: '1.A' }, 'U2-L1-Q01': { skill: '2.B' } };
     const ctx = await startServer({ roster: [FIXTURE_STUDENT], ledger: { [sid]: rows }, loadAnswerKey: async () => key, loadSkillMap: async () => map });
     srv = ctx.server;
     const { body, status } = await srv.get(path + '&limit=1', headers);
     expect(status).toBe(200);
     expect(body.submissions).toHaveLength(3);
     expect(body.submissions.map(r => r.correct)).toEqual([true, false, true]);
-    expect(body.submissions[0].question.prompt).toContain('roller coasters');
-    expect(body.submissions[0].question.attachments.choices).toHaveLength(5);
-    expect(body.submissions[2].question.prompt).toContain('sleep');
+    expect(body.submissions[0].question.prompt).toContain('Expand 2(x + 3)');
+    expect(body.submissions[0].question.attachments.choices).toHaveLength(3);
+    expect(body.submissions[2].question.prompt).toContain('negative coefficient');
     expect(body.submissions[2].response).toBe('Saved explanation');
     const { computeMastery } = await import('../mastery.js');
     expect(body.summary).toEqual(computeMastery(rows, key.answerKey, map, realBkt).skills['1.A']);

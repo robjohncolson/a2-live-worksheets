@@ -1,16 +1,12 @@
 // @vitest-environment node
 
-import { existsSync, readFileSync } from 'node:fs';
-
+import { readFileSync } from 'node:fs';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-
 import { bootGoldenApp } from './golden/boot.js';
 import { firstDiffPath } from './golden/firstDiffPath.js';
 import { stripVolatile, VOLATILE_VERSION } from './golden/volatile.js';
 
 const SYNTHETIC_DIR = new URL('./fixtures/golden-synthetic/', import.meta.url);
-const LOCAL_DIR = new URL('./fixtures/golden-local/', import.meta.url);
-const FIXTURE_FILES = ['students.json', 'inputs.json', 'expected.json'];
 
 function compareCodePoints(a, b) {
   if (a < b) return -1;
@@ -38,15 +34,44 @@ function expectGoldenEqual(actual, expected, label) {
   ).toBeNull();
 }
 
-function defineOracleTests(describeOracle, label, fixture) {
-  describeOracle(label, () => {
+const fixture = loadFixture(SYNTHETIC_DIR);
+
+// Compare the stable public grade contract, with readable paths on failure.
+// Six decimals ignore floating-point representation without hiding point changes.
+function rounded(value) {
+  return value == null ? value : Math.round(value * 1e6) / 1e6;
+}
+
+function gradeProjection(response) {
+  const grade = stripVolatile(response);
+  return {
+    formula: grade.formula,
+    yearGrade: rounded(grade.yearGrade),
+    quarters: Object.fromEntries(Object.entries(grade.quarters).map(([key, quarter]) => [key, {
+      quarterGrade: rounded(quarter.quarterGrade),
+      ceiling: rounded(quarter.ceiling),
+      ...(grade.formula === 'v3' && key === 'Q1' ? {
+        masteryAvg: rounded(quarter.masteryAvg), workAvg: rounded(quarter.workAvg),
+      } : {}),
+    }])),
+    categories: Object.fromEntries(Object.entries(grade.quarters.Q1.categoryBreakdown).map(([key, value]) => [key, [
+      rounded(value.score), value.earned, value.possible, value.count, value.minimum, value.minimumMet,
+    ]])),
+    cells: grade.gradebook.quarters.Q1.cells,
+  };
+}
+
+function defineOracleTests(mode) {
+  describe(`synthetic A2 ${mode} HTTP golden master`, () => {
     let app;
+    const expected = fixture.expected.perMode[mode];
 
     beforeAll(async () => {
       app = await bootGoldenApp({
         studentsDoc: fixture.studentsDoc,
         inputs: fixture.inputs,
-        configOverrides: fixture.inputs.configOverrides,
+        configOverrides: fixture.inputs.modes[mode],
+        inProcess: true,
       });
     });
 
@@ -54,145 +79,96 @@ function defineOracleTests(describeOracle, label, fixture) {
       if (app) await app.close();
     });
 
-    it('uses the current volatile-field contract', () => {
-      expect(
-        fixture.expected.volatileVersion,
-        'stripVolatile changed; regenerate the golden fixture',
-      ).toBe(VOLATILE_VERSION);
+    it('uses the current volatile-field contract and covers every fixture identity', () => {
+      expect(fixture.expected.volatileVersion).toBe(VOLATILE_VERSION);
+      expect(Object.keys(expected).sort(compareCodePoints)).toEqual(
+        fixture.studentsDoc.students.map(student => student.id).sort(compareCodePoints),
+      );
     });
 
-    it('matches GET /grade for every fixture student', async () => {
-      const fixtureIds = fixture.studentsDoc.students
-        .map((student) => student.id)
-        .sort(compareCodePoints);
-      const expectedIds = Object.keys(fixture.expected.perStudent).sort(compareCodePoints);
-      expect(expectedIds).toEqual(fixtureIds);
-
-      for (const student of fixture.studentsDoc.students) {
-        const actual = stripVolatile(await app.getStudentGrade(student.id));
-        expectGoldenEqual(
-          actual,
-          fixture.expected.perStudent[student.id],
-          `GET /grade for ${student.id}`,
-        );
-      }
+    it.each(fixture.studentsDoc.students)('matches GET /grade for $id ($section)', async student => {
+      const actual = await app.getStudentGrade(student.id);
+      expect(actual.ok).toBe(true);
+      expectGoldenEqual(gradeProjection(actual), expected[student.id], `${mode}: ${student.id}`);
+      expect(actual.gradebook.weights).toEqual({ Assessments: 50, Assignments: 40, Engagement: 10 });
+      expect(actual.items).toHaveLength(4);
+      expect(actual.items.every(item => item.due && item.quarter === 'Q1')).toBe(true);
+      expect(actual.items.map(item => item.maxPoints)).toEqual([10, 2, 1, 100]);
+      expect(actual.items.map(item => item.dueDate)).toEqual(Array(4).fill(
+        fixture.inputs.lessonSchedule['1.1'].periods[student.section],
+      ));
     });
 
-    it('matches GET /class/grades', async () => {
-      const actual = stripVolatile(await app.getClassGrades());
-      expectGoldenEqual(actual, fixture.expected.classGrades, 'GET /class/grades');
-    });
-  });
-}
-
-const syntheticFixture = loadFixture(SYNTHETIC_DIR);
-defineOracleTests(describe, 'synthetic grade HTTP golden master', syntheticFixture);
-
-const localReady = FIXTURE_FILES.every((filename) => existsSync(new URL(filename, LOCAL_DIR)));
-const localFixture = localReady ? loadFixture(LOCAL_DIR) : null;
-const describeLocal = localReady ? describe : describe.skip;
-defineOracleTests(
-  describeLocal,
-  localReady
-    ? 'local real-data grade HTTP golden master'
-    : 'local real-data golden master unavailable; build with node scripts/build-golden-fixture.mjs --accept',
-  localFixture,
-);
-
-if (localReady) {
-  describe('local real-data fixture privacy contract', () => {
-    it('keeps identities pseudonymous and responses narrowly bounded', () => {
-      expect(JSON.stringify(localFixture.studentsDoc)).not.toContain('@');
-
-      for (const student of localFixture.studentsDoc.students) {
-        expect(student.id).toMatch(/^gm-[0-9a-f]{12}$/);
-        for (const record of student.records) {
-          const mayKeepResponse = record.source === 'curriculum_quiz' || (
-            record.source === 'pc' &&
-            /^U\d+-PC-/i.test(record.item_id) &&
-            !/-PAPER$/i.test(record.item_id)
-          );
-          if (!mayKeepResponse) {
-            expect(record.response, `${student.id} ${record.item_id}`).toBeNull();
-            continue;
-          }
-          if (record.response !== null) {
-            expect(record.response, `${student.id} ${record.item_id}`).toMatch(
-              /^[a-z0-9][a-z0-9 .,\/-]{0,7}$/,
-            );
-          }
-        }
+    it('matches GET /class/grades for the same C/D/G roster', async () => {
+      const actual = await app.getClassGrades();
+      expect(actual.ok).toBe(true);
+      expect(actual.students).toHaveLength(fixture.studentsDoc.students.length);
+      const projected = Object.fromEntries(actual.students.map(student => [student.studentId, gradeProjection(student)]));
+      expectGoldenEqual(projected, expected, `${mode}: GET /class/grades`);
+      for (const student of actual.students) {
+        expect(student.section).toBe(fixture.studentsDoc.students.find(row => row.id === student.studentId).section);
       }
     });
   });
 }
 
-async function firstPerturbedDifference({ studentsDoc, inputs, configOverrides }) {
-  const app = await bootGoldenApp({ studentsDoc, inputs, configOverrides });
+for (const mode of ['district', 'v3']) defineOracleTests(mode);
+
+async function firstPerturbedDifference({ mode, studentId, configOverrides = {}, studentsDoc = fixture.studentsDoc }) {
+  const app = await bootGoldenApp({
+    studentsDoc, inputs: fixture.inputs, inProcess: true,
+    configOverrides: { ...fixture.inputs.modes[mode], ...configOverrides },
+  });
   try {
-    for (const student of studentsDoc.students) {
-      const actual = stripVolatile(await app.getStudentGrade(student.id));
-      const path = firstDiffPath(actual, syntheticFixture.expected.perStudent[student.id]);
-      if (path !== null) return { studentId: student.id, path };
-    }
-    return null;
+    const actual = gradeProjection(await app.getStudentGrade(studentId));
+    return { studentId, actual, path: firstDiffPath(actual, fixture.expected.perMode[mode][studentId]) };
   } finally {
     await app.close();
   }
 }
 
-function expectReadableDifference(difference, label) {
-  expect(difference, `${label} must change at least one synthetic student`).not.toBeNull();
-  expect(
-    difference.path,
-    `${label} first difference for ${difference.studentId} must be a readable JSON path`,
-  ).toMatch(/^\$(?:\.|\[)/);
+function expectReadableDifference(difference, expectedGrade) {
+  expect(difference.path, `${difference.studentId} must change a public grade value`).toMatch(/^\$(?:\.|\[)/);
+  expect(difference.actual.quarters.Q1.quarterGrade).toBeCloseTo(expectedGrade, 6);
 }
 
-describe('synthetic golden master has teeth', () => {
-  it('detects an isolated v3WorkWeights perturbation', async () => {
-    const difference = await firstPerturbedDifference({
-      studentsDoc: syntheticFixture.studentsDoc,
-      inputs: syntheticFixture.inputs,
-      configOverrides: {
-        ...syntheticFixture.inputs.configOverrides,
-        v3WorkWeights: { lessons: 0.05, quizzes: 0.75, posters: 0.10, blooket: 0.10 },
-      },
-    });
-    expectReadableDifference(difference, 'v3WorkWeights perturbation');
+describe('A2 golden master has teeth', () => {
+  it.each([
+    ['floor', { v3Gates: { floor: 0.5, ceiling: 0.7 } }],
+    ['cap', { v3Gates: { floor: 0.4, ceiling: 0.6 } }],
+    ['weights', { v3WorkWeights: { lessons: 0.2, quizzes: 0.6, blooket: 0.2 } }],
+  ])('detects an isolated v3 %s perturbation', async (name, configOverrides) => {
+    const oracle = fixture.expected.perturbations[name];
+    const difference = await firstPerturbedDifference({ mode: 'v3', studentId: oracle.studentId, configOverrides });
+    expectReadableDifference(difference, oracle.quarterGrade);
   });
 
-  
-
-  
-
-  it('detects an isolated Blooket make-up score perturbation', async () => {
-    const studentsDoc = structuredClone(syntheticFixture.studentsDoc);
-    const target = studentsDoc.students.find(
-      (student) => student.id === 'synthetic-12-blooket-makeup',
-    );
-    const record = target.records.find(
-      (entry) => entry.item_id === 'BL-U1-L1-DESK_DONE',
-    );
-    record.score = 79;
-
-    const difference = await firstPerturbedDifference({
-      studentsDoc,
-      inputs: syntheticFixture.inputs,
-      configOverrides: syntheticFixture.inputs.configOverrides,
-    });
-    expectReadableDifference(difference, 'Blooket make-up score perturbation');
+  it('detects a passed flashcard becoming a failed attempt at 79', async () => {
+    const studentsDoc = structuredClone(fixture.studentsDoc);
+    const oracle = fixture.expected.perturbations.flashcard;
+    const student = studentsDoc.students.find(row => row.id === oracle.studentId);
+    student.records.find(row => row.source === 'flashcard').score = 79;
+    const difference = await firstPerturbedDifference({ mode: 'district', studentId: student.id, studentsDoc });
+    expectReadableDifference(difference, oracle.quarterGrade);
   });
 
-  it('detects an isolated quiz-credit answer-key perturbation', async () => {
-    const inputs = structuredClone(syntheticFixture.inputs);
-    inputs.answerKey.answerKey['U1-L1-Q1'].answerKey = 'b';
-
-    const difference = await firstPerturbedDifference({
-      studentsDoc: syntheticFixture.studentsDoc,
-      inputs,
-      configOverrides: syntheticFixture.inputs.configOverrides,
-    });
-    expectReadableDifference(difference, 'quiz-credit perturbation');
+  it('counts missing work only after its section lesson day, including Wednesday', async () => {
+    const studentsDoc = structuredClone(fixture.studentsDoc);
+    studentsDoc.asOf = '2026-09-23';
+    studentsDoc.students = studentsDoc.students.filter(student => ['a2-missing', 'a2-floor'].includes(student.id));
+    for (const student of studentsDoc.students) student.records = [];
+    for (const mode of ['district', 'v3']) {
+      const app = await bootGoldenApp({ studentsDoc, inputs: fixture.inputs,
+        configOverrides: fixture.inputs.modes[mode], inProcess: true });
+      try {
+        for (const student of studentsDoc.students) {
+          const actual = await app.getStudentGrade(student.id);
+          expect(actual.quarters.Q1.quarterGrade).toBeNull();
+          expect(actual.items.every(item => !item.due)).toBe(true);
+        }
+      } finally {
+        await app.close();
+      }
+    }
   });
 });

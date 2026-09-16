@@ -66,14 +66,48 @@ describe('exit-ticket bonus', () => {
     const map = computeLessonGrades(rows, band, {}, null, { worksheetBlankCounts: { '1.1': 1 } });
     expect(map.get('1.1').Cws).toBe(100);
     expect(map.get('1.1').lessonGrade).toBe(105);
-    const config = { quarters: { Q1: { units: [1], start: '2026-09-01', end: '2026-12-31' } },
-      v3WorkWeights: { lessons: 1, quizzes: 0, posters: 0, blooket: 0 }, pcTrack: { enabled: false } };
+    const config = { quarters: { Q1: { units: [1], start: '2026-09-02', end: '2026-11-06' } },
+      v3LessonsByDate: true,
+      v3WorkWeights: { lessons: 1, quizzes: 0, blooket: 0 } };
     const quarter = computeQuarterV3({ quarterKey: 'Q1', config, lessonMap: map,
-      schedule: { '1.1': { unit: 1, periods: { B: '2026-09-09' } } },
-      todayDateStr: '2026-09-20', section: 'B', unitPcData: {} });
+      schedule: { '1.1': { unit: 1, periods: { C: '2026-09-08' } } },
+      todayDateStr: '2026-09-20', section: 'C' });
     expect(quarter.workAvg).toBe(105);
     expect(quarter.quarterGrade).toBe(100);
   });
 
-  
+});
+
+// Synthetic inputs replace the AP whole-grade snapshot. Legacy WS IDs above
+// exercise the retained lesson calculator, not the district grading policy.
+const fixture = JSON.parse(readFileSync(
+  new URL('./fixtures/exit-ticket-without-golden.json', import.meta.url), 'utf8'));
+
+describe.each(['district', 'v3'])('A2 %s exit-ticket isolation', formula => {
+  it.each(['C', 'D', 'G'])('ignores legacy exit tickets in section %s', section => {
+    const production = resolveProductionGradeInputs('SY2627');
+    const config = { ...production.config,
+      useDistrictFormula: formula === 'district', useV3: formula === 'v3' };
+    const opts = { ...fixture.opts, section, asOf: new Date(fixture.opts.asOf) };
+
+    for (const sample of fixture.cases) {
+      const withoutExits = computeGrade(sample.rows, {}, config, opts);
+      const withExits = computeGrade([...sample.rows, ...fixture.legacyExitRows], {}, config, opts);
+      expect(withoutExits.formula, sample.name).toBe(formula);
+      expect(withoutExits.items, sample.name).toHaveLength(4);
+      expect(withoutExits.quarters.Q1.lessonsDue, sample.name).toBe(1);
+      // Compare the entire response, including denominators, ceilings and items.
+      // No filtering before computation: the real A2 adapter must ignore exits.
+      expect(withExits, sample.name).toEqual(withoutExits);
+      if (formula === 'district') {
+        expect(withoutExits.quarters.Q1.quarterGrade, sample.name)
+          .toBeCloseTo(sample.districtGrade, 10);
+      }
+      if (formula === 'v3' && sample.name === 'missing topic assessment') {
+        expect(withoutExits.quarters.Q1.masteryAvg).toBe(0);
+        expect(withoutExits.quarters.Q1.workAvg).toBe(100);
+        expect(withoutExits.quarters.Q1.quarterGrade).toBe(70);
+      }
+    }
+  });
 });

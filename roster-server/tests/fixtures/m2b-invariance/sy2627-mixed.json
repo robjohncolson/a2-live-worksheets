@@ -1,298 +1,86 @@
 {
+  "note": "Synthetic A2 resolver contract; expected points and 50/40/10 totals are hand-derived. Historical filename retained for batch ownership.",
   "year": "SY2627",
-  "blooketPresenceLen": 0,
-  "blooketRequiredLen": 0,
-  "schedule_1_1_B": null,
-  "pcUnitsFromEvents": null,
-  "frozenConfig": {
-    "bonusOnlyThrough": "2026-09-18",
-    "a2Categories": {
-      "assessments": {
-        "weight": 0.5,
-        "min": 4
-      },
-      "assignments": {
-        "weight": 0.4,
-        "min": 10
-      },
-      "engagement": {
-        "weight": 0.1,
-        "min": 10
+  "schedule": {
+    "lessons": {
+      "1.1": {
+        "unit": 1,
+        "topicKey": "1.1",
+        "worksheetKey": "1",
+        "tryItCount": 2,
+        "periods": {
+          "C": "2026-10-13",
+          "D": "2026-10-14",
+          "G": "2026-10-14"
+        }
       }
     },
-    "a2Feeders": {
-      "lesson-check": {
-        "category": "assessments",
-        "maxPoints": 10
-      },
-      "try-it": {
-        "category": "assignments",
-        "maxPoints": 2
-      },
-      "topic-assessment": {
-        "category": "assessments",
-        "maxPoints": 100
-      },
-      "flashcard": {
-        "category": "engagement",
-        "maxPoints": 1
+    "topicAssessments": [
+      {
+        "itemId": "TA-U1",
+        "source": "topic-assessment",
+        "periods": {
+          "C": "2026-10-13",
+          "D": "2026-10-14",
+          "G": "2026-10-14"
+        }
       }
-    },
-    "useDistrictFormula": false,
-    "meetingDays": {
-      "C": [
-        1,
-        2,
-        4
-      ],
-      "D": [
-        1,
-        3,
-        5
-      ],
-      "G": [
-        2,
-        3,
-        4,
-        5
-      ]
-    },
-    "C": 85,
-    "feederWeights": {
-      "W": 1,
-      "Q": 2
-    },
-    "lessonFeederWeights": {
-      "ws": 1,
-      "W": 2,
-      "Q": 3
-    },
-    "frqBand": {
-      "E": 100,
-      "P": 70,
-      "I": 35
-    },
-    "frqDiagnosticCorrectThreshold": 0.5,
-    "quarters": {
-      "Q1": {
-        "units": [
-          1,
-          2,
-          3
-        ],
-        "start": "2026-09-02",
-        "end": "2026-11-06"
-      },
-      "Q2": {
-        "units": [
-          4,
-          5
-        ],
-        "start": "2026-11-09",
-        "end": "2027-01-22"
-      },
-      "Q3": {
-        "units": [
-          6,
-          7
-        ],
-        "start": "2027-01-25",
-        "end": "2027-04-14"
-      },
-      "Q4": {
-        "units": [
-          8,
-          9
-        ],
-        "start": "2027-04-15",
-        "end": "2027-06-17"
-      }
-    },
-    "schoolTz": "America/New_York",
-    "gradingWindowStart": "2026-09-01",
-    "diagnosticTheta": 0.65,
-    "useV3": false,
-    "v3LessonsExcludeQuiz": true,
-    "v3WorkWeights": {
-      "lessons": 0.42857142857142855,
-      "quizzes": 0.42857142857142855,
-      "blooket": 0.14285714285714285
-    },
-    "v3Gates": {
-      "floor": 0.4,
-      "ceiling": 0.7
-    },
-    "v3FixQuizZero": true,
-    "v3FixCwsReveal": true,
-    "v3AheadOfScheduleLessons": "not-until-due",
-    "v3LessonsByDate": true,
-    "dueAfterLessonDay": true,
-    "v3EarlyBonus": {
-      "perLesson": 1,
-      "cap": 5,
-      "minComplete": 0.8
-    }
+    ]
   },
-  "artHash": "c3d5ac70c1bbddbffa30f7c01552e0b7964f464a99c9ce7103a2cdafa72e0180",
-  "grade": {
-    "units": {
-      "U1": {
-        "W": null,
-        "Q": null,
-        "B": null,
-        "banked": null,
-        "unitGrade": null,
-        "graded": false
-      }
+  "rows": [
+    {
+      "student_id": "a2-resolver-student",
+      "item_id": "LC-U1-L1",
+      "source": "lesson-check",
+      "score": 8,
+      "recorded_at": "2026-10-14T16:00:00.000Z",
+      "attempt": 1
     },
-    "quarters": {
-      "Q1": {
-        "units": [
-          1,
-          2,
-          3
-        ],
-        "unitGrades": {
-          "U1": null,
-          "U2": null,
-          "U3": null
-        },
-        "quarterGrade": null,
-        "quarterGradeBase": null,
-        "earlyBonus": 0,
-        "earlyLessons": 0,
-        "earlyKeys": [],
-        "aheadLessons": 0,
-        "aheadKeys": [],
-        "unitsGraded": 0,
-        "unitsTotal": 3,
-        "ceiling": null,
-        "lessonsDue": 0,
-        "lessonsGraded": 0,
-        "lessonsTotal": 0,
-        "pcAvg": null,
-        "workAvg": null,
-        "pcAvgRaw": null,
-        "workAvgRaw": null,
-        "workTracks": null,
-        "blooketDue": null,
-        "blooketDone": null,
-        "blooketTodo": [],
-        "quizDue": null,
-        "quizDone": null,
-        "quizTodo": []
-      },
-      "Q2": {
-        "units": [
-          4,
-          5
-        ],
-        "unitGrades": {
-          "U4": null,
-          "U5": null
-        },
-        "quarterGrade": null,
-        "quarterGradeBase": null,
-        "earlyBonus": 0,
-        "earlyLessons": 0,
-        "earlyKeys": [],
-        "aheadLessons": 0,
-        "aheadKeys": [],
-        "unitsGraded": 0,
-        "unitsTotal": 2,
-        "ceiling": null,
-        "lessonsDue": 0,
-        "lessonsGraded": 0,
-        "lessonsTotal": 0,
-        "pcAvg": null,
-        "workAvg": null,
-        "pcAvgRaw": null,
-        "workAvgRaw": null,
-        "workTracks": null,
-        "blooketDue": null,
-        "blooketDone": null,
-        "blooketTodo": [],
-        "quizDue": null,
-        "quizDone": null,
-        "quizTodo": []
-      },
-      "Q3": {
-        "units": [
-          6,
-          7
-        ],
-        "unitGrades": {
-          "U6": null,
-          "U7": null
-        },
-        "quarterGrade": null,
-        "quarterGradeBase": null,
-        "earlyBonus": 0,
-        "earlyLessons": 0,
-        "earlyKeys": [],
-        "aheadLessons": 0,
-        "aheadKeys": [],
-        "unitsGraded": 0,
-        "unitsTotal": 2,
-        "ceiling": null,
-        "lessonsDue": 0,
-        "lessonsGraded": 0,
-        "lessonsTotal": 0,
-        "pcAvg": null,
-        "workAvg": null,
-        "pcAvgRaw": null,
-        "workAvgRaw": null,
-        "workTracks": null,
-        "blooketDue": null,
-        "blooketDone": null,
-        "blooketTodo": [],
-        "quizDue": null,
-        "quizDone": null,
-        "quizTodo": []
-      },
-      "Q4": {
-        "units": [
-          8,
-          9
-        ],
-        "unitGrades": {
-          "U8": null,
-          "U9": null
-        },
-        "quarterGrade": null,
-        "quarterGradeBase": null,
-        "earlyBonus": 0,
-        "earlyLessons": 0,
-        "earlyKeys": [],
-        "aheadLessons": 0,
-        "aheadKeys": [],
-        "unitsGraded": 0,
-        "unitsTotal": 2,
-        "ceiling": null,
-        "lessonsDue": 0,
-        "lessonsGraded": 0,
-        "lessonsTotal": 0,
-        "pcAvg": null,
-        "workAvg": null,
-        "pcAvgRaw": null,
-        "workAvgRaw": null,
-        "workTracks": null,
-        "blooketDue": null,
-        "blooketDone": null,
-        "blooketTodo": [],
-        "quizDue": null,
-        "quizDone": null,
-        "quizTodo": []
-      }
+    {
+      "student_id": "a2-resolver-student",
+      "item_id": "TI-U1-L1-1",
+      "source": "try-it",
+      "score": 2,
+      "recorded_at": "2026-10-14T16:00:00.000Z",
+      "attempt": 1
     },
-    "completion": {
-      "U1": {
-        "worksheet": 1,
-        "frq": 0,
-        "curriculum_quiz": 2
-      }
+    {
+      "student_id": "a2-resolver-student",
+      "item_id": "TI-U1-L1-2",
+      "source": "try-it",
+      "score": 1,
+      "recorded_at": "2026-10-14T16:00:00.000Z",
+      "attempt": 1
     },
-    "lessonsCount": 0,
-    "hasBlooketSample": []
+    {
+      "student_id": "a2-resolver-student",
+      "item_id": "BL-U1-L1-DESK_DONE",
+      "source": "flashcard",
+      "score": 100,
+      "recorded_at": "2026-10-14T16:00:00.000Z",
+      "attempt": 1
+    },
+    {
+      "student_id": "a2-resolver-student",
+      "item_id": "TA-U1",
+      "source": "topic-assessment",
+      "score": 80,
+      "recorded_at": "2026-10-14T16:00:00.000Z",
+      "attempt": 1
+    }
+  ],
+  "expected": {
+    "formula": "district",
+    "quarterGrade": 80,
+    "lessonsDue": 1,
+    "lessonsGraded": 1,
+    "lessonsTotal": 1,
+    "points": {
+      "LC-U1-L1": 8,
+      "TI-U1-L1-1": 2,
+      "TI-U1-L1-2": 1,
+      "BL-U1-L1-DESK_DONE": 1,
+      "TA-U1": 80
+    }
   }
 }

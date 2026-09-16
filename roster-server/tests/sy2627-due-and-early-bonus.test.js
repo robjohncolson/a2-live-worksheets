@@ -1,9 +1,4 @@
-// sy2627-due-and-early-bonus.test.js — teacher decisions of 2026-09-03:
-//   1. "Schoology today" = category-weighted total over DUE + COMPLETED cells only.
-//   2. Early-completion bonus: +1 point per scheduled-due lesson whose worksheet
-//      work was all in by 11:59 PM school time on its due day, capped per quarter.
-//   3. A lesson is due once its lesson DAY HAS ENDED (config.dueAfterLessonDay).
-// Every rule is config-gated so the frozen SY2526 config keeps its old behavior.
+// Synthetic A2 schedules: retained early-completion helpers and production formula boundaries.
 import { describe, it, expect } from 'vitest';
 import {
   computeQuarterV3,
@@ -14,21 +9,22 @@ import {
 } from '../lesson-grade.js';
 import { buildGradebookRow, buildGradebook } from '../gradebook-grid.js';
 import { PHASE3_CONFIG } from '../grade-config.js';
+import { computeGrade } from '../grade.js';
 
 const CFG = {
   C: 85,
   lessonFeederWeights: { ws: 1, W: 2, Q: 3 },
   v3LessonsExcludeQuiz: true,
   useV3: true,
+  useDistrictFormula: false,
   v3LessonsByDate: true,
   v3AheadOfScheduleLessons: 'not-until-due', // production setting
   dueAfterLessonDay: true,
   v3EarlyBonus: { perLesson: 1, cap: 5, minComplete: 0.8 },
   schoolTz: 'America/New_York',
-  pcTrack: { enabled: false },
   quarters: {
-    Q1: { units: [1], start: '2026-09-02', end: '2026-11-06', pcAnchor: { p85: 40, p100: 60 } },
-    Q2: { units: [2], start: '2026-11-09', end: '2027-01-22', pcAnchor: { p85: 45, p100: 64 } },
+    Q1: { units: [1], start: '2026-09-02', end: '2026-11-06' },
+    Q2: { units: [2], start: '2026-11-09', end: '2027-01-22' },
   },
 };
 
@@ -46,10 +42,10 @@ function lesson(value, ts, opts = {}) {
     frqItems: [],
   };
 }
-function q1(lessonMap, schedule, todayDateStr, config = CFG) {
+function q1(lessonMap, schedule, todayDateStr, config = CFG, section = 'PeriodC') {
   return computeQuarterV3({
     quarterKey: 'Q1', config, lessonMap, schedule, todayDateStr,
-    section: 'PeriodB', unitPcData: {},
+    section,
     quizLessons: [], blooketLessons: [], // isolate the Lessons track
   });
 }
@@ -59,7 +55,7 @@ describe('isDateDue — due after the lesson day ends (11:59 PM)', () => {
     expect(isDateDue('2026-09-08', '2026-09-08', CFG)).toBe(false);
     expect(isDateDue('2026-09-08', '2026-09-09', CFG)).toBe(true);
   });
-  it('without the flag (frozen SY2526) the lesson date is due from the start of the day', () => {
+  it('without the flag (compatibility) the lesson date is due from the start of the day', () => {
     expect(isDateDue('2026-09-08', '2026-09-08', {})).toBe(true);
     expect(isDateDue('2026-09-08', '2026-09-07', {})).toBe(false);
   });
@@ -117,8 +113,8 @@ describe('worksheetCoverageReachedAt — the instant 80% of the blanks were in',
 
 describe('computeQuarterV3 — due-after-day + early bonus', () => {
   const schedule = {
-    '1.1': { unit: 1, periods: { B: '2026-09-08', E: '2026-09-09' } },
-    '1.2': { unit: 1, periods: { B: '2026-09-10', E: '2026-09-11' } },
+    '1.1': { unit: 1, periods: { C: '2026-09-08', D: '2026-09-09', G: '2026-09-09' } },
+    '1.2': { unit: 1, periods: { C: '2026-09-10', D: '2026-09-11', G: '2026-09-10' } },
   };
 
   it('on the lesson day a missing worksheet is NOT a zero yet (nothing due → grade null)', () => {
@@ -185,10 +181,10 @@ describe('computeQuarterV3 — due-after-day + early bonus', () => {
 
   it('a combined worksheet (4.1-2) earns ONE bonus, judged at the later topic date', () => {
     const sched = {
-      '4.1': { unit: 4, worksheetKey: '1-2', combinedWith: ['4.2'], periods: { B: '2026-09-08', E: '2026-09-09' } },
-      '4.2': { unit: 4, worksheetKey: '1-2', combinedWith: ['4.1'], periods: { B: '2026-09-10', E: '2026-09-11' } },
+      '4.1': { unit: 4, worksheetKey: '1-2', combinedWith: ['4.2'], periods: { C: '2026-09-08', D: '2026-09-09', G: '2026-09-09' } },
+      '4.2': { unit: 4, worksheetKey: '1-2', combinedWith: ['4.1'], periods: { C: '2026-09-10', D: '2026-09-11', G: '2026-09-10' } },
     };
-    const cfg = { ...CFG, quarters: { Q1: { units: [4], start: '2026-09-02', end: '2026-11-06', pcAnchor: { p85: 40, p100: 60 } } } };
+    const cfg = { ...CFG, quarters: { Q1: { units: [4], start: '2026-09-02', end: '2026-11-06' } } };
     const done = lesson(100, '2026-09-10T20:00:00Z'); // 4 PM EDT Sept 10 — after 4.1's day, on 4.2's day
     const lessonMap = lessonMapOf({ '4.1': done, '4.2': done });
     const r = q1(lessonMap, sched, '2026-09-11', cfg);
@@ -209,8 +205,8 @@ describe('computeQuarterV3 — due-after-day + early bonus', () => {
     const sched = {};
     const map = {};
     for (let i = 1; i <= 7; i++) {
-      const d = `2026-09-${String(7 + i).padStart(2, '0')}`;
-      sched[`1.${i}`] = { unit: 1, periods: { B: d, E: d } };
+      const d = ['2026-09-08', '2026-09-10', '2026-09-14', '2026-09-15', '2026-09-17', '2026-09-21', '2026-09-22'][i - 1];
+      sched[`1.${i}`] = { unit: 1, periods: { C: d, D: d, G: d } };
       map[`1.${i}`] = lesson(100, `${d}T12:00:00Z`);
     }
     const r = q1(lessonMapOf(map), sched, '2026-09-30');
@@ -219,7 +215,7 @@ describe('computeQuarterV3 — due-after-day + early bonus', () => {
     expect(r.quarterGrade).toBe(100);
   });
 
-  it('WITHOUT v3EarlyBonus / dueAfterLessonDay (frozen SY2526 config) nothing changes', () => {
+  it('WITHOUT v3EarlyBonus / dueAfterLessonDay (compatibility config) nothing changes', () => {
     const frozen = { ...CFG };
     delete frozen.v3EarlyBonus;
     delete frozen.dueAfterLessonDay;
@@ -259,13 +255,103 @@ describe('buildGradebookRow — "Schoology today" counts only DUE + COMPLETED ce
   });
 });
 
-// ── Progress Checks keyed by NEW CED unit (teacher decision 2026-09-03 #7) ──────
-import { pcDatesFor, pcUnitsInQuarter } from '../lesson-grade.js';
-import { computeGrade } from '../grade.js';
+// Explicit formula selection makes these independent of environment flags.
+const A2_SCHEDULE = {
+  '1.1': { unit: 1, tryItCount: 1,
+    periods: { C: '2026-09-21', D: '2026-09-23', G: '2026-09-23' } },
+};
+const ASSESSMENTS = [{ itemId: 'TA-U1', source: 'topic-assessment',
+  periods: { C: '2026-09-21', D: '2026-09-23', G: '2026-09-23' } }];
+const A2_ROWS = [
+  { item_id: 'LC-U1-L1', source: 'lesson-check', score: 8 },
+  { item_id: 'TI-U1-L1-1', source: 'try-it', score: 1 },
+  { item_id: 'BL-U1-L1-DESK_DONE', source: 'flashcard', score: 80 },
+  { item_id: 'TA-U1', source: 'topic-assessment', score: 80 },
+];
+function a2Grade(formula, rows, today, overrides = {}) {
+  return computeGrade(rows, {}, {
+    ...PHASE3_CONFIG, quarters: CFG.quarters, bonusOnlyThrough: '2026-09-18',
+    useDistrictFormula: formula === 'district', useV3: formula === 'v3',
+  }, {
+    section: 'PeriodC', lessonSchedule: A2_SCHEDULE, items: ASSESSMENTS,
+    asOf: new Date(`${today}T16:00:00Z`), ...overrides,
+  });
+}
 
+describe.each(['district', 'v3'])('A2 %s due dates and quarter close', formula => {
+  it.each([
+    ['PeriodC', '2026-09-21', '2026-09-22'],
+    ['PeriodD', '2026-09-23', '2026-09-24'],
+    ['PeriodG', '2026-09-23', '2026-09-24'],
+  ])('uses the section date for %s, including Wednesday meetings', (section, day, nextDay) => {
+    const onDay = a2Grade(formula, [], day, { section });
+    expect(onDay.formula).toBe(formula);
+    expect(onDay.quarters.Q1.quarterGrade).toBeNull();
+    expect(onDay.items).toHaveLength(4);
+    expect(onDay.items.every(item => item.dueDate === day && !item.due)).toBe(true);
+    const overdue = a2Grade(formula, [], nextDay, { section });
+    expect(overdue.items.every(item => item.due && item.points === 0)).toBe(true);
+    expect(overdue.quarters.Q1.quarterGrade).toBe(0);
+    expect(overdue.quarters.Q1.ceiling).toBe(100);
+  });
+  it('holds completed future work out of the grade until the lesson day ends', () => {
+    const early = a2Grade(formula, A2_ROWS, '2026-09-21');
+    expect(early.items.every(item => item.attempted && !item.due)).toBe(true);
+    expect(early.quarters.Q1.quarterGrade).toBeNull();
+    const due = a2Grade(formula, A2_ROWS, '2026-09-22');
+    // District: 80*.5 + 50*.4 + 100*.1 = 70.
+    // v3: mastery 80; work (3*50 + 3*80 + 100)/7 = 70; both clear the gates.
+    expect(due.quarters.Q1.quarterGrade).toBeCloseTo(formula === 'district' ? 70 : 80);
+    expect(due.quarters.Q1.formula).toBe(formula);
+  });
+  it('keeps recovery possible through the last quarter day, then closes the ceiling', () => {
+    expect(a2Grade(formula, [], '2026-11-06').quarters.Q1.ceiling).toBe(100);
+    const closed = a2Grade(formula, [], '2026-11-07').quarters.Q1;
+    expect(closed.quarterGrade).toBe(0);
+    expect(closed.ceiling).toBe(0);
+  });
+  it('assigns later-quarter lessons and assessments by date instead of unit number', () => {
+    const periods = { C: '2026-11-09', D: '2026-11-11', G: '2026-11-11' };
+    const grade = a2Grade(formula, [], '2026-11-10', {
+      lessonSchedule: { '1.1': { unit: 1, tryItCount: 1, periods } },
+      items: [{ itemId: 'TA-U1', source: 'topic-assessment', periods }],
+    });
+    expect(grade.items).toHaveLength(4);
+    expect(grade.items.every(item => item.quarter === 'Q2')).toBe(true);
+    expect(grade.quarters.Q1.quarterGrade).toBeNull();
+    expect(grade.quarters.Q2.quarterGrade).toBe(0);
+  });
+  it('uses an inclusive bonus window and includes only scores that raise the grade', () => {
+    const items = [
+      { itemId: 'TA-EARLY', source: 'topic-assessment', dueDate: '2026-09-18' },
+      { itemId: 'TA-REGULAR', source: 'topic-assessment', dueDate: '2026-09-21' },
+    ];
+    const regular = { item_id: 'TA-REGULAR', source: 'topic-assessment', score: 80 };
+    const options = { lessonSchedule: {}, items };
+    const missing = a2Grade(formula, [regular], '2026-09-22', options);
+    expect(missing.quarters.Q1.quarterGrade).toBe(80);
+    expect(missing.quarters.Q1.categoryBreakdown.assessments.bonusWindowExcluded).toBe(1);
+    const low = { item_id: 'TA-EARLY', source: 'topic-assessment', score: 20 };
+    const ignored = a2Grade(formula, [regular, low], '2026-09-22', options);
+    expect(ignored.quarters.Q1.quarterGrade).toBe(80);
+    expect(ignored.quarters.Q1.categoryBreakdown.assessments.bonusWindowIgnored)
+      .toEqual({ count: 1, itemIds: ['TA-EARLY'] });
+    const raised = a2Grade(formula, [regular, { ...low, score: 100 }], '2026-09-22', options);
+    expect(raised.quarters.Q1.quarterGrade).toBe(90);
+    const closed = a2Grade(formula, [regular], '2026-11-07', options).quarters.Q1;
+    expect(closed.quarterGrade).toBe(80);
+    expect(closed.ceiling).toBe(80);
+  });
+});
 
-
-// ── Production wiring: the live SY2627 context carries the event schedule ─────
-import { resolveProductionGradeInputs, loadEventScheduleWithPriority } from '../grade-contexts.js';
-
-
+it('uses D/G dates for the retained early bonus without borrowing C dates', () => {
+  const schedule = { '1.1': { unit: 1,
+    periods: { C: '2026-09-08', D: '2026-09-09', G: '2026-09-09' } } };
+  const map = lessonMapOf({ '1.1': lesson(80, '2026-09-09T20:00:00Z') });
+  expect(q1(map, schedule, '2026-09-10', CFG, 'PeriodC').earlyBonus).toBe(0);
+  for (const section of ['PeriodD', 'PeriodG']) {
+    const result = q1(map, schedule, '2026-09-10', CFG, section);
+    expect(result.earlyBonus).toBe(1);
+    expect(result.quarterGrade).toBe(81);
+  }
+});
