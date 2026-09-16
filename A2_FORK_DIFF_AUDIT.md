@@ -183,11 +183,13 @@ hence D4.
 | A+B Desk chrome/behaviour + mobile home | U1 U2 U3 U4 U5 U8 U10 U13 | review: safe with 2 fixes (Section G styling, behavioural tests) + walker jump sound restored for fidelity | committed a03b1ef; 11 chrome tests |
 | D + D2 tooling/pages cleanup | U12 U14 (guarded, no change) U18 U19 | review: safe with 6 fixes (orphan regrade test + workflow removed, lineage pruned, host-matrix probes, behavioural teacher-app test, CLI test) | committed with the PWA stamp bump |
 | E Do Now manifest | U23 | review: safe as-is (0 findings) | committed be0a615 |
+| Phase 5 steps 1-2 Schoology | AP 8539a0dd + 2fd88bc4 | review: safe with 1 fix (folder failure-path tests added) | committed eb2095c; pytest 172 |
+| Phase 5 step 3 section reconciliation | AP f979cd58 | review: safe as-is; tests then caught two regressions (calendar overwrite by legacy roadmap path, CRLF) and a view-as regression — all fixed | committed with the PWA stamp bump |
 | Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.
 
-Remaining: U6 U7 U9 U11 (await D1-D3), U16 (D4), U15 (server skill map, low priority), U20 (tests batch), Phase 5 steps 1-3 in progress (Schoology readiness/read-back + Assignments folder; roster-client updateSection + Desk section reconciliation), step 5 held (D10), Phase 6 (freeze test).
+Remaining: U6 U7 U9 U11 (await D1-D3), U16 (D4), U15 (server skill map, low priority), U20 (tests batch), Phase 5 steps 1-3 shipped; step 5 (grading policy) held on D10; step 6 (DOK builder) deferred to Lesson_planning; Phase 6 (freeze test).
 
 ### Phase 2 visual pairs (orchestrator, 2026-09-16, signed-out) — screenshots in `state/fork-diff/shots/`
 

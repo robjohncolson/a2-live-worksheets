@@ -676,3 +676,41 @@ describe('roster-client.js — openSections()', () => {
     expect(await rosterClient.openSections()).toEqual([]);
   });
 });
+
+
+describe('roster-client.js ? updateSection()', () => {
+  function seed(localStorage, section) {
+    const session = { studentId: 'a2-c', username: 'mango_fox', realName: 'Jane Smith',
+      section, token: 'tok.sig', spriteHue: 42, mustChangePassword: true, role: 'student' };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    return session;
+  }
+
+  it('updates only the section and preserves credential-event behavior', () => {
+    const { win, localStorage, rosterClient } = makeWindow();
+    const before = seed(localStorage, 'PeriodX');
+    const changed = vi.fn();
+    win.addEventListener('roster-session-changed', changed);
+    expect(rosterClient.updateSection('PeriodG')).toBe(true);
+    expect(JSON.parse(localStorage.getItem(STORAGE_KEY))).toEqual({ ...before, section: 'G' });
+    expect(rosterClient.current().section).toBe('G');
+    expect(changed).not.toHaveBeenCalled();
+  });
+
+  it.each(['C', 'D', 'G'])('does not rewrite equivalent %s aliases', section => {
+    const { localStorage, rosterClient } = makeWindow();
+    seed(localStorage, section);
+    expect(rosterClient.updateSection('Period' + section)).toBe(false);
+    seed(localStorage, 'Period' + section);
+    expect(rosterClient.updateSection(section)).toBe(false);
+  });
+
+  it('ignores signed-out sessions and invalid sections', () => {
+    const { localStorage, rosterClient } = makeWindow();
+    expect(rosterClient.updateSection('C')).toBe(false);
+    expect(localStorage.getItem(STORAGE_KEY)).toBeNull();
+    seed(localStorage, 'PeriodX');
+    for (const value of ['', '   ', null, undefined, 3]) expect(rosterClient.updateSection(value)).toBe(false);
+    expect(rosterClient.current().section).toBe('PeriodX');
+  });
+});

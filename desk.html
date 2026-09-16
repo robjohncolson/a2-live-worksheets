@@ -2307,7 +2307,9 @@ function _mergeRegistryData(fresh) {
       if (Object.prototype.hasOwnProperty.call(incoming, 'ced2026')) existing.ced2026 = incoming.ced2026;
     }
   }
-  if (Array.isArray(fresh.calendar)) {
+  // Protect the C/D/G calendar only once A2 pacing has loaded. Read-only
+  // view-as skips A2Desk.refresh(), so it still needs the roadmap calendar.
+  if (Array.isArray(fresh.calendar) && (typeof cYear === 'undefined' || cYear !== 'SY26-27' || !_a2PacingSignature)) {
     S = fresh.calendar.map(function (row) {
       const parts = row.date.split('-').map(Number);
       const cell = function (topic) {
@@ -14455,8 +14457,52 @@ function hTip(){tip.style.display="none";}
   if(SCHEDULE_DEFS[py]) cYear=py;
   loadYear(cYear);
 })();
+// Reconcile only after the A2 calendar boot block has initialized cP.
+// Read both stored section spellings freshly: cached rosters can predate a move.
+async function _reconcileRosterSection() {
+  try {
+    var client = window.rosterClient;
+    var who = client && client.current();
+    if (!who || !who.studentId || !who.username || who.role === 'teacher') return null;
+    if (window.__WS_READ_ONLY__ || (typeof _viewAsContext === 'function' && _viewAsContext())) return null;
+    var token = client.token();
+    var version = window._a2SectionChangeVersion || 0;
+    var sections = ['C', 'PeriodC', 'D', 'PeriodD', 'G', 'PeriodG'];
+    var rosters = await Promise.all(sections.map(function (section) {
+      return _fetchSectionRoster(section, { fresh: true });
+    }));
+    var current = client.current();
+    // A pending response belongs to the original credentials and section only.
+    if (window.rosterClient !== client || !current || current.studentId !== who.studentId
+        || current.username !== who.username || current.role !== who.role
+        || current.section !== who.section || client.token() !== token
+        || (window._a2SectionChangeVersion || 0) !== version) return null;
+    if (window.__WS_READ_ONLY__ || (typeof _viewAsContext === 'function' && _viewAsContext())) return null;
+    var wanted = String(who.username).toLowerCase();
+    var matches = [];
+    sections.forEach(function (section, i) {
+      var hit = (rosters[i] || []).some(function (student) {
+        return student && student.role !== 'teacher'
+          && String(student.username || '').toLowerCase() === wanted;
+      });
+      var period = section.slice(-1);
+      if (hit && matches.indexOf(period) < 0) matches.push(period);
+    });
+    // Conflicting rows are not enough evidence to change a student's calendar.
+    if (matches.length !== 1) return null;
+    var period = matches[0];
+    var previous = /^(?:Period)?[CDG]$/i.test(who.section) ? who.section.slice(-1).toUpperCase() : null;
+    if (previous !== period && !client.updateSection(period)) return null;
+    if (cP !== period) setP(period);
+    return previous !== period ? period : null;
+  } catch (_) {
+    return null;
+  }
+}
+try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
+try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-16-fsoh';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-16-4dc4';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

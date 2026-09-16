@@ -96,14 +96,27 @@
   };
   document.getElementById('a2-profile-form').onsubmit = async event => {
     event.preventDefault();
+    if (readonly()) return;
+    const identity = rosterClient.current();
+    if (!identity) return;
+    const token = rosterClient.token();
     const section = event.target.querySelector('select').value;
     const message = document.getElementById('a2-profile-message');
+    // Invalidate a boot reconcile before the PUT, even if that request fails.
+    const version = window._a2SectionChangeVersion = (window._a2SectionChangeVersion || 0) + 1;
+    const stillCurrent = () => {
+      const current = rosterClient.current();
+      return current && current.studentId === identity.studentId
+        && current.username === identity.username && rosterClient.token() === token
+        && window._a2SectionChangeVersion === version && !readonly();
+    };
     try {
       await A2Client.request('/student/section', { section }, 'PUT');
-      const session = JSON.parse(localStorage.getItem('a2_roster.v1')); session.section = section;
-      localStorage.setItem('a2_roster.v1', JSON.stringify(session));
+      if (!stillCurrent()) return;
+      rosterClient.updateSection(section);
+      if (typeof setP === 'function') setP(section);
       document.getElementById('a2-profile').close(); A2Client.changed();
-    } catch (error) { message.textContent = error.message; }
+    } catch (error) { if (stillCurrent()) message.textContent = error.message; }
   };
   ['focus','roster-session-changed','a2-lesson-changed'].forEach(event => window.addEventListener(event, refresh));
   window.addEventListener('storage', event => { if (['a2_lesson_changed','a2_roster.v1'].includes(event.key)) refresh(); });

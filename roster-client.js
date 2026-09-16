@@ -85,6 +85,22 @@
       return true;
     },
 
+    // Keep the cached section in sync without changing credentials or emitting
+    // a sign-in event. A2 bare and Period-prefixed sections are equivalent.
+    updateSection: function (section) {
+      if (typeof section !== 'string' || !section.trim()) return false;
+      section = section.trim();
+      var session = readSession();
+      if (!session || !session.studentId) return false;
+      var normalize = function (value) {
+        return /^(?:Period)?[CDG]$/i.test(value) ? value.slice(-1).toUpperCase() : value;
+      };
+      if (normalize(session.section) === normalize(section)) return false;
+      session.section = normalize(section);
+      writeSession(session);
+      return true;
+    },
+
     // POST /roster/verify — persists the session key on success.
     // Returns { ok, studentId, realName, section, spriteHue, error? }
     signIn: async function (username, password) {
