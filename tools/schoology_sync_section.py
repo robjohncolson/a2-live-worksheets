@@ -496,6 +496,11 @@ def _ensure_assignment(
         state.upsert_assignment(section, key, {"schoology_assignment_id": assignment_id, "title": title})
         label = "CREATED" if result_ok else "RECONCILED"
         print(f"  [{label}] {title!r} -> id={assignment_id}")
+        # 2026-09-16 (teacher): every synced assignment lives in the "Assignments" materials
+        # folder so the student-facing course page is not a wall of items. Best-effort: a
+        # failed move is reported, never fatal (the gradebook column exists either way).
+        _file_in_assignments_folder(ops, cdp, course_id, assignment_id, title, errors)
+        _load_gradebook_page(ops, cdp, course_id)
         return assignment_id
 
     if not result_ok:
@@ -510,6 +515,24 @@ def _ensure_assignment(
     errors.append(msg)
 
     return assignment_id
+
+
+def _file_in_assignments_folder(ops, cdp, course_id: str, assignment_id: str, title: str, errors: list) -> bool:
+    """Move one just-created assignment into the "Assignments" materials folder (created if missing)."""
+    mover = getattr(ops, "move_assignments_into_folder", None)
+    if mover is None:   # older ops module / test double without folder support
+        return False
+    try:
+        result = mover(cdp, course_id, only_nids={str(assignment_id)})
+    except Exception as exc:  # noqa: BLE001 - never let a folder move break the sync
+        errors.append(f"Could not file {title!r} in the Assignments folder: {exc}")
+        return False
+    if result.get("ok") and result.get("moved"):
+        print(f"  [FILED]  {title!r} -> folder id={result.get('folder_id')}")
+        return True
+    for err in result.get("errors") or [f"{title!r} was not moved"]:
+        errors.append(f"Could not file {title!r} in the Assignments folder: {err}")
+    return False
 
 
 # ---------------------------------------------------------------------------

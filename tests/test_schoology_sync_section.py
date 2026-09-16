@@ -114,7 +114,10 @@ class FakeOps:
         marking_periods=None,
         add_ok=True,
         add_returns_id=True,
+        folder_ok=True,
     ):
+        self._folder_ok = folder_ok
+        self.filed = []                  # nids handed to move_assignments_into_folder
         # students: list of {studentId, rowIndex, name}
         self._students = students or [
             {"studentId": "S1", "rowIndex": 0, "name": "Alice"},
@@ -136,6 +139,16 @@ class FakeOps:
         self.created_assignments = []    # list of kwargs dicts
         self.written_grades = []         # list of (column_key, row_index, value)
         self.cdp = None                  # pretend cdp handle
+
+    # -- materials folder (2026-09-16) ---------------------------------------
+    def move_assignments_into_folder(self, cdp, course_id, title="Assignments", only_nids=None):
+        self.current_page = "materials"
+        self.page_history.append(self.current_page)
+        nids = sorted(only_nids or [])
+        self.filed.extend(nids)
+        if not self._folder_ok:
+            return {"ok": False, "folder_id": None, "moved": [], "errors": ["move form missing"]}
+        return {"ok": True, "folder_id": "F1", "moved": [{"nid": n} for n in nids], "errors": []}
 
     # -- CDP lifecycle (no-ops in tests) -----------------------------------
     def connect(self, reuse=True):
@@ -206,6 +219,7 @@ class FakeOps:
         self.created_assignments.append({
             "title": title,
             "course_id": course_id,
+            "points": points,
             "category_id": category_id,
             "grading_period_id": grading_period_id,
             "due_date": due_date,
@@ -331,6 +345,41 @@ class TestFirstRunCreatesAssignments(unittest.TestCase):
         )
         self.assertEqual(len(self.state.runs), 1)
         self.assertEqual(self.state.runs[0]["section"], "PeriodB")
+
+
+class TestAssignmentsFolder(unittest.TestCase):
+    """Every created assignment is filed into the Assignments folder; a failed move is
+    reported but never blocks the create or the grade push (2026-09-16)."""
+
+    def setUp(self):
+        self.tmpdir = tempfile.mkdtemp()
+        self.schedule_path = _write_schedule(self.tmpdir)
+        self.state = FakeStateStore()
+
+    def test_every_created_assignment_is_filed(self):
+        ops = FakeOps()
+        summary = sync_section("PeriodB", "7945275782", dry_run=False, state=self.state,
+                               grades={}, ops=ops, schedule_path=self.schedule_path)
+        created_ids = sorted(str(self.state.get_assignment("PeriodB", k)["schoology_assignment_id"])
+                             for k in EXPECTED_B_KEYS)
+        self.assertEqual(sorted(ops.filed), created_ids)
+        self.assertEqual(summary["assignments_created"], EXPECTED_B_COUNT)
+        self.assertEqual(summary["errors"], [])
+
+    def test_failed_move_is_reported_not_fatal(self):
+        ops = FakeOps(folder_ok=False)
+        summary = sync_section("PeriodB", "7945275782", dry_run=False, state=self.state,
+                               grades={}, ops=ops, schedule_path=self.schedule_path)
+        self.assertEqual(summary["assignments_created"], EXPECTED_B_COUNT)
+        self.assertEqual(len(ops.filed), EXPECTED_B_COUNT)
+        self.assertTrue(all("Assignments folder" in e for e in summary["errors"]))
+        self.assertEqual(len(summary["errors"]), EXPECTED_B_COUNT)
+
+    def test_dry_run_files_nothing(self):
+        ops = FakeOps()
+        sync_section("PeriodB", "7945275782", dry_run=True, state=self.state,
+                     grades={}, ops=ops, schedule_path=self.schedule_path)
+        self.assertEqual(ops.filed, [])
 
 
 class TestIdempotencySecondRun(unittest.TestCase):
@@ -934,3 +983,97 @@ def test_work_days_never_create_schoology_columns():
     }
     assert len(build_scope(schedule, "PeriodB")) == 7
     assert all("Work" not in item["key"] for item in build_scope(schedule, "PeriodB"))
+
+
+class TestA2AssignmentsFolder(unittest.TestCase):
+    """Folder filing preserves A2 sections, point scales, and gradebook navigation."""
+
+    def _ensure(self, ops, section="PeriodC", kind="try_it", state=None, dry_run=False):
+        from schoology_sync_section import _ensure_assignment
+
+        state = state if state is not None else FakeStateStore()
+        item = {"key": "A2-item", "kind": kind, "title": "A2 item", "due_date": "2026-09-16"}
+        errors = []
+        ops.current_page = "gradebook"
+        assignment_id = _ensure_assignment(
+            item, section, SECTION_TO_COURSE_ID[section],
+            {"Assessments": "ASSESS", "Assignments": "ASSIGN", "Engagement": "ENGAGE"},
+            {"MP1": {"start": "2026-09-01", "end": "2026-11-30"}},
+            state, ops, None, dry_run, errors,
+        )
+        return assignment_id, errors
+
+    def test_a2_sections_and_scoring_are_preserved(self):
+        course_ids = {"PeriodC": "8537065947", "PeriodD": "8537065922", "PeriodG": "8537065934"}
+        policies = {"lesson_check": (10, "ASSESS"), "topic_assessment": (100, "ASSESS"),
+                    "try_it": (2, "ASSIGN"), "flashcard": (1, "ENGAGE")}
+        for section, course_id in course_ids.items():
+            for kind, (points, category) in policies.items():
+                with self.subTest(section=section, kind=kind):
+                    ops = FakeOps()
+                    assignment_id, errors = self._ensure(ops, section, kind)
+                    self.assertEqual(errors, [])
+                    self.assertEqual(ops.filed, [assignment_id])
+                    created = ops.created_assignments[0]
+                    self.assertEqual(created["course_id"], course_id)
+                    self.assertEqual(created["points"], points)
+                    self.assertEqual(created["category_id"], category)
+                    self.assertEqual(ops.page_history[-2:], ["materials", "gradebook"])
+
+    def test_reconciled_create_is_filed_and_gradebook_restored(self):
+        ops = FakeOps(add_ok=False, add_returns_id=False)
+        assignment_id, errors = self._ensure(ops)
+        self.assertIsNotNone(assignment_id)
+        self.assertEqual(ops.filed, [assignment_id])
+        self.assertEqual(errors, [])
+        self.assertEqual(ops.current_page, "gradebook")
+
+    def test_folder_failure_does_not_block_grade_writes(self):
+        ops = FakeOps(folder_ok=False)
+        assignment_id, errors = self._ensure(ops)
+        self.assertIsNotNone(assignment_id)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("Assignments folder", errors[0])
+        self.assertEqual(ops.current_page, "gradebook")
+        column = ops.find_assignment_id_by_title(None, "A2 item")
+        self.assertTrue(ops.write_grade_to_cell(None, column, 0, 2)["ok"])
+
+    def test_folder_exception_restores_gradebook(self):
+        from unittest import mock
+
+        ops = FakeOps()
+
+        def fail_move(*args, **kwargs):
+            ops.current_page = "materials"
+            raise RuntimeError("move unavailable")
+
+        with mock.patch.object(ops, "move_assignments_into_folder", side_effect=fail_move):
+            assignment_id, errors = self._ensure(ops)
+        self.assertIsNotNone(assignment_id)
+        self.assertIn("move unavailable", errors[0])
+        self.assertEqual(ops.current_page, "gradebook")
+
+    def test_existing_assignments_are_not_backfilled(self):
+        state = FakeStateStore()
+        state.upsert_assignment("PeriodC", "A2-item", {"schoology_assignment_id": "OLD"})
+        ops = FakeOps()
+        assignment_id, errors = self._ensure(ops, state=state)
+        self.assertEqual(assignment_id, "OLD")
+        self.assertEqual(errors, [])
+        self.assertEqual(ops.filed, [])
+        self.assertEqual(ops.created_assignments, [])
+
+        ops = FakeOps(existing_titles={"A2 item"})
+        assignment_id, errors = self._ensure(ops)
+        self.assertIsNotNone(assignment_id)
+        self.assertEqual(errors, [])
+        self.assertEqual(ops.filed, [])
+        self.assertEqual(ops.created_assignments, [])
+
+    def test_a2_dry_run_does_not_file_or_create(self):
+        ops = FakeOps()
+        assignment_id, errors = self._ensure(ops, dry_run=True)
+        self.assertIsNone(assignment_id)
+        self.assertEqual(errors, [])
+        self.assertEqual(ops.filed, [])
+        self.assertEqual(ops.created_assignments, [])
