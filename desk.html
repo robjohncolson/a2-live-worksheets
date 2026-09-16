@@ -1604,7 +1604,7 @@
         <div class="menu-dropdown" id="menu-go" role="menu">
             <div class="menu-dd-item" role="menuitem" data-sfx onclick="closeMenus();window.open('start-here.html','_blank','noopener')">&#127793; Start Here (orientation)</div>
             <div class="menu-dd-item" role="menuitem" data-sfx onclick="closeMenus();window.open('TOC.html','_blank','noopener')">&#128218; All Worksheets</div>
-            <div class="menu-dd-item" role="menuitem" data-sfx onclick="closeMenus();window.open('study_guide_diagnostic.html','_blank','noopener')">&#129517; Study Guide (diagnostic)</div>
+            <!-- Diagnostic study guide awaits A2 content. -->
             <div class="menu-dd-sep"></div>
             <div class="menu-dd-item" role="menuitem" data-sfx onclick="closeMenus();window.open('mobile-home.html','_blank','noopener')">&#128241; Phone Launcher</div>
         </div>
@@ -2155,9 +2155,6 @@
 <script src="receipt-verify.js"></script>
 <script src="grade-engine.bundle.js"></script>
 <script src="ledger-store.js"></script>
-<!-- ANDROID Phase 3 (P2P gossip): the transport-agnostic anti-entropy engine, and
-     the native Nearby-Connections transport bridge (registers window.GossipTransport
-     ONLY inside the APK; inert on the web Desk). -->
 
 
 <script src="gradebook-client.js"></script>
@@ -5595,7 +5592,7 @@ function _paintDoNowReadiness() {
       card.style.cursor = 'pointer';
       card.setAttribute('role', 'button');
       card.setAttribute('tabindex', '0');
-      card.title = 'Open My Ledger — your grade, pacing, and recorded work';
+      card.title = 'Open My Gradebook — your grade, pacing, and recorded work';
       card.addEventListener('click', function (e) {
         if (!_donowOpensLedger(e.target, card)) return;   // skip real interactive children
         if (typeof openMyGradebook === 'function') openMyGradebook();
@@ -5609,7 +5606,40 @@ function _paintDoNowReadiness() {
     }
     card.style.background = '';
     card.style.borderColor = '';
+    delete card.dataset.readiness;
+    // Only live district gradebook evidence can establish overdue readiness.
+    if (card.classList.contains('donow-signin')) return;
+    if (typeof _gradeLoadState === 'undefined' || _gradeLoadState !== 'available') return;
+    var book = typeof _gradeGradebookCache !== 'undefined' ? _gradeGradebookCache : null;
+    var tasks = typeof _donowData !== 'undefined' ? _donowData : null;
+    if (!book || !book.quarters || !tasks || !tasks.ok) return;
+    var due = 0, recorded = 0;
+    Object.keys(book.quarters).forEach(function (key) {
+      var quarter = book.quarters[key];
+      if (quarter.formula !== 'district') return;
+      (quarter.columns || []).forEach(function (column) {
+        if (column.due !== true) return;
+        due++;
+        // A recorded zero is completed work, not a missing submission.
+        if (quarter.cells && quarter.cells[column.key] != null) recorded++;
+      });
+    });
+    if (!Object.values(book.quarters).some(function (q) { return q.formula === 'district'; })) return;
+    var missing = due - recorded;
+    var state = missing ? (recorded ? 'catching-up' : 'behind') : tasks.nextTask ? 'on-pace' : 'caught-up';
+    var hue = missing ? Math.round(120 * recorded / due) : tasks.nextTask ? 185 : 120;
+    card.dataset.readiness = state;
+    card.style.background = 'hsl(' + hue + ',60%,92%)';
+    card.style.borderColor = 'hsl(' + hue + ',65%,45%)';
   } catch (_) {}
+}
+
+function _paintDeskMotionCues(nextApp) {
+  var icons = document.querySelectorAll('.app-icon[data-app]');
+  // The compact A2 Desk keeps Gradebook as the fallback task entry point.
+  var target = nextApp && document.querySelector('.app-icon[data-app="' + nextApp + '"]');
+  if (nextApp && !target) target = document.querySelector('.app-icon[data-app="progress"]');
+  icons.forEach(function (icon) { icon.classList.toggle('donow-next', icon === target); });
 }
 
 // OFFLINE_MODE_SPEC §4.B — write-through cache of the /grade payload so the Desk
@@ -5814,11 +5844,7 @@ function _phase2RefreshVerifySummary(onDone) {
   } catch (_) {}
 }
 
-// ── ANDROID Phase 3 — P2P gossip (ANDROID_PHASE3_GOSSIP_SPEC) ────────────────────
-// Drive LedgerGossip over whatever transport registered window.GossipTransport (the
-// native Nearby-Connections plugin in the APK; nothing on the web Desk). A row is
-// only accepted after its Ed25519 receipt verifies, so a peer can never inject a
-// fake grade. One session per peer; epidemic union across everyone in range.
+// Queued local work also participates in offline grade recovery.
 function _phase2QueueRows() {
   try {
     if (!window.OfflineQueue || typeof OfflineQueue.all !== 'function') return Promise.resolve([]);
@@ -5975,6 +6001,7 @@ async function renderDoNowGrades(baseUrl, token) {
   // unavailable->available reconcile check below.
   var _priorState = _gradeLastRenderedState;
   _gradeLoadState = 'loading';
+  if (typeof _paintDoNowReadiness === 'function') _paintDoNowReadiness();
   _gradeLoadError = null;
   if (typeof _renderGradeStatus === 'function') _renderGradeStatus();
   try {
@@ -6614,16 +6641,15 @@ async function renderDoNow() {
 
   // ICON_MOTION -- which app icon to breathe for the next task (curriculum work
   // lives in the Quiz app; appForNextTask refines this if the manifest grows).
-  var _dnNextApp = 'quiz';
+  var _dnNextApp = 'progress';
 
   function show(text, mode) {
     msg.textContent = text;
     card.className = 'donow-' + (mode || 'signin');
     card.style.display = 'flex';
     try {
-      if (mode === 'todo') ;
-      else if (mode === 'done') ;
-      else ;
+      if (typeof _paintDeskMotionCues === 'function') _paintDeskMotionCues(mode === 'todo' ? _dnNextApp : null);
+      if (typeof _paintDoNowReadiness === 'function') _paintDoNowReadiness();
     } catch (_) {}
   }
 
@@ -6714,8 +6740,12 @@ async function renderDoNow() {
     }
 
     if (typeof _todayLessonInf !== 'undefined' && _todayLessonInf && _todayLessonInf.kind === 'work') {
-      var workNext = _workDayNextLesson();
-      show('Work Day — nothing new today.\nFinish: ' + (workNext ? cedLabel(workNext.inf.t).text : 'All caught up.')
+      var workNext = data.nextTask;
+      _dnNextApp = workNext && (workNext.source === 'flashcard' || workNext.activity === 'blooket')
+        ? 'flashcards' : 'progress';
+      show('Work Day — nothing new today.\nFinish: ' + (workNext
+        ? (workNext.lesson ? cedLabel(workNext.lesson).text : workNext.unit || 'Your next task')
+        : 'All caught up.')
         + '\nExit tickets are bonus (+5)', workNext ? 'todo' : 'done');
       return;
     }
@@ -6789,6 +6819,7 @@ async function renderDoNow() {
         ? lessonKey + ' · ' + entry.title : cedLabel(nt.lesson).text;
       var activityLabel = nt.source === 'try-it' ? 'Try-Its (scored in class)'
         : nt.source === 'lesson-check' ? 'Lesson Check' : 'Flashcards';
+      _dnNextApp = nt.source === 'flashcard' ? 'flashcards' : 'progress';
       show('Do Now: ' + label + ' — ' + activityLabel, 'todo');
       if (nt.source === 'try-it') return;
 
@@ -7531,10 +7562,88 @@ function _showWorkDayPanel(inf, dateStr) {
     document.getElementById('resource-overlay').style.display = 'block';
 }
 
+// A2 lessons use the same panel entry point as legacy lessons and view-as.
+function _showA2ResourcePanel(inf, dateStr, entry) {
+    var key = String(inf.t).replace('.', '-');
+    var header = document.getElementById('resource-header');
+    header.textContent = key + ' · ' + (entry.title || inf.n || 'Lesson');
+    header.style.color = '';
+    header.style.fontStyle = '';
+    var body = document.getElementById('resource-body');
+    body.textContent = '';
+
+    var checkRow = document.createElement('p');
+    var check = document.createElement('a');
+    check.textContent = 'Open lesson check';
+    var viewing = typeof _viewAsContext === 'function' && _viewAsContext();
+    var checkHref = 'check.html?lesson=' + encodeURIComponent(key);
+    if (viewing) checkHref += '&viewAsUserId=' + encodeURIComponent(viewing.studentId);
+    check.setAttribute('href', checkHref);
+    check.className = 's7btn chicago';
+    check.style.cssText = 'display:inline-block;padding:10px 16px;font-weight:bold';
+    checkRow.appendChild(check);
+    body.appendChild(checkRow);
+
+    var deckRow = document.createElement('span');
+    deckRow.className = 'desk-quiz-done-slot';
+    deckRow.dataset.topic = inf.t;
+    deckRow.dataset.artifact = 'blooket';
+    var deck = document.createElement('button');
+    deck.type = 'button';
+    deck.className = 's7btn';
+    deck.textContent = 'Open Flashcards';
+    deck.onclick = function () { openBlooketFlashcards(deck, inf.t); };
+    deckRow.appendChild(deck);
+    body.appendChild(deckRow);
+
+    var lesson = window.A2Desk && typeof window.A2Desk.getLesson === 'function'
+        ? window.A2Desk.getLesson(inf.t) : null;
+    var skills = lesson && Array.isArray(lesson.supportingSkills) ? lesson.supportingSkills : [];
+    skills.filter(function (skill) { return skill && skill.url && skill.name; }).forEach(function (skill) {
+        var row = document.createElement('p');
+        var link = document.createElement('a');
+        link.textContent = 'IXL: ' + skill.name + (skill.level === 'prereq' ? ' (prerequisite)' : '');
+        link.href = skill.url;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        row.appendChild(link);
+        body.appendChild(row);
+    });
+
+    // /grade caches the same Try-It summary; the A2 tile also retains the
+    // rendered /lesson-status summary. Never borrow the teacher's tile in view-as.
+    var cached = typeof _gradeLessonsCache !== 'undefined' && Array.isArray(_gradeLessonsCache)
+        ? _gradeLessonsCache.find(function (item) { return item.lessonKey === inf.t; }) : null;
+    var tries = cached && cached.tryIts;
+    var summary = tries ? 'Try-Its ' + tries.scored + '/' + tries.total + ' scored, ' + tries.points + ' points' : '';
+    if (!summary && !viewing && !window.__WS_READ_ONLY__) {
+        var tile = Array.from(document.querySelectorAll('#a2-lessons [data-lesson]')).find(function (item) {
+            return item.dataset.lesson === key;
+        });
+        var chip = tile && Array.from(tile.querySelectorAll('.a2-lesson-chip')).find(function (item) {
+            return item.textContent.startsWith('Try-Its ');
+        });
+        if (chip) summary = chip.textContent;
+    }
+    if (summary) {
+        var status = document.createElement('p');
+        status.className = 'a2-lesson-chip';
+        status.textContent = summary;
+        body.appendChild(status);
+    }
+    _lastResourcePanel = { inf: inf, dateStr: dateStr };
+    document.getElementById('resource-overlay').style.display = 'block';
+}
+
 function showResourcePanel(inf, dateStr) {
     if (!inf || !inf.t) return;
     if (inf.kind === 'work') {
         _showWorkDayPanel(inf, dateStr);
+        return;
+    }
+    var a2Entry = typeof REGISTRY !== 'undefined' && REGISTRY.lessons && REGISTRY.lessons[inf.t];
+    if (a2Entry && a2Entry.urls && a2Entry.urls.check) {
+        _showA2ResourcePanel(inf, dateStr, a2Entry);
         return;
     }
     const topicIds = lookupTopic(inf.t);
@@ -14653,7 +14762,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-16-801w';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-16-hlbp';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

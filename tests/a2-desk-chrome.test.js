@@ -219,3 +219,15 @@ describe('A2 Desk chrome restorations', () => {
     }
   });
 });
+
+
+it('hides the unauthored diagnostic from student menus and removes nearby sync identifiers', () => {
+  const index = readFileSync(resolve(root, 'index.html'), 'utf8');
+  for (const page of [html, index]) {
+    expect(page).not.toContain('study_guide_diagnostic.html');
+    expect(page).toContain('Diagnostic study guide awaits A2 content.');
+  }
+  const contracts = readFileSync(resolve(root, 'types/contracts.js'), 'utf8');
+  const removed = ['Gossip' + 'Transport', 'Ledger' + 'Gossip', 'nearby-' + 'transport', '_phase' + '3'];
+  for (const name of removed) expect(html + contracts).not.toContain(name);
+});

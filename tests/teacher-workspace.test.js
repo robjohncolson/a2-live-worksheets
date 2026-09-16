@@ -222,3 +222,27 @@ describe('teacher workspace tools', () => {
     }
   });
 });
+
+
+it.each([
+  'content/a2/1-1/images/1-1_savvas_q18-22_graph.png',
+  '../lesson diagrams/graph.png?version=2',
+  'https://images.example.org/algebra/graph.png?version=2',
+])('preserves the question image path %s', async image => {
+  const { w, doc } = await make();
+  const original = w.fetch;
+  const evidenceFetch = vi.fn(url => url.includes('recent?skill=')
+    ? Promise.resolve(response({ ok: true, skill: '2.B',
+      summary: { observations: 1, correct: 1 }, flagged: false, frqThreshold: .5,
+      submissions: [{ ...saved, correct: true,
+        question: { prompt: 'Read the graph.', attachments: { image } },
+      }] })) : original(url));
+  w.fetch = evidenceFetch;
+  w.openTscDrawer(student, '2.B');
+  await vi.waitFor(() => {
+    const img = doc.querySelector('#workspace-evidence img');
+    expect(img).not.toBeNull();
+    expect(img.getAttribute('src')).toBe(image);
+  }, { timeout: 1000, interval: 20 });
+  expect(evidenceFetch.mock.calls.some(([url]) => url.includes('/student/s1/recent?skill=2.B'))).toBe(true);
+});

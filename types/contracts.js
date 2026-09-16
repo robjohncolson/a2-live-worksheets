@@ -227,12 +227,5 @@
  * @property {(row: any) => Promise<any>} put
  */
 
-/**
- * Transport driving a gossip round (Nearby plugin, mock in tests).
- * @typedef {Object} GossipTransport
- * @property {(handlers: {onPeer: (id: string) => void, onMessage: (id: string, msg: string) => void, onLost: (id: string) => void}) => void} start
- * @property {(peerId: string, msg: string) => void} send
- * @property {() => void} stop
- */
 
 // This file intentionally declares no runtime values.

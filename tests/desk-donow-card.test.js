@@ -254,3 +254,101 @@ describe('DN3a runtime — renderDoNow states', () => {
     expect(d.el('donow-msg').textContent).toMatch(/unavailable/i);
   });
 });
+
+
+describe('district Do Now readiness and motion', () => {
+  function readiness(cells, nextTask, loadState = 'available') {
+    const dom = new JSDOM('<div id="donow-card" class="donow-todo"><span>Task</span><button>Action</button></div><div class="app-icon" data-app="progress"></div><div class="app-icon" data-app="receipts"></div>');
+    opened.push(dom);
+    let opens = 0;
+    const context = createContext({ document: dom.window.document,
+      _gradeLoadState: loadState,
+      _gradeGradebookCache: { quarters: { Q1: { formula: 'district', cells, columns: [
+        { key: 'LC-1-1', due: true }, { key: 'TI-1-1-1', due: true }, { key: 'future', due: false },
+      ] } } },
+      _donowData: { ok: true, nextTask }, openMyGradebook: () => opens++,
+    });
+    runInContext(['_donowOpensLedger', '_paintDoNowReadiness', '_paintDeskMotionCues'].map(name => fnBody(html, name)).join('\n'), context,
+      { filename: pathToFileURL(DESK_PATH).href });
+    context._paintDoNowReadiness();
+    return { dom, context, card: dom.window.document.getElementById('donow-card'), opens: () => opens };
+  }
+
+  it.each([
+    [{}, { source: 'lesson-check' }, 'behind', 0],
+    [{ 'LC-1-1': 0 }, { source: 'try-it' }, 'catching-up', 60],
+    [{ 'LC-1-1': 0, 'TI-1-1-1': 2 }, { source: 'flashcard' }, 'on-pace', 185],
+    [{ 'LC-1-1': 0, 'TI-1-1-1': 2 }, null, 'caught-up', 120],
+  ])('uses due district cells and the next task for %s', (cells, task, state, hue) => {
+    const { card, dom } = readiness(cells, task);
+    expect(card.dataset.readiness).toBe(state);
+    const expected = dom.window.document.createElement('div');
+    expected.style.background = `hsl(${hue},60%,92%)`;
+    expected.style.borderColor = `hsl(${hue},65%,45%)`;
+    expect(card.style.background).toBe(expected.style.background);
+    expect(card.style.borderColor).toBe(expected.style.borderColor);
+  });
+
+  it('clears stale readiness when grade evidence becomes unavailable or sign-in is required', () => {
+    const { card, context } = readiness({}, { source: 'lesson-check' });
+    context._gradeLoadState = 'unavailable'; context._paintDoNowReadiness();
+    expect(card.style.background).toBe('');
+    expect(card.dataset.readiness).toBeUndefined();
+    context._gradeLoadState = 'available'; card.className = 'donow-signin'; context._paintDoNowReadiness();
+    expect(card.style.borderColor).toBe('');
+  });
+
+  it('keeps click and keyboard Gradebook access without intercepting child actions', () => {
+    const { card, dom, context, opens } = readiness({}, null);
+    context._paintDoNowReadiness();
+    card.querySelector('span').click();
+    card.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+    card.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+    card.querySelector('button').click();
+    expect(opens()).toBe(3);
+    expect(card.tabIndex).toBe(0);
+  });
+
+  it('moves and clears the next-task icon cue, falling back to Gradebook for absent icons', () => {
+    const { context, dom } = readiness({}, null);
+    const doc = dom.window.document;
+    context._paintDeskMotionCues('flashcards');
+    expect(doc.querySelector('.donow-next').dataset.app).toBe('progress');
+    context._paintDeskMotionCues('receipts');
+    expect(doc.querySelectorAll('.donow-next')).toHaveLength(1);
+    expect(doc.querySelector('.donow-next').dataset.app).toBe('receipts');
+    context._paintDeskMotionCues(null);
+    expect(doc.querySelector('.donow-next')).toBeNull();
+    expect(fnBody(html, 'renderDoNow')).toContain("_paintDeskMotionCues(mode === 'todo' ? _dnNextApp : null)");
+  });
+});
+
+
+describe('Work Day uses the server next task for motion', () => {
+  it.each([
+    [{ unit: 'U1', lesson: '1.1', source: 'lesson-check' }, null, 'progress', 'todo'],
+    [{ unit: 'U1', lesson: '1.1', source: 'try-it' }, null, 'progress', 'todo'],
+    [{ unit: 'U1', lesson: '1.1', source: 'flashcard' }, null, 'flashcards', 'todo'],
+    [null, { inf: { t: '1.1' } }, null, 'done'],
+  ])('follows nextTask %j despite conflicting local marks', async (nextTask, localNext, cue, mode) => {
+    const dom = new JSDOM('<div id="donow-card"><span id="donow-msg"></span></div>');
+    opened.push(dom);
+    const cues = [];
+    const sandbox = createContext({
+      document: dom.window.document,
+      window: { ROSTER_SERVICE_URL: 'https://roster.example', rosterClient: { token: () => 'token' } },
+      _todayLessonInf: { kind: 'work' },
+      _workDayNextLesson: () => localNext,
+      cedLabel: topic => ({ text: topic + ' lesson' }),
+      _paintDeskMotionCues: value => cues.push(value),
+      fetch: async () => ({ json: async () => ({ ok: true, nextTask }) }),
+    });
+    runInContext(fnBody(html, 'renderDoNow'), sandbox);
+    await sandbox.renderDoNow();
+    expect(cues).toEqual([cue]);
+    expect(dom.window.document.getElementById('donow-card').className).toBe('donow-' + mode);
+    expect(dom.window.document.getElementById('donow-msg').textContent).toContain(
+      nextTask ? 'Finish: 1.1 lesson' : 'All caught up.'
+    );
+  });
+});

@@ -33,7 +33,8 @@ describe('Desk menus', () => {
   it('Go menu reaches the other surfaces; View menu drives the calendar; Help has About', () => {
     expect(menuBar).toMatch(/start-here\.html/);
     expect(menuBar).toMatch(/TOC\.html/);
-    expect(menuBar).toMatch(/study_guide_diagnostic\.html/);
+    const studentMenus = menuBar.replace(/<span class="menu-item" data-menu="teacher">[\s\S]*?(?=<span class="menu-item"|$)/, '');
+    expect(studentMenus).not.toMatch(/study_guide_diagnostic\.html/);
     expect(menuBar).toMatch(/mobile-home\.html/);
     expect(menuBar).toMatch(/calToday\(\)/);
     expect(menuBar).toMatch(/calStep\(-1\)/);

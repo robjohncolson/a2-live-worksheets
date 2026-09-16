@@ -13,7 +13,7 @@
 // is just `self.addEventListener('install',()=>self.skipWaiting()); self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x)))).then(()=>self.clients.claim())));`
 // to unregister-by-emptying (clears caches; pages fall back to plain network).
 
-const BUILD = '2026-09-16-801w'; // scripts/bump-build.mjs replaces this stamp
+const BUILD = '2026-09-16-hlbp'; // scripts/bump-build.mjs replaces this stamp
 const CACHE = 'apstats-pwa-' + BUILD;
 
 const CORE = [

@@ -176,8 +176,9 @@
       }); host.appendChild(table);
     }
     (a.choices || []).forEach(function (choice) { host.appendChild(node('p', choice.key + '. ' + choice.value, 'workspace-choice')); });
-    if (a.image && /^assets\/[a-zA-Z0-9_./-]+$/.test(a.image)) {
-      var img = node('img'); img.src = 'https://robjohncolson.github.io/curriculum_render/' + a.image;
+    // Preserve authored relative paths and absolute URLs without rewriting them.
+    if (typeof a.image === 'string' && a.image) {
+      var img = node('img'); img.src = a.image;
       img.alt = a.imageAlt || 'Question diagram'; host.appendChild(img);
     }
     var charts = a.chartType ? [a] : (a.charts || []);
