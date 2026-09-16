@@ -86,3 +86,14 @@ the Topics 5-7 bridge list; machine-readable in `data/a2-lesson-targets.json`).
 TE PDF → `pdftoppm` → Codex `codex exec -i` transcription to `a2_{lesson}_TE.tex` (exemplar
 `a2_5-4_TE.tex`) → `ingest_lesson_from_latex.py` → hand-written calibration from the TE Item
 Analysis → `qb_append.py`. Lesson 1-1 is done (71 rows, 2026-09-13).
+
+## Decisions recorded 2026-09-16 (fork-diff audit, teacher accepted the defaults)
+- The Android app shell (`android-app/`) is retired with Live Classroom and the nearby transport (D6).
+- The one-off migration scripts (`scripts/wire-*.mjs`, `scripts/build-android.mjs`) were applied before
+  the fork and stay deleted (D8).
+- The AP grading-policy change (AP commit 72766e6, reflection floor / only-raise band) is held until A2
+  reflections exist (D10).
+- `study_guide_diagnostic.html` is hidden from student navigation until A2 content replaces its AP items (D4).
+- Do Now readiness cues, the academic receipt feed with Print Sealed Summary and session QR, the teacher scan
+  verifier, and calendar-cell → lesson check are restored (D1, D2, D3, D9); every Sync Nearby remnant is removed (D5).
+The full list and statuses live in `data/a2-fork-audit.json` (pinned by `tests/a2-fork-freeze.test.js`).

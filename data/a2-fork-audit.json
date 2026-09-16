@@ -7041,15 +7041,15 @@
     "verify.html"
   ],
   "decisions": {
-    "D1": "pending",
-    "D2": "pending",
-    "D3": "pending",
-    "D4": "pending",
-    "D5": "pending",
-    "D6": "pending",
-    "D7": "pending",
-    "D8": "pending",
-    "D9": "pending",
-    "D10": "pending"
+    "D1": "accepted 2026-09-16: restore Do Now readiness colours + next-task cue (district grade)",
+    "D2": "accepted 2026-09-16: restore Print Sealed Summary + session/commit QR in My Receipts",
+    "D3": "accepted 2026-09-16: restore the teacher Verify receipt (scan) QR verifier",
+    "D4": "accepted 2026-09-16: hide study_guide_diagnostic.html from student navigation until A2 content exists",
+    "D5": "accepted 2026-09-16: remove every Sync Nearby remnant",
+    "D6": "accepted 2026-09-16: android-app/ retired (Live Classroom / nearby transport were stripped)",
+    "D7": "accepted 2026-09-16: add district-formula coverage to the server suite",
+    "D8": "accepted 2026-09-16: applied migration scripts (scripts/wire-*.mjs, build-android.mjs) stay deleted",
+    "D9": "accepted 2026-09-16: calendar cell click opens the lesson check",
+    "D10": "held 2026-09-16: AP grading-policy commit 72766e6 not ported until A2 reflections exist"
   }
 }
