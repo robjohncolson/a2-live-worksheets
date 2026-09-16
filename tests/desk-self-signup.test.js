@@ -63,7 +63,7 @@ describe('self-signup — modal markup', () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. Static — real Period B/E controls + boot routing precedence
+// 2. Static — real C/D/G section controls + boot routing precedence
 // ─────────────────────────────────────────────────────────────────────────────
 
 describe('teacher onboarding + class gradebook (static)', () => {
@@ -118,10 +118,16 @@ describe('self-signup runtime — _toggleTeacherKey', () => {
   });
 });
 
-describe('self-signup — boot routes real Period B/E calendars', () => {
-  it('the boot IIFE honors signed-in section, then ?period=, then defaults to E', () => {
-    expect(html).toMatch(/who\.section === 'PeriodB'\) return 'B'/);
-    expect(html).toMatch(/who\.section === 'PeriodE'\) return 'E'/);
+describe('self-signup — boot routes C/D/G calendars', () => {
+  it('the boot IIFE honors signed-in section, then ?period=, then defaults to C', () => {
+    const start = html.indexOf('function _currentRosterPeriod()');
+    const source = html.slice(start, html.indexOf('\n}', start) + 2);
+    for (const section of ['C', 'D', 'G', 'PeriodC', 'PeriodD', 'PeriodG']) {
+      const sandbox = { window: { rosterClient: { current: () => ({ section }) } } };
+      createContext(sandbox);
+      runInContext(source + '\nthis.period = _currentRosterPeriod();', sandbox);
+      expect(sandbox.period).toBe(section.slice(-1));
+    }
     const bootEnd = html.indexOf('var APP_BUILD');
     const bootStart = html.lastIndexOf('(function(){', bootEnd);
     const boot = html.slice(bootStart, bootEnd);
@@ -129,7 +135,7 @@ describe('self-signup — boot routes real Period B/E calendars', () => {
     expect(boot).toContain("?pp:'C'");
   });
 
-  it('shows separate Period B/E buttons and View-menu items', () => {
+  it('shows separate C/D/G buttons and View-menu items', () => {
     const btnB = document.getElementById('btn-b');
     const btnE = document.getElementById('btn-e');
     expect(btnB.textContent).toBe('Section C');
@@ -137,6 +143,9 @@ describe('self-signup — boot routes real Period B/E calendars', () => {
     expect(btnE.textContent).toBe('Section D');
     expect(btnE.getAttribute('onclick')).toContain("setP('D')");
     expect(btnE.style.display).not.toBe('none');
+    expect(document.getElementById('btn-g').textContent).toBe('Section G');
+    expect(document.getElementById('btn-g').getAttribute('onclick')).toContain("setP('G')");
+    expect(document.getElementById('menu-period-g').getAttribute('onclick')).toContain("setP('G')");
     expect(document.getElementById('menu-period-b').getAttribute('onclick')).toContain("setP('C')");
     expect(document.getElementById('menu-period-e').getAttribute('onclick')).toContain("setP('D')");
   });
@@ -435,15 +444,15 @@ describe('self-signup runtime — multi-period dropdown (fall path)', () => {
     };
     const d = makeSignup({ rosterClient: client });
 
-    d.api._renderSignupSections([{ value: 'PeriodA', label: 'Period A' }, { value: 'PeriodB', label: 'Period B' }]);
+    d.api._renderSignupSections([{ value: 'C', label: 'Section C' }, { value: 'D', label: 'Section D' }, { value: 'G', label: 'Section G' }]);
     const sel = d.created.find(n => n.tagName === 'SELECT');
     expect(sel).toBeTruthy();
-    expect(sel.children.length).toBe(2);
-    expect(sel.children.map(o => o.value)).toEqual(['PeriodA', 'PeriodB']);
-    expect(sel.children.map(o => o.textContent)).toEqual(['Period A', 'Period B']);
+    expect(sel.children.length).toBe(3);
+    expect(sel.children.map(o => o.value)).toEqual(['C', 'D', 'G']);
+    expect(sel.children.map(o => o.textContent)).toEqual(['Section C', 'Section D', 'Section G']);
 
-    // Pick the 2nd option → onchange must update the section value.
-    sel.value = 'PeriodB';
+    // Pick Section G → onchange must update the section value.
+    sel.value = 'G';
     sel.onchange();
 
     d.api._spinUsername();
@@ -452,14 +461,14 @@ describe('self-signup runtime — multi-period dropdown (fall path)', () => {
     d.el('signup-pin2').value = '1234';
     await d.api.submitSignUp();
 
-    expect(claimArgs.section).toBe('PeriodB');
+    expect(claimArgs.section).toBe('G');
   });
 });
 
 describe('self-signup runtime — openSignupModal', () => {
   it('resets stale fields, shows the modal immediately, and refines the period list from the server', async () => {
     const client = {
-      openSections: async () => [{ value: 'PeriodA', label: 'Period A' }, { value: 'PeriodB', label: 'Period B' }],
+      openSections: async () => [{ value: 'C', label: 'Section C' }, { value: 'D', label: 'Section D' }, { value: 'G', label: 'Section G' }],
       current: () => ({})
     };
     const d = makeSignup({ rosterClient: client });
@@ -473,10 +482,10 @@ describe('self-signup runtime — openSignupModal', () => {
     expect(d.el('signup-pin').value).toBe('');
     expect(d.el('signup-overlay').style.display).toBe('block');
     expect(d.el('signup-username-card').textContent).toMatch(/^[a-z]+_[a-z]+$/);
-    // refined to the 2-period server list
+    // refined to the three-section server list
     const sel = d.created.find(n => n.tagName === 'SELECT');
     expect(sel).toBeTruthy();
-    expect(sel.children.length).toBe(2);
+    expect(sel.children.length).toBe(3);
   });
 
   it('a rejecting openSections() does not throw and leaves the modal shown', async () => {
@@ -484,5 +493,34 @@ describe('self-signup runtime — openSignupModal', () => {
     const d = makeSignup({ rosterClient: client });
     await expect(d.api.openSignupModal()).resolves.not.toThrow;
     expect(d.el('signup-overlay').style.display).toBe('block');
+  });
+});
+
+describe('A2 Teacher Tools links', () => {
+  it('opens every retained tool only while the local session is a teacher', () => {
+    const dom = new JSDOM('<body></body>');
+    const opened = [];
+    let teacher = true;
+    const sandbox = {
+      document: dom.window.document,
+      window: { open: (...args) => opened.push(args) },
+      _deskIsTeacher: () => teacher,
+    };
+    createContext(sandbox);
+    const start = html.indexOf('function _teacherToolsLinks()');
+    const source = html.slice(start, html.indexOf('\n}', start) + 2);
+    runInContext(source + '\nthis.toolbar = _teacherToolsLinks();', sandbox);
+    const buttons = [...sandbox.toolbar.querySelectorAll('button')];
+    expect(buttons.map(button => button.textContent)).toEqual(['Roster Console', 'Dashboard', 'Code generator']);
+    for (const button of buttons) button.click();
+    expect(opened).toEqual([
+      ['teacher-roster-console.html', '_blank', 'noopener'],
+      ['teacher-dashboard.html', '_blank', 'noopener'],
+      ['teacher-code-generator.html', '_blank', 'noopener'],
+    ]);
+    teacher = false;
+    for (const button of buttons) button.click();
+    expect(opened).toHaveLength(3);
+    dom.window.close();
   });
 });

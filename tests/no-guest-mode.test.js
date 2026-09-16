@@ -5,14 +5,13 @@
 //   - the Desk sign-in wall admits only a live roster session or a teacher
 //   - the name-finder "I'm not on the list" link opens self-signup, not guest
 //   - presence (the 🐶 "Online Now" feed + Live Classroom avatars) never shows a guest
-//   - the shared peer-sync client never announces / attributes work to a Guest_ alias
-//   - all 69 worksheets require a roster session (the off-ramp line is gone)
+//   - the retained answer client never attributes work to a Guest_ alias
 //   - the study guide is behind the same wall
 //
 // @vitest-environment node
 
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -60,13 +59,8 @@ describe('Desk — "I\'m not on the list" routes to self-signup, never guest', (
 
 
 
-describe('railway_client.js — no guest attribution / presence', () => {
-  const presence = bodyFrom(RAILWAY, 'function _presenceUsername()');
+describe('railway_client.js — no guest submission attribution', () => {
   const submit = bodyFrom(RAILWAY, 'function submitAnswerViaRailway(');
-  it('_presenceUsername returns empty rather than a guest alias', () => {
-    expect(presence).not.toContain('return getGuestIdentity()');
-    expect(presence).toMatch(/return\s+'';/);
-  });
   it('submitAnswerViaRailway drops a username-less / Guest_ submission', () => {
     expect(submit).not.toContain('username = getGuestIdentity()');
     expect(submit).toMatch(/\/\^Guest_\/i\.test\(username\)\)\s*return false/);

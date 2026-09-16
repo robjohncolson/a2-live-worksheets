@@ -55,7 +55,7 @@ const FIXTURE_CTX = {
   studentId: 'stu_abc123',
   username: 'papaya-otter',
   realName: 'Jane Doe',
-  section: 'PeriodB',
+  section: 'C',
   readOnly: true,
   enteredAt: 1700000000000,
 };
@@ -139,7 +139,7 @@ describe('view-as -- _viewAsContext reader', () => {
     expect(ctx).toBeTruthy();
     expect(ctx.studentId).toBe('stu_abc123');
     expect(ctx.realName).toBe('Jane Doe');
-    expect(ctx.section).toBe('PeriodB');
+    expect(ctx.section).toBe('C');
   });
 
   it('returns null on malformed JSON', () => {
@@ -244,15 +244,6 @@ describe('view-as -- _maybeViewAsFetch URL rewriting', () => {
     expect(r.headers['Authorization']).toBe('Bearer TEACHER_TOK');
   });
 
-  it('/poll-archive -> /teacher/student/:id/poll-archive when active', () => {
-    const f = loadMaybeViewAsFetch(
-      mockStorage({ [KEY]: JSON.stringify(FIXTURE_CTX) }),
-      'TEACHER_TOK');
-    const r = f('/poll-archive', { 'Authorization': 'Bearer student-tok' });
-    expect(r.endpoint).toBe('/teacher/student/stu_abc123/poll-archive');
-    expect(r.headers['Authorization']).toBe('Bearer TEACHER_TOK');
-  });
-
   it('unknown endpoint pass-through (no rewrite) even when view-as is active', () => {
     const f = loadMaybeViewAsFetch(
       mockStorage({ [KEY]: JSON.stringify(FIXTURE_CTX) }),
@@ -329,7 +320,7 @@ describe('view-as -- _renderViewAsBanner', () => {
     expect(banner.style.display).toBe('flex');
     expect(name.textContent).toBe('Jane Doe');
     expect(meta.textContent).toContain('@papaya-otter');
-    expect(meta.textContent).toContain('PeriodB');
+    expect(meta.textContent).toContain('C');
   });
 
   it('falls back to username when realName missing', () => {
@@ -478,23 +469,25 @@ describe('view-as -- _wireViewAsWorksheetLinks', () => {
     expect(handlers.find(h => h.type === 'auxclick' && h.capture === true)).toBeTruthy();
   });
 
-  it('appends viewAsUserId to every worksheet-filename variant', () => {
+  it('appends viewAsUserId to A2 lesson-check links', () => {
     const { handlers } = loadWireLinks({ studentId: 'stu_abc123' });
     const onClick = handlers.find(h => h.type === 'click').fn;
     const base = 'https://a2.example.test/a2-live-worksheets/';
-    for (const f of ['u1_lesson2_live.html', 'u3_lesson6-7_live.html', 'u4_lesson1-2-3_live.html', 'u4_lesson10-12_live.html']) {
+    for (const f of ['check.html?lesson=1-1', 'check.html?lesson=1-1&resume=1']) {
       const a = fakeAnchor(base + f);
       onClick(fakeEvent(a));
       expect(a.href).toContain('viewAsUserId=stu_abc123');
     }
   });
 
-  it('does NOT touch a non-worksheet link (edgar / quiz / external)', () => {
+  it('does NOT touch supporting-skill or teacher links', () => {
     const { handlers } = loadWireLinks({ studentId: 'stu_abc123' });
     const onClick = handlers.find(h => h.type === 'click').fn;
     for (const href of [
-      'https://a2.example.test/a2-live-worksheets/edgar_u6_conceptual_driller_live.html',
-      'https://quiz.example.test/?u=4&l=1',
+      'https://a2.example.test/a2-live-worksheets/start-here.html',
+      'https://www.ixl.com/math/algebra-2/domain-and-range',
+      'https://external.example.test/check.html?lesson=1-1',
+      'https://a2.example.test/a2-live-worksheets/start-here.html?next=check.html',
       'teacher-dashboard.html',
     ]) {
       const a = fakeAnchor(href);
@@ -507,7 +500,7 @@ describe('view-as -- _wireViewAsWorksheetLinks', () => {
   it('does not double-append if the param is already present', () => {
     const { handlers } = loadWireLinks({ studentId: 'stu_abc123' });
     const onClick = handlers.find(h => h.type === 'click').fn;
-    const url = 'https://a2.example.test/a2-live-worksheets/u1_lesson2_live.html?viewAsUserId=stu_OTHER';
+    const url = 'https://a2.example.test/a2-live-worksheets/check.html?lesson=1-1&viewAsUserId=stu_OTHER';
     const a = fakeAnchor(url);
     onClick(fakeEvent(a));
     // Existing param is preserved (no second viewAsUserId appended).

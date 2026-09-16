@@ -625,7 +625,7 @@ describe('TR2 runtime — renderDoNow gating', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 //
 // Before sign-in the student's period is unknown, so both roster pickers must
-// merge PeriodB + PeriodE + parked PeriodX. Per-period callers continue using
+// merge PeriodC + PeriodD + PeriodG. Per-period callers continue using
 // _fetchPeriodRoster; the sign-in dropdown still stays closed on an empty union.
 
 describe('sign-in dropdown -- roster union + bail-on-empty', () => {
@@ -640,7 +640,7 @@ describe('sign-in dropdown -- roster union + bail-on-empty', () => {
     expect(html).toMatch(/_fetchSectionRoster\(\s*['"]PeriodX['"]/);  // may carry an opts arg
   });
 
-  it('the sign-in name finder fetches a FRESH B/E/X union', () => {
+  it('the sign-in name finder fetches a FRESH C/D/G union', () => {
     const body = fnBody(html, 'openNameFinder');
     for (const section of ['PeriodC', 'PeriodD', 'PeriodG']) expect(body).toContain(`'${section}'`);
     expect(body).toMatch(/_fetchSectionRoster\(\s*section\s*,\s*\{\s*fresh:\s*true\s*\}/);
@@ -650,12 +650,33 @@ describe('sign-in dropdown -- roster union + bail-on-empty', () => {
     expect(html).toMatch(/if\s*\(\s*!fresh\s*\)/);  // cache read guarded by !fresh
   });
 
-  it('_openRosterDropdown merges B/E/X, dedupes, sorts, and bails on empty', () => {
+  it('_openRosterDropdown merges C/D/G, dedupes, sorts, and bails on empty', () => {
     const body = fnBody(html, '_openRosterDropdown');
     for (const section of ['PeriodC', 'PeriodD', 'PeriodG']) expect(body).toContain(`'${section}'`);
     expect(body).toMatch(/_fetchSectionRoster\(\s*section\s*\)/);
     expect(body).toMatch(/toLowerCase\s*\(\s*\)/);
     expect(body).toMatch(/localeCompare/);
     expect(body).toMatch(/if\s*\(\s*_rosterDropdownData\.length\s*===\s*0\s*\)\s*\{\s*_closeRosterDropdown\(\s*\);\s*return/);
+  });
+});
+
+describe('A2 local progress survives without the retired database POST', () => {
+  it('records a lesson check mark locally and preserves its first visit', async () => {
+    const saved = new Map();
+    const marks = { '1-1|worksheet': { visitedAt: '2026-09-14T12:00:00.000Z', score: 5 } };
+    const sandbox = {
+      getStudentEmail: () => 'mango_fox',
+      getStudentMarks: () => marks,
+      localStorage: { setItem: (key, value) => saved.set(key, value) },
+      showDialog: () => { throw new Error('unexpected save failure'); },
+      fetch: () => { throw new Error('legacy database write'); },
+    };
+    createContext(sandbox);
+    runInContext(fnBody(html, 'recordProgress') + '\nthis.record = recordProgress;', sandbox);
+    expect(await sandbox.record('1-1', 'worksheet', 8)).toBe(true);
+    const mark = JSON.parse(saved.get('a2_desk_marks_mango_fox'))['1-1|worksheet'];
+    expect(mark.score).toBe(8);
+    expect(mark.visitedAt).toBe('2026-09-14T12:00:00.000Z');
+    expect(Number.isFinite(Date.parse(mark.ts))).toBe(true);
   });
 });

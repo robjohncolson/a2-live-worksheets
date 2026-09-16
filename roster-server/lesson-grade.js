@@ -572,20 +572,21 @@ export function sectionToPeriod(section) {
 
 // ── quarterOfLesson ───────────────────────────────────────────────────────────
 //
+// Resolve dates consistently across quarter placement, due work, and bonuses.
+// Known sections keep their own date, including an unscheduled null date.
+function scheduledDate(entry, period) {
+  const periods = (entry && entry.periods) || {};
+  if (period) return periods[period] || null;
+  return periods.C || periods.D || periods.G || periods.B || periods.E || null;
+}
+
 // The quarter a scheduled lesson belongs to. Date-driven, with a
 // unit-band fallback for a lesson that has no usable date.
-//   entry  -- a lesson-schedule entry { unit, periods: {B,E}, ... }
-//   period -- 'B' | 'E' | null  (from sectionToPeriod)
+//   entry  -- a lesson-schedule entry { unit, periods: {C,D,G,B,E}, ... }
+//   period -- section letter or null (from sectionToPeriod)
 // Returns 'Q1'..'Q4' (quarterOfUnit always resolves for units 1-9).
 export function quarterOfLesson(entry, period, config) {
-  const periods = (entry && entry.periods) || {};
-  // A known section uses ONLY that section's date. A null there means
-  // "not scheduled for this section" -> fall through to the unit-band
-  // path; do NOT borrow the other section's date (that would disagree
-  // with isDue and break the F2 contract). The B/E union is used only
-  // when the section itself is unknown (Codex F2 review, MAJOR).
-  let date = period ? (periods[period] || null)
-                    : (periods.B || periods.E || null);
+  const date = scheduledDate(entry, period);
   if (date) {
     const q = quarterOfDate(date, config);
     if (q) return q;
@@ -611,16 +612,9 @@ export function deriveQuarterBands(config, schedule, period, gradingWindowStart)
   for (const entry of Object.values(schedule)) {
     if (!entry || !Number.isFinite(Number(entry.unit))) continue;
     const unitNum = Number(entry.unit);
-    const periods = (entry.periods && typeof entry.periods === 'object') ? entry.periods : {};
-    const b = periods.B == null ? null : periods.B;
-    const e = periods.E == null ? null : periods.E;
-    if (gradingWindowStart && !(b == null && e == null)) {
-      const bIn = b != null && b >= gradingWindowStart;
-      const eIn = e != null && e >= gradingWindowStart;
-      if (!bIn && !eIn) continue; // stale prior-cohort entry
-    }
-    const d = period ? (periods[period] || null) : (b || e || null);
+    const d = scheduledDate(entry, period);
     if (!d || typeof d !== 'string') continue;
+    if (gradingWindowStart && d < gradingWindowStart) continue;
     const q = quarterOfDate(d, config);
     if (!q) continue;
     if (!countsByUnit.has(unitNum)) countsByUnit.set(unitNum, new Map());
@@ -689,25 +683,10 @@ export function computeQuarterFromLessons({
 }) {
   const period = sectionToPeriod(section); // "B" | "E" | null
 
-  // Helper: is this lesson entry IN the active cohort's grading window?
-  // A lesson stays in the band if EITHER period date is unset (null/missing —
-  // not yet scheduled for this cohort) OR a period date is >= the window
-  // start. A lesson with BOTH dates strictly before the start is treated as
-  // a stale prior-year entry and excluded entirely. 2026-05-20 fold: prior
-  // SY25-26 dates (April-2026 etc.) were polluting Q3/Q4 with phantom
-  // "past-due" lessons that nobody in this cohort was supposed to do.
+  // Unscheduled lessons remain visible; dated lessons must belong to this cohort.
   function inWindow(entry) {
-    if (!gradingWindowStart) return true;
-    const periods = (entry && entry.periods) || {};
-    const b = periods.B;
-    const e = periods.E;
-    // Null/missing dates are NOT excluded — those are "not yet scheduled"
-    // for this cohort and should stay in the band (so they count toward
-    // lessonsTotal once the teacher fills them in).
-    if (b == null && e == null) return true;
-    if (b != null && b >= gradingWindowStart) return true;
-    if (e != null && e >= gradingWindowStart) return true;
-    return false;
+    const date = scheduledDate(entry, period);
+    return !gradingWindowStart || !date || date >= gradingWindowStart;
   }
 
   // All lessons assigned to this quarter (those that exist in the schedule AND
@@ -736,25 +715,9 @@ export function computeQuarterFromLessons({
     };
   }
 
-  // Determine which lessons are "due" by today.
-  // A lesson is due if its period's date <= todayDateStr.
-  // If section unknown, use the union (due if EITHER period's date <= today).
+  // Use the same section date for due work and quarter placement.
   function isDue(topicKey) {
-    const entry = schedule[topicKey];
-    if (!entry || typeof entry !== 'object') return false;
-    const periods = entry.periods && typeof entry.periods === 'object' ? entry.periods : {};
-    if (period) {
-      const dueDate = periods[period];
-      if (!dueDate) {
-        // No date for this period — treat as not-yet-due (future).
-        return false;
-      }
-      return isDateDue(dueDate, todayDateStr, config);
-    }
-    // Unknown section: due if EITHER B or E is due.
-    const bDue = isDateDue(periods.B, todayDateStr, config);
-    const eDue = isDateDue(periods.E, todayDateStr, config);
-    return !!(bDue || eDue);
+    return isDateDue(scheduledDate(schedule[topicKey], period), todayDateStr, config);
   }
 
   // 2026-05-20 v2: include any lesson with recorded work in dueLessons,
@@ -938,13 +901,8 @@ export function computeQuarterV3({
 
   // ── Band lessons in the active grading window (mirrors computeQuarterFromLessons) ──
   function inWindow(entry) {
-    if (!gradingWindowStart) return true;
-    const periods = (entry && entry.periods) || {};
-    const b = periods.B, e = periods.E;
-    if (b == null && e == null) return true;
-    if (b != null && b >= gradingWindowStart) return true;
-    if (e != null && e >= gradingWindowStart) return true;
-    return false;
+    const date = scheduledDate(entry, period);
+    return !gradingWindowStart || !date || date >= gradingWindowStart;
   }
 
   // SY2627 (2026-09-03): v3 buckets lessons by CALENDAR DATE (quarterOfLesson,
@@ -969,16 +927,7 @@ export function computeQuarterV3({
   const lessonsTotal = bandLessons.length;
 
   function isDue(topicKey) {
-    const entry = schedule[topicKey];
-    if (!entry || typeof entry !== 'object') return false;
-    const periods = entry.periods && typeof entry.periods === 'object' ? entry.periods : {};
-    if (period) {
-      const d = periods[period];
-      return isDateDue(d, todayDateStr, config);
-    }
-    const bDue = isDateDue(periods.B, todayDateStr, config);
-    const eDue = isDateDue(periods.E, todayDateStr, config);
-    return !!(bDue || eDue);
+    return isDateDue(scheduledDate(schedule[topicKey], period), todayDateStr, config);
   }
 
   // Due = scheduled-due OR has recorded work (same convention as Phase 6).
@@ -1138,10 +1087,7 @@ export function computeQuarterV3({
   const aheadKeys = /** @type {string[]} */ ([]);
   if (earlyPerLesson > 0 && earlyCap > 0) {
     const seenWorksheets = new Set();
-    const dateFor = (entry) => {
-      const periods = (entry && entry.periods && typeof entry.periods === 'object') ? entry.periods : {};
-      return period ? (periods[period] || null) : (periods.B || periods.E || null);
-    };
+    const dateFor = (entry) => scheduledDate(entry, period);
     for (const topicKey of bandLessons) {
       const r = lessonMap.get(topicKey);
       if (lessonTrackValue(r) == null) continue; // no worksheet work → nothing to credit
@@ -1271,12 +1217,8 @@ export function buildLessonsArray(lessonMap, schedule, topicNames, gradingWindow
     // active cohort's grading window. Mirrors the band filter in
     // computeQuarterFromLessons so the day-grade modal also skips stale
     // prior-year entries.
-    if (gradingWindowStart && entry && entry.periods) {
-      const b = entry.periods.B, e = entry.periods.E;
-      const bothBeforeStart = (b != null && b < gradingWindowStart) &&
-                              (e != null && e < gradingWindowStart);
-      if (bothBeforeStart) continue;
-    }
+    const date = scheduledDate(entry, null);
+    if (gradingWindowStart && date && date < gradingWindowStart) continue;
     // Codex MAJOR 3 fold (2026-05-20): defensive skip on malformed entries
     // — the loader only validates the top-level shape, so per-entry corruption
     // (missing unit / periods) reaches here. Per the contract, malformed data
@@ -1290,7 +1232,12 @@ export function buildLessonsArray(lessonMap, schedule, topicNames, gradingWindow
       unit: entry.unit,
       worksheetKey: entry.worksheetKey,
       topicName: (topicNames && topicNames[topicKey]) || null,
-      due: { B: periods.B || null, E: periods.E || null },
+      due: {
+        B: periods.B || null, E: periods.E || null,
+        ...('C' in periods ? { C: periods.C || null } : {}),
+        ...('D' in periods ? { D: periods.D || null } : {}),
+        ...('G' in periods ? { G: periods.G || null } : {}),
+      },
       lessonGrade: lessonResult ? lessonResult.lessonGrade : null,
       // v3 Lessons-track value ({Cws, W} blend, quiz excluded) — the apples-to-apples
       // "Follow-Along" cell for the in-app/Schoology gradebook (worksheet blanks +

@@ -1,198 +1,116 @@
-// gradebook-grid.test.js — pure-function unit tests for the in-app "1:1 Schoology
-// gradebook" deriver. Tests column generation (opener-no-quiz, combined dedup,
-// PC/Poster per unit), cell extraction (Follow-Along = lessonGradeNoQuiz, the v3
-// Lessons-track value, with Cws fallback), category averages, the Schoology
-// category-weighted total, the v3 passthrough, and the reconciliation breakdown.
-// NO network, NO server, NO I/O.
-//
 // @vitest-environment node
-
 import { describe, it, expect } from 'vitest';
+import { computeGrade } from '../grade.js';
+import { PHASE3_CONFIG } from '../grade-config.js';
 import {
-  buildGradebookColumns,
-  buildGradebookRow,
-  buildGradebook,
-  schoologyWeightedTotal,
-  reconcileQuarter,
-  SCHOOLOGY_CATEGORY_WEIGHTS,
+  buildGradebookColumns, buildGradebookRow, buildGradebook,
+  schoologyWeightedTotal, reconcileQuarter, SCHOOLOGY_CATEGORY_WEIGHTS,
 } from '../gradebook-grid.js';
 
-// A synthetic computeGrade() result: one quarter (Q1 band [1]) with an opener
-// (1.1: no quiz, has blooket), a full lesson (1.2: quiz + blooket), and a combined
-// pair (1.3/1.4 sharing worksheet "3-4", quiz only on 1.4). lessonGradeNoQuiz is
-// the v3 Lessons-track value (blanks + reflections), distinct from Cws so we can
-// tell which the Follow-Along cell uses.
-function gradeObj() {
-  return {
-    units: { U1: { pcRawPct: 80 } },
-    quarters: { Q1: { units: [1], quarterGrade: 90, pcAvg: 90, workAvg: 70 } },
-    lessons: [
-      { lessonKey: '1.1', unit: 1, worksheetKey: '1', Cws: 88, lessonGradeNoQuiz: 84, Q: null, quizTotal: 0, blooket: 95, hasBlooket: true, blooketBonus: false },
-      { lessonKey: '1.2', unit: 1, worksheetKey: '2', Cws: 90, lessonGradeNoQuiz: 86, Q: 78, quizTotal: 3, blooket: 100, hasBlooket: true, blooketBonus: false },
-      { lessonKey: '1.3', unit: 1, worksheetKey: '3-4', Cws: 70, lessonGradeNoQuiz: 66, Q: null, quizTotal: 0, blooket: null, hasBlooket: false, blooketBonus: false },
-      { lessonKey: '1.4', unit: 1, worksheetKey: '3-4', Cws: 70, lessonGradeNoQuiz: 66, Q: 65, quizTotal: 4, blooket: null, hasBlooket: false, blooketBonus: false },
-    ],
-  };
-}
+const A2_CONFIG = {
+  ...PHASE3_CONFIG, useDistrictFormula: true, useV3: false,
+  bonusOnlyThrough: null, dueAfterLessonDay: true,
+  quarters: { Q1: { units: [1], start: '2026-09-02', end: '2026-11-06' } },
+};
+const A2_SCHEDULE = { '1.1': {
+  unit: 1, topicKey: '1.1', worksheetKey: '1', tryItCount: 1,
+  periods: { C: '2026-09-24', D: '2026-09-25', G: '2026-09-25' },
+} };
+const A2_ASSESSMENT = { itemId: 'TA-U1', source: 'topic-assessment', dueDate: '2026-09-25' };
+const A2_OPTS = { lessonSchedule: A2_SCHEDULE, section: 'PeriodC',
+  asOf: '2026-09-28T16:00:00Z', items: [A2_ASSESSMENT] };
+const a2Rows = (mastery, check, work, deck = 100) => [
+  { item_id: 'TA-U1', source: 'topic-assessment', score: mastery },
+  { item_id: 'LC-U1-L1', source: 'lesson-check', score: check },
+  { item_id: 'TI-U1-L1-1', source: 'try-it', score: work },
+  { item_id: 'BL-U1-L1-DESK_DONE', source: 'flashcard', score: deck },
+].filter(row => row.score != null).map(row => ({ ...row, recorded_at: '2026-09-25T16:00:00Z' }));
 
-describe('buildGradebookColumns', () => {
-  const cols = buildGradebookColumns(gradeObj(), 'Q1');
-  const keys = cols.map((c) => c.key);
+describe('A2 gradebook identity, categories, and totals', () => {
+  const grade = computeGrade(a2Rows(80, 10, 1, 100), {}, A2_CONFIG, A2_OPTS);
+  const grid = buildGradebook(grade);
+  const q1 = grid.quarters.Q1;
 
-  it('opener (1.1) gets Follow-Along + Blooket but NO quiz', () => {
-    expect(keys).toContain('FA:1.1');
-    expect(keys).toContain('BL:1.1');
-    expect(keys).not.toContain('QUIZ:1.1');
+  it('keeps all four feeder IDs and their raw point scales', () => {
+    expect(q1.columns.map(column => column.key).sort()).toEqual(
+      ['LC-U1-L1', 'TI-U1-L1-1', 'BL-U1-L1-DESK_DONE', 'TA-U1'].sort());
+    const columns = Object.fromEntries(q1.columns.map(column => [column.key, column]));
+    expect(columns['LC-U1-L1']).toMatchObject({ category: 'Assessments', maxPoints: 10, topicKeys: ['1.1'] });
+    expect(columns['TA-U1']).toMatchObject({ category: 'Assessments', maxPoints: 100 });
+    expect(columns['TI-U1-L1-1']).toMatchObject({ category: 'Assignments', maxPoints: 2 });
+    expect(columns['BL-U1-L1-DESK_DONE']).toMatchObject({ category: 'Engagement', maxPoints: 1 });
+    expect(q1.cells).toEqual({ 'LC-U1-L1': 10, 'TI-U1-L1-1': 1, 'BL-U1-L1-DESK_DONE': 1, 'TA-U1': 80 });
   });
 
-  it('combined worksheet (1.3/1.4) shares ONE Follow-Along, quiz only on 1.4', () => {
-    expect(keys.filter((k) => k === 'FA:1.3-4').length).toBe(1);
-    expect(keys).toContain('QUIZ:1.4');
-    expect(keys).not.toContain('QUIZ:1.3');
-    expect(keys).not.toContain('BL:1.3-4');
+  it('keeps district weights and category-weighted totals', () => {
+    expect(SCHOOLOGY_CATEGORY_WEIGHTS).toEqual({ Assessments: 50, Assignments: 40, Engagement: 10 });
+    expect(grid.weights).toEqual(SCHOOLOGY_CATEGORY_WEIGHTS);
+    expect(q1.categoryAverages).toMatchObject({ Assignments: 50, Engagement: 100 });
+    expect(q1.categoryAverages.Assessments).toBeCloseTo(90 / 110 * 100, 8);
+    expect(q1.schoologyTotal).toBeCloseTo(90 / 110 * 50 + 30, 8);
+    expect(q1.quarterGrade).toBeCloseTo(q1.schoologyTotal, 8);
+    expect(q1.reconciliation.delta).toBeCloseTo(0, 8);
   });
 
-  
-
-  it('maps component kinds to Schoology categories', () => {
-    const byKey = Object.fromEntries(cols.map((c) => [c.key, c]));
-    expect(byKey['FA:1.2'].category).toBe('Lesson');
-    expect(byKey['QUIZ:1.2'].category).toBe('Quizzes');
-    expect(byKey['BL:1.2'].category).toBe('Blooket');
+  it('standalone column and row helpers preserve the same cells and totals', () => {
+    const columns = buildGradebookColumns(grade, 'Q1');
+    const row = buildGradebookRow(grade, columns);
+    expect(columns).toEqual(q1.columns);
+    expect(row.cells).toEqual(q1.cells);
+    expect(row.schoologyTotal).toBe(q1.schoologyTotal);
   });
 
-  it('core Blooket column is unlabeled (not bonus)', () => {
-    const byKey = Object.fromEntries(cols.map((c) => [c.key, c]));
-    expect(byKey['BL:1.2'].title).toBe('1.2 Blooket');
-    expect(byKey['BL:1.2'].blooketBonus).toBe(false);
+  it.each(['C', 'D', 'G'])('uses %s lesson-day boundaries and late missing work', section => {
+    const date = A2_SCHEDULE['1.1'].periods[section];
+    const onDay = computeGrade([], {}, A2_CONFIG, {
+      ...A2_OPTS, section, items: [], asOf: date + 'T16:00:00Z',
+    });
+    expect(buildGradebook(onDay).quarters.Q1.columns.every(column => !column.due)).toBe(true);
+    const overdue = computeGrade([], {}, A2_CONFIG, { ...A2_OPTS, section, items: [] });
+    const quarter = buildGradebook(overdue).quarters.Q1;
+    expect(quarter.columns.every(column => column.due)).toBe(true);
+    expect(Object.values(quarter.cells).every(value => value === null)).toBe(true);
+    expect(quarter.quarterGrade).toBe(0);
+    expect(quarter.schoologyTotal).toBeNull();
   });
-});
 
-describe('M2d teacher dashboard bonus Blooket labeling', () => {
-  function gradeWithBonus() {
-    return {
-      units: { U2: { pcRawPct: null } },
-      quarters: { Q1: { units: [2], quarterGrade: null, pcAvg: null, workAvg: null } },
-      lessons: [
-        // core with blooket
-        { lessonKey: '2.1', unit: 2, worksheetKey: '1', Cws: null, lessonGradeNoQuiz: null, Q: null, quizTotal: 0, blooket: null, hasBlooket: true, blooketBonus: false },
-        // enrichment (crosswalk bonus) with blooket — must never read as required
-        { lessonKey: '2.9', unit: 2, worksheetKey: '9', Cws: null, lessonGradeNoQuiz: null, Q: null, quizTotal: 0, blooket: null, hasBlooket: true, blooketBonus: true },
-      ],
+  it('late submitted work keeps its identity and closes the missing-work gap', () => {
+    const rows = a2Rows(null, 10, null, null);
+    const missing = buildGradebook(computeGrade(rows, {}, A2_CONFIG, A2_OPTS)).quarters.Q1;
+    expect(missing.schoologyTotal).toBe(100);
+    expect(missing.quarterGrade).toBeLessThan(missing.schoologyTotal);
+    const lateRows = a2Rows(100, 10, 2, 100).map(row => ({ ...row, recorded_at: '2026-10-01T16:00:00Z' }));
+    const late = buildGradebook(computeGrade(lateRows, {}, A2_CONFIG,
+      { ...A2_OPTS, asOf: '2026-10-02T16:00:00Z' })).quarters.Q1;
+    expect(late.columns.map(column => column.key)).toEqual(missing.columns.map(column => column.key));
+    expect(late.quarterGrade).toBeCloseTo(100, 8);
+    expect(late.reconciliation.delta).toBeCloseTo(0, 8);
+  });
+
+  it('deduplicates a shared deck within the quarter', () => {
+    const schedule = { ...A2_SCHEDULE,
+      '1.2': { ...A2_SCHEDULE['1.1'], worksheetKey: '1' },
     };
-  }
-
-  it('bonus topic Blooket column is labeled (bonus) and flagged', () => {
-    const cols = buildGradebookColumns(gradeWithBonus(), 'Q1');
-    const byKey = Object.fromEntries(cols.map((c) => [c.key, c]));
-    expect(byKey['BL:2.9'].title).toBe('2.9 Blooket (bonus)');
-    expect(byKey['BL:2.9'].blooketBonus).toBe(true);
+    const result = buildGradebook(computeGrade([], {}, A2_CONFIG, { ...A2_OPTS, lessonSchedule: schedule }));
+    expect(result.quarters.Q1.columns.filter(column => column.key === 'BL-U1-L1-DESK_DONE')).toHaveLength(1);
   });
-
-  it('core topic Blooket column stays unlabeled', () => {
-    const cols = buildGradebookColumns(gradeWithBonus(), 'Q1');
-    const byKey = Object.fromEntries(cols.map((c) => [c.key, c]));
-    expect(byKey['BL:2.1'].title).toBe('2.1 Blooket');
-    expect(byKey['BL:2.1'].blooketBonus).toBe(false);
-  });
-
-  it('M2d CONTRACT: student-facing gradebook payload carries "(bonus)" title', () => {
-    // My Gradebook + My Ledger render the shared column.title — the "(bonus)"
-    // suffix is student-visible by design (honest labeling; user-approved).
-    const gb = buildGradebook(gradeWithBonus());
-    const cols = gb.quarters.Q1.columns;
-    const bonusCol = cols.find((c) => c.key === 'BL:2.9');
-    expect(bonusCol).toBeTruthy();
-    expect(bonusCol.title).toBe('2.9 Blooket (bonus)');
-    expect(bonusCol.blooketBonus).toBe(true);
-    const coreCol = cols.find((c) => c.key === 'BL:2.1');
-    expect(coreCol.title).toBe('2.1 Blooket');
-    expect(coreCol.title).not.toMatch(/bonus/i);
-  });
-});
-
-describe('buildGradebookColumns — date-gating `due` flag', () => {
-  const schedule = {
-    '1.1': { unit: 1, periods: { B: '2026-09-09', E: '2026-09-09' } },
-    '1.2': { unit: 1, periods: { B: '2026-09-15', E: '2026-09-15' } },
-    '1.3': { unit: 1, periods: { B: '2026-10-01', E: '2026-10-01' } },
-    '1.4': { unit: 1, periods: { B: '2026-10-01', E: '2026-10-01' } },
-  };
-
-  it('stamps due true/false from the calendar date when opts are given', () => {
-    const cols = buildGradebookColumns(gradeObj(), 'Q1', { lessons: schedule, section: 'PeriodE', todayStr: '2026-09-20' });
-    const byKey = Object.fromEntries(cols.map((c) => [c.key, c]));
-    expect(byKey['FA:1.1'].due).toBe(true);    // 09-09 <= 09-20
-    expect(byKey['FA:1.2'].due).toBe(true);    // 09-15 <= 09-20
-    expect(byKey['FA:1.3-4'].due).toBe(false); // latest 10-01 > 09-20
-    expect(byKey['QUIZ:1.4'].due).toBe(false); // 10-01 > 09-20
-  });
-
-  it('omits the due field entirely when no schedule/today is given (degrade to show-all)', () => {
-    const cols = buildGradebookColumns(gradeObj(), 'Q1');
-    expect('due' in cols[0]).toBe(false);
-  });
-
-  it('buildGradebook threads the date-gating opts into every quarter column', () => {
-    const gb = buildGradebook(gradeObj(), { lessonSchedule: schedule, section: 'PeriodE', todayStr: '2026-09-20' });
-    const cols = gb.quarters.Q1.columns;
-    const byKey = Object.fromEntries(cols.map((c) => [c.key, c]));
-    expect(byKey['FA:1.1'].due).toBe(true);
-    expect(byKey['QUIZ:1.4'].due).toBe(false);
-  });
-});
-
-describe('buildGradebookRow', () => {
-  const cols = buildGradebookColumns(gradeObj(), 'Q1');
-  const row = buildGradebookRow(gradeObj(), cols);
-
-  it('Follow-Along cell = lessonGradeNoQuiz (blanks + reflections), NOT Cws', () => {
-    expect(row.cells['FA:1.1']).toBe(84); // not 88 (Cws)
-    expect(row.cells['FA:1.2']).toBe(86); // not 90
-    expect(row.cells['FA:1.3-4']).toBe(66); // combined, shared
-  });
-
-  it('Quiz and Blooket cells retain their values', () => {
-    expect(row.cells['QUIZ:1.2']).toBe(78);
-    expect(row.cells['BL:1.1']).toBe(95);
-  });
-
-  it('falls back to Cws when lessonGradeNoQuiz is absent (old server)', () => {
-    const g = {
-      units: {}, quarters: { Q1: { units: [1], quarterGrade: null } },
-      lessons: [{ lessonKey: '1.1', unit: 1, worksheetKey: '1', Cws: 88, Q: null, quizTotal: 0, blooket: null, hasBlooket: false }],
-    };
-    const c = buildGradebookColumns(g, 'Q1');
-    const r = buildGradebookRow(g, c);
-    expect(r.cells['FA:1.1']).toBe(88); // no lessonGradeNoQuiz -> Cws
-  });
-
-  it('computes category averages over present cells (Lesson uses the FA values)', () => {
-    // Lesson (FA): 84, 86, 66 -> 78.7
-    expect(row.categoryAverages.Lesson).toBeCloseTo(78.7, 1);
-    expect(row.categoryAverages.Quizzes).toBeCloseTo(71.5, 1);
-    expect(row.categoryAverages.Blooket).toBeCloseTo(97.5, 1);
-  });
-
-  
 });
 
 describe('schoologyWeightedTotal', () => {
-  it('renormalizes over present categories', () => {
-    expect(schoologyWeightedTotal({ Lesson: 90, Quizzes: 80 }, { Lesson: 15, Quizzes: 15, Blooket: 5 })).toBe(85);
+  it('renormalizes only over present district categories', () => {
+    expect(schoologyWeightedTotal({ Assessments: 80, Assignments: 100 }, SCHOOLOGY_CATEGORY_WEIGHTS))
+      .toBeCloseTo(80 / 0.9, 1);
   });
-  it('returns null when no category present', () => {
-    expect(schoologyWeightedTotal({}, SCHOOLOGY_CATEGORY_WEIGHTS)).toBe(null);
+  it('returns null without category evidence', () => {
+    expect(schoologyWeightedTotal({}, SCHOOLOGY_CATEGORY_WEIGHTS)).toBeNull();
   });
 });
-
 describe('reconcileQuarter — explains the Schoology vs v3 gap', () => {
   it('max branch: both tracks >= 40 -> v3 takes the higher, Schoology averages', () => {
     const r = reconcileQuarter({ quarters: { Q1: { pcAvg: 90, workAvg: 70 } } }, 'Q1', 78.3, 90);
     expect(r.branch).toBe('max');
     expect(r.delta).toBeCloseTo(11.7, 1); // 90 - 79.3
     expect(r.reason).toMatch(/higher/);
-    expect(r.reason).toContain('PC 90');
   });
 
   it('ceiling branch: a track below 40 -> v3 caps', () => {
@@ -201,7 +119,7 @@ describe('reconcileQuarter — explains the Schoology vs v3 gap', () => {
     expect(r.reason).toMatch(/40 floor/);
   });
 
-  it('work-only branch: PC null -> v3 = Work', () => {
+  it('work-only branch: mastery null -> v3 = Work', () => {
     const r = reconcileQuarter({ quarters: { Q1: { pcAvg: null, workAvg: 70 } } }, 'Q1', 70, 70);
     expect(r.branch).toBe('work-only');
     expect(r.delta).toBe(0);
@@ -232,28 +150,12 @@ describe('reconcileQuarter — explains the Schoology vs v3 gap', () => {
   });
 
   it('ceiling tie: lists every cap source that achieved the max', () => {
-    // pc 0.90, work 0.36 -> a=0.63, m=0.63 (tie between 70% of PC and the mean).
+    // pc 0.90, work 0.36 -> a=0.63, m=0.63 (tie between 70% of mastery and the mean).
     const r = reconcileQuarter(
       { quarters: { Q1: { pcAvg: 90, workAvg: 36, pcAvgRaw: 0.90, workAvgRaw: 0.36 } } },
       'Q1', 70, 63);
     expect(r.branch).toBe('ceiling');
-    expect(r.reason).toContain('70% of PC');
     expect(r.reason).toContain('the mean of the two tracks');
   });
 });
 
-describe('buildGradebook', () => {
-  const gb = buildGradebook(gradeObj());
-
-  it('echoes weights and builds every quarter', () => {
-    expect(gb.weights).toEqual({ Lesson: 15, Quizzes: 15, Blooket: 5 });
-    expect(Object.keys(gb.quarters)).toEqual(['Q1']);
-  });
-
-  it('surfaces both totals + the reconciliation', () => {
-    expect(gb.quarters.Q1.v3Total).toBe(90);
-    expect(gb.quarters.Q1.schoologyTotal).toBeCloseTo(78.3, 1);
-    expect(gb.quarters.Q1.reconciliation.branch).toBe('max');
-    expect(gb.quarters.Q1.reconciliation.delta).toBeCloseTo(11.7, 1);
-  });
-});

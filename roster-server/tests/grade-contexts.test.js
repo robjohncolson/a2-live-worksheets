@@ -79,7 +79,7 @@ describe('M2b grade-contexts registry (durable freeze + honest resolver)', () =>
     // master guards grade parity; this suite must not require ongoing equality.
   });
 
-  it('SY2526 loads DURABLE freeze: 77 presence=required, schedule 1.1 B=2026-09-09, useV3 from freeze', () => {
+  it('SY2526 loads the isolated durable freeze and its grading flags', () => {
     const a = getGradeContext('SY2526');
     expect(a.year).toBe('SY2526');
     expect(a.blooketPresence).toHaveLength(0);
@@ -101,16 +101,13 @@ describe('M2b grade-contexts registry (durable freeze + honest resolver)', () =>
     expect(prod.config).toEqual(expected);
   });
 
-  it('SY2627 uses its frozen answer key with live presence 77 / required 66 / bonus 11', () => {
+  it('SY2627 loads the A2 frozen key without the removed AP deck catalog', () => {
     const b = getGradeContext('SY2627');
     expect(b.year).toBe('SY2627');
     expect(b.blooketPresence).toHaveLength(0);
     expect(b.blooketRequired).toHaveLength(0);
     expect(b.blooketBonusTopics).toHaveLength(0);
     expect(b.blooketTopics).toHaveLength(0);
-    expect(b.blooketRequired).not.toContain('2.9');
-    // Part-C retag 2026-08-07: old-3.7 (sim-significance) moved core->bonus.
-    expect(b.blooketRequired).not.toContain('3.7');
     expect(b.blooketPresence).toEqual([]);
     expect(b.answerKey).toEqual(JSON.parse(readFileSync(freezeAnswerKey, 'utf8')));
     expect(b.answerKeyHash).toBe(keyVersionHash(b.answerKey.answerKey, {}));
@@ -214,8 +211,8 @@ describe('M2b grade-contexts registry (durable freeze + honest resolver)', () =>
       tmp,
       JSON.stringify({
         lessons: {
-          '9.9': { unit: 9, topicKey: '9.9', worksheetKey: '99', periods: { B: '2099-01-01', E: '2099-01-01' } },
-          '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { B: '2099-06-01', E: '2099-06-01' } },
+          '9.9': { unit: 9, topicKey: '9.9', worksheetKey: '99', periods: { C: '2099-01-01', D: '2099-01-01', G: '2099-01-01' } },
+          '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { C: '2099-06-01', D: '2099-06-01', G: '2099-06-01' } },
         },
       }),
       'utf8',
@@ -223,9 +220,9 @@ describe('M2b grade-contexts registry (durable freeze + honest resolver)', () =>
     try {
       process.env.LESSON_SCHEDULE_PATH = tmp;
       const live = loadLessonScheduleWithPriority();
-      expect(live['9.9'].periods.B).toBe('2099-01-01');
+      expect(live['9.9'].periods.C).toBe('2099-01-01');
       const prod = resolveProductionGradeInputs('SY2627');
-      expect(prod.lessonSchedule['1.1'].periods.B).toBe('2099-06-01');
+      expect(prod.lessonSchedule['1.1'].periods.C).toBe('2099-06-01');
       const frozen = resolveProductionGradeInputs('SY2526');
       expect(frozen.lessonSchedule).toEqual({});
       expect(frozen.lessonSchedule['9.9']).toBeUndefined();
@@ -251,7 +248,7 @@ describe('M2b strict freeze validators (unit)', () => {
   
 
   it('blooket: presence≠required throws', () => {
-    const topics = Array.from({ length: 77 }, (_, i) => `1.${i + 1}`);
+    const topics = Array.from({ length: 4 }, (_, i) => `1.${i + 1}`);
     const required = topics.slice();
     required[0] = '9.9';
     expect(() => validateBlooketFreeze({ topics, requiredTopics: required, bonusTopics: [] }))
@@ -269,7 +266,7 @@ describe('M2b strict freeze validators (unit)', () => {
       feederWeights: { W: 1, Q: 2 },
       lessonFeederWeights: { ws: 1, W: 2, Q: 3 },
       frqBand: { E: 100, P: 70, I: 35 },
-      v3WorkWeights: { lessons: 0.3, quizzes: 0.3, posters: 0.3, blooket: 0.1 },
+      v3WorkWeights: { lessons: 3 / 7, quizzes: 3 / 7, blooket: 1 / 7 },
       v3Gates: { floor: 0.4, ceiling: 0.7 },
       schoolTz: 'America/New_York',
       gradingWindowStart: '2026-09-01',
@@ -458,7 +455,7 @@ describe('A4 createApp answer-key freeze', () => {
   async function bootCase(withFrozenKey) {
     const productionGradeInputs = resolveProductionGradeInputs('SY2627');
     productionGradeInputs.answerKey.answerKey[quizId] = {answerKey:'B', unit:'1', topic:'1.2'};
-    productionGradeInputs.lessonSchedule = {'1.2': {unit:1, topicKey:'1.2', worksheetKey:'2', periods:{B:'2026-10-14',E:'2026-10-14'}}};
+    productionGradeInputs.lessonSchedule = {'1.2': {unit:1, topicKey:'1.2', worksheetKey:'2', periods:{C:'2026-10-13',D:'2026-10-14',G:'2026-10-14'}}};
     const liveDoc = structuredClone(productionGradeInputs.answerKey);
     const correct = liveDoc.answerKey[quizId].answerKey;
     if (!withFrozenKey) {
@@ -470,7 +467,7 @@ describe('A4 createApp answer-key freeze', () => {
       asOf: '2026-10-15',
       students: [{
         id: 'answer-key-freeze-student',
-        section: 'PeriodB',
+        section: 'PeriodD',
         reviews: [],
         records: [{
           student_id: 'answer-key-freeze-student',
@@ -499,7 +496,7 @@ describe('A4 createApp answer-key freeze', () => {
     app = await bootGoldenApp({
       studentsDoc,
       inputs,
-      configOverrides: { gradingWindowStart: null },
+      configOverrides: { gradingWindowStart: null, useDistrictFormula: false, useV3: false },
       inProcess: true,
     });
     return liveDoc;
@@ -521,5 +518,52 @@ describe('A4 createApp answer-key freeze', () => {
     liveDoc.answerKey[quizId].answerKey = '__changed__';
 
     expect(quizCredit(await app.getStudentGrade('answer-key-freeze-student'))).toBe(0);
+  });
+});
+
+describe('published A2 resolver input', () => {
+  it('resolves nonempty C/D/G lesson and answer-key fixtures without touching live data', () => {
+    const dir = resolve(here, 'fixtures/_tmp-a2-resolver-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+    const previousFreeze = process.env.GRADE_FREEZE_DIR;
+    const previousSchedule = process.env.LESSON_SCHEDULE_PATH;
+    const schedule = { '1.1': {
+      unit: 1, topicKey: '1.1', worksheetKey: '1', published: true,
+      periods: { C: '2026-09-24', D: '2026-09-25', G: '2026-09-25' },
+      items: [
+        { itemId: 'LC-U1-L1', source: 'lesson-check' },
+        { itemId: 'TI-U1-L1-1', source: 'try-it' },
+        { itemId: 'BL-U1-L1-DESK_DONE', source: 'flashcard' },
+      ],
+    } };
+    const answerKey = { generatedFrom: 'inline-published-a2-1-1',
+      answerKey: { 'U1-L1-Q01': { answerKey: 'B', unit: '1', topic: '1.1', type: 'multiple-choice' } },
+    };
+    mkdirSync(dir, { recursive: true });
+    try {
+      writeFileSync(resolve(dir, 'answer-key.SY2627.json'), JSON.stringify(answerKey));
+      const schedulePath = resolve(dir, 'lesson-schedule.json');
+      writeFileSync(schedulePath, JSON.stringify({ lessons: schedule }));
+      process.env.GRADE_FREEZE_DIR = dir;
+      process.env.LESSON_SCHEDULE_PATH = schedulePath;
+      const inputs = resolveProductionGradeInputs('SY2627');
+      expect(inputs.lessonSchedule).toEqual(schedule);
+      expect(inputs.answerKey).toEqual(answerKey);
+      expect(inputs.answerKeyHash).toBe(keyVersionHash(answerKey.answerKey, {}));
+      expect(inputs.lessonSchedule['1.1'].items).toHaveLength(3);
+      expect(inputs.lessonSchedule['1.1'].periods).toEqual({
+        C: '2026-09-24', D: '2026-09-25', G: '2026-09-25',
+      });
+      inputs.lessonSchedule['1.1'].items.pop();
+      inputs.answerKey.answerKey['U1-L1-Q01'].answerKey = 'changed';
+      const fresh = resolveProductionGradeInputs('SY2627');
+      expect(fresh.lessonSchedule).toEqual(schedule);
+      expect(fresh.answerKey).toEqual(answerKey);
+    } finally {
+      if (previousFreeze === undefined) delete process.env.GRADE_FREEZE_DIR;
+      else process.env.GRADE_FREEZE_DIR = previousFreeze;
+      if (previousSchedule === undefined) delete process.env.LESSON_SCHEDULE_PATH;
+      else process.env.LESSON_SCHEDULE_PATH = previousSchedule;
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });

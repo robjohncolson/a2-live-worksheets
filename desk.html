@@ -2659,11 +2659,10 @@ function _wireViewAsWorksheetLinks() {
       var t = e.target;
       var a = (t && t.closest) ? t.closest('a[href]') : null;
       if (!a) return;
-      var href = a.getAttribute('href') || '';
-      // Only the live worksheet family (u<unit>_lesson<range>_live.html). Leaves
-      // edgar/mit and every non-worksheet link untouched.
-      if (!/u\d+_lesson[\w.-]*_live\.html/i.test(href)) return;
       var u = new URL(a.href, window.location.href);
+      // Carry the viewed student only to this site's A2 lesson checks.
+      if (u.origin !== new URL(window.location.href).origin) return;
+      if (!/\/check\.html$/i.test(u.pathname)) return;
       if (!u.searchParams.get('viewAsUserId')) {
         u.searchParams.set('viewAsUserId', ctx.studentId);
         a.href = u.toString();
@@ -11676,7 +11675,11 @@ function _gcDaysBetween(a, b) {
 // rows before the exam, so the final monthly period naturally stops before it.
 function _gcIsInstructional(row) {
   if (!row || row.length < 5) return false;
-  return (row[3] && typeof row[3] === 'object') || (row[4] && typeof row[4] === 'object');
+  // Teacher check-ins cover all sections, regardless of the calendar tab.
+  return ['C', 'D', 'G'].some(function (section) {
+    var entry = calendarEntry(row, section);
+    return !!entry && typeof entry === 'object';
+  });
 }
 
 // Ordered check-in periods for the active school year. Preseason = the final
@@ -13821,8 +13824,9 @@ try { window._escCloseTopModal = _escCloseTopModal; } catch (_) {}
 ;
 
 /* ═══ CALENDAR APP ═══ */
-function calendarEntry(row) {
-    var index = cP === 'G' ? 5 : (cP === 'B' || cP === 'C') ? 3 : 4;
+function calendarEntry(row, section) {
+    var period = section || cP;
+    var index = period === 'G' ? 5 : (period === 'B' || period === 'C') ? 3 : 4;
     return row[index];
 }
 let cP="C";
@@ -14502,7 +14506,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-16-8xab';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-16-79fh';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

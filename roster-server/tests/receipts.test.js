@@ -150,8 +150,8 @@ describe('receipt contract vectors', () => {
       v: 1,
       t: 'ledger',
       sid: 's1',
-      src: 'pc',
-      i: 'PC-U1',
+      src: 'worksheet',
+      i: 'LC-1-1-Q1',
       sc: undefined,
       a: 1,
       e: 'practice',
@@ -160,7 +160,7 @@ describe('receipt contract vectors', () => {
       n: 'a1b2c3d4'
     });
 
-    expect(canonical).toBe('{"a":1,"ah":"0000000000000000","e":"practice","i":"PC-U1","n":"a1b2c3d4","sid":"s1","src":"pc","t":"ledger","ts":1781234567890,"v":1}');
+    expect(canonical).toBe('{"a":1,"ah":"0000000000000000","e":"practice","i":"LC-1-1-Q1","n":"a1b2c3d4","sid":"s1","src":"worksheet","t":"ledger","ts":1781234567890,"v":1}');
   });
 });
 

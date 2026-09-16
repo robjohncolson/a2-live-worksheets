@@ -75,11 +75,11 @@ describe('parseItemLesson — item-ID pattern coverage', () => {
 // ── expandLessonKey ────────────────────────────────────────────────────────────
 
 const SAMPLE_SCHEDULE = {
-  '4.1': { unit: 4, topicKey: '4.1', worksheetKey: '1-2', periods: { B: null, E: null }, combinedWith: ['4.2'] },
-  '4.2': { unit: 4, topicKey: '4.2', worksheetKey: '1-2', periods: { B: null, E: null }, combinedWith: ['4.1'] },
-  '4.6': { unit: 4, topicKey: '4.6', worksheetKey: '6', periods: { B: null, E: null } },
-  '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { B: '2020-01-01', E: '2020-01-02' } },
-  '1.2': { unit: 1, topicKey: '1.2', worksheetKey: '2', periods: { B: '2020-01-03', E: '2020-01-04' } },
+  '4.1': { unit: 4, topicKey: '4.1', worksheetKey: '1-2', periods: { C: null, D: null }, combinedWith: ['4.2'] },
+  '4.2': { unit: 4, topicKey: '4.2', worksheetKey: '1-2', periods: { C: null, D: null }, combinedWith: ['4.1'] },
+  '4.6': { unit: 4, topicKey: '4.6', worksheetKey: '6', periods: { C: null, D: null } },
+  '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { C: '2026-09-24', D: '2026-09-25' } },
+  '1.2': { unit: 1, topicKey: '1.2', worksheetKey: '2', periods: { C: '2020-01-03', D: '2020-01-04' } },
 };
 
 describe('expandLessonKey — combined-worksheet expansion', () => {
@@ -123,7 +123,7 @@ describe('expandLessonKey — combined-worksheet expansion', () => {
     expect(expandLessonKey(4, '99', SAMPLE_SCHEDULE)).toEqual([]);
   });
 
-  it('null lessonKey → [] (PC items skipped)', () => {
+  it('null lessonKey → []', () => {
     expect(expandLessonKey(1, null, SAMPLE_SCHEDULE)).toEqual([]);
   });
 
@@ -159,8 +159,8 @@ function makeRow(itemId, opts = {}) {
 
 describe('computeLessonGrades — shared-worksheet bonus filter (3.6-7 shape)', () => {
   const SCHEDULE_367 = {
-    '3.6': { unit: 3, topicKey: '3.6', worksheetKey: '6-7', periods: { B: null, E: null }, combinedWith: ['3.7'] },
-    '3.7': { unit: 3, topicKey: '3.7', worksheetKey: '6-7', periods: { B: null, E: null }, combinedWith: ['3.6'] },
+    '3.6': { unit: 3, topicKey: '3.6', worksheetKey: '6-7', periods: { C: null, D: null }, combinedWith: ['3.7'] },
+    '3.7': { unit: 3, topicKey: '3.7', worksheetKey: '6-7', periods: { C: null, D: null }, combinedWith: ['3.6'] },
   };
   const rows = [
     { source: 'frq', item_id: 'WS-U3L6-7-reflect1', score: 1, ts: 1 },
@@ -303,12 +303,12 @@ describe('computeLessonGrades — lesson math', () => {
     expect(l.lessonGrade).toBe(null);
   });
 
-  it('PC items are NOT included in lesson grades (skipped)', () => {
+  it('unrecognized items do not create lesson grades', () => {
     const rows = [
-      makeRow('U1-PC-Q01', { source: 'pc', score: 1 }),
+      makeRow('unrecognized-item', { source: 'unknown', score: 1 }),
     ];
     const map = computeLessonGrades(rows, FRQ_BAND, {}, SAMPLE_SCHEDULE);
-    // No lesson entry should have been created for PC items.
+    // No lesson entry should have been created for an unrecognized item.
     expect(map.size).toBe(0);
   });
 });
@@ -328,12 +328,14 @@ describe('todayInTz', () => {
 });
 
 describe('sectionToPeriod', () => {
-  it('PeriodB → B', () => expect(sectionToPeriod('PeriodB')).toBe('B'));
-  it('PeriodE → E', () => expect(sectionToPeriod('PeriodE')).toBe('E'));
-  it('PeriodX → E (live universal section follows Period E pacing)', () => expect(sectionToPeriod('PeriodX')).toBe('E'));
-  it('B → B (bare)', () => expect(sectionToPeriod('B')).toBe('B'));
-  it('null → null', () => expect(sectionToPeriod(null)).toBe(null));
-  it('unknown string → null', () => expect(sectionToPeriod('Section1')).toBe(null));
+  it.each(['C', 'D', 'G'])('recognizes bare and prefixed A2 section %s', period => {
+    expect(sectionToPeriod(period)).toBe(period);
+    expect(sectionToPeriod('Period' + period)).toBe(period);
+  });
+  it('returns null for absent and unknown sections', () => {
+    expect(sectionToPeriod(null)).toBeNull();
+    expect(sectionToPeriod('Section1')).toBeNull();
+  });
 });
 
 // ── computeQuarterFromLessons ─────────────────────────────────────────────────
@@ -341,21 +343,21 @@ describe('sectionToPeriod', () => {
 describe('computeQuarterFromLessons — date-driven quarter grade', () => {
 
   const ALL_PAST_SCHEDULE = {
-    '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { B: '2020-01-01', E: '2020-01-01' } },
-    '1.2': { unit: 1, topicKey: '1.2', worksheetKey: '2', periods: { B: '2020-01-02', E: '2020-01-02' } },
+    '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { C: '2026-09-24', D: '2026-09-24' } },
+    '1.2': { unit: 1, topicKey: '1.2', worksheetKey: '2', periods: { C: '2026-09-25', D: '2026-09-25' } },
   };
 
   const ALL_FUTURE_SCHEDULE = {
-    '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { B: '2099-01-01', E: '2099-01-01' } },
-    '1.2': { unit: 1, topicKey: '1.2', worksheetKey: '2', periods: { B: '2099-01-01', E: '2099-01-01' } },
+    '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { C: '2026-10-01', D: '2026-10-01' } },
+    '1.2': { unit: 1, topicKey: '1.2', worksheetKey: '2', periods: { C: '2026-10-01', D: '2026-10-01' } },
   };
 
   const MIXED_SCHEDULE = {
-    '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { B: '2020-01-01', E: '2020-01-01' } },
-    '1.2': { unit: 1, topicKey: '1.2', worksheetKey: '2', periods: { B: '2099-01-01', E: '2099-01-01' } },
+    '1.1': { unit: 1, topicKey: '1.1', worksheetKey: '1', periods: { C: '2026-09-24', D: '2026-09-24' } },
+    '1.2': { unit: 1, topicKey: '1.2', worksheetKey: '2', periods: { C: '2026-10-01', D: '2026-10-01' } },
   };
 
-  const TODAY = '2026-05-20';
+  const TODAY = '2026-09-28';
 
   function lessonMap(entries) {
     const m = new Map();
@@ -371,7 +373,6 @@ describe('computeQuarterFromLessons — date-driven quarter grade', () => {
       schedule: {},
       todayDateStr: TODAY,
       section: null,
-      pcBandData: { P_quarter: 0 },
       C: 85,
     });
     expect(result.quarterGrade).toBe(null);
@@ -386,8 +387,7 @@ describe('computeQuarterFromLessons — date-driven quarter grade', () => {
       lessonMap: new Map(),
       schedule: ALL_FUTURE_SCHEDULE,
       todayDateStr: TODAY,
-      section: 'PeriodB',
-      pcBandData: { P_quarter: 0 },
+      section: 'PeriodC',
       C: 85,
     });
     expect(result.quarterGrade).toBe(null);
@@ -403,8 +403,7 @@ describe('computeQuarterFromLessons — date-driven quarter grade', () => {
       lessonMap: map,
       schedule: ALL_PAST_SCHEDULE,
       todayDateStr: TODAY,
-      section: 'PeriodB',
-      pcBandData: { P_quarter: 0 },
+      section: 'PeriodC',
       C: 85,
     });
     expect(result.quarterGrade).toBe(17.5);
@@ -420,8 +419,7 @@ describe('computeQuarterFromLessons — date-driven quarter grade', () => {
       lessonMap: map,
       schedule: MIXED_SCHEDULE,
       todayDateStr: TODAY,
-      section: 'PeriodB',
-      pcBandData: { P_quarter: 0 },
+      section: 'PeriodC',
       C: 85,
     });
     expect(result.quarterGrade).toBe(35);
@@ -436,7 +434,7 @@ describe('computeQuarterFromLessons — date-driven quarter grade', () => {
     const lm = new Map();
     for (let i = 1; i <= 26; i++) {
       const k = `1.${i}`;
-      schedule26[k] = { unit: 1, topicKey: k, worksheetKey: String(i), periods: { B: '2020-01-01', E: '2020-01-01' } };
+      schedule26[k] = { unit: 1, topicKey: k, worksheetKey: String(i), periods: { C: '2026-09-24', D: '2026-09-24' } };
       lm.set(k, { lessonGrade: 100, W: 100, Q: null, frqItems: [], quizItems: [], worksheetItems: [] });
     }
     const result = computeQuarterFromLessons({
@@ -445,8 +443,7 @@ describe('computeQuarterFromLessons — date-driven quarter grade', () => {
       lessonMap: lm,
       schedule: schedule26,
       todayDateStr: TODAY,
-      section: 'PeriodB',
-      pcBandData: { P_quarter: 0 },
+      section: 'PeriodC',
       C: 85,
     });
     expect(result.quarterGrade).toBe(85);
@@ -460,16 +457,15 @@ describe('computeQuarterFromLessons — date-driven quarter grade', () => {
 
   
 
-  it('unknown section → uses union of B+E dates', () => {
-    // Both B and E are in the past → lessons are due even without knowing section.
+  it('known D section uses its own lesson dates', () => {
+    // Both A2 section dates are in the past.
     const result = computeQuarterFromLessons({
       quarterKey: 'Q1',
       config: PHASE3_CONFIG,
       lessonMap: new Map(),
       schedule: ALL_PAST_SCHEDULE,
       todayDateStr: TODAY,
-      section: null,   // unknown
-      pcBandData: { P_quarter: 0 },
+      section: 'PeriodD',
       C: 85,
     });
     expect(result.lessonsDue).toBe(2);
@@ -832,16 +828,14 @@ describe('computeQuizTotals — per-topic gradable quiz counts from the answer k
     'U4-L1-Q01': { answerKey: 'D', unit: '4' },     // combined → 4.1 + 4.2
     'U4-L2-Q01': { answerKey: 'E', unit: '4' },     // combined → 4.1 + 4.2
     'U4-L6-Q01': { answerKey: 'A', unit: '4' },     // → 4.6
-    'U1-PC-Q01': { answerKey: 'B', unit: '1' },     // PC → excluded (no L#-Q)
     'WS-U1L2-Q5': { answerKey: 'A' },               // worksheet blank → excluded
   };
 
-  it('counts gradable L#-Q quiz items per topic, excluding ungradable/PC/worksheet', () => {
+  it('counts gradable L#-Q quiz items per topic, excluding ungradable/worksheet items', () => {
     const totals = computeQuizTotals(KEY, SAMPLE_SCHEDULE);
     expect(totals['1.1']).toBe(1);
     expect(totals['1.2']).toBe(2);          // Q03 ungradable, excluded
     expect(totals['4.6']).toBe(1);
-    expect(totals['1.PC']).toBeUndefined(); // PC not counted
   });
 
   it('buckets per-topic quizzes to their own topic, matching buildLessonMap bucketing', () => {

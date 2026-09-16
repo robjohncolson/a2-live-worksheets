@@ -10,6 +10,8 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createContext, runInContext } from 'node:vm';
+import { JSDOM } from 'jsdom';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DESK = readFileSync(resolve(repo, 'desk.html'), 'utf8');
@@ -68,4 +70,44 @@ describe('Wallet — redundant "Sign & QR" button removed', () => {
   });
 
   
+});
+
+describe('Academic receipt row with inline A2 receipts', () => {
+  it('renders untrusted item and teacher comment as text and keeps the public QR', () => {
+    const dom = new JSDOM('', { url: 'https://school.example/a2/desk.html?token=private' });
+    const item = '<img src=x onerror=alert(1)>';
+    const qrUrls = [];
+    const ctx = createContext({
+      window: dom.window, document: dom.window.document, URL,
+      cedDisplayText: value => value,
+      _reviewByItem: { [item]: { comment: '<script>bad()</script>' } },
+      _renderReceiptQr: (_host, url) => qrUrls.push(url),
+      _walletVerifyAndCheck: () => {},
+    });
+    for (const name of ['_receiptVerifyUrl', '_receiptViewUrl', '_walletReceiptRow']) {
+      runInContext(fnBody(DESK, name), ctx);
+    }
+    const receipt = { i: item, src: 'worksheet', sc: 1, compact: 'payload.signature' };
+    const rendered = ctx._walletReceiptRow(receipt);
+    expect(rendered.textContent).toContain(item);
+    expect(rendered.textContent).toContain('<script>bad()</script>');
+    expect(rendered.textContent).toContain('score 100%');
+    expect(rendered.querySelectorAll('img, script')).toHaveLength(0);
+    expect(qrUrls).toEqual(['https://school.example/a2/verify.html#r=payload.signature']);
+    expect(Array.from(rendered.querySelectorAll('button')).some(
+      button => button.textContent.includes('Verify')
+    )).toBe(true);
+    dom.window.close();
+  });
+
+  it('resolves a retained worksheet protocol ID through an inline A2 registry', () => {
+    const ctx = createContext({
+      getRegistryEntry: topic => topic === '1.1'
+        ? { urls: { worksheet: 'check.html?lesson=1-1' } } : null,
+    });
+    runInContext(fnBody(DESK, '_receiptViewUrl'), ctx);
+    expect(ctx._receiptViewUrl({ i: 'WS-U1L1-Q1', src: 'worksheet' }, {}))
+      .toBe('check.html?lesson=1-1');
+    expect(ctx._receiptViewUrl({ i: 'WS-U99L99-Q1', src: 'worksheet' }, {})).toBeNull();
+  });
 });
