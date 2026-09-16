@@ -137,6 +137,28 @@ resources (worksheet, tutor, video and Blooket links are 700+ of those and are S
 | U21 | PWA build stamp | (fixed 2026-09-16) | Not bumped after the fork | Rule added to runbook | done |
 | U22 | Desk calendar | (fixed 2026-09-16) | Empty roadmap + no pacing | `applyA2Pacing` | done |
 
+
+### Phase 1c runtime verdicts (Codex review, 2026-09-16, `state/fork-diff/runtime-verdicts.md`)
+
+20 kept-code → stripped-file references checked at source: crash 5 · visible breakage 3 · silent 10 ·
+comment-only 2. Fix letters: restore-as-is 0, A2-shaped replacement 6, remove consumer 7, leave 7.
+Resolutions for the pending rows above:
+
+| # | Verdict | Fix |
+|---|---|---|
+| U12 | teacher-app.html: mesh scripts optional, but the offline card and its controls are revealed after Connect and cannot work | remove mesh script tags, offline card and handlers; keep file-based offline import and receipt signing |
+| U13 | mobile-home.html boots an empty `window.A2_LESSONS`; `syncNearby()` is undefined → ReferenceError on click | adapter for `content/a2/lessons.json`; remove the button (in batch A+B) |
+| U15 | server.js does **not** read `dok/manifest.json` (false match); bundled `skill-map.json` is `{}` so mastery just records no skill observations | A2 item→skill map later (server batch, low priority) |
+| U16 | study guide: prompt script 404s; reflection/focus builders throw inside try/catch → error toast; Desk and index.html still link the page; TI-84 walkthroughs still render inside it | D4 |
+| U17 | worksheet-ai-grade.js only discovers optional builders; no file load | leave |
+| U18 | frq-regrade manifest + `tools/regrade-ungraded-frqs.mjs` crash on invocation; worksheet-key / misconception maps are stale provenance, not loads; TI-84 metadata inert except the study-guide consumer; TSV comment-only; lineage entries metadata | neutralise regrade manifest/tool; prune lineage; delete TI-84 metadata with D4 |
+| U19 | `build-work-manifest*.mjs`, `gen-blooket-lessons.mjs`, `smoke-misconceptions.mjs` crash when run; `smoke-student-host-matrix.mjs` returns a failed diagnostic; lint/grade-model/dok generator fine | replace with A2 generators (work manifest, deck membership, answer key) or delete; remove the video sweep |
+| U14 | teacher-dashboard.html → `data/summer-schedule.json` (not in the 1c list) | verify in the pages batch |
+
+Codex disagreements adopted: B6 (menu sprite) is a blank glyph, not an exception — restoring `sprite.png`
+keeps 1:1 fidelity so batch A+B restores it; B4 (study guide) is neither stripped nor added by the plan,
+hence D4.
+
 ### Decisions needed from the teacher (Phase 3)
 
 | # | Question | Recommended default |
