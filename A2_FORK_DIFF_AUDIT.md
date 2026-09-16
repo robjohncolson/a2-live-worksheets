@@ -185,6 +185,8 @@ hence D4.
 | E Do Now manifest | U23 | review: safe as-is (0 findings) | committed be0a615 |
 | Phase 5 steps 1-2 Schoology | AP 8539a0dd + 2fd88bc4 | review: safe with 1 fix (folder failure-path tests added) | committed eb2095c; pytest 172 |
 | Phase 5 step 3 section reconciliation | AP f979cd58 | review: safe as-is; tests then caught two regressions (calendar overwrite by legacy roadmap path, CRLF) and a view-as regression — all fixed | committed with the PWA stamp bump |
+| U20 R1 tests | receipt crypto, menu sprite | restored from baseline; 21 tests | committed 0cd8455 |
+| U20 R2 tests | six teacher-student-console tests | 12 of 57 assertions exposed real dashboard regressions (deep-link student name, remediation slider/close/refresh, unlock revoke and empty states) — restored from baseline; review: safe with 3 test fixes, applied | committed with the PWA stamp bump |
 | Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.

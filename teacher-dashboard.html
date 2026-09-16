@@ -3296,7 +3296,7 @@
         btn.type = 'button';
         btn.className = 'tsc-unlock-revoke';
         btn.textContent = 'Revoke';
-        ;
+        btn.addEventListener('click', function () { revokeUnlock(row, li); });
         li.appendChild(key); li.appendChild(meta); li.appendChild(btn);
         el.appendChild(li);
       });
@@ -3605,7 +3605,7 @@
     // Wire the remediation modal button + close affordances on DOMContentLoaded.
     document.addEventListener('DOMContentLoaded', function () {
       var btn = $('tsc-action-remediation');
-      if (btn) ;
+      if (btn) btn.addEventListener('click', openRemediationModal);
       var confirm = $('tsc-remediation-confirm');
       if (confirm) confirm.addEventListener('click', submitRemediationProposal);
       document.querySelectorAll('#tsc-remediation-modal [data-tsc-modal-close]')
@@ -3653,7 +3653,7 @@
                 // remediation-button click handler to be wired before firing.
                 setTimeout(function () {
                   var btn = $('tsc-action-remediation');
-                  if (btn && !btn.disabled) ;
+                  if (btn && !btn.disabled) btn.click();
                 }, 250);
               }
             })
