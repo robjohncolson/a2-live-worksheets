@@ -74,7 +74,7 @@ const PERMUTATION_FLAGS = {
 
 function bootLauncher({
   gradeBlooket,
-  indexMissing,
+  serviceMissing,
   deckCsv = ONE_CARD_CSV,
   legacyEmail,
   flagsData,
@@ -84,8 +84,6 @@ function bootLauncher({
 }) {
   const recorded = [];
   const lesson = { id: '4.1-2', unit: 4, label: 'Sampling', worksheet: 'u4_lesson1-2_live.html', quiz: null, blooket: 'https://b', videos: [] };
-  // The published fallback source: roadmap-data.json (absolute GH-Pages URLs).
-  const roadmap = { lessons: { '4.1-2': { topic: 'Sampling', urls: { worksheet: 'https://a2.example.test/u4_lesson1-2_live.html', quiz: null, blooket: 'https://b' } } } };
   const gradePayload = { ok: true, quarters: [], lessons: [{ topic: '4.1-2', lessonGrade: 55, blooket: gradeBlooket }] };
   const fakeFetch = (url) => {
     const u = String(url);
@@ -98,11 +96,11 @@ function bootLauncher({
         text: () => Promise.resolve(''),
       });
     }
-    if (indexMissing && u.indexOf('lessons-index.json') >= 0) {
+    if (serviceMissing && u === 'https://api.test/lessons') {
       return Promise.resolve({ ok: false, status: 404, json: () => Promise.resolve(null), text: () => Promise.resolve('') });
     }
-    const body = u.indexOf('lessons-index.json') >= 0 ? { lessons: [lesson] }
-      : u.indexOf('roadmap-data.json') >= 0 ? roadmap
+    const body = u === 'content/a2/lessons.json' ? [lesson]
+      : u === 'https://api.test/lessons' ? { lessons: [lesson] }
       : u.indexOf('/grade') >= 0 ? gradePayload
       : u.indexOf('blooket-difficulty.json') >= 0 ? { tags: {} }
       : null;
@@ -113,7 +111,6 @@ function bootLauncher({
     runScripts: 'dangerously',
     url: 'https://x.test/mobile-home.html',
     beforeParse(window) {
-      window.A2_LESSONS = [lesson];
       window.eval(CED_SOURCE);
       if (permutationOff) {
         window.localStorage.setItem('a2_fc_perm_off', '1');
@@ -224,12 +221,12 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
     dom.window.close();
   });
 
-  it('falls back to roadmap-data.json when lessons-index.json 404s (laptop / GH-Pages)', async () => {
-    const { dom, win, recorded } = bootLauncher({ gradeBlooket: 40, indexMissing: true });
-    await flush(8);                                                 // index 404 → roadmap → render
+  it('keeps published lessons when the roster lessons endpoint is unavailable', async () => {
+    const { dom, win, recorded } = bootLauncher({ gradeBlooket: 40, serviceMissing: true });
+    await flush(8);                                                 // published lessons remain after the service fails
 
     const fcBtn = win.document.querySelector('.btn.fc');
-    expect(fcBtn, 'tiles did not render from the roadmap fallback').toBeTruthy();
+    expect(fcBtn, 'tiles did not render from the published fallback').toBeTruthy();
     // Worksheet link is ORIGIN-RELATIVE (github.io base stripped) so a Vercel mirror is self-sufficient.
     const wsA = win.document.querySelector('.btn.ws');
     expect(wsA.getAttribute('href')).toBe('u4_lesson1-2_live.html');
@@ -676,5 +673,91 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
       expect(a.getAttribute('rel')).toBe('noopener');
     });
     dom.window.close();
+  });
+});
+
+
+const A2_PUBLISHED = JSON.parse(readFileSync(resolve(repo, 'content/a2/lessons.json'), 'utf8'));
+function bootA2Lessons({ serviceLessons, serviceFails = false, publishedFails = false } = {}) {
+  const requests = [];
+  const dom = new JSDOM(HOME, {
+    runScripts: 'dangerously', url: 'https://x.test/mobile-home.html',
+    beforeParse(window) {
+      window.eval(CED_SOURCE);
+      window.eval(FLASHCARDS_SRC);
+      window.ROSTER_SERVICE_URL = 'https://api.test/';
+      window.fetch = async (url) => {
+        requests.push(String(url));
+        if (url === 'content/a2/lessons.json') {
+          if (publishedFails) throw new Error('Published model unavailable');
+          return { ok: true, json: async () => A2_PUBLISHED };
+        }
+        if (url === 'https://api.test/lessons') {
+          if (serviceFails) throw new Error('Offline');
+          return { ok: true, json: async () => ({ lessons: serviceLessons || A2_PUBLISHED }) };
+        }
+        if (A2_PUBLISHED.some(lesson => lesson.deck === url)) {
+          return { ok: true, text: async () => ONE_CARD_CSV };
+        }
+        return { ok: true, json: async () => ({}) };
+      };
+    },
+  });
+  return { dom, win: dom.window, requests };
+}
+
+describe('mobile-home A2 lesson model', () => {
+  it('renders all four published lessons with checks, IXL links and working native decks', async () => {
+    const { dom, win, requests } = bootA2Lessons({ serviceFails: true });
+    try {
+      await flush(10);
+      expect(A2_PUBLISHED).toHaveLength(4);
+      const rows = [...win.document.querySelectorAll('#main .lesson')];
+      expect(rows).toHaveLength(4);
+      rows.forEach((row, index) => {
+        const lesson = A2_PUBLISHED[index];
+        expect(row.querySelector('.title').textContent).toBe(lesson.key + ' \u00b7 ' + lesson.title);
+        expect(row.querySelector('.btn.ws').getAttribute('href')).toBe('check.html?lesson=' + lesson.key);
+        expect([...row.querySelectorAll('.btn.ixl')].map(link => link.getAttribute('href')))
+          .toEqual(lesson.supportingSkills.map(skill => skill.url));
+        expect(row.querySelector('.btn.fc')).toBeTruthy();
+      });
+      rows[0].querySelector('.btn.fc').click();
+      await flush(10);
+      expect(requests).toContain(A2_PUBLISHED[0].deck);
+      expect(win.document.querySelector('#fco.show .fc-q').textContent).toBe('Q one');
+      expect(win.document.getElementById('fc-title').textContent).toContain(A2_PUBLISHED[0].title);
+      expect(win.document.getElementById('sync-nearby')).toBeNull();
+      expect(HOME).not.toMatch(/Sync Nearby|syncNearby\s*\(/);
+      expect(requests).not.toContain('lessons-index.json');
+    } finally { dom.window.close(); }
+  });
+
+  it('prefers a newer service model over the published model', async () => {
+    const lessons = [{ ...A2_PUBLISHED[0], title: 'Updated lesson' }];
+    const { dom, win, requests } = bootA2Lessons({ serviceLessons: lessons });
+    try {
+      await flush(10);
+      expect(requests).toContain('content/a2/lessons.json');
+      expect(requests).toContain('https://api.test/lessons');
+      expect(win.document.querySelectorAll('#main .lesson')).toHaveLength(1);
+      expect(win.document.querySelector('.lesson .title').textContent).toBe('1-1 \u00b7 Updated lesson');
+    } finally { dom.window.close(); }
+  });
+
+  it('loads service lessons even when the published fetch fails', async () => {
+    const { dom, win } = bootA2Lessons({ publishedFails: true });
+    try {
+      await flush(10);
+      expect(win.document.querySelectorAll('#main .lesson')).toHaveLength(4);
+    } finally { dom.window.close(); }
+  });
+
+  it('retains published lessons when the service returns an empty model', async () => {
+    const { dom, win } = bootA2Lessons({ serviceLessons: [] });
+    try {
+      await flush(10);
+      expect(win.document.querySelectorAll('#main .lesson')).toHaveLength(4);
+    } finally { dom.window.close(); }
   });
 });

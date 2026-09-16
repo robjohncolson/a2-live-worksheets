@@ -108,7 +108,6 @@
   <div class="who" id="who">Not signed in.</div>
   <div class="hdr-row">
     <button id="signin-btn" class="hdr-btn" onclick="openNameFinder()">👤 Sign in</button>
-    <button id="sync-nearby" class="hdr-btn" onclick="syncNearby()">📡 Sync Nearby</button>
   </div>
   <div id="gradepill" style="display:none"></div>
   
@@ -193,7 +192,6 @@
   window.refreshIdentity = refreshIdentity;
   try { refreshIdentity(); } catch (e) {}
 
-  // ── ANDROID Phase 3 — Sync Nearby (P2P ledger gossip) ─────────────────────────
   function svcUrl() {
     var u = (typeof window.ROSTER_SERVICE_URL === 'string' && window.ROSTER_SERVICE_URL)
       || (typeof window.RAILWAY_ROSTER_URL === 'string' && window.RAILWAY_ROSTER_URL)
@@ -628,44 +626,13 @@
 
   function render(lessons) {
     if (!lessons || !lessons.length) { main.innerHTML = '<div class="empty">No lessons found.</div>'; return; }
-    // Fall 2026 CED view: group CORE lessons under their NEW unit; BONUS lessons drop
-    // into a greyed "Beyond the Exam" strip at the end of their bonusUnit.
-    // Existing identities, resource links, and grade lookups stay unchanged.
-    var coreByUnit = {}, bonusByUnit = {};
-    lessons.forEach(function (l) {
-      var c = cedLabel(l.id);
-      if (c.bonus) { var bu = c.bonusUnit || 0; (bonusByUnit[bu] = bonusByUnit[bu] || []).push(l); }
-      else { var nu = c.unit || 0; (coreByUnit[nu] = coreByUnit[nu] || []).push(l); }
-    });
-    var seen = {};
-    Object.keys(coreByUnit).forEach(function (u) { seen[u] = 1; });
-    Object.keys(bonusByUnit).forEach(function (u) { seen[u] = 1; });
-    var units = Object.keys(seen).map(Number).sort(function (a, b) { return a - b; });
-    units.forEach(function (u) { if (coreByUnit[u]) coreByUnit[u].sort(function (a, b) { return _topicKey(a) - _topicKey(b); }); });
     main.innerHTML = '';
-    units.forEach(function (u, ui) {
-      var det = document.createElement('details'); det.className = 'unit'; if (ui === 0) det.open = true;
-      var sum = document.createElement('summary');
-      sum.innerHTML = esc(NEW_UNIT_NAMES[u] || 'Lessons') + '<span class="caret">▶</span>';
-      det.appendChild(sum);
-      (coreByUnit[u] || []).forEach(function (l) { det.appendChild(lessonCard(l, false)); });
-      var bonus = bonusByUnit[u];
-      if (bonus && bonus.length) {
-        var strip = document.createElement('div'); strip.className = 'bonus-strip';
-        var bh = document.createElement('div'); bh.className = 'bonus-head';
-        bh.textContent = '★ Beyond the Exam — enrichment, not on the Fall 2026 test';
-        strip.appendChild(bh);
-        bonus.forEach(function (l) { strip.appendChild(lessonCard(l, true)); });
-        det.appendChild(strip);
-      }
-      main.appendChild(det);
-    });
+    lessons.forEach(function (lesson) { main.appendChild(lessonCard(lesson, false)); });
   }
 
-  // Build one lesson card. Every link, file path, and grade key is the lesson's
-  // original; only the shared CED label changes the visible title.
+  // A2 cards use the published lesson key, check, deck, and supporting skills.
   function lessonCard(l, isBonus) {
-    var name = cedLabel(l.id).text;
+    var name = l.key ? l.key + ' · ' + l.title : cedLabel(l.id).text;
     var card = document.createElement('div'); card.className = 'lesson' + (isBonus ? ' bonus' : '');
     var t = document.createElement('div'); t.className = 'title';
     var tlabel = document.createElement('span'); tlabel.textContent = name;
@@ -680,9 +647,22 @@
     card.appendChild(t);
     var btns = document.createElement('div'); btns.className = 'btns';
     ;
-    var w = document.createElement('a'); w.className = 'btn ws'; w.textContent = '✍ Worksheet';
-    if (l.worksheet) w.href = l.worksheet; else w.setAttribute('disabled', '');
+    var w = document.createElement('a'); w.className = 'btn ws';
+    w.textContent = l.key ? 'Lesson Check' : '✍ Worksheet';
+    if (l.key) w.href = 'check.html?lesson=' + encodeURIComponent(l.key);
+    else if (l.worksheet) w.href = l.worksheet;
+    else w.setAttribute('disabled', '');
     btns.appendChild(w);
+    (l.supportingSkills || []).forEach(function (skill) {
+      if (!skill || !skill.url || !skill.name) return;
+      var link = document.createElement('a');
+      link.className = 'btn ixl';
+      link.textContent = 'IXL · ' + skill.name;
+      link.href = skill.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      btns.appendChild(link);
+    });
     // G1/H0: web → absolute CR origin; APK (OFFLINE_MODE) keeps relative bundled quiz/.
     // W1 honesty: openers with quiz:null get a plain label — not a dead/disabled Quiz control
     // (a grey button that does nothing is more confusing than "no quiz" text).
@@ -693,6 +673,8 @@
       var bl = document.createElement('a'); bl.className = 'btn bloo'; bl.textContent = '🎯 Blooket';
       bl.href = l.blooket; bl.target = '_blank'; bl.rel = 'noopener';
       btns.appendChild(bl);
+    }
+    if (l.deck || l.blooket) {
       // Flashcards run NATIVELY here (shared flashcards.js engine + the gradebook
       // feeder) — no longer a deep-link into the Desk. Same deck, same scoring, same
       // BL-…-DESK_DONE grade row.
@@ -1030,6 +1012,7 @@
   }
   function _fcCsvPath(lesson) {
     if (!FC) return null;
+    if (lesson && lesson.deck) return lesson.deck;
     var p = lesson && lesson.worksheet ? FC.csvPathFromWorksheet(lesson.worksheet) : null;
     if (p) return p;
     var id = String((lesson && lesson.id) || '');
@@ -1056,7 +1039,7 @@
     if (!FC) { _fcBodyHtml('<div class="fc-result"><h2>Unavailable</h2><p>Flashcards engine not loaded.</p></div>'); fcoEl() && fcoEl().classList.add('show'); return; }
     var el = fcoEl(); if (!el) return;
     _fcTimerStop(); _fc = null; el.classList.remove('timed');
-    document.getElementById('fc-title').textContent = '🃏 ' + cedLabel(lesson && lesson.id).text;
+    document.getElementById('fc-title').textContent = '🃏 ' + (lesson && lesson.key ? lesson.key + ' · ' + lesson.title : cedLabel(lesson && lesson.id).text);
     _fcSetProg(''); el.classList.add('show');
     // Ensure topic→csv map is warm before mode pick (ID-only combined-lesson fix).
     _fcLoadTopicCsvMap().then(function () {
@@ -1538,7 +1521,10 @@
     return out;
   }
   function _bootLessons(lessons) {
-    _lastLessons = lessons || [];
+    _lastLessons = (lessons || []).map(function (lesson) {
+      if (!lesson.key) return lesson;
+      return Object.assign({}, lesson, { id: String(lesson.key).replace('-', '.') });
+    });
     cedRegistry = { lessons: {} };
     _lastLessons.forEach(function (lesson) { cedRegistry.lessons[lesson.id] = lesson; });
     try { _fcRebuildTopicCsvMapFromLessons(_lastLessons); } catch (_) {}
@@ -1547,14 +1533,34 @@
     loadGrade();
   }
 
-  // Primary: lessons-index.json (published on Pages AND bundled in APK — the old
-  // comment claiming it is "APK-only / not on Pages" was stale; live Pages serves
-  // it 200, which is why mobile-web used relative quiz/ and hit H0 until resolveQuizHref).
-  // Fallback: roadmap-data.json when the index is missing (older hosts / sparse packs).
-  // Strip WS_BASE so worksheet links are ORIGIN-RELATIVE (GH Pages or Vercel mirror).
-  // PHASE 4: A2 lessons
-  const LESSONS = window.A2_LESSONS || [];
-  _bootLessons(LESSONS);
+  // Published lessons remain available when the roster service is offline.
+  // The service may provide newer lesson dates or content when it is reachable.
+  fetch('content/a2/lessons.json')
+    .then(function (response) {
+      if (!response || !response.ok) throw new Error('Lessons unavailable');
+      return response.json();
+    })
+    .catch(function () { return []; })
+    .then(function (published) {
+      if (Array.isArray(published) && published.length) _bootLessons(published);
+      var base = typeof window.ROSTER_SERVICE_URL === 'string'
+        ? window.ROSTER_SERVICE_URL.replace(/\/$/, '') : '';
+      if (!base) {
+        if (!_lastLessons.length) _bootLessons([]);
+        return;
+      }
+      return fetch(base + '/lessons')
+        .then(function (response) {
+          if (!response || !response.ok) throw new Error('Live lessons unavailable');
+          return response.json();
+        })
+        .then(function (data) {
+          var lessons = Array.isArray(data) ? data : data && data.lessons;
+          if (Array.isArray(lessons) && lessons.length) _bootLessons(lessons);
+        })
+        .catch(function () { /* Keep the published model while offline. */ })
+        .then(function () { if (!_lastLessons.length) _bootLessons([]); });
+    });
 })();
 </script>
 </body>

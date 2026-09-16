@@ -904,12 +904,6 @@
 
 
         /* ── Game Window ────────────────────────────── */
-        .game-overlay {
-            display: none;
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 250;
-            background: rgba(85, 85, 102, 0.6);
-        }
         .game-window {
             position: absolute;
             top: 50%; left: 50%;
@@ -969,7 +963,6 @@
         }
         /* Centered at native size: align-items:stretch used to squeeze the 430px canvas into 422px,
            a non-integer downscale that gave uneven 1px grid lines under image-rendering:pixelated. */
-        .game-content > canvas, #game-split { align-self: center; }
         .game-score {
             font-size: 10px;
             padding: 4px 8px;
@@ -1596,6 +1589,7 @@
         <div class="menu-dropdown" id="menu-view" role="menu">
             <div class="menu-dd-item" role="menuitem" id="menu-period-b" onclick="setP('C');closeMenus()">&#10003; Section C</div>
             <div class="menu-dd-item" role="menuitem" id="menu-period-e" onclick="setP('D');closeMenus()">  Section D</div>
+            <div class="menu-dd-item" role="menuitem" id="menu-period-g" onclick="setP('G');closeMenus()">  Section G</div>
             <div class="menu-dd-sep"></div>
             <div class="menu-dd-item" role="menuitem" data-sfx onclick="closeMenus();if(typeof calToday==='function')calToday()">&#128197; Jump to Today</div>
             <div class="menu-dd-item" role="menuitem" data-sfx onclick="closeMenus();if(typeof calStep==='function')calStep(-1)">&#9664; Earlier Weeks</div>
@@ -1622,10 +1616,6 @@
             
             
             <div class="menu-dd-sep"></div>
-            
-            <!-- ANDROID Phase 3: P2P ledger gossip. Hidden until the native Nearby
-                 transport registers (APK only); revealed by _phase3RevealSyncMenu(). -->
-            <div class="menu-dd-item" id="menu-sync-nearby" data-sfx onclick="if(typeof _phase3SyncNearbyClick==='function')_phase3SyncNearbyClick()" style="font-weight:bold;display:none">&#128225; Sync Nearby</div>
             <!-- Driller deprecated — removed 2026-05 -->
             <!-- <div class="menu-dd-sep"></div>
             <div class="menu-dd-item" data-sfx onclick="closeMenus();openProgress()" style="font-weight:bold">&#128202; My Progress</div> -->
@@ -1690,7 +1680,7 @@
   <div class="icon-img" data-emoji="&#129534;"><img src="icon.svg" alt="" onload="this.parentElement.classList.add('has-png')" onerror="this.style.display='none'"></div>
   <div class="icon-label chicago">My Receipts</div>
 </div>
-<div class="app-icon" data-app="progress" style="top:396px;right:20px;left:auto" ondblclick="openProgress()" onclick="selectAppIcon(this)">
+<div class="app-icon" data-app="progress" style="top:396px;right:20px;left:auto" ondblclick="openMyGradebook()" onclick="selectAppIcon(this)">
     <div class="icon-img" data-emoji="&#128202;"><img src="icons/icon-progress.png" alt="" onload="this.parentElement.classList.add('has-png')" onerror="this.style.display='none'"></div>
     <div class="icon-label">My Progress</div>
 </div>
@@ -4423,7 +4413,7 @@ function closeSignInModal() {
   var ov = document.getElementById('signin-overlay');
   if (!ov) return;
   _signinWallActive = false;
-  ;
+  MacSFX.play('click', 0.3);
   ov.style.display = 'none';
   if (typeof _closeRosterDropdown === 'function') _closeRosterDropdown();
 }
@@ -4514,7 +4504,6 @@ async function submitSignIn() {
     } else {
       if (typeof renderDoNow === 'function') renderDoNow(); // DN3a refresh — guarded so DN2c stays decoupled
        // guests retired: join presence as the real identity
-      if (typeof _fetchPollArchive === 'function') ; // v2.1 U4: poll archive (guarded, like its neighbors)
       var roleLabel = '';
       try { if (localStorage.getItem('a2_user_role') === 'teacher') roleLabel = ' (teacher mode)'; } catch (_) {}
       showDialog('\u{1F464}','Signed in as ' + (who.realName || legacyKey) + roleLabel + '.','OK');
@@ -4692,7 +4681,7 @@ function _nfPick(i) {
   var buckets = _nfBuckets(_nfLo, _nfHi);
   var b = buckets[i];
   if (!b) return;
-  if (typeof MacSFX !== 'undefined' && MacSFX.play) ;
+  if (typeof MacSFX !== 'undefined' && MacSFX.play) MacSFX.play('click', 0.3);
   if (b.leaf) { _nfSelectName(_nfRoster[b.lo]); return; }
   _nfStack.push({ lo: _nfLo, hi: _nfHi });
   _nfLo = b.lo; _nfHi = b.hi;
@@ -4793,7 +4782,6 @@ async function _nfSubmitPassword() {
     } else {
       if (typeof renderDoNow === 'function') renderDoNow();
        // guests retired: join presence as the real identity
-      if (typeof _fetchPollArchive === 'function') ;
       var roleLabel = '';
       try { if (localStorage.getItem('a2_user_role') === 'teacher') roleLabel = ' (teacher mode)'; } catch (_) {}
       if (typeof showDialog === 'function') showDialog('\u{1F464}', 'Signed in as ' + (who.realName || legacyKey) + roleLabel + '.', 'OK');
@@ -5094,7 +5082,6 @@ function _applySignedUpSession(result) {
   var so = document.getElementById('signin-overlay'); if (so) so.style.display = 'none';
   if (typeof renderDoNow === 'function') renderDoNow();
    // guests retired: join presence as the real identity
-  if (typeof _fetchPollArchive === 'function') ;
   var uname = who.username || (result && result.username) || legacyKey;
   if (typeof showDialog === 'function') {
     showDialog('\u{1F389}', 'Welcome, ' + (who.realName || (result && result.realName) || legacyKey) + '! Your username is ' + uname + '. Remember your 4-digit PIN — you’ll sign in with your username + PIN next time.', 'OK');
@@ -6623,7 +6610,6 @@ async function renderDoNow() {
   // Desk-link step 3: refresh the calculator-skill chip on every pass — the
   // chip only exists when today's lesson has a mapped trainer skill.
   try { ; } catch (_) {}
-  if(typeof _renderTodayTopics==='function');
 
   // ICON_MOTION -- which app icon to breathe for the next task (curriculum work
   // lives in the Quiz app; appForNextTask refines this if the manifest grows).
@@ -6836,11 +6822,41 @@ function getAllRegistryEntries(topicKey) {
 /* ═══ SOUND ENGINE (Mac System 7-style synthesized sounds) ═══ */
 const SFX = {};
 const MacSFX = {
-    muted: localStorage.getItem('macsound-muted') === 'true',
-    init() {},
+    sounds: {},
+    muted: false,
+    started: false,
+
+    init() {
+        if (this.started) return;
+        this.started = true;
+        this.muted = localStorage.getItem('macsound-muted') === 'true';
+        const files = {
+            sosumi:   'Mac-OS-Sounds/PowerMacBeep.wav',
+            crash:    'Mac-OS-Sounds/Quack.wav',
+            wildEep:  'Mac-OS-Sounds/Wild-Eep.wav',
+            click:    'Mac-OS-Sounds/Single-Click.wav',
+            laugh:    'Mac-OS-Sounds/Laugh.wav'
+        };
+        for (const [name, src] of Object.entries(files)) {
+            const a = new Audio(src);
+            a.preload = 'auto';
+            this.sounds[name] = a;
+        }
+    },
+
+    play(name, volume = 0.5) {
+        if (this.muted) return;
+        if (!this.started) this.init();
+        const a = this.sounds[name];
+        if (!a) return;
+        a.currentTime = 0;
+        a.volume = volume;
+        a.play().catch(() => {});
+    },
+
     toggleMute() {
         this.muted = !this.muted;
-        localStorage.setItem('macsound-muted', String(this.muted));
+        localStorage.setItem('macsound-muted', this.muted);
         return this.muted;
     }
 };
@@ -7082,7 +7098,7 @@ function cycleYear(){
   });
 
   window.minimizeWindow=function(){
-    if(typeof MacSFX!=='undefined') ;
+    if(typeof MacSFX!=='undefined') MacSFX.play('click', 0.3);
     var winRect = win.getBoundingClientRect();
     var iconRect = icon.getBoundingClientRect();
 
@@ -7114,13 +7130,13 @@ function cycleYear(){
     setTimeout(function(){icon.classList.remove('selected')},1500);
   };
   window.restoreWindow=function(){
-    if(typeof MacSFX!=='undefined') ;
+    if(typeof MacSFX!=='undefined') MacSFX.play('click', 0.3);
     wrap.style.display='';
     icon.classList.remove('visible');
     icon.classList.remove('selected');
   };
   window.closeCalendar=function(){
-    if(typeof MacSFX!=='undefined') ;
+    if(typeof MacSFX!=='undefined') MacSFX.play('click', 0.3);
     wrap.style.display='none';
     icon.classList.add('visible');
   };
@@ -7232,7 +7248,7 @@ document.querySelectorAll('.menu-item').forEach(item => {
 document.querySelectorAll('.menu-dd-item:not(.disabled)').forEach(item => {
     item.addEventListener('mousedown', (e) => {
         e.stopPropagation();
-        if (!item.hasAttribute('data-sfx')) ;
+        if (!item.hasAttribute('data-sfx')) MacSFX.play('click', 0.3);
     });
 });
 
@@ -7346,7 +7362,7 @@ document.addEventListener('mousedown', () => { closeMenus(); });
     canvas.addEventListener('click', function(e) {
         e.stopPropagation();
         closeMenus();
-        if (!jumping) { jumping = true; jumpTimer = 0; ; }
+        if (!jumping) { jumping = true; jumpTimer = 0; MacSFX.play('laugh', 0.5); }
     });
 })();
 
@@ -10817,7 +10833,7 @@ async function _blooketCommit(btn, topic, score) {
 // still verifies via the flashcard flow.)
 
 function closeResourcePanel() {
-    ;
+    MacSFX.play('click', 0.3);
     document.getElementById('resource-overlay').style.display = 'none';
 }
 
@@ -11099,7 +11115,7 @@ function openMyReceipts() {
     renderMyReceipts();
     ov.style.display = 'block';
     _attachMyReceiptsKeyHandler();
-    try { if (typeof MacSFX !== 'undefined' && MacSFX.play) ; } catch (_) {}
+    try { if (typeof MacSFX !== 'undefined' && MacSFX.play) MacSFX.play('click', 0.3); } catch (_) {}
 }
 
 function closeMyReceipts() {
@@ -11139,14 +11155,34 @@ async function _loadReviewMarksForSelf() {
     } catch (_) { _reviewByItem = {}; }
 }
 
-function _sealedTranscriptNotice(msg) {
+var _deskToastEl = null, _deskToastTimer = null;
+function _showDeskToast(msg) {
     try {
-        if (typeof _showTrainerToast === 'function') {
-            _showTrainerToast(msg);
-            return;
-        }
-    } catch (_) {}
-    try { alert(msg); } catch (_) {}
+        if (_deskToastEl) _deskToastEl.remove();
+        if (_deskToastTimer) clearTimeout(_deskToastTimer);
+        var t = document.createElement('div');
+        t.className = 'chicago';
+        t.setAttribute('role', 'status');
+        t.setAttribute('aria-live', 'polite');
+        t.style.cssText = 'position:fixed;bottom:18px;right:18px;z-index:9999;' +
+            'background:var(--platinum);color:var(--black);border:1px solid var(--black);' +
+            'box-shadow:inset 1px 1px 0 0 var(--plat-hi),inset -1px -1px 0 0 var(--plat-lo),2px 2px 0 0 var(--black);' +
+            'border-radius:2px;padding:8px 14px;font-size:12px;max-width:320px;pointer-events:none;';
+        t.textContent = msg;
+        document.body.appendChild(t);
+        _deskToastEl = t;
+        _deskToastTimer = setTimeout(function() {
+            try { t.remove(); } catch (e) {}
+            _deskToastEl = null;
+            _deskToastTimer = null;
+        }, 4000);
+        // (no beep for a passive toast; 2026-08-19)
+    } catch (e) {}
+}
+var _showTrainerToast = _showDeskToast;
+
+function _sealedTranscriptNotice(msg) {
+    _showDeskToast(msg);
 }
 
 function _sealedTranscriptSignInMessage() {
@@ -11468,8 +11504,6 @@ function _walletReceiptRow(r) {
     return row;
 }
 
-// grid. Verify keeps BOTH paths: scan (openVerifyQR → teacher-verify) and paste
-// (cr verify.html). Ordered enroll-first (the most common teacher task).
 // One-click teacher backup straight from the Desk: pull the signed grade snapshot
 // using the teacher's OWN session token (requireTeacher accepts a teacher-role
 // Bearer — no x-teacher-secret typing), save grade-backup-<date>.json, and verify it.
@@ -11865,10 +11899,10 @@ function openGradeCheckin() {
   // Deliberately no icon-usage tracking here: that writes ap-roadmap-icon-usage,
   // and this feature's storage boundary (spec §5) is the single
   // a2_teacher_grade_checkin_v1 key.
-  try { if (typeof MacSFX !== 'undefined' && MacSFX.play) ; } catch (_) {}
+  try { if (typeof MacSFX !== 'undefined' && MacSFX.play) MacSFX.play('wildEep', 0.5); } catch (_) {}
 }
 function closeGradeCheckin() {
-  try { if (typeof MacSFX !== 'undefined' && MacSFX.play) ; } catch (_) {}
+  try { if (typeof MacSFX !== 'undefined' && MacSFX.play) MacSFX.play('click', 0.3); } catch (_) {}
   var overlay = document.getElementById('app-gradecheckin-overlay');
   if (overlay) overlay.style.display = 'none';
 }
@@ -12094,7 +12128,7 @@ function openNightlyReview() {
     openTeacherTools('recent');
 }
 function closeNightlyReview() {
-    try { if (typeof MacSFX !== 'undefined' && MacSFX.play) ; } catch (_) {}
+    try { if (typeof MacSFX !== 'undefined' && MacSFX.play) MacSFX.play('click', 0.3); } catch (_) {}
     var overlay = document.getElementById('app-nightlyreview-overlay');
     if (overlay) overlay.style.display = 'none';
 }
@@ -12291,7 +12325,7 @@ async function _reviewMark(body) {
         else if (!res.ok || !data || !data.ok) { alert('Mark failed' + (data && data.error ? ': ' + data.error : ' (HTTP ' + res.status + ')')); }
         else {
             if (data.truncated) alert('Marked ' + data.marked + ' of ' + data.requested + ' items (500 max per request). Refresh and repeat for the rest.');
-            try { if (typeof MacSFX !== 'undefined' && MacSFX.play) ; } catch (_) {}
+            try { if (typeof MacSFX !== 'undefined' && MacSFX.play) MacSFX.play('click', 0.3); } catch (_) {}
         }
     } catch (e) { alert('Mark failed: ' + ((e && e.message) || e)); }
     _reviewBusy = false;
@@ -12596,7 +12630,7 @@ function openMyGradebook() {
     renderMyGradebook(_firstGradebookQuarter(_activeGradebook));
     ov.style.display = 'block';
     _attachMyGradebookKeyHandler();
-    try { if (typeof MacSFX !== 'undefined' && MacSFX.play) ; } catch (_) {}
+    try { if (typeof MacSFX !== 'undefined' && MacSFX.play) MacSFX.play('click', 0.3); } catch (_) {}
 }
 
 // ── Teacher: Class Gradebook ──────────────────────────────────────────────────
@@ -12664,7 +12698,7 @@ async function openClassGradebook() {
     if (secRow) secRow.style.display = (sections.length > 1) ? 'block' : 'none';
 
     _renderClassSectionStudents(secSel ? secSel.value : '__all__');
-    try { if (typeof MacSFX !== 'undefined' && MacSFX.play) ; } catch (_) {}
+    try { if (typeof MacSFX !== 'undefined' && MacSFX.play) MacSFX.play('click', 0.3); } catch (_) {}
 }
 
 // Populate the student picker for the chosen section ('__all__' = every section),
@@ -13184,8 +13218,10 @@ var _bootChime = null;   // startup chime retired 2026-08-19 (kept as a null for
 function updateViewMenu() {
     const pbItem = document.getElementById('menu-period-b');
     const peItem = document.getElementById('menu-period-e');
+    const pgItem = document.getElementById('menu-period-g');
     if (pbItem) pbItem.innerHTML = ((cP === 'B' || cP === 'C') ? '&#10003; ' : '  ') + 'Section C';
     if (peItem) peItem.innerHTML = ((cP === 'E' || cP === 'D') ? '&#10003; ' : '  ') + 'Section D';
+    if (pgItem) pgItem.innerHTML = (cP === 'G' ? '&#10003; ' : '  ') + 'Section G';
     document.querySelectorAll('[data-year]').forEach(function(item){
       var yk=item.dataset.year;
       item.textContent=(cYear===yk?'\u2713 ':'  ')+SCHEDULE_DEFS[yk].label;
@@ -13203,10 +13239,10 @@ function showDialog(icon, msg, btnText, sfx) {
     // caller asks for a specific sound. Success and info dialogs are silent —
     // 2026-08-19: the default sosumi on every dialog was rampant during normal use.
     var _alertIcon = /\u26A0|&#9888;|\uD83D\uDD12|&#128274;|\u274C|&#10060;|\u26D4|&#9940;|\uD83D\uDEAB|&#128683;/.test(String(icon || ''));
-    if (sfx || _alertIcon) ;
+    if (sfx || _alertIcon) MacSFX.play(sfx || 'sosumi', 0.5);
 }
 function closeDialog() {
-    ;
+    MacSFX.play('click', 0.3);
     document.getElementById('dialog-overlay').style.display = 'none';
 }
 
@@ -13234,7 +13270,10 @@ function _pwaInstallHelp() {
 
 
 /* ═══ APP LAUNCHER ═══ */
-const APP_REGISTRY = {};
+const APP_REGISTRY = {
+    receipts: { open: openMyReceipts },
+    progress: { open: openMyGradebook }
+};
 
 function bumpUsage(id) {
     try {
@@ -13253,7 +13292,8 @@ function openApp(id) {
     var app = APP_REGISTRY[id];
     if (!app) return;
     bumpUsage(id);
-    ;
+    if (typeof app.open === 'function') { app.open(); return; }
+    MacSFX.play(app.sfx, 0.5);
     var overlay = document.getElementById('app-' + id + '-overlay');
     var iframe = document.getElementById('app-' + id + '-frame');
     var win = overlay.querySelector('.app-window');
@@ -13275,12 +13315,12 @@ function openApp(id) {
 function popOutApp(id) {
     var app = APP_REGISTRY[id];
     if (!app) return;
-    try { if (typeof MacSFX !== 'undefined') ; } catch (e) {}
+    try { if (typeof MacSFX !== 'undefined') MacSFX.play('click', 0.3); } catch (e) {}
     window.open(appLaunchUrl(app, id), '_blank', 'noopener');
 }
 
 function destroyApp(id) {
-    if (typeof MacSFX !== 'undefined') ;
+    if (typeof MacSFX !== 'undefined') MacSFX.play('click', 0.3);
     
     var overlay = document.getElementById('app-' + id + '-overlay');
     var iframe = document.getElementById('app-' + id + '-frame');
@@ -13292,7 +13332,7 @@ function destroyApp(id) {
 
 // Minimize = animate to icon, keep iframe alive
 function minimizeApp(id) {
-    if (typeof MacSFX !== 'undefined') ;
+    if (typeof MacSFX !== 'undefined') MacSFX.play('click', 0.3);
     
     var overlay = document.getElementById('app-' + id + '-overlay');
     var win = overlay.querySelector('.app-window');
@@ -13328,7 +13368,6 @@ function minimizeApp(id) {
 }
 
 
-// One toast at a time -- a new trainer event replaces the visible toast.
 function toggleMaximize(id) {
     var overlay = document.getElementById('app-' + id + '-overlay');
     var win = overlay.querySelector('.app-window');
@@ -13506,7 +13545,6 @@ document.querySelectorAll('.app-overlay').forEach(function(overlay) {
     // Right-click an app icon → Open / Open in new tab (iframe apps only).
     function _deskLaunch(id) {
         
-        if (id === 'game')   { if (typeof openGame === 'function') openGame(); return; }
         if (typeof openApp === 'function') openApp(id);
     }
     function _deskAppUrl(id) {
@@ -13723,8 +13761,7 @@ function _escCloseTopModal() {
     // (e.g. dblclick a calendar cell → resource panel opens, then the day-grade
     // modal opens on top) would also get closed by the net on the same Escape.
     var selfHandled = ['day-grade-overlay', 'grade-help-overlay', 'my-gradebook-overlay',
-                       'my-receipts-overlay', 'student-dm-modal', 'teacher-nudge-modal',
-                       'game-overlay'];
+                       'my-receipts-overlay', 'student-dm-modal', 'teacher-nudge-modal'];
     for (var s = 0; s < selfHandled.length; s++) {
         if (_escVisible(selfHandled[s])) return false;
     }
@@ -13736,9 +13773,6 @@ function _escCloseTopModal() {
         'dialog-overlay':       function () { if (typeof closeDialog === 'function')             closeDialog(); },
         'bf-overlay':           function () { if (typeof closeBlooketFlashcards === 'function')  closeBlooketFlashcards(); },
         'override-gate-modal':  function () { if (typeof _hideOverrideGateModal === 'function')  _hideOverrideGateModal(); },
-        'guest-pass-overlay':   function () { _escHide('guest-pass-overlay'); },
-        'reconcile-qr-overlay': function () { _escHide('reconcile-qr-overlay'); },
-        'verify-qr-overlay':    function () { _escHide('verify-qr-overlay'); },
         'big-qr-overlay':       function () { _escHide('big-qr-overlay'); },
     };
     var topId = null, topZ = -Infinity;
@@ -13766,7 +13800,7 @@ function calendarEntry(row) {
 }
 let cP="C";
 function setP(p){
-    ;
+    MacSFX.play('click', 0.3);
     cP=p;
     const a=document.getElementById("btn-b"),b=document.getElementById("btn-e");
     if(a){
@@ -13778,7 +13812,10 @@ function setP(p){
         b.classList.toggle("s7btn-default",(p==="E"||p==="D"));
     }
     var g = document.getElementById('btn-g');
-    if (g) g.classList.toggle('s7btn-inv', p === 'G');
+    if (g) {
+        g.classList.toggle('s7btn-inv', p === 'G');
+        g.classList.toggle('s7btn-default', p === 'G');
+    }
     updateViewMenu();
     rCal();rProg();
     var pu=new URL(window.location);pu.searchParams.set('period',p);history.replaceState(null,'',pu);
@@ -13979,7 +14016,6 @@ function rCal(){
         _todayLessonInf=todayCell;_todayLessonDS=MN[row[1]]+' '+row[2];
       }
     }
-    if(typeof _renderTodayTopics==='function');
     // ── 2. Weave the summer-prep weeks in FRONT of the school-year weeks ──
     // ☀️ Weave the summer-prep weeks in FRONT of the school-year weeks during
     // summer (today < firstDayOfSchool). They're real week rows, so the focus
