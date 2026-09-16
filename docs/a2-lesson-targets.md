@@ -217,6 +217,9 @@ Findings worth carrying into lesson checks and topic assessments:
 - `data/a2-lesson-targets.json` is the source of truth for plan and ratings. Edit it and this
   document together.
 - Lesson authoring and publishing into `content/a2/` follow the bare-minimum order, then the
-  bridge list. Lessons marked `later` are not authored until the department decides otherwise.
+  bridge list. Lessons marked `later` are not authored until the department decides otherwise
+  (the test refuses to publish one). Brief and skip lessons may still be authored as short treatments.
+- Teacher lesson-plan source docs (objectives, standards, language objectives) live in
+  `content/a2/source-docs/`; lessons 1-2 through 1-6 were added 2026-09-16.
 - The classification does not change grading. Every published lesson keeps the same Try-It,
   lesson-check, flashcard, and IXL supporting-skill pieces regardless of plan.
