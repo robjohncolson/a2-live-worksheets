@@ -42,6 +42,25 @@ equations. Marked `core: true` in the JSON. Use only if the year collapses.
 function operations and inverses, exponential features and models, logarithms and solving
 exponential/log equations, right-triangle trig and the unit circle.
 
+## Pacing (SY26-27)
+
+Each lesson runs about two weeks. In `content/a2/lessons.json`, a lesson's `sections` date for
+C, D, or G is the **last meeting day of its window**, which is the due date: after that day,
+unattempted Try-Its, the lesson check, and the deck count as zero. The Desk and the teacher
+scorer treat the first lesson whose date is not yet past as the current lesson. Meeting days:
+C Mon/Tue/Thu, D Mon/Wed/Fri, G Tue/Wed/Thu/Fri; district holidays shift a due date earlier.
+
+| Lesson | Window | C due | D due | G due |
+|---|---|---|---|---|
+| 1-1 | Sep 2 - Sep 15 | 2026-09-15 | 2026-09-14 | 2026-09-15 |
+| 1-2 | Sep 16 - Sep 29 | 2026-09-29 | 2026-09-28 | 2026-09-29 |
+| 1-5 | Sep 30 - Oct 13 | 2026-10-13 | 2026-10-09 | 2026-10-13 |
+| 1-6 | Oct 14 - Oct 27 | 2026-10-27 | 2026-10-26 | 2026-10-27 |
+
+1-3 and 1-4 are brief lessons and are not scheduled or published. Topic 1 assessment follows
+1-6, before Q1 closes on Nov 6. Dates can be overridden per section from the teacher pacing
+tool without editing the file.
+
 ## Per-lesson classification
 
 Ratings: **YES** clearly required or tested; **MAYBE** partially; **NO** not; **NO/MAYBE** mostly not.

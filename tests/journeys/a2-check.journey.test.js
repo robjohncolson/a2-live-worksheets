@@ -30,7 +30,7 @@ it('C student signs in, completes 4/6 then 6/6, sees best 10/10 in the Desk and 
   const proxyPaths = new Set(['/roster/verify', '/grade', '/lessons', '/lesson-status/1-1', '/ledger/record']);
   const adapter = { state: fake.state, handles: () => true, fetch: (url, init) => {
     const parsed = new URL(url);
-    return proxyPaths.has(parsed.pathname) ? fetch(base + parsed.pathname + parsed.search, init) : fake.fetch(url, init);
+    return (proxyPaths.has(parsed.pathname) || parsed.pathname.startsWith('/lesson-status/')) ? fetch(base + parsed.pathname + parsed.search, init) : fake.fetch(url, init);
   } };
   let desk, check;
   try {

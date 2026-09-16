@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { JSDOM } from 'jsdom';
 import '../lib/a2-answers.js';
@@ -29,7 +29,7 @@ describe('shared interval normalizer', () => {
   });
 });
 it('ships six traced items, five verbatim Try-Its and a clean 14-card traced deck', () => {
-  expect(lessons[0].sections).toBeNull();
+  expect(lessons[0].sections).toEqual({ C: '2026-09-15', D: '2026-09-14', G: '2026-09-15' });
   expect(lessons[0].lessonCheck.map(item => item.registryId)).toEqual([18,21,22,23,27,32].map(n => '1-1-savvas-q' + n));
   expect(lessons[0].tryIts.map(item => item.n)).toEqual([1,2,3,4,5]);
   const report = JSON.parse(execFileSync(process.execPath, ['scripts/lint-blooket-deck.mjs', '--csv', lessons[0].deck], { encoding: 'utf8' }));
@@ -47,6 +47,50 @@ it('teacher offline queue keeps different students separate and the latest tap f
     await queue.enqueue({ source: 'try-it', itemId: 'TI-1-1-1', studentId: 'a', score: 0, ts: 2 });
     expect((await queue.all()).map(row => [row.studentId,row.score])).toEqual([['a',0],['b',2]]);
   } finally { dom.window.close(); }
+});
+it('publishes the Topic 1 keep lessons with traced Try-Its, six answerable check items, and a clean 14-card deck each', () => {
+  expect(lessons.map(lesson => lesson.key)).toEqual(['1-1', '1-2', '1-5', '1-6']);
+  for (const lesson of lessons) {
+    expect(lesson.tryIts.map(item => item.n)).toEqual(lesson.tryIts.map((_, i) => i + 1));
+    for (const item of lesson.tryIts) expect(item.registryId).toBe(`${lesson.key}-savvas-try-it-${item.n}-lesson-${lesson.key}`);
+    expect(lesson.lessonCheck).toHaveLength(6);
+    for (const item of [...lesson.tryIts, ...lesson.lessonCheck]) if (item.image) expect(existsSync(item.image), item.image).toBe(true);
+    for (const item of lesson.lessonCheck) {
+      // Every accepted answer round-trips through the shared normalizer.
+      for (const accepted of item.answer.split('|')) expect(A2Answers.answerMatches(item.answer, accepted), item.registryId).toBe(true);
+      if (item.type === 'mc') { expect(item.choices).toHaveLength(4); expect(item.choices.map(c => c[0])).toContain(item.answer); }
+    }
+    const report = JSON.parse(execFileSync(process.execPath, ['scripts/lint-blooket-deck.mjs', '--csv', lesson.deck], { encoding: 'utf8' }));
+    expect(report.findings, lesson.key).toEqual([]); expect(report.decks[0].cards).toBe(14);
+    expect(lesson.topicAssessmentKey).toBe('T1');
+  }
+});
+it('accepts the student spellings the check hints describe', () => {
+  const byId = Object.fromEntries(lessons.flatMap(lesson => lesson.lessonCheck.map(item => [item.registryId, item.answer])));
+  expect(A2Answers.answerMatches(byId['1-2-check-q1'], 'x^2 - 3')).toBe(true);
+  expect(A2Answers.answerMatches(byId['1-2-check-q3'], '2 - x^2')).toBe(true);
+  expect(A2Answers.answerMatches(byId['1-2-check-q6'], '[-2, 2]')).toBe(true);
+  expect(A2Answers.answerMatches(byId['1-5-check-q3'], '(-inf,-2) U (2,inf)')).toBe(true);
+  expect(A2Answers.answerMatches(byId['1-5-check-q3'], '(-∞,-2)∪(2,∞)')).toBe(true);
+  expect(A2Answers.answerMatches(byId['1-5-check-q3'], '(-2,2)')).toBe(false);
+  expect(A2Answers.answerMatches(byId['1-5-check-q5'], '2; 10')).toBe(true);
+  expect(A2Answers.answerMatches(byId['1-5-check-q6'], '4.303')).toBe(true);
+  expect(A2Answers.answerMatches(byId['1-6-check-q1'], '(3.5, -0.25)')).toBe(true);
+  expect(A2Answers.answerMatches(byId['1-6-check-q5'], '(3/2, 1, 1/2)')).toBe(true);
+  expect(A2Answers.answerMatches(byId['1-6-check-q4'], '(2,3)')).toBe(false);
+});
+it('schedules two-week lesson windows on each section’s meeting days in order', () => {
+  const meetingDays = { C: [1, 2, 4], D: [1, 3, 5], G: [2, 3, 4, 5] };
+  for (const section of ['C', 'D', 'G']) {
+    const dates = lessons.map(lesson => lesson.sections[section]);
+    for (const date of dates) expect(meetingDays[section], `${section} ${date}`).toContain(new Date(date + 'T12:00:00Z').getUTCDay());
+    expect([...dates].sort()).toEqual(dates);
+    for (let i = 1; i < dates.length; i++) {
+      const gap = (Date.parse(dates[i]) - Date.parse(dates[i - 1])) / 86400000;
+      expect(gap, `${section} ${dates[i - 1]} -> ${dates[i]}`).toBeGreaterThanOrEqual(10);
+      expect(gap).toBeLessThanOrEqual(18); // a holiday can pull a due date earlier
+    }
+  }
 });
 it('supporting IXL skills are https links, prerequisites first, and never graded', () => {
   for (const lesson of lessons) {

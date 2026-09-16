@@ -19,7 +19,7 @@
     window.dispatchEvent(new Event('a2-lesson-changed'));
   }
   function chips(status) {
-    return ['Try-Its ' + status.tryIts.scored + '/5 scored, ' + status.tryIts.points + ' points',
+    return ['Try-Its ' + status.tryIts.scored + '/' + (status.tryIts.total ?? status.tryIts.scores.length) + ' scored, ' + status.tryIts.points + ' points',
       'Lesson check ' + (status.lessonCheck == null ? 'not attempted' : Math.round(status.lessonCheck) + '%'),
       'Flashcards ' + (status.flashcardPassed ? 'passed' : 'not passed')];
   }

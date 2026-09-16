@@ -50,19 +50,22 @@
       const gradeHost = document.getElementById('a2-gradebook-scores'); gradeHost.textContent = '';
       const section = String(identity?.section || '').replace(/^Period/i, '');
       const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
+      // Lessons run about two weeks; a section's date is the last meeting day of
+      // that window (the due date). The current lesson is the first one not yet past.
+      const current = lessons.find(lesson => lesson.sections?.[section] && lesson.sections[section] >= today);
       lessons.forEach((lesson, i) => {
         const tile = node('article', '', host); tile.className = 'a2-lesson-tile'; tile.dataset.lesson = lesson.key;
         node('h3', lesson.key + ' · ' + lesson.title, tile);
-        skills(tile, lesson);
         const link = node('a', 'Open lesson check', tile); link.href = 'check.html?lesson=' + lesson.key;
         const deck = node('button', 'Flashcards', tile); deck.disabled = !identity;
         deck.onclick = () => openBlooketFlashcards(null, lesson.key.replace('-', '.'));
+        skills(tile, lesson);
         const status = statuses[i];
-        if (status) { paintChips(tile, status); const detail = node('details', '', tile); node('summary', 'Five Try-It scores', detail); scores(detail, status);
+        if (status) { paintChips(tile, status); const detail = node('details', '', tile); node('summary', lesson.tryIts.length + ' Try-It scores', detail); scores(detail, status);
           node('h3', lesson.key + ' Try-Its', gradeHost); scores(gradeHost, status); }
         else node('p', 'Sign in on the Desk to view your scores.', tile);
-        if (lesson.sections?.[section] === today) {
-          node('strong', 'Today: ' + lesson.key + ' · ' + lesson.title, todayHost);
+        if (lesson === current) {
+          node('strong', 'Current lesson: ' + lesson.key + ' · ' + lesson.title + ' (due ' + lesson.sections[section] + ')', todayHost);
           if (lesson.onenoteUrl) { const notes = node('a', ' OneNote lesson notes', todayHost); notes.href = lesson.onenoteUrl; notes.target = '_blank'; notes.rel = 'noopener'; }
           skills(todayHost, lesson);
           if (status) paintChips(todayHost, status);

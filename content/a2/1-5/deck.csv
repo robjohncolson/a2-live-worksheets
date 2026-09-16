@@ -1,0 +1,15 @@
+Question #,Question Text,Answer 1,Answer 2,Answer 3,Answer 4,Time Limit (sec),Correct Answer(s),source
+1,"To solve f(x) = g(x) by graphing, graph both and read the ___ of the intersection points.",x-coordinates,y-coordinates,slopes,y-intercepts,20,1,1-5-lessonplan-example-1
+2,"To solve an equation written as f(x) = 0 with one graph, the solutions are the graph's ___.",x-intercepts,y-intercepts,vertex,maximum,20,1,1-5-lessonplan-explore
+3,"To solve f(x) > 0 from a graph, find where the graph is ___ the x-axis.",above,below,on,to the right of,20,1,1-5-lessonplan-example-2
+4,"Where the graph of y = f(x) lies below the x-axis, the value of f(x) is ___.",negative,positive,zero,undefined,20,1,1-5-lessonplan-example-2
+5,The solution of x² − 4 > 0 is ___.,x < −2 or x > 2,−2 < x < 2,x > 2 only,x < −2 only,20,1,1-5-lessonplan-example-2
+6,The solution set of x² − 4 < 0 written as an interval is ___.,"(−2, 2)","(−∞, −2)","(2, ∞)","[−2, 2]",20,1,1-5-lessonplan-example-2
+7,A table of values helps you ___ a solution you estimated from a graph.,refine,prove,eliminate,graph,20,1,1-5-lessonplan-example-3
+8,"To solve −3x + 20 = 0.2x + 4 by graphing, the two lines to graph are ___.",y = −3x + 20 and y = 0.2x + 4,y = −3x and y = 0.2x,y = 20 and y = 4,y = −3.2x and y = 24,20,1,1-5-lessonplan-example-1
+9,"If two graphs intersect at (3, 7), the solution of the related equation is ___.",x = 3,x = 7,x = 10,x = 21,20,1,1-5-lessonplan-example-1
+10,"If two graphs never intersect, the equation f(x) = g(x) has ___.",no real solution,one solution,two solutions,infinitely many solutions,20,1,1-5-lessonplan-example-1
+11,The graphs of y = x² − 4x + 1 and y = x − 2 intersect at how many points?,2,0,1,3,20,1,1-5-lessonplan-example-3
+12,The INTERSECT feature of graphing technology gives solutions that are usually ___.,approximate,exact,integers,negative,20,1,1-5-lessonplan-example-4
+13,"To solve x + 3 > 7 − 3x by graphing, find the x-values where y = x + 3 is ___ y = 7 − 3x.",above,below,equal to,parallel to,20,1,1-5-lessonplan-example-2
+14,The solution of x + 3 > 7 − 3x is ___.,x > 1,x < 1,x > 4,x < −1,20,1,1-5-lessonplan-example-2

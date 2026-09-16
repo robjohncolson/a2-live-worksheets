@@ -3,7 +3,11 @@
     "key": "1-1",
     "topic": 1,
     "title": "Key Features of Functions",
-    "sections": null,
+    "sections": {
+      "C": "2026-09-15",
+      "D": "2026-09-14",
+      "G": "2026-09-15"
+    },
     "onenoteUrl": null,
     "supportingSkills": [
       {
@@ -98,6 +102,278 @@
       }
     ],
     "deck": "content/a2/1-1/deck.csv",
+    "topicAssessmentKey": "T1"
+  },
+  {
+    "key": "1-2",
+    "topic": 1,
+    "title": "Transformations of Functions",
+    "sections": {
+      "C": "2026-09-29",
+      "D": "2026-09-28",
+      "G": "2026-09-29"
+    },
+    "onenoteUrl": null,
+    "supportingSkills": [],
+    "tryIts": [
+      {
+        "n": 1,
+        "registryId": "1-2-savvas-try-it-1-lesson-1-2",
+        "prompt": "In Example 1, (f(x)=x^2) has domain [-2, 2]. In part (a), g is f translated 3 units down; in part (b), g is f translated 3 units to the right.\n\na. Compare the intercepts of f to the intercepts of g in part (a).\n\nb. Compare the intercepts of f to the intercepts of g in part (b)."
+      },
+      {
+        "n": 2,
+        "registryId": "1-2-savvas-try-it-2-lesson-1-2",
+        "prompt": "What is the function for the reflected graph? Check by graphing.\n\na. The graph of (f(x)=x^2-2) reflected across the x-axis.\n\nb. The graph of (f(x)=x^2-2) reflected across the y-axis."
+      },
+      {
+        "n": 3,
+        "registryId": "1-2-savvas-try-it-3-lesson-1-2",
+        "prompt": "The domain of (j(x)) is [a, b]. Show that (j(x)=f(1/2 x)) is a horizontal stretch of the graph of f. What is the domain of f?"
+      },
+      {
+        "n": 4,
+        "registryId": "1-2-savvas-try-it-4-lesson-1-2",
+        "prompt": "Using the graph of f shown, graph each equation.\n\na. (y=f(2x)-4)\n\nb. (y=f(2x-3)-2)",
+        "image": "content/a2/1-2/images/1-2_graph_of_f_try-it-4.png"
+      },
+      {
+        "n": 5,
+        "registryId": "1-2-savvas-try-it-5-lesson-1-2",
+        "prompt": "What transformations of the graph of (f(x)=|x|) are applied to graph the function g?\n\na. (g(x)=1/2 |x+3|)\n\nb. (g(x)=-|x|+2)"
+      },
+      {
+        "n": 6,
+        "registryId": "1-2-savvas-try-it-6-lesson-1-2",
+        "prompt": "The graph shows the distance y in kilometers of a scenic train from the station x minutes after the ride begins. How would the graph and equation be affected if the train traveled twice as far in the same amount of time?",
+        "image": "content/a2/1-2/images/1-2_train_distance_graph.png"
+      }
+    ],
+    "lessonCheck": [
+      {
+        "registryId": "1-2-check-q1",
+        "prompt": "The graph of g is the graph of (f(x)=x^2) translated 3 units down. Write a rule for g(x).",
+        "type": "short",
+        "answer": "x^2-3|g(x)=x^2-3|y=x^2-3|x2-3",
+        "responseHint": "Type ^ for an exponent, e.g. x^2-3."
+      },
+      {
+        "registryId": "1-2-check-q2",
+        "prompt": "How does the graph of (g(x)=|x+5|) compare to the graph of (f(x)=|x|)?",
+        "type": "mc",
+        "answer": "A",
+        "choices": [
+          "A. Translated 5 units left",
+          "B. Translated 5 units right",
+          "C. Translated 5 units up",
+          "D. Translated 5 units down"
+        ]
+      },
+      {
+        "registryId": "1-2-check-q3",
+        "prompt": "The graph of (f(x)=x^2-2) is reflected across the x-axis. Write a rule for the new function g(x).",
+        "type": "short",
+        "answer": "-x^2+2|2-x^2|-(x^2-2)|g(x)=-x^2+2|g(x)=2-x^2|y=-x^2+2|y=2-x^2",
+        "responseHint": "Type ^ for an exponent."
+      },
+      {
+        "registryId": "1-2-check-q4",
+        "prompt": "For any function f, the graph of (g(x)=3f(x)) is a ___ of the graph of f.",
+        "type": "mc",
+        "answer": "A",
+        "choices": [
+          "A. vertical stretch by a factor of 3",
+          "B. vertical compression by a factor of 1/3",
+          "C. horizontal stretch by a factor of 3",
+          "D. translation 3 units up"
+        ]
+      },
+      {
+        "registryId": "1-2-check-q5",
+        "prompt": "What transformations of (f(x)=x^2) produce (g(x)=(x-4)^2+5)?",
+        "type": "mc",
+        "answer": "A",
+        "choices": [
+          "A. Translate 4 units right and 5 units up",
+          "B. Translate 4 units left and 5 units up",
+          "C. Translate 4 units right and 5 units down",
+          "D. Translate 4 units left and 5 units down"
+        ]
+      },
+      {
+        "registryId": "1-2-check-q6",
+        "prompt": "The domain of f is [-4, 4]. What is the domain of (h(x)=f(2x))? Use interval notation.",
+        "type": "short",
+        "answer": "[-2,2]",
+        "responseHint": "Interval notation, e.g. [-1,1]."
+      }
+    ],
+    "deck": "content/a2/1-2/deck.csv",
+    "topicAssessmentKey": "T1"
+  },
+  {
+    "key": "1-5",
+    "topic": 1,
+    "title": "Solving Equations and Inequalities by Graphing",
+    "sections": {
+      "C": "2026-10-13",
+      "D": "2026-10-09",
+      "G": "2026-10-13"
+    },
+    "onenoteUrl": null,
+    "supportingSkills": [],
+    "tryIts": [
+      {
+        "n": 1,
+        "registryId": "1-5-savvas-try-it-1-lesson-1-5",
+        "prompt": "Use a graph to solve the equation.\n\na. (5x-12=3)\n\nb. (-|x-2|=-1/2 x-2)"
+      },
+      {
+        "n": 2,
+        "registryId": "1-5-savvas-try-it-2-lesson-1-5",
+        "prompt": "Use a graph to solve each inequality.\n\na. (x^2+6x+5>=0)\n\nb. (x+3>7-3x)"
+      },
+      {
+        "n": 3,
+        "registryId": "1-5-savvas-try-it-3-lesson-1-5",
+        "prompt": "The equation (x^2-4x+1=x-2) has a second solution in the interval (4<x<5). Use Desmos or a spreadsheet to approximate this solution to the nearest thousandth."
+      }
+    ],
+    "lessonCheck": [
+      {
+        "registryId": "1-5-check-q1",
+        "prompt": "Solve (5x-12=3) by graphing (y=5x-12) and (y=3). What is the solution?",
+        "type": "short",
+        "answer": "3|x=3",
+        "responseHint": "Enter the value of x."
+      },
+      {
+        "registryId": "1-5-check-q2",
+        "prompt": "To solve (-3x+20=0.2x+4) by graphing, you graph (y=-3x+20) and (y=0.2x+4). The solution is the ___ of the point where the graphs intersect.",
+        "type": "mc",
+        "answer": "A",
+        "choices": [
+          "A. x-coordinate",
+          "B. y-coordinate",
+          "C. slope",
+          "D. y-intercept"
+        ]
+      },
+      {
+        "registryId": "1-5-check-q3",
+        "prompt": "Solve (x^2-4>0). Write the solution in interval notation.",
+        "type": "short",
+        "answer": "(-inf,-2)u(2,inf)|(-inf,-2)∪(2,inf)|(-inf,-2)or(2,inf)|x<-2orx>2",
+        "responseHint": "Use U for union, e.g. (-inf,-1)U(1,inf)."
+      },
+      {
+        "registryId": "1-5-check-q4",
+        "prompt": "Solve (x+3>7-3x) by graphing. Write the solution as an inequality in x.",
+        "type": "short",
+        "answer": "x>1|(1,inf)|1<x",
+        "responseHint": "Example format: x>4"
+      },
+      {
+        "registryId": "1-5-check-q5",
+        "prompt": "Solve (|x-4|=1/2 x+1) by graphing. Enter both solutions, smaller first, separated by a semicolon.",
+        "type": "short",
+        "answer": "2;10|x=2;x=10|2,10",
+        "responseHint": "Example format: 1; 5"
+      },
+      {
+        "registryId": "1-5-check-q6",
+        "prompt": "The equation (x^2-4x+1=x-2) has a solution between 4 and 5. Approximate it to the nearest thousandth.",
+        "type": "short",
+        "answer": "4.303|x=4.303|4.30|4.3028",
+        "responseHint": "Three decimal places."
+      }
+    ],
+    "deck": "content/a2/1-5/deck.csv",
+    "topicAssessmentKey": "T1"
+  },
+  {
+    "key": "1-6",
+    "topic": 1,
+    "title": "Linear Systems",
+    "sections": {
+      "C": "2026-10-27",
+      "D": "2026-10-26",
+      "G": "2026-10-27"
+    },
+    "onenoteUrl": null,
+    "supportingSkills": [],
+    "tryIts": [
+      {
+        "n": 1,
+        "registryId": "1-6-savvas-try-it-1-lesson-1-6",
+        "prompt": "Solve each system of equations.\n\na. (2x+y=-1) and (5y-6x=7)\n\nb. (3x+2y=5) and (6x+4y=3)"
+      },
+      {
+        "n": 2,
+        "registryId": "1-6-savvas-try-it-2-lesson-1-6",
+        "prompt": "Sketch the graph of the set of all points that solve this system of linear inequalities: (2x+y<=14), (x+2y<=10), (x>=0), (y>=0)."
+      },
+      {
+        "n": 3,
+        "registryId": "1-6-savvas-try-it-3-lesson-1-6",
+        "prompt": "Solve the following systems of equations.\n\na. (x+y+z=3), (x-y+z=1), (x+y-z=2)\n\nb. (2x+4y-6z=8), (-4x+y+12z=-16), (x-3z=4)"
+      }
+    ],
+    "lessonCheck": [
+      {
+        "registryId": "1-6-check-q1",
+        "prompt": "Solve the system (x+2y=3) and (x-2y=4). Enter the solution as an ordered pair.",
+        "type": "short",
+        "answer": "(3.5,-0.25)|(7/2,-1/4)|(3.5,-.25)",
+        "responseHint": "Example format: (2,-1)"
+      },
+      {
+        "registryId": "1-6-check-q2",
+        "prompt": "Solve the system (2x+y=-1) and (5y-6x=7). Enter the solution as an ordered pair.",
+        "type": "short",
+        "answer": "(-0.75,0.5)|(-3/4,1/2)|(-.75,.5)|(-0.75,0.50)",
+        "responseHint": "Example format: (2,-1)"
+      },
+      {
+        "registryId": "1-6-check-q3",
+        "prompt": "How many solutions does the system (3x+2y=5) and (6x+4y=3) have?",
+        "type": "mc",
+        "answer": "A",
+        "choices": [
+          "A. No solution; the lines are parallel",
+          "B. Exactly one solution",
+          "C. Infinitely many solutions",
+          "D. Exactly two solutions"
+        ]
+      },
+      {
+        "registryId": "1-6-check-q4",
+        "prompt": "Solve the system (2x+2y=10) and (x+5y=13). Enter the solution as an ordered pair.",
+        "type": "short",
+        "answer": "(3,2)",
+        "responseHint": "Example format: (2,-1)"
+      },
+      {
+        "registryId": "1-6-check-q5",
+        "prompt": "Solve the system (x+y+z=3), (x-y+z=1), (x+y-z=2). Enter the solution as an ordered triple.",
+        "type": "short",
+        "answer": "(1.5,1,0.5)|(3/2,1,1/2)|(1.5,1,.5)",
+        "responseHint": "Example format: (1,2,3)"
+      },
+      {
+        "registryId": "1-6-check-q6",
+        "prompt": "Which point is a solution of the system (2x+y<=14), (x+2y<=10), (x>=0), (y>=0)?",
+        "type": "mc",
+        "answer": "A",
+        "choices": [
+          "A. (4, 3)",
+          "B. (6, 4)",
+          "C. (-1, 2)",
+          "D. (2, 5)"
+        ]
+      }
+    ],
+    "deck": "content/a2/1-6/deck.csv",
     "topicAssessmentKey": "T1"
   }
 ]

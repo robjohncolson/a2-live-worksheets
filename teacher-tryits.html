@@ -69,7 +69,7 @@
       el('lesson').textContent = '';
       const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
       lessons.forEach(lesson => { const option = text('option', lesson.key + ' ' + lesson.title, el('lesson')); option.value = lesson.key; });
-      el('lesson').value = selected || lessons.find(lesson => lesson.sections?.[el('section').value] === today)?.key || lessons[0]?.key;
+      el('lesson').value = selected || lessons.find(lesson => lesson.sections?.[el('section').value] >= today)?.key || lessons.at(-1)?.key;
       if (mode === 'pacing') { await pacing(); say(''); return; }
       const roster = await api('/roster/list');
       const students = (roster.students || roster.roster || []).filter(student => String(student.section).replace(/^Period/i, '') === el('section').value && student.role !== 'teacher');
