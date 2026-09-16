@@ -1,17 +1,4 @@
-/**
- * tests/ai-worksheet-grade.test.js
- *
- * Acceptance tests for AI_WORKSHEET_GRADING_BUILD.md — the AI worksheet-grading
- * client flow injected by scripts/wire-ai-worksheet-grade.mjs.
- *
- * Three layers:
- *   1. Behavioral — RUNS the real shipped INJECTED_JS in jsdom with mocked
- *      worksheet globals, then drives window.aiGradeWorksheet and asserts the
- *      load-bearing guarantees (upgrade-only, never-downgrade, dedup, single-
- *      flight, soft-fail, batched-call, FRQ fold).
- *   2. Static-parse — pins the invariants directly in the shipped string.
- *   3. wireHtml properties — idempotency, EOL-preservation, placement, targeting.
- */
+/** Tests the retained AI grading runtime with inline DOM/protocol fixtures. */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { readFileSync } from 'node:fs';
@@ -116,7 +103,7 @@ function okFetch(blanks) {
   return { ok: true, json: async () => ({ blanks }) };
 }
 
-function addBlank(id, { answer = 'evidence', value = '', verdict = 'incorrect', question = 'Some prose here.' } = {}) {
+function addBlank(id, { answer = 'evidence', value = '', verdict = 'incorrect', question = 'Solve x + 2 = 6.' } = {}) {
   const q = document.createElement('div');
   q.className = 'question';
   q.appendChild(document.createTextNode(question + ' '));
@@ -139,7 +126,7 @@ function makeDrawerContent() {
   return dc;
 }
 function classFetch(responses) {
-  return { ok: true, json: async () => ({ ok: true, itemId: 'x', section: 'B', total: responses.length, responses }) };
+  return { ok: true, json: async () => ({ ok: true, itemId: 'x', section: 'C', total: responses.length, responses }) };
 }
 
 function addTextarea(id, value) {
@@ -197,8 +184,8 @@ afterEach(() => {
 // ===========================================================================
 describe('aiGradeWorksheet — batched collection', () => {
   it('sends ONE call for all filled blanks (empty skipped) with DOM question + accepted answers', async () => {
-    addBlank('WS-U6L1-2-Q1', { value: 'proof', answer: 'evidence', question: 'How do we identify ___ for a claim?' });
-    addBlank('WS-U6L1-2-Q2', { value: 'convincing', answer: 'convincing|persuasive' });
+    addBlank('WS-U6L1-2-Q1', { value: 'four', answer: '4', question: 'Solve x + 2 = 6.' });
+    addBlank('WS-U6L1-2-Q2', { value: 'zero', answer: 'root|zero' });
     addBlank('WS-U6L1-2-Q3', { value: '' }); // empty → not sent
     installShippedFlow();
     mocks.fetch.mockResolvedValue(okFetch([]));
@@ -211,11 +198,11 @@ describe('aiGradeWorksheet — batched collection', () => {
     const body = JSON.parse(opts.body);
     expect(body.blanks).toHaveLength(2);
     const q1 = body.blanks.find((b) => b.id === 'WS-U6L1-2-Q1');
-    expect(q1.studentAnswer).toBe('proof');
-    expect(q1.question).toMatch(/identify/);
-    expect(q1.acceptedAnswers).toEqual(['evidence']);
+    expect(q1.studentAnswer).toBe('four');
+    expect(q1.question).toContain('Solve x + 2 = 6');
+    expect(q1.acceptedAnswers).toEqual(['4']);
     const q2 = body.blanks.find((b) => b.id === 'WS-U6L1-2-Q2');
-    expect(q2.acceptedAnswers).toEqual(['convincing', 'persuasive']);
+    expect(q2.acceptedAnswers).toEqual(['root', 'zero']);
     // scenario carries unit/lesson for framework grounding
     expect(body.scenario.unit).toBe(6);
     expect(body.scenario.lessons).toEqual([1, 2]);
@@ -724,27 +711,6 @@ describe('INJECTED_JS invariants (load-bearing)', () => {
     expect(INJECTED_JS).toMatch(/Authorization': 'Bearer '/);  // signed-in only
   });
 });
-
-void 0;
-
-// ===========================================================================
-// 3. wireHtml properties
-// ===========================================================================
-const SAMPLE = [
-  '<html>', '<body>',
-  '  <div class="controls">',
-  '    <button class="btn-check" onclick="checkAnswers()">&#10003; Check Answers</button>',
-  '    <button class="btn-ai" onclick="gradeAllReflections()">&#129302; Grade My Reflections</button>',
-  '  </div>',
-  '  <script>const UNIT_ID="U6L1-2"; function gradeReflection(){}</script>',
-  '</body>', '</html>'
-].join('\n');
-
-void 0;
-
-void 0;
-
-void 0;
 
 describe('FRQ coverage — retry, triggers, on-load regrade (2026-08-19)', () => {
   it('retries a failing gradeReflection (2 retries) and records the eventual verdict', async () => {

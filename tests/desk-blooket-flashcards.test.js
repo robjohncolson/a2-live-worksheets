@@ -780,3 +780,52 @@ describe('Desk: Blooket flashcard verification', () => {
   // moved to journeys/j4-quick-check.journey.test.js — J4 resumes answered snapshots without score inflation and commits one 8/10 Quick check (supersedes desk-blooket-flashcards it 55 “_bfSaveProgress persists the answered snapshot”, it 56 “answer saves after scoring and Next clears answered before saving”, it 57 “answer then Cancel resumes at the following card without another point”, it 58 “pass timer is canceled on close and resume commits the saved 80% once”, and it 58b “non-passing answer then Cancel resumes one card ahead without a commit”)
   // moved to journeys/j4-quick-check.journey.test.js — J4 opens a legacy snapshot without answered at its saved card (supersedes desk-blooket-flashcards it 59 “legacy snapshot without answered resumes at its saved index”)
 });
+
+
+// Synthetic A2 content exercises the retained parser and difficulty loader without
+// requiring AP corpus counts or imposing authoring requirements on future decks.
+describe('A2 CSV and difficulty inputs', () => {
+  it('parses algebra cards and discards headers, blank prompts, and single-choice rows', () => {
+    const source = ['_bfParseCsv', '_bfRowsToDeck'].map(name => fnBody(DESK, name)).join('\n');
+    const parse = new Function(source + '\nreturn text => _bfRowsToDeck(_bfParseCsv(text));')();
+    const csv = [
+      'Question #,Question Text,Answer 1,Answer 2,Answer 3,Answer 4,Time,Correct',
+      '1,"Solve x + 2 = 5","2","3",,,20,2',
+      '2,"","2","3",,,20,1',
+      '3,"Solve x = 1","1",,,,20,1',
+      '4,"Domain includes (1, 2)","True","False",,,20,1',
+    ].join('\n');
+    expect(parse(csv)).toEqual([
+      { qnum: 1, q: 'Solve x + 2 = 5', choices: ['2', '3'], correctIdx: 1 },
+      { qnum: 4, q: 'Domain includes (1, 2)', choices: ['True', 'False'], correctIdx: 0 },
+    ]);
+    expect(parse('')).toEqual([]);
+    expect(parse('Question #,Question Text')).toEqual([]);
+  });
+
+  it('loads and caches the per-deck difficulty schema with inline A2 tags', async () => {
+    const tags = { 'content/a2/1-1/deck.csv': {
+      '1': { difficulty: 'easy', rationale: 'One inverse operation.' },
+      '2': { difficulty: 'med', rationale: 'Compare two representations.' },
+      '3': { difficulty: 'hard', rationale: 'Justify the domain restriction.' },
+    } };
+    const fetch = vi.fn(async () => ({ ok: true, json: async () => ({ version: 1, tags }) }));
+    const load = new Function('fetch', 'var _bfDifficultyTags = null;\n' +
+      fnBody(DESK, '_bfLoadDifficultyTags') + '\nreturn _bfLoadDifficultyTags;')(fetch);
+    expect(await load()).toEqual(tags);
+    expect(await load()).toEqual(tags);
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledWith('data/blooket-difficulty.json', { cache: 'no-cache' });
+  });
+
+  it.each([
+    ['empty A2 map', async () => ({ ok: true, json: async () => ({}) })],
+    ['missing response', async () => ({ ok: false })],
+    ['invalid JSON', async () => ({ ok: true, json: async () => { throw new Error('invalid JSON'); } })],
+    ['offline', async () => { throw new Error('offline'); }],
+  ])('falls back to untagged cards for %s', async (_label, fetch) => {
+    const load = new Function('fetch', 'var _bfDifficultyTags = null;\n' +
+      fnBody(DESK, '_bfLoadDifficultyTags') + '\nreturn _bfLoadDifficultyTags;')(fetch);
+    expect(await load()).toEqual({});
+  });
+});

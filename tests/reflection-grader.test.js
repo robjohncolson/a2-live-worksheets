@@ -1,452 +1,135 @@
-/**
- * Unit tests for ReflectionGrader class and appeal system
- * Tests grading workflow, state management, and API interactions
- */
+/** @vitest-environment node */
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { JSDOM } from 'jsdom';
+import { readFileSync } from 'node:fs';
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+const runtime = readFileSync('lib/worksheet-ai-grade.js', 'utf8');
+const windows = [];
+const answer = 'Subtract 2 from both sides of x + 2 = 6 to obtain x = 4.';
+const rubric = 'Explain the same operation on both sides and verify the solution.';
 
-// Mock fetch globally
-const mockFetch = vi.fn();
-global.fetch = mockFetch;
-
-// Mock the grading functions that would be loaded from ai-grading-prompts.js
-global.buildReflectionPrompt = vi.fn((id, answer) => `Mock prompt for ${id}: ${answer}`);
-global.getRubric = vi.fn((id) => id ? { questionText: 'Mock question' } : null);
-global.getReflectionQuestionIds = vi.fn(() => ['reflect53', 'reflect54a', 'reflect54b', 'reflect55', 'reflect56', 'exitTicket']);
-global.LESSON_CONTEXT = { unit: 3, lessons: '6-7' };
-
-// ReflectionGrader class (extracted from HTML for testing)
-class ReflectionGrader {
-  constructor() {
-    this.serverUrl = 'https://a2-live-worksheets-production.up.railway.app';
-  }
-
-  async gradeReflection(textareaId, studentAnswer) {
-    if (!studentAnswer || studentAnswer.trim().length < 20) {
-      return {
-        score: 'I',
-        feedback: 'Please provide a more complete response (at least a few sentences).',
-        _aiGraded: false
-      };
-    }
-
-    try {
-      const prompt = typeof buildReflectionPrompt === 'function'
-        ? buildReflectionPrompt(textareaId, studentAnswer)
-        : this.buildFallbackPrompt(textareaId, studentAnswer);
-
-      const response = await fetch(`${this.serverUrl}/api/ai/grade`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          scenario: {
-            topic: 'Algebra 2 - Experimental Design',
-            questionId: textareaId,
-            lessonContext: typeof LESSON_CONTEXT !== 'undefined' ? LESSON_CONTEXT : null
-          },
-          answers: { answer: studentAnswer },
-          prompt: prompt
-        })
-      });
-
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error);
-
-      return {
-        score: result.score || 'I',
-        feedback: result.feedback || '',
-        matched: result.matched || [],
-        missing: result.missing || [],
-        suggestion: result.suggestion,
-        _aiGraded: true,
-        _model: result._model
-      };
-    } catch (err) {
-      return {
-        score: null,
-        feedback: 'AI grading unavailable. Please try again later.',
-        _error: err.message,
-        _aiGraded: false
-      };
-    }
-  }
-
-  buildFallbackPrompt(questionId, answer) {
-    return `Grade this Algebra 2 response about experimental design.
-Question ID: ${questionId}
-Student Answer: "${answer}"
-
-Score using E (Essentially correct), P (Partially correct), or I (Incorrect).
-Respond in JSON: {"score": "E/P/I", "feedback": "explanation"}`;
-  }
-
-  async submitAppeal(textareaId, originalAnswer, appealText, previousResult) {
-    if (!appealText || appealText.trim().length < 10) {
-      return {
-        success: false,
-        error: 'Please explain your reasoning in more detail.',
-        score: previousResult?.score || 'I'
-      };
-    }
-
-    try {
-      const rubric = typeof getRubric === 'function' ? getRubric(textareaId) : null;
-
-      const response = await fetch(`${this.serverUrl}/api/ai/appeal`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          scenario: {
-            questionId: textareaId,
-            topic: 'Algebra 2 - Experimental Design',
-            prompt: rubric?.questionText || textareaId,
-            expectedElements: rubric?.expectedElements?.map(e => e.description) || [],
-            lessonContext: typeof LESSON_CONTEXT !== 'undefined' ? LESSON_CONTEXT : null
-          },
-          answers: { answer: originalAnswer },
-          appealText: appealText,
-          previousResults: { answer: previousResult }
-        })
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Appeal failed');
-      }
-
-      const scoreOrder = { 'E': 3, 'P': 2, 'I': 1 };
-      const previousScore = scoreOrder[previousResult?.score] || 0;
-      const newScore = scoreOrder[result.score] || 0;
-      const upgraded = newScore > previousScore;
-
-      return {
-        success: true,
-        score: result.score,
-        feedback: result.feedback || '',
-        appealGranted: upgraded,
-        upgraded,
-        previousScore: previousResult?.score,
-        _provider: result._provider,
-        _model: result._model,
-        _appealProcessed: true
-      };
-    } catch (err) {
-      return {
-        success: false,
-        error: err.message || 'Appeal could not be processed.',
-        score: previousResult?.score || 'I'
-      };
-    }
-  }
+function mount({ prior = new Map() } = {}) {
+  const w = new JSDOM('<textarea id="reflect1"></textarea><textarea id="reflect2"></textarea>', {
+    url: 'https://example.test/', runScripts: 'outside-only'
+  }).window;
+  windows.push(w);
+  w.document.querySelectorAll('textarea').forEach(ta => { ta.value = answer; });
+  w.UNIT_ID = 'U1L1';
+  w.gbWsPrefix = () => 'WS-U1L1';
+  w.gradingState = new Map();
+  w.rosterClient = { token: () => null, current: () => null };
+  w.RAILWAY_SERVER_URL = 'https://grader.example.test';
+  w.gradebookClient = { fetchPrior: vi.fn().mockResolvedValue(prior), record: vi.fn() };
+  w.recordReflectionToGradebook = vi.fn();
+  const record = w.recordReflectionToGradebook;
+  w.showFeedback = vi.fn();
+  const fallback = vi.fn().mockResolvedValue({ score: 'P', feedback: 'Verify x = 4.', missing: ['verification'] });
+  // Mock only the page-provided per-item grader. Batching, grades and state run
+  // through the shipped module; no copied ReflectionGrader implementation.
+  w.gradeReflection = async function (id, text) {
+    const scenario = { topic: 'Algebra 2 - Linear equations' };
+    return fallback(id, text, scenario);
+  };
+  w.buildReflectionPromptAlgebra = (id, text) => rubric + '\nQuestion: ' + id + '\nAnswer: ' + text;
+  w.LESSON_CONTEXT_Algebra = { unit: 1, lessons: '1' };
+  const fetchSpy = vi.fn(async url => ({
+    ok: true,
+    json: async () => String(url).endsWith('/api/ai/grade-batch')
+      ? { results: {
+        reflect1: { score: 'E', feedback: 'Both sides stay equal.', matched: ['equality'], missing: [] },
+        reflect2: { score: 'P', feedback: 'Verify x = 4.', missing: ['verification'] }
+      } }
+      : {}
+  }));
+  w.fetch = fetchSpy;
+  w.__AI_FRQ_TEST_SEAMS__ = true;
+  w.eval(runtime);
+  return { w, record, fallback, fetchSpy };
 }
 
-describe('ReflectionGrader', () => {
-  let grader;
-
-  beforeEach(() => {
-    grader = new ReflectionGrader();
-    mockFetch.mockReset();
-  });
-
-  describe('constructor', () => {
-    it('should set default server URL', () => {
-      expect(grader.serverUrl).toBe('https://a2-live-worksheets-production.up.railway.app');
-    });
-  });
-
-  describe('gradeReflection()', () => {
-    it('should reject empty answers', async () => {
-      const result = await grader.gradeReflection('reflect53', '');
-      expect(result.score).toBe('I');
-      expect(result._aiGraded).toBe(false);
-      expect(result.feedback).toContain('complete response');
-    });
-
-    it('should reject answers shorter than 20 characters', async () => {
-      const result = await grader.gradeReflection('reflect53', 'Too short');
-      expect(result.score).toBe('I');
-      expect(result._aiGraded).toBe(false);
-    });
-
-    it('should accept answers with 20+ characters', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve({ score: 'E', feedback: 'Great answer!' })
-      });
-
-      const result = await grader.gradeReflection('reflect53', 'This is a sufficiently long answer about random selection and assignment.');
-      expect(result._aiGraded).toBe(true);
-      expect(result.score).toBe('E');
-    });
-
-    it('should call API with correct payload', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve({ score: 'P', feedback: 'Partial credit' })
-      });
-
-      await grader.gradeReflection('reflect53', 'This is my answer about experimental design concepts.');
-
-      expect(mockFetch).toHaveBeenCalledTimes(1);
-      const [url, options] = mockFetch.mock.calls[0];
-
-      expect(url).toBe('https://a2-live-worksheets-production.up.railway.app/api/ai/grade');
-      expect(options.method).toBe('POST');
-      expect(options.headers['Content-Type']).toBe('application/json');
-
-      const body = JSON.parse(options.body);
-      expect(body.scenario.questionId).toBe('reflect53');
-      expect(body.scenario.topic).toBe('Algebra 2 - Experimental Design');
-      expect(body.answers.answer).toContain('experimental design');
-    });
-
-    it('should handle API errors gracefully', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        json: () => Promise.resolve({ error: 'Server error' })
-      });
-
-      const result = await grader.gradeReflection('reflect53', 'A valid answer that is long enough to be graded');
-      expect(result._aiGraded).toBe(false);
-      expect(result._error).toBeDefined();
-    });
-
-    it('should handle network errors gracefully', async () => {
-      mockFetch.mockRejectedValueOnce(new Error('Network error'));
-
-      const result = await grader.gradeReflection('reflect53', 'A valid answer that is long enough to be graded');
-      expect(result._aiGraded).toBe(false);
-      expect(result._error).toBe('Network error');
-    });
-
-    it('should include model info in result', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve({
-          score: 'E',
-          feedback: 'Excellent!',
-          _model: 'llama-3.3-70b-versatile'
-        })
-      });
-
-      const result = await grader.gradeReflection('reflect53', 'A complete answer with all required elements.');
-      expect(result._model).toBe('llama-3.3-70b-versatile');
-    });
-  });
-
-  describe('submitAppeal()', () => {
-    const previousResult = { score: 'P', feedback: 'Partial credit' };
-
-    it('should reject empty appeal text', async () => {
-      const result = await grader.submitAppeal('reflect53', 'Original answer', '', previousResult);
-      expect(result.success).toBe(false);
-      expect(result.error).toContain('reasoning');
-    });
-
-    it('should reject appeal text shorter than 10 characters', async () => {
-      const result = await grader.submitAppeal('reflect53', 'Original answer', 'Too short', previousResult);
-      expect(result.success).toBe(false);
-    });
-
-    it('should call appeal API with correct payload', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve({ score: 'E', feedback: 'Appeal granted' })
-      });
-
-      await grader.submitAppeal(
-        'reflect53',
-        'My original answer',
-        'I believe my answer deserves a higher score because I mentioned random assignment.',
-        previousResult
-      );
-
-      expect(mockFetch).toHaveBeenCalledTimes(1);
-      const [url, options] = mockFetch.mock.calls[0];
-
-      expect(url).toBe('https://a2-live-worksheets-production.up.railway.app/api/ai/appeal');
-      const body = JSON.parse(options.body);
-      expect(body.appealText).toContain('random assignment');
-      expect(body.previousResults.answer).toEqual(previousResult);
-    });
-
-    it('should detect upgraded score', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve({ score: 'E', feedback: 'Reconsidered and upgraded' })
-      });
-
-      const result = await grader.submitAppeal(
-        'reflect53',
-        'My answer',
-        'I included all the required elements in my response.',
-        { score: 'P' }
-      );
-
-      expect(result.success).toBe(true);
-      expect(result.upgraded).toBe(true);
-      expect(result.score).toBe('E');
-      expect(result.previousScore).toBe('P');
-    });
-
-    it('should detect maintained score', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve({ score: 'P', feedback: 'Score maintained' })
-      });
-
-      const result = await grader.submitAppeal(
-        'reflect53',
-        'My answer',
-        'I think my answer was correct because...',
-        { score: 'P' }
-      );
-
-      expect(result.success).toBe(true);
-      expect(result.upgraded).toBe(false);
-      expect(result.score).toBe('P');
-    });
-
-    it('should handle appeal API errors', async () => {
-      mockFetch.mockResolvedValueOnce({
-        ok: false,
-        json: () => Promise.resolve({ error: 'Appeal service unavailable' })
-      });
-
-      const result = await grader.submitAppeal(
-        'reflect53',
-        'My answer',
-        'My reasoning for the appeal is...',
-        { score: 'I' }
-      );
-
-      expect(result.success).toBe(false);
-      expect(result.error).toBeDefined();
-    });
-  });
-
-  describe('buildFallbackPrompt()', () => {
-    it('should include question ID', () => {
-      const prompt = grader.buildFallbackPrompt('reflect53', 'Test answer');
-      expect(prompt).toContain('reflect53');
-    });
-
-    it('should include student answer', () => {
-      const prompt = grader.buildFallbackPrompt('reflect53', 'My specific answer');
-      expect(prompt).toContain('My specific answer');
-    });
-
-    it('should include scoring instructions', () => {
-      const prompt = grader.buildFallbackPrompt('reflect53', 'Test');
-      expect(prompt).toContain('E');
-      expect(prompt).toContain('P');
-      expect(prompt).toContain('I');
-    });
-  });
+afterEach(() => {
+  for (const w of windows.splice(0)) {
+    w.__aiFrqTicketClient.teardown();
+    w.close();
+  }
 });
 
-describe('Grading State Management', () => {
-  it('should initialize empty state', () => {
-    const gradingState = new Map();
-    expect(gradingState.size).toBe(0);
+describe('reflection grading through the retained worksheet runtime', () => {
+  it('sends algebra prompts and rubric in one batch and records the returned grades', async () => {
+    const { w, record, fallback, fetchSpy } = mount();
+    await w.aiGradeWorksheet({ manual: false });
+    const calls = fetchSpy.mock.calls.filter(([url]) => url.endsWith('/api/ai/grade-batch'));
+    expect(calls).toHaveLength(1);
+    const body = JSON.parse(calls[0][1].body);
+    expect(body.scenario).toEqual({ topic: 'Algebra 2 - Linear equations', lessonContext: { unit: 1, lessons: '1' } });
+    expect(body.items).toEqual(['reflect1', 'reflect2'].map(id => ({
+      questionId: id, answer, prompt: rubric + '\nQuestion: ' + id + '\nAnswer: ' + answer
+    })));
+    expect(record.mock.calls).toEqual([['reflect1', answer, 'E'], ['reflect2', answer, 'P']]);
+    expect(w.gradingState.get('reflect1').result.feedback).toBe('Both sides stay equal.');
+    expect(fallback).not.toHaveBeenCalled();
   });
 
-  it('should store grading result with appeal tracking', () => {
-    const gradingState = new Map();
-    const testResult = {
-      score: 'P',
-      feedback: 'Partial credit',
-      _aiGraded: true
-    };
+  it('skips empty and too-short reflections', async () => {
+    const { w, record, fallback, fetchSpy } = mount();
+    w.document.getElementById('reflect1').value = '';
+    w.document.getElementById('reflect2').value = 'x = 4';
+    await w.aiGradeWorksheet({ manual: false });
+    expect(record).not.toHaveBeenCalled();
+    expect(fallback).not.toHaveBeenCalled();
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
 
-    gradingState.set('reflect53', {
-      result: testResult,
-      originalAnswer: 'My answer',
-      appealCount: 0,
-      history: []
+  it('falls back to the page grader when batching is unavailable', async () => {
+    const { w, record, fallback, fetchSpy } = mount();
+    fetchSpy.mockResolvedValue({ ok: false, status: 503 });
+    await w.aiGradeWorksheet({ manual: false });
+    expect(fallback).toHaveBeenCalledTimes(2);
+    expect(record.mock.calls).toEqual([['reflect1', answer, 'P'], ['reflect2', answer, 'P']]);
+    expect(w._aiGradeBusy).toBe(false);
+  });
+
+  it('keeps the persisted reflection floor when an edited answer earns less credit', async () => {
+    const { w, record } = mount({
+      prior: new Map([['WS-U1L1-reflect2', { response: 'Earlier complete solution.', score: 1 }]])
     });
-
-    const state = gradingState.get('reflect53');
-    expect(state.appealCount).toBe(0);
-    expect(state.history).toHaveLength(0);
-    expect(state.result.score).toBe('P');
+    await w.aiGradeWorksheet({ manual: false });
+    expect(record.mock.calls.filter(([id]) => id === 'reflect2')).toEqual([]);
   });
 
-  it('should track appeal history', () => {
-    const gradingState = new Map();
-    gradingState.set('reflect53', {
-      result: { score: 'P' },
-      originalAnswer: 'My answer',
-      appealCount: 0,
-      history: []
+  it('preserves appeal count and history when a revised reflection improves', async () => {
+    const { w, record } = mount();
+    const history = [{ appealText: 'I applied subtraction to both sides.', previousScore: 'I', newScore: 'P' }];
+    w.gradingState.set('reflect1', { result: { score: 'P' }, originalAnswer: 'Earlier incomplete solution.', appealCount: 1, history });
+    await w.aiGradeWorksheet({ manual: false });
+    expect(w.gradingState.get('reflect1')).toMatchObject({
+      result: { score: 'E' }, originalAnswer: answer, appealCount: 1, history
     });
-
-    const state = gradingState.get('reflect53');
-
-    // Simulate appeal
-    state.appealCount++;
-    state.history.push({
-      appealText: 'My reasoning',
-      previousScore: 'P',
-      newScore: 'E',
-      upgraded: true
-    });
-
-    expect(state.appealCount).toBe(1);
-    expect(state.history).toHaveLength(1);
-    expect(state.history[0].upgraded).toBe(true);
+    expect(record).toHaveBeenCalledWith('reflect1', answer, 'E');
   });
 
-  it('should enforce max appeals limit', () => {
-    const maxAppeals = 3;
-    const gradingState = new Map();
-    gradingState.set('reflect53', {
-      result: { score: 'P' },
-      appealCount: 3,
-      history: [{}, {}, {}]
-    });
-
-    const state = gradingState.get('reflect53');
-    const canAppeal = state.appealCount < maxAppeals;
-
-    expect(canAppeal).toBe(false);
-  });
-});
-
-describe('Score Ordering', () => {
-  const scoreOrder = { 'E': 3, 'P': 2, 'I': 1 };
-
-  it('should rank E highest', () => {
-    expect(scoreOrder['E']).toBeGreaterThan(scoreOrder['P']);
-    expect(scoreOrder['E']).toBeGreaterThan(scoreOrder['I']);
+  it('does not grade unchanged text again', async () => {
+    const { w, record, fetchSpy } = mount();
+    await w.aiGradeWorksheet({ manual: false });
+    const calls = fetchSpy.mock.calls.length;
+    await w.aiGradeWorksheet({ manual: false });
+    expect(fetchSpy).toHaveBeenCalledTimes(calls);
+    expect(record).toHaveBeenCalledTimes(2);
   });
 
-  it('should rank P in the middle', () => {
-    expect(scoreOrder['P']).toBeGreaterThan(scoreOrder['I']);
-    expect(scoreOrder['P']).toBeLessThan(scoreOrder['E']);
-  });
-
-  it('should rank I lowest', () => {
-    expect(scoreOrder['I']).toBeLessThan(scoreOrder['P']);
-    expect(scoreOrder['I']).toBeLessThan(scoreOrder['E']);
-  });
-
-  it('should correctly determine upgrade P -> E', () => {
-    const previous = scoreOrder['P'];
-    const newScore = scoreOrder['E'];
-    expect(newScore > previous).toBe(true);
-  });
-
-  it('should correctly determine no upgrade P -> P', () => {
-    const previous = scoreOrder['P'];
-    const newScore = scoreOrder['P'];
-    expect(newScore > previous).toBe(false);
-  });
-
-  it('should correctly determine downgrade E -> P', () => {
-    const previous = scoreOrder['E'];
-    const newScore = scoreOrder['P'];
-    expect(newScore > previous).toBe(false);
+  it('does not apply a grade to text edited during the request', async () => {
+    const { w, record, fallback } = mount();
+    w.document.getElementById('reflect2').value = '';
+    let finish;
+    fallback.mockImplementationOnce(() => new Promise(resolve => { finish = resolve; }));
+    const grading = w.aiGradeWorksheet({ manual: false });
+    // Wait only for the grader boundary, without timers or a second grade pass.
+    for (let i = 0; i < 20 && !finish; i++) await Promise.resolve();
+    expect(finish).toBeTypeOf('function');
+    w.document.getElementById('reflect1').value = 'My revised explanation checks both sides using substitution.';
+    finish({ score: 'E', feedback: 'Earlier text was correct.' });
+    await grading;
+    expect(record).not.toHaveBeenCalled();
+    expect(w.gradingState.get('reflect1')?.result).toBeUndefined();
   });
 });

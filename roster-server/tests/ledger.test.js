@@ -554,7 +554,7 @@ describe('POST /ledger/record', () => {
 
   it('23514 check_violation → 503 "source not provisioned" (not a silent 500)', async () => {
     // The source CHECK rejects a value its migration hasn't provisioned yet
-    // (e.g. 'blooket' before 0016). Must surface as a friendly 503 — a generic
+    // (e.g. 'blooket' before 0013). Must surface as a friendly 503 — a generic
     // 500 is exactly how study_guide_diagnostic died silently for weeks.
     ledgerDb.insertLedgerRow = async () => ({
       data: null,
@@ -612,7 +612,7 @@ describe('createLedgerDb', () => {
     await db.insertLedgerRow({
       studentId: 'stu-1',
       source: 'blooket',
-      itemId: 'TI84-linreg',
+      itemId: 'BL-U1-L1-DESK_DONE',
       response: 'done',
       score: 1,
       evidenceTier: 'practice',

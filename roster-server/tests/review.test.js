@@ -1,17 +1,10 @@
-// review.test.js — Nightly Review (NIGHTLY_REVIEW_SPEC.md) Phase 1 server.
-// Covers: issueReviewReceipt (signed + comment-hash binds), GET /class/review-queue
-// (priority order, unseen counts, daysSinceReview, since/window), POST /class/review
-// (mark seen, signed receipt persisted, candy minted ONCE/student/day, notify only on a
-// comment, idempotent re-mark), the /ledger/student review augment, and a pglite block
-// that runs migration 0025 to prove the candy_bonus mint + that it becomes spendable.
+// Review routes: teacher auth, row identity, idempotent marks, signed receipts,
+// notifications, stale response pins, and durable snapshot verification.
 
-import { describe, it, beforeAll, afterAll, beforeEach, expect } from 'vitest';
+import { describe, it, beforeAll, afterAll, expect } from 'vitest';
 import express from 'express';
 import http from 'http';
 import crypto from 'node:crypto';
-import { readFile } from 'node:fs/promises';
-import { resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { mountReview, itemPriority, responseSnippet, responseHash, aiGradedRow, windowFloorFrom } from '../review.js';
 import { mountLedger } from '../ledger.js';
 import { initReceipts, issueReviewReceipt, getReceiptIssuer } from '../receipts.js';
@@ -41,18 +34,17 @@ afterAll(() => {
 // ── A fake roster+review db and a fake ledger db, in-memory ───────────────────
 function makeWorld() {
   const roster = {
-    [SID_A]: { student_id: SID_A, login_username: 'apple_fox', real_name: 'Ana Apple', section: 'PeriodX', role: 'student' },
-    [SID_B]: { student_id: SID_B, login_username: 'berry_owl', real_name: 'Ben Berry', section: 'PeriodX', role: 'student' },
+    [SID_A]: { student_id: SID_A, login_username: 'apple_fox', real_name: 'Ana Apple', section: 'PeriodC', role: 'student' },
+    [SID_B]: { student_id: SID_B, login_username: 'berry_owl', real_name: 'Ben Berry', section: 'PeriodC', role: 'student' },
   };
   const reviewMarks = new Map();     // ledger_id → mark row
-  const grants = new Set();          // `sid|date`
   const ledger = [];                 // item_ledger rows
   const nudges = [];                 // sent teacher→student rows
 
   const db = {
     async listRoster() { return { data: Object.values(roster), error: null }; },
     async findByStudentId(sid) { return { data: roster[sid] || null, error: null }; },
-    async findTeacherUsername() { return { data: { login_username: 'teach', section: 'PeriodX' }, error: null }; },
+    async findTeacherUsername() { return { data: { login_username: 'teach', section: 'PeriodC' }, error: null }; },
     async getRoleByStudentId() { return 'teacher'; },
     async listReviewMarksByStudents(ids) {
       return { data: Array.from(reviewMarks.values()).filter((m) => ids.includes(m.student_id)), error: null };
@@ -64,17 +56,11 @@ function makeWorld() {
       const stored = {
         review_id: reviewMarks.get(row.ledgerId)?.review_id || ('rv-' + row.ledgerId),
         ledger_id: row.ledgerId, student_id: row.studentId, teacher_username: row.teacherUsername,
-        seen_at: row.seenAt, comment: row.comment ?? null, candy_awarded: row.candyAwarded ?? 0,
+        seen_at: row.seenAt, comment: row.comment ?? null,
         receipt_id: row.receiptId ?? null, receipt_compact: row.receiptCompact ?? null,
       };
       reviewMarks.set(row.ledgerId, stored);
       return { data: stored, error: null };
-    },
-    async reviewAward(sid, date) {
-      const key = sid + '|' + date;
-      if (grants.has(key)) return { data: 0, error: null };
-      grants.add(key);
-      return { data: 1, error: null };
     },
   };
   const ledgerDb = {
@@ -84,7 +70,7 @@ function makeWorld() {
     async getRowsByLedgerIds(ids) { return { data: ledger.filter((r) => ids.includes(r.ledger_id)), error: null }; },
   };
   const nudgesDb = { async insertNudges(args) { nudges.push(args); return { data: [], error: null }; } };
-  return { db, ledgerDb, nudgesDb, ledger, reviewMarks, grants, nudges, roster };
+  return { db, ledgerDb, nudgesDb, ledger, reviewMarks, nudges, roster };
 }
 
 let seq = 0;
@@ -278,10 +264,10 @@ describe('review durability (snapshot + verify + normalizeReviews)', () => {
     const receipt = issueReviewReceipt({ ledgerId: ledgerRow.ledger_id, studentId: SID_A, teacher: 'teach', seenAt: 1000, comment });
     const mark = {
       ledger_id: ledgerRow.ledger_id, student_id: SID_A, teacher_username: 'teach',
-      seen_at: '2026-06-29T13:00:00.000Z', comment, candy_awarded: 1,
+      seen_at: '2026-06-29T13:00:00.000Z', comment,
       receipt_id: receipt.receiptId, receipt_compact: receipt.compact,
     };
-    const entry = buildStudentEntry({ student_id: SID_A, login_username: 'apple_fox', real_name: 'Ana', section: 'PeriodX' }, [ledgerRow], [mark]);
+    const entry = buildStudentEntry({ student_id: SID_A, login_username: 'apple_fox', real_name: 'Ana', section: 'PeriodC' }, [ledgerRow], [mark]);
     return { snapshot: { issuer: getReceiptIssuer(), students: [entry] }, entry };
   }
 
@@ -412,13 +398,13 @@ describe('GET /class/review-item/:ledgerId (v2)', () => {
 
   it('returns the FULL response only for AI-graded rows (§0.1)', async () => {
     const world = makeWorld();
-    const frq = addRow(world, SID_A, { source: 'frq', score: 0.5, response: 'a long reflection about sampling', item_id: 'WS-U1L2-reflect1' });
+    const frq = addRow(world, SID_A, { source: 'frq', score: 0.5, response: 'a long reflection about solving equations', item_id: 'WS-U1L2-reflect1' });
     const res = await call(mountServer(world), 'GET', `/class/review-item/${frq.ledger_id}`, { secret: TEACHER_SECRET });
     expect(res.status).toBe(200);
     expect(res.body.draftable).toBe(true);
     expect(res.body.redacted).toBe(false);
-    expect(res.body.response).toBe('a long reflection about sampling');
-    expect(res.body.rh).toBe(responseHash('a long reflection about sampling'));
+    expect(res.body.response).toBe('a long reflection about solving equations');
+    expect(res.body.rh).toBe(responseHash('a long reflection about solving equations'));
     expect(res.body.realName).toBe('Ana Apple');
     expect(res.body.score).toBe(0.5);
   });
@@ -564,7 +550,6 @@ describe('POST /class/review (v2 stale pins + truncation + rh)', () => {
     expect(res.body.error).toBe('stale');
     expect(res.body.stale).toEqual([row.ledger_id]);
     expect(world.reviewMarks.size).toBe(0);                   // whole request rejected — nothing marked
-    expect(world.grants.size).toBe(0);                        // no candy either
   });
 
   it('treats rh:null as a REAL pin — a null→answer revision 409s; a still-null response passes', async () => {
@@ -624,10 +609,10 @@ describe('review durability with rh (v2 back-compat)', () => {
       const ledgerRow = { ledger_id: '00000000-0000-4000-9000-0000000000ef', student_id: SID_A, source: 'frq', item_id: 'FRQ-9', score: 0.5, response: 'my answer', recorded_at: '2026-06-29T12:00:00.000Z' };
       const mark = {
         ledger_id: ledgerRow.ledger_id, student_id: SID_A, teacher_username: 'teach',
-        seen_at: '2026-06-29T13:00:00.000Z', comment, candy_awarded: 1,
+        seen_at: '2026-06-29T13:00:00.000Z', comment,
         receipt_id: receipt.receiptId, receipt_compact: receipt.compact,
       };
-      const entry = buildStudentEntry({ student_id: SID_A, login_username: 'apple_fox', real_name: 'Ana', section: 'PeriodX' }, [ledgerRow], [mark]);
+      const entry = buildStudentEntry({ student_id: SID_A, login_username: 'apple_fox', real_name: 'Ana', section: 'PeriodC' }, [ledgerRow], [mark]);
       return { issuer: getReceiptIssuer(), students: [entry] };
     };
     const v1 = issueReviewReceipt({ ledgerId: '00000000-0000-4000-9000-0000000000ef', studentId: SID_A, teacher: 'teach', seenAt: 1000, comment: 'hi' });
@@ -641,7 +626,24 @@ describe('review durability with rh (v2 back-compat)', () => {
   });
 });
 
-// ── pglite: the REAL migration 0025 SQL ─────────────────────────────────────────
-// Proves the candy_bonus mint is atomic + idempotent per day AND that a minted bonus
-// becomes spendable through the real doge_spend guard (0 earned + 1 bonus → can buy 1).
 
+describe('review mark idempotence', () => {
+  it('re-marking one row keeps its identity and leaves another student untouched', async () => {
+    const world = makeWorld();
+    const row = addRow(world, SID_A, { item_id: 'WS-A2-1-1-reflect1', source: 'frq', response: 'Subtract 3 and divide by 2.', score: 1 });
+    const other = addRow(world, SID_B, { item_id: row.item_id, source: 'frq', score: 0.5 });
+    const body = { ledgerIds: [row.ledger_id], comment: 'Check by substitution.' };
+    const first = await call(mountServer(world), 'POST', '/class/review', { secret: TEACHER_SECRET, body });
+    const reviewId = world.reviewMarks.get(row.ledger_id).review_id;
+    const second = await call(mountServer(world), 'POST', '/class/review', { secret: TEACHER_SECRET, body });
+    expect(first.status).toBe(200);
+    expect(second.status).toBe(200);
+    expect(second.body.marked).toBe(1);
+    expect(world.reviewMarks.size).toBe(1);
+    expect(world.reviewMarks.has(other.ledger_id)).toBe(false);
+    const mark = world.reviewMarks.get(row.ledger_id);
+    expect(mark.review_id).toBe(reviewId);
+    const payload = verifyCompact(mark.receipt_compact, publicKeyFromX(getReceiptIssuer().pubkey));
+    expect(payload).toMatchObject({ t: 'review', lid: row.ledger_id, sid: SID_A, rh: responseHash(row.response) });
+  });
+});

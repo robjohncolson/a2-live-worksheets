@@ -1,28 +1,18 @@
-// roster-prefill.test.js — exercises roster-prefill.js against a minimal
-// worksheet DOM with a fake rosterClient. Pins:
-//   - signed-in path: 3 inputs populated + read-only + tinted + tooltip
-//   - banner inserted above the .student-info host
-//   - writeBackLegacyStore syncs localStorage['worksheet-user']
-//   - not-signed-in path: zero side effects (worksheet's legacy save/restore
-//     flow stays in charge)
-//   - bespoke single-input form (u3_lesson6-7 shape): only the present input
-//     is populated; no banner orphans, no throw
-//   - structural assertion: every u*_lesson*_live.html loads roster-prefill.js
-//
+// Real prefill behavior on inline A2 forms.
 // @vitest-environment jsdom
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { readFileSync, readdirSync } from 'node:fs';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { JSDOM } from 'jsdom';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PREFILL_PATH = resolve(repo, 'roster-prefill.js');
 const PREFILL_SRC = readFileSync(PREFILL_PATH, 'utf8');
 
 // Build a minimal worksheet shell — student-info container + 3 inputs.
-// Mirrors the 68 standard worksheets (u3_lesson6-7 single-input variant gets
-// its own narrower fixture below).
+// Inline fixtures cover complete and single-input forms.
 function buildStandardShell() {
   document.body.innerHTML = '';
   const root = document.createElement('div');
@@ -40,7 +30,7 @@ function buildStandardShell() {
 }
 
 function buildSingleInputShell() {
-  // u3_lesson6-7 only has #worksheetUsername; no Name/Period.
+  // A minimal form may expose only #worksheetUsername.
   document.body.innerHTML = '';
   const root = document.createElement('div');
   root.innerHTML = `
@@ -86,14 +76,14 @@ describe('roster-prefill.js — signed-in path', () => {
         studentId: 'uuid-1',
         username: 'date_tiger',
         realName: 'Robert Colson',
-        section: 'PeriodE',
+        section: 'D',
       }),
     };
     loadPrefillScript();
     await tick();
 
     expect(document.getElementById('worksheetName').value).toBe('Robert Colson');
-    expect(document.getElementById('worksheetPeriod').value).toBe('PeriodE');
+    expect(document.getElementById('worksheetPeriod').value).toBe('D');
     expect(document.getElementById('worksheetUsername').value).toBe('date_tiger');
 
     for (const id of ['worksheetName', 'worksheetPeriod', 'worksheetUsername']) {
@@ -106,7 +96,7 @@ describe('roster-prefill.js — signed-in path', () => {
   it('renders the green "Signed in via the Desk" banner above .student-info', async () => {
     buildStandardShell();
     window.rosterClient = {
-      current: () => ({ username: 'apple_otter', realName: 'Ada Lovelace', section: 'PeriodB' }),
+      current: () => ({ username: 'apple_otter', realName: 'Ada Lovelace', section: 'C' }),
     };
     loadPrefillScript();
     await tick();
@@ -115,7 +105,7 @@ describe('roster-prefill.js — signed-in path', () => {
     expect(banner, 'banner must be inserted').toBeTruthy();
     expect(banner.innerHTML).toContain('Signed in via the Desk');
     expect(banner.innerHTML).toContain('Ada Lovelace');
-    expect(banner.innerHTML).toContain('PeriodB');
+    expect(banner.innerHTML).toContain('C');
     // Banner sits immediately before the .student-info container.
     const studentInfo = document.querySelector('.student-info');
     expect(banner.nextSibling).toBe(studentInfo);
@@ -124,21 +114,21 @@ describe('roster-prefill.js — signed-in path', () => {
   it('writes the same identity to localStorage["worksheet-user"] for legacy save/restore parity', async () => {
     buildStandardShell();
     window.rosterClient = {
-      current: () => ({ username: 'plum_yak', realName: 'Marie Curie', section: 'PeriodE' }),
+      current: () => ({ username: 'plum_yak', realName: 'Marie Curie', section: 'D' }),
     };
     loadPrefillScript();
     await tick();
 
     const stored = JSON.parse(localStorage.getItem('worksheet-user') || '{}');
     expect(stored.name).toBe('Marie Curie');
-    expect(stored.klass).toBe('PeriodE');
+    expect(stored.klass).toBe('D');
     expect(stored.username).toBe('plum_yak');
   });
 
   it('is idempotent: running twice does not insert a duplicate banner', async () => {
     buildStandardShell();
     window.rosterClient = {
-      current: () => ({ username: 'kiwi_seal', realName: 'A', section: 'PeriodB' }),
+      current: () => ({ username: 'kiwi_seal', realName: 'A', section: 'C' }),
     };
     loadPrefillScript();
     await tick();
@@ -188,7 +178,7 @@ describe('roster-prefill.js — not signed in', () => {
 });
 
 describe('roster-prefill.js — view-as guard (teacher previewing a student)', () => {
-  const teacher = { current: () => ({ username: 'mr_teacher', realName: 'Mr Teacher', section: 'PeriodB', role: 'teacher' }) };
+  const teacher = { current: () => ({ username: 'mr_teacher', realName: 'Mr Teacher', section: 'C', role: 'teacher' }) };
 
   it('bails when __WS_READ_ONLY__ is set (the module flag): no fields, no banner, no write', async () => {
     buildStandardShell();
@@ -206,7 +196,7 @@ describe('roster-prefill.js — view-as guard (teacher previewing a student)', (
   it('bails on ?viewAsUserId + teacher role even WITHOUT the flag (self-contained signal)', async () => {
     buildStandardShell();
     window.rosterClient = teacher;
-    window.history.replaceState(null, '', '/u1_lesson2_live.html?viewAsUserId=stu_target');
+    window.history.replaceState(null, '', '/check.html?lesson=1-1&viewAsUserId=stu_target');
     loadPrefillScript();
     await tick();
 
@@ -218,9 +208,9 @@ describe('roster-prefill.js — view-as guard (teacher previewing a student)', (
   it('does NOT bail for a STUDENT with a (forged) ?viewAsUserId — they still get their own prefill', async () => {
     buildStandardShell();
     window.rosterClient = {
-      current: () => ({ username: 'kid_student', realName: 'Kid Student', section: 'PeriodE', role: 'student' }),
+      current: () => ({ username: 'kid_student', realName: 'Kid Student', section: 'D', role: 'student' }),
     };
-    window.history.replaceState(null, '', '/u1_lesson2_live.html?viewAsUserId=stu_someone');
+    window.history.replaceState(null, '', '/check.html?lesson=1-1&viewAsUserId=stu_someone');
     loadPrefillScript();
     await tick();
 
@@ -229,11 +219,11 @@ describe('roster-prefill.js — view-as guard (teacher previewing a student)', (
   });
 });
 
-describe('roster-prefill.js — single-input worksheet (u3_lesson6-7 shape)', () => {
+describe('roster-prefill.js — single-input worksheet', () => {
   it('only the present input gets populated; no throw on missing IDs', async () => {
     buildSingleInputShell();
     window.rosterClient = {
-      current: () => ({ username: 'grape_owl', realName: 'Solo', section: 'PeriodB' }),
+      current: () => ({ username: 'grape_owl', realName: 'Solo', section: 'C' }),
     };
     loadPrefillScript();
     await tick();
@@ -256,23 +246,35 @@ describe('roster-prefill.js — single-input worksheet (u3_lesson6-7 shape)', ()
   });
 });
 
-// Structural: every worksheet on disk must load roster-prefill.js. Mirrors
-// the DN2b wiring-coverage assertion shape so a future regression (someone
-// adds a new worksheet without the script tag, or strips it) fails the test.
-describe('roster-prefill.js — structural rollout coverage (all 69 worksheets)', () => {
-  
 
-  it('roster-prefill.js loads AFTER roster-client.js in every worksheet (dependency order)', () => {
-    const worksheets = readdirSync(repo)
-      .filter((f) => /^u\d+_lesson.+_live\.html$/.test(f))
-      .sort();
-    const violations = [];
-    for (const f of worksheets) {
-      const html = readFileSync(resolve(repo, f), 'utf8');
-      const cli = html.indexOf('src="roster-client.js"');
-      const pre = html.indexOf('src="roster-prefill.js"');
-      if (cli < 0 || pre < 0 || pre <= cli) violations.push(`${f} (client@${cli}, prefill@${pre})`);
+describe('roster-prefill.js ? real roster integration', () => {
+  it('uses the current C/D/G session whenever a worksheet form is opened', async () => {
+    const dom = new JSDOM('', { url: 'https://example.test/', runScripts: 'outside-only' });
+    const w = dom.window;
+    try {
+      Object.defineProperty(w.document, 'readyState', { get: () => 'complete' });
+      w.ROSTER_SERVICE_URL = 'https://roster.example.test';
+      w.fetch = vi.fn();
+      w.eval(readFileSync(resolve(repo, 'roster-client.js'), 'utf8'));
+      for (const section of ['C', 'D', 'G']) {
+        const student = { studentId: 'student-' + section, username: 'algebra_' + section,
+          realName: 'Student ' + section, section, token: 'token-' + section };
+        w.fetch.mockResolvedValueOnce({ ok: true, json: async () => ({ ok: true, ...student }) });
+        expect((await w.rosterClient.signIn(student.username, 'fixture-password')).ok).toBe(true);
+        // Prefill runs on page initialization, not on session-change events.
+        w.document.body.innerHTML = '<div class="student-info"><input id="worksheetName" value="stale"><input id="worksheetPeriod" value="stale"><input id="worksheetUsername" value="stale"></div>';
+        w.eval(PREFILL_SRC);
+        await new Promise(resolve => w.setTimeout(resolve, 0));
+        expect(w.document.getElementById('worksheetName').value).toBe(student.realName);
+        expect(w.document.getElementById('worksheetPeriod').value).toBe(section);
+        expect(w.document.getElementById('worksheetUsername').value).toBe(student.username);
+        expect(w.document.getElementById('worksheetName').readOnly).toBe(true);
+        expect(JSON.parse(w.localStorage.getItem('worksheet-user'))).toEqual({
+          name: student.realName, klass: section, username: student.username
+        });
+      }
+    } finally {
+      w.close();
     }
-    expect(violations).toEqual([]);
   });
 });

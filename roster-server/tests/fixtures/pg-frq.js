@@ -28,7 +28,7 @@ export async function createFrqDb({
   await db.exec(`
     create table roster (
       student_id uuid primary key,
-      section text default 'PeriodB',
+      section text default 'PeriodC',
       role text default 'student',
       status text default 'active',
       real_name text,

@@ -190,6 +190,9 @@ hence D4.
 | U20 B01 grade engine | 9 server/desk grade tests | restoring exposed two gaps: quarter-band derivation ignored A2 sections (lesson-grade.js fixed, quarterOfLesson aligned; review 1 finding applied) and the Grade Check-in ignored Section G's column (desk.html fixed); grade-engine.bundle.js regenerated | committed with the stamp bump |
 | U20 B07 receipts/offline crypto | 7 tests | adapted/restored; no subject change | same commit |
 | U20 B10 identity/mobile | 8 tests | restoring exposed the teacher view-as deep link missing viewAsUserId (desk.html) and check.html not honouring view-as (now read-only with a banner; review 1 finding applied) | same commit |
+| U20 B06 ledger boundaries | 7 files (server ledger/review/offline inputs, desk Do Now ledger, FRQ rubric bundle, feeder wiring) | adapted/restored; no subject change | committed |
+| U20 B11 worksheet recovery + sign-in | 8 files | adapted/restored; two harness fixes (file-URL imports, spy references, submit settling); check.js already had the retry/announce contract | same commit |
+| U20 B12 flashcard state | 7 files | adapted; no subject change | same commit |
 | Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.

@@ -1,6 +1,6 @@
 import { beforeEach, afterEach, describe, it, expect, vi } from 'vitest';
 import { JSDOM } from 'jsdom';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const read = name => readFileSync(resolve(root, name), 'utf8');
@@ -9,6 +9,7 @@ const hydrate = html;
 const windows = [];
 const ledger = Array.from({ length: 37 }, (_, i) => ({ item_id: 'WS-U1L1-Q' + (i + 1), response: 'PRIVATE ANSWER ' + i, score: 1 }));
 function boot({ loadStatus = 200, reportStatus = 200, fetchOverride, stored = [] } = {}) {
+  // Synthetic URL exercises the retained watchdog parser; no AP page is read.
   const dom = new JSDOM('<body>' + ledger.map(r => '<input class="blank" data-question-id="' + r.item_id + '">').join('') + '</body>', { url: 'https://example.com/u1_lesson1_live.html', runScripts: 'outside-only' });
   const w = dom.window; windows.push(w);
   w.setTimeout = setTimeout; w.clearTimeout = clearTimeout;

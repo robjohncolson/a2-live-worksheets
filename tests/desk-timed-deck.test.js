@@ -7,6 +7,7 @@
 // @vitest-environment node
 
 import { describe, it, expect } from 'vitest';
+import { districtItemsFromLedger } from '../roster-server/district-ledger.js';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -256,5 +257,42 @@ describe('Review folds — null-round crash guard + cancellable advance', () => 
     expect(fnBody(DESK, '_ftHandle')).toMatch(/_ftState\.advanceId\s*=\s*setTimeout/);
     expect(fnBody(DESK, '_ftClearTimer')).toMatch(/clearTimeout\(\s*_ftState\.advanceId\s*\)/);
     expect(DESK).toMatch(/advanceId:\s*null/);   // initialized on _ftState
+  });
+});
+
+
+describe('Timed percentage to district Engagement points', () => {
+  const itemId = 'BL-U1-L1-DESK_DONE';
+  const item = { itemId, source: 'flashcard' };
+  const cfg = { today: '2027-01-15', quarters: {
+    Q1: { start: '2026-09-01', end: '2026-11-01' },
+    Q2: { start: '2026-11-02', end: '2027-01-31' },
+  } };
+  const schedule = {
+    '1-1': { periods: { C: '2026-10-01' }, items: [item] },
+    'same-deck': { periods: { C: '2026-10-02' }, items: [item] },
+    'next-quarter': { periods: { C: '2026-12-01' }, items: [item] },
+  };
+
+  it.each([[79.9, 0], [80, 1], [100, 1]])('%s percent earns %s point in its quarter', (score, points) => {
+    const rows = [{ item_id: itemId, source: 'worksheet', score, recorded_at: '2026-10-03' }];
+    const items = districtItemsFromLedger(rows, schedule, 'C', cfg);
+    expect(items).toHaveLength(2);
+    expect(items[0]).toMatchObject({ quarter: 'Q1', category: 'engagement', maxPoints: 1, points });
+    expect(items[1]).toMatchObject({ quarter: 'Q2', points: 0, attempted: false });
+  });
+
+  it('retries do not multiply credit and a later quarter needs its own pass', () => {
+    const rows = [
+      { item_id: itemId, source: 'worksheet', score: 80, recorded_at: '2026-10-03' },
+      { item_id: itemId, source: 'flashcard', score: 100, recorded_at: '2026-10-04' },
+      { item_id: itemId, source: 'flashcard', score: 50, recorded_at: '2026-10-05' },
+      { item_id: itemId, source: 'flashcard', score: 80, recorded_at: '2026-12-02' },
+    ];
+    const items = districtItemsFromLedger(rows, schedule, 'C', cfg);
+    expect(items.map(({ quarter, points, maxPoints }) => ({ quarter, points, maxPoints }))).toEqual([
+      { quarter: 'Q1', points: 1, maxPoints: 1 },
+      { quarter: 'Q2', points: 1, maxPoints: 1 },
+    ]);
   });
 });

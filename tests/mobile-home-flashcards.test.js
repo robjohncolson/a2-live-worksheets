@@ -83,8 +83,8 @@ function bootLauncher({
   permutationOff,
 }) {
   const recorded = [];
-  const lesson = { id: '4.1-2', unit: 4, label: 'Sampling', worksheet: 'u4_lesson1-2_live.html', quiz: null, blooket: 'https://b', videos: [] };
-  const gradePayload = { ok: true, quarters: [], lessons: [{ topic: '4.1-2', lessonGrade: 55, blooket: gradeBlooket }] };
+  const lesson = { key: '1-1', topic: 1, title: 'Key Features of Functions', deck: 'content/a2/1-1/deck.csv', supportingSkills: [] };
+  const gradePayload = { ok: true, quarters: [], lessons: [{ topic: '1.1', lessonGrade: 55, blooket: gradeBlooket }] };
   const fakeFetch = (url) => {
     const u = String(url);
     if (u.indexOf('flashcard-flags.json') >= 0) {
@@ -104,7 +104,7 @@ function bootLauncher({
       : u.indexOf('/grade') >= 0 ? gradePayload
       : u.indexOf('blooket-difficulty.json') >= 0 ? { tags: {} }
       : null;
-    const text = u.indexOf('_blooket.csv') >= 0 ? deckCsv : '';
+    const text = u === lesson.deck ? deckCsv : '';
     return Promise.resolve({ ok: true, status: 200, json: () => Promise.resolve(body), text: () => Promise.resolve(text) });
   };
   const dom = new JSDOM(HOME, {
@@ -145,7 +145,7 @@ async function finishOneCardFullDeck(win) {
 }
 
 describe('mobile-home — native flashcards (behavioral boot)', () => {
-  it('plays a full deck to 100% and records BL-U4-L1-2-DESK_DONE', async () => {
+  it('plays a full deck to 100% and records BL-U1-L1-DESK_DONE', async () => {
     const { dom, win, recorded } = bootLauncher({ gradeBlooket: 40 });
     await flush();                                                   // lessons render + /grade loads
 
@@ -162,8 +162,8 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
 
     expect(recorded.length).toBe(1);
     expect(recorded[0]).toMatchObject({
-      source: 'worksheet', itemId: 'BL-U4-L1-2-DESK_DONE', unit: 'U4',
-      topic: '4.1-2', response: { selfAttest: 'blooket' }, score: 100, attempt: 1,
+      source: 'worksheet', itemId: 'BL-U1-L1-DESK_DONE', unit: 'U1',
+      topic: '1.1', response: { selfAttest: 'blooket' }, score: 100, attempt: 1,
     });
     expect(win.document.querySelector('.fc-score').textContent).toContain('100');
     dom.window.close();
@@ -229,7 +229,7 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
     expect(fcBtn, 'tiles did not render from the published fallback').toBeTruthy();
     // Worksheet link is ORIGIN-RELATIVE (github.io base stripped) so a Vercel mirror is self-sufficient.
     const wsA = win.document.querySelector('.btn.ws');
-    expect(wsA.getAttribute('href')).toBe('u4_lesson1-2_live.html');
+    expect(wsA.getAttribute('href')).toBe('check.html?lesson=1-1');
     expect(wsA.getAttribute('href')).not.toMatch(/github\.io/);
     fcBtn.click();
     await flush(2);
@@ -240,7 +240,7 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
     await flush(2);
 
     expect(recorded.length).toBe(1);
-    expect(recorded[0].itemId).toBe('BL-U4-L1-2-DESK_DONE');        // flashcards work off the fallback too
+    expect(recorded[0].itemId).toBe('BL-U1-L1-DESK_DONE');        // flashcards work off the fallback too
     dom.window.close();
   });
 });
@@ -506,8 +506,8 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
     const entries = JSON.parse(win.localStorage.getItem('a2_srs_log_kid@roster.local'));
     expect(entries).toHaveLength(1);
     expect(entries[0]).toMatchObject({
-      topic: '4.1-2', qnum: 1, correct: true, wasTimeout: false, missIndex: 0,
-      mode: 'quick', csv: 'u4_l1_l2_blooket.csv', surface: 'mobile', seq: 0,
+      topic: '1.1', qnum: 1, correct: true, wasTimeout: false, missIndex: 0,
+      mode: 'quick', csv: 'content/a2/1-1/deck.csv', surface: 'mobile', seq: 0,
       nChoices: 4, chosenIdx: 1,
     });
     expect(entries[0].latencyMs).toEqual(expect.any(Number));
@@ -525,7 +525,7 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
       qnum: i + 1, q: `Question ${i + 1}`, choices: ['no', 'yes'], correctIdx: 1,
     }));
     win.localStorage.setItem('a2_desk_bf_progress_kid@roster.local', JSON.stringify({
-      '4.1-2': { deck, idx: 2, score: 2, answered: true, ts: 'now' },
+      '1.1': { deck, idx: 2, score: 2, answered: true, ts: 'now' },
     }));
 
     win.document.querySelector('.btn.fc').click();
@@ -546,7 +546,7 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
       qnum: i + 1, q: `Question ${i + 1}`, choices: ['no', 'yes'], correctIdx: 1,
     }));
     win.localStorage.setItem('a2_desk_bf_progress_kid@roster.local', JSON.stringify({
-      '4.1-2': { deck, idx: 7, score: 8, answered: true, ts: 'now' },
+      '1.1': { deck, idx: 7, score: 8, answered: true, ts: 'now' },
     }));
 
     win.document.querySelector('.btn.fc').click();
@@ -558,7 +558,7 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
     expect(recorded).toHaveLength(1);
     expect(recorded[0].score).toBe(80);
     const progress = JSON.parse(win.localStorage.getItem('a2_desk_bf_progress_kid@roster.local'));
-    expect(progress['4.1-2']).toBeUndefined();
+    expect(progress['1.1']).toBeUndefined();
     dom.window.close();
   });
 
@@ -570,7 +570,7 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
       qnum: i + 1, q: `Question ${i + 1}`, choices: ['no', 'yes'], correctIdx: 1,
     }));
     win.localStorage.setItem('a2_desk_bf_progress_kid@roster.local', JSON.stringify({
-      '4.1-2': { deck, idx: 2, score: 2, answered: false, roundId: 'desk-1000-abcd', seq: 7, ts: 'now' },
+      '1.1': { deck, idx: 2, score: 2, answered: false, roundId: 'desk-1000-abcd', seq: 7, ts: 'now' },
     }));
 
     win.document.querySelector('.btn.fc').click();
@@ -578,9 +578,9 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
     win.document.getElementById('fc-mode-quick').click();
 
     const progress = JSON.parse(win.localStorage.getItem('a2_desk_bf_progress_kid@roster.local'));
-    expect(progress['4.1-2'].roundId).toMatch(/^mobile-\d+-[0-9a-z]{4}$/);
-    expect(progress['4.1-2'].roundId).not.toBe('desk-1000-abcd');
-    expect(progress['4.1-2'].seq).toBe(0);
+    expect(progress['1.1'].roundId).toMatch(/^mobile-\d+-[0-9a-z]{4}$/);
+    expect(progress['1.1'].roundId).not.toBe('desk-1000-abcd');
+    expect(progress['1.1'].seq).toBe(0);
     dom.window.close();
   });
 
@@ -592,7 +592,7 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
       qnum: i + 1, q: `Question ${i + 1}`, choices: ['no', 'yes'], correctIdx: 1,
     }));
     win.localStorage.setItem('a2_desk_bf_progress_kid@roster.local', JSON.stringify({
-      '4.1-2': { deck, idx: 2, score: 2, answered: false, roundId: 'mobile-1000-abcd', seq: 7, ts: 'now' },
+      '1.1': { deck, idx: 2, score: 2, answered: false, roundId: 'mobile-1000-abcd', seq: 7, ts: 'now' },
     }));
 
     win.document.querySelector('.btn.fc').click();
@@ -614,7 +614,7 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
       qnum: i + 1, q: `Question ${i + 1}`, choices: ['no', 'yes'], correctIdx: 1,
     }));
     win.localStorage.setItem('a2_desk_bf_progress_kid@roster.local', JSON.stringify({
-      '4.1-2': {
+      '1.1': {
         deck, idx: 7, score: 8, answered: true, roundId: 'mobile-1000-abcd', seq: 3, ts: 'now',
         misses: [{ qnum: 2, stem: 'Legacy missed stem', correctAnswer: 'yes' }],
       },
@@ -658,7 +658,7 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
     expect(recap).toContain('Answer: right two');
     const saved = JSON.parse(win.localStorage.getItem('a2_desk_bf_progress_kid@roster.local'));
     // The quick deck is shuffled per attempt — locate the miss by qnum, not position.
-    const firstMiss = saved['4.1-2'].misses.find(function (m) { return m.qnum === 1; });
+    const firstMiss = saved['1.1'].misses.find(function (m) { return m.qnum === 1; });
     expect(firstMiss).toMatchObject({
       qnum: 1, q: 'First missed stem', correctAnswer: 'right one',
     });
@@ -666,8 +666,8 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
     const links = Array.from(win.document.querySelectorAll('.fc-recap a'));
     expect(links).toHaveLength(2);
     const hrefs = links.map(function (a) { return a.getAttribute('href'); });
-    expect(hrefs.some(function (h) { return h.indexOf('u4_lesson1-2_live.html#:~:text=First%20missed%20stem') !== -1; })).toBe(true);
-    expect(hrefs.some(function (h) { return h.indexOf('u4_lesson1-2_live.html#:~:text=Second%20missed%20stem') !== -1; })).toBe(true);
+    expect(hrefs.some(function (h) { return h.indexOf('check.html?lesson=1-1#:~:text=First%20missed%20stem') !== -1; })).toBe(true);
+    expect(hrefs.some(function (h) { return h.indexOf('check.html?lesson=1-1#:~:text=Second%20missed%20stem') !== -1; })).toBe(true);
     links.forEach(function (a) {
       expect(a.getAttribute('target')).toBe('_blank');
       expect(a.getAttribute('rel')).toBe('noopener');
@@ -677,7 +677,12 @@ describe('mobile-home — per-card logging, recap, and quick resume', () => {
 });
 
 
-const A2_PUBLISHED = JSON.parse(readFileSync(resolve(repo, 'content/a2/lessons.json'), 'utf8'));
+// Inline published snapshot: future authored content must not change this contract.
+const A2_PUBLISHED = [
+  { key: '1-1', topic: 1, title: 'Key Features of Functions', deck: 'content/a2/1-1/deck.csv',
+    supportingSkills: [{ name: 'Domain and range', url: 'https://www.ixl.com/math/algebra-2/domain-and-range' }] },
+  { key: '1-2', topic: 1, title: 'Transformations', deck: 'content/a2/1-2/deck.csv', supportingSkills: [] },
+];
 function bootA2Lessons({ serviceLessons, serviceFails = false, publishedFails = false } = {}) {
   const requests = [];
   const dom = new JSDOM(HOME, {
@@ -707,13 +712,12 @@ function bootA2Lessons({ serviceLessons, serviceFails = false, publishedFails = 
 }
 
 describe('mobile-home A2 lesson model', () => {
-  it('renders all four published lessons with checks, IXL links and working native decks', async () => {
+  it('renders only the supplied published lessons with checks, IXL links and working native decks', async () => {
     const { dom, win, requests } = bootA2Lessons({ serviceFails: true });
     try {
       await flush(10);
-      expect(A2_PUBLISHED).toHaveLength(4);
       const rows = [...win.document.querySelectorAll('#main .lesson')];
-      expect(rows).toHaveLength(4);
+      expect(rows).toHaveLength(A2_PUBLISHED.length);
       rows.forEach((row, index) => {
         const lesson = A2_PUBLISHED[index];
         expect(row.querySelector('.title').textContent).toBe(lesson.key + ' \u00b7 ' + lesson.title);
@@ -749,7 +753,7 @@ describe('mobile-home A2 lesson model', () => {
     const { dom, win } = bootA2Lessons({ publishedFails: true });
     try {
       await flush(10);
-      expect(win.document.querySelectorAll('#main .lesson')).toHaveLength(4);
+      expect(win.document.querySelectorAll('#main .lesson')).toHaveLength(A2_PUBLISHED.length);
     } finally { dom.window.close(); }
   });
 
@@ -757,7 +761,7 @@ describe('mobile-home A2 lesson model', () => {
     const { dom, win } = bootA2Lessons({ serviceLessons: [] });
     try {
       await flush(10);
-      expect(win.document.querySelectorAll('#main .lesson')).toHaveLength(4);
+      expect(win.document.querySelectorAll('#main .lesson')).toHaveLength(A2_PUBLISHED.length);
     } finally { dom.window.close(); }
   });
 });

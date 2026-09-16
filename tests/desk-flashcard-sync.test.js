@@ -48,7 +48,7 @@ function deskHarness(opts) {
   const o = opts || {};
   const storage = memoryStorage(o.seed);
   const session = memoryStorage();
-  const remoteState = o.remoteEntries ? FlashcardSync.toWire(o.remoteEntries, { email: 'kid' }) : null;
+  const remoteState = o.remoteEntries ? FlashcardSync.toWire(o.remoteEntries, { email: o.remoteEmail || 'kid' }) : null;
   let row = remoteState ? { state: remoteState, updatedAt: 'stamp-1' } : null;
   const calls = [];
   const fetchFake = vi.fn(async (url, init) => {
@@ -163,5 +163,33 @@ describe('mobile-home flashcard sync — static wiring', () => {
   it('mobile has no passport UI (Supabase sync replaces it)', () => {
     expect(HOME).not.toMatch(/Flashcard progress/);
     expect(HOME).not.toMatch(/_fcpExport|_fcpImportFile/);
+  });
+});
+
+
+describe('Desk A2 sync route and identity isolation', () => {
+  it('rejects another student row without writing either namespace or uploading', async () => {
+    const bobLog = JSON.stringify([entry({ roundId: 'bob-local' })]);
+    const h = deskHarness({
+      seed: { a2_srs_log_kid: '[]', a2_srs_log_bob: bobLog },
+      remoteEmail: 'bob', remoteEntries: [entry({ roundId: 'bob-phone' })],
+    });
+    expect(await h.api.pull({ force: true })).toMatchObject({ ok: false, reason: 'email-mismatch' });
+    expect(h.storage.getItem('a2_srs_log_kid')).toBe('[]');
+    expect(h.storage.getItem('a2_srs_log_bob')).toBe(bobLog);
+    expect(h.calls).toEqual([{
+      url: 'https://roster.example/flashcards/state', method: 'GET', body: null,
+    }]);
+    expect(h.chipCalls).toEqual([]);
+  });
+
+  it('uploads practice only through PUT /flashcards/state', async () => {
+    const h = deskHarness({ seed: { a2_srs_log_kid: JSON.stringify([entry()]) } });
+    await h.api.client().push();
+    expect(h.calls).toHaveLength(1);
+    expect(h.calls[0]).toMatchObject({
+      url: 'https://roster.example/flashcards/state', method: 'PUT',
+      body: { token: 'tok', state: { v: 1 } },
+    });
   });
 });

@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { JSDOM } from 'jsdom';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
@@ -137,9 +137,6 @@ describe('cross-device worksheet answer recovery', () => {
   });
   it('never uploads local answers based on a failed prior-answer read', async () => {
     const w = boot(vi.fn().mockResolvedValue({ ok: false, status: 503 }));
-    const start = html.indexOf('async function healLocalAnswersToLedger()');
-    const end = html.indexOf('// Heal trigger:', start);
-    w.eval(html.slice(start, end));
     w.recordBlankToGradebook = vi.fn();
     w.document.querySelector('.blank').value = 'local answer';
     await w.healLocalAnswersToLedger();
@@ -162,8 +159,6 @@ describe('cross-device worksheet answer recovery', () => {
     const fetch = vi.fn().mockResolvedValueOnce({ ok: false, status: 503 }).mockResolvedValue(good());
     const w = boot(fetch);
     await w.hydratePriorAnswers();
-    const start = html.indexOf('async function healLocalAnswersToLedger()');
-    w.eval(html.slice(start, html.indexOf('// Heal trigger:', start)));
     w.recordBlankToGradebook = vi.fn();
     await w.healLocalAnswersToLedger();
     // AI grading also reads prior answers without restoring the form.

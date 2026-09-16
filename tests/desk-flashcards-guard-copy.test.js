@@ -130,3 +130,14 @@ describe('Desk flashcards — modal accessibility', () => {
     expect(fnBody(DESK, '_bfCloseUI')).toMatch(/_bfState\.btn[\s\S]*\.focus\(\)/);
   });
 });
+
+
+describe('A2 flashcard percentage and district credit copy', () => {
+  it('shows the percentage best separately from the one-point quarterly rule', () => {
+    const note = new Function('_blooketScoreFor', 'return (' +
+      fnBody(DESK, '_bfCreditNote') + ');')(() => 100);
+    expect(note('1.1')).toContain('80% or higher');
+    expect(note('1.1')).toContain('Your best so far: 100%');
+    expect(DESK).toContain('Passing a lesson deck earns one Engagement point per quarter.');
+  });
+});
