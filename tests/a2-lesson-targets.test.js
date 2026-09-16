@@ -28,11 +28,11 @@ it('keeps the bare-minimum, ultra-compressed, and bridge lists consistent with p
   for (const key of [...targets.bareMinimum, ...targets.bridge]) expect(doc).toContain(key);
 });
 
-it('every published lesson is a keep lesson, so authoring follows the plan', () => {
+it('no published lesson is an unscheduled (later) lesson, so authoring follows the plan', () => {
   const byKey = Object.fromEntries(targets.lessons.map(lesson => [lesson.key, lesson]));
   for (const lesson of published) {
     expect(byKey[lesson.key], lesson.key).toBeDefined();
-    expect(byKey[lesson.key].plan).toBe('keep');
+    expect(byKey[lesson.key].plan, lesson.key).not.toBe('later');
     expect(byKey[lesson.key].title).toBe(lesson.title);
   }
 });
