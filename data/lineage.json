@@ -8,47 +8,19 @@
       "description": "Machine-readable dependency graph for repository data artifacts.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["tests/lineage.test.js"],
+      "pinnedBy": [],
       "notes": "Edit this file when a builder, input, output, regeneration command, or pin changes."
-    },
-    {
-      "id": "lineage-documentation",
-      "path": "DATA_LINEAGE.md",
-      "kind": "derived",
-      "description": "Human-readable rendering of the lineage manifest.",
-      "inputs": ["lineage-manifest"],
-      "regenerate": "node scripts/render-lineage.mjs",
-      "pinnedBy": ["tests/lineage.test.js"],
-      "notes": "Never edit the rendered table directly."
-    },
-    {
-      "id": "curriculum-bank",
-      "path": "../curriculum_render/data/curriculum.js",
-      "kind": "external",
-      "description": "Sacred curriculum question bank owned by the sibling curriculum_render repository.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["manual"],
-      "notes": "READ-ONLY. Builders may fall back to ../curriculum_render_v2/data/curriculum.js."
-    },
-    {
-      "id": "answer-key-live-root",
-      "path": "data/answer-key.json",
-      "kind": "derived",
-      "description": "Live client answer-key document in the repository data directory.",
-      "inputs": ["curriculum-bank"],
-      "regenerate": "node scripts/build-answer-key.mjs",
-      "pinnedBy": ["tests/answer-key.test.js"],
-      "notes": "Generated together with the byte-identical roster-server copy."
     },
     {
       "id": "answer-key-live-server",
       "path": "roster-server/data/answer-key.json",
       "kind": "derived",
       "description": "Live answer-key copy bundled into the roster-server deployment.",
-      "inputs": ["curriculum-bank"],
-      "regenerate": "node scripts/build-answer-key.mjs",
-      "pinnedBy": ["tests/answer-key.test.js", "roster-server/tests/grade-answer-key.test.js"],
+      "inputs": [],
+      "regenerate": null,
+      "pinnedBy": [
+        "roster-server/tests/grade-answer-key.test.js"
+      ],
       "notes": "Client-facing answer-key routes serve the live document; yearly grading does not."
     },
     {
@@ -56,20 +28,14 @@
       "path": "roster-server/data/answer-key.SY2627.json",
       "kind": "derived",
       "description": "Immutable SY2627 server-side grading answer key.",
-      "inputs": ["answer-key-live-server"],
+      "inputs": [
+        "answer-key-live-server"
+      ],
       "regenerate": null,
-      "pinnedBy": ["golden-master", "manual", "roster-server/tests/grade-contexts.test.js"],
+      "pinnedBy": [
+        "roster-server/tests/grade-contexts.test.js"
+      ],
       "notes": "FROZEN. Historical yearly copies are manual and must never be regenerated or overwritten."
-    },
-    {
-      "id": "answer-key-route",
-      "path": "/grade/answer-key",
-      "kind": "external",
-      "description": "Runtime route that serves the live client document rather than the yearly grading freeze.",
-      "inputs": ["answer-key-live-server"],
-      "regenerate": null,
-      "pinnedBy": ["roster-server/tests/grade-answer-key.test.js"],
-      "notes": "Runtime surface implemented by roster-server/grade-answer-key.js."
     },
     {
       "id": "agent-topic-schedule",
@@ -78,7 +44,7 @@
       "description": "Per-period topic dates owned by the Agent repository.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["manual"],
+      "pinnedBy": [],
       "notes": "External schedule input. Supabase topic_schedule sync is outside this repository's manifest."
     },
     {
@@ -88,27 +54,22 @@
       "description": "Lesson titles, URLs, and Schoology state owned by the Agent repository.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["manual"],
+      "pinnedBy": [],
       "notes": "The Agent roadmap builder reads this registry directly."
-    },
-    {
-      "id": "ced2026-crosswalk",
-      "path": "2026-crosswalk.json",
-      "kind": "source",
-      "description": "Old-topic to Fall-2026 CED relabel and core-versus-bonus mapping.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["tests/work-manifest-ced-regression.test.js", "tests/content-validation.test.js"],
-      "notes": "Reviewed mapping input; changes alter roadmap labels, Do Now order, and Blooket required lists."
     },
     {
       "id": "roadmap-data",
       "path": "roadmap-data.json",
       "kind": "derived",
       "description": "Baked lesson registry, period dates, URLs, and additive CED-2026 overlay.",
-      "inputs": ["agent-topic-schedule", "agent-lesson-registry", "ced2026-crosswalk"],
+      "inputs": [
+        "agent-topic-schedule",
+        "agent-lesson-registry"
+      ],
       "regenerate": "node ../Agent/scripts/build-roadmap-data.mjs",
-      "pinnedBy": ["tests/schedule.test.js", "tests/roadmap-resilience.test.js", "tests/content-validation.test.js"],
+      "pinnedBy": [
+        "tests/roadmap-resilience.test.js"
+      ],
       "notes": "The external builder also preserves progress-check and poster overlays from the existing file."
     },
     {
@@ -116,49 +77,25 @@
       "path": "desk.html",
       "kind": "derived",
       "description": "Desk BAKED_REGISTRY offline fallback injected from roadmap-data.json.",
-      "inputs": ["roadmap-data"],
+      "inputs": [
+        "roadmap-data"
+      ],
       "regenerate": "node ../Agent/scripts/build-roadmap-data.mjs",
-      "pinnedBy": ["tests/schedule.test.js", "tests/roadmap-resilience.test.js"],
+      "pinnedBy": [
+        "tests/roadmap-resilience.test.js"
+      ],
       "notes": "The same command writes roadmap-data.json and injects the Desk constant."
-    },
-    {
-      "id": "supabase-lesson-urls",
-      "path": "Supabase lesson_urls",
-      "kind": "external",
-      "description": "Runtime URL overlay that wins over baked roadmap URLs.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["manual"],
-      "notes": "External database state. A file-only URL edit is insufficient because this table overrides it."
-    },
-    {
-      "id": "desk-runtime-registry",
-      "path": "Desk runtime REGISTRY",
-      "kind": "external",
-      "description": "Merged Desk lesson registry visible to students at runtime.",
-      "inputs": ["roadmap-data", "desk-baked-registry", "supabase-lesson-urls"],
-      "regenerate": null,
-      "pinnedBy": ["tests/roadmap-resilience.test.js", "manual"],
-      "notes": "Baked data is the fallback; Supabase lesson_urls overrides URLs after load."
-    },
-    {
-      "id": "lessons-index",
-      "path": "lessons-index.json",
-      "kind": "derived",
-      "description": "Mobile lesson index projected from the roadmap and CED crosswalk.",
-      "inputs": ["roadmap-data", "ced2026-crosswalk"],
-      "regenerate": "node scripts/build-lessons-index.mjs",
-      "pinnedBy": ["tests/mobile-home-fc-csv-fallback.test.js"],
-      "notes": "Its worksheet paths feed the topic-to-Blooket-CSV fallback map."
     },
     {
       "id": "lesson-schedule-root",
       "path": "data/lesson-schedule.json",
       "kind": "derived",
       "description": "Repository copy of topic, worksheet-key, and per-period grading dates.",
-      "inputs": ["roadmap-data"],
-      "regenerate": "node scripts/build-lesson-schedule.mjs",
-      "pinnedBy": ["tests/schedule.test.js"],
+      "inputs": [
+        "roadmap-data"
+      ],
+      "regenerate": null,
+      "pinnedBy": [],
       "notes": "Generated byte-for-byte with the roster-server deployment copy."
     },
     {
@@ -166,79 +103,51 @@
       "path": "roster-server/data/lesson-schedule.json",
       "kind": "derived",
       "description": "Bundled live grading schedule used by the roster server.",
-      "inputs": ["roadmap-data"],
-      "regenerate": "node scripts/build-lesson-schedule.mjs",
-      "pinnedBy": ["roster-server/tests/quarters-by-date.test.js", "golden-master"],
+      "inputs": [
+        "roadmap-data"
+      ],
+      "regenerate": null,
+      "pinnedBy": [
+        "roster-server/tests/quarters-by-date.test.js"
+      ],
       "notes": "Schedule changes can move quarter assignments and golden outputs."
-    },
-    {
-      "id": "work-manifest-9unit-source",
-      "path": "scripts/fixtures/work-manifest-9unit-source.json",
-      "kind": "derived",
-      "description": "Frozen old-nine-unit source used to produce the live CED-ordered Do Now manifests.",
-      "inputs": ["skill-map-json"],
-      "regenerate": "node scripts/build-work-manifest.mjs",
-      "pinnedBy": ["tests/work-manifest.test.js", "tests/work-manifest-ced-regression.test.js"],
-      "notes": "The base builder deliberately does not write either live manifest."
     },
     {
       "id": "work-manifest-root",
       "path": "data/work-manifest.json",
       "kind": "derived",
       "description": "Live CED-ordered repository work manifest used for Do Now task order.",
-      "inputs": ["work-manifest-9unit-source", "ced2026-crosswalk"],
-      "regenerate": "node scripts/build-work-manifest-ced.mjs --deploy",
-      "pinnedBy": ["tests/work-manifest.test.js", "tests/work-manifest-ced-regression.test.js"],
-      "notes": "Old item IDs are preserved while core lessons are reordered into five CED units."
+      "inputs": [],
+      "regenerate": null,
+      "pinnedBy": [
+        "tests/work-manifest.test.js"
+      ],
+      "notes": "Old item IDs are preserved while core lessons are reordered into five CED units. Legacy AP generator depends on stripped inputs and is unavailable for A2. generator removed with the AP content strip (2026-09-16); A2 generator pending"
     },
     {
       "id": "work-manifest-server",
       "path": "roster-server/data/work-manifest.json",
       "kind": "derived",
       "description": "Byte-identical work manifest bundled into the roster-server deployment.",
-      "inputs": ["work-manifest-9unit-source", "ced2026-crosswalk"],
-      "regenerate": "node scripts/build-work-manifest-ced.mjs --deploy",
-      "pinnedBy": ["tests/work-manifest.test.js", "roster-server/tests/donow.test.js"],
-      "notes": "Railway deploys roster-server as its root, so the bundled copy is required."
-    },
-    {
-      "id": "do-now-runtime",
-      "path": "/donow",
-      "kind": "external",
-      "description": "Runtime next-task selection whose traversal order comes from the work manifest.",
-      "inputs": ["work-manifest-root", "work-manifest-server"],
-      "regenerate": null,
-      "pinnedBy": ["roster-server/tests/donow.test.js"],
-      "notes": "Schedule dates do not re-sequence Do Now; manifest order does."
-    },
-    {
-      "id": "quarter-bands-runtime",
-      "path": "deriveQuarterBands runtime output",
-      "kind": "external",
-      "description": "Date-driven grade-engine quarter-to-unit bands.",
-      "inputs": ["lesson-schedule-server", "grade-module-lesson-grade"],
-      "regenerate": null,
-      "pinnedBy": ["roster-server/tests/quarters-by-date.test.js", "golden-master"],
-      "notes": "The latest scheduled lesson date assigns each unit; configured unit lists are fallback only."
-    },
-    {
-      "id": "blooket-decks",
-      "path": "u*_blooket.csv",
-      "kind": "source",
-      "description": "Authored Blooket question decks at repository root.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["tests/content-validation.test.js", "tests/blooket-lint.test.js"],
-      "notes": "Lint a changed deck with node scripts/lint-blooket-deck.mjs <csv-path>."
+      "pinnedBy": [
+        "tests/work-manifest.test.js",
+        "roster-server/tests/donow.test.js"
+      ],
+      "notes": "Railway deploys roster-server as its root, so the bundled copy is required. Legacy AP generator depends on stripped inputs and is unavailable for A2. generator removed with the AP content strip (2026-09-16); A2 generator pending"
     },
     {
       "id": "blooket-topic-csv",
       "path": "data/blooket-topic-csv.json",
       "kind": "derived",
       "description": "Topic-to-deck fallback map for ID-only mobile flashcard launches.",
-      "inputs": ["blooket-decks", "lessons-index"],
+      "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["manual", "tests/mobile-home-fc-csv-fallback.test.js", "tests/pwa.test.js"],
+      "pinnedBy": [
+        "tests/mobile-home-fc-csv-fallback.test.js",
+        "tests/pwa.test.js"
+      ],
       "notes": "MANUAL: the file names the csvPathFromWorksheet rule, but no repository writer was found."
     },
     {
@@ -246,39 +155,38 @@
       "path": "data/blooket-difficulty.json",
       "kind": "derived",
       "description": "Per-question flashcard difficulty and rationale tags.",
-      "inputs": ["blooket-decks"],
+      "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["manual", "tests/content-validation.test.js", "tests/desk-blooket-flashcards.test.js"],
+      "pinnedBy": [
+        "tests/desk-blooket-flashcards.test.js"
+      ],
       "notes": "MANUAL: no generator exists; content-validation is the dead-tag and missing-deck ratchet."
-    },
-    {
-      "id": "blooket-card-pairs",
-      "path": "data/blooket-card-pairs.json",
-      "kind": "derived",
-      "description": "Reviewed exemptions for intentionally similar Blooket card stems.",
-      "inputs": ["blooket-decks"],
-      "regenerate": null,
-      "pinnedBy": ["manual", "tests/content-validation.test.js", "tests/blooket-lint.test.js"],
-      "notes": "MANUAL: add only reviewed question-number pairs; no generator exists."
     },
     {
       "id": "blooket-lessons-live",
       "path": "roster-server/data/blooket-lessons.json",
       "kind": "derived",
       "description": "Live Blooket presence, required-core, and bonus topic lists.",
-      "inputs": ["blooket-decks", "roadmap-data", "ced2026-crosswalk"],
-      "regenerate": "node roster-server/scripts/gen-blooket-lessons.mjs",
-      "pinnedBy": ["roster-server/tests/blooket.test.js", "tests/mobile-home-fc-csv-fallback.test.js"],
-      "notes": "The generator reads roadmap URL presence and crosswalk status; deck files are the underlying content corpus."
+      "inputs": [
+        "roadmap-data"
+      ],
+      "regenerate": null,
+      "pinnedBy": [
+        "roster-server/tests/blooket.test.js",
+        "tests/mobile-home-fc-csv-fallback.test.js"
+      ],
+      "notes": "The generator reads roadmap URL presence and crosswalk status; deck files are the underlying content corpus. Legacy AP generator depends on stripped inputs and is unavailable for A2. generator removed with the AP content strip (2026-09-16); A2 generator pending"
     },
     {
       "id": "blooket-lessons-sy2526-freeze",
       "path": "roster-server/data/blooket-lessons.sy2526-freeze.json",
       "kind": "derived",
       "description": "Immutable pre-M2a SY2526 Blooket presence-equals-required snapshot.",
-      "inputs": ["blooket-decks"],
+      "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["manual", "roster-server/tests/grade-contexts.test.js"],
+      "pinnedBy": [
+        "roster-server/tests/grade-contexts.test.js"
+      ],
       "notes": "FROZEN at 77 topics with all present topics required; never copy current live lists over it."
     },
     {
@@ -286,60 +194,14 @@
       "path": "scripts/lint-blooket-deck.mjs",
       "kind": "derived",
       "description": "Deck lint and repository-wide content-validation ratchets.",
-      "inputs": ["blooket-decks", "blooket-difficulty", "blooket-card-pairs"],
+      "inputs": [
+        "blooket-difficulty"
+      ],
       "regenerate": null,
-      "pinnedBy": ["tests/blooket-lint.test.js", "tests/content-validation.test.js"],
+      "pinnedBy": [
+        "tests/blooket-lint.test.js"
+      ],
       "notes": "Run the linter for a single deck and the ratchet tests for corpus-wide invariants."
-    },
-    {
-      "id": "blooket-grade-track-runtime",
-      "path": "BL_* grade track",
-      "kind": "external",
-      "description": "Runtime Blooket Work track with presence and required denominators split by school year.",
-      "inputs": ["blooket-lessons-live", "blooket-lessons-sy2526-freeze", "grade-module-grade"],
-      "regenerate": null,
-      "pinnedBy": ["roster-server/tests/m2b-grade-invariance.test.js", "golden-master"],
-      "notes": "SY2627 uses the live 66-core required set; SY2526 uses its immutable 77-required freeze."
-    },
-    {
-      "id": "ap-frameworks",
-      "path": "apstat_*_framework.md",
-      "kind": "source",
-      "description": "Per-unit AP skill definitions parsed by skill-map and audit builders.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["tests/skill-map.test.js", "tests/audit-skill-tagging.test.js"],
-      "notes": "Unit 5 is known malformed and parsed through a documented fallback."
-    },
-    {
-      "id": "worksheet-question-ids",
-      "path": "u*_lesson*_live.html",
-      "kind": "source",
-      "description": "Worksheet feeder IDs scanned into the canonical skill map.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["tests/skill-map.test.js", "tests/content-validation.test.js"],
-      "notes": "The builder scans the worksheet family rather than a precomputed ID list."
-    },
-    {
-      "id": "skill-map-supplement",
-      "path": "data/skill-map-supplement.json",
-      "kind": "source",
-      "description": "Reviewed WS-2 supplemental skill assignments.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["tests/skill-map.test.js"],
-      "notes": "Merged verbatim by build-skill-map.mjs."
-    },
-    {
-      "id": "skill-map-frq",
-      "path": "data/skill-map-frq.json",
-      "kind": "source",
-      "description": "Reviewed FRQ skill-map supplement.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["tests/skill-map.test.js"],
-      "notes": "Merged verbatim by build-skill-map.mjs."
     },
     {
       "id": "frq-decompositions",
@@ -348,18 +210,8 @@
       "description": "FRQ-to-supporting-MCQ decomposition used for candidate resolution and audit coverage.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["tests/skill-map.test.js", "tests/audit-skill-tagging.test.js"],
+      "pinnedBy": [],
       "notes": "Reviewed input shared by the skill builder and tagging audit."
-    },
-    {
-      "id": "skill-map-disambiguated",
-      "path": "data/skill-map.disambiguated.json",
-      "kind": "source",
-      "description": "Committed reviewed and AI-constrained resolutions layered onto unresolved skill entries.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["tests/disambiguate-skills.test.js", "tests/skill-map.test.js"],
-      "notes": "build-skill-map.mjs consumes this file; disambiguation tests must not rewrite canonical skill-map.json."
     },
     {
       "id": "formula-probe-supplement",
@@ -368,58 +220,18 @@
       "description": "Formula probe pool read by the gradebook tagging audit.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["tests/audit-skill-tagging.test.js"],
+      "pinnedBy": [],
       "notes": "Audit input, not an output of build-skill-map.mjs."
-    },
-    {
-      "id": "grading-prompts",
-      "path": "ai-grading-prompts*.js",
-      "kind": "source",
-      "description": "Worksheet grading-rubric keys scanned by the gradebook tagging audit.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["tests/audit-skill-tagging.test.js", "tests/content-validation.test.js"],
-      "notes": "The audit cross-checks rubric keys against worksheet textarea IDs."
-    },
-    {
-      "id": "skill-map-json",
-      "path": "data/skill-map.json",
-      "kind": "derived",
-      "description": "Canonical machine-readable skill map.",
-      "inputs": ["curriculum-bank", "ap-frameworks", "worksheet-question-ids", "skill-map-supplement", "skill-map-frq", "frq-decompositions", "skill-map-disambiguated"],
-      "regenerate": "node scripts/build-skill-map.mjs",
-      "pinnedBy": ["tests/skill-map.test.js", "tests/content-validation.test.js"],
-      "notes": "CAUTION: tests/skill-map.test.js invokes buildSkillMap and rewrites all three skill-map outputs."
-    },
-    {
-      "id": "skill-map-js",
-      "path": "data/skill-map.js",
-      "kind": "derived",
-      "description": "Browser window.SKILL_MAP wrapper around the canonical JSON.",
-      "inputs": ["skill-map-json"],
-      "regenerate": "node scripts/build-skill-map.mjs",
-      "pinnedBy": ["tests/skill-map.test.js"],
-      "notes": "Contains a generated timestamp comment; the JSON payload mirrors data/skill-map.json."
     },
     {
       "id": "skill-map-server",
       "path": "roster-server/data/skill-map.json",
       "kind": "derived",
       "description": "Byte-identical skill map bundled into roster-server.",
-      "inputs": ["skill-map-json"],
-      "regenerate": "node scripts/build-skill-map.mjs",
-      "pinnedBy": ["roster-server/tests/bundle-parity.test.js", "tests/skill-map.test.js"],
+      "inputs": [],
+      "regenerate": null,
+      "pinnedBy": [],
       "notes": "Required because the Railway deployment root excludes repository data/."
-    },
-    {
-      "id": "gradebook-tagging-audit",
-      "path": "GRADEBOOK_TAGGING_AUDIT.md",
-      "kind": "derived",
-      "description": "Rendered coverage and readiness audit for skill tagging.",
-      "inputs": ["skill-map-json", "curriculum-bank", "ap-frameworks", "worksheet-question-ids", "formula-probe-supplement", "frq-decompositions", "grading-prompts"],
-      "regenerate": "node scripts/audit-skill-tagging.mjs",
-      "pinnedBy": ["tests/audit-skill-tagging.test.js"],
-      "notes": "The audit test also regenerates this report in beforeAll."
     },
     {
       "id": "grade-module-config",
@@ -428,7 +240,9 @@
       "description": "Canonical grade thresholds, quarter windows, and feature configuration.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["tests/grade-engine-bundle-parity.test.js", "golden-master"],
+      "pinnedBy": [
+        "tests/grade-engine-bundle-parity.test.js"
+      ],
       "notes": "Any change requires rebuilding the browser grade-engine bundle."
     },
     {
@@ -438,7 +252,9 @@
       "description": "Canonical response normalization and item scoring primitives.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["tests/grade-engine-bundle-parity.test.js", "golden-master"],
+      "pinnedBy": [
+        "tests/grade-engine-bundle-parity.test.js"
+      ],
       "notes": "Any change requires rebuilding the browser grade-engine bundle."
     },
     {
@@ -448,7 +264,10 @@
       "description": "Canonical lesson, Work-track, quarter, and deriveQuarterBands computations.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["tests/grade-engine-bundle-parity.test.js", "roster-server/tests/quarters-by-date.test.js", "golden-master"],
+      "pinnedBy": [
+        "tests/grade-engine-bundle-parity.test.js",
+        "roster-server/tests/quarters-by-date.test.js"
+      ],
       "notes": "Any change requires rebuilding the browser grade-engine bundle."
     },
     {
@@ -458,7 +277,9 @@
       "description": "Canonical gradebook columns, rows, and reconciliation logic.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["tests/grade-engine-bundle-parity.test.js", "golden-master"],
+      "pinnedBy": [
+        "tests/grade-engine-bundle-parity.test.js"
+      ],
       "notes": "Any change requires rebuilding the browser grade-engine bundle."
     },
     {
@@ -468,7 +289,9 @@
       "description": "Canonical aggregate grade computation and Blooket track assembly.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["tests/grade-engine-bundle-parity.test.js", "golden-master"],
+      "pinnedBy": [
+        "tests/grade-engine-bundle-parity.test.js"
+      ],
       "notes": "Any change requires rebuilding the browser grade-engine bundle."
     },
     {
@@ -476,90 +299,18 @@
       "path": "grade-engine.bundle.js",
       "kind": "derived",
       "description": "Browser bundle of the five canonical roster-server grade modules.",
-      "inputs": ["grade-module-config", "grade-module-scoring", "grade-module-lesson-grade", "grade-module-grid", "grade-module-grade"],
+      "inputs": [
+        "grade-module-config",
+        "grade-module-scoring",
+        "grade-module-lesson-grade",
+        "grade-module-grid",
+        "grade-module-grade"
+      ],
       "regenerate": "node scripts/build-grade-engine.mjs",
-      "pinnedBy": ["tests/grade-engine-bundle-parity.test.js"],
+      "pinnedBy": [
+        "tests/grade-engine-bundle-parity.test.js"
+      ],
       "notes": "The lineage test compares the committed bytes with generateBundle() without writing."
-    },
-    {
-      "id": "grade-http-contract",
-      "path": "/grade and /class/grades",
-      "kind": "external",
-      "description": "Runtime HTTP grade contract protected by frozen data and the golden master.",
-      "inputs": ["answer-key-sy2627-freeze", "lesson-schedule-server", "work-manifest-server", "blooket-lessons-live", "grade-module-config", "grade-module-scoring", "grade-module-lesson-grade", "grade-module-grid", "grade-module-grade"],
-      "regenerate": null,
-      "pinnedBy": ["golden-master", "roster-server/tests/golden-master.test.js"],
-      "notes": "The server boots real routes against frozen inputs in the oracle tests."
-    },
-    {
-      "id": "golden-synthetic",
-      "path": "roster-server/tests/fixtures/golden-synthetic/*.json",
-      "kind": "derived",
-      "description": "Committed deterministic fictional-student grade HTTP oracle.",
-      "inputs": ["grade-http-contract"],
-      "regenerate": "node roster-server/scripts/build-golden-synthetic.mjs",
-      "pinnedBy": ["golden-master", "roster-server/tests/golden-master.test.js"],
-      "notes": "Review first-difference paths before accepting intentional output movement."
-    },
-    {
-      "id": "golden-local",
-      "path": "roster-server/tests/fixtures/golden-local/*.json",
-      "kind": "derived",
-      "description": "Optional teacher-machine oracle derived from a private roster backup.",
-      "inputs": ["grade-http-contract"],
-      "regenerate": "node roster-server/scripts/build-golden-fixture.mjs --accept",
-      "pinnedBy": ["golden-master", "manual", "roster-server/tests/golden-master.test.js"],
-      "notes": "LOCAL-ONLY and gitignored. Never commit any real-student-derived fixture."
-    },
-    {
-      "id": "m2b-invariance-fixtures",
-      "path": "roster-server/tests/fixtures/m2b-invariance/*.json",
-      "kind": "derived",
-      "description": "Auditable school-year, Blooket split, artifact-hash, and grade invariance snapshots.",
-      "inputs": ["grade-http-contract", "blooket-lessons-sy2526-freeze"],
-      "regenerate": "cd roster-server && UPDATE_M2B_GOLDEN=1 npx vitest run tests/m2b-grade-invariance.test.js",
-      "pinnedBy": ["roster-server/tests/m2b-grade-invariance.test.js"],
-      "notes": "Use the update environment flag only after reviewing why the invariant output moved."
-    },
-    {
-      "id": "gitnexus-shadow-builder",
-      "path": "scripts/gitnexus-shadow.mjs",
-      "kind": "source",
-      "description": "Line-preserving extractor for inline JavaScript in single-file HTML apps.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["tests/gitnexus-shadow.test.js"],
-      "notes": "SHADOWED_APPS in this script is the authoritative source-app list."
-    },
-    {
-      "id": "gitnexus-shadow-root-apps",
-      "path": "*.html",
-      "kind": "source",
-      "description": "Root single-file HTML app corpus from which listed inline-JS shadows are extracted.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["tests/gitnexus-shadow.test.js"],
-      "notes": "Only files in SHADOWED_APPS produce outputs; the broad glob makes root app edits visible in impact review."
-    },
-    {
-      "id": "gitnexus-shadow-tool-app",
-      "path": "tools/level-editor.html",
-      "kind": "source",
-      "description": "Nested level-editor app included in SHADOWED_APPS.",
-      "inputs": [],
-      "regenerate": null,
-      "pinnedBy": ["tests/gitnexus-shadow.test.js"],
-      "notes": "Listed separately because the root HTML glob does not include tools/."
-    },
-    {
-      "id": "gitnexus-shadows",
-      "path": "gitnexus-shadow/*.inline.js",
-      "kind": "derived",
-      "description": "Tracked line-preserving JavaScript shadows consumed by GitNexus indexing.",
-      "inputs": ["gitnexus-shadow-builder", "gitnexus-shadow-root-apps", "gitnexus-shadow-tool-app"],
-      "regenerate": "npm run gitnexus:shadow",
-      "pinnedBy": ["tests/gitnexus-shadow.test.js"],
-      "notes": "The lineage freshness test reuses shadowOf and checks each SHADOWED_APPS output."
     },
     {
       "id": "flashcard-flags",
@@ -568,27 +319,25 @@
       "description": "Feature and topic flags shared by Desk and mobile flashcard consumers.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["lib/flashcard-flags.test.js", "tests/mobile-home-flashcards.test.js"],
+      "pinnedBy": [
+        "lib/flashcard-flags.test.js",
+        "tests/mobile-home-flashcards.test.js"
+      ],
       "notes": "After changing flags, keep the service-worker CORE membership and deployment build stamp in sync."
-    },
-    {
-      "id": "flashcard-runtime-consumers",
-      "path": "Desk and mobile flashcard runtime",
-      "kind": "external",
-      "description": "Desk and mobile runtime views that combine flags, deck mapping, and difficulty metadata.",
-      "inputs": ["flashcard-flags", "blooket-topic-csv", "blooket-difficulty"],
-      "regenerate": null,
-      "pinnedBy": ["tests/desk-blooket-flashcards.test.js", "tests/mobile-home-flashcards.test.js"],
-      "notes": "Logical runtime consumer represented as external so path checks do not mistake it for a file."
     },
     {
       "id": "build-version",
       "path": "version.json",
       "kind": "derived",
       "description": "Deployment build stamp polled by long-open Desk tabs.",
-      "inputs": ["desk-baked-registry"],
+      "inputs": [
+        "desk-baked-registry"
+      ],
       "regenerate": "node scripts/bump-build.mjs",
-      "pinnedBy": ["tests/desk-update-nudge.test.js", "tests/pwa.test.js"],
+      "pinnedBy": [
+        "tests/desk-update-nudge.test.js",
+        "tests/pwa.test.js"
+      ],
       "notes": "bump-build stamps version.json, Desk APP_BUILD, and service-worker BUILD together."
     },
     {
@@ -596,20 +345,18 @@
       "path": "sw.js",
       "kind": "derived",
       "description": "Versioned PWA cache strategy and explicit CORE precache list.",
-      "inputs": ["roadmap-data", "blooket-topic-csv", "blooket-difficulty", "flashcard-flags", "build-version"],
+      "inputs": [
+        "roadmap-data",
+        "blooket-topic-csv",
+        "blooket-difficulty",
+        "flashcard-flags",
+        "build-version"
+      ],
       "regenerate": "node scripts/bump-build.mjs",
-      "pinnedBy": ["tests/pwa.test.js", "tests/lineage.test.js"],
+      "pinnedBy": [
+        "tests/pwa.test.js"
+      ],
       "notes": "CORE membership is edited manually; the lineage test parses CORE and requires every named local file to exist."
-    },
-    {
-      "id": "offline-pack",
-      "path": "offline-pack/**",
-      "kind": "derived",
-      "description": "Teacher-built disconnected app tree containing the current static and derived data surface.",
-      "inputs": ["roadmap-data", "blooket-topic-csv", "blooket-difficulty", "blooket-card-pairs", "skill-map-json", "grade-engine-bundle", "flashcard-flags", "build-version", "service-worker-core"],
-      "regenerate": "node scripts/build-offline-pack.mjs",
-      "pinnedBy": ["tests/build-offline-pack.test.js", "tests/offline-pack-flashcards.test.js"],
-      "notes": "LOCAL-ONLY output. The builder excludes full answer keys from student packs."
     },
     {
       "id": "a2-answers-server",
@@ -618,7 +365,9 @@
       "description": "Byte-identical copy of the shared answer normalizer bundled into the roster-server deployment.",
       "inputs": [],
       "regenerate": "node scripts/sync-server-shared.mjs",
-      "pinnedBy": ["roster-server/tests/deployment.test.js"],
+      "pinnedBy": [
+        "roster-server/tests/deployment.test.js"
+      ],
       "notes": "Railway deploys roster-server as its root; lib/a2-answers.js is the source and is also served to the Chromebook runner."
     },
     {
@@ -628,7 +377,9 @@
       "description": "Byte-identical copy of content/a2/lessons.json bundled into the roster-server deployment.",
       "inputs": [],
       "regenerate": "node scripts/sync-server-shared.mjs",
-      "pinnedBy": ["roster-server/tests/deployment.test.js"],
+      "pinnedBy": [
+        "roster-server/tests/deployment.test.js"
+      ],
       "notes": "Railway deploys roster-server as its root; content/a2/lessons.json is the source."
     },
     {
@@ -638,7 +389,9 @@
       "description": "Per-lesson Precalculus-prerequisite and SAT-relevance ratings plus the SY26-27 keep/brief/skip/bridge plan from the September 2026 PLC drafts.",
       "inputs": [],
       "regenerate": null,
-      "pinnedBy": ["tests/a2-lesson-targets.test.js"],
+      "pinnedBy": [
+        "tests/a2-lesson-targets.test.js"
+      ],
       "notes": "Hand-maintained with docs/a2-lesson-targets.md; drives lesson authoring order, never grading."
     },
     {
@@ -646,9 +399,13 @@
       "path": "roadmap-data.json",
       "kind": "derived",
       "description": "Desk registry for Algebra 2: every Savvas lesson with its topic/title label overlay and, for published lessons, the check link, deck and per-section due dates.",
-      "inputs": ["a2-lesson-targets"],
+      "inputs": [
+        "a2-lesson-targets"
+      ],
       "regenerate": "node scripts/build-a2-roadmap-data.mjs",
-      "pinnedBy": ["tests/a2-calendar.test.js"],
+      "pinnedBy": [
+        "tests/a2-calendar.test.js"
+      ],
       "notes": "Also depends on content/a2/lessons.json. Replaces the empty stub left by the content strip; the AP crosswalk in js/ced2026-crosswalk.js stays for inherited tests and is overridden per lesson at runtime."
     }
   ]

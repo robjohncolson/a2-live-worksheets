@@ -174,6 +174,19 @@ hence D4.
 | D8 | The 30 one-off `scripts/wire-*.mjs` migration scripts and `build-android.mjs`: already applied before the fork; leave deleted? | Leave deleted; note in plan |
 | D9 | Calendar cell click opens the inherited resource panel with no links. Open the lesson check instead? | Yes |
 
+
+### Phase 4 progress (2026-09-16)
+
+| Batch | Items | Codex implement → Codex review → fixes | Result |
+|---|---|---|---|
+| A+B Desk chrome/behaviour + mobile home | U1 U2 U3 U4 U5 U8 U10 U13 | review: safe with 2 fixes (Section G styling, behavioural tests) + walker jump sound restored for fidelity | committed a03b1ef; 11 chrome tests |
+| D + D2 tooling/pages cleanup | U12 U14 (guarded, no change) U18 U19 | review: safe with 6 fixes (orphan regrade test + workflow removed, lineage pruned, host-matrix probes, behavioural teacher-app test, CLI test) | committed with the PWA stamp bump |
+| Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
+
+Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.
+
+Remaining: U6 U7 U9 U11 (await D1-D3), U16 (D4), U15 (server skill map, low priority), U20 (tests batch), U23 (A2 work manifest + Do Now deep links), Phase 5 (post-fork AP commits), Phase 6 (freeze test).
+
 ### Phase 2 visual pairs (orchestrator, 2026-09-16, signed-out) — screenshots in `state/fork-diff/shots/`
 
 | Surface | Verdict | Notes |

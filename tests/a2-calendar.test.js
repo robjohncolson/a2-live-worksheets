@@ -1,4 +1,4 @@
-import { it, expect } from 'vitest';
+import { it, expect, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { bootDesk } from './journeys/harness.js';
@@ -35,6 +35,10 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
   try {
     await desk.window.A2Desk.refresh();
     const win = desk.window;
+    // Pacing can finish after refresh resolves while the full suite is loading.
+    await vi.waitFor(() => {
+      expect(win.eval('S').some(row => row.slice(3, 6).some(cell => cell && cell.t))).toBe(true);
+    }, { interval: 50, timeout: 5000 });
     expect(typeof win.applyA2Pacing).toBe('function');
     // Section C: 1-1 runs on every C meeting day (Mon/Tue/Thu) through Sep 24, skipping Sep 7 (Labor Day).
     const S = win.eval('S'), NC = win.eval('NC');
@@ -53,4 +57,4 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
     expect(grid).not.toContain('Variables');   // AP label must not leak
     expect(win.document.getElementById('pb').textContent).toContain('U1');
   } finally { desk.window.close(); }
-});
+}, 10000);

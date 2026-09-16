@@ -3,8 +3,8 @@
  * Node 18+ ESM, zero external dependencies.
  *
  * CLI: node scripts/build-work-manifest.mjs
- * Reads:  data/skill-map.json  (READ-ONLY — never written)
- * Writes: data/work-manifest.json
+ * CLI is disabled until an A2 manifest generator is authored; it writes nothing.
+ * The exported legacy builder remains available for fixture-based tests.
  *
  * Deterministic: two runs are byte-identical except the single line
  * marked "// GENERATED:" which contains the timestamp.
@@ -43,21 +43,15 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const SKILL_MAP_PATH = resolve(ROOT, 'data/skill-map.json');
-// NOTE (P2, 2026-07): this builder now writes the FROZEN 9-UNIT SOURCE snapshot,
-// NOT the live manifest. The live Do-Now manifest is the Fall-2026 5-unit CED
-// reframe produced by build-work-manifest-ced.mjs (reads this source → --deploy
-// writes both live paths). Writing live here would clobber the CED reframe (669f088).
+// Historical paths retained for import-based compatibility tests.
+// The disabled CLI writes neither the former fixture nor either live manifest.
 const MANIFEST_PATH = resolve(ROOT, 'scripts/fixtures/work-manifest-9unit-source.json');
 
-// Railway deploys roster-server with Root Directory = roster-server, so the
-// repo-root data/ dir is NOT in the deployed container. Ship a byte-identical
-// copy INSIDE roster-server so loadLiveManifest() can read it in production.
-// See roster-server/README.md "Do Now (DN1)" + the deploy runbook.
-// NOTE: this path is NO LONGER written by THIS builder (W-reg / P2 footgun fix).
-// Live dual copies are only written by build-work-manifest-ced.mjs --deploy.
+// Railway's deployment root requires a bundled manifest; this legacy builder
+// cannot regenerate it. An Algebra 2 generator is still pending.
 const BUNDLED_MANIFEST_PATH = resolve(ROOT, 'roster-server/data/work-manifest.json');
 
-/** Testability export (W-reg): the only path this builder may write. */
+/** Historical output path for compatibility tests; the CLI writes nothing. */
 export const WORK_MANIFEST_WRITE_TARGET = MANIFEST_PATH;
 /** Testability export: live Do-Now paths this builder must NEVER write. */
 export const WORK_MANIFEST_LIVE_PATHS = [
@@ -331,36 +325,6 @@ export function buildWorkManifest(root) {
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
 
 if (isMain) {
-  const manifest = buildWorkManifest(ROOT);
-
-  // GENERATED: timestamp line — tests strip this before diffing
-  const timestamp = new Date().toISOString();
-
-  // Build a manifest copy with the generated timestamp as the second key.
-  // Use a known insertion-order trick: build the output object with
-  // generatedFrom first, generated second, then spread the rest.
-  const manifestWithTs = {
-    generatedFrom: manifest.generatedFrom,
-    // GENERATED: this line is the only non-deterministic content; tests ignore it
-    generated: timestamp,
-    units: manifest.units,
-    index: manifest.index,
-  };
-
-  const withTimestamp = JSON.stringify(manifestWithTs, null, 2);
-
-  writeFileSync(MANIFEST_PATH, withTimestamp, 'utf8');
-  console.log(`Wrote ${MANIFEST_PATH}`);
-
-  // The LIVE Do-Now manifests (data/ + roster-server/data/) are NOT written here
-  // anymore — they are the 5-unit CED reframe. Refresh them with:
-  //   node scripts/build-work-manifest-ced.mjs --deploy
-  // (that reads this frozen 9-unit source and writes both live paths).
-  console.log('NOTE: live Do-Now manifests are produced by `build-work-manifest-ced.mjs --deploy` (5-unit CED). This run only refreshed the frozen 9-unit source.');
-
-  // Quick summary
-  const unitCount = manifest.units.length;
-  const lessonCount = manifest.units.reduce((sum, u) => sum + u.lessons.length, 0);
-  const itemCount = Object.keys(manifest.index).length;
-  console.log(`Units: ${unitCount}, Lessons: ${lessonCount}, Manifested items: ${itemCount}`);
+  console.error('A2 manifest generator not yet available');
+  process.exitCode = 1;
 }

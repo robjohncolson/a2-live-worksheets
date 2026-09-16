@@ -26,7 +26,7 @@ it('contains no inherited production hosts in repository source, configs or test
     }
     for (const entry of entries) {
       const path = relative + entry.name;
-      if (skip.has(entry.name) || path === 'docs/apstats-history' || path === 'tests/a2-deployment.test.js') continue;
+      if (skip.has(entry.name) || path === 'docs/apstats-history' || path === 'tests/a2-deployment.test.js' || path === 'A2_FORK_DIFF_AUDIT.md') continue;
       const file = resolve(dir, entry.name);
       let info;
       try {

@@ -3,8 +3,7 @@
  * smoke-student-host-matrix.mjs — W0 reusable host matrix smoke
  *
  * Measures what production hosts actually serve for student resource paths
- * (worksheet / quiz / video / flashcards / formula / TI-84) so G1 can be
- * locked from evidence, not abstraction.
+ * (Desk / mobile / authored lesson data / flashcards / roster health).
  *
  * Usage:
  *   node scripts/smoke-student-host-matrix.mjs
@@ -19,7 +18,7 @@
  * exit 2 if chromium was requested and failed to launch.
  */
 
-import { writeFileSync, existsSync, statSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -32,11 +31,7 @@ const HTTP_ONLY = process.argv.includes('--http-only');
 const OUT = resolve(REPO, arg('--out', 'state/w0-host-matrix-results.json'));
 
 // ── Origins: hardcoded from verified code constants (not parsed at runtime).
-// Sources (re-check if these files change):
-//   WS_BASE / CR_BASE  → scripts/build-lessons-index.mjs (WS_BASE, CR_BASE)
-//   ROSTER             → roster_config.js production fallback
-//   RAILWAY_CR_AI      → railway_config.js RAILWAY_SERVER_URL
-//   FORMULA_*          → desk.html APP_REGISTRY + Vercel probe
+// Sources: roster_config.js and the Algebra 2 deployment origins.
 export const ORIGINS = {
   WS_BASE: 'https://robjohncolson.github.io/a2-live-worksheets/',
   WS_MIRROR: 'https://a2-live-worksheets.vercel.app/',
@@ -47,45 +42,49 @@ export const ORIGINS = {
 const WS = ORIGINS.WS_BASE.replace(/\/$/, '');
 const WS_MIRROR = ORIGINS.WS_MIRROR.replace(/\/$/, '');
 
-// Canonical core lesson for dead-end checks (has worksheet + quiz + blooket).
+// Published Algebra 2 lesson and shared flashcard asset.
 export const LESSON = {
-  id: '1.2',
-  unit: 1,
-  lesson: 2,
-  worksheet: `${WS}/u1_lesson2_live.html`,
-  // Desk registry / roadmap-data path (absolute CR origin)
-  // Mobile lessons-index path (relative, same-origin as WS)
+  id: '1-1',
+  topic: 1,
+  lesson: 1,
+  lessons: `${WS}/content/a2/lessons.json`,
+  deck: `${WS}/content/a2/1-1/deck.csv`,
   flashcardsJs: `${WS}/flashcards.js`,
-  blooketExternal: 'https://dashboard.blooket.com/set/6a08a5ec93e4e9542dfc82d6',
 };
 
 export const HTTP_CHECKS = [
   // GH Pages — Desk worksheet host
   { host: 'GH_Pages_Desk', resource: 'desk_html', url: `${WS}/desk.html` },
+  { host: 'GH_Pages_Desk', resource: 'start_here_html', url: `${WS}/start-here.html` },
+  { host: 'GH_Pages_Desk', resource: 'check_html', url: `${WS}/check.html?lesson=1-1` },
   { host: 'GH_Pages_Desk', resource: 'mobile_html', url: `${WS}/mobile-home.html` },
   { host: 'GH_Pages_Desk', resource: 'flashcards_js', url: LESSON.flashcardsJs },
   { host: 'GH_Pages_Desk', resource: 'work_manifest', url: `${WS}/data/work-manifest.json` },
-
-  // GH Pages — curriculum_render (quiz SoT for Desk registry)
+  { host: 'GH_Pages_Desk', resource: 'a2_lessons', url: LESSON.lessons },
+  { host: 'GH_Pages_Desk', resource: 'a2_deck', url: LESSON.deck },
 
   // Vercel — mirror of the worksheet tree (fallback rail for GH Pages)
+  { host: 'Vercel_Mirror', resource: 'desk_html', url: `${WS_MIRROR}/desk.html` },
+  { host: 'Vercel_Mirror', resource: 'start_here_html', url: `${WS_MIRROR}/start-here.html` },
+  { host: 'Vercel_Mirror', resource: 'check_html', url: `${WS_MIRROR}/check.html?lesson=1-1` },
+  { host: 'Vercel_Mirror', resource: 'a2_lessons', url: `${WS_MIRROR}/content/a2/lessons.json` },
   { host: 'Vercel_Mirror', resource: 'flashcards_js', url: `${WS_MIRROR}/flashcards.js` },
-
-  // Vercel — formula surfaces
 
   // Railway — roster / donow + AI grading backend
   { host: 'Railway_Roster', resource: 'health', url: `${ORIGINS.ROSTER}/health` },
   { host: 'Railway_Roster', resource: 'donow_unauth', url: `${ORIGINS.ROSTER}/donow`, expectStatus: 401 },
   { host: 'Railway_CR_AI', resource: 'health', url: `${ORIGINS.RAILWAY_CR_AI}/health` },
 
-  // External Blooket (grade-adjacent warm-up host)
 ];
 
-export const APK_PATHS = []; // Android support was removed.
-
-const BROWSER_PAGES = [
+export const BROWSER_PAGES = [
   { id: 'desk', url: `${WS}/desk.html` },
+  { id: 'start_here', url: `${WS}/start-here.html` },
+  { id: 'check', url: `${WS}/check.html?lesson=1-1` },
   { id: 'mobile', url: `${WS}/mobile-home.html` },
+  { id: 'mirror_desk', url: `${WS_MIRROR}/desk.html` },
+  { id: 'mirror_start_here', url: `${WS_MIRROR}/start-here.html` },
+  { id: 'mirror_check', url: `${WS_MIRROR}/check.html?lesson=1-1` },
 ];
 
 async function httpProbe({ url, method = 'GET' }) {
@@ -127,7 +126,7 @@ export async function runHttpChecks(checks = HTTP_CHECKS) {
       results.push({ ...c, status: null, ok: null, skipped: true });
       continue;
     }
-    const method = c.method || (c.resource === 'video_media' ? 'HEAD' : 'GET');
+    const method = c.method || 'GET';
     const r = await httpProbe({ url: c.url, method });
     const expect = c.expectStatus;
     const okForExpect = expect != null ? r.status === expect : r.ok;
@@ -146,133 +145,6 @@ export async function runHttpChecks(checks = HTTP_CHECKS) {
     );
   }
   return results;
-}
-
-export function runApkSnapshot(apkRoot = resolve(REPO, 'android-app/www')) {
-  const results = [];
-  console.log('\n=== APK/www packaging snapshot (local filesystem; not HTTP) ===');
-  for (const p of APK_PATHS) {
-    const full = resolve(apkRoot, p.rel);
-    const present = existsSync(full);
-    const bytes = present ? statSync(full).size : 0;
-    results.push({
-      host: 'APK_www',
-      resource: p.resource,
-      url: `android-app/www/${p.rel}`,
-      status: present ? 200 : 404,
-      ok: present,
-      bytes,
-      note: 'local packaging snapshot — rebuild may differ from installed APK',
-    });
-    console.log(`APK_www ${p.resource.padEnd(22)} ${present ? 'PRESENT' : 'MISSING'} ${bytes}`);
-  }
-  return results;
-}
-
-/**
- * Full media sweep: fetch live lessons-index.json, HEAD every unique media/*
- * path on WS_BASE. W7 keys off total/ok/fail counts (historically 140/140 404).
- */
-export async function runMediaSweep({ concurrency = 12 } = {}) {
-  console.log('\n=== Full media sweep (live lessons-index → Pages HEAD) ===');
-  const indexUrl = `${WS}/lessons-index.json`;
-  let lessons = [];
-  try {
-    const r = await fetch(indexUrl, {
-      headers: { 'User-Agent': 'W0-host-matrix-smoke/1.0' },
-      signal: AbortSignal.timeout(30000),
-    });
-    if (!r.ok) {
-      return {
-        ok: false,
-        error: `lessons-index HTTP ${r.status}`,
-        total: 0,
-        okCount: 0,
-        failCount: 0,
-        statuses: {},
-        samples: [],
-      };
-    }
-    const doc = await r.json();
-    lessons = Array.isArray(doc.lessons) ? doc.lessons : [];
-  } catch (e) {
-    return {
-      ok: false,
-      error: e.message,
-      total: 0,
-      okCount: 0,
-      failCount: 0,
-      statuses: {},
-      samples: [],
-    };
-  }
-
-  const paths = new Set();
-  for (const L of lessons) {
-    for (const v of L.videos || []) {
-      if (typeof v === 'string' && v) paths.add(v.replace(/^\//, ''));
-    }
-  }
-  const list = [...paths].sort();
-  const statuses = {};
-  let okCount = 0;
-  let failCount = 0;
-  const samples = [];
-
-  async function headOne(rel) {
-    const url = `${WS}/${rel}`;
-    const t0 = Date.now();
-    try {
-      const r = await fetch(url, {
-        method: 'HEAD',
-        redirect: 'follow',
-        headers: { 'User-Agent': 'W0-host-matrix-smoke/1.0' },
-        signal: AbortSignal.timeout(20000),
-      });
-      const st = r.status;
-      statuses[st] = (statuses[st] || 0) + 1;
-      if (r.ok) okCount += 1;
-      else failCount += 1;
-      if (samples.length < 8) {
-        samples.push({ path: rel, status: st, ok: r.ok, ms: Date.now() - t0 });
-      }
-      return { path: rel, status: st, ok: r.ok };
-    } catch (e) {
-      failCount += 1;
-      statuses.error = (statuses.error || 0) + 1;
-      if (samples.length < 8) {
-        samples.push({ path: rel, status: null, ok: false, error: e.message });
-      }
-      return { path: rel, status: null, ok: false, error: e.message };
-    }
-  }
-
-  // Bounded concurrency
-  let i = 0;
-  async function worker() {
-    while (i < list.length) {
-      const idx = i++;
-      await headOne(list[idx]);
-    }
-  }
-  const nWorkers = Math.min(concurrency, Math.max(1, list.length));
-  await Promise.all(Array.from({ length: nWorkers }, () => worker()));
-
-  const summary = {
-    ok: true,
-    indexUrl,
-    lessonCount: lessons.length,
-    total: list.length,
-    okCount,
-    failCount,
-    all404: failCount === list.length && okCount === 0 && list.length > 0,
-    statuses,
-    samples,
-  };
-  console.log(
-    `media paths unique=${list.length} ok=${okCount} fail=${failCount} all404=${summary.all404} statuses=${JSON.stringify(statuses)}`,
-  );
-  return summary;
 }
 
 export async function runBrowserSmoke() {
@@ -350,114 +222,31 @@ export async function runBrowserSmoke() {
   return { skipped: false, results };
 }
 
-/**
- * Derive a one-line G1 recommendation from probe rows.
- * Prefer absolute CR origin when Pages /quiz 404s and CR serves 200.
- */
-export function recommendG1(httpResults) {
-  const pagesQuiz = httpResults.find((r) => r.host === 'GH_Pages_Desk' && r.resource === 'quiz_relative');
-  const crQuiz = httpResults.find((r) => r.host === 'GH_Pages_CR' && r.resource === 'quiz_absolute');
-  const apkQuiz = null; // filled by caller if desired
-
-  const pages404 = pagesQuiz && pagesQuiz.status === 404;
-  const cr200 = crQuiz && crQuiz.status === 200 && crQuiz.ok;
-
-  if (pages404 && cr200) {
-    return {
-      decision:
-        'G1 = absolute curriculum_render origin (https://robjohncolson.github.io/curriculum_render/) for web student quiz links',
-      rationale:
-        'Pages host /quiz is 404; CR origin returns 200 and renders "Algebra 2 Consensus Quiz". Desk registry already uses absolute CR URLs; mobile lessons-index relative quiz/index.html is the day-one dead-end on GH Pages.',
-      fixOptions: [
-        'A (recommended for web): keep/force absolute CR_BASE quiz URLs in mobile-home / lessons-index web path (match Desk registry).',
-        'B: publish curriculum_render under a2-live-worksheets/quiz/ for one-origin Pages (heavier deploy, enables relative paths).',
-        'C: APK-only relative quiz — acceptable for offline pack only; not acceptable as sole web answer.',
-      ],
-      evidence: {
-        pagesQuizStatus: pagesQuiz?.status ?? null,
-        crQuizStatus: crQuiz?.status ?? null,
-        apkQuizPresent: apkQuiz,
-      },
-    };
-  }
-
-  if (!pages404 && cr200) {
-    return {
-      decision: 'G1 = one-origin Pages /quiz viable (relative paths OK)',
-      rationale: 'Pages /quiz returned non-404; relative and absolute both work.',
-      fixOptions: ['Prefer relative same-origin quiz if pack and Pages stay in sync.'],
-      evidence: { pagesQuizStatus: pagesQuiz?.status, crQuizStatus: crQuiz?.status },
-    };
-  }
-
-  return {
-    decision: 'G1 = provisional — re-run smoke; evidence incomplete or unexpected',
-    rationale: `pages quiz status=${pagesQuiz?.status}, cr quiz status=${crQuiz?.status}`,
-    fixOptions: ['Re-run scripts/smoke-student-host-matrix.mjs and inspect raw JSON.'],
-    evidence: { pagesQuizStatus: pagesQuiz?.status, crQuizStatus: crQuiz?.status },
-  };
-}
-
 async function main() {
-  console.log('W0 student host matrix smoke');
-  console.log('Origins are hardcoded from verified code constants (see ORIGINS comment).');
+  console.log('Algebra 2 student host matrix smoke');
   console.log('WS_BASE=', ORIGINS.WS_BASE);
   console.log('WS_MIRROR=', ORIGINS.WS_MIRROR);
-  console.log('CR_BASE=', ORIGINS.CR_BASE);
   console.log('ROSTER=', ORIGINS.ROSTER);
   console.log('lesson=', LESSON.id);
-  console.log('');
 
   const http = await runHttpChecks();
-  const media = await runMediaSweep();
-  const apk = runApkSnapshot();
   let browser = { skipped: true, reason: '--http-only', results: [] };
   if (!HTTP_ONLY) {
-    console.log('\n=== Browser smoke (playwright-core) ===');
+    console.log('Browser smoke (playwright-core)');
     browser = await runBrowserSmoke();
   }
 
-  const g1 = recommendG1(http);
-  // Annotate G1 with APK presence
-  const apkQuiz = apk.find((r) => r.resource === 'quiz_relative');
-  g1.evidence.apkQuizPresent = !!(apkQuiz && apkQuiz.ok);
-  g1.evidence.apkMediaPresent = !!apk.find((r) => r.resource === 'video_media' && r.ok);
-  g1.evidence.apkFlashcardsCsvPresent = !!apk.find((r) => r.resource === 'flashcards_csv' && r.ok);
-  g1.evidence.mediaSweep = {
-    total: media.total,
-    okCount: media.okCount,
-    failCount: media.failCount,
-    all404: media.all404,
-  };
-
   const payload = {
     probedAt: new Date().toISOString(),
-    originsNote: 'hardcoded from verified code constants (not parsed at runtime)',
+    originsNote: 'hardcoded from Algebra 2 deployment configuration',
     origins: ORIGINS,
     lesson: LESSON,
     http,
-    media,
-    apk,
     browser,
-    g1,
-    staleComment: {
-      file: 'mobile-home.html',
-      claim: 'lessons-index.json is an APK BUILD ARTIFACT and is not published to Pages',
-      reality:
-        'live Pages serves lessons-index.json 200; mobile-web therefore takes the primary relative-quiz path and hits H0 404 on /quiz',
-    },
   };
-
   mkdirSync(dirname(OUT), { recursive: true });
   writeFileSync(OUT, JSON.stringify(payload, null, 2));
-  console.log('\n=== G1 recommendation ===');
-  console.log(g1.decision);
-  console.log(g1.rationale);
-  console.log(
-    `media sweep: ${media.total} unique paths, ok=${media.okCount}, fail=${media.failCount}, all404=${media.all404}`,
-  );
   console.log('Wrote', OUT);
-
   if (browser.launchFailed) process.exit(2);
 }
 

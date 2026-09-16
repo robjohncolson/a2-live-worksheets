@@ -98,23 +98,6 @@
     </div>
   </section>
 
-  <!-- 3b. Offline grading (mesh) — grade gossiped student submissions with no server -->
-  <section class="card hidden" id="offline-card">
-    <h2>Offline grading (mesh)</h2>
-    <div class="muted">Sync nearby student phones over Bluetooth/Wi-Fi, auto-grade their submitted work, judge FRQs, then sign — no internet needed. Grades gossip back to the students.</div>
-    <div class="row" style="margin-top:10px">
-      <button class="btn" id="btn-offline-sync">📡 Sync nearby</button>
-      <button class="btn" id="btn-offline-grade">Grade submissions</button>
-      <span class="status" id="offline-status"></span>
-    </div>
-    <div class="mono" id="offline-summary" style="margin-top:8px"></div>
-    <div id="offline-frq-list"></div>
-    <div class="row hidden" id="offline-push-row" style="margin-top:10px">
-      <button class="btn primary" id="btn-offline-push">Sign &amp; emit offline grades</button>
-      <span class="status" id="offline-push-status"></span>
-    </div>
-  </section>
-
   <!-- 4. Seal epoch -->
   <section class="card hidden" id="seal-card">
     <h2>Seal today</h2>
@@ -135,15 +118,6 @@
 <script src="receipt-sign.js" onerror=""></script>
 <script src="ledger-seal.js" onerror=""></script>
 <script src="secure-key.js" onerror=""></script>
-<!-- OFFLINE GRADING MESH Phase 3b — the teacher device grades gossiped student
-     submissions offline. Inert on the web (no GossipTransport / SecureKeyStore). -->
-<script src="student-key.js" onerror=""></script>
-<script src="ledger-store.js" onerror=""></script>
-<script src="submission-store.js" onerror=""></script>
-<script src="ledger-gossip.js" onerror=""></script>
-<script src="nearby-transport.js" onerror=""></script>
-<script src="grade-engine.bundle.js" onerror=""></script>
-<script src="submission-grader.js" onerror=""></script>
 <script>
 (function () {
   'use strict';
@@ -418,260 +392,6 @@
     }).catch(function (e) { if (e) $('seal-status').innerHTML = '<span class="bad">' + esc(e && e.message || 'seal failed') + '</span>'; });
   }
 
-  // ── Offline grading (mesh) — Phase 3b ────────────────────────────────────────
-  // The teacher device grades gossiped student submissions with no server: receive
-  // submissions over Nearby, auto-grade deterministic items against the cached full
-  // key + judge FRQs, sign each grade with THIS device's teacher key (carrying `sub`
-  // so the student device suppresses the graded submission, §0.7), and gossip the
-  // grades back. Runtime-only in the APK (GossipTransport + SecureKeyStore present).
-  var FULLKEY_LS = 'a2_teacher_fullkey_v1';   // cached { answerKey, worksheetKey, keyVersion }
-  var _offlineFrq = [];                            // [{ submission, letter }] awaiting E/P/I
-
-  function _meshBase() { return (window.ROSTER_SERVICE_URL) || ''; }
-  function _meshReady() {
-    return !!(window.SubmissionStore && window.LedgerStore && window.LedgerGossip
-      && window.ReceiptVerify && window.SubmissionGrader && window.ReceiptSign);
-  }
-
-  // Fetch + cache the FULL (unredacted) key while online; used to auto-grade offline.
-  function fetchFullKey() {
-    var base = _meshBase();
-    var secret = (localStorage.getItem(SECRET_LS) || '').trim();
-    if (!base) return Promise.resolve(_cachedFullKey());
-    var headers = {};
-    if (secret) headers['x-teacher-secret'] = secret;
-    try { var tok = rosterClient && rosterClient.token && rosterClient.token(); if (tok) headers['Authorization'] = 'Bearer ' + tok; } catch (_) {}
-    return fetch(base + '/grade/answer-key', { headers: headers })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (j) {
-        if (!j || !j.ok) return _cachedFullKey();
-        var pack = { answerKey: j.answerKey, worksheetKey: j.worksheetKey, keyVersion: j.keyVersion };
-        try { localStorage.setItem(FULLKEY_LS, JSON.stringify(pack)); } catch (_) {}
-        return pack;
-      })
-      .catch(function () { return _cachedFullKey(); });
-  }
-  function _cachedFullKey() {
-    try { return JSON.parse(localStorage.getItem(FULLKEY_LS) || 'null'); } catch (_) { return null; }
-  }
-
-  // Verify a submission on the student trust set (fail-closed).
-  function _verifySub(row) {
-    try { return Promise.resolve(ReceiptVerify.verifySubmissionRow(row)).catch(function () { return false; }); }
-    catch (_) { return Promise.resolve(false); }
-  }
-  function _verifyGrade(row) {
-    try { return Promise.resolve(ReceiptVerify.verifyLedgerRow(row)).catch(function () { return false; }); }
-    catch (_) { return Promise.resolve(false); }
-  }
-
-  // Sync issuer + student trust sets so submissions/grades verify, and cache the key.
-  function _offlineBoot() {
-    var base = _meshBase();
-    var p = Promise.resolve();
-    try {
-      if (window.StudentKey && StudentKey.syncTrustSet && rosterClient && rosterClient.token) {
-        p = StudentKey.syncTrustSet(base, rosterClient.token()).catch(function () {});
-      }
-    } catch (_) {}
-    // Register THIS device's teacher pubkey into the local issuer set so its own emitted
-    // grades verify on-device (mirrors the roster boot registration).
-    try {
-      var pub = localStorage.getItem(PUBKEY_LS);
-      if (pub && ReceiptVerify.registerIssuerKeys) ReceiptVerify.registerIssuerKeys([pub], { name: 'Teacher device', kind: 'desk' });
-    } catch (_) {}
-    return p.then(function () { return fetchFullKey(); });
-  }
-
-  // Read verified submissions, auto-grade (max-score per item, never-downgrade), and
-  // queue FRQs for E/P/I. Signs the AUTO grades + emits them; FRQs wait for judgment.
-  function gradeOfflineSubmissions() {
-    if (!_meshReady()) { $('offline-status').innerHTML = '<span class="bad">Open this in the Algebra 2 app.</span>'; return; }
-    $('offline-status').textContent = 'Reading submissions…';
-    return _offlineBoot().then(function (keyPack) {
-      return SubmissionStore.all().then(function (rows) {
-        // Verify each submission; keep only genuine ones.
-        return _filterAsync(rows, _verifySub).then(function (subs) {
-          return LedgerStore.all().then(function (grades) {
-            // recorded[sid|item] = the MAX score already recorded for that item (there
-            // may be several grade rows at different attempts) — so never-downgrade in
-            // planAutoGrades compares against the true recorded max, not the last row.
-            // Per (sid,item): the MAX recorded score (never-downgrade compares against it)
-            // and the MAX recorded GRADE attempt (the teacher-assigned attempt = that + 1).
-            var recorded = {};
-            var attemptsByKey = {};
-            grades.forEach(function (g) {
-              var k = String(g.student_id) + '|' + String(g.item_id);
-              var sc = (g.score == null) ? null : Number(g.score);
-              if (sc != null && isFinite(sc) && (!(k in recorded) || recorded[k] == null || sc > recorded[k])) recorded[k] = sc;
-              (attemptsByKey[k] = attemptsByKey[k] || []).push(g.attempt);
-            });
-            // §0.7: submissions already covered by a grade (its `sub` names them) are
-            // done — they must NOT re-surface in the FRQ queue as ungraded work.
-            var covered = SubmissionStore.coveredKeys(grades);
-            var inputs = keyPack ? { answerKey: keyPack.answerKey, worksheetKey: keyPack.worksheetKey } : {};
-            var autoPlans = SubmissionGrader.planAutoGrades(subs, inputs, recorded);
-            _offlineFrq = _pendingOfflineFrqs(subs, covered);
-            return _signAndEmit(autoPlans, keyPack, attemptsByKey).then(function (emitted) {
-              $('offline-summary').textContent = 'Verified ' + subs.length + ' submission(s) · auto-graded + emitted ' + emitted + ' · ' + _offlineFrq.length + ' FRQ(s) to judge.';
-              _renderOfflineFrqs();
-              // Phase 4: best-effort durability upload (no-op offline; never blocks).
-              try { _archiveSubmissions(subs); } catch (_) {}
-              $('offline-status').innerHTML = '<span class="ok">✓ Ready.</span>';
-            });
-          });
-        });
-      });
-    }).catch(function (e) { $('offline-status').innerHTML = '<span class="bad">' + esc(e && e.message || 'grading failed') + '</span>'; });
-  }
-
-  function _filterAsync(items, pred) {
-    var out = [];
-    return (items || []).reduce(function (chain, it) {
-      return chain.then(function () { return Promise.resolve(pred(it)).then(function (ok) { if (ok) out.push(it); }); });
-    }, Promise.resolve()).then(function () { return out; });
-  }
-
-  // Phase 4 hub reconcile (§4/§0.10): best-effort upload of the VERIFIED submissions to
-  // the server's append-only archive when online (durability + audit). The server
-  // re-verifies each student signature; archiving never writes a grade. No-op offline.
-  function _archiveSubmissions(subs) {
-    var base = _meshBase();
-    var secret = (localStorage.getItem(SECRET_LS) || '').trim();
-    if (!base || !subs || !subs.length) return Promise.resolve(null);
-    var headers = { 'Content-Type': 'application/json' };
-    if (secret) headers['x-teacher-secret'] = secret;
-    try { var tok = rosterClient && rosterClient.token && rosterClient.token(); if (tok) headers['Authorization'] = 'Bearer ' + tok; } catch (_) {}
-    return fetch(base + '/submissions/archive', {
-      method: 'POST', headers: headers,
-      body: JSON.stringify({ submissions: subs.map(function (s) {
-        return { student_id: s.student_id, source: s.source, item_id: s.item_id, response: s.response,
-          attempt: s.attempt, recorded_at: s.recorded_at, receipt_id: s.receipt_id, receipt_compact: s.receipt_compact };
-      }) })
-    }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
-  }
-
-  // FRQ submissions needing human E/P/I: the highest-attempt verified FRQ per (sid,item)
-  // that is NOT already covered by a grade. A graded FRQ's submission is covered (its
-  // grade names it via `sub`), so it never re-surfaces in the queue — that prevents a
-  // teacher from accidentally re-grading (and silently downgrading) already-judged work.
-  function _pendingOfflineFrqs(subs, covered) {
-    var byKey = {};
-    subs.forEach(function (s) {
-      if (SubmissionGrader.gradeableKind(s.source) !== 'human') return;
-      if (covered && SubmissionStore.isCovered(s, covered)) return;   // already graded → skip
-      var key = String(s.student_id) + '|' + String(s.item_id);
-      var cur = byKey[key];
-      var a = Number(s.attempt) || 1;
-      if (!cur || a >= (Number(cur.attempt) || 1)) byKey[key] = s;
-    });
-    return Object.keys(byKey).map(function (k) { return { submission: byKey[k], letter: null }; });
-  }
-
-  // Sign each AUTO grade plan with the teacher key + emit to the local grades G-Set.
-  // attemptsByKey[sid|item] = the existing grade attempts, so the teacher-ASSIGNED
-  // attempt is max+1 (never the student's submission attempt — §0.4/§0.9).
-  function _signAndEmit(plans, keyPack, attemptsByKey) {
-    if (!plans || !plans.length) return Promise.resolve(0);
-    var kv = keyPack && keyPack.keyVersion;
-    attemptsByKey = attemptsByKey || {};
-    return ensureUnlocked().then(function (key) {
-      return plans.reduce(function (chain, plan) {
-        return chain.then(function (n) {
-          var akey = String(plan.submission.student_id) + '|' + String(plan.submission.item_id);
-          var fields = SubmissionGrader.buildGradeFields(plan.submission, { score: plan.score, keyVersion: kv, existingAttempts: attemptsByKey[akey] || [] });
-          return ReceiptSign.signLedgerReceipt(key, fields).then(function (signed) {
-            var row = {
-              student_id: fields.sid, source: fields.src, item_id: fields.i, score: plan.score,
-              attempt: fields.a, recorded_at: new Date(fields.ts).toISOString(),
-              receipt_id: signed.receiptId, receipt_compact: signed.compact
-            };
-            return _verifyGrade(row).then(function (ok) {
-              if (!ok) return n;                     // never emit a grade that doesn't verify
-              return Promise.resolve(LedgerStore.put(row)).then(function () { return n + 1; });
-            });
-          });
-        });
-      }, Promise.resolve(0));
-    });
-  }
-
-  function _renderOfflineFrqs() {
-    var host = $('offline-frq-list');
-    if (!host) return;
-    host.innerHTML = '';
-    if (!_offlineFrq.length) { setSection('offline-push-row', false); return; }
-    _offlineFrq.forEach(function (item, idx) {
-      var s = item.submission;
-      var div = document.createElement('div'); div.className = 'frq';
-      div.innerHTML = '<div class="mono muted">' + esc(s.item_id) + ' · ' + esc(String(s.student_id).slice(0, 8)) + '</div>'
-        + '<div style="margin:4px 0">' + esc(String(s.response == null ? '' : s.response).slice(0, 400)) + '</div>';
-      ['E', 'P', 'I'].forEach(function (letter) {
-        var b = document.createElement('button'); b.className = 'btn'; b.textContent = letter;
-        b.onclick = function () { _offlineFrq[idx].letter = letter; _renderOfflineFrqs(); };
-        if (item.letter === letter) b.classList.add('primary');
-        div.appendChild(b);
-      });
-      host.appendChild(div);
-    });
-    setSection('offline-push-row', _offlineFrq.some(function (i) { return i.letter; }));
-  }
-
-  // Sign + emit the human-graded FRQs (E/P/I → score) to the grades G-Set.
-  function pushOfflineFrqs() {
-    var graded = _offlineFrq.filter(function (i) { return i.letter; });
-    if (!graded.length) return;
-    var kv = (_cachedFullKey() || {}).keyVersion;
-    $('offline-push-status').textContent = 'Signing…';
-    ensureUnlocked().then(function (key) {
-      return graded.reduce(function (chain, item) {
-        return chain.then(function (n) {
-          var score = _scoreFromGrade(item.letter);
-          if (score === null) return n;
-          return LedgerStore.all().then(function (grades) {
-            var existing = grades.filter(function (g) { return String(g.student_id) === String(item.submission.student_id) && String(g.item_id) === String(item.submission.item_id); }).map(function (g) { return g.attempt; });
-            var fields = SubmissionGrader.buildGradeFields(item.submission, { score: score, keyVersion: kv, existingAttempts: existing });
-            return ReceiptSign.signLedgerReceipt(key, fields).then(function (signed) {
-              var row = { student_id: fields.sid, source: fields.src, item_id: fields.i, score: score, attempt: fields.a, recorded_at: new Date(fields.ts != null ? fields.ts : Date.now()).toISOString(), receipt_id: signed.receiptId, receipt_compact: signed.compact };
-              return Promise.resolve(LedgerStore.put(row)).then(function () { return n + 1; });
-            });
-          });
-        });
-      }, Promise.resolve(0));
-    }).then(function (n) {
-      $('offline-push-status').innerHTML = '<span class="ok">✓ Emitted ' + n + ' FRQ grade(s).</span>';
-      _offlineFrq = []; _renderOfflineFrqs();
-      toast('Offline grades signed. Sync nearby to send them back.');
-    }).catch(function (e) { if (e) $('offline-push-status').innerHTML = '<span class="bad">' + esc(e && e.message || 'push failed') + '</span>'; });
-  }
-
-  // Two-lane Nearby round (grades + submissions) — receive student submissions + send
-  // grades back. Mirrors mobile-home's syncNearby but with the teacher trust sets.
-  function offlineSyncNearby() {
-    if (!window.GossipTransport) { $('offline-status').innerHTML = '<span class="bad">Bluetooth/Nearby needs the app.</span>'; return; }
-    $('offline-status').textContent = '📡 Looking for nearby devices…';
-    _offlineBoot().then(function () {
-      var covered = null;
-      return LedgerStore.all().then(function (grades) {
-        covered = SubmissionStore.coveredKeys(grades);
-        return LedgerGossip.runLanes(window.GossipTransport, {
-          lanes: [
-            { lane: 'grades', getRows: function () { return LedgerStore.all(); }, verify: _verifyGrade, store: LedgerStore },
-            { lane: 'subs',
-              getRows: function () { return SubmissionStore.all().then(function (r) { return r.filter(function (x) { return !SubmissionStore.isCovered(x, covered); }); }); },
-              verify: SubmissionStore.floodCapVerify(SubmissionStore.suppressingVerify(_verifySub, covered)),
-              store: SubmissionStore }
-          ],
-          durationMs: 45000,
-          onPeer: function () { $('offline-status').textContent = '📡 Connected — syncing…'; }
-        });
-      });
-    }).then(function (r) {
-      if (!r || !r.available) $('offline-status').innerHTML = '<span class="bad">Nearby unavailable.</span>';
-      else $('offline-status').innerHTML = '<span class="ok">✓ Synced with ' + (r.peers || 0) + ' device(s) · +' + (r.received || 0) + ' record(s). Now tap Grade submissions.</span>';
-    }).catch(function (e) { $('offline-status').innerHTML = '<span class="bad">' + esc(e && e.message || 'sync failed') + '</span>'; });
-  }
-
   // ── Wire up ────────────────────────────────────────────────────────────────
 
   function connect() {
@@ -679,11 +399,8 @@
     if (s) { try { localStorage.setItem(SECRET_LS, s); } catch (_) {} }
     // Reveal the working sections; a 401 later tells the teacher if the secret is wrong.
     setSection('key-card', true); setSection('grade-card', true); setSection('seal-card', true);
-    setSection('offline-card', true);
     $('auth-status').innerHTML = '<span class="ok">Connected.</span>';
     refreshKeyStatus();
-    // Warm the full-key cache while we have the network (best-effort).
-    try { fetchFullKey(); } catch (_) {}
   }
 
   function init() {
@@ -696,9 +413,6 @@
     $('btn-import').onclick = importWork;
     $('btn-push').onclick = pushGrades;
     $('btn-seal').onclick = sealEpoch;
-    $('btn-offline-sync').onclick = offlineSyncNearby;
-    $('btn-offline-grade').onclick = gradeOfflineSubmissions;
-    $('btn-offline-push').onclick = pushOfflineFrqs;
     if (!window.SecureKeyStore || !SecureKeyStore.available) {
       $('who').textContent = 'Open this in the Algebra 2 app to manage the signing key.';
     }

@@ -6,8 +6,8 @@
  * `_escCloseTopModal()` is the safety net for the overlays that previously had
  * NO Escape handler: the resource panel ("material for the day"), Do-Now bump,
  * generic showDialog, Blooket flashcards, the view-as override-gate, and the
- * QR/guest overlays (guest-pass / reconcile-qr / verify-qr / big-qr, which open
- * as display:flex). It closes the TOPMOST visible one via its cleanup-aware close
+ * big-QR overlay (which opens as display:flex). It closes the TOPMOST visible
+ * one via its cleanup-aware close
  * fn (or a direct hide for the cleanup-free QR overlays), DEFERS when a modal
  * that self-handles Escape is visible, and never touches the sign-in WALL.
  *
@@ -52,9 +52,10 @@ const GAP_NAMED = {
   'bf-overlay': 'closeBlooketFlashcards',
   'override-gate-modal': '_hideOverrideGateModal',
 };
-// QR/guest overlays the net hides directly (no cleanup) — they open as flex.
-const GAP_DIRECT = ['guest-pass-overlay', 'reconcile-qr-overlay', 'verify-qr-overlay', 'big-qr-overlay'];
-const SELF_HANDLED = ['day-grade-overlay', 'grade-help-overlay', 'my-gradebook-overlay', 'my-receipts-overlay', 'student-dm-modal', 'game-overlay'];
+// The remaining QR overlay opens as flex and needs no cleanup.
+const GAP_DIRECT = ['big-qr-overlay'];
+const SELF_HANDLED = ['day-grade-overlay', 'grade-help-overlay', 'my-gradebook-overlay', 'my-receipts-overlay', 'student-dm-modal', 'teacher-nudge-modal'];
+const REMOVED_IDS = ['game-overlay', 'guest-pass-overlay', 'reconcile-qr-overlay', 'verify-qr-overlay'];
 const ALL_IDS = [...Object.keys(GAP_NAMED), ...GAP_DIRECT, ...SELF_HANDLED];
 
 let calls;
@@ -88,7 +89,7 @@ describe('Escape net — named-close gap modals (cleanup-aware)', () => {
   });
 });
 
-describe('Escape net — QR/guest overlays (display:flex, direct hide)', () => {
+describe('Escape net — QR overlay (display:flex, direct hide)', () => {
   GAP_DIRECT.forEach((id) => {
     it(`detects ${id} opened as flex and hides it`, () => {
       setupDOM({ [id]: 'flex' });
@@ -135,9 +136,15 @@ describe('Escape net — wiring + exclusions (structural)', () => {
   it('the global Escape handler invokes _escCloseTopModal()', () => {
     expect(html).toMatch(/querySelectorAll\('\.app-overlay'\)[\s\S]*?_escCloseTopModal\(\)/);
   });
-  it('the resource panel (day-material modal) and the 4 QR/guest overlays are covered', () => {
-    ['resource-overlay', 'guest-pass-overlay', 'reconcile-qr-overlay', 'verify-qr-overlay', 'big-qr-overlay']
+  it('all remaining named closers and the big-QR overlay are covered', () => {
+    [...Object.keys(GAP_NAMED), ...GAP_DIRECT]
       .forEach((id) => expect(ESC_SRC).toContain(`'${id}'`));
+  });
+  it('removed game, guest-pass, and wallet QR overlays are absent', () => {
+    REMOVED_IDS.forEach((id) => {
+      expect(ESC_SRC).not.toContain(id);
+      expect(html).not.toContain(id);
+    });
   });
   it('does NOT auto-close the sign-in WALL (signin/signup/pwchange)', () => {
     expect(ESC_SRC).not.toMatch(/signin-overlay|signup-overlay|pwchange-overlay/);
