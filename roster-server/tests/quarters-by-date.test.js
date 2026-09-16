@@ -1,26 +1,12 @@
-// quarters-by-date.test.js -- F2: date-driven quarter assignment tests.
-//
-// Covers:
-//   - quarterOfDate: window boundaries, out-of-range, invalid inputs
-//   - quarterOfLesson: dated entry vs null-date fallback
-//   - computeQuarterFromLessons date-driven: a lesson whose date falls in Q2
-//     is counted in Q2 even if its unit is a Q1 unit; null-date falls back
-//   - lesson-schedule.json: all 77 lessons have non-null B/E dates, each date
-//     is a school day, dates are non-decreasing in topic order, each lesson's
-//     date is within its unit's home quarter window
-//
+// B15: date-driven A2 quarter placement and published schedule sanity.
 // @vitest-environment node
 
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { loadA2Lessons, lessonScheduleFromModel } from '../a2-lessons.js';
 
 import { PHASE3_CONFIG, quarterOfDate, quarterOfUnit } from '../grade-config.js';
 import { quarterOfLesson, computeQuarterFromLessons } from '../lesson-grade.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SCHEDULE_PATH = path.join(__dirname, '../data/lesson-schedule.json');
 
 // ── quarterOfDate ─────────────────────────────────────────────────────────────
 
@@ -85,19 +71,19 @@ describe('quarterOfLesson', () => {
 
   it('entry with a date in Q2 returns Q2 even when its unit is a Q1 unit', () => {
     // Unit 1 is a Q1 unit, but the lesson is scheduled in Q2 territory.
-    const entry = { unit: 1, periods: { B: '2026-11-20', E: '2026-11-20' } };
-    expect(quarterOfLesson(entry, 'B', PHASE3_CONFIG)).toBe('Q2');
-    expect(quarterOfLesson(entry, 'E', PHASE3_CONFIG)).toBe('Q2');
+    const entry = { unit: 1, periods: { C: '2026-11-20', D: '2026-11-20' } };
+    expect(quarterOfLesson(entry, 'C', PHASE3_CONFIG)).toBe('Q2');
+    expect(quarterOfLesson(entry, 'D', PHASE3_CONFIG)).toBe('Q2');
   });
 
   it('entry with a Q1 date returns Q1', () => {
-    const entry = { unit: 1, periods: { B: '2026-09-15', E: '2026-09-15' } };
-    expect(quarterOfLesson(entry, 'B', PHASE3_CONFIG)).toBe('Q1');
+    const entry = { unit: 1, periods: { C: '2026-09-15', D: '2026-09-15' } };
+    expect(quarterOfLesson(entry, 'C', PHASE3_CONFIG)).toBe('Q1');
   });
 
   it('entry with null dates falls back to quarterOfUnit', () => {
-    const entry = { unit: 1, periods: { B: null, E: null } };
-    expect(quarterOfLesson(entry, 'B', PHASE3_CONFIG)).toBe('Q1');
+    const entry = { unit: 1, periods: { C: null, D: null } };
+    expect(quarterOfLesson(entry, 'C', PHASE3_CONFIG)).toBe('Q1');
   });
 
   it('entry with no periods at all falls back to quarterOfUnit', () => {
@@ -106,31 +92,31 @@ describe('quarterOfLesson', () => {
   });
 
   it('uses period-specific date when period is provided', () => {
-    // B is in Q1, E is in Q2. Quarter should follow the requested period.
-    const entry = { unit: 1, periods: { B: '2026-10-01', E: '2026-11-20' } };
-    expect(quarterOfLesson(entry, 'B', PHASE3_CONFIG)).toBe('Q1');
-    expect(quarterOfLesson(entry, 'E', PHASE3_CONFIG)).toBe('Q2');
+    // C is in Q1, D is in Q2. Quarter should follow the requested period.
+    const entry = { unit: 1, periods: { C: '2026-10-01', D: '2026-11-20' } };
+    expect(quarterOfLesson(entry, 'C', PHASE3_CONFIG)).toBe('Q1');
+    expect(quarterOfLesson(entry, 'D', PHASE3_CONFIG)).toBe('Q2');
   });
 
-  it('falls back to B/E union when period is null', () => {
-    // period=null: picks periods.B first.
-    const entry = { unit: 1, periods: { B: '2026-11-20', E: '2026-11-20' } };
+  it('falls back to C/D/G union when period is null', () => {
+    // period=null: picks periods.C first.
+    const entry = { unit: 1, periods: { C: '2026-11-20', D: '2026-11-20' } };
     expect(quarterOfLesson(entry, null, PHASE3_CONFIG)).toBe('Q2');
   });
 
   it('date outside all windows falls back to quarterOfUnit', () => {
     // 2020 date: outside all quarter windows -> fallback to unit band.
-    const entry = { unit: 6, periods: { B: '2020-01-01', E: '2020-01-01' } };
-    expect(quarterOfLesson(entry, 'B', PHASE3_CONFIG)).toBe('Q3');
+    const entry = { unit: 6, periods: { C: '2020-01-01', D: '2020-01-01' } };
+    expect(quarterOfLesson(entry, 'C', PHASE3_CONFIG)).toBe('Q3');
   });
 
   it('a known section with a null date falls back to the unit band, not the other section', () => {
-    // B is unscheduled (null); E sits in Q2. Asking for section B must NOT
-    // borrow E's Q2 date -- B has no schedule, so it falls back to unit 1's
-    // band (Q1). Section E still resolves by its own date (Q2).
-    const entry = { unit: 1, periods: { B: null, E: '2026-12-01' } };
-    expect(quarterOfLesson(entry, 'B', PHASE3_CONFIG)).toBe('Q1');
-    expect(quarterOfLesson(entry, 'E', PHASE3_CONFIG)).toBe('Q2');
+    // C is unscheduled (null); D sits in Q2. Asking for section C must NOT
+    // borrow D's Q2 date -- B has no schedule, so it falls back to unit 1's
+    // band (Q1). Section D still resolves by its own date (Q2).
+    const entry = { unit: 1, periods: { C: null, D: '2026-12-01' } };
+    expect(quarterOfLesson(entry, 'C', PHASE3_CONFIG)).toBe('Q1');
+    expect(quarterOfLesson(entry, 'D', PHASE3_CONFIG)).toBe('Q2');
   });
 });
 
@@ -150,8 +136,8 @@ describe('computeQuarterFromLessons — date-driven quarter assignment (F2)', ()
     // schedule: lesson 1.1 has a Q2 date (2026-12-01), so quarterOfLesson=Q2.
     // When we ask computeQuarterFromLessons for Q1, it should NOT include 1.1.
     const schedule = {
-      '1.1': { unit: 1, periods: { B: '2026-12-01', E: '2026-12-01' } },
-      '1.2': { unit: 1, periods: { B: '2026-09-15', E: '2026-09-15' } },
+      '1.1': { unit: 1, periods: { C: '2026-12-01', D: '2026-12-01' } },
+      '1.2': { unit: 1, periods: { C: '2026-09-15', D: '2026-09-15' } },
     };
     const map = lessonMap({
       '1.1': { lessonGrade: 80 },
@@ -165,8 +151,7 @@ describe('computeQuarterFromLessons — date-driven quarter assignment (F2)', ()
       lessonMap: map,
       schedule,
       todayDateStr: TODAY,
-      section: 'PeriodB',
-      pcBandData: { P_quarter: 0 },
+      section: 'PeriodC',
       C: 85,
     });
     expect(q1.lessonsTotal).toBe(1);  // only 1.2 in Q1
@@ -180,8 +165,7 @@ describe('computeQuarterFromLessons — date-driven quarter assignment (F2)', ()
       lessonMap: map,
       schedule,
       todayDateStr: TODAY,
-      section: 'PeriodB',
-      pcBandData: { P_quarter: 0 },
+      section: 'PeriodC',
       C: 85,
     });
     expect(q2.lessonsTotal).toBe(1);  // only 1.1 in Q2
@@ -192,7 +176,7 @@ describe('computeQuarterFromLessons — date-driven quarter assignment (F2)', ()
   it('a null-date lesson falls back to its unit band', () => {
     // Lesson 1.1 has null dates -> falls back to Q1 (unit 1 is Q1).
     const schedule = {
-      '1.1': { unit: 1, periods: { B: null, E: null } },
+      '1.1': { unit: 1, periods: { C: null, D: null } },
     };
     const map = lessonMap({ '1.1': { lessonGrade: 70 } });
 
@@ -203,8 +187,7 @@ describe('computeQuarterFromLessons — date-driven quarter assignment (F2)', ()
       lessonMap: map,
       schedule,
       todayDateStr: TODAY,
-      section: 'PeriodB',
-      pcBandData: { P_quarter: 0 },
+      section: 'PeriodC',
       C: 85,
     });
     expect(q1.lessonsTotal).toBe(1);
@@ -216,8 +199,7 @@ describe('computeQuarterFromLessons — date-driven quarter assignment (F2)', ()
       lessonMap: map,
       schedule,
       todayDateStr: TODAY,
-      section: 'PeriodB',
-      pcBandData: { P_quarter: 0 },
+      section: 'PeriodC',
       C: 85,
     });
     expect(q2.lessonsTotal).toBe(0);
@@ -226,9 +208,9 @@ describe('computeQuarterFromLessons — date-driven quarter assignment (F2)', ()
   it('lessons from multiple units in the same quarter window count together', () => {
     // Q1 has units 1, 2, 3. Schedule has one lesson from each, all with Q1 dates.
     const schedule = {
-      '1.1': { unit: 1, periods: { B: '2026-09-15', E: '2026-09-15' } },
-      '2.1': { unit: 2, periods: { B: '2026-10-01', E: '2026-10-01' } },
-      '3.1': { unit: 3, periods: { B: '2026-11-01', E: '2026-11-01' } },
+      '1.1': { unit: 1, periods: { C: '2026-09-15', D: '2026-09-15' } },
+      '2.1': { unit: 2, periods: { C: '2026-10-01', D: '2026-10-01' } },
+      '3.1': { unit: 3, periods: { C: '2026-11-01', D: '2026-11-01' } },
     };
     const map = lessonMap({
       '1.1': { lessonGrade: 90 },
@@ -242,8 +224,7 @@ describe('computeQuarterFromLessons — date-driven quarter assignment (F2)', ()
       lessonMap: map,
       schedule,
       todayDateStr: TODAY,
-      section: 'PeriodB',
-      pcBandData: { P_quarter: 0 },
+      section: 'PeriodC',
       C: 85,
     });
     expect(q1.lessonsTotal).toBe(3);
@@ -253,20 +234,49 @@ describe('computeQuarterFromLessons — date-driven quarter assignment (F2)', ()
   });
 });
 
-// ── lesson-schedule.json sanity checks ───────────────────────────────────────
-//
-// SY2627 (2026-09-03): the file is GENERATED from the Desk's own calendar by
-// scripts/build-lesson-schedule-sy2627.mjs and carries the calendar it was built
-// from (`calendar`: first day, breaks, meeting days, quarters). These checks
-// validate the file against ITSELF + grade-config, so a regenerated file with a
-// changed calendar stays honest without hardcoded date copies here.
-//
-// Facts asserted:
-//   - 77 lessons (old ids); crosswalk-core topics dated for BOTH periods,
-//     bonus topics dated for NEITHER (null = never due)
-//   - B and E have DIFFERENT dates (B meets Mon/Tue/Thu/Fri, E Mon/Wed/Fri)
-//   - every date is that period's meeting day, not a closure, inside the
-//     school year, before the AP exam
-//   - the calendar's quarter windows equal grade-config's
 
+describe('published A2 schedule sanity', () => {
+  it('derives only authored lesson keys and C/D/G due dates from the published model', () => {
+    const lessons = loadA2Lessons();
+    const schedule = lessonScheduleFromModel(lessons);
+    expect(lessons.length).toBeGreaterThan(0);
+    expect(Object.keys(schedule).sort()).toEqual(lessons.map(lesson => lesson.key).sort());
+    expect(PHASE3_CONFIG.meetingDays).toEqual({ C: [1, 2, 4], D: [1, 3, 5], G: [2, 3, 4, 5] });
+    for (const lesson of lessons) {
+      expect(Object.keys(schedule[lesson.key].periods).sort()).toEqual(['C', 'D', 'G']);
+      for (const section of ['C', 'D', 'G']) {
+        const date = schedule[lesson.key].periods[section];
+        expect(date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(PHASE3_CONFIG.meetingDays[section]).toContain(new Date(date + 'T12:00:00Z').getUTCDay());
+        expect(quarterOfLesson(schedule[lesson.key], section, PHASE3_CONFIG)).toBe(quarterOfDate(date));
+        expect(quarterOfDate(date)).not.toBeNull();
+      }
+      expect(schedule[lesson.key].items.map(item => item.itemId)).toEqual([
+        'LC-' + lesson.key,
+        ...lesson.tryIts.map(item => 'TI-' + lesson.key + '-' + item.n),
+        'BL-U' + lesson.topic + '-L' + lesson.key.split('-')[1] + '-DESK_DONE',
+      ]);
+    }
+  });
 
+  it('keeps section-specific placement across the Q1/Q2 boundary, including G', () => {
+    const entry = { unit: 1, periods: { C: '2026-11-05', D: '2026-11-09', G: '2026-11-10' } };
+    expect(quarterOfLesson(entry, 'C', PHASE3_CONFIG)).toBe('Q1');
+    expect(quarterOfLesson(entry, 'D', PHASE3_CONFIG)).toBe('Q2');
+    expect(quarterOfLesson(entry, 'G', PHASE3_CONFIG)).toBe('Q2');
+  });
+
+  it('retains an early-release Wednesday as a D/G meeting day', () => {
+    const entry = { unit: 1, periods: { C: null, D: '2026-09-16', G: '2026-09-16' } };
+    expect(PHASE3_CONFIG.meetingDays.C).not.toContain(3);
+    for (const section of ['D', 'G']) {
+      expect(PHASE3_CONFIG.meetingDays[section]).toContain(3);
+      expect(quarterOfLesson(entry, section, PHASE3_CONFIG)).toBe('Q1');
+      const result = computeQuarterFromLessons({
+        quarterKey: 'Q1', config: PHASE3_CONFIG, lessonMap: new Map(),
+        schedule: { '1-1': entry }, todayDateStr: '2026-09-17', section,
+      });
+      expect(result.lessonsDue).toBe(1);
+    }
+  });
+});

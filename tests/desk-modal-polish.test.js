@@ -11,7 +11,7 @@
 //
 // @vitest-environment node
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -177,5 +177,64 @@ describe('DESK_MODAL_POLISH — prong A inline quiz score + removal regression p
     // grade track (which keys on source==='blooket'). §6 grade-exclusion intact.
     expect(body).toMatch(/artifact === 'blooket' \? 'BL-'/);
     expect(body).toMatch(/var source = artifact === 'quiz' \? 'curriculum_quiz' : 'worksheet'/);
+  });
+});
+
+
+describe('A2 resource progress local persistence', () => {
+  it('saves the student score and preserves visits and unrelated marks', async () => {
+    const visitedAt = '2026-09-16T12:00:00.000Z';
+    const marks = {
+      '1.1|worksheet': { visitedAt },
+      '1.1|blooket': { ts: visitedAt, score: 80 },
+    };
+    const setItem = vi.fn();
+    const showDialog = vi.fn();
+    const record = new Function(
+      'getStudentEmail', 'getStudentMarks', 'localStorage', 'showDialog',
+      'return (' + fnBody(DESK, 'recordProgress') + ');'
+    )(() => 'student@example.test', () => marks, { setItem }, showDialog);
+    expect(await record('1.1', 'worksheet', 70)).toBe(true);
+    expect(setItem).toHaveBeenCalledTimes(1);
+    const [key, serialized] = setItem.mock.calls[0];
+    expect(key).toBe('a2_desk_marks_student@example.test');
+    const saved = JSON.parse(serialized);
+    expect(saved['1.1|worksheet']).toEqual({ visitedAt, ts: expect.any(String), score: 70 });
+    expect(Number.isFinite(Date.parse(saved['1.1|worksheet'].ts))).toBe(true);
+    expect(saved['1.1|blooket']).toEqual({ ts: visitedAt, score: 80 });
+    expect(showDialog).not.toHaveBeenCalled();
+  });
+
+  it.each(['signed out', 'view as', 'storage failure'])('reports failure for %s', async mode => {
+    const setItem = vi.fn(() => {
+      if (mode === 'storage failure') throw new Error('quota exceeded');
+    });
+    const showDialog = vi.fn();
+    const showToast = vi.fn();
+    const record = new Function(
+      'getStudentEmail', 'getStudentMarks', 'localStorage', 'showDialog',
+      '_viewAsContext', '_showViewAsToast',
+      'return (' + fnBody(DESK, 'recordProgress') + ');'
+    )(
+      () => mode === 'signed out' ? null : 'student@example.test',
+      () => ({}), { setItem }, showDialog, () => mode === 'view as', showToast
+    );
+    expect(await record('1.1', 'worksheet', 70)).toBe(false);
+    if (mode === 'storage failure') {
+      expect(setItem).toHaveBeenCalledTimes(1);
+      expect(showDialog).toHaveBeenCalledWith(
+        expect.any(String), expect.stringContaining('quota exceeded'), 'OK'
+      );
+      return;
+    }
+    expect(setItem).not.toHaveBeenCalled();
+    if (mode === 'view as') {
+      expect(showToast).toHaveBeenCalledTimes(1);
+      expect(showDialog).not.toHaveBeenCalled();
+      return;
+    }
+    expect(showDialog).toHaveBeenCalledWith(
+      expect.any(String), expect.stringContaining('sign in'), 'OK'
+    );
   });
 });

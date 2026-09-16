@@ -193,6 +193,9 @@ hence D4.
 | U20 B06 ledger boundaries | 7 files (server ledger/review/offline inputs, desk Do Now ledger, FRQ rubric bundle, feeder wiring) | adapted/restored; no subject change | committed |
 | U20 B11 worksheet recovery + sign-in | 8 files | adapted/restored; two harness fixes (file-URL imports, spy references, submit settling); check.js already had the retry/announce contract | same commit |
 | U20 B12 flashcard state | 7 files | adapted; no subject change | same commit |
+| U20 B15 calendar/lesson display | 8 files | adapted/restored to the applyA2Pacing contract; no subject change | committed |
+| U20 B16 Desk interaction | 4 files | adapted; no subject change | same commit |
+| U20 B17 teacher feedback | 7 files | adapted; exposed a rebrand miss — the teacher workspace period filter still offered Period B/E (teacher-workspace.js now C/D/G) | same commit, PWA stamp bumped |
 | Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.

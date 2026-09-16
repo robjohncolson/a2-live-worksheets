@@ -82,10 +82,7 @@ describe('Item 8 -- additive hover (no full-black invert)', () => {
     // the old destructive invert is gone
     expect(html).not.toMatch(/\.dc:hover\s*\{[^}]*background-color:\s*var\(--black\)/);
   });
-  it('summer hover keeps the amber bg (title stays dark, selector preserved for the summer test)', () => {
-    expect(html).toMatch(/\.wk-row\.wk-summer \.dc:hover \.tl\s*\{[^}]*color:\s*#6b5200/);
-    expect(html).not.toMatch(/\.wk-row\.wk-summer \.dc:hover\s*\{[^}]*background-color:\s*var\(--black\)/);
-  });
+
 });
 
 describe('Item 10 -- date-aware corner grammar', () => {
@@ -182,7 +179,7 @@ describe('Item 13 -- honest pace-aware progress', () => {
   });
 
   // EXECUTE _computePace — the denominator must be the DEDUPED DOT-LESSON count, NOT every
-  // schedule cell (PC/poster/Welcome/baseline specials excluded). Regression guard for the
+  // schedule cell (non-lesson entries excluded). Regression guard for the
   // round-2 review major #1 (the bug shipped green under string-only tests).
   function loadComputePace(doneSet) {
     const sandbox = {};
@@ -194,8 +191,8 @@ describe('Item 13 -- honest pace-aware progress', () => {
   }
   it('_computePace counts ONLY deduped dot-lessons (specials + dups excluded from total)', () => {
     const p = loadComputePace();
-    const topics = ['Welcome', 'U1-PC1', '1.1', '1.2', 'U1-Poster', '1.3', '1.1']; // specials + a dup 1.1
-    const res = p(topics, {}, [], 0, 'E');
+    const topics = ['Welcome', 'Review', '1.1', '1.2', 'No School', '1.3', '1.1']; // specials + a dup 1.1
+    const res = p(topics, {}, [], 0, 'D');
     expect(res.total).toBe(3);   // only 1.1, 1.2, 1.3
     expect(res.done).toBe(0);
   });
@@ -205,14 +202,14 @@ describe('Item 13 -- honest pace-aware progress', () => {
     const S = [
       [2026, 8, 1, null, { t: '1.1', u: 1 }],
       [2026, 8, 2, null, { t: '1.2', u: 1 }],
-      [2026, 8, 2, null, { t: 'U1-PC1', kind: 'pc', u: 1 }],   // special — excluded from expected
+      [2026, 8, 2, null, { t: 'Review', u: 0 }],   // special — excluded from expected
       [2026, 11, 1, null, { t: '1.3', u: 1 }],                  // future
     ];
     const today = +new Date(2026, 8, 15);
-    const res = p(topics, {}, S, today, 'E');
+    const res = p(topics, {}, S, today, 'D');
     expect(res.total).toBe(3);
     expect(res.done).toBe(2);       // 1.1, 1.2 done
-    expect(res.expected).toBe(2);   // 1.1, 1.2 due by today; 1.3 future; PC excluded
+    expect(res.expected).toBe(2);   // 1.1, 1.2 due by today; 1.3 future; review excluded
   });
 });
 
@@ -281,7 +278,10 @@ describe('Item 3 -- aria-label + screen-reader live region', () => {
 
   // behavioral: cellAria produces flat, emoji-free text from the schedule entry
   function loadCellAria() {
-    const labels = loadCedLabels();
+    const labels = loadCedLabels({ lessons: {
+      '1.1': { ced2026: { status: 'core', newTopic: '1.1', newUnit: 1, newLabel: 'Key Features of Functions' } },
+      '1.2': { ced2026: { status: 'core', newTopic: '1.2', newUnit: 1, newLabel: 'Transformations of Functions' } },
+    } });
     const sandbox = { cedLabel: labels.cedLabel, cedDisplayText: labels.cedDisplayText };
     createContext(sandbox);
     runInContext(
@@ -289,6 +289,15 @@ describe('Item 3 -- aria-label + screen-reader live region', () => {
       fnBody(html, 'cellAria') + '\nthis.__a = cellAria;', sandbox);
     return sandbox.__a;
   }
+  it('announces A2 lesson names and dates without changing the lesson key', () => {
+    const aria = loadCellAria();
+    const cell = { t: '1.1', n: 'stale title', u: 1 };
+    expect(aria(cell, 'Sep 16')).toContain('Key Features of Functions');
+    expect(aria(cell, 'Sep 16')).toContain('Sep 16');
+    expect(cell.t).toBe('1.1');
+    expect(aria({ t: '1.2', n: 'planned lesson', u: 1 }, 'Sep 28')).toContain('Transformations of Functions');
+  });
+
   
   
 });
@@ -309,13 +318,12 @@ describe('Item 4 -- crisp stepped hover/press feedback', () => {
 
 // --- Item 5: one indicator scale -------------------------------------------
 
-describe('Item 5 -- the two corner dots are one 7px scale', () => {
-  it('status-dot is 7px to pair with poll-dot', () => {
+describe('Item 5 -- status indicator scale', () => {
+  it('status-dot remains a readable 7px indicator', () => {
     // the real (first position:absolute) status-dot rule -- 7px round
     expect(html).toMatch(/\.status-dot\s*\{[^}]*width:7px;\s*height:7px;\s*border-radius:50%/);
   });
-  it('mobile shrinks both dots and drops the 2x text', () => {
-    expect(html).toMatch(/\.poll-dot,\s*\.status-dot\s*\{\s*width:\s*5px/);
+  it('mobile drops the 2x text', () => {
     expect(html).toMatch(/\.dbl\s*\{\s*display:\s*none/);
   });
 });
@@ -340,7 +348,7 @@ describe('Item 7 -- dim levels are named :root vars', () => {
   });
 });
 
-// ═══ Round 3 — window redesign: dynamic sizing + Today button + summer next-up ═══
+// ═══ Round 3 — window redesign: dynamic sizing + Today button ═══
 
 describe('Window redesign -- dynamic sizing', () => {
   it('CAL_FOCUS_WEEKS is a let starting at 2, with MIN/MAX bounds', () => {
@@ -375,41 +383,6 @@ describe('Window redesign -- Today button', () => {
   it('the off-state keeps its flex slot (opacity/pointer-events, never display:none)', () => {
     expect(html).toMatch(/\.cal-today-btn\.cal-today-off\s*\{[^}]*pointer-events:\s*none/);
     expect(html).not.toMatch(/\.cal-today-btn\.cal-today-off\s*\{[^}]*display:\s*none/);
-  });
-});
-
-describe('Window redesign -- summer-aware next-up', () => {
-  it('rCal computes a summer next-up and marks the summer cell (fall line kept verbatim)', () => {
-    const b = fnBody(html, 'rCal');
-    expect(b).toMatch(/calNextUpTopic\(_orderedSummerTopics\(\)/);
-    expect(b).toMatch(/inf\.t === _nextUpTopic/);   // frozen fall pin still present
-    expect(b).toMatch(/wk\._summer\s*&&\s*_summerNextUp\s*&&\s*inf\.t\s*===\s*_summerNextUp/);
-  });
-  it('paintLocalDoneCells mirrors the summer next-up (survives the post-cache repaint)', () => {
-    const b = fnBody(html, 'paintLocalDoneCells');
-    expect(b).toMatch(/_orderedSummerTopics\(\)/);
-    expect(b).toMatch(/dataset\.summer\s*===\s*'1'\s*&&\s*summerNextUp/);
-  });
-  // behavioral: _orderedSummerTopics + calNextUpTopic over the summer track
-  function loadSummer(scheduleJson) {
-    const sandbox = { window: {} };
-    sandbox.window._summerSchedule = (scheduleJson === undefined) ? null : scheduleJson;
-    createContext(sandbox);
-    runInContext(
-      fnBody(html, '_orderedSummerTopics') + '\n' +
-      fnBody(html, 'localLessonState') + '\n' +
-      fnBody(html, 'calNextUpTopic') + '\n' +
-      'this.__o = _orderedSummerTopics; this.__n = calNextUpTopic;', sandbox);
-    return sandbox;
-  }
-  it('_orderedSummerTopics returns the schedule topics in order; [] when not loaded', () => {
-    const s = loadSummer({ lessons: [{ topic: '1.1' }, { topic: '1.2' }, { topic: '1.3' }] });
-    expect(s.__o()).toEqual(['1.1', '1.2', '1.3']);
-    expect(loadSummer(null).__o()).toEqual([]);
-  });
-  it('summer next-up = first not-done summer lesson (1.1 done -> 1.2)', () => {
-    const s = loadSummer({ lessons: [{ topic: '1.1' }, { topic: '1.2' }, { topic: '1.3' }] });
-    expect(s.__n(s.__o(), { '1.1|worksheet': { ts: 'y' } })).toBe('1.2');
   });
 });
 

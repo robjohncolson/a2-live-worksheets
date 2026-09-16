@@ -8,15 +8,19 @@
  * the DN2c/DN2d test approach. No network, no Supabase.
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
 import { JSDOM } from 'jsdom';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { createContext, runInContext } from 'vm';
-import { loadCedLabels } from './fixtures/ced2026-labels.js';
+import { computeDonow } from '../roster-server/donow.js';
+import { pathToFileURL } from 'node:url';
 
 const REPO_ROOT = resolve(__dirname, '..');
 const DESK_PATH = resolve(REPO_ROOT, 'desk.html');
+const opened = [];
+afterEach(() => opened.splice(0).forEach(dom => dom.window.close()));
+afterAll(() => document?.defaultView.close());
 
 describe('A2 Do Now actions', () => {
   it.each([
@@ -128,14 +132,9 @@ describe('DN3a — wiring', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function makeDesk({ token, tokenThrows, fetchImpl, serviceUrl = 'https://roster.example' } = {}) {
-  const els = new Map();
-  function el(id) {
-    if (!els.has(id)) els.set(id, { id, textContent: '', className: '', style: {} });
-    return els.get(id);
-  }
-  // Pre-create the two real ids the function queries.
-  el('donow-card');
-  el('donow-msg');
+  const dom = new JSDOM('<div id="donow-card"></div><div id="donow-msg"></div>');
+  opened.push(dom);
+  const el = id => dom.window.document.getElementById(id);
 
   const fetchCalls = [];
   const spiedFetch = async (url, opts) => {
@@ -145,8 +144,9 @@ function makeDesk({ token, tokenThrows, fetchImpl, serviceUrl = 'https://roster.
   };
 
   const sandbox = {
-    cedLabel: loadCedLabels().cedLabel,
-    document: { getElementById: el },
+    REGISTRY: { lessons: { '1.1': { title: 'Key Features of Functions' } } },
+    cedLabel: () => ({ text: '1-1 · Key Features of Functions' }),
+    document: dom.window.document,
     window: {
       ROSTER_SERVICE_URL: serviceUrl,
       rosterClient: {
@@ -157,7 +157,8 @@ function makeDesk({ token, tokenThrows, fetchImpl, serviceUrl = 'https://roster.
     console,
   };
   createContext(sandbox);
-  runInContext(fnBody(html, 'renderDoNow') + '\nthis.__rd = renderDoNow;', sandbox);
+  runInContext(fnBody(html, 'renderDoNow') + '\nthis.__rd = renderDoNow;', sandbox,
+    { filename: pathToFileURL(DESK_PATH).href });
   return { run: sandbox.__rd, el, fetchCalls };
 }
 
@@ -168,6 +169,7 @@ describe('DN3a runtime — renderDoNow states', () => {
     expect(d.el('donow-msg').textContent).toMatch(/Sign in/i);
     expect(d.el('donow-card').className).toBe('donow-signin');
     expect(d.el('donow-card').style.display).toBe('flex');
+    expect(d.fetchCalls).toHaveLength(0);
   });
 
   it('token + nextTask → message + fetches /donow with exact Bearer header (D7)', async () => {
@@ -175,16 +177,18 @@ describe('DN3a runtime — renderDoNow states', () => {
       token: 'tok',
       fetchImpl: async () => ({ json: async () => ({
         ok: true,
-        nextTask: { unit: 'U1', lesson: '1.2', activity: 'worksheet', progress: { done: 4, total: 12 } },
+        nextTask: { unit: 'U1', lesson: '1.1', activity: 'try-it', source: 'try-it', itemIds: ['TI-1-1-1'], progress: { done: 0, total: 1 } },
       }) }),
     });
     await d.run();
-    expect(d.el('donow-msg').textContent).toBe('Do Now: 1.2 · Variables — worksheet (4/12 done).');
+    expect(d.el('donow-msg').textContent).toBe('Do Now: 1-1 · Key Features of Functions — Try-Its (scored in class)');
     expect(d.el('donow-card').className).toBe('donow-todo');
     // Fetch spy: exact URL + Authorization header (not just a source regex).
     expect(d.fetchCalls).toHaveLength(1);
     expect(d.fetchCalls[0].url).toBe('https://roster.example/donow');
     expect(d.fetchCalls[0].opts.headers.Authorization).toBe('Bearer tok');
+    expect(d.fetchCalls[0].opts.method || 'GET').toBe('GET');
+    expect(d.fetchCalls[0].opts.body).toBeUndefined();
   });
 
   it('rosterClient.token() throws → graceful sign-in nudge, no throw, no fetch', async () => {
@@ -214,15 +218,22 @@ describe('DN3a runtime — renderDoNow states', () => {
     expect(d.el('donow-card').className).toBe('donow-done');
   });
 
-  it('PC-style nextTask (no lesson) → unit only, no crash', async () => {
-    const d = makeDesk({
-      token: 'tok',
-      fetchImpl: async () => ({ json: async () => ({
-        ok: true, nextTask: { unit: 'U1', lesson: null, activity: 'progress-check', progress: { done: 0, total: 38 } },
-      }) }),
-    });
+  it('ignores ledger work outside the published manifest without writing or launching it', async () => {
+    const manifest = { units: [{ unit: 'U1', lessons: [{ lesson: '1.1', activities: [
+      { activity: 'try-it', source: 'try-it', itemIds: ['TI-1-1-1'] },
+    ] }] }] };
+    const rows = [{ item_id: 'LC-1-2', source: 'lesson-check' }];
+    const snapshot = JSON.stringify({ rows, manifest });
+    const payload = { ok: true, ...computeDonow(rows, manifest) };
+    const d = makeDesk({ token: 'tok', fetchImpl: async () => ({ json: async () => payload }) });
     await d.run();
-    expect(d.el('donow-msg').textContent).toBe('Do Now: U1 — progress-check (0/38 done).');
+    expect(payload.lessons.map(lesson => lesson.lesson)).toEqual(['1.1']);
+    expect(payload.nextTask.itemIds).toEqual(['TI-1-1-1']);
+    expect(d.el('donow-msg').textContent).not.toContain('1-2');
+    expect(d.el('donow-msg').querySelector('a, button')).toBeNull();
+    expect(d.fetchCalls).toHaveLength(1);
+    expect(d.fetchCalls[0].opts.body).toBeUndefined();
+    expect(JSON.stringify({ rows, manifest })).toBe(snapshot);
   });
 
   it('fetch throws → quiet fallback, NEVER throws', async () => {

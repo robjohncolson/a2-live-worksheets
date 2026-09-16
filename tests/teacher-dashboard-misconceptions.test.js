@@ -6,16 +6,17 @@ const html = readFileSync(resolve('teacher-dashboard.html'), 'utf8');
 const panel = html.slice(html.indexOf('// BEGIN MISCONCEPTIONS PANEL'), html.indexOf('// END MISCONCEPTIONS PANEL'));
 let render, load, openDrawer, fetchJson;
 const fixture = {
-  ok: true, section: 'PeriodE', vocabReviewed: false,
+  ok: true, section: 'PeriodC', vocabReviewed: false,
+  worksheetLinks: { '1.1': 'tests/fixtures/a2/u1_lesson1_live.html' },
   class: [{ key: 'test', label: '<img src=x onerror=alert(1)>', draft: true, students: 1, activeStudents: 3,
-    lessons: ['1.4'], sources: { mcq: 1, frq: 1 }, lastSeen: '2026-09-11T12:00:00Z', skills: ['3.C'] }],
+    lessons: ['1.1'], sources: { mcq: 1, frq: 1 }, lastSeen: '2026-09-11T12:00:00Z', skills: ['3.C'] }],
   students: { one: { username: 'one', realName: '<script>bad()</script>', persistent: [
-    { key: 'test', label: 'Conditional percentages', draft: true, count: 2, itemIds: ['U1-L4-Q01'] },
+    { key: 'test', label: 'Domain and range', draft: true, count: 2, itemIds: ['LC-1-1-Q1'] },
   ] } },
-  evidence: { test: [{ studentId: 'one', ts: '2026-09-11T12:00:00Z', source: 'mcq', itemId: 'U1-L4-Q01',
+  evidence: { test: [{ studentId: 'one', ts: '2026-09-11T12:00:00Z', source: 'mcq', itemId: 'LC-1-1-Q1',
     evidence: { chosen: 'C', correct: 'A' } },
-  { studentId: 'one', ts: '2026-09-07T12:00:00Z', source: 'frq', itemId: 'WS-U1L4-reflect1',
-    evidence: { missing: '<b>denominator</b>', feedback: '<svg onload=bad()>' } }] },
+  { studentId: 'one', ts: '2026-09-07T12:00:00Z', source: 'frq', itemId: 'TI-1-1-1',
+    evidence: { missing: '<b>domain</b>', feedback: '<svg onload=bad()>' } }] },
 };
 
 beforeEach(() => {
@@ -55,8 +56,8 @@ describe('teacher misconception panel', () => {
     }
     expect(rows[0].key).toBe('done');
   });
-  it('renders frequent evidence above persistence with pills, quiz links, and the same actions', () => {
-    render({ ...fixture, frequent: [{ ...fixture.class[0], events: 2, weak: true, questionId: 'U1-L4-Q01' }] });
+  it('renders A2 frequent evidence with pills, supplied lesson links, and the same actions', () => {
+    render({ ...fixture, frequent: [{ ...fixture.class[0], events: 2, weak: true, questionId: 'LC-1-1-Q1' }] });
     const host = document.getElementById('misconceptions-frequent');
     expect(host.nextElementSibling.id).toBe('misconceptions-class');
     expect(host.querySelector('h3').textContent).toBe('Most frequent this window (no persistence filter)');
@@ -71,7 +72,7 @@ describe('teacher misconception panel', () => {
     const evidence = host.querySelectorAll('tr')[2];
     expect(evidence.hidden).toBe(false);
     expect(evidence.textContent).toContain('<svg onload=bad()>');
-    expect(host.querySelector('a').href).toBe('https://robjohncolson.github.io/curriculum_render/?u=1&l=4');
+    expect(host.querySelector('a').getAttribute('href')).toBe(fixture.worksheetLinks['1.1']);
     [...host.querySelectorAll('button')].find(node => node.textContent === 'Nudge').click();
     expect(openDrawer).toHaveBeenCalledWith(expect.objectContaining({ studentId: 'one' }));
     expect(fetchJson).not.toHaveBeenCalled();
@@ -103,7 +104,7 @@ describe('teacher misconception panel', () => {
     expect(evidence.hidden).toBe(true);
     document.querySelector('#misconceptions-class button').click();
     expect(evidence.hidden).toBe(false);
-    expect(evidence.textContent).toContain('chose C on U1-L4-Q01');
+    expect(evidence.textContent).toContain('chose C on LC-1-1-Q1');
     expect(evidence.textContent).toContain('<svg onload=bad()>');
     expect(document.querySelector('#misconceptions-students summary').textContent).toContain('2');
   });
@@ -115,20 +116,20 @@ describe('teacher misconception panel', () => {
   it('opens the existing composer prefilled without sending', () => {
     render(fixture);
     [...document.querySelectorAll('button')].find(node => node.textContent === 'Nudge').click();
-    expect(openDrawer).toHaveBeenCalledWith(expect.objectContaining({ studentId: 'one', section: 'PeriodE' }));
-    expect(document.getElementById('tsc-nudge-text').value).toContain('lessons 1.4');
+    expect(openDrawer).toHaveBeenCalledWith(expect.objectContaining({ studentId: 'one', section: 'PeriodC' }));
+    expect(document.getElementById('tsc-nudge-text').value).toContain('lessons 1.1');
     expect(document.getElementById('tsc-nudge-broadcast').checked).toBe(false);
     expect(fetchJson).not.toHaveBeenCalled();
-    expect(document.querySelector('#misconceptions-class a').getAttribute('href')).toBe('u1_lesson4_live.html');
+    expect(document.querySelector('#misconceptions-class a').getAttribute('href')).toBe(fixture.worksheetLinks['1.1']);
   });
   it('uses the section, selected window and existing authenticated fetch helper', async () => {
-    const option = document.createElement('option'); option.value = 'PeriodE';
+    const option = document.createElement('option'); option.value = 'PeriodC';
     document.getElementById('section-filter').appendChild(option);
     document.getElementById('misconceptions-days').value = '14';
     await load();
-    expect(fetchJson).toHaveBeenCalledWith('/class/misconceptions?section=PeriodE&days=14', 'fixture-secret');
+    expect(fetchJson).toHaveBeenCalledWith('/class/misconceptions?section=PeriodC&days=14', 'fixture-secret');
   });
-  it('lists all active remediation sheets from the DOK manifest with student/board/teacher links (textContent only)', () => {
+  it('lists all active remediation sheets from the remediation manifest with student/board/teacher links (textContent only)', () => {
     expect(html).toContain('id="misconceptions-sheets"');
     const fn = html.slice(html.indexOf('async function loadRemediationSheets'), html.indexOf('loadRemediationSheets();'));
     expect(fn).toContain("fetch('data/remediation-sheets.json'");
@@ -165,11 +166,11 @@ describe('teacher misconception panel', () => {
  it('uses vocabulary label text for tagged remediation targets without interpreting markup', async () => {
     const fn = html.slice(html.indexOf('async function loadRemediationSheets'), html.indexOf('loadRemediationSheets();'));
     const fetch = vi.fn(async url => ({ ok: true, json: async () => url === 'data/remediation-sheets.json'
-      ? { '1.1': { title: 'New sheet', misconceptions: ['counts-vs-percents', 'label:context'] } }
-      : { tags: { 'counts-vs-percents': { label: '<b>Compare percentages</b>' } } } }));
+      ? { '1.1': { title: 'New sheet', misconceptions: ['domain-vs-range', 'label:context'] } }
+      : { tags: { 'domain-vs-range': { label: '<b>Distinguish domain and range</b>' } } } }));
     const loadSheets = new Function('$', 'fetch', fn + ';return loadRemediationSheets;')(id => document.getElementById(id), fetch);
     await loadSheets();
     const host = document.getElementById('misconceptions-sheets');
-    expect(host.textContent).toContain('Targets: <b>Compare percentages</b>; context');
+    expect(host.textContent).toContain('Targets: <b>Distinguish domain and range</b>; context');
     expect(host.querySelector('b')).toBeNull();
  });

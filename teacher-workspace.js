@@ -330,7 +330,7 @@
     document.querySelector('.page-header').prepend(back);
     var toolbar = node('div', null, 'workspace-toolbar');
     toolbar.innerHTML = '<label>Find a student<input id="workspace-search" type="search" placeholder="Name or username"></label>' +
-      '<label>Period<select id="workspace-period"><option value="">All periods</option><option value="PeriodB">Period B</option><option value="PeriodE">Period E</option></select></label><span id="workspace-count" class="dim"></span>';
+      '<label>Period<select id="workspace-period"><option value="">All periods</option><option value="PeriodC">Period C</option><option value="PeriodD">Period D</option><option value="PeriodG">Period G</option></select></label><span id="workspace-count" class="dim"></span>';
     main.prepend(toolbar);
     var nav = node('nav', null, 'workspace-nav'); nav.setAttribute('aria-label', 'Teacher workspace');
     [['class', 'Class'], ['attention', 'Needs attention'], ['recent', 'Recent work'], ['recovery', 'More tools & recovery']].forEach(function (entry) {

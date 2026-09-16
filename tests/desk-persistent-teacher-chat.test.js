@@ -4,12 +4,13 @@
  *
  * Phases 2 and 3 of persistent teacher/student chat:
  * - student unread badge from /student/nudge-history rows
- * - nudge_notify handling over DogePresence
- * - teacher-only Desk compose -> POST /teacher/nudge + WS notify
+ * - retained notification filtering and history polling
+ * - teacher-only Desk compose -> authenticated POST /teacher/nudge
  */
 import { describe, it, expect, beforeEach } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { pathToFileURL } from 'node:url';
 import { createContext, runInContext } from 'vm';
 
 const REPO_ROOT = resolve(__dirname, '..');
@@ -52,7 +53,6 @@ function setupDom() {
 function loadChat({ role = 'student', username = 'Papaya_Fox', fetchImpl } = {}) {
   setupDom();
   const fetches = [];
-  const wsMessages = [];
   const store = makeStore();
   const session = { username, role, realName: username.replace(/_/g, ' ') };
   const sandbox = {
@@ -78,11 +78,7 @@ function loadChat({ role = 'student', username = 'Papaya_Fox', fetchImpl } = {})
     },
     _deskIsTeacher: () => role === 'teacher',
     DeskRoster: { realName: () => '' },
-    DogePresence: {
-      ws: { readyState: 1, send: (msg) => wsMessages.push(JSON.parse(msg)) },
-      connect: () => {},
-      getUsername: () => username,
-    },
+
   };
   sandbox.window = {
     ROSTER_SERVICE_URL: 'https://roster.test',
@@ -94,6 +90,7 @@ function loadChat({ role = 'student', username = 'Papaya_Fox', fetchImpl } = {})
   createContext(sandbox);
   runInContext(CHAT_SRC + `
     this.__chat = {
+      history: _fetchStudentDmHistory,
       rememberRows: _studentNudgeRememberRows,
       unreadFromRows: _studentNudgeUnreadFromRows,
       openStudentDm: _openStudentDmModal,
@@ -101,8 +98,8 @@ function loadChat({ role = 'student', username = 'Papaya_Fox', fetchImpl } = {})
       openTeacher: _openTeacherNudgeModal,
       sendTeacher: _sendTeacherNudgeFromDesk,
     };
-  `, sandbox);
-  return { sandbox, fetches, wsMessages, store, chat: sandbox.__chat };
+  `, sandbox, { filename: pathToFileURL(resolve(REPO_ROOT, 'desk.html')).href });
+  return { sandbox, fetches, store, chat: sandbox.__chat };
 }
 
 beforeEach(() => {
@@ -184,7 +181,7 @@ describe('teacher Desk compose', () => {
   
 
   it('POSTs durable /teacher/nudge for student polling', async () => {
-    const { chat, fetches, wsMessages } = loadChat({ role: 'teacher', username: 'Teacher_One' });
+    const { chat, fetches } = loadChat({ role: 'teacher', username: 'Teacher_One' });
     chat.openTeacher('Papaya_Fox');
     expect(document.getElementById('teacher-nudge-modal').style.display).toBe('block');
     document.getElementById('tnm-text').value = 'Please check the latest lesson.';
@@ -196,12 +193,56 @@ describe('teacher Desk compose', () => {
     expect(body.recipientUsernames).toEqual(['papaya_fox']);
     expect(body.text).toBe('Please check the latest lesson.');
     expect(body.nudgeId).toMatch(/^n_/);
-    expect(wsMessages).toEqual([]);
   });
 
   it('does not open compose for a student session', () => {
     const { chat } = loadChat({ role: 'student' });
     chat.openTeacher('Papaya_Fox');
     expect(document.getElementById('teacher-nudge-modal').style.display).toBe('none');
+  });
+});
+
+describe('durable chat failure and safe history rendering', () => {
+  it('renders teacher names and message markup as text', async () => {
+    const row = { direction: 'teacher', created_at: '2026-09-16T12:00:00Z',
+      sender_username: '<img src=x>', text: '<svg onload=bad()>Review domain and range</svg>' };
+    const { chat, fetches } = loadChat({ fetchImpl: async () => ({
+      ok: true, json: async () => ({ ok: true, rows: [row] }),
+    }) });
+    await chat.history();
+    const list = document.getElementById('sdm-history-list');
+    expect(list.textContent).toContain(row.sender_username);
+    expect(list.textContent).toContain(row.text);
+    expect(list.querySelector('img, svg, script')).toBeNull();
+    expect(fetches[0].opts.headers.Authorization).toBe('Bearer TOK');
+  });
+
+  it('shows a history network error and can recover on a later fetch', async () => {
+    let offline = true;
+    const { chat } = loadChat({ fetchImpl: async () => {
+      if (offline) throw new Error('offline');
+      return { ok: true, json: async () => ({ ok: true, rows: [] }) };
+    } });
+    await chat.history();
+    expect(document.getElementById('sdm-history-list').textContent).toBe('Error loading history.');
+    offline = false;
+    await chat.history();
+    expect(document.getElementById('sdm-history-list').textContent).toBe('No messages yet.');
+  });
+
+  it.each(['network', 'http'])('preserves a teacher draft after a %s failure', async mode => {
+    const { chat } = loadChat({ role: 'teacher', fetchImpl: async () => {
+      if (mode === 'network') throw new Error('offline');
+      return { ok: false, status: 503, json: async () => ({ ok: false, error: '<b>Unavailable</b>' }) };
+    } });
+    chat.openTeacher('Papaya_Fox');
+    document.getElementById('tnm-text').value = 'Review domain and range.';
+    await chat.sendTeacher();
+    expect(document.getElementById('tnm-text').value).toBe('Review domain and range.');
+    expect(document.getElementById('tnm-send').disabled).toBe(false);
+    const status = document.getElementById('tnm-status');
+    expect(status.classList.contains('is-error')).toBe(true);
+    expect(status.textContent).toContain(mode === 'network' ? 'offline' : '<b>Unavailable</b>');
+    expect(status.querySelector('b')).toBeNull();
   });
 });

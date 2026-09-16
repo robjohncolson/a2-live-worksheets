@@ -10,6 +10,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { pathToFileURL } from 'node:url';
 import { createContext, runInContext } from 'vm';
 
 const REPO_ROOT = resolve(__dirname, '..');
@@ -145,7 +146,6 @@ function buildSandbox({ warnLines, chimeCalls } = {}) {
       getElementById: (id) => ids[id] || null,
     },
     _playNudgeChime: function() { chimes.push(Date.now()); },
-    _classroomBoardHandle: null,
     window: {
       ROSTER_SERVICE_URL: null,
       rosterClient: null,
@@ -185,7 +185,7 @@ function buildSandbox({ warnLines, chimeCalls } = {}) {
     'this.__template = document.getElementById("nudge-toast-template");',
   ].join('\n');
 
-  runInContext(code, sandbox);
+  runInContext(code, sandbox, { filename: pathToFileURL(resolve(REPO_ROOT, 'desk.html')).href });
   return sandbox;
 }
 
@@ -453,5 +453,40 @@ describe('Server roster log fetch', () => {
     await sb.__sendById('r2');
 
     expect(fetches.length).toBe(0);
+  });
+});
+
+describe('retained roster reply boundaries', () => {
+  it('uses literal sender/message text and does not send a blank reply', async () => {
+    const sb = buildSandbox();
+    const fetchMock = vi.fn();
+    sb.fetch = fetchMock;
+    sb.window.ROSTER_SERVICE_URL = 'https://roster.test';
+    sb.window.rosterClient = { token: () => 'TOK' };
+    sb.__show({ nudgeId: 'safe', fromUsername: '<img src=x>', text: '<b>Review functions</b>' });
+    const toast = sb.__template._clones[0];
+    expect(toast.fromEl.textContent).toBe('<img src=x>');
+    expect(toast.textEl.textContent).toBe('<b>Review functions</b>');
+    toast.textarea.value = '   ';
+    await sb.__sendById('safe');
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(sb.__nudges.has('safe')).toBe(true);
+  });
+
+  it('bounds reply text and contains fetch errors without disturbing other messages', async () => {
+    const sb = buildSandbox();
+    const fetchMock = vi.fn().mockRejectedValue(new Error('offline'));
+    sb.fetch = fetchMock;
+    sb.window.ROSTER_SERVICE_URL = 'https://roster.test';
+    sb.window.rosterClient = { token: () => 'TOK' };
+    sb.__show({ nudgeId: 'reply', fromUsername: 'teacher', text: 'Review functions' });
+    sb.__show({ nudgeId: 'other', fromUsername: 'teacher', text: 'Keep this message' });
+    sb.__template._clones[0].textarea.value = '  ' + 'x'.repeat(300) + '  ';
+    await expect(sb.__sendById('reply')).resolves.toBeUndefined();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({
+      parentNudgeId: 'reply', recipientUsername: 'teacher', text: 'x'.repeat(280),
+    });
+    expect(sb.__nudges.has('other')).toBe(true);
   });
 });

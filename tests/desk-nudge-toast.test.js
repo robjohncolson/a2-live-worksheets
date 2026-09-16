@@ -5,7 +5,7 @@
  * Updated for the stacked-toast refactor (T2 of TEACHER_STUDENT_CONSOLE_P6_BUILD.md
  * section 3). The singleton #nudge-toast is replaced by #nudge-toast-stack +
  * #nudge-toast-template. All behavioral tests moved to nudge-toast-stack.test.js.
- * This file keeps the source structure + ClassroomBoard hook pins.
+ * This file keeps the retained toast DOM and styling contracts.
  */
 
 import { describe, it, expect } from 'vitest';
