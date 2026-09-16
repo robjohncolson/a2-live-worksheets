@@ -62,19 +62,17 @@ $buildArgs = @(
 )
 if ($Base) { $buildArgs += @('--base', $Base) }
 
+# Course id: env override wins; otherwise schoology_sync_section.py uses its
+# SECTION_TO_COURSE_ID map (SY26-27 PeriodC/D/G ids live there since 2026-09-15).
 $courseId = [Environment]::GetEnvironmentVariable("A2_SCHOOLOGY_COURSE_ID_$Section")
 if (-not $courseId) { $courseId = $env:A2_SCHOOLOGY_COURSE_ID }
-if (-not $courseId) {
-  Write-Log "ERROR: Set A2_SCHOOLOGY_COURSE_ID_$Section (or A2_SCHOOLOGY_COURSE_ID) to the A2 course id."
-  exit 1
-}
 $syncArgs = @(
   (Join-Path $toolsDir 'schoology_sync_section.py'),
   '--sync-section', $Section,
-  '--course-id', $courseId,
   '--grades-fixture', $fixture,
   '--granularity', 'component'   # must match step 1; --through defaults to today (NY)
 )
+if ($courseId) { $syncArgs += @('--course-id', $courseId) }
 if ($Live) { $syncArgs += '--apply' } else { $syncArgs += '--dry-run' }
 
 # Step 1 -- producer.

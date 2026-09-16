@@ -115,11 +115,11 @@ required. This preparation has not created any cloud resources or applied SQL.
    delete it and confirm it disappears. Supabase → Table Editor → `a2` → `roster`
    can independently confirm deletion.
 
-9. **Schoology dry-run on the A2 course.** In Schoology open the A2 course and copy
-   the numeric ID from its URL. In PowerShell at the repo root set
-   `$env:A2_SCHOOLOGY_COURSE_ID='ACTUAL_A2_COURSE_ID'` and
-   `$env:ROSTER_TEACHER_SECRET='YOUR_TEACHER_SECRET'` locally. For multiple courses,
-   use `A2_SCHOOLOGY_COURSE_ID_PeriodC`, `_PeriodD`, and `_PeriodG` instead.
+9. **Schoology dry-run on the A2 course.** The SY26-27 course IDs for PeriodC, PeriodD
+   and PeriodG are in `SECTION_TO_COURSE_ID` in `tools/schoology_sync_section.py`
+   (added 2026-09-15). Set `A2_SCHOOLOGY_COURSE_ID_PeriodC`, `_PeriodD`, or `_PeriodG`
+   only to override them. In PowerShell at the repo root set
+   `$env:ROSTER_TEACHER_SECRET='YOUR_TEACHER_SECRET'` locally.
    Keep the existing Edge CDP rig signed into Schoology, then run:
 
    ```powershell

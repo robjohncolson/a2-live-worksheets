@@ -59,6 +59,9 @@ SCHOOLOGY_BASE = ops.SCHOOLOGY_BASE
 # --- Algebra 2 sync targets per s120 P0 discovery + s121 user decision ---
 # Sec 1 = Period B; Sec 2 = Period E.
 SECTION_TO_COURSE_ID = {
+    "PeriodC": "8537065947",   # SY26-27 Algebra 2 Desk section C (teacher-supplied 2026-09-15)
+    "PeriodD": "8537065922",   # SY26-27 Algebra 2 Desk section D
+    "PeriodG": "8537065934",   # SY26-27 Algebra 2 Desk section G
     "PeriodB": "8537033028",   # SY26-27 "Algebra 2 · Section 1" (13 students; discovered via the rig 2026-09-04)
     "PeriodE": "8537033042",   # SY26-27 "Algebra 2 · Section 2" (15 students). SY25-26 mock courses were 7945275782 / 7945275798.
 }

@@ -104,7 +104,12 @@ import schoology_sync_lib as lib
 import schoology_components as components
 
 SECTION_TO_COURSE_ID = {
-    "PeriodC": None, "PeriodD": None, "PeriodG": None,
+    # SY26-27 Algebra 2 Desk sections, course ids from the teacher 2026-09-15
+    # (https://lynnschools.schoology.com/course/<id>/materials). Env vars
+    # A2_SCHOOLOGY_COURSE_ID_<Section> / --course-id still override these.
+    "PeriodC": "8537065947",
+    "PeriodD": "8537065922",
+    "PeriodG": "8537065934",
     "PeriodB": "8537033028",   # SY26-27 "Algebra 2 · Section 1" (13 students; discovered via the rig 2026-09-04)
     "PeriodE": "8537033042",   # SY26-27 "Algebra 2 · Section 2" (15 students). SY25-26 mock courses were 7945275782 / 7945275798.
     # Summer mock-grading (2026-06). PeriodY is a roster TEST section whose 3
