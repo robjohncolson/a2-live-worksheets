@@ -300,3 +300,16 @@ Findings worth carrying into lesson checks and topic assessments:
   `content/a2/source-docs/`; lessons 1-2 through 1-6 were added 2026-09-16.
 - The classification does not change grading. Every published lesson keeps the same Try-It,
   lesson-check, flashcard, and IXL supporting-skill pieces regardless of plan.
+
+## IXL skill codes
+
+- `data/ixl-algebra2-skills.json` maps every IXL Algebra 2 shortcut code (395 skills,
+  snapshot 2026-09-17) to its directory ID, name, strand, and the teacher's planning
+  domain/role. The code (PS2, W5Z) is IXL's permanent skill ID; the directory ID (A.3)
+  can move between years, so name skills by code in the day log and lessons.json.
+- Regenerate with `node scripts/build-ixl-skill-map.mjs` after dropping a newer
+  `IXL_Algebra2_*.xlsx` into `data/sources/` (the newest by name wins); `--check` is
+  pinned by `tests/a2-ixl-skill-map.test.js`.
+- `url` is filled only for skill pages verified in the teacher's IXL (the script's
+  `KNOWN_URLS`); `search` opens IXL search for the code. Day-log resource labels end
+  in `(CODE)` so the test can check their links against the lookup.
