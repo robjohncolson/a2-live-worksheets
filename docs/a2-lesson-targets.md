@@ -57,6 +57,13 @@ windows. The Desk calendar draws planned windows dimmed with no link and no due 
 teacher pacing tool can date a planned lesson ahead of publication (the override applies once
 the lesson is published). Grading only ever reads the published model.
 
+**IXL skills on the calendar.** Every lesson in Topics 1-2 has IXL skills in
+`data/a2-lesson-skills.json`, authored by IXL shortcut code (`prereq` first, then `core`) and
+resolved by `scripts/build-a2-lesson-skills.mjs` into `content/a2/lesson-skills.json`. A planned
+(unpublished) cell opens a panel listing the skills, so students can work IXL ahead of the lesson;
+a published lesson's panel and Desk card list the same skills. Map Topics 3+ the same way as they
+are authored.
+
 **Goals versus what landed.** Pacing dates are goals. `content/a2/day-log.json` is the day log:
 what actually happened per section and meeting day (`note`), or what is intended for a day
 (`plan`), plus extra `resources` per lesson (for example a Blooket set). The Desk marks a logged

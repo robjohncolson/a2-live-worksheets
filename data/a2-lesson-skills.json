@@ -1,0 +1,112 @@
+{
+  "about": "IXL skills per Savvas lesson, authored by IXL shortcut code (data/ixl-algebra2-skills.json resolves code -> name, directory id, link). `prereq` skills come first and are what a Group Jam warms up on; `core` skills are the lesson itself. A literal { name, url, level } entry is allowed for a skill outside the Algebra 2 map. Resolved by scripts/build-a2-lesson-skills.mjs into content/a2/lesson-skills.json (every lesson, for the calendar) and content/a2/lessons.json supportingSkills (published lessons). Topics 1-2 mapped 2026-09-17 from the lesson objectives in the Topic 2 docs and the Savvas lesson titles.",
+  "lessons": {
+    "1-1": [
+      { "name": "Graph inequalities on number lines", "url": "https://www.ixl.com/math/grade-8/graph-inequalities-on-number-lines", "level": "prereq" },
+      { "code": "LBJ", "level": "prereq" },
+      { "code": "PS2", "level": "prereq" },
+      { "code": "FS8", "level": "prereq" },
+      { "code": "W5Z", "level": "prereq" },
+      { "code": "78A", "level": "core" },
+      { "code": "PHD", "level": "core" }
+    ],
+    "1-2": [
+      { "code": "FS8", "level": "prereq" },
+      { "code": "23W", "level": "prereq" },
+      { "code": "R7X", "level": "core" },
+      { "code": "F6J", "level": "core" },
+      { "code": "PHV", "level": "core" },
+      { "code": "NNY", "level": "core" },
+      { "code": "RSN", "level": "core" },
+      { "code": "KT8", "level": "core" }
+    ],
+    "1-3": [
+      { "code": "LSG", "level": "prereq" },
+      { "code": "WRZ", "level": "core" },
+      { "code": "RVD", "level": "core" }
+    ],
+    "1-4": [
+      { "code": "C8R", "level": "core" },
+      { "code": "H82", "level": "core" },
+      { "code": "ZAH", "level": "core" },
+      { "code": "W6A", "level": "core" }
+    ],
+    "1-5": [
+      { "code": "SNN", "level": "prereq" },
+      { "code": "98Z", "level": "prereq" },
+      { "code": "ZBH", "level": "core" },
+      { "code": "FM2", "level": "core" },
+      { "code": "M69", "level": "core" },
+      { "code": "2JZ", "level": "core" },
+      { "code": "39B", "level": "core" }
+    ],
+    "1-6": [
+      { "code": "NJP", "level": "prereq" },
+      { "code": "M69", "level": "prereq" },
+      { "code": "P5A", "level": "core" },
+      { "code": "BW5", "level": "core" },
+      { "code": "2CN", "level": "core" },
+      { "code": "FT6", "level": "core" },
+      { "code": "X8H", "level": "core" },
+      { "code": "9S5", "level": "core" },
+      { "code": "U5D", "level": "core" }
+    ],
+    "2-1": [
+      { "code": "FS8", "level": "prereq" },
+      { "code": "RSN", "level": "prereq" },
+      { "code": "KQL", "level": "core" },
+      { "code": "WMS", "level": "core" },
+      { "code": "S9G", "level": "core" },
+      { "code": "2YJ", "level": "core" },
+      { "code": "URV", "level": "core" }
+    ],
+    "2-2": [
+      { "code": "8GN", "level": "prereq" },
+      { "code": "WMS", "level": "prereq" },
+      { "code": "L8C", "level": "core" },
+      { "code": "S9G", "level": "core" },
+      { "code": "AJ7", "level": "core" },
+      { "code": "4A7", "level": "core" },
+      { "code": "ED9", "level": "core" }
+    ],
+    "2-3": [
+      { "code": "NMZ", "level": "prereq" },
+      { "code": "UB5", "level": "prereq" },
+      { "code": "TRU", "level": "core" },
+      { "code": "CJC", "level": "core" },
+      { "code": "G2Q", "level": "core" },
+      { "code": "HPB", "level": "core" },
+      { "code": "DP9", "level": "core" }
+    ],
+    "2-4": [
+      { "code": "FG7", "level": "prereq" },
+      { "code": "5VV", "level": "core" },
+      { "code": "JVF", "level": "core" },
+      { "code": "VZ8", "level": "core" },
+      { "code": "EUT", "level": "core" },
+      { "code": "7U5", "level": "core" },
+      { "code": "MBM", "level": "core" }
+    ],
+    "2-5": [
+      { "code": "FG7", "level": "prereq" },
+      { "code": "9MW", "level": "core" },
+      { "code": "NPH", "level": "core" },
+      { "code": "2YJ", "level": "core" }
+    ],
+    "2-6": [
+      { "code": "CJC", "level": "prereq" },
+      { "code": "NPH", "level": "prereq" },
+      { "code": "YQH", "level": "core" },
+      { "code": "QHK", "level": "core" },
+      { "code": "CEU", "level": "core" },
+      { "code": "5VV", "level": "core" }
+    ],
+    "2-7": [
+      { "code": "M69", "level": "prereq" },
+      { "code": "BW5", "level": "prereq" },
+      { "code": "VQU", "level": "core" },
+      { "code": "HVZ", "level": "core" },
+      { "code": "DKB", "level": "core" }
+    ]
+  }
+}

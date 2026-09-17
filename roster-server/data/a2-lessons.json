@@ -12,13 +12,50 @@
     "supportingSkills": [
       {
         "name": "Graph inequalities on number lines",
-        "url": "https://www.ixl.com/math/grade-8/graph-inequalities-on-number-lines?lmsPlatform=3",
+        "url": "https://www.ixl.com/math/grade-8/graph-inequalities-on-number-lines",
         "level": "prereq"
       },
       {
+        "name": "Identify functions",
+        "url": "https://www.ixl.com/math/algebra-2/identify-functions",
+        "level": "prereq",
+        "code": "LBJ",
+        "directoryId": "A.2"
+      },
+      {
+        "name": "Evaluate functions",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-functions",
+        "level": "prereq",
+        "code": "PS2",
+        "directoryId": "A.3"
+      },
+      {
+        "name": "Find values using function graphs",
+        "url": "https://www.ixl.com/math/algebra-2/find-values-using-function-graphs",
+        "level": "prereq",
+        "code": "FS8",
+        "directoryId": "A.4"
+      },
+      {
+        "name": "Complete a table for a function graph",
+        "url": "https://www.ixl.com/math/algebra-2/complete-a-table-for-a-function-graph",
+        "level": "prereq",
+        "code": "W5Z",
+        "directoryId": "A.5"
+      },
+      {
         "name": "Domain and range",
-        "url": "https://www.ixl.com/math/algebra-2/domain-and-range?lmsPlatform=3",
-        "level": "core"
+        "url": "https://www.ixl.com/math/algebra-2/domain-and-range",
+        "level": "core",
+        "code": "78A",
+        "directoryId": "A.1"
+      },
+      {
+        "name": "Average rate of change",
+        "url": "https://www.ixl.com/math/algebra-2/average-rate-of-change",
+        "level": "core",
+        "code": "PHD",
+        "directoryId": "A.9"
       }
     ],
     "tryIts": [
@@ -114,7 +151,64 @@
       "G": "2026-10-09"
     },
     "onenoteUrl": null,
-    "supportingSkills": [],
+    "supportingSkills": [
+      {
+        "name": "Find values using function graphs",
+        "url": "https://www.ixl.com/math/algebra-2/find-values-using-function-graphs",
+        "level": "prereq",
+        "code": "FS8",
+        "directoryId": "A.4"
+      },
+      {
+        "name": "Graph an absolute value function",
+        "url": "https://www.ixl.com/math/algebra-2/graph-an-absolute-value-function",
+        "level": "prereq",
+        "code": "23W",
+        "directoryId": "H.3"
+      },
+      {
+        "name": "Function transformation rules",
+        "url": "https://www.ixl.com/math/algebra-2/function-transformation-rules",
+        "level": "core",
+        "code": "R7X",
+        "directoryId": "W.1"
+      },
+      {
+        "name": "Translations of functions",
+        "url": "https://www.ixl.com/math/algebra-2/translations-of-functions",
+        "level": "core",
+        "code": "F6J",
+        "directoryId": "W.2"
+      },
+      {
+        "name": "Reflections of functions",
+        "url": "https://www.ixl.com/math/algebra-2/reflections-of-functions",
+        "level": "core",
+        "code": "PHV",
+        "directoryId": "W.3"
+      },
+      {
+        "name": "Dilations of functions",
+        "url": "https://www.ixl.com/math/algebra-2/dilations-of-functions",
+        "level": "core",
+        "code": "NNY",
+        "directoryId": "W.4"
+      },
+      {
+        "name": "Transformations of functions",
+        "url": "https://www.ixl.com/math/algebra-2/transformations-of-functions",
+        "level": "core",
+        "code": "RSN",
+        "directoryId": "W.5"
+      },
+      {
+        "name": "Describe function transformations",
+        "url": "https://www.ixl.com/math/algebra-2/describe-function-transformations",
+        "level": "core",
+        "code": "KT8",
+        "directoryId": "W.6"
+      }
+    ],
     "tryIts": [
       {
         "n": 1,
@@ -221,7 +315,57 @@
       "G": "2026-10-23"
     },
     "onenoteUrl": null,
-    "supportingSkills": [],
+    "supportingSkills": [
+      {
+        "name": "Solve linear equations",
+        "url": "https://www.ixl.com/math/algebra-2/solve-linear-equations",
+        "level": "prereq",
+        "code": "SNN",
+        "directoryId": "B.1"
+      },
+      {
+        "name": "Solve linear inequalities",
+        "url": "https://www.ixl.com/math/algebra-2/solve-linear-inequalities",
+        "level": "prereq",
+        "code": "98Z",
+        "directoryId": "C.3"
+      },
+      {
+        "name": "Find solutions using a table",
+        "url": "https://www.ixl.com/math/algebra-2/find-solutions-using-a-table",
+        "level": "core",
+        "code": "ZBH",
+        "directoryId": "A.7"
+      },
+      {
+        "name": "Approximate solutions using a table",
+        "url": "https://www.ixl.com/math/algebra-2/approximate-solutions-using-a-table",
+        "level": "core",
+        "code": "FM2",
+        "directoryId": "A.8"
+      },
+      {
+        "name": "Solve a system of equations by graphing",
+        "url": "https://www.ixl.com/math/algebra-2/solve-a-system-of-equations-by-graphing",
+        "level": "core",
+        "code": "M69",
+        "directoryId": "E.2"
+      },
+      {
+        "name": "Solve absolute value equations",
+        "url": "https://www.ixl.com/math/algebra-2/solve-absolute-value-equations",
+        "level": "core",
+        "code": "2JZ",
+        "directoryId": "G.1"
+      },
+      {
+        "name": "Graph solutions to absolute value equations",
+        "url": "https://www.ixl.com/math/algebra-2/graph-solutions-to-absolute-value-equations",
+        "level": "core",
+        "code": "39B",
+        "directoryId": "G.2"
+      }
+    ],
     "tryIts": [
       {
         "n": 1,
@@ -301,7 +445,71 @@
       "G": "2026-11-06"
     },
     "onenoteUrl": null,
-    "supportingSkills": [],
+    "supportingSkills": [
+      {
+        "name": "Is (x, y) a solution to the system of equations?",
+        "url": "https://www.ixl.com/math/algebra-2/is-x-y-a-solution-to-the-system-of-equations",
+        "level": "prereq",
+        "code": "NJP",
+        "directoryId": "E.1"
+      },
+      {
+        "name": "Solve a system of equations by graphing",
+        "url": "https://www.ixl.com/math/algebra-2/solve-a-system-of-equations-by-graphing",
+        "level": "prereq",
+        "code": "M69",
+        "directoryId": "E.2"
+      },
+      {
+        "name": "Find the number of solutions to a system of equations",
+        "url": "https://www.ixl.com/math/algebra-2/find-the-number-of-solutions-to-a-system-of-equations",
+        "level": "core",
+        "code": "P5A",
+        "directoryId": "E.4"
+      },
+      {
+        "name": "Solve a system of equations using substitution",
+        "url": "https://www.ixl.com/math/algebra-2/solve-a-system-of-equations-using-substitution",
+        "level": "core",
+        "code": "BW5",
+        "directoryId": "E.6"
+      },
+      {
+        "name": "Solve a system of equations using elimination",
+        "url": "https://www.ixl.com/math/algebra-2/solve-a-system-of-equations-using-elimination",
+        "level": "core",
+        "code": "2CN",
+        "directoryId": "E.8"
+      },
+      {
+        "name": "Solve a system of equations using any method",
+        "url": "https://www.ixl.com/math/algebra-2/solve-a-system-of-equations-using-any-method",
+        "level": "core",
+        "code": "FT6",
+        "directoryId": "E.10"
+      },
+      {
+        "name": "Solve a system of equations in three variables using substitution",
+        "url": "https://www.ixl.com/math/algebra-2/solve-a-system-of-equations-in-three-variables-using-substitution",
+        "level": "core",
+        "code": "X8H",
+        "directoryId": "E.12"
+      },
+      {
+        "name": "Solve a system of equations in three variables using elimination",
+        "url": "https://www.ixl.com/math/algebra-2/solve-a-system-of-equations-in-three-variables-using-elimination",
+        "level": "core",
+        "code": "9S5",
+        "directoryId": "E.13"
+      },
+      {
+        "name": "Solve systems of linear inequalities by graphing",
+        "url": "https://www.ixl.com/math/algebra-2/solve-systems-of-linear-inequalities-by-graphing",
+        "level": "core",
+        "code": "U5D",
+        "directoryId": "F.4"
+      }
+    ],
     "tryIts": [
       {
         "n": 1,

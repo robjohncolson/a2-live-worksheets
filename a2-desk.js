@@ -8,6 +8,15 @@
   let yearPlan, pacingOverlay = {}, dayLogLoaded = false;
   // The day log (content/a2/day-log.json) is what landed in class; it decorates the
   // calendar and lesson panels and never changes a due date.
+  let skillsLoaded = false;
+  async function loadLessonSkills() {
+    if (skillsLoaded) return;
+    skillsLoaded = true;
+    try {
+      const map = await (await fetch('content/a2/lesson-skills.json')).json();
+      if (typeof applyA2LessonSkills === 'function') applyA2LessonSkills(map);
+    } catch (_) { /* optional */ }
+  }
   async function loadDayLog() {
     if (dayLogLoaded) return;
     dayLogLoaded = true;
@@ -91,10 +100,14 @@
         if (live.pacing && typeof live.pacing === 'object') pacingOverlay = live.pacing;
       } catch (_) { /* Published model remains readable offline. */ }
       const plan = await loadYearPlan();
-      await loadDayLog();
       if (version !== generation || session !== sessionKey()) return;
       // Lesson metadata and calendar windows are also needed in read-only views.
       if (typeof applyA2Pacing === 'function') { try { applyA2Pacing(lessons, plan ? { ...plan, overlay: pacingOverlay } : undefined); } catch (_) { /* calendar is optional */ } }
+      // Decorations (day log, IXL skills) load after the calendar exists; each repaints it.
+      await loadDayLog();
+      await loadLessonSkills();
+      // A torn-down page (a test window closed mid-refresh) has no document to paint.
+      if (version !== generation || session !== sessionKey() || !window.document) return;
       if (readOnly || readonly()) return;
       paintDueLine();
       const statuses = identity ? await Promise.all(lessons.map(lesson => A2Client.request('/lesson-status/' + lesson.key))) : [];

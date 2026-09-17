@@ -79,10 +79,21 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
     win.eval('_calPageOffset = 8'); win.rCal();          // page to the week of Nov 9
     const planned = win.document.querySelector('#cg .dc.cell-planned');
     expect(planned).toBeTruthy();
-    expect(planned.onclick).toBeNull(); expect(planned.dataset.topic).toBeUndefined();
+    expect(planned.dataset.topic).toBeUndefined();
+    // A planned cell opens a panel with the lesson's IXL skills (prereq first), no lesson check.
+    await vi.waitFor(() => expect(Object.keys(win.eval('A2_LESSON_SKILLS')).length).toBeGreaterThan(0), { interval: 50, timeout: 5000 });
+    planned.click();
+    expect(win.document.getElementById('resource-overlay').style.display).toBe('block');
+    expect(win.document.getElementById('resource-header').textContent).toContain('2-1');
+    const ixl = [...win.document.querySelectorAll('#resource-body a')].map(a => a.textContent);
+    expect(ixl[0]).toBe('IXL A.4: Find values using function graphs (prerequisite)');
+    expect(ixl).toContain('IXL N.4: Transformations of quadratic functions');
+    expect(win.document.getElementById('resource-body').textContent).not.toContain('Open lesson check');
+    win.document.getElementById('resource-overlay').style.display = 'none';
     expect(planned.dataset.planned).toBe('2.1'); expect(planned.textContent).toContain('planned');
     const assessment = win.document.querySelector('#cg .dc.cell-assess');
     expect(assessment).toBeTruthy(); expect(assessment.onclick).toBeNull();
+    expect(win.a2LessonSkills('1.6').map(s => s.directoryId)).toEqual(['E.1', 'E.2', 'E.4', 'E.6', 'E.8', 'E.10', 'E.12', 'E.13', 'F.4']);
     expect(assessment.textContent).toContain('Topic 1 Assessment');
     expect(win._orderedPeriodTopics()).not.toContain('2.1');
     expect(win._orderedPeriodTopics()).toContain('1.1');

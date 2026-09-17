@@ -685,7 +685,7 @@
         /* Year plan (data/a2-lesson-targets.json): a planned window for a lesson that is
            not published yet keeps its unit colour but recedes, with a dashed frame and no
            pointer; a topic assessment day is a solid dark cell. */
-        .cell-planned { opacity: .55; border: 2px dashed var(--plat-lo); cursor: default; }
+        .cell-planned { opacity: .55; border: 2px dashed var(--plat-lo); }
         .cell-planned .plan-tag { font-size: 9px; letter-spacing: .04em; text-transform: uppercase; opacity: .8; }
         .cell-assess { background: var(--black); color: var(--white); cursor: default; }
         .teacher-pacing { margin: 12px 0; padding: 8px 10px; border: 1px dashed var(--plat-lo); }
@@ -7009,6 +7009,52 @@ function applyA2DayLog(log) {
   return true;
 }
 function a2DayLogFor(dt, section) { return A2_DAY_LOG.byKey[_a2IsoDate(dt) + '|' + (section || cP)] || []; }
+// IXL skills per lesson (content/a2/lesson-skills.json, generated from data/a2-lesson-skills.json):
+// prereq skills first, then core. Shown for published AND planned lessons so a student can
+// see the year's IXL work on the calendar before a lesson is published.
+let A2_LESSON_SKILLS = {};
+function applyA2LessonSkills(map) {
+  if (!map || typeof map.lessons !== 'object') return false;
+  A2_LESSON_SKILLS = map.lessons;
+  if (typeof rCal === 'function') { try { rCal(); } catch (_) {} }
+  return true;
+}
+function a2LessonSkills(topic) { return A2_LESSON_SKILLS[String(topic).replace('.', '-')] || []; }
+function _appendIxlLinks(body, skills) {
+  (skills || []).filter(function (skill) { return skill && skill.url && skill.name; }).forEach(function (skill) {
+    var row = document.createElement('p');
+    var link = document.createElement('a');
+    link.textContent = 'IXL' + (skill.directoryId ? ' ' + skill.directoryId : '') + ': ' + skill.name + (skill.level === 'prereq' ? ' (prerequisite)' : '');
+    link.href = skill.url; link.target = '_blank'; link.rel = 'noopener';
+    row.appendChild(link); body.appendChild(row);
+  });
+}
+// Panel for a planned (unpublished) lesson: the window, the IXL skills, extra resources.
+function _showPlannedLessonPanel(inf, dateStr) {
+  var key = String(inf.t).replace('.', '-');
+  var header = document.getElementById('resource-header');
+  header.textContent = key + ' \u00b7 ' + (inf.n || 'Lesson') + ' (planned)';
+  header.style.color = ''; header.style.fontStyle = '';
+  var body = document.getElementById('resource-body');
+  body.textContent = '';
+  var note = document.createElement('p');
+  var due = null;
+  try { const entry = REGISTRY && REGISTRY.lessons && REGISTRY.lessons[inf.t]; due = entry && entry.periods && entry.periods[cP] && entry.periods[cP].date; } catch (_) {}
+  note.textContent = 'This lesson is not published yet' + (due ? '; Section ' + cP + ' window closes ' + due : '') + '. The IXL skills below are open now; the lesson check and Try-Its arrive with the lesson.';
+  body.appendChild(note);
+  var skills = a2LessonSkills(inf.t);
+  if (skills.length) _appendIxlLinks(body, skills);
+  else { var none = document.createElement('p'); none.textContent = 'No IXL skills mapped yet.'; body.appendChild(none); }
+  var _log = (typeof A2_DAY_LOG === 'object' && A2_DAY_LOG) ? A2_DAY_LOG : { entries: [], resources: {} };
+  (_log.resources[key] || []).forEach(function (res) {
+    if (!res || !res.url || !res.label) return;
+    var row = document.createElement('p'); var link = document.createElement('a');
+    link.textContent = res.label; link.href = res.url; link.target = '_blank'; link.rel = 'noopener';
+    row.appendChild(link); body.appendChild(row);
+  });
+  _lastResourcePanel = { inf: inf, dateStr: dateStr };
+  document.getElementById('resource-overlay').style.display = 'block';
+}
 // Fill each section's pacing queue from the lesson model and rebuild the calendar.
 // Called by a2-desk.js whenever the lesson list (with pacing overlay) is loaded.
 // `plan` is data/a2-lesson-targets.json (optionally with `overlay`, the server's
@@ -7690,16 +7736,14 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
         });
         body.appendChild(logList);
     }
-    var skills = lesson && Array.isArray(lesson.supportingSkills) ? lesson.supportingSkills : [];
-    skills.filter(function (skill) { return skill && skill.url && skill.name; }).forEach(function (skill) {
-        var row = document.createElement('p');
-        var link = document.createElement('a');
+    var skills = lesson && Array.isArray(lesson.supportingSkills) && lesson.supportingSkills.length ? lesson.supportingSkills
+        : (typeof a2LessonSkills === 'function' ? a2LessonSkills(inf.t) : []);
+    if (typeof _appendIxlLinks === 'function') _appendIxlLinks(body, skills);
+    else skills.filter(function (skill) { return skill && skill.url && skill.name; }).forEach(function (skill) {
+        var row = document.createElement('p'); var link = document.createElement('a');
         link.textContent = 'IXL: ' + skill.name + (skill.level === 'prereq' ? ' (prerequisite)' : '');
-        link.href = skill.url;
-        link.target = '_blank';
-        link.rel = 'noopener';
-        row.appendChild(link);
-        body.appendChild(row);
+        link.href = skill.url; link.target = '_blank'; link.rel = 'noopener';
+        row.appendChild(link); body.appendChild(row);
     });
 
     // View-as uses only the viewed student's /grade cache.
@@ -14661,6 +14705,10 @@ function rCal(){
             // that have archived polls. Click opens the result screen on the
             // classroom board. stopPropagation() prevents opening the resource panel.
             ;
+            if(inf&&typeof inf==='object'&&inf.planned){
+                c.style.cursor='pointer';
+                c.onclick=()=>{hTip();_showPlannedLessonPanel(inf,ds);};
+            }
             if(inf&&inf!==OFF&&inf!==NC&&inf!==EX&&inf!==PO&&inf.t&&!_isPlanCell){
                 c.style.cursor='pointer';
                 // Sequential lesson gate: only real lesson cells (dot-form
@@ -14859,7 +14907,8 @@ function sTip(ev,dt,inf,ds){if(inf===NC||!inf)return;
         if(inf.db)h+='<div class="th">** Double topic day **</div>';
         const keys=inf.group?groupTopics(inf):[inf.t];
         const re=keys.map(getRegistryEntry).find(Boolean);
-        if(inf.planned)h+='<div class="th">Planned window — lesson not yet published</div>';
+        if(inf.planned)h+='<div class="th">Planned window — lesson not yet published. Click for IXL skills</div>';
+        if(typeof a2LessonSkills==='function'&&!inf.kind){const _n=a2LessonSkills(inf.t).length;if(_n)h+='<div class="th">IXL: '+_n+' skill'+(_n===1?'':'s')+'</div>';}
         else if(re){
             // The tooltip FOLLOWS the cursor (mTip) and is pointer-events:none, so any
             // embedded link is unclickable. Just show how to open the lesson. (The old
@@ -14951,7 +15000,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-17-axhq';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-17-zg5b';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
