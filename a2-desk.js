@@ -1,22 +1,37 @@
 (function () {
   'use strict';
   let lessons = [], generation = 0;
+  let lessonStatuses = new Map(), statusSession = null;
   function node(tag, text, parent) { const result = document.createElement(tag); result.textContent = text; parent.append(result); return result; }
   function readonly() { return window.__WS_READ_ONLY__ || typeof _viewAsContext === 'function' && _viewAsContext(); }
-  function paintChips(host, status) {
-    A2Client.chips(status).forEach(text => node('span', text, host).className = 'a2-lesson-chip');
+  function sessionKey() {
+    const identity = window.rosterClient?.current();
+    return identity ? JSON.stringify([identity.studentId, identity.username, identity.section, window.rosterClient?.token()]) : null;
   }
-  // IXL Group Jam supporting skills: prerequisite skills first, then on-level.
-  // Links only; a jam produces no ledger row and never touches the grade.
-  function skills(host, lesson) {
-    const list = Array.isArray(lesson.supportingSkills) ? lesson.supportingSkills.filter(item => item && item.url && item.name) : [];
-    if (!list.length) return;
-    const row = node('p', 'IXL skills: ', host); row.className = 'a2-skills';
-    list.forEach((item, i) => {
-      if (i) node('span', ' · ', row);
-      const link = node('a', item.name + (item.level === 'prereq' ? ' (prerequisite)' : ''), row);
-      link.href = item.url; link.target = '_blank'; link.rel = 'noopener'; link.dataset.level = item.level || 'core';
-    });
+  function getStatus(topic) {
+    if (readonly() || !statusSession || statusSession !== sessionKey()) return undefined;
+    return lessonStatuses.get(String(topic).replace('.', '-'));
+  }
+  function paintDueLine() {
+    const message = document.getElementById('donow-msg');
+    if (!message) return;
+    message.querySelector('[data-a2-due]')?.remove();
+    const identity = window.rosterClient?.current();
+    if (!identity || readonly() || identity.mustChangePassword) return;
+    if (document.getElementById('donow-card')?.classList.contains('donow-signin')) return;
+    const section = String(identity.section || '').replace(/^Period/i, '');
+    const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
+    const start = typeof SCHEDULE_DEFS !== 'undefined' && SCHEDULE_DEFS['SY26-27']?.range?.start;
+    if (start) {
+      const startDay = start[0] + '-' + String(start[1] + 1).padStart(2, '0') + '-' + String(start[2]).padStart(2, '0');
+      if (today < startDay) return;
+    }
+    // Pacing assigns consecutive windows, ending on each section's due date.
+    const current = lessons.filter(lesson => lesson.sections?.[section] >= today)
+      .sort((a, b) => a.sections[section].localeCompare(b.sections[section]))[0];
+    if (!current) return;
+    const line = node('span', '\nCurrent lesson: ' + current.key + ' · ' + current.title + ' (due ' + current.sections[section] + ')', message);
+    line.dataset.a2Due = '';
   }
   function scores(host, status) {
     status.tryIts.scores.forEach(item => {
@@ -32,64 +47,64 @@
     });
   }
   async function refresh() {
-    if (readonly()) return;
     const version = ++generation;
+    const session = sessionKey();
+    const gradeHost = document.getElementById('a2-gradebook-scores');
+    const readOnly = !!readonly();
+    if (!readOnly) {
+      if (session !== statusSession) {
+        lessonStatuses = new Map();
+        statusSession = null;
+        if (gradeHost) gradeHost.textContent = '';
+      }
+      paintDueLine();
+    }
     const identity = window.rosterClient?.current();
-    const host = document.getElementById('a2-lessons');
-    if (!host) return;
     try {
       if (!lessons.length) {
         const published = await (await fetch('content/a2/lessons.json')).json();
         if (Array.isArray(published)) lessons = published;
       }
       try { const live = (await A2Client.request('/lessons')).lessons; if (Array.isArray(live) && live.length) lessons = live; } catch (_) { /* Published model remains readable offline. */ }
-      // Feed the two-week windows to the Desk calendar (no-op when nothing changed).
+      if (version !== generation || session !== sessionKey()) return;
+      // Lesson metadata and calendar windows are also needed in read-only views.
       if (typeof applyA2Pacing === 'function') { try { applyA2Pacing(lessons); } catch (_) { /* calendar is optional */ } }
+      if (readOnly || readonly()) return;
+      paintDueLine();
       const statuses = identity ? await Promise.all(lessons.map(lesson => A2Client.request('/lesson-status/' + lesson.key))) : [];
-      if (version !== generation) return;
-      host.textContent = '';
-      const todayHost = document.getElementById('a2-today'); todayHost.textContent = '';
-      const gradeHost = document.getElementById('a2-gradebook-scores'); gradeHost.textContent = '';
-      const section = String(identity?.section || '').replace(/^Period/i, '');
-      const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
-      // Lessons run about two weeks; a section's date is the last meeting day of
-      // that window (the due date). The current lesson is the first one not yet past.
-      const current = lessons.find(lesson => lesson.sections?.[section] && lesson.sections[section] >= today);
-      lessons.forEach((lesson, i) => {
-        const tile = node('article', '', host); tile.className = 'a2-lesson-tile'; tile.dataset.lesson = lesson.key;
-        node('h3', lesson.key + ' · ' + lesson.title, tile);
-        const link = node('a', 'Open lesson check', tile); link.href = 'check.html?lesson=' + lesson.key;
-        const deck = node('button', 'Flashcards', tile); deck.disabled = !identity;
-        deck.onclick = () => openBlooketFlashcards(null, lesson.key.replace('-', '.'));
-        skills(tile, lesson);
-        const status = statuses[i];
-        if (status) { paintChips(tile, status); const detail = node('details', '', tile); node('summary', lesson.tryIts.length + ' Try-It scores', detail); scores(detail, status);
-          node('h3', lesson.key + ' Try-Its', gradeHost); scores(gradeHost, status); }
-        else node('p', 'Sign in on the Desk to view your scores.', tile);
-        if (lesson === current) {
-          node('strong', 'Current lesson: ' + lesson.key + ' · ' + lesson.title + ' (due ' + lesson.sections[section] + ')', todayHost);
-          if (lesson.onenoteUrl) { const notes = node('a', ' OneNote lesson notes', todayHost); notes.href = lesson.onenoteUrl; notes.target = '_blank'; notes.rel = 'noopener'; }
-          skills(todayHost, lesson);
-          if (status) paintChips(todayHost, status);
-        }
-      });
+      if (version !== generation || session !== sessionKey() || readonly()) return;
+      lessonStatuses = new Map(lessons.map((lesson, i) => [lesson.key, statuses[i]]));
+      statusSession = session;
+      if (gradeHost) {
+        gradeHost.textContent = '';
+        lessons.forEach((lesson, i) => {
+          if (!statuses[i]) return;
+          node('h3', lesson.key + ' Try-Its', gradeHost);
+          scores(gradeHost, statuses[i]);
+        });
+      }
+      // Repaint scores even when the pacing dates did not change.
+      if (typeof rCal === 'function') rCal();
       if (identity && window.ROSTER_SERVICE_URL && typeof renderDoNowGrades === 'function') {
         await renderDoNowGrades(window.ROSTER_SERVICE_URL, rosterClient.token());
-        if (document.getElementById('my-gradebook-overlay').style.display === 'block') {
+        if (version !== generation || session !== sessionKey() || readonly()) return;
+        if (document.getElementById('my-gradebook-overlay')?.style.display === 'block') {
           _activeGradebook = _gradeGradebookCache;
           renderMyGradebook(_firstGradebookQuarter(_activeGradebook));
         }
       }
     } catch (error) {
-      if (version !== generation) return;
-      host.textContent = 'Lesson scores unavailable: ' + error.message;
-      document.getElementById('a2-gradebook-scores').textContent = '';
-      document.getElementById('a2-today').textContent = '';
+      if (version !== generation || session !== sessionKey() || readOnly || readonly()) return;
+      lessonStatuses = new Map();
+      statusSession = null;
+      if (gradeHost) gradeHost.textContent = 'Lesson scores unavailable: ' + error.message;
+      if (typeof rCal === 'function') rCal();
     }
   }
-  window.A2Desk = { refresh, getLesson: topic => lessons.find(item => item.key === String(topic).replace('.', '-')) };
+  window.A2Desk = { refresh, getStatus, paintDueLine,
+    getLesson: topic => lessons.find(item => item.key === String(topic).replace('.', '-')) };
   window.openA2Profile = function () {
-    if (readonly() || !rosterClient.current()) return;
+    if (readonly() || !rosterClient.current() || localStorage.getItem('a2_user_role') === 'teacher' || rosterClient.current().role === 'teacher') return;
     const dialog = document.getElementById('a2-profile');
     dialog.querySelector('select').value = String(rosterClient.current().section).replace(/^Period/i, '');
     dialog.showModal();

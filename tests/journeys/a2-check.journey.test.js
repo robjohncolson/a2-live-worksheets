@@ -38,8 +38,10 @@ it('C student signs in, completes 4/6 then 6/6, sees best 10/10 in the Desk and 
     await desk.signIn(user.username);
     await desk.window.A2Desk.refresh();
     expect(desk.window.rosterClient.current().section).toBe('C');
-    expect(desk.document.querySelector('[data-lesson="1-1"] a').getAttribute('href')).toBe('check.html?lesson=1-1');
-    check = new JSDOM(readFileSync('check.html', 'utf8'), { url: 'https://desk.test/check.html?lesson=1-1', runScripts: 'outside-only' });
+    desk.window.showResourcePanel({ t: '1.1' }, 'Sep 13');
+    const checkLink = desk.document.querySelector('#resource-body a');
+    expect(checkLink.getAttribute('href')).toBe('check.html?lesson=1-1');
+    check = new JSDOM(readFileSync('check.html', 'utf8'), { url: new URL(checkLink.getAttribute('href'), 'https://desk.test/').href, runScripts: 'outside-only' });
     const win = check.window;
     win.ROSTER_SERVICE_URL = base;
     win.rosterClient = { token: () => desk.window.rosterClient.token() };
@@ -60,7 +62,7 @@ it('C student signs in, completes 4/6 then 6/6, sees best 10/10 in the Desk and 
     await desk.waitFor(() => rows.length === 2);
     expect(rows[1].score).toBe(10);
     await desk.window.A2Desk.refresh();
-    expect(desk.document.querySelector('[data-lesson="1-1"]').textContent).toContain('Lesson check 100%');
+    expect(desk.window.A2Client.chips(desk.window.A2Desk.getStatus('1-1'))).toContain('Lesson check 100%');
     desk.window.openMyGradebook();
     expect(desk.document.getElementById('my-gradebook-body').textContent).toContain('10.0 / 10');
     const grade = await (await fetch(base + '/grade', { headers: { Authorization: 'Bearer ' + desk.window.rosterClient.token() } })).json();

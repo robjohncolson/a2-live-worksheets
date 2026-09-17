@@ -3,6 +3,10 @@ import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { bootDesk } from './journeys/harness.js';
 import { loadCedLabels } from './fixtures/ced2026-labels.js';
+import { JSDOM } from 'jsdom';
+import { runInContext } from 'node:vm';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const roadmap = JSON.parse(readFileSync('roadmap-data.json', 'utf8'));
 const lessons = JSON.parse(readFileSync('content/a2/lessons.json', 'utf8'));
@@ -58,3 +62,31 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
     expect(win.document.getElementById('pb').textContent).toContain('U1');
   } finally { desk.window.close(); }
 }, 10000);
+
+it('calendar chips use lesson statuses without lesson tiles and isolate view-as scores', () => {
+  const dom = new JSDOM('<div id="cell"></div>', { runScripts: 'outside-only' });
+  try {
+    const win = dom.window, cell = win.document.getElementById('cell');
+    const status = { tryIts: { scored: 2, total: 5, points: 3, scores: [] }, lessonCheck: 100, flashcardPassed: true };
+    const getStatus = vi.fn(() => status);
+    win.A2Desk = { getStatus };
+    runInContext(readFileSync('a2-client.js', 'utf8'), dom.getInternalVMContext(), { filename: pathToFileURL(resolve('a2-client.js')).href });
+    const html = readFileSync('desk.html', 'utf8');
+    const source = html.slice(html.indexOf('function renderA2LessonChips('), html.indexOf('function renderA2Categories('));
+    runInContext(source, dom.getInternalVMContext(), { filename: pathToFileURL(resolve('desk.html')).href });
+    win.renderA2LessonChips(cell, '1.1');
+    expect(getStatus).toHaveBeenCalledWith('1.1');
+    expect([...cell.children].map(item => item.textContent)).toEqual(win.A2Client.chips(status));
+    cell.textContent = '';
+    win.__WS_READ_ONLY__ = true;
+    win._gradeLessonsCache = [{ lessonKey: '1.1', ...status, lessonCheck: 50 }];
+    getStatus.mockClear();
+    win.renderA2LessonChips(cell, '1.1');
+    expect(getStatus).not.toHaveBeenCalled();
+    expect(cell.textContent).toContain('Lesson check 50%');
+    cell.textContent = '';
+    win._gradeLessonsCache = [];
+    win.renderA2LessonChips(cell, '1.1');
+    expect(cell.children).toHaveLength(0);
+  } finally { dom.window.close(); }
+});

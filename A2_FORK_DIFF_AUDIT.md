@@ -208,6 +208,7 @@ hence D4.
 | G server district-formula coverage | D7 | new district test mode (12 HTTP-level tests), `npm test` runs both modes | committed d8aa76a |
 | F1 receipts + scan verifier | U6 U7 U11 (D2 D3) | review: safe with 2 fixes (hardcoded issuer list bypassing registered keys; unsigned metadata beside a verified badge) — both fixed; workspace paste verifier now local; scan bridge test simulates embedding | committed with the PWA stamp bump |
 | F2 Do Now cues, calendar panel, study guide, remnants | U9 (D1), D9, U16 (D4), D5, workspace image host | review round 1: 3 fixes (single-click navigation conflicted with double-click grading and five journeys → resource panel now populated with Open lesson check / deck / IXL skills; image pass-through; Work Day cue from nextTask); round 2: view-as id carried on the panel link | committed with the PWA stamp bump |
+| Layout parity (teacher request) | A2-ADD tiles/Today card/Profile button between Do Now and calendar | removed; section picker moved to the User menu; chips and panel read A2Desk.getStatus with a /grade-cache fallback; panel shows A2 actions when the registry has no worksheet URL, else original rows + prepended check link; read-only sessions still load lesson metadata. Two Codex review rounds | committed with the PWA stamp bump |
 | Inherited test pins | `desk-modal-escape` pinned closers for stripped overlays | updated to assert the removed ids are absent | same commit |
 
 Gate after both batches: root suite 763 files, only the six baseline failures; server suite 80/80 green.

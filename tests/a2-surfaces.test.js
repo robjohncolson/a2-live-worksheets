@@ -17,10 +17,18 @@ it('renders district scores, minimum counts, grade and ceiling as text',()=>{
 });
 it('renders exactly three ledger-backed lesson chips',()=>{
  const dom=new JSDOM('<div></div>',{runScripts:'outside-only'});
+ dom.window.eval(readFileSync(new URL('../a2-client.js',import.meta.url),'utf8'));
  dom.window._gradeLessonsCache=[{lessonKey:'1.1',tryIts:{scored:3,total:5,points:5},lessonCheck:90,flashcardPassed:true}];
  const a=html.indexOf('function renderA2LessonChips('),b=html.indexOf('function renderA2Categories(',a);
  dom.window.eval(html.slice(a,b));dom.window.renderA2LessonChips(dom.window.document.querySelector('div'),'1.1');
- expect([...dom.window.document.querySelectorAll('span')].map(n=>n.textContent)).toEqual(['Try-Its 3/5 scored, 5 points','Lesson check 90%','Flashcards passed']);dom.window.close();
+ expect([...dom.window.document.querySelectorAll('span')].map(n=>n.textContent)).toEqual(['Try-Its 3/5 scored, 5 points','Lesson check 90%','Flashcards passed']);
+ const tile=dom.window.document.querySelector('div');
+ dom.window.A2Desk={getStatus:()=>({tryIts:{scored:5,total:5,points:10},lessonCheck:100,flashcardPassed:false})};
+ tile.textContent='';dom.window.renderA2LessonChips(tile,'1-1');
+ expect([...tile.querySelectorAll('span')].map(n=>n.textContent)).toEqual(['Try-Its 5/5 scored, 10 points','Lesson check 100%','Flashcards not passed']);
+ dom.window.__WS_READ_ONLY__=true;
+ tile.textContent='';dom.window.renderA2LessonChips(tile,'1-1');
+ expect([...tile.querySelectorAll('span')].map(n=>n.textContent)).toEqual(['Try-Its 3/5 scored, 5 points','Lesson check 90%','Flashcards passed']);dom.window.close();
 });
 it('ships the renamed Desk and three section controls',()=>{
  expect(existsSync(new URL('../desk.html',import.meta.url))).toBe(true);

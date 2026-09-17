@@ -1627,6 +1627,7 @@
             <div class="menu-dd-sep"></div>
             <div class="menu-dd-item" data-sfx onclick="closeMenus();openSignInModal()">&#128100; Sign In...</div>
             <div class="menu-dd-item" data-sfx onclick="closeMenus();changeMyPassword()">&#128273; Change Password...</div>
+            <div class="menu-dd-item disabled" role="menuitem" id="menu-a2-section" aria-disabled="true" data-sfx onclick="closeMenus();if(!this.hidden &amp;&amp; !this.classList.contains('disabled'))openA2Profile()">My section…</div>
             <div class="menu-dd-item" data-sfx onclick="closeMenus();signOutStudent()">&#128100; Sign Out</div>
         </div>
     </span>
@@ -1784,15 +1785,12 @@
                 <div class="donow-body">
                     <div class="donow-ttl chicago">Do Now</div>
                     <div id="donow-msg" class="geneva">…</div>
-                    <div id="a2-today" class="geneva"></div>
                     <span data-a2-announcement class="a2-announcement geneva" hidden></span>
                     <div id="donow-grades" class="geneva" aria-label="Quarter grade outlook"></div>
                     <div id="donow-grade-status" class="geneva" role="status" style="display:none"></div>
                     <div id="donow-helper" class="geneva"></div>
                 </div>
             </div>
-            <button type="button" onclick="openA2Profile()">Profile · Section C / D / G</button>
-            <section id="a2-lessons" aria-label="Algebra 2 lessons"></section>
             <div class="cal-outer geneva">
                 <div class="cal-nav">
                     <button id="cal-prev" class="cal-nav-btn" onclick="calStep(-1)" type="button" aria-label="Previous weeks">&#9664;</button>
@@ -4072,6 +4070,16 @@ function updateStudentMenu() {
   var role = null;
   try { role = localStorage.getItem('a2_user_role'); } catch (_) {}
   var who = (window.rosterClient && window.rosterClient.current && window.rosterClient.current()) || null;
+
+  var sectionItem = document.getElementById('menu-a2-section');
+  if (sectionItem) {
+    var hideSection = role === 'teacher' || (who && who.role === 'teacher') || !!window.__WS_READ_ONLY__
+      || (typeof _viewAsContext === 'function' && !!_viewAsContext());
+    var disableSection = !who || !!hideSection;
+    sectionItem.hidden = !!hideSection;
+    if (sectionItem.classList) sectionItem.classList.toggle('disabled', disableSection);
+    if (sectionItem.setAttribute) sectionItem.setAttribute('aria-disabled', String(disableSection));
+  }
 
   var statusText, chipText, chipTitle;
   if (who) {
@@ -6846,6 +6854,8 @@ async function renderDoNow() {
     show('Do Now: ' + where + ' — ' + act + prog + '.', 'todo');
   } catch (_) {
     // Absolute last-resort guard — the Desk must never break because of Do Now.
+  } finally {
+    if (window.A2Desk && typeof window.A2Desk.paintDueLine === 'function') window.A2Desk.paintDueLine();
   }
 }
 // Light poll: refresh the Do Now card when the tab regains focus (no interval —
@@ -7576,8 +7586,11 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
     var check = document.createElement('a');
     check.textContent = 'Open lesson check';
     var viewing = typeof _viewAsContext === 'function' && _viewAsContext();
-    var checkHref = 'check.html?lesson=' + encodeURIComponent(key);
-    if (viewing) checkHref += '&viewAsUserId=' + encodeURIComponent(viewing.studentId);
+    var publishedLesson = window.A2Desk && typeof window.A2Desk.getLesson === 'function'
+        ? window.A2Desk.getLesson(inf.t) : null;
+    var checkHref = publishedLesson ? 'check.html?lesson=' + encodeURIComponent(key)
+        : entry.urls.check;
+    if (viewing) checkHref += (checkHref.indexOf('?') === -1 ? '?' : '&') + 'viewAsUserId=' + encodeURIComponent(viewing.studentId);
     check.setAttribute('href', checkHref);
     check.className = 's7btn chicago';
     check.style.cssText = 'display:inline-block;padding:10px 16px;font-weight:bold';
@@ -7610,20 +7623,28 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
         body.appendChild(row);
     });
 
-    // /grade caches the same Try-It summary; the A2 tile also retains the
-    // rendered /lesson-status summary. Never borrow the teacher's tile in view-as.
-    var cached = typeof _gradeLessonsCache !== 'undefined' && Array.isArray(_gradeLessonsCache)
-        ? _gradeLessonsCache.find(function (item) { return item.lessonKey === inf.t; }) : null;
-    var tries = cached && cached.tryIts;
-    var summary = tries ? 'Try-Its ' + tries.scored + '/' + tries.total + ' scored, ' + tries.points + ' points' : '';
-    if (!summary && !viewing && !window.__WS_READ_ONLY__) {
-        var tile = Array.from(document.querySelectorAll('#a2-lessons [data-lesson]')).find(function (item) {
-            return item.dataset.lesson === key;
+    // View-as uses only the viewed student's /grade cache.
+    var lessonStatus = !viewing && !window.__WS_READ_ONLY__ && window.A2Desk && typeof window.A2Desk.getStatus === 'function'
+        ? window.A2Desk.getStatus(key) : null;
+    if (!lessonStatus && Array.isArray(window._gradeLessonsCache)) {
+        lessonStatus = window._gradeLessonsCache.find(function (item) {
+            return item && String(item.lessonKey).replace('.', '-') === key;
         });
-        var chip = tile && Array.from(tile.querySelectorAll('.a2-lesson-chip')).find(function (item) {
-            return item.textContent.startsWith('Try-Its ');
-        });
-        if (chip) summary = chip.textContent;
+    }
+    var summary = '';
+    if (lessonStatus && window.A2Client) {
+        // Normalize partial grade entries without changing the cached student data.
+        var tries = lessonStatus.tryIts || {};
+        summary = window.A2Client.chips({
+            tryIts: {
+                scored: tries.scored == null ? 0 : tries.scored,
+                total: tries.total == null ? (Array.isArray(tries.scores) ? tries.scores.length : 0) : tries.total,
+                points: tries.points == null ? 0 : tries.points,
+                scores: Array.isArray(tries.scores) ? tries.scores : []
+            },
+            lessonCheck: lessonStatus.lessonCheck == null ? null : lessonStatus.lessonCheck,
+            flashcardPassed: !!lessonStatus.flashcardPassed
+        }).join(' \u00b7 ');
     }
     if (summary) {
         var status = document.createElement('p');
@@ -7641,9 +7662,12 @@ function showResourcePanel(inf, dateStr) {
         _showWorkDayPanel(inf, dateStr);
         return;
     }
-    var a2Entry = typeof REGISTRY !== 'undefined' && REGISTRY.lessons && REGISTRY.lessons[inf.t];
-    if (a2Entry && a2Entry.urls && a2Entry.urls.check) {
-        _showA2ResourcePanel(inf, dateStr, a2Entry);
+    var a2Lesson = window.A2Desk && typeof window.A2Desk.getLesson === 'function'
+        ? window.A2Desk.getLesson(inf.t) : null;
+    var reg = getRegistryEntry(inf.t);
+    var hasWorksheet = !!(reg && reg.urls && reg.urls.worksheet && !/check\.html/.test(reg.urls.worksheet));
+    if (a2Lesson && !hasWorksheet) {
+        _showA2ResourcePanel(inf, dateStr, a2Lesson);
         return;
     }
     const topicIds = lookupTopic(inf.t);
@@ -7996,6 +8020,20 @@ function showResourcePanel(inf, dateStr) {
     }
 
     document.getElementById('resource-body').innerHTML = html;
+    if (a2Lesson) {
+        var checkRow = document.createElement('p');
+        var check = document.createElement('a');
+        var key = String(inf.t).replace('.', '-');
+        var checkHref = 'check.html?lesson=' + encodeURIComponent(key);
+        var viewing = typeof _viewAsContext === 'function' && _viewAsContext();
+        if (viewing) checkHref += '&viewAsUserId=' + encodeURIComponent(viewing.studentId);
+        check.textContent = 'Open lesson check';
+        check.setAttribute('href', checkHref);
+        check.className = 's7btn chicago';
+        check.style.cssText = 'display:inline-block;padding:10px 16px;font-weight:bold';
+        checkRow.appendChild(check);
+        document.getElementById('resource-body').prepend(checkRow);
+    }
     document.getElementById('resource-overlay').style.display = 'block';
     _lastResourcePanel = { inf: inf, dateStr: dateStr };
 
@@ -13063,11 +13101,28 @@ function _gbDateStr(d) {
 }
 
 function renderA2LessonChips(tile, topic) {
-    var lesson = (_gradeLessonsCache || []).find(function (entry) { return entry.lessonKey === topic; });
-    var tries = lesson && lesson.tryIts;
-    var texts = ['Try-Its ' + (tries ? tries.scored + '/' + tries.total + ' scored, ' + tries.points + ' points' : '0/5 scored, 0 points'),
-        'Lesson check ' + (lesson && lesson.lessonCheck != null ? lesson.lessonCheck.toFixed(0) + '%' : 'not attempted'),
-        'Flashcards ' + (lesson && lesson.flashcardPassed ? 'passed' : 'not passed')];
+    var viewing = window.__WS_READ_ONLY__ || (typeof _viewAsContext === 'function' && _viewAsContext());
+    var status = !viewing && window.A2Desk && typeof window.A2Desk.getStatus === 'function'
+        ? window.A2Desk.getStatus(topic) : null;
+    if (!status && Array.isArray(window._gradeLessonsCache)) {
+        status = window._gradeLessonsCache.find(function (entry) {
+            return entry && String(entry.lessonKey).replace('.', '-') === String(topic).replace('.', '-');
+        });
+    }
+    if (!status || !window.A2Client) return;
+    // Legacy grade entries may lack the A2 status fields. Normalize a copy so
+    // A2Client.chips receives a complete status without changing the cache.
+    var tries = status.tryIts || {};
+    var texts = window.A2Client.chips({
+        tryIts: {
+            scored: tries.scored == null ? 0 : tries.scored,
+            total: tries.total == null ? (Array.isArray(tries.scores) ? tries.scores.length : 0) : tries.total,
+            points: tries.points == null ? 0 : tries.points,
+            scores: Array.isArray(tries.scores) ? tries.scores : []
+        },
+        lessonCheck: status.lessonCheck == null ? null : status.lessonCheck,
+        flashcardPassed: !!status.flashcardPassed
+    });
     texts.forEach(function (text) {
         var chip = document.createElement('span');
         chip.className = 'a2-lesson-chip';
@@ -14762,7 +14817,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-16-hlbp';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-17-z53j';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
@@ -14919,7 +14974,7 @@ setTimeout(function() {
 }, 250);
 </script>
 <dialog id="a2-profile"><form id="a2-profile-form"><h2>Profile · Class section</h2><label>Section <select aria-label="Section"><option>C</option><option>D</option><option>G</option></select></label><button>Save section</button><button type="button" onclick="document.getElementById('a2-profile').close()">Cancel</button><p id="a2-profile-message" role="status"></p></form></dialog>
-<style>#a2-lessons{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}.a2-lesson-tile{background:white;padding:12px;border:2px solid #333;min-width:240px}.a2-lesson-tile button,#a2-gradebook-scores button,#a2-profile button,#a2-profile select{min-height:44px}.a2-lesson-chip{display:block;margin:4px 0}#a2-today{margin:8px 0}</style>
+<style>#a2-gradebook-scores button,#a2-profile button,#a2-profile select{min-height:44px}.a2-lesson-chip{display:block;margin:4px 0}</style>
 <script src="a2-client.js"></script><script src="a2-desk.js"></script>
 <link rel="stylesheet" href="a2-announcement.css"><script src="a2-announcement.js"></script>
 </body>

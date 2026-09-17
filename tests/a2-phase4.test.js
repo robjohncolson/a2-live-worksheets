@@ -1,6 +1,10 @@
+import { vi } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { JSDOM } from 'jsdom';
+import { runInContext } from 'node:vm';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import '../lib/a2-answers.js';
 
 const lessons = JSON.parse(readFileSync('content/a2/lessons.json', 'utf8'));
@@ -107,22 +111,70 @@ it('supporting IXL skills are https links, prerequisites first, and never graded
   // The server's lesson schedule has no IXL item, so a jam cannot reach the ledger.
   expect(readFileSync('roster-server/a2-lessons.js', 'utf8')).not.toMatch(/ixl|supportingSkills/i);
 });
-it('the Desk lesson tile links the supporting IXL skills for signed-out and today views', async () => {
-  const html = '<div id="a2-today"></div><div id="a2-lessons"></div><div id="a2-gradebook-scores"></div><dialog id="a2-profile"><form id="a2-profile-form"><select></select></form><p id="a2-profile-message"></p></dialog>';
+it('keeps the calendar directly after Do Now and moves section selection into User', () => {
+  const dom = new JSDOM(readFileSync('desk.html', 'utf8'), { url: 'https://desk.test', runScripts: 'outside-only' });
+  try {
+    const win = dom.window, doc = win.document;
+    expect(doc.querySelector('#a2-lessons, #a2-today')).toBeNull();
+    expect(doc.getElementById('donow-card').nextElementSibling.classList.contains('cal-outer')).toBe(true);
+    expect(doc.querySelector('#a2-profile')).not.toBeNull();
+    expect(doc.querySelector('#my-gradebook-overlay #a2-gradebook-scores')).not.toBeNull();
+    const item = doc.querySelector('#menu-student #menu-a2-section');
+    expect(item.textContent).toBe('My section…');
+    expect(item.getAttribute('onclick')).toContain('openA2Profile()');
+    const html = readFileSync('desk.html', 'utf8');
+    const start = html.indexOf('function updateStudentMenu()');
+    const source = html.slice(start, html.indexOf('\n}\n', start) + 2);
+    let identity = null, viewing = false;
+    win.rosterClient = { current: () => identity };
+    win.getStudentEmail = () => '';
+    win._viewAsContext = () => viewing;
+    runInContext(source, dom.getInternalVMContext(), { filename: pathToFileURL(resolve('desk.html')).href });
+    win.updateStudentMenu();
+    expect(item.classList.contains('disabled')).toBe(true);
+    expect(item.hidden).toBe(false);
+    identity = { username: 'student', section: 'C' };
+    win.updateStudentMenu();
+    expect(item.getAttribute('aria-disabled')).toBe('false');
+    win.localStorage.setItem('a2_user_role', 'teacher');
+    win.updateStudentMenu();
+    expect(item.hidden).toBe(true);
+    win.localStorage.removeItem('a2_user_role');
+    viewing = true;
+    win.updateStudentMenu();
+    expect(item.hidden).toBe(true);
+  } finally { dom.window.close(); }
+});
+it('refresh exposes statuses without tiles, retains gradebook scores, and adds one due line', async () => {
+  const html = '<div id="donow-card" class="donow-todo"><div id="donow-msg">Do Now</div></div><div id="a2-gradebook-scores"></div><dialog id="a2-profile"><form id="a2-profile-form"><select></select></form><p id="a2-profile-message"></p></dialog>';
   const dom = new JSDOM(html, { url: 'https://desk.test/desk.html', runScripts: 'outside-only' });
   try {
     const win = dom.window;
     const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
-    const dated = lessons.map(lesson => ({ ...lesson, sections: { C: today } }));
+    const dated = [{ ...lessons[0], sections: { C: today } }];
+    const status = { tryIts: { scored: 1, total: 5, points: 2, scores: [{ n: 1, itemId: 'TI-1-1-1', score: 2 }] }, lessonCheck: 100, flashcardPassed: true };
+    let identity = { username: 'student', section: 'PeriodC' };
     win.fetch = async () => ({ json: async () => dated });
-    win.A2Client = { request: async path => (path === '/lessons' ? { lessons: dated } : { tryIts: { scores: [] } }), chips: () => [], changed() {} };
-    win.rosterClient = { current: () => ({ section: 'PeriodC' }), token: () => 't' };
-    win.eval(readFileSync('a2-desk.js', 'utf8'));
-    await new Promise(resolve => setTimeout(resolve, 20));
-    const tileLinks = [...win.document.querySelectorAll('.a2-lesson-tile .a2-skills a')];
-    expect(tileLinks.map(a => a.textContent)).toEqual(['Graph inequalities on number lines (prerequisite)', 'Domain and range']);
-    expect(tileLinks.every(a => a.target === '_blank' && a.rel === 'noopener' && a.href.startsWith('https://www.ixl.com/'))).toBe(true);
-    expect(win.document.querySelectorAll('#a2-today .a2-skills a')).toHaveLength(2);
+    win.A2Client = { request: async path => path === '/lessons' ? { lessons: dated } : status, changed() {} };
+    win.rosterClient = { current: () => identity, token: () => 't' };
+    win.SCHEDULE_DEFS = { 'SY26-27': { range: { start: [2000, 0, 1] } } };
+    runInContext(readFileSync('a2-desk.js', 'utf8'), dom.getInternalVMContext(), { filename: pathToFileURL(resolve('a2-desk.js')).href });
+    await win.A2Desk.refresh();
+    expect(win.A2Desk.getLesson('1.1').key).toBe('1-1');
+    expect(win.A2Desk.getStatus('1-1')).toEqual(status);
+    expect(win.A2Desk.getStatus('1.1')).toEqual(status);
+    expect(win.A2Desk.getStatus('missing')).toBeUndefined();
+    expect(win.document.getElementById('a2-gradebook-scores').textContent).toContain('Try-It 1: 2/2');
+    win.A2Desk.paintDueLine();
+    expect(win.document.querySelectorAll('[data-a2-due]')).toHaveLength(1);
+    expect(win.document.getElementById('donow-msg').textContent).toContain('(due ' + today + ')');
+    win.SCHEDULE_DEFS['SY26-27'].range.start = [2999, 0, 1];
+    win.A2Desk.paintDueLine();
+    expect(win.document.querySelector('[data-a2-due]')).toBeNull();
+    identity = null;
+    expect(win.A2Desk.getStatus('1-1')).toBeUndefined();
+    await win.A2Desk.refresh();
+    expect(win.document.getElementById('a2-gradebook-scores').textContent).toBe('');
   } finally { dom.window.close(); }
 });
 it('signed-out check renders registry items but cannot submit', async () => {
@@ -153,5 +205,59 @@ it('the teacher gradebook renders an editable topic-assessment column', async ()
     expect(input.dataset.itemId).toBe('TA-T1');
     expect(input.closest('tr').dataset.studentId).toBe('student-c');
     await new Promise(resolve => setTimeout(resolve, 0));
+  } finally { dom.window.close(); }
+});
+
+
+it.each([
+  ['read-only', 'live'],
+  ['view-as', 'live'],
+  ['read-only', 'empty'],
+  ['view-as', 'offline'],
+])('refresh loads lesson metadata in %s mode with a %s overlay without student writes', async (mode, overlay) => {
+  const dom = new JSDOM('<div id="donow-msg"><span data-a2-due>Existing due line</span></div><div id="a2-gradebook-scores">Existing scores</div><form id="a2-profile-form"></form>', {
+    url: 'https://desk.test/desk.html', runScripts: 'outside-only',
+  });
+  try {
+    const win = dom.window;
+    const live = [{ ...lessons[0], title: 'Live lesson title' }];
+    win.__WS_READ_ONLY__ = mode === 'read-only';
+    win._viewAsContext = () => mode === 'view-as' ? { studentId: 'viewed-student' } : null;
+    win.rosterClient = { current: () => ({ username: 'teacher', section: 'PeriodC' }), token: () => 'teacher-token', updateSection: vi.fn() };
+    win.fetch = vi.fn(async () => ({ json: async () => lessons }));
+    win.A2Client = { request: vi.fn(async path => {
+      if (path !== '/lessons') throw new Error('Unexpected student request: ' + path);
+      if (overlay === 'offline') throw new Error('Offline');
+      return { lessons: overlay === 'empty' ? [] : live };
+    }), changed: vi.fn() };
+    win.applyA2Pacing = vi.fn();
+    win.renderDoNowGrades = vi.fn();
+    win.renderMyGradebook = vi.fn();
+    win.setP = vi.fn();
+    win.rCal = vi.fn();
+    win.ROSTER_SERVICE_URL = 'https://roster.test';
+    win.localStorage.setItem('sentinel', 'unchanged');
+    const storageWrite = vi.spyOn(win.Storage.prototype, 'setItem');
+    const storageRemove = vi.spyOn(win.Storage.prototype, 'removeItem');
+    const storageClear = vi.spyOn(win.Storage.prototype, 'clear');
+    const before = win.document.body.innerHTML;
+    runInContext(readFileSync('a2-desk.js', 'utf8'), dom.getInternalVMContext(), { filename: pathToFileURL(resolve('a2-desk.js')).href });
+    await win.A2Desk.refresh();
+    const expected = overlay === 'live' ? live : lessons;
+    expect(win.fetch).toHaveBeenCalledWith('content/a2/lessons.json');
+    expect(win.A2Client.request.mock.calls.every(args => args.length === 1 && args[0] === '/lessons')).toBe(true);
+    expect(win.A2Desk.getLesson('1.1')).toEqual(expected[0]);
+    expect(win.applyA2Pacing).toHaveBeenCalledWith(expected);
+    expect(win.A2Desk.getStatus('1.1')).toBeUndefined();
+    expect(win.document.body.innerHTML).toBe(before);
+    expect(win.renderDoNowGrades).not.toHaveBeenCalled();
+    expect(win.renderMyGradebook).not.toHaveBeenCalled();
+    expect(win.rosterClient.updateSection).not.toHaveBeenCalled();
+    expect(win.setP).not.toHaveBeenCalled();
+    expect(win.rCal).not.toHaveBeenCalled();
+    expect(win.A2Client.changed).not.toHaveBeenCalled();
+    expect(storageWrite).not.toHaveBeenCalled();
+    expect(storageRemove).not.toHaveBeenCalled();
+    expect(storageClear).not.toHaveBeenCalled();
   } finally { dom.window.close(); }
 });

@@ -19,7 +19,7 @@ describe('Desk menus', () => {
     expect(items.length).toBeGreaterThan(20);
     for (const [, classes, attrs] of items) {
       if (classes.includes('disabled')) {
-        expect(attrs, 'only the Full Year placeholder may be greyed').toMatch(/One school-year calendar|id="menu-student-status"|Teacher tools|font-style:italic/);
+        expect(attrs, 'placeholders and signed-out account actions may be greyed').toMatch(/One school-year calendar|id="menu-student-status"|id="menu-a2-section"|Teacher tools|font-style:italic/);
         continue;
       }
       expect(attrs, `item without onclick: ${attrs}`).toMatch(/onclick=/);
