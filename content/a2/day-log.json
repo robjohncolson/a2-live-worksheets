@@ -2,7 +2,22 @@
   "about": "What actually landed in class, per section and meeting day (Desk day log). Pacing dates are the goals; this log never moves them. `note` = what happened; `plan` = what is intended for that day before it happens. `resources` are extra links shown on a lesson's Desk panel for every section.",
   "resources": {
     "1-1": [
-      { "label": "Blooket: Key Features of Functions", "url": "https://dashboard.blooket.com/set/68f84a1540ca0ac2393b4936" }
+      {
+        "label": "Blooket: Key Features of Functions",
+        "url": "https://dashboard.blooket.com/set/68f84a1540ca0ac2393b4936"
+      },
+      {
+        "label": "IXL A.3 Evaluate functions (PS2)",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-functions"
+      },
+      {
+        "label": "IXL A.4 Find values using function graphs (FS8)",
+        "url": "https://www.ixl.com/math/algebra-2/find-values-using-function-graphs"
+      },
+      {
+        "label": "IXL A.5 Complete a table for a function graph (W5Z)",
+        "url": "https://www.ixl.com/math/algebra-2/complete-a-table-for-a-function-graph"
+      }
     ]
   },
   "entries": [
@@ -16,13 +31,13 @@
       "date": "2026-09-17",
       "section": "G",
       "lesson": "1-1",
-      "note": "IXL skills for 1-1 finished earlier. Group Jam on three IXL skills (PS2, FS8, W5Z), then back to the 1-1 lesson packet."
+      "note": "IXL skills for 1-1 finished earlier. Group Jam on three IXL skills: Evaluate functions (A.3, PS2), Find values using function graphs (A.4, FS8), Complete a table for a function graph (A.5, W5Z), then back to the 1-1 lesson packet."
     },
     {
       "date": "2026-09-21",
       "section": "C",
       "lesson": "1-1",
-      "plan": "Group Jam on IXL PS2, FS8, W5Z (as G did Sep 17), then back to the 1-1 lesson packet."
+      "plan": "Group Jam on three IXL skills: Evaluate functions (A.3, PS2), Find values using function graphs (A.4, FS8), Complete a table for a function graph (A.5, W5Z) (as G did Sep 17), then back to the 1-1 lesson packet."
     }
   ]
 }
