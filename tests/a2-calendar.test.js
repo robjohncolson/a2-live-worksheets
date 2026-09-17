@@ -60,6 +60,34 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
     expect(grid).toContain('Key Features of Functions');
     expect(grid).not.toContain('Variables');   // AP label must not leak
     expect(win.document.getElementById('pb').textContent).toContain('U1');
+    // Past Nov 6 the year plan fills the calendar: the Topic 1 assessment day, then
+    // planned windows for the unpublished lessons through 5-6 in June.
+    const cellOn = (month, day, col) => S.find(row => row[0] === 2026 + (month < 8 ? 1 : 0) && row[1] === month && row[2] === day)[col];
+    expect(cellOn(10, 9, 3)).toMatchObject({ kind: 'assessment', t: 'TA-1', u: 1 });   // C: Mon Nov 9
+    expect(cellOn(10, 10, 3)).toMatchObject({ t: '2.1', planned: true });               // C: Tue Nov 10 opens 2-1
+    expect(cellOn(10, 16, 3)).toMatchObject({ t: '2.1', planned: true });               // C: 2-1 due Nov 16
+    expect(cellOn(10, 6, 5)).toMatchObject({ t: '1.6' });                                // G: 1-6 due Fri Nov 6
+    expect(cellOn(10, 9, 5)).toBe(NC);                                                    // G does not meet Mondays
+    expect(cellOn(10, 10, 5)).toMatchObject({ kind: 'assessment', t: 'TA-1' });        // G: Tue Nov 10
+    expect(cellOn(5, 10, 3)).toMatchObject({ t: '5.6', planned: true });                // C: 5-6 due Jun 10, 2027
+    expect(cellOn(5, 14, 3)).toMatchObject({ kind: 'assessment', t: 'TA-5' });         // C: Mon Jun 14, 2027
+    expect(cellOn(5, 15, 3)).toBe(NC);                                                    // Topics 6-7 do not fit two-week windows
+    // Published cells stay live; planned cells and assessment days are inert.
+    const live = win.document.querySelector('#cg .dc[data-topic="1.1"]');
+    expect(live && live.onclick).toBeTruthy();
+    expect(live.getAttribute('role')).toBe('button');
+    win.eval('_calPageOffset = 8'); win.rCal();          // page to the week of Nov 9
+    const planned = win.document.querySelector('#cg .dc.cell-planned');
+    expect(planned).toBeTruthy();
+    expect(planned.onclick).toBeNull(); expect(planned.dataset.topic).toBeUndefined();
+    expect(planned.dataset.planned).toBe('2.1'); expect(planned.textContent).toContain('planned');
+    const assessment = win.document.querySelector('#cg .dc.cell-assess');
+    expect(assessment).toBeTruthy(); expect(assessment.onclick).toBeNull();
+    expect(assessment.textContent).toContain('Topic 1 Assessment');
+    expect(win._orderedPeriodTopics()).not.toContain('2.1');
+    expect(win._orderedPeriodTopics()).toContain('1.1');
+    expect(win._prevTopicInSequence('1.2')).toBe('1.1');
+    expect(win.document.getElementById('legend-bar').textContent).toContain('Planned (not yet published)');
   } finally { desk.window.close(); }
 }, 10000);
 

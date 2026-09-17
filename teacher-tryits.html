@@ -18,6 +18,9 @@
   const el = id => document.getElementById(id);
   const api = (path, body, method) => A2Client.request(path, body, method, el('secret').value);
   let lessons = [], mode = new URLSearchParams(location.search).get('mode') || 'tryits';
+  // Pacing overlay rows for every lesson the server knows, and the year plan
+  // (data/a2-lesson-targets.json) so unpublished planned lessons can be dated too.
+  let pacingOverlay = {}, yearPlan = null;
   let sending = Promise.resolve();
   function say(text) { el('message').textContent = text; }
   async function send(record) {
@@ -43,9 +46,15 @@
     el('grid').textContent = ''; el('prompts').textContent = '';
     A2Announcement.mountEditor(el('grid'), api);
     const form = document.createElement('form'); el('grid').append(form);
-    lessons.forEach(lesson => {
+    if (!yearPlan) { try { yearPlan = await (await fetch('data/a2-lesson-targets.json')).json(); } catch (_) { yearPlan = { lessons: [] }; } }
+    const published = new Set(lessons.map(lesson => lesson.key));
+    // Planned (unpublished) lessons from the year plan: the saved overlay wins over the
+    // generated dates; the overlay applies automatically once the lesson is published.
+    const planned = (yearPlan.lessons || []).filter(lesson => !published.has(lesson.key) && lesson.plan !== 'later' && lesson.sections)
+      .map(lesson => ({ ...lesson, planned: true, sections: pacingOverlay[lesson.key]?.sections || lesson.sections, onenoteUrl: pacingOverlay[lesson.key]?.onenoteUrl || null }));
+    [...lessons, ...planned].forEach(lesson => {
       const group = document.createElement('fieldset'); group.dataset.lesson = lesson.key; form.append(group);
-      text('legend', lesson.key + ' ' + lesson.title, group);
+      text('legend', lesson.key + ' ' + lesson.title + (lesson.planned ? ' (planned, not published)' : ''), group);
       ['C', 'D', 'G'].forEach(section => { const label = text('label', section, group); const input = document.createElement('input'); input.type = 'date'; input.name = section; input.value = lesson.sections?.[section] || ''; label.append(input); });
       const label = text('label', 'OneNote URL', group); const url = document.createElement('input'); url.type = 'url'; url.name = 'onenote'; url.placeholder = 'https://…'; url.value = lesson.onenoteUrl || ''; label.append(url);
     });
@@ -56,7 +65,8 @@
         const changes = Array.from(form.querySelectorAll('fieldset')).map(group => ({ key: group.dataset.lesson,
           sections: Object.fromEntries(['C','D','G'].map(section => [section, group.querySelector('[name="' + section + '"]').value || null])),
           onenoteUrl: group.querySelector('[name=onenote]').value || null }));
-        lessons = (await api('/teacher/lessons', { lessons: changes }, 'PUT')).lessons;
+        const saved = await api('/teacher/lessons', { lessons: changes }, 'PUT');
+        lessons = saved.lessons; pacingOverlay = saved.pacing || {};
         say('Pacing saved'); A2Client.changed();
       } catch (error) { say(error.message); } finally { save.disabled = false; }
     };
@@ -64,7 +74,8 @@
   async function load() {
     try {
       say('Loading…');
-      lessons = (await api('/teacher/lessons')).lessons;
+      const served = await api('/teacher/lessons');
+      lessons = served.lessons; pacingOverlay = served.pacing || {};
       const selected = el('lesson').value;
       el('lesson').textContent = '';
       const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());

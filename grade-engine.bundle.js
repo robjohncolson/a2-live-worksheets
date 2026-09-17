@@ -7,7 +7,7 @@
  *
  * Regenerate after any engine edit:  node scripts/build-grade-engine.mjs
  * Parity is pinned by tests/grade-engine-bundle-parity.test.js.
- * engine-version: 80663149243b
+ * engine-version: a714f3a02ea1
  */
 ;(function (root) {
   'use strict';
@@ -282,11 +282,16 @@
       // Grade-side frq uses frqBand directly; this is the diagnostic binary only.
       frqDiagnosticCorrectThreshold: 0.5,
     
+      // Units per quarter follow the SY26-27 year plan (data/a2-lesson-targets.json,
+      // scripts/build-a2-year-plan.mjs, two calendar weeks per lesson): Topic 1 in Q1,
+      // Topic 2 in Q2, Topics 3-4 in Q3, Topic 5 in Q4 (6-7 are unscheduled and fall
+      // back to Q4). Grades bucket lessons by due DATE (quarterOfLesson); this list is
+      // only the fallback for an undated lesson and the dashboard's unit labels.
       quarters: {
-        Q1: { units: [1, 2, 3], start: '2026-09-02', end: '2026-11-06' },
-        Q2: { units: [4, 5],    start: '2026-11-09', end: '2027-01-22' },
-        Q3: { units: [6, 7],    start: '2027-01-25', end: '2027-04-14' },
-        Q4: { units: [8, 9],    start: '2027-04-15', end: '2027-06-17' },
+        Q1: { units: [1],       start: '2026-09-02', end: '2026-11-06' },
+        Q2: { units: [2],       start: '2026-11-09', end: '2027-01-22' },
+        Q3: { units: [3, 4],    start: '2027-01-25', end: '2027-04-14' },
+        Q4: { units: [5, 6, 7], start: '2027-04-15', end: '2027-06-17' },
       },
     
       // IANA timezone for computing "today" in the date filter (Phase 6).
@@ -2602,7 +2607,7 @@
     isCorrect: __reg["scoring"].isCorrect,
     normalizeResponse: __reg["scoring"].normalizeResponse,
     scoreAgainstKey: __reg["scoring"].scoreAgainstKey,
-    _engineVersion: "80663149243b",
+    _engineVersion: "a714f3a02ea1",
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = __api;

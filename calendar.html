@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <title>Redirecting to Algebra 2 Calendar...</title>
 <script>
+  // Sections are C, D and G (SY26-27). The AP-era B and E links map to C and D.
   var params = new URLSearchParams(window.location.search);
-  var period = (params.get('period') || 'B').toUpperCase();
-  if (period !== 'B' && period !== 'E') period = 'B';
+  var period = (params.get('period') || 'C').toUpperCase();
+  if (period === 'B') period = 'C';
+  if (period === 'E') period = 'D';
+  if (period !== 'C' && period !== 'D' && period !== 'G') period = 'C';
   window.location.replace('desk.html?period=' + period);
 </script>
 </head>

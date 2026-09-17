@@ -5,6 +5,21 @@ export function loadA2Lessons() {
   return JSON.parse(readFileSync(new URL('./data/a2-lessons.json', import.meta.url), 'utf8'));
 }
 
+// The year plan (data/a2-lesson-targets.json, synced by scripts/sync-server-shared.mjs):
+// every Savvas lesson with its plan and, for scheduled lessons, planned section dates.
+export function loadA2Targets() {
+  try { return JSON.parse(readFileSync(new URL('./data/a2-lesson-targets.json', import.meta.url), 'utf8')); }
+  catch (_) { return { lessons: [] }; }
+}
+
+// Lessons the pacing tool may date: the published model plus every year-plan lesson
+// that is not `later`. An overlay for an unpublished lesson waits until it is published.
+export function pacingKeys(lessons, targets) {
+  const keys = new Set(lessons.map(lesson => lesson.key));
+  for (const lesson of targets?.lessons || []) if (lesson.plan !== 'later') keys.add(lesson.key);
+  return keys;
+}
+
 export function overlayLessons(lessons, overlay = {}) {
   return lessons.map(lesson => ({ ...lesson, ...(overlay[lesson.key] || {}) }));
 }
@@ -20,11 +35,12 @@ export function lessonScheduleFromModel(lessons) {
   }]));
 }
 
-export function validatePacing(lessons, changes) {
+export function validatePacing(lessons, changes, targets) {
   if (!Array.isArray(changes)) throw new Error('lessons must be an array');
+  const allowed = pacingKeys(lessons, targets);
   const overlay = {};
   for (const change of changes) {
-    if (!lessons.some(lesson => lesson.key === change.key)) throw new Error('Unknown lesson');
+    if (!change || !allowed.has(change.key)) throw new Error('Unknown lesson');
     const sections = {};
     for (const section of ['C', 'D', 'G']) {
       const date = change.sections?.[section];

@@ -87,8 +87,8 @@ describe('quarterOfLesson', () => {
   });
 
   it('entry with no periods at all falls back to quarterOfUnit', () => {
-    const entry = { unit: 4 };
-    expect(quarterOfLesson(entry, null, PHASE3_CONFIG)).toBe('Q2');
+    const entry = { unit: 4 };   // SY26-27 year plan: Topics 4-5 are the Q3 fallback band
+    expect(quarterOfLesson(entry, null, PHASE3_CONFIG)).toBe('Q3');
   });
 
   it('uses period-specific date when period is provided', () => {
@@ -106,8 +106,8 @@ describe('quarterOfLesson', () => {
 
   it('date outside all windows falls back to quarterOfUnit', () => {
     // 2020 date: outside all quarter windows -> fallback to unit band.
-    const entry = { unit: 6, periods: { C: '2020-01-01', D: '2020-01-01' } };
-    expect(quarterOfLesson(entry, 'C', PHASE3_CONFIG)).toBe('Q3');
+    const entry = { unit: 6, periods: { C: '2020-01-01', D: '2020-01-01' } };   // Topics 6-7: Q4 band
+    expect(quarterOfLesson(entry, 'C', PHASE3_CONFIG)).toBe('Q4');
   });
 
   it('a known section with a null date falls back to the unit band, not the other section', () => {

@@ -682,6 +682,12 @@
         .cell-noclass { background: var(--white); color: var(--plat-lo); }
         .cell-post { background: var(--white); color: var(--black); }   /* red diamond glyph */
         .cell-work { background: var(--plat); border: 2px dotted var(--plat-lo); }  /* artist palette glyph */
+        /* Year plan (data/a2-lesson-targets.json): a planned window for a lesson that is
+           not published yet keeps its unit colour but recedes, with a dashed frame and no
+           pointer; a topic assessment day is a solid dark cell. */
+        .cell-planned { opacity: .55; border: 2px dashed var(--plat-lo); cursor: default; }
+        .cell-planned .plan-tag { font-size: 9px; letter-spacing: .04em; text-transform: uppercase; opacity: .8; }
+        .cell-assess { background: var(--black); color: var(--white); cursor: default; }
         /* Today: a crisp 2px inset frame (thinner than the 3px state rings — a deliberate
            hierarchy cue) seated slightly forward. The old "◀TODAY" corner chip is dropped:
            the frame already signals today, the countdown strip names the date, and the
@@ -2302,18 +2308,8 @@ function _mergeRegistryData(fresh) {
       if (Object.prototype.hasOwnProperty.call(incoming, 'ced2026')) existing.ced2026 = incoming.ced2026;
     }
   }
-  // Protect the C/D/G calendar only once A2 pacing has loaded. Read-only
-  // view-as skips A2Desk.refresh(), so it still needs the roadmap calendar.
-  if (Array.isArray(fresh.calendar) && (typeof cYear === 'undefined' || cYear !== 'SY26-27' || !_a2PacingSignature)) {
-    S = fresh.calendar.map(function (row) {
-      const parts = row.date.split('-').map(Number);
-      const cell = function (topic) {
-        const lesson = REGISTRY.lessons[topic];
-        return lesson ? d(topic, lesson.title || lesson.topic || topic, Number(topic.split('.')[0])) : NC;
-      };
-      return [parts[0], parts[1] - 1, parts[2], cell(row.B), cell(row.E)];
-    });
-  }
+  // The C/D/G calendar is built only by applyA2Pacing (published model + year plan);
+  // the AP-era `calendar` array (B/E columns) is no longer read.
   if (fresh.generatedAt) REGISTRY.generatedAt = fresh.generatedAt;
   if (fresh.registryVersion) REGISTRY.registryVersion = fresh.registryVersion;
   return true;
@@ -5302,8 +5298,10 @@ function paintDonowCells() {
 // Never throws (returns [] on any error).
 function _orderedPeriodTopics() {
   try {
+    // Planned (unpublished) windows and assessment days are not lessons a student can
+    // do, so they never become next-up, a gate predecessor, or a pace denominator.
     return S.map(function (e) { return calendarEntry(e); })
-            .filter(function (x) { return x && typeof x === 'object' && x.t; })
+            .filter(function (x) { return x && typeof x === 'object' && x.t && !x.planned && x.kind !== 'assessment'; })
             .map(function (x) { return x.t; });
   } catch (_) { return []; }
 }
@@ -6944,11 +6942,14 @@ function cedTeacherBridgeAllowed() {
     } catch (_) { return false; }
 }
 // SY26-27 Algebra 2 calendar. Closures come from lynn-public-schools-2026-2027.md
-// (months are 0-based). Pacing is filled at runtime by applyA2Pacing() from the
-// published lesson model (content/a2/lessons.json, overlaid by /lessons): each lesson
-// occupies every meeting day of its section from the day after the previous lesson's
-// due date through its own due date (about two weeks). Section course ids live in
-// tools/schoology_sync_section.py, not here.
+// (months are 0-based) and are also read by scripts/build-a2-year-plan.mjs. Pacing
+// is filled at runtime by applyA2Pacing() from the published lesson model
+// (content/a2/lessons.json, overlaid by /lessons) plus the year plan
+// (data/a2-lesson-targets.json): each lesson occupies every meeting day of its
+// section from the day after the previous lesson's due date through its own due
+// date. Unpublished planned lessons draw as dimmed "planned" cells with no link,
+// and each topic's assessment day draws as an assessment cell. Section course ids
+// live in tools/schoology_sync_section.py, not here.
 const SCHEDULE_DEFS = {
   'SY26-27': {
     label: '2026–27', school: 'Lynn English High School',
@@ -6986,10 +6987,21 @@ let S = [];
 let _a2PacingSignature = '';
 // Fill each section's pacing queue from the lesson model and rebuild the calendar.
 // Called by a2-desk.js whenever the lesson list (with pacing overlay) is loaded.
-function applyA2Pacing(lessons) {
+// `plan` is data/a2-lesson-targets.json (optionally with `overlay`, the server's
+// pacing overlay keyed by lesson): its unpublished scheduled lessons become planned
+// cells and its `assessments` become one assessment cell per topic and section.
+// Grading never reads planned cells; only the published model has due work.
+function applyA2Pacing(lessons, plan) {
   if (!Array.isArray(lessons)) return false;
   const def = SCHEDULE_DEFS['SY26-27'];
-  const signature = JSON.stringify(lessons.map(l => [l.key, l.title, l.sections]));
+  const publishedKeys = new Set(lessons.map(l => l.key));
+  const overlay = (plan && plan.overlay) || {};
+  const planned = (plan && Array.isArray(plan.lessons) ? plan.lessons : [])
+    .filter(l => !publishedKeys.has(l.key) && l.plan !== 'later')
+    .map(l => ({ key: l.key, title: l.title, sections: (overlay[l.key] && overlay[l.key].sections) || l.sections, planned: true }))
+    .filter(l => l.sections);
+  const assessments = (plan && plan.assessments) || {};
+  const signature = JSON.stringify([lessons.map(l => [l.key, l.title, l.sections]), planned.map(l => [l.key, l.sections]), assessments]);
   if (signature === _a2PacingSignature) return false;
   _a2PacingSignature = signature;
   const offSet = buildOffSet(def.daysOff || []);
@@ -7009,16 +7021,29 @@ function applyA2Pacing(lessons) {
   for (const section of Object.keys(def.periods)) {
     const queue = [];
     let cursor = new Date(rangeStart);
-    const dated = lessons.filter(l => l.sections && l.sections[section])
-      .sort((a, b) => a.sections[section].localeCompare(b.sections[section]));
-    for (const lesson of dated) {
-      const [y, m, dd] = lesson.sections[section].split('-').map(Number);
+    // Published lessons win over planned ones; assessments occupy their own day.
+    const items = [];
+    for (const lesson of lessons) {
+      if (lesson.sections && lesson.sections[section]) items.push({ date: lesson.sections[section], cell: d(lesson.key.replace('-', '.'), lesson.title, Number(lesson.key.split('-')[0])) });
+    }
+    for (const lesson of planned) {
+      if (!lesson.sections[section]) continue;
+      const cell = d(lesson.key.replace('-', '.'), lesson.title, Number(lesson.key.split('-')[0]));
+      cell.planned = true;
+      items.push({ date: lesson.sections[section], cell });
+    }
+    for (const topic of Object.keys(assessments)) {
+      const date = assessments[topic] && assessments[topic][section];
+      if (date) items.push({ date, cell: { kind: 'assessment', t: 'TA-' + topic, n: 'Topic ' + topic + ' Assessment', u: Number(topic), due: '', as: '', db: false, ced: null } });
+    }
+    items.sort((a, b) => a.date.localeCompare(b.date));
+    for (const item of items) {
+      const [y, m, dd] = item.date.split('-').map(Number);
       const due = new Date(y, m - 1, dd);
       if (due < cursor) continue;
-      const cell = d(lesson.key.replace('-', '.'), lesson.title, Number(lesson.key.split('-')[0]));
       for (let dt = new Date(cursor); dt <= due; dt.setDate(dt.getDate() + 1)) {
         if (!def.periods[section].meetsDays.includes(dt.getDay()) || offSet.has(dayKey(dt))) continue;
-        queue.push(cell);
+        queue.push(item.cell);
       }
       cursor = new Date(due); cursor.setDate(cursor.getDate() + 1);
     }
@@ -7092,7 +7117,11 @@ function generateSchedule(def){
       const config = def.periods[period];
       if (!config || !config.meetsDays.includes(date.getDay())) return NC;
       const lesson = queues[period].shift();
-      return lesson ? d(lesson.t, lesson.n, lesson.u, lesson.due, lesson.as, lesson.db) : NC;
+      if (!lesson) return NC;
+      const cell = d(lesson.t, lesson.n, lesson.u, lesson.due, lesson.as, lesson.db);
+      if (lesson.kind) cell.kind = lesson.kind;       // assessment / work days
+      if (lesson.planned) cell.planned = true;        // unpublished year-plan window
+      return cell;
     });
     return [...day, ...cells];
   });
@@ -7232,6 +7261,8 @@ function updateLegend(def){
   if (def === SCHEDULE_DEFS['SY26-27']) h+='<div class="legend-item"><div class="legend-sw cell-work"></div>Work Day</div>';
   for(const u of def.units) h+='<div class="legend-item"><div class="legend-sw" style="background:var(--u'+u.id+')"></div>U'+u.id+' '+u.label+'</div>';
   if (def === SCHEDULE_DEFS['SY26-27']) h+='<div class="legend-item"><div class="legend-sw" style="background:var(--bonus)"></div>★ Beyond the Exam</div>';
+  if (def === SCHEDULE_DEFS['SY26-27']) h+='<div class="legend-item"><div class="legend-sw cell-planned" style="background:var(--u2)"></div>Planned (not yet published)</div>';
+  if (def === SCHEDULE_DEFS['SY26-27']) h+='<div class="legend-item"><div class="legend-sw cell-assess"></div>Topic Assessment</div>';
   h+='<div class="legend-item"><div class="legend-sw" style="background:var(--rev)"></div>Review</div>';
   h+='<div class="legend-item"><div class="legend-sw" style="background:var(--exam-bg);border:1px solid #999"></div>Exam</div>';
   h+='<div class="legend-item"><div class="legend-sw cell-off" style="border:1px solid #999"></div>No School</div>';
@@ -14191,7 +14222,7 @@ function cls(i){
     if(i===NC||!i)return"cell-noclass";
     
     if(i.kind==='work')return"cell-work";
-    
+    if(i.kind==='assessment')return"cell-assess";
     if(i.t===R)return"cell-rev";
     if(typeof cYear==='undefined'||cYear==='SY26-27'){
         i.ced=i.group?groupLabel(i):cedLabel(i.t);
@@ -14201,6 +14232,7 @@ function cls(i){
 }
 function htm(i,ds){
     if(i&&i.kind==='work')return `<div class="dn">${ds}</div><div class="tl">Work Day</div>`;
+    if(i&&i.kind==='assessment')return `<div class="dn">${ds}</div><div class="tl">Topic ${i.u} Assessment</div>`;
     if(i===OFF)return`<div class="dn">${ds}</div><div class="tl"></div>`;
     if(i===EX)return`<div class="dn">${ds}</div><div class="tl">ASSESSMENT</div>`;
     if(i===PO)return`<div class="dn">${ds}</div><div class="tl">Done!</div>`;
@@ -14212,7 +14244,8 @@ function htm(i,ds){
     const doubleBadge=i.db?'<span class="dbl">2x</span>':'';
     if(typeof cYear==='undefined'||cYear==='SY26-27'){
         i.ced=i.group?groupLabel(i):cedLabel(i.t);
-        return`<div class="dn">${ds}</div><div class="tl">${_resourcePanelEsc(i.ced.text)}</div>`+doubleBadge;
+        const plannedTag=i.planned?'<div class="tt plan-tag">planned</div>':'';
+        return`<div class="dn">${ds}</div><div class="tl">${_resourcePanelEsc(i.ced.text)}</div>`+plannedTag+doubleBadge;
     }
     return`<div class="dn">${ds}</div><div class="tl">${i.t}</div><div class="tt">${i.n}</div>`+doubleBadge;
 }
@@ -14222,6 +14255,7 @@ function htm(i,ds){
 // rCal appends state suffixes (next up / completed / locked) where it knows them.
 function cellAria(i, ds){
     if(i&&i.kind==='work')return ds + ', Work Day — catch up on follow-alongs, flashcards, quiz retakes, and exit tickets (bonus)';
+    if(i&&i.kind==='assessment')return ds + ', Topic ' + i.u + ' assessment';
     if(i===OFF) return ds + ', no school';
     if(i===EX) return ds + ', Algebra 2 Exam';
     if(i===PO) return ds + ', post-exam';
@@ -14235,6 +14269,7 @@ function cellAria(i, ds){
     let parts = [ds, label.trim()];
     if(i.due) parts.push('due ' + (newLabels ? cedDisplayText(i.due) : i.due));
     if(i.db) parts.push('double topic day');
+    if(i.planned) parts.push('planned window, lesson not yet published');
     // Resource readiness — mirror sTip's status line when the registry has the topic.
     try {
         if(typeof getRegistryEntry==='function' && i.t){
@@ -14354,7 +14389,7 @@ function rCal(){
     for(const row of S){
       if(!eq(new Date(row[0],row[1],row[2]),t))continue;
       const todayCell=calendarEntry(row);
-      if(todayCell&&typeof todayCell==='object'){
+      if(todayCell&&typeof todayCell==='object'&&!todayCell.planned&&todayCell.kind!=='assessment'){
         _todayLessonInf=todayCell;_todayLessonDS=MN[row[1]]+' '+row[2];
       }
     }
@@ -14493,10 +14528,14 @@ function rCal(){
               // Stash today's lesson so the lesson shortcut opens its
               // resource panel directly (no synthetic cell click -- that would
               // re-enter the lock-dialog / Do-Now-bump guards).
-              if(typeof inf==='object'&&inf.t){_todayLessonInf=inf;_todayLessonDS=ds;}
+              if(typeof inf==='object'&&inf.t&&!inf.planned&&inf.kind!=='assessment'){_todayLessonInf=inf;_todayLessonDS=ds;}
             }
             if(dt<t&&!eq(dt,t))c.classList.add("cell-past");
-            if (typeof inf === 'object' && inf.t) {
+            // Year-plan cells: a planned (unpublished) lesson window or a topic assessment
+            // day. Neither has work to open, a status, or a place in the lesson gate.
+            const _isPlanCell = typeof inf === 'object' && inf && (inf.planned || inf.kind === 'assessment');
+            if (_isPlanCell) { if (inf.planned) { c.classList.add('cell-planned'); c.dataset.planned = inf.t; } }
+            if (typeof inf === 'object' && inf.t && !_isPlanCell) {
               renderA2LessonChips(c, inf.t);
               c.dataset.topic = inf.t; c.dataset.dts = +dt; // DN3b — completion overlay hooks
               if (wk._summer) c.dataset.summer = '1';        // gate dispatch: summer cells use the individual summer sequence
@@ -14533,7 +14572,7 @@ function rCal(){
             // that have archived polls. Click opens the result screen on the
             // classroom board. stopPropagation() prevents opening the resource panel.
             ;
-            if(inf&&inf!==OFF&&inf!==NC&&inf!==EX&&inf!==PO&&inf.t){
+            if(inf&&inf!==OFF&&inf!==NC&&inf!==EX&&inf!==PO&&inf.t&&!_isPlanCell){
                 c.style.cursor='pointer';
                 // Sequential lesson gate: only real lesson cells (dot-form
                 // topic) are gated; Review / other cells stay click-through.
@@ -14627,7 +14666,7 @@ function _computePace(topics, marks, sCells, todayTs, period){
     for(const tp of lessons){ if(localLessonState(tp, marks)==='done') done++; }
     const seenE = {}; let expected = 0;
     for(const e of (sCells||[])){ const inf = period==='B' ? e[3] : e[4];
-        if(!inf||typeof inf!=='object')continue;
+        if(!inf||typeof inf!=='object'||inf.planned||inf.kind==='assessment')continue;
         for(const tp of (inf.group?groupTopics(inf):[inf.t])){
           if(isLesson(tp)&&!seenE[tp]){seenE[tp]=1;if(+new Date(e[0],e[1],e[2])<=todayTs)expected++;}
         }
@@ -14639,7 +14678,7 @@ function rProg(){
     const newLabels=typeof cYear==='undefined'||cYear==='SY26-27';
     const ut={},ud={};let tt=0,ds=0;
     for(const e of S){const inf=calendarEntry(e);
-        if(!inf||inf===OFF||inf===EX||inf===PO||inf===NC)continue;
+        if(!inf||inf===OFF||inf===EX||inf===PO||inf===NC||inf.kind==='assessment')continue;
         let u=inf.t===R?"Rev":"U"+inf.u;
         if(newLabels&&inf.t!==R&&!inf.kind){
             inf.ced=inf.group?groupLabel(inf):cedLabel(inf.t);
@@ -14712,6 +14751,7 @@ function sTip(ev,dt,inf,ds){if(inf===NC||!inf)return;
     else if(inf===EX)h+='<div class="tp">Algebra 2 Exam!</div>';
     else if(inf===PO)h+='<div class="tp">Post-exam</div>';
     else if(inf.kind==='work')h+='<div class="tp">Work Day — catch up on follow-alongs, flashcards, quiz retakes, and exit tickets (bonus)</div>';
+    else if(inf.kind==='assessment')h+='<div class="tp">Topic '+inf.u+' Assessment</div><div class="th">100 points · scored by the teacher</div>';
     else{
         const newLabels=typeof cYear==='undefined'||cYear==='SY26-27';
         let label=inf.t===R?inf.n:inf.t+' \u2014 '+inf.n;
@@ -14729,7 +14769,8 @@ function sTip(ev,dt,inf,ds){if(inf===NC||!inf)return;
         if(inf.db)h+='<div class="th">** Double topic day **</div>';
         const keys=inf.group?groupTopics(inf):[inf.t];
         const re=keys.map(getRegistryEntry).find(Boolean);
-        if(re){
+        if(inf.planned)h+='<div class="th">Planned window — lesson not yet published</div>';
+        else if(re){
             // The tooltip FOLLOWS the cursor (mTip) and is pointer-events:none, so any
             // embedded link is unclickable. Just show how to open the lesson. (The old
             // grade-on-dblclick hint was dropped: the single click opens the resource
@@ -14817,7 +14858,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-17-z53j';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-17-wpsb';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

@@ -247,7 +247,8 @@ it.each([
     expect(win.fetch).toHaveBeenCalledWith('content/a2/lessons.json');
     expect(win.A2Client.request.mock.calls.every(args => args.length === 1 && args[0] === '/lessons')).toBe(true);
     expect(win.A2Desk.getLesson('1.1')).toEqual(expected[0]);
-    expect(win.applyA2Pacing).toHaveBeenCalledWith(expected);
+    expect(win.applyA2Pacing).toHaveBeenCalled();
+    expect(win.applyA2Pacing.mock.calls.at(-1)[0]).toEqual(expected);   // second argument is the year plan (or undefined offline)
     expect(win.A2Desk.getStatus('1.1')).toBeUndefined();
     expect(win.document.body.innerHTML).toBe(before);
     expect(win.renderDoNowGrades).not.toHaveBeenCalled();

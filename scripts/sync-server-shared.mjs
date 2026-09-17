@@ -10,6 +10,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 export const SERVER_SHARED = [
   ['lib/a2-answers.js', 'roster-server/lib/a2-answers.js'],
   ['content/a2/lessons.json', 'roster-server/data/a2-lessons.json'],
+  ['data/a2-lesson-targets.json', 'roster-server/data/a2-lesson-targets.json'],
 ];
 
 for (const [from, to] of SERVER_SHARED) {

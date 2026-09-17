@@ -124,23 +124,20 @@ describe('Desk roadmap calendar ownership', () => {
   const end = desk.indexOf('async function loadRegistry(', start);
   const merge = desk.slice(start, end);
 
-  it.each(['', 'loaded-pacing'])('uses the roadmap until A2 pacing owns the calendar (%s)', signature => {
+  it.each(['', 'loaded-pacing'])('never lets a roadmap calendar array replace the C/D/G calendar (%s)', signature => {
+    // The AP-era roadmap `calendar` (B/E columns) is ignored; applyA2Pacing owns S.
     const existing = [[2026, 8, 3, { t: '1.1' }]];
     const fresh = {
       lessons: { '1.1': { title: 'Key Features of Functions' } },
       calendar: [{ date: '2026-08-18', B: '1.1', E: '1.1' }]
     };
     const apply = new Function('REGISTRY', 'S', 'cYear', '_a2PacingSignature', 'd', 'NC', 'fresh',
-      merge + '\n_mergeRegistryData(fresh); return S;');
-    const calendar = apply({ lessons: {} }, existing, 'SY26-27', signature,
+      merge + '\nreturn { merged: _mergeRegistryData(fresh), S, REGISTRY };');
+    const result = apply({ lessons: {} }, existing, 'SY26-27', signature,
       (topic, title, unit) => ({ t: topic, title, unit }), null, fresh);
-    if (signature) {
-      expect(calendar).toBe(existing);
-    } else {
-      expect(calendar).toEqual([[2026, 7, 18,
-        { t: '1.1', title: 'Key Features of Functions', unit: 1 },
-        { t: '1.1', title: 'Key Features of Functions', unit: 1 }]]);
-    }
+    expect(result.merged).toBe(true);
+    expect(result.S).toBe(existing);
+    expect(result.REGISTRY.lessons['1.1'].title).toBe('Key Features of Functions');
   });
 });
 

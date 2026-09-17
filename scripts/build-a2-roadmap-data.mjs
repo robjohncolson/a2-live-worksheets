@@ -14,9 +14,15 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
+// Published lessons carry their live due dates; unpublished lessons on the year plan
+// (data/a2-lesson-targets.json `sections`, from scripts/build-a2-year-plan.mjs) carry
+// their planned windows with `planned: true`, so the Desk can draw the whole year.
 export function buildRoadmapData({ targets, published, generatedAt = new Date().toISOString() }) {
   const live = Object.fromEntries(published.map(lesson => [lesson.key, lesson]));
   const lessons = {};
+  const periodsOf = sections => sections
+    ? Object.fromEntries(Object.entries(sections).filter(([, date]) => date).map(([section, date]) => [section, { date }]))
+    : {};
   for (const lesson of targets.lessons) {
     const topic = lesson.key.replace('-', '.');
     const entry = live[lesson.key];
@@ -26,14 +32,13 @@ export function buildRoadmapData({ targets, published, generatedAt = new Date().
       unit: lesson.topic,
       plan: lesson.plan,
       published: !!entry,
+      planned: !entry && !!lesson.sections,
       ced2026: { status: 'core', newUnit: lesson.topic, newTopic: topic, newLabel: lesson.title, bonusUnit: null },
       urls: entry ? { check: 'check.html?lesson=' + lesson.key, deck: entry.deck } : {},
-      periods: entry && entry.sections
-        ? Object.fromEntries(Object.entries(entry.sections).filter(([, date]) => date).map(([section, date]) => [section, { date }]))
-        : {},
+      periods: periodsOf(entry ? entry.sections : lesson.sections),
     };
   }
-  return { generatedAt, registryVersion: 'a2-' + targets.version, lessons };
+  return { generatedAt, registryVersion: 'a2-' + targets.version, lessons, assessments: targets.assessments || {} };
 }
 
 const targets = JSON.parse(readFileSync(resolve(ROOT, 'data/a2-lesson-targets.json'), 'utf8'));

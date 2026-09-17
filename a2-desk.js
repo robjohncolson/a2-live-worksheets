@@ -2,6 +2,16 @@
   'use strict';
   let lessons = [], generation = 0;
   let lessonStatuses = new Map(), statusSession = null;
+  // The year plan (data/a2-lesson-targets.json) gives the calendar its planned windows
+  // and assessment days for lessons that are not published yet. Loaded once; the
+  // server's pacing overlay (from /lessons) can override a planned lesson's dates.
+  let yearPlan, pacingOverlay = {};
+  async function loadYearPlan() {
+    if (yearPlan !== undefined) return yearPlan;
+    try { const plan = await (await fetch('data/a2-lesson-targets.json')).json(); yearPlan = plan && Array.isArray(plan.lessons) ? plan : null; }
+    catch (_) { yearPlan = null; }
+    return yearPlan;
+  }
   function node(tag, text, parent) { const result = document.createElement(tag); result.textContent = text; parent.append(result); return result; }
   function readonly() { return window.__WS_READ_ONLY__ || typeof _viewAsContext === 'function' && _viewAsContext(); }
   function sessionKey() {
@@ -65,10 +75,15 @@
         const published = await (await fetch('content/a2/lessons.json')).json();
         if (Array.isArray(published)) lessons = published;
       }
-      try { const live = (await A2Client.request('/lessons')).lessons; if (Array.isArray(live) && live.length) lessons = live; } catch (_) { /* Published model remains readable offline. */ }
+      try {
+        const live = await A2Client.request('/lessons');
+        if (Array.isArray(live.lessons) && live.lessons.length) lessons = live.lessons;
+        if (live.pacing && typeof live.pacing === 'object') pacingOverlay = live.pacing;
+      } catch (_) { /* Published model remains readable offline. */ }
+      const plan = await loadYearPlan();
       if (version !== generation || session !== sessionKey()) return;
       // Lesson metadata and calendar windows are also needed in read-only views.
-      if (typeof applyA2Pacing === 'function') { try { applyA2Pacing(lessons); } catch (_) { /* calendar is optional */ } }
+      if (typeof applyA2Pacing === 'function') { try { applyA2Pacing(lessons, plan ? { ...plan, overlay: pacingOverlay } : undefined); } catch (_) { /* calendar is optional */ } }
       if (readOnly || readonly()) return;
       paintDueLine();
       const statuses = identity ? await Promise.all(lessons.map(lesson => A2Client.request('/lesson-status/' + lesson.key))) : [];

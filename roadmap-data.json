@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T14:26:13.662Z",
+  "generatedAt": "2026-09-17T14:38:08.662Z",
   "registryVersion": "a2-1",
   "lessons": {
     "1.1": {
@@ -8,6 +8,7 @@
       "unit": 1,
       "plan": "keep",
       "published": true,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 1,
@@ -37,6 +38,7 @@
       "unit": 1,
       "plan": "keep",
       "published": true,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 1,
@@ -66,6 +68,7 @@
       "unit": 1,
       "plan": "brief",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 1,
@@ -82,6 +85,7 @@
       "unit": 1,
       "plan": "brief",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 1,
@@ -98,6 +102,7 @@
       "unit": 1,
       "plan": "keep",
       "published": true,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 1,
@@ -127,6 +132,7 @@
       "unit": 1,
       "plan": "keep",
       "published": true,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 1,
@@ -156,6 +162,7 @@
       "unit": 2,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 2,
@@ -164,7 +171,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2026-11-19"
+        },
+        "D": {
+          "date": "2026-11-20"
+        },
+        "G": {
+          "date": "2026-11-20"
+        }
+      }
     },
     "2.2": {
       "topic": "Lesson 2-2",
@@ -172,6 +189,7 @@
       "unit": 2,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 2,
@@ -180,7 +198,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2026-12-03"
+        },
+        "D": {
+          "date": "2026-12-04"
+        },
+        "G": {
+          "date": "2026-12-04"
+        }
+      }
     },
     "2.3": {
       "topic": "Lesson 2-3",
@@ -188,6 +216,7 @@
       "unit": 2,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 2,
@@ -196,7 +225,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2026-12-17"
+        },
+        "D": {
+          "date": "2026-12-18"
+        },
+        "G": {
+          "date": "2026-12-18"
+        }
+      }
     },
     "2.4": {
       "topic": "Lesson 2-4",
@@ -204,6 +243,7 @@
       "unit": 2,
       "plan": "brief",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 2,
@@ -220,6 +260,7 @@
       "unit": 2,
       "plan": "brief",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 2,
@@ -236,6 +277,7 @@
       "unit": 2,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 2,
@@ -244,7 +286,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2026-12-22"
+        },
+        "D": {
+          "date": "2026-12-23"
+        },
+        "G": {
+          "date": "2026-12-23"
+        }
+      }
     },
     "2.7": {
       "topic": "Lesson 2-7",
@@ -252,6 +304,7 @@
       "unit": 2,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 2,
@@ -260,7 +313,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-01-14"
+        },
+        "D": {
+          "date": "2027-01-08"
+        },
+        "G": {
+          "date": "2027-01-08"
+        }
+      }
     },
     "3.1": {
       "topic": "Lesson 3-1",
@@ -268,6 +331,7 @@
       "unit": 3,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 3,
@@ -276,7 +340,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-01-28"
+        },
+        "D": {
+          "date": "2027-01-22"
+        },
+        "G": {
+          "date": "2027-01-22"
+        }
+      }
     },
     "3.2": {
       "topic": "Lesson 3-2",
@@ -284,6 +358,7 @@
       "unit": 3,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 3,
@@ -292,7 +367,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-02-11"
+        },
+        "D": {
+          "date": "2027-02-05"
+        },
+        "G": {
+          "date": "2027-02-05"
+        }
+      }
     },
     "3.3": {
       "topic": "Lesson 3-3",
@@ -300,6 +385,7 @@
       "unit": 3,
       "plan": "brief",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 3,
@@ -316,6 +402,7 @@
       "unit": 3,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 3,
@@ -324,7 +411,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-02-25"
+        },
+        "D": {
+          "date": "2027-02-12"
+        },
+        "G": {
+          "date": "2027-02-12"
+        }
+      }
     },
     "3.5": {
       "topic": "Lesson 3-5",
@@ -332,6 +429,7 @@
       "unit": 3,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 3,
@@ -340,7 +438,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-03-11"
+        },
+        "D": {
+          "date": "2027-02-26"
+        },
+        "G": {
+          "date": "2027-02-26"
+        }
+      }
     },
     "3.6": {
       "topic": "Lesson 3-6",
@@ -348,6 +456,7 @@
       "unit": 3,
       "plan": "skip",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 3,
@@ -364,6 +473,7 @@
       "unit": 3,
       "plan": "brief",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 3,
@@ -380,6 +490,7 @@
       "unit": 4,
       "plan": "brief",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 4,
@@ -396,6 +507,7 @@
       "unit": 4,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 4,
@@ -404,7 +516,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-03-25"
+        },
+        "D": {
+          "date": "2027-03-12"
+        },
+        "G": {
+          "date": "2027-03-12"
+        }
+      }
     },
     "4.3": {
       "topic": "Lesson 4-3",
@@ -412,6 +534,7 @@
       "unit": 4,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 4,
@@ -420,7 +543,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-04-08"
+        },
+        "D": {
+          "date": "2027-03-24"
+        },
+        "G": {
+          "date": "2027-03-25"
+        }
+      }
     },
     "4.4": {
       "topic": "Lesson 4-4",
@@ -428,6 +561,7 @@
       "unit": 4,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 4,
@@ -436,7 +570,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-04-15"
+        },
+        "D": {
+          "date": "2027-04-09"
+        },
+        "G": {
+          "date": "2027-04-09"
+        }
+      }
     },
     "4.5": {
       "topic": "Lesson 4-5",
@@ -444,6 +588,7 @@
       "unit": 4,
       "plan": "keep",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 4,
@@ -452,7 +597,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-04-29"
+        },
+        "D": {
+          "date": "2027-04-16"
+        },
+        "G": {
+          "date": "2027-04-16"
+        }
+      }
     },
     "5.1": {
       "topic": "Lesson 5-1",
@@ -460,6 +615,7 @@
       "unit": 5,
       "plan": "bridge",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 5,
@@ -468,7 +624,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-05-13"
+        },
+        "D": {
+          "date": "2027-05-07"
+        },
+        "G": {
+          "date": "2027-05-07"
+        }
+      }
     },
     "5.2": {
       "topic": "Lesson 5-2",
@@ -476,6 +642,7 @@
       "unit": 5,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 5,
@@ -492,6 +659,7 @@
       "unit": 5,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 5,
@@ -508,6 +676,7 @@
       "unit": 5,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 5,
@@ -524,6 +693,7 @@
       "unit": 5,
       "plan": "bridge",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 5,
@@ -532,7 +702,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-05-27"
+        },
+        "D": {
+          "date": "2027-05-21"
+        },
+        "G": {
+          "date": "2027-05-21"
+        }
+      }
     },
     "5.6": {
       "topic": "Lesson 5-6",
@@ -540,6 +720,7 @@
       "unit": 5,
       "plan": "bridge",
       "published": false,
+      "planned": true,
       "ced2026": {
         "status": "core",
         "newUnit": 5,
@@ -548,7 +729,17 @@
         "bonusUnit": null
       },
       "urls": {},
-      "periods": {}
+      "periods": {
+        "C": {
+          "date": "2027-06-10"
+        },
+        "D": {
+          "date": "2027-06-04"
+        },
+        "G": {
+          "date": "2027-06-04"
+        }
+      }
     },
     "6.1": {
       "topic": "Lesson 6-1",
@@ -556,6 +747,7 @@
       "unit": 6,
       "plan": "bridge",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 6,
@@ -572,6 +764,7 @@
       "unit": 6,
       "plan": "bridge",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 6,
@@ -588,6 +781,7 @@
       "unit": 6,
       "plan": "bridge",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 6,
@@ -604,6 +798,7 @@
       "unit": 6,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 6,
@@ -620,6 +815,7 @@
       "unit": 6,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 6,
@@ -636,6 +832,7 @@
       "unit": 6,
       "plan": "bridge",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 6,
@@ -652,6 +849,7 @@
       "unit": 6,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 6,
@@ -668,6 +866,7 @@
       "unit": 7,
       "plan": "bridge",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 7,
@@ -684,6 +883,7 @@
       "unit": 7,
       "plan": "bridge",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 7,
@@ -700,6 +900,7 @@
       "unit": 7,
       "plan": "bridge",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 7,
@@ -716,6 +917,7 @@
       "unit": 7,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 7,
@@ -732,6 +934,7 @@
       "unit": 7,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 7,
@@ -748,6 +951,7 @@
       "unit": 7,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 7,
@@ -764,6 +968,7 @@
       "unit": 8,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 8,
@@ -780,6 +985,7 @@
       "unit": 8,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 8,
@@ -796,6 +1002,7 @@
       "unit": 8,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 8,
@@ -812,6 +1019,7 @@
       "unit": 8,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 8,
@@ -828,6 +1036,7 @@
       "unit": 8,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 8,
@@ -844,6 +1053,7 @@
       "unit": 9,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 9,
@@ -860,6 +1070,7 @@
       "unit": 9,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 9,
@@ -876,6 +1087,7 @@
       "unit": 9,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 9,
@@ -892,6 +1104,7 @@
       "unit": 9,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 9,
@@ -908,6 +1121,7 @@
       "unit": 10,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 10,
@@ -924,6 +1138,7 @@
       "unit": 10,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 10,
@@ -940,6 +1155,7 @@
       "unit": 10,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 10,
@@ -956,6 +1172,7 @@
       "unit": 10,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 10,
@@ -972,6 +1189,7 @@
       "unit": 10,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 10,
@@ -988,6 +1206,7 @@
       "unit": 11,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 11,
@@ -1004,6 +1223,7 @@
       "unit": 11,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 11,
@@ -1020,6 +1240,7 @@
       "unit": 11,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 11,
@@ -1036,6 +1257,7 @@
       "unit": 11,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 11,
@@ -1052,6 +1274,7 @@
       "unit": 11,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 11,
@@ -1068,6 +1291,7 @@
       "unit": 11,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 11,
@@ -1084,6 +1308,7 @@
       "unit": 12,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 12,
@@ -1100,6 +1325,7 @@
       "unit": 12,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 12,
@@ -1116,6 +1342,7 @@
       "unit": 12,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 12,
@@ -1132,6 +1359,7 @@
       "unit": 12,
       "plan": "later",
       "published": false,
+      "planned": false,
       "ced2026": {
         "status": "core",
         "newUnit": 12,
@@ -1141,6 +1369,33 @@
       },
       "urls": {},
       "periods": {}
+    }
+  },
+  "assessments": {
+    "1": {
+      "C": "2026-11-09",
+      "D": "2026-11-09",
+      "G": "2026-11-10"
+    },
+    "2": {
+      "C": "2027-01-19",
+      "D": "2027-01-11",
+      "G": "2027-01-12"
+    },
+    "3": {
+      "C": "2027-03-15",
+      "D": "2027-03-01",
+      "G": "2027-03-02"
+    },
+    "4": {
+      "C": "2027-05-03",
+      "D": "2027-04-26",
+      "G": "2027-04-27"
+    },
+    "5": {
+      "C": "2027-06-14",
+      "D": "2027-06-07",
+      "G": "2027-06-08"
     }
   }
 }

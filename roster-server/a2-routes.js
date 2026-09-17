@@ -1,5 +1,5 @@
 import './lib/a2-answers.js';
-import { loadA2Lessons, overlayLessons, lessonScheduleFromModel, validatePacing, createA2Store } from './a2-lessons.js';
+import { loadA2Lessons, loadA2Targets, overlayLessons, lessonScheduleFromModel, validatePacing, createA2Store } from './a2-lessons.js';
 import { requireTeacher } from './teacher-auth.js';
 import { verifyToken } from './token.js';
 import { issueLedgerReceipt } from './receipts.js';
@@ -24,7 +24,7 @@ export function lessonStatus(lesson, rows, rescores = {}) {
   attempts: checks.length, flashcardPassed: rows.some(row => row.item_id === flashcardId && Number(row.score) >= 80) };
 }
 
-export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2Lessons(), store, now = () => todayInTz(config.schoolTz) }) {
+export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2Lessons(), targets = loadA2Targets(), store, now = () => todayInTz(config.schoolTz) }) {
   let liveStore = store;
   const storage = () => liveStore ||= createA2Store();
   const locks = new Map();
@@ -61,6 +61,14 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
     if (schedule) Object.assign(schedule, lessonScheduleFromModel(current));
     return current;
   }
+  // The published model with its overlay, plus the raw overlay so the Desk and the
+  // pacing tool can date year-plan lessons that are not published yet.
+  async function lessonsResponse() {
+    const pacing = await storage().getPacing();
+    const current = overlayLessons(lessons, pacing);
+    if (schedule) Object.assign(schedule, lessonScheduleFromModel(current));
+    return { ok: true, lessons: current, pacing };
+  }
   async function rowsFor(studentId) {
     const { data, error } = await ledgerDb.getLedgerByStudent(studentId);
     if (error) throw error;
@@ -76,17 +84,17 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
     if (source === 'try-it' && rows.some(row => row.source === 'topic-assessment' && row.item_id === `TA-${lesson.topicAssessmentKey}`)) fail(409, 'Topic assessment has closed Try-It rescoring');
     return date;
   }
-  app.get('/lessons', route(async (_req, res) => res.json({ ok: true, lessons: await currentLessons() })));
+  app.get('/lessons', route(async (_req, res) => res.json(await lessonsResponse())));
   app.get('/teacher/lessons', route(async (req, res) => {
     if (!await requireTeacher(req, db)) fail(403, 'Teacher sign-in required');
-    res.json({ ok: true, lessons: await currentLessons() });
+    res.json(await lessonsResponse());
   }));
   app.put('/teacher/lessons', route(async (req, res) => {
     if (!await requireTeacher(req, db)) fail(403, 'Teacher sign-in required');
     let overlay;
-    try { overlay = validatePacing(lessons, req.body?.lessons); } catch (error) { fail(400, error.message); }
+    try { overlay = validatePacing(lessons, req.body?.lessons, targets); } catch (error) { fail(400, error.message); }
     await storage().putPacing(overlay);
-    res.json({ ok: true, lessons: await currentLessons() });
+    res.json(await lessonsResponse());
   }));
   // Existing grade/class/transcript mounts share the same schedule object.
   if (schedule) app.use(['/grade', '/class/grades', '/teacher/student', '/transcript', '/donow'], route(async (_req, _res, next) => { await currentLessons(); next(); }));
