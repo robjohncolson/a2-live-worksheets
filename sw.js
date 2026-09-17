@@ -13,7 +13,7 @@
 // is just `self.addEventListener('install',()=>self.skipWaiting()); self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x)))).then(()=>self.clients.claim())));`
 // to unregister-by-emptying (clears caches; pages fall back to plain network).
 
-const BUILD = '2026-09-17-wpsb'; // scripts/bump-build.mjs replaces this stamp
+const BUILD = '2026-09-17-v5yh'; // scripts/bump-build.mjs replaces this stamp
 const CACHE = 'apstats-pwa-' + BUILD;
 
 const CORE = [
@@ -27,6 +27,7 @@ const CORE = [
   'grade-engine.bundle.js',
   'a2-desk.js',
   'lib/a2-answers.js',
+  'lib/a2-year-plan.js',
   'teacher-tryits.html',
   'content/a2/lessons.json',
   'content/a2/1-1/deck.csv',

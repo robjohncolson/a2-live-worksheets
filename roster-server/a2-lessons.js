@@ -12,12 +12,45 @@ export function loadA2Targets() {
   catch (_) { return { lessons: [] }; }
 }
 
+// The SY26-27 calendar (range, meeting days, closures) for teacher re-flow; generated
+// from desk.html's SCHEDULE_DEFS by scripts/build-a2-year-plan.mjs.
+export function loadA2SchoolYear() {
+  return JSON.parse(readFileSync(new URL('./data/a2-school-year.json', import.meta.url), 'utf8'));
+}
+
 // Lessons the pacing tool may date: the published model plus every year-plan lesson
-// that is not `later`. An overlay for an unpublished lesson waits until it is published.
+// that is not `later`, and one `TA-<topic>` assessment row per topic. An overlay for
+// an unpublished lesson waits until it is published.
 export function pacingKeys(lessons, targets) {
   const keys = new Set(lessons.map(lesson => lesson.key));
-  for (const lesson of targets?.lessons || []) if (lesson.plan !== 'later') keys.add(lesson.key);
+  for (const lesson of targets?.lessons || []) {
+    if (lesson.plan === 'later') continue;
+    keys.add(lesson.key);
+    keys.add('TA-' + lesson.topic);
+  }
   return keys;
+}
+
+// Teacher re-flow ("this lesson is done early"): `lesson` becomes due on `due` for
+// `section`, and every later keep/bridge lesson (published or planned) and topic
+// assessment is re-dated at the plan's cadence. Returns pacing overlay rows, keyed
+// by lesson key or `TA-<topic>`, with full sections objects (the overlay replaces a
+// lesson's sections wholesale) and the OneNote links preserved.
+export function reflowPacing({ lessons, targets, schoolYear, overlay, section, lesson, due, yearPlan = globalThis.A2YearPlan }) {
+  if (!['C', 'D', 'G'].includes(section)) throw new Error('Unknown section');
+  if (typeof due !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(due) || new Date(due).toISOString().slice(0, 10) !== due) throw new Error('Invalid pacing date');
+  const order = targets.lessons.filter(item => item.plan === 'keep' || item.plan === 'bridge');
+  if (!order.some(item => item.key === lesson)) throw new Error('Unknown lesson');
+  const live = Object.fromEntries(lessons.map(item => [item.key, item]));
+  const current = Object.fromEntries(order.map(item => [item.key, overlay[item.key]?.sections || live[item.key]?.sections || item.sections || {}]));
+  const topics = [...new Set(order.map(item => item.topic))];
+  const assessments = Object.fromEntries(topics.map(topic => [topic, overlay['TA-' + topic]?.sections || targets.assessments?.[topic] || {}]));
+  const result = yearPlan.reflowSection({ def: schoolYear, section, order, current, assessments, lesson, due,
+    weeks: targets.pacing?.weeks || 2, assessmentDays: targets.pacing?.assessmentDays ?? 1 });
+  const rows = {};
+  for (const [key, sections] of Object.entries(result.lessons)) rows[key] = { sections: Object.keys(sections).length ? sections : null, onenoteUrl: overlay[key]?.onenoteUrl || null };
+  for (const [topic, sections] of Object.entries(result.assessments)) rows['TA-' + topic] = { sections: Object.keys(sections).length ? sections : null, onenoteUrl: null };
+  return { rows, unscheduled: result.unscheduled };
 }
 
 export function overlayLessons(lessons, overlay = {}) {

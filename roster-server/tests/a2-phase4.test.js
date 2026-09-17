@@ -121,6 +121,21 @@ describe('pacing and profile', () => {
     expect(() => validatePacing([lesson], [{ key: '1-1', sections: { C: '2026-02-30' } }])).toThrow();
     expect(() => validatePacing([lesson], [{ key: '1-1', onenoteUrl: 'javascript:alert(1)' }])).toThrow();
   });
+  it('teacher re-flow closes a lesson early for one section and shifts later lessons and assessments', async () => {
+    const body = { section: 'C', lesson: '1-1', due: '2026-09-17' };
+    expect((await auth(request(app).put('/teacher/pacing/reflow')).send(body)).status).toBe(403);
+    expect((await teacher(request(app).put('/teacher/pacing/reflow')).send({ ...body, section: 'B' })).status).toBe(400);
+    const response = await teacher(request(app).put('/teacher/pacing/reflow')).send(body);
+    expect(response.status).toBe(200);
+    const byKey = Object.fromEntries(response.body.lessons.map(item => [item.key, item]));
+    expect(byKey['1-1'].sections).toEqual({ C: '2026-09-17', D: '2026-09-25', G: '2026-09-25' });
+    expect(byKey['1-2'].sections.C).toBe('2026-10-01');          // opens Mon Sep 21, closes Fri Oct 2 -> last C day Thu Oct 1
+    expect(byKey['1-2'].sections.D).toBe('2026-10-09');          // other sections untouched
+    expect(pacing['TA-1'].sections.C < '2026-11-09').toBe(true); // Topic 1 assessment moves up with 1-6
+    expect(pacing['2-1'].sections.C).toBeTruthy();               // planned lessons re-dated too
+    expect(response.body.pacing['2-1']).toEqual(pacing['2-1']);
+    expect((await request(app).get('/lessons')).body.lessons[0].sections.C).toBe('2026-09-17');
+  });
   it('updates the signed-in student section only', async () => {
     expect((await auth(request(app).put('/student/section')).send({ section: 'G', studentId: 'other' })).status).toBe(200);
     expect(student.section).toBe('G');

@@ -70,6 +70,8 @@ it('bundles byte-identical copies of the browser-shared files it imports', () =>
     ['lib/a2-answers.js', 'roster-server/lib/a2-answers.js'],
     ['content/a2/lessons.json', 'roster-server/data/a2-lessons.json'],
     ['data/a2-lesson-targets.json', 'roster-server/data/a2-lesson-targets.json'],
+    ['data/a2-school-year.json', 'roster-server/data/a2-school-year.json'],
+    ['lib/a2-year-plan.js', 'roster-server/lib/a2-year-plan.js'],
   ]) {
     expect(readFileSync(new URL(bundled, root), 'utf8'), bundled).toBe(readFileSync(new URL(source, root), 'utf8'));
   }

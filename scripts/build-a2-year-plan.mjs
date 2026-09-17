@@ -20,9 +20,16 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import '../lib/a2-year-plan.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const A2YearPlan = globalThis.A2YearPlan;
 export const SECTIONS = ['C', 'D', 'G'];
+// data/a2-school-year.json: the calendar definition the server needs for teacher re-flow.
+export function schoolYearJson(def) {
+  return { range: def.range, daysOff: def.daysOff,
+    periods: Object.fromEntries(Object.entries(def.periods).map(([section, period]) => [section, { meetsDays: period.meetsDays }])) };
+}
 const PACING_START = '<!-- pacing-table:start -->';
 const PACING_END = '<!-- pacing-table:end -->';
 
@@ -153,14 +160,7 @@ export function buildYearPlan({ targets, published, def, options = {} }) {
         return n >= 1 && window.length === n ? window : null;
       }
       const weeks = lesson.plan === 'brief' ? Math.max(1, Math.ceil(pacing.briefDays / 5)) : pacing.weeks;
-      let start = from;
-      for (;;) {   // a window with no meeting day (a vacation week) is skipped, not counted
-        const end = fridayOf(start, weeks);
-        if (end > rangeEnd) return null;
-        const window = meetingDays(def, section, start, end);
-        if (window.length) return window;
-        start = nextDay(end);
-      }
+      return A2YearPlan.weeksWindow(def, section, from, weeks);   // skips vacation weeks; null past June
     };
     let cursor2 = cursor;
     let overflow = false;
@@ -255,14 +255,18 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1
   const json = JSON.stringify(plan, null, 2).replace(/\{\n\s+("C": "[^"]*"),\n\s+("D": "[^"]*"),\n\s+("G": "[^"]*")\n\s+\}/g, '{ $1, $2, $3 }')
     .replace(/\{\n\s+("C": \d+),\n\s+("D": \d+),\n\s+("G": \d+)\n\s+\}/g, '{ $1, $2, $3 }') + '\n';
   const nextDoc = replacePacingTable(doc, pacingTable(plan, published));
+  const schoolYear = JSON.stringify(schoolYearJson(def), null, 2).replace(/\[\n\s+(\d+),\n\s+(\d+),\n\s+(\d+)\n\s+\]/g, '[$1, $2, $3]')
+    .replace(/\[\n\s+(\d+),\n\s+(\d+)(?:,\n\s+(\d+))?(?:,\n\s+(\d+))?\n\s+\]/g, (m, ...g) => '[' + g.slice(0, 4).filter(Boolean).join(', ') + ']') + '\n';
   if (args.includes('--print')) {
     process.stdout.write(json);
   } else if (args.includes('--check')) {
     const current = readFileSync(resolve(ROOT, 'data/a2-lesson-targets.json'), 'utf8');
-    if (current !== json || doc !== nextDoc) { console.error('a2 year plan is stale; run node scripts/build-a2-year-plan.mjs'); process.exit(1); }
+    let currentYear = ''; try { currentYear = readFileSync(resolve(ROOT, 'data/a2-school-year.json'), 'utf8'); } catch (_) {}
+    if (current !== json || doc !== nextDoc || currentYear !== schoolYear) { console.error('a2 year plan is stale; run node scripts/build-a2-year-plan.mjs'); process.exit(1); }
     console.log('a2 year plan is current');
   } else {
     writeFileSync(resolve(ROOT, 'data/a2-lesson-targets.json'), json);
+    writeFileSync(resolve(ROOT, 'data/a2-school-year.json'), schoolYear);
     writeFileSync(resolve(ROOT, 'docs/a2-lesson-targets.md'), nextDoc);
     const scheduled = plan.lessons.filter(lesson => lesson.sections).length;
     console.log(`data/a2-lesson-targets.json: ${scheduled} scheduled lessons, ${Object.keys(plan.assessments).length} topic assessments`);

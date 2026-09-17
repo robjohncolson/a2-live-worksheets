@@ -688,6 +688,8 @@
         .cell-planned { opacity: .55; border: 2px dashed var(--plat-lo); cursor: default; }
         .cell-planned .plan-tag { font-size: 9px; letter-spacing: .04em; text-transform: uppercase; opacity: .8; }
         .cell-assess { background: var(--black); color: var(--white); cursor: default; }
+        .teacher-pacing { margin: 12px 0; padding: 8px 10px; border: 1px dashed var(--plat-lo); }
+        .teacher-pacing select, .teacher-pacing input { font: inherit; min-height: 32px; }
         /* Today: a crisp 2px inset frame (thinner than the 3px state rings — a deliberate
            hierarchy cue) seated slightly forward. The old "◀TODAY" corner chip is dropped:
            the frame already signals today, the countdown strip names the date, and the
@@ -7000,7 +7002,12 @@ function applyA2Pacing(lessons, plan) {
     .filter(l => !publishedKeys.has(l.key) && l.plan !== 'later')
     .map(l => ({ key: l.key, title: l.title, sections: (overlay[l.key] && overlay[l.key].sections) || l.sections, planned: true }))
     .filter(l => l.sections);
-  const assessments = (plan && plan.assessments) || {};
+  // Assessment days: the plan's, overridden by `TA-<topic>` pacing rows (teacher re-flow).
+  const assessments = Object.assign({}, (plan && plan.assessments) || {});
+  for (const key of Object.keys(overlay)) {
+    if (key.indexOf('TA-') !== 0) continue;
+    if (overlay[key] && overlay[key].sections) assessments[key.slice(3)] = overlay[key].sections; else delete assessments[key.slice(3)];
+  }
   const signature = JSON.stringify([lessons.map(l => [l.key, l.title, l.sections]), planned.map(l => [l.key, l.sections]), assessments]);
   if (signature === _a2PacingSignature) return false;
   _a2PacingSignature = signature;
@@ -7642,6 +7649,7 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
 
     var lesson = window.A2Desk && typeof window.A2Desk.getLesson === 'function'
         ? window.A2Desk.getLesson(inf.t) : null;
+    if (typeof _deskIsTeacher === 'function' && _deskIsTeacher()) _appendTeacherPacingControl(body, key, lesson);
     var skills = lesson && Array.isArray(lesson.supportingSkills) ? lesson.supportingSkills : [];
     skills.filter(function (skill) { return skill && skill.url && skill.name; }).forEach(function (skill) {
         var row = document.createElement('p');
@@ -7687,6 +7695,41 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
     document.getElementById('resource-overlay').style.display = 'block';
 }
 
+// Teacher-only pacing control on a published lesson's panel: "we finished this early
+// (or late)". Closes the lesson for one section on the chosen date and re-flows every
+// later lesson and topic assessment for that section at the two-week cadence
+// (PUT /teacher/pacing/reflow). The Desk re-reads /lessons, so the calendar, due
+// line and grading all follow the new dates.
+function _appendTeacherPacingControl(body, key, lesson) {
+    var wrap = document.createElement('fieldset');
+    wrap.className = 'teacher-pacing';
+    var legend = document.createElement('legend'); legend.textContent = 'Teacher pacing'; wrap.appendChild(legend);
+    var sectionSel = document.createElement('select');
+    ['C', 'D', 'G'].forEach(function (s) { var o = document.createElement('option'); o.value = s; o.textContent = 'Section ' + s; sectionSel.appendChild(o); });
+    sectionSel.value = (typeof cP === 'string' && ['C', 'D', 'G'].indexOf(cP) >= 0) ? cP : 'C';
+    var dateIn = document.createElement('input'); dateIn.type = 'date';
+    var today = tdy(); dateIn.value = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+    var current = document.createElement('small');
+    var showCurrent = function () { current.textContent = lesson && lesson.sections && lesson.sections[sectionSel.value] ? ' (now due ' + lesson.sections[sectionSel.value] + ')' : ' (not dated)'; };
+    sectionSel.onchange = showCurrent; showCurrent();
+    var btn = document.createElement('button'); btn.type = 'button'; btn.className = 's7btn';
+    btn.textContent = 'Finished early: due on this date, shift the rest';
+    var msg = document.createElement('div'); msg.setAttribute('role', 'status');
+    btn.onclick = async function () {
+        btn.disabled = true; msg.textContent = 'Re-flowing Section ' + sectionSel.value + '…';
+        try {
+            var result = await A2Client.request('/teacher/pacing/reflow', { section: sectionSel.value, lesson: key, due: dateIn.value }, 'PUT');
+            msg.textContent = key + ' is due ' + dateIn.value + ' for Section ' + sectionSel.value + '; later lessons shifted.'
+                + (result.unscheduled && result.unscheduled.length ? ' Still off the calendar: ' + result.unscheduled.join(', ') + '.' : '');
+            try { A2Client.changed(); } catch (_) {}
+            if (window.A2Desk && typeof window.A2Desk.refresh === 'function') window.A2Desk.refresh();
+        } catch (error) { msg.textContent = error.message; }
+        finally { btn.disabled = false; }
+    };
+    var row = document.createElement('p'); row.appendChild(sectionSel); row.appendChild(document.createTextNode(' due ')); row.appendChild(dateIn); row.appendChild(current);
+    wrap.appendChild(row); wrap.appendChild(btn); wrap.appendChild(msg);
+    body.appendChild(wrap);
+}
 function showResourcePanel(inf, dateStr) {
     if (!inf || !inf.t) return;
     if (inf.kind === 'work') {
@@ -14858,7 +14901,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-17-wpsb';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-17-v5yh';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
@@ -15016,7 +15059,7 @@ setTimeout(function() {
 </script>
 <dialog id="a2-profile"><form id="a2-profile-form"><h2>Profile · Class section</h2><label>Section <select aria-label="Section"><option>C</option><option>D</option><option>G</option></select></label><button>Save section</button><button type="button" onclick="document.getElementById('a2-profile').close()">Cancel</button><p id="a2-profile-message" role="status"></p></form></dialog>
 <style>#a2-gradebook-scores button,#a2-profile button,#a2-profile select{min-height:44px}.a2-lesson-chip{display:block;margin:4px 0}</style>
-<script src="a2-client.js"></script><script src="a2-desk.js"></script>
+<script src="lib/a2-year-plan.js"></script><script src="a2-client.js"></script><script src="a2-desk.js"></script>
 <link rel="stylesheet" href="a2-announcement.css"><script src="a2-announcement.js"></script>
 </body>
 </html>

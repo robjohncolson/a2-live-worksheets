@@ -1,5 +1,6 @@
 import './lib/a2-answers.js';
-import { loadA2Lessons, loadA2Targets, overlayLessons, lessonScheduleFromModel, validatePacing, createA2Store } from './a2-lessons.js';
+import './lib/a2-year-plan.js';
+import { loadA2Lessons, loadA2Targets, loadA2SchoolYear, overlayLessons, lessonScheduleFromModel, validatePacing, reflowPacing, createA2Store } from './a2-lessons.js';
 import { requireTeacher } from './teacher-auth.js';
 import { verifyToken } from './token.js';
 import { issueLedgerReceipt } from './receipts.js';
@@ -24,7 +25,7 @@ export function lessonStatus(lesson, rows, rescores = {}) {
   attempts: checks.length, flashcardPassed: rows.some(row => row.item_id === flashcardId && Number(row.score) >= 80) };
 }
 
-export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2Lessons(), targets = loadA2Targets(), store, now = () => todayInTz(config.schoolTz) }) {
+export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2Lessons(), targets = loadA2Targets(), schoolYear = loadA2SchoolYear(), store, now = () => todayInTz(config.schoolTz) }) {
   let liveStore = store;
   const storage = () => liveStore ||= createA2Store();
   const locks = new Map();
@@ -95,6 +96,16 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
     try { overlay = validatePacing(lessons, req.body?.lessons, targets); } catch (error) { fail(400, error.message); }
     await storage().putPacing(overlay);
     res.json(await lessonsResponse());
+  }));
+  // Teacher: a lesson finished early (or late). Re-dates one section from that lesson on.
+  app.put('/teacher/pacing/reflow', route(async (req, res) => {
+    if (!await requireTeacher(req, db)) fail(403, 'Teacher sign-in required');
+    const overlay = await storage().getPacing();
+    let result;
+    try { result = reflowPacing({ lessons, targets, schoolYear, overlay, section: req.body?.section, lesson: req.body?.lesson, due: req.body?.due }); }
+    catch (error) { fail(400, error.message); }
+    await storage().putPacing(result.rows);
+    res.json({ ...(await lessonsResponse()), unscheduled: result.unscheduled });
   }));
   // Existing grade/class/transcript mounts share the same schedule object.
   if (schedule) app.use(['/grade', '/class/grades', '/teacher/student', '/transcript', '/donow'], route(async (_req, _res, next) => { await currentLessons(); next(); }));

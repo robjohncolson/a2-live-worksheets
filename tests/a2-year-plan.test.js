@@ -1,6 +1,6 @@
 import { it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { buildYearPlan, closureSet, fridayOf, loadInputs, meetingDays, pacingTable, replacePacingTable, SECTIONS } from '../scripts/build-a2-year-plan.mjs';
+import { buildYearPlan, closureSet, fridayOf, loadInputs, meetingDays, pacingTable, replacePacingTable, schoolYearJson, SECTIONS } from '../scripts/build-a2-year-plan.mjs';
 
 const { targets, published, def, doc } = loadInputs();
 const roadmap = JSON.parse(readFileSync('roadmap-data.json', 'utf8'));
@@ -103,6 +103,35 @@ it('fit and cadence modes remain available for comparison and report what falls 
   expect(plan.pacing.unscheduled.C).toEqual(['6-6', '7-1', '7-2', '7-3']);
   expect(plan.lessons.find(lesson => lesson.key === '7-3').sections).toBeUndefined();
   expect(pacingTable(plan, published)).toContain('Does not fit: C: 6-6, 7-1, 7-2, 7-3');
+});
+
+it('teacher re-flow: finishing a lesson early pulls every later window and assessment forward for that section only', () => {
+  const A2YearPlan = globalThis.A2YearPlan;
+  expect(JSON.parse(readFileSync('data/a2-school-year.json', 'utf8'))).toEqual(schoolYearJson(def));
+  const order = targets.lessons.filter(lesson => lesson.plan === 'keep' || lesson.plan === 'bridge');
+  const current = Object.fromEntries(order.map(lesson => [lesson.key, lesson.sections || {}]));
+  const result = A2YearPlan.reflowSection({ def, section: 'C', order, current, assessments: targets.assessments, lesson: '2-1', due: '2026-11-12', weeks: 2 });
+  expect(result.lessons['2-1']).toEqual({ C: '2026-11-12', D: '2026-11-20', G: '2026-11-20' });   // D and G untouched
+  expect(result.lessons['2-2']).toEqual({ C: '2026-11-24', D: '2026-12-04', G: '2026-12-04' });   // opens Mon Nov 16, Thanksgiving trims it
+  expect(result.lessons['2-3'].C).toBe('2026-12-03');
+  expect(result.lessons['2-6'].C).toBe('2026-12-17');
+  expect(result.lessons['2-7'].C).toBe('2026-12-22');                                              // winter break trims 2-7
+  expect(result.assessments['1']).toBeUndefined();                                                 // earlier topics untouched
+  expect(result.assessments['2']).toEqual({ ...targets.assessments['2'], C: '2027-01-04' });
+  expect(result.lessons['1-6']).toBeUndefined();
+  // Everything after moves earlier or stays, never later; one week is not enough for 6-1.
+  for (const lesson of order.slice(order.findIndex(l => l.key === '2-1') + 1)) {
+    if (result.lessons[lesson.key].C && current[lesson.key].C) expect(result.lessons[lesson.key].C <= current[lesson.key].C, lesson.key).toBe(true);
+  }
+  expect(result.lessons['5-6'].C).toBe('2027-06-03');
+  expect(result.assessments['5'].C).toBe('2027-06-07');
+  expect(result.unscheduled).toEqual(['6-1', '6-2', '6-3', '6-6', '7-1', '7-2', '7-3']);
+  expect(result.lessons['7-3']).toEqual({});
+  // Finishing late works the same way and can push a lesson off the year.
+  const late = A2YearPlan.reflowSection({ def, section: 'G', order, current, assessments: targets.assessments, lesson: '5-1', due: '2027-05-21', weeks: 2 });
+  expect(late.lessons['5-5'].G).toBe('2027-06-04');
+  expect(late.unscheduled).toEqual(expect.arrayContaining(['5-6', '6-1']));
+  expect(late.assessments['5']).toEqual({ C: '2027-06-14', D: '2027-06-07' });                   // G has no Topic 5 assessment any more
 });
 
 it('roadmap-data.json carries planned windows and assessment days for the Desk', () => {

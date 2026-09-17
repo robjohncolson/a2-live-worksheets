@@ -50,7 +50,7 @@
     const published = new Set(lessons.map(lesson => lesson.key));
     // Planned (unpublished) lessons from the year plan: the saved overlay wins over the
     // generated dates; the overlay applies automatically once the lesson is published.
-    const planned = (yearPlan.lessons || []).filter(lesson => !published.has(lesson.key) && lesson.plan !== 'later' && lesson.sections)
+    const planned = (yearPlan.lessons || []).filter(lesson => !published.has(lesson.key) && lesson.plan !== 'later' && (pacingOverlay[lesson.key]?.sections || lesson.sections))
       .map(lesson => ({ ...lesson, planned: true, sections: pacingOverlay[lesson.key]?.sections || lesson.sections, onenoteUrl: pacingOverlay[lesson.key]?.onenoteUrl || null }));
     [...lessons, ...planned].forEach(lesson => {
       const group = document.createElement('fieldset'); group.dataset.lesson = lesson.key; form.append(group);

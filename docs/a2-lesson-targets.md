@@ -57,6 +57,13 @@ windows. The Desk calendar draws planned windows dimmed with no link and no due 
 teacher pacing tool can date a planned lesson ahead of publication (the override applies once
 the lesson is published). Grading only ever reads the published model.
 
+**Adjusting in the app.** When a section finishes a lesson early (or runs late), open that lesson
+on the Desk as the teacher and use the *Teacher pacing* control: pick the section and the date it
+is due, then "Finished early: due on this date, shift the rest". The server re-dates every later
+lesson and topic assessment for that section at the two-week cadence and stores the result as
+pacing overlay rows (lessons and `TA-<topic>` assessment rows), so the Desk, grading and the pacing
+tool all follow. Other sections are untouched; the year plan file is not rewritten.
+
 **Cadence (teacher decision, 2026-09-17): each lesson takes two weeks.** A window runs from
 its first meeting day through the Friday of its second calendar week; a window that would open
 on a Thursday or Friday opens the following Monday instead, a vacation week with no meeting

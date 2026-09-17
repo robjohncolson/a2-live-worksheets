@@ -11,6 +11,8 @@ export const SERVER_SHARED = [
   ['lib/a2-answers.js', 'roster-server/lib/a2-answers.js'],
   ['content/a2/lessons.json', 'roster-server/data/a2-lessons.json'],
   ['data/a2-lesson-targets.json', 'roster-server/data/a2-lesson-targets.json'],
+  ['data/a2-school-year.json', 'roster-server/data/a2-school-year.json'],
+  ['lib/a2-year-plan.js', 'roster-server/lib/a2-year-plan.js'],
 ];
 
 for (const [from, to] of SERVER_SHARED) {

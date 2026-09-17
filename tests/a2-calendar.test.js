@@ -91,6 +91,32 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
   } finally { desk.window.close(); }
 }, 10000);
 
+it('the teacher pacing control closes a lesson early for one section and asks the Desk to re-read pacing', async () => {
+  const dom = new JSDOM('<div id="body"></div>', { runScripts: 'outside-only' });
+  try {
+    const win = dom.window, body = win.document.getElementById('body');
+    const request = vi.fn(async () => ({ ok: true, unscheduled: ['7-3'] }));
+    const refresh = vi.fn(), changed = vi.fn();
+    win.A2Client = { request, changed }; win.A2Desk = { refresh };
+    win.cP = 'G'; win.tdy = () => new win.Date(2026, 10, 12);
+    const html = readFileSync('desk.html', 'utf8');
+    const source = html.slice(html.indexOf('function _appendTeacherPacingControl('), html.indexOf('function showResourcePanel('));
+    runInContext(source, dom.getInternalVMContext(), { filename: pathToFileURL(resolve('desk.html')).href });
+    win._appendTeacherPacingControl(body, '2-1', { sections: { C: '2026-11-19', D: '2026-11-20', G: '2026-11-20' } });
+    const select = body.querySelector('select'), date = body.querySelector('input[type=date]'), button = body.querySelector('button');
+    expect(select.value).toBe('G');                       // defaults to the calendar's current section
+    expect(date.value).toBe('2026-11-12');                // and to today
+    expect(body.textContent).toContain('now due 2026-11-20');
+    select.value = 'C'; select.onchange();
+    expect(body.textContent).toContain('now due 2026-11-19');
+    button.click();
+    await vi.waitFor(() => expect(refresh).toHaveBeenCalled());
+    expect(request).toHaveBeenCalledWith('/teacher/pacing/reflow', { section: 'C', lesson: '2-1', due: '2026-11-12' }, 'PUT');
+    expect(changed).toHaveBeenCalled();
+    expect(body.querySelector('[role=status]').textContent).toContain('Still off the calendar: 7-3');
+  } finally { dom.window.close(); }
+});
+
 it('calendar chips use lesson statuses without lesson tiles and isolate view-as scores', () => {
   const dom = new JSDOM('<div id="cell"></div>', { runScripts: 'outside-only' });
   try {

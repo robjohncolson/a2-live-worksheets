@@ -35,12 +35,15 @@ implemented:
 
 ## Open items
 
-- Topics 6-7 (the bridge material) do not fit at two weeks per lesson. Options: shorten some
-  Topic 2-4 windows in the pacing tool, or accept that the year ends at 5-6.
+- Topics 6-7 (the bridge material) do not fit at two weeks per lesson. The teacher can now
+  close a lesson early from its Desk panel ("Teacher pacing": `PUT /teacher/pacing/reflow`,
+  `lib/a2-year-plan.js` `reflowSection`), which re-dates the rest of that section; enough early
+  finishes pull 6-1 onward onto the calendar.
 - 2-6 has a two-day window (Dec 21-23) because of winter recess; the teacher may want to move
   its due date into January from the pacing tool.
 - Brief lessons (1-3, 1-4, 2-4, 2-5, 3-3, 3-7, 4-1) are unscheduled (`--brief-days 1` dates them).
-- Assessment dates live in the JSON only; the pacing tool dates lessons, not assessments.
+- Assessment dates come from the JSON, overridden by `TA-<topic>` pacing rows written by
+  re-flow; the pacing editor still lists lessons only.
 - Publish 2-1 onward in plan order.
 
 ## Verification checklist
