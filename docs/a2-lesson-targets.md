@@ -57,6 +57,13 @@ windows. The Desk calendar draws planned windows dimmed with no link and no due 
 teacher pacing tool can date a planned lesson ahead of publication (the override applies once
 the lesson is published). Grading only ever reads the published model.
 
+**Goals versus what landed.** Pacing dates are goals. `content/a2/day-log.json` is the day log:
+what actually happened per section and meeting day (`note`), or what is intended for a day
+(`plan`), plus extra `resources` per lesson (for example a Blooket set). The Desk marks a logged
+day with a dot, shows the entry in the cell tooltip and lists a lesson's entries and resources on
+its panel. The log never moves a due date; it is kept in conversation with the assistant (edit the
+JSON, commit, push) and, when a section is ahead or behind, the pacing is changed separately.
+
 **Adjusting in the app.** When a section finishes a lesson early (or runs late), open that lesson
 on the Desk as the teacher and use the *Teacher pacing* control: pick the section and the date it
 is due, then "Finished early: due on this date, shift the rest". The server re-dates every later

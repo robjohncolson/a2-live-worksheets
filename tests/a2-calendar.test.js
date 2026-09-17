@@ -88,6 +88,22 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
     expect(win._orderedPeriodTopics()).toContain('1.1');
     expect(win._prevTopicInSequence('1.2')).toBe('1.1');
     expect(win.document.getElementById('legend-bar').textContent).toContain('Planned (not yet published)');
+    // Day log: Sep 17 landed for C (filled dot) and is planned for C on Sep 21 (hollow); the
+    // goal (1.1 window, due Sep 24) is untouched. G's entry only shows on G.
+    await vi.waitFor(() => expect(win.eval('A2_DAY_LOG').entries.length).toBeGreaterThan(0), { interval: 50, timeout: 5000 });
+    win.eval('_calPageOffset = 0'); win.rCal();
+    const dayLog = JSON.parse(readFileSync('content/a2/day-log.json', 'utf8'));
+    expect(dayLog.entries.some(e => e.date === '2026-09-17' && e.section === 'C' && e.note)).toBe(true);
+    const sep17 = [...win.document.querySelectorAll('#cg .dc')].find(c => c.dataset.dts && new Date(+c.dataset.dts).getDate() === 17 && new Date(+c.dataset.dts).getMonth() === 8);
+    expect(sep17.classList.contains('cell-logged')).toBe(true);
+    expect(sep17.getAttribute('aria-label')).toContain('Landed: Group Jam');
+    expect(sep17.dataset.topic).toBe('1.1');
+    win.eval('_calPageOffset = 1'); win.rCal();          // the focus window may be one week; page to Sep 21
+    const sep21 = [...win.document.querySelectorAll('#cg .dc')].find(c => c.dataset.dts && new Date(+c.dataset.dts).getDate() === 21 && new Date(+c.dataset.dts).getMonth() === 8);
+    expect(sep21.classList.contains('cell-log-plan')).toBe(true);
+    expect(win.a2DayLogFor(new win.Date(2026, 8, 17), 'G')[0].note).toContain('PS2');
+    expect(win.a2DayLogFor(new win.Date(2026, 8, 17), 'D')).toEqual([]);
+    expect(cellOn(8, 24, 3)).toMatchObject({ t: '1.1' });
   } finally { desk.window.close(); }
 }, 10000);
 

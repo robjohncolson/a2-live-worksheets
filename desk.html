@@ -689,6 +689,11 @@
         .cell-planned .plan-tag { font-size: 9px; letter-spacing: .04em; text-transform: uppercase; opacity: .8; }
         .cell-assess { background: var(--black); color: var(--white); cursor: default; }
         .teacher-pacing { margin: 12px 0; padding: 8px 10px; border: 1px dashed var(--plat-lo); }
+        /* Day log: a filled dot = something landed that day; hollow = a plan for the day. */
+        .cell-logged, .cell-log-plan { position: relative; }
+        .cell-log { position: absolute; bottom: 2px; right: 3px; font-size: 9px; line-height: 1; pointer-events: none; opacity: .8; }
+        .desk-day-log { margin: 8px 0; padding-left: 18px; font-size: 13px; }
+        .desk-day-log li { margin: 3px 0; }
         .teacher-pacing select, .teacher-pacing input { font: inherit; min-height: 32px; }
         /* Today: a crisp 2px inset frame (thinner than the 3px state rings — a deliberate
            hierarchy cue) seated slightly forward. The old "◀TODAY" corner chip is dropped:
@@ -6987,6 +6992,23 @@ const SCHEDULE_DEFS = {
 };
 let S = [];
 let _a2PacingSignature = '';
+// Day log (content/a2/day-log.json): what actually landed per section and meeting
+// day, plus extra lesson resources. Pacing dates are the goals; the log never moves
+// them. It only decorates cells (mark + tooltip) and the lesson panel.
+let A2_DAY_LOG = { entries: [], resources: {}, byKey: {} };
+function _a2IsoDate(dt) { return dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0') + '-' + String(dt.getDate()).padStart(2, '0'); }
+function applyA2DayLog(log) {
+  if (!log || !Array.isArray(log.entries)) return false;
+  const byKey = {};
+  for (const entry of log.entries) {
+    if (!entry || !entry.date || !entry.section) continue;
+    (byKey[entry.date + '|' + entry.section] ||= []).push(entry);
+  }
+  A2_DAY_LOG = { entries: log.entries, resources: log.resources || {}, byKey };
+  if (typeof rCal === 'function') { try { rCal(); } catch (_) {} }
+  return true;
+}
+function a2DayLogFor(dt, section) { return A2_DAY_LOG.byKey[_a2IsoDate(dt) + '|' + (section || cP)] || []; }
 // Fill each section's pacing queue from the lesson model and rebuild the calendar.
 // Called by a2-desk.js whenever the lesson list (with pacing overlay) is loaded.
 // `plan` is data/a2-lesson-targets.json (optionally with `overlay`, the server's
@@ -7650,6 +7672,24 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
     var lesson = window.A2Desk && typeof window.A2Desk.getLesson === 'function'
         ? window.A2Desk.getLesson(inf.t) : null;
     if (typeof _deskIsTeacher === 'function' && _deskIsTeacher()) _appendTeacherPacingControl(body, key, lesson);
+    var _log = (typeof A2_DAY_LOG === 'object' && A2_DAY_LOG) ? A2_DAY_LOG : { entries: [], resources: {} };
+    (_log.resources[key] || []).forEach(function (res) {
+        if (!res || !res.url || !res.label) return;
+        var row = document.createElement('p');
+        var link = document.createElement('a');
+        link.textContent = res.label; link.href = res.url; link.target = '_blank'; link.rel = 'noopener';
+        row.appendChild(link); body.appendChild(row);
+    });
+    var logged = _log.entries.filter(function (e) { return e && e.lesson === key && (e.note || e.plan); });
+    if (logged.length) {
+        var logList = document.createElement('ul'); logList.className = 'desk-day-log';
+        logged.forEach(function (e) {
+            var li = document.createElement('li');
+            li.textContent = e.date + ' \u00b7 Section ' + e.section + ' \u00b7 ' + (e.note ? e.note : 'Plan: ' + e.plan);
+            logList.appendChild(li);
+        });
+        body.appendChild(logList);
+    }
     var skills = lesson && Array.isArray(lesson.supportingSkills) ? lesson.supportingSkills : [];
     skills.filter(function (skill) { return skill && skill.url && skill.name; }).forEach(function (skill) {
         var row = document.createElement('p');
@@ -14574,6 +14614,12 @@ function rCal(){
               if(typeof inf==='object'&&inf.t&&!inf.planned&&inf.kind!=='assessment'){_todayLessonInf=inf;_todayLessonDS=ds;}
             }
             if(dt<t&&!eq(dt,t))c.classList.add("cell-past");
+            // Day log: what landed (or is planned) that day for this section, on top of the goal.
+            const _dayLog = a2DayLogFor(dt);
+            if (_dayLog.length) {
+              c.classList.add(_dayLog.some(function (e) { return e.note; }) ? 'cell-logged' : 'cell-log-plan');
+              c.insertAdjacentHTML('beforeend', '<span class="cell-log" aria-hidden="true">' + (_dayLog.some(function (e) { return e.note; }) ? '\u25CF' : '\u25CB') + '</span>');
+            }
             // Year-plan cells: a planned (unpublished) lesson window or a topic assessment
             // day. Neither has work to open, a status, or a place in the lesson gate.
             const _isPlanCell = typeof inf === 'object' && inf && (inf.planned || inf.kind === 'assessment');
@@ -14642,6 +14688,7 @@ function rCal(){
             // role=button that reuses the onclick rCal already assigned (so the lock
             // and Do-Now guards are honored). Non-interactive cells stay inert.
             let _aria = cellAria(inf, ds);
+            for (const _e of _dayLog) _aria += (_e.note ? '. Landed: ' : '. Plan: ') + (_e.note || _e.plan);
             if (c.classList.contains('cal-current')) { _aria += ' (next up)'; c.setAttribute('aria-current', 'step'); }
             else if (c.classList.contains('dc-localdone') || c.classList.contains('dc-done')) { _aria += ' (completed)'; }
             if (c.classList.contains('cell-locked')) { _aria += ' (locked — finish the previous lesson first)'; }
@@ -14835,6 +14882,9 @@ function sTip(ev,dt,inf,ds){if(inf===NC||!inf)return;
             }
         }
     }
+    for(const e of a2DayLogFor(dt)){
+        h+='<div class="th tt-log">'+(e.note?'Landed: ':'Plan: ')+_resourcePanelEsc(e.note||e.plan||'')+'</div>';
+    }
     tip.innerHTML=h;tip.style.display="block";}
 function mTip(e){tip.style.left=(e.clientX+12)+"px";tip.style.top=(e.clientY+12)+"px";}
 function hTip(){tip.style.display="none";}
@@ -14901,7 +14951,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-17-v5yh';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-17-389t';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

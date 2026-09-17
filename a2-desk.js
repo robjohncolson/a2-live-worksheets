@@ -5,7 +5,17 @@
   // The year plan (data/a2-lesson-targets.json) gives the calendar its planned windows
   // and assessment days for lessons that are not published yet. Loaded once; the
   // server's pacing overlay (from /lessons) can override a planned lesson's dates.
-  let yearPlan, pacingOverlay = {};
+  let yearPlan, pacingOverlay = {}, dayLogLoaded = false;
+  // The day log (content/a2/day-log.json) is what landed in class; it decorates the
+  // calendar and lesson panels and never changes a due date.
+  async function loadDayLog() {
+    if (dayLogLoaded) return;
+    dayLogLoaded = true;
+    try {
+      const log = await (await fetch('content/a2/day-log.json', { cache: 'no-store' })).json();
+      if (typeof applyA2DayLog === 'function') applyA2DayLog(log);
+    } catch (_) { /* the log is optional */ }
+  }
   async function loadYearPlan() {
     if (yearPlan !== undefined) return yearPlan;
     try { const plan = await (await fetch('data/a2-lesson-targets.json')).json(); yearPlan = plan && Array.isArray(plan.lessons) ? plan : null; }
@@ -81,6 +91,7 @@
         if (live.pacing && typeof live.pacing === 'object') pacingOverlay = live.pacing;
       } catch (_) { /* Published model remains readable offline. */ }
       const plan = await loadYearPlan();
+      await loadDayLog();
       if (version !== generation || session !== sessionKey()) return;
       // Lesson metadata and calendar windows are also needed in read-only views.
       if (typeof applyA2Pacing === 'function') { try { applyA2Pacing(lessons, plan ? { ...plan, overlay: pacingOverlay } : undefined); } catch (_) { /* calendar is optional */ } }
