@@ -112,7 +112,8 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
     win.eval('_calPageOffset = 1'); win.rCal();          // the focus window may be one week; page to Sep 21
     const sep21 = [...win.document.querySelectorAll('#cg .dc')].find(c => c.dataset.dts && new Date(+c.dataset.dts).getDate() === 21 && new Date(+c.dataset.dts).getMonth() === 8);
     expect(sep21.classList.contains('cell-log-plan')).toBe(true);
-    expect(win.a2DayLogFor(new win.Date(2026, 8, 17), 'G')[0].note).toContain('PS2');
+    expect(win.a2DayLogFor(new win.Date(2026, 8, 17), 'G')[0].note).toContain('FS8');
+    expect(win.a2DayLogFor(new win.Date(2026, 8, 18), 'G')[0].note).toContain('homework');
     expect(win.a2DayLogFor(new win.Date(2026, 8, 17), 'D')).toEqual([]);
     expect(cellOn(8, 24, 3)).toMatchObject({ t: '1.1' });
   } finally { desk.window.close(); }
