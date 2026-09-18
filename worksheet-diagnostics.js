@@ -1,7 +1,7 @@
 // Counts and loading outcomes only. No answers, passwords, tokens, or device fingerprints.
 (function () {
   'use strict';
-  var BUILD = '2026-09-17-zg5b'; // scripts/bump-build.mjs stamps the running client version.
+  var BUILD = '2026-09-18-syyx'; // scripts/bump-build.mjs stamps the running client version.
   var KEY = 'a2_worksheet_diagnostics.v1';
   var DEVICE_KEY = 'a2_worksheet_diagnostic_device.v1';
   var pending = [];
