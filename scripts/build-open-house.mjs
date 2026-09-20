@@ -13,6 +13,7 @@ const gradeSentences = gradeParagraphs[1].textContent.match(/[^.]+\.(?:\s|$)/g).
 const minimums = gradeSentences[0];
 const liveGrade = [gradeSentences[1], gradeSentences[3], gradeSentences[4]].join(' ');
 const addDrop = sections.find(section => section.querySelector('h2')?.textContent === 'Right now (through Fri Sep 18)').querySelector('p').outerHTML;
+const bonus = doc.querySelector('#bonus p').outerHTML;
 const dates = sections.find(section => section.querySelector('h2')?.textContent === 'Dates').querySelector('p').textContent.split('Quarters close ')[1];
 const deskButton = doc.querySelector('nav a[href="desk.html"]').outerHTML;
 
@@ -57,6 +58,7 @@ ${table}
 <p>${formula} ${minimums}</p>
 <p>${liveGrade}</p>
 ${addDrop}
+${bonus}
 <p>Quarters close ${dates}</p>
 <aside aria-labelledby="where-to-look">
 <h2 id="where-to-look">Where to look</h2>

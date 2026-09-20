@@ -143,3 +143,6 @@ state/_pack_test/
 
 # Local Schoology sync fixtures/logs (may contain student data)
 tools/.schoology-sync-logs/
+
+# Schoology syllabus PDFs carry the teacher name; rebuild with build-a2-syllabus.mjs --teacher
+syllabus/*.pdf
