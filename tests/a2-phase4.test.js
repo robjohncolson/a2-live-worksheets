@@ -7,6 +7,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import '../lib/a2-answers.js';
 
+const blooketFindings = JSON.parse(readFileSync('tests/fixtures/a2-blooket-source-findings.json', 'utf8'));
 const lessons = JSON.parse(readFileSync('content/a2/lessons.json', 'utf8'));
 it('keeps answers out of student prompts and provides every lesson-check answer', () => {
   const forbiddenText = ['\\answer{', '\\te{', 'Answer key', '\\begin{align'];
@@ -32,14 +33,15 @@ describe('shared interval normalizer', () => {
     expect(A2Answers.answerMatches('1', '')).toBe(false);
   });
 });
-it('ships six traced items, five verbatim Try-Its and a clean 14-card traced deck', () => {
+it('ships six traced items, five verbatim Try-Its and a faithful 40-card Blooket deck', () => {
   expect(lessons[0].sections).toEqual({ C: '2026-09-24', D: '2026-09-25', G: '2026-09-25' });
   expect(lessons[0].lessonCheck.map(item => item.registryId)).toEqual([18,21,22,23,27,32].map(n => '1-1-savvas-q' + n));
   expect(lessons[0].tryIts.map(item => item.n)).toEqual([1,2,3,4,5]);
   const report = JSON.parse(execFileSync(process.execPath, ['scripts/lint-blooket-deck.mjs', '--csv', lessons[0].deck], { encoding: 'utf8' }));
-  expect(report.findings).toEqual([]); expect(report.decks[0].cards).toBe(14);
+  expect(report.findings).toEqual(blooketFindings); expect(report.decks[0].cards).toBe(40);
   const sources = JSON.parse(readFileSync('content/a2/1-1/deck.sources.json', 'utf8'));
-  expect(Object.values(sources).every(id => /^1-1-savvas-concept-/.test(id))).toBe(true);
+  const source = JSON.parse(readFileSync('data/sources/blooket/a2-number-line-interval/set.json', 'utf8'));
+  expect(sources).toEqual(Object.fromEntries(source.questions.filter(q => q.number <= 40).map(q => [q.number, `blooket:${source.setId}:q${q.number}`])));
 });
 it('teacher offline queue keeps different students separate and the latest tap for each', async () => {
   const dom = new JSDOM('', { runScripts: 'outside-only' });
@@ -52,7 +54,7 @@ it('teacher offline queue keeps different students separate and the latest tap f
     expect((await queue.all()).map(row => [row.studentId,row.score])).toEqual([['a',0],['b',2]]);
   } finally { dom.window.close(); }
 });
-it('publishes the Topic 1 keep lessons with traced Try-Its, six answerable check items, and a clean 14-card deck each', () => {
+it('publishes the Topic 1 keep lessons with traced Try-Its, six answerable check items, and the validated source deck for each', () => {
   expect(lessons.map(lesson => lesson.key)).toEqual(['1-1', '1-2', '1-5', '1-6']);
   for (const lesson of lessons) {
     expect(lesson.tryIts.map(item => item.n)).toEqual(lesson.tryIts.map((_, i) => i + 1));
@@ -65,7 +67,8 @@ it('publishes the Topic 1 keep lessons with traced Try-Its, six answerable check
       if (item.type === 'mc') { expect(item.choices).toHaveLength(4); expect(item.choices.map(c => c[0])).toContain(item.answer); }
     }
     const report = JSON.parse(execFileSync(process.execPath, ['scripts/lint-blooket-deck.mjs', '--csv', lesson.deck], { encoding: 'utf8' }));
-    expect(report.findings, lesson.key).toEqual([]); expect(report.decks[0].cards).toBe(14);
+    expect(report.findings, lesson.key).toEqual(lesson.key === '1-1' ? blooketFindings : []);
+    expect(report.decks[0].cards).toBe(lesson.key === '1-1' ? 40 : 14);
     expect(lesson.topicAssessmentKey).toBe('T1');
   }
 });

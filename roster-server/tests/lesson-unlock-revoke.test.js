@@ -160,6 +160,7 @@ afterEach(async () => {
 
 // Fixture rows
 const FIXTURE_STUDENT = {
+  password_hash: 'fixture-password-hash',
   student_id: 'stu_abc123',
   login_username: 'papaya-otter',
   real_name: 'Jane Doe',
@@ -167,6 +168,7 @@ const FIXTURE_STUDENT = {
 };
 
 const FIXTURE_TEACHER_ROW = {
+  password_hash: 'fixture-password-hash',
   student_id: 'stu_teacher',
   login_username: 'apple-fox',
   real_name: 'Mr. Colson',
@@ -230,7 +232,7 @@ describe('POST /teacher/lesson-unlock/revoke', () => {
       lessonUnlockDb,
     });
     srv = ctx.server;
-    const token = signToken('stu_teacher');
+    const token = signToken('stu_teacher', 'fixture-password-hash');
     const r = await srv.post('/teacher/lesson-unlock/revoke', {
       studentUsername: 'papaya-otter', lessonKey: '5.3',
     }, { 'Authorization': `Bearer ${token}` });
@@ -350,7 +352,7 @@ describe('POST /teacher/lesson-unlock/revoke', () => {
       lessonUnlockDb,
     });
     srv = ctx.server;
-    const token = signToken('stu_teacher');
+    const token = signToken('stu_teacher', 'fixture-password-hash');
     const r = await srv.post('/teacher/lesson-unlock/revoke', {
       studentUsername: 'papaya-otter', lessonKey: '1.7',
     }, { 'Authorization': `Bearer ${token}` });

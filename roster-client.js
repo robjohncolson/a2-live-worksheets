@@ -7,6 +7,44 @@
   'use strict';
 
   var STORAGE_KEY = 'a2_roster.v1';
+  // Student grades stay in Schoology until the Desk grade model is updated.
+  window.A2_STUDENT_GRADES_VISIBLE = false;
+  window.a2StudentGradesHidden = function () {
+    var who = window.rosterClient && window.rosterClient.current();
+    return !window.A2_STUDENT_GRADES_VISIBLE && !!who && who.role === 'student';
+  };
+  var startingPassword = 'password'; // memory only; never persisted
+
+  function requirePasswordChange() {
+    var session = readSession();
+    if (!session || !session.token) return;
+    session.mustChangePassword = true;
+    writeSession(session);
+    window.dispatchEvent(new Event('a2:password-change-required'));
+  }
+
+  // Shared by roster requests and the gradebook's scoped work transport.
+  function handleAuthResponse(status, body) {
+    if (!body || !window.rosterClient.token()) return;
+    if (status === 403 && body.error === 'password change required') requirePasswordChange();
+    if (status === 401 && body.error === 'session expired') {
+      clearSession();
+      window.dispatchEvent(new Event('a2:session-expired'));
+    }
+  }
+
+  // Only scoped requests observe auth failures; global fetch is untouched.
+  async function rosterRequest(url, options) {
+    var token = window.rosterClient && window.rosterClient.token();
+    var response = await fetch(url, options);
+    if (token && token === window.rosterClient.token() && (response.status === 401 || response.status === 403)) {
+      try {
+        var data = await response.clone().json();
+        handleAuthResponse(response.status, data);
+      } catch (_) { /* preserve the response for the caller */ }
+    }
+    return response;
+  }
 
   // --- localStorage helpers (never throw) ---
 
@@ -50,6 +88,7 @@
   // --- public API ---
 
   window.rosterClient = {
+    handleAuthResponse: handleAuthResponse,
 
     // Returns { studentId, username, realName, section, role, spriteHue } from
     // localStorage, or null. role defaults to 'student' when absent (old sessions
@@ -110,7 +149,7 @@
       }
 
       try {
-        var response = await fetch(baseUrl + '/roster/verify', {
+        var response = await rosterRequest(baseUrl + '/roster/verify', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username: username, password: password })
@@ -122,6 +161,7 @@
           return { ok: false, error: data.error || 'Sign-in failed' };
         }
 
+        if (data.mustChangePassword) startingPassword = password;
         writeSession({
           studentId: data.studentId,
           username: data.username || username,
@@ -151,6 +191,12 @@
     // the stored session token. On success, clears mustChangePassword in the
     // persisted session. Returns { ok, error? }. Never throws.
     changePassword: async function (newPassword) {
+      if (typeof newPassword !== 'string' || newPassword.length < 6) {
+        return { ok: false, error: 'Use at least 6 characters.' };
+      }
+      if (newPassword.toLowerCase() === startingPassword.toLowerCase()) {
+        return { ok: false, error: 'Choose a password different from your starting password.' };
+      }
       var session = readSession();
       if (!session || !session.token) {
         return { ok: false, error: 'Not signed in' };
@@ -162,7 +208,7 @@
       }
 
       try {
-        var response = await fetch(baseUrl + '/roster/change-password', {
+        var response = await rosterRequest(baseUrl + '/roster/change-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ token: session.token, newPassword: newPassword })
@@ -174,7 +220,9 @@
           return { ok: false, error: data.error || 'Password change failed' };
         }
 
+        startingPassword = 'password';
         session.mustChangePassword = false;
+        if (data.token) session.token = data.token;
         writeSession(session);
 
         return { ok: true };
@@ -202,7 +250,7 @@
       }
 
       try {
-        var response = await fetch(baseUrl + '/roster/enroll', {
+        var response = await rosterRequest(baseUrl + '/roster/enroll', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -235,7 +283,7 @@
       var baseUrl = serviceUrl();
       if (!baseUrl) return [];
       try {
-        var response = await fetch(baseUrl + '/roster/open-sections');
+        var response = await rosterRequest(baseUrl + '/roster/open-sections');
         var data = await response.json();
         if (data && data.ok && Array.isArray(data.sections)) return data.sections;
         return [];
@@ -264,7 +312,7 @@
       if (opts && opts.teacherKey) payload.teacherKey = opts.teacherKey;
 
       try {
-        var response = await fetch(baseUrl + '/roster/claim', {
+        var response = await rosterRequest(baseUrl + '/roster/claim', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -273,6 +321,12 @@
         var data = await response.json();
 
         if (!data || !data.ok) {
+          if (data && data.error === 'account-exists') {
+            if (typeof data.startingPassword === 'string') startingPassword = data.startingPassword;
+            return { ok: false, error: 'account-exists', code: 'account-exists',
+              username: data.username, section: data.section, ambiguous: !!data.ambiguous,
+              mustChangePassword: !!data.mustChangePassword, startingPassword: data.startingPassword };
+          }
           // data.error 'username-taken' surfaces as code so the UI can re-roll.
           return { ok: false, error: (data && data.error) || 'Signup failed', code: data && data.error };
         }

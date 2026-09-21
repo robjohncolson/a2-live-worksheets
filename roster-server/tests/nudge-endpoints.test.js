@@ -165,6 +165,7 @@ afterEach(async () => {
 
 // Fixture student
 const FIXTURE_STUDENT = {
+  password_hash: 'fixture-password-hash',
   student_id: 'stu_abc123',
   login_username: 'papaya-otter',
   real_name: 'Jane Doe',
@@ -172,6 +173,7 @@ const FIXTURE_STUDENT = {
 };
 
 const FIXTURE_TEACHER_ROW = {
+  password_hash: 'fixture-password-hash',
   student_id: 'stu_teacher',
   login_username: 'apple-fox',
   real_name: 'Mr. Colson',
@@ -313,7 +315,7 @@ describe('POST /teacher/nudge', () => {
       nudgesDb,
     });
     srv = ctx.server;
-    const token = signToken('stu_teacher');
+    const token = signToken('stu_teacher', 'fixture-password-hash');
     const r = await srv.post('/teacher/nudge', {
       nudgeId: 'nudge_3', recipientUsernames: ['papaya-otter'], text: 'Good work', senderUsername: 'apple-fox',
     }, { 'Authorization': `Bearer ${token}` });
@@ -355,7 +357,7 @@ describe('POST /student/nudge-reply', () => {
     // Roster has no entry for the token's studentId
     const ctx = await startServer({ roster: [], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/student/nudge-reply', {
       parentNudgeId: 'nudge_1', recipientUsername: 'apple-fox', text: 'On it!',
     }, { 'Authorization': `Bearer ${token}` });
@@ -368,7 +370,7 @@ describe('POST /student/nudge-reply', () => {
     const nudgesDb = createFakeNudgesDb();
     const ctx = await startServer({ roster: [FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     // Missing parentNudgeId
     const r1 = await srv.post('/student/nudge-reply', {
       recipientUsername: 'apple-fox', text: 'On it!',
@@ -393,7 +395,7 @@ describe('POST /student/nudge-reply', () => {
     const nudgesDb = createFakeNudgesDb();
     const ctx = await startServer({ roster: [FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const longText = 'z'.repeat(500);
     const r = await srv.post('/student/nudge-reply', {
       parentNudgeId: 'nudge_1', recipientUsername: 'apple-fox', text: longText,
@@ -406,7 +408,7 @@ describe('POST /student/nudge-reply', () => {
     const nudgesDb = createFakeNudgesDb();
     const ctx = await startServer({ roster: [FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/student/nudge-reply', {
       parentNudgeId: 'nudge_1', recipientUsername: 'apple-fox', text: 'On it!',
     }, { 'Authorization': `Bearer ${token}` });
@@ -424,7 +426,7 @@ describe('POST /student/nudge-reply', () => {
     const nudgesDb = createFakeNudgesDb({ failWith42P01: true });
     const ctx = await startServer({ roster: [FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/student/nudge-reply', {
       parentNudgeId: 'nudge_1', recipientUsername: 'apple-fox', text: 'On it!',
     }, { 'Authorization': `Bearer ${token}` });

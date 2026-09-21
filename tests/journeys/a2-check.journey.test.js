@@ -64,7 +64,8 @@ it('C student signs in, completes 4/6 then 6/6, sees best 10/10 in the Desk and 
     await desk.window.A2Desk.refresh();
     expect(desk.window.A2Client.chips(desk.window.A2Desk.getStatus('1-1'))).toContain('Lesson check 100%');
     desk.window.openMyGradebook();
-    expect(desk.document.getElementById('my-gradebook-body').textContent).toContain('10.0 / 10');
+    expect(desk.document.body.textContent).toContain('Your grade is in Schoology for now.');
+    expect(desk.document.getElementById('my-gradebook-overlay').style.display).not.toBe('flex');
     const grade = await (await fetch(base + '/grade', { headers: { Authorization: 'Bearer ' + desk.window.rosterClient.token() } })).json();
     expect(grade.quarters.Q1.quarterGrade).toBe(100);
     expect(grade.quarters.Q1.categoryBreakdown.assignments.bonusWindowExcluded).toBe(5);

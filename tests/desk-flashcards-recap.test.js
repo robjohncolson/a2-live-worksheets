@@ -115,7 +115,7 @@ describe('Desk quick flashcard misses recap', () => {
         '_bfLoadDifficultyTags', '_bfSelectTop10', '_bfShowQuizUI',
         '_bfKeydownHandler', '_ftKeydownHandler', '_ftClearTimer',
         '_blooketCommit', 'setTimeout', 'clearTimeout',
-        'cedLabel',
+        'cedLabel', 'Flashcards',
         source + '\nreturn {' +
           'finish: _bfFinish,' +
           'start: _bfStartQuick' +
@@ -153,7 +153,8 @@ describe('Desk quick flashcard misses recap', () => {
         commit,
         setTimeout,
         clearTimeout,
-        loadCedLabels().cedLabel
+        loadCedLabels().cedLabel,
+        { dailyDraw: deck => deck, localDateKey: () => '2026-09-20', QUICK_TARGET: 10 }
       );
 
       await api.finish();

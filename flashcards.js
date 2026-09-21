@@ -53,6 +53,11 @@
   // Skips non-numeric-col0 header rows. Card = { qnum, q, choices[], correctIdx }.
   function rowsToDeck(rows) {
     var deck = [];
+    var imageColumn = -1;
+    for (var h = 0; h < (rows || []).length; h++) {
+      var column = rows[h].indexOf('image');
+      if (column >= 0) { imageColumn = column; break; }
+    }
     for (var i = 0; i < (rows || []).length; i++) {
       var r = rows[i] || [];
       var qnum = parseInt((r[0] || '').trim(), 10);
@@ -67,7 +72,9 @@
       if (choices.length < 2) continue;
       var correctIdx = parseInt((r[7] || '1').trim(), 10) - 1;
       if (correctIdx < 0 || correctIdx >= choices.length) correctIdx = 0;
-      deck.push({ qnum: qnum, q: qText, choices: choices, correctIdx: correctIdx });
+      var card = { qnum: qnum, q: qText, choices: choices, correctIdx: correctIdx };
+      if (imageColumn >= 0) card.image = (r[imageColumn] || '').trim();
+      deck.push(card);
     }
     return deck;
   }
@@ -99,6 +106,30 @@
       var t = a[i]; a[i] = a[j]; a[j] = t;
     }
     return a;
+  }
+
+  function localDateKey(date) {
+    var d = date || new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  // dateKey is YYYY-MM-DD|lesson-key. Walk a fixed lesson permutation in daily
+  // blocks, including across the end of the deck, before repeating any card.
+  function dailyDraw(cards, dateKey, n) {
+    if (!cards || !cards.length || n <= 0) return [];
+    var parts = String(dateKey).split('|');
+    var day = Date.parse(parts[0] + 'T00:00:00Z') / 86400000;
+    if (!Number.isFinite(day)) return [];
+    var count = Math.min(cards.length, Math.floor(n));
+    var order = permutationFor(permSeed(parts.slice(1).join('|'), 'daily', cards.length), cards.length);
+    var offset = ((day * count) % cards.length + cards.length) % cards.length;
+    return Array.from({ length: count }, function (_, i) {
+      return Object.assign({}, cards[order[(offset + i) % cards.length]], { dailyKey: dateKey });
+    });
+  }
+
+  function imagePath(csvPath, image) {
+    return String(csvPath).replace(/[^/]*$/, '') + 'images/blooket/' + encodeURIComponent(image);
   }
 
   function mulberry32(seed) {
@@ -226,6 +257,9 @@
     QUICK_TARGET: QUICK_TARGET,
     parseCsv: parseCsv,
     rowsToDeck: rowsToDeck,
+    dailyDraw: dailyDraw,
+    localDateKey: localDateKey,
+    imagePath: imagePath,
     selectTop10: selectTop10,
     shuffle: shuffle,
     mulberry32: mulberry32,

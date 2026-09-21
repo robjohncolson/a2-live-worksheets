@@ -132,7 +132,13 @@ async function j5OpenPicker(harness) {
     )
   ), { message: 'real lesson panel has no flashcards launcher' });
   launcher.click();
-  // No picker any more: the launcher opens straight into the timed deck.
+  await harness.waitFor(() => harness.document.getElementById('bf-full-deck').onclick);
+  expect(harness.window._bfState.deck).toHaveLength(10);
+  const FC = harness.window.Flashcards;
+  const expected = FC.dailyDraw(J5_DECK, FC.localDateKey() + '|' + TOPIC, 10);
+  expect(harness.window._bfState.deck.map(card => card.qnum)).toEqual(expected.map(card => card.qnum));
+  harness.document.getElementById('bf-full-deck').click();
+  // The secondary action opens the full timed deck.
   await harness.waitFor(() => (
     harness.document.getElementById('bf-overlay').style.display === 'block'
       && harness.document.getElementById('bf-note').style.display === 'block'
@@ -294,9 +300,10 @@ describe('Desk journey J5', () => {
         score: 100,
         attempt: 1,
       });
+      // One daily quick draw fetch, then one fetch for each full timed run.
       expect(harness.requests.filter(({ method, url }) => (
         method === 'GET' && new URL(url).pathname.endsWith(`/${CSV_FILE}`)
-      ))).toHaveLength(2);
+      ))).toHaveLength(3);
     } finally {
       harness.teardown();
     }

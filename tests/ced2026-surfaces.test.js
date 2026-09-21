@@ -85,8 +85,11 @@ describe('A2 entry pages', () => {
     const text = dom.window.document.body.textContent;
     expect(text).toContain('Assessments 50%, Assignments 40%, Engagement 10%');
     expect(text).toContain('4 Assessments, 10 Assignments, and 10 Engagement');
-    for (const label of ['Try-Its', 'Lesson check', 'Flashcard deck', 'Topic assessment']) expect(text).toContain(label);
-    expect(text).toContain('Unattempted due work counts as zero after the lesson day');
+    for (const label of ['Try-Its', 'Daily Blooket', 'flashcard check', 'Quiz', 'Assignments', 'Assessments', 'Engagement']) expect(text).toContain(label);
+    expect(text).toContain('Real effort with a wrong answer earns 80%');
+    expect(text).toContain('A right answer with no work earns 80%');
+    expect(text).toContain('higher score and add half of your lower score');
+    expect(text).toContain('Schoology has one Bonus column');
     expect(dom.window.document.querySelector('a[href="desk.html"]')).not.toBeNull();
   });
 

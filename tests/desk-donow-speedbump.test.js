@@ -66,11 +66,14 @@ describe('DN3c — D5 one-calendar collapse', () => {
     expect(html).toMatch(/menu-dd-item disabled" title="One school-year calendar/);
   });
 
-  it('countdown labels are static Exam Day / Days to Exam (no isSummer)', () => {
+  it('countdown retains Today and School Days without exam labels', () => {
     const b = fnBody(html, 'rCD');
     expect(b).not.toMatch(/isSummer/);
-    expect(b).toMatch(/textContent='Exam Day'/);
-    expect(b).toMatch(/textContent='Days to Exam'/);
+    expect(html).not.toMatch(/Exam Day|Days to Exam|examDate/);
+    expect(html).toMatch(/id="cd-today"/);
+    expect(html).toMatch(/id="cd-school"/);
+    expect(html).toContain('Today');
+    expect(html).toContain('School Days');
   });
 
   

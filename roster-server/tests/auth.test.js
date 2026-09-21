@@ -44,6 +44,10 @@ function createFakeDb() {
       return { data: row, error: null };
     },
 
+    async findByStudentId(studentId) {
+      return { data: [...store.values()].find(row => row.student_id === studentId) || null, error: null };
+    },
+
     async findByUsername(username) {
       const key = username.toLowerCase();
       const row = store.get(key);

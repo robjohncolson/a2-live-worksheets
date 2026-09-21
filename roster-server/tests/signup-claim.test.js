@@ -17,6 +17,8 @@ function createFakeDb() {
   const store = new Map();
   return {
     store,
+    async listRoster() { return { data: [...store.values()], error: null }; },
+    async findByStudentId(id) { return { data: [...store.values()].find(row => row.student_id === id), error: null }; },
     async insertRoster({ realName, section, loginUsername, passwordHash, email, passwordCipher, mustChangePassword = true, role = 'student' }) {
       const key = loginUsername.toLowerCase();
       if (store.has(key)) {
@@ -218,7 +220,7 @@ describe('POST /roster/claim', () => {
     await limited.start();
     try {
       const a = await limited.request('POST', '/roster/claim', { body: validClaim({ username: 'a_one' }) });
-      const b = await limited.request('POST', '/roster/claim', { body: validClaim({ username: 'b_two' }) });
+      const b = await limited.request('POST', '/roster/claim', { body: validClaim({ username: 'b_two', realName: 'Morgan Reed' }) });
       const c = await limited.request('POST', '/roster/claim', { body: validClaim({ username: 'c_three' }) });
       expect(a.status).toBe(200);
       expect(b.status).toBe(200);
@@ -238,7 +240,7 @@ describe('POST /roster/claim', () => {
     await limited.start();
     try {
       const mk = (i) => limited.request('POST', '/roster/claim', {
-        body: validClaim({ username: `xff_${i}` }),
+        body: validClaim({ username: `xff_${i}`, realName: ['Jordan Lee', 'Morgan Reed', 'Casey Stone'][i - 1] }),
         headers: { 'X-Forwarded-For': `9.9.9.${i}, 203.0.113.7` }
       });
       const a = await mk(1);
@@ -381,7 +383,7 @@ describe('POST /roster/claim teacher elevation', () => {
     try {
       const ok = await fresh.request('POST', '/roster/claim', { body: validClaim({ username: 't_env', teacherKey: 'secret123' }) });
       expect(ok.body.role).toBe('teacher');
-      const bad = await fresh.request('POST', '/roster/claim', { body: validClaim({ username: 't_env2', teacherKey: 'apteacher2627' }) });
+      const bad = await fresh.request('POST', '/roster/claim', { body: validClaim({ username: 't_env2', realName: 'Morgan Reed', teacherKey: 'apteacher2627' }) });
       expect(bad.status).toBe(403);
     } finally {
       await fresh.stop();

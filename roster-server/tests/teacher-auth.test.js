@@ -266,6 +266,8 @@ async function seedStudent(db, { username = 'apple_fox', password = 'pass1234', 
   });
   if (result.error) throw new Error('seedStudent failed: ' + JSON.stringify(result.error));
   const studentId = result.data.student_id;
+  // These role-auth fixtures have already completed first-login setup.
+  await db.updatePassword({ studentId, passwordHash: hash, passwordCipher: null });
   // Elevate role if requested.
   if (role === 'teacher') db._setRole(studentId, 'teacher');
   return { studentId, username, password, role, realName, section };
@@ -273,7 +275,7 @@ async function seedStudent(db, { username = 'apple_fox', password = 'pass1234', 
 
 // Issue a signed token for a studentId directly (no HTTP round trip).
 function mintToken(studentId) {
-  return signToken(studentId);
+  return signToken(studentId, db.store.get(studentId).password_hash);
 }
 
 // Build a test app that mounts ALL routes: roster (server.js), class.js, and
@@ -479,7 +481,7 @@ describe('pre-migration: role column absent', () => {
     try {
       // Even though the DB knows this is a teacher, the column is "absent".
       const t = await seedStudent(preMigDb, { username: 'premig_teacher', role: 'teacher' });
-      const token = mintToken(t.studentId);
+      const token = signToken(t.studentId, preMigDb.store.get(t.studentId).password_hash);
       const { status } = await srv2.request('GET', '/roster/list', {
         headers: { Authorization: `Bearer ${token}` },
       });

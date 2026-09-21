@@ -150,6 +150,7 @@ afterEach(async () => {
 
 // Fixture student
 const FIXTURE_STUDENT = {
+  password_hash: 'fixture-password-hash',
   student_id: 'stu_abc123',
   login_username: 'papaya-otter',
   real_name: 'Jane Doe',
@@ -157,6 +158,7 @@ const FIXTURE_STUDENT = {
 };
 
 const FIXTURE_TEACHER_ROW = {
+  password_hash: 'fixture-password-hash',
   student_id: 'stu_teacher',
   login_username: 'apple-fox',
   real_name: 'Mr. Colson',
@@ -204,7 +206,7 @@ describe('POST /teacher/lesson-unlock', () => {
       lessonUnlockDb,
     });
     srv = ctx.server;
-    const token = signToken('stu_teacher');
+    const token = signToken('stu_teacher', 'fixture-password-hash');
     const r = await srv.post('/teacher/lesson-unlock', {
       studentUsername: 'papaya-otter',
       lessonKey: '5.3',
@@ -223,7 +225,7 @@ describe('POST /teacher/lesson-unlock', () => {
       lessonUnlockDb,
     });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/teacher/lesson-unlock', {
       studentUsername: 'papaya-otter',
       lessonKey: '1.7',
@@ -341,7 +343,7 @@ describe('GET /student/lesson-unlocks', () => {
       unlocked_by: 'apple-fox', reason: null, status: 'active',
       unlocked_at: new Date().toISOString(),
     });
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.get('/student/lesson-unlocks', { 'Authorization': `Bearer ${token}` });
     expect(r.status).toBe(200);
     expect(r.body.ok).toBe(true);
@@ -355,7 +357,7 @@ describe('GET /student/lesson-unlocks', () => {
     const lessonUnlockDb = createFakeLessonUnlockDb();
     const ctx = await startServer({ roster: [FIXTURE_STUDENT], lessonUnlockDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.get('/student/lesson-unlocks', { 'Authorization': `Bearer ${token}` });
     expect(r.status).toBe(200);
     expect(r.body.ok).toBe(true);
@@ -367,7 +369,7 @@ describe('GET /student/lesson-unlocks', () => {
     const lessonUnlockDb = createFakeLessonUnlockDb({ failWith42P01: true });
     const ctx = await startServer({ roster: [FIXTURE_STUDENT], lessonUnlockDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.get('/student/lesson-unlocks', { 'Authorization': `Bearer ${token}` });
     expect(r.status).toBe(503);
     expect(r.body.ok).toBe(false);

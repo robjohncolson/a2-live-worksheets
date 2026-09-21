@@ -16,10 +16,12 @@ const plan = JSON.parse(read('../data/a2-lesson-targets.json'));
 const year = JSON.parse(read('../data/a2-school-year.json'));
 
 const section = title => [...doc.querySelectorAll('section')].find(node => node.querySelector('h2')?.textContent === title);
-// Lifted verbatim from Start Here: the district formula, the topic-assessment rule, Bonus, quarter dates.
+// Lifted verbatim from Start Here: the daily routine, grading rules, and policy copy.
+const averageDay = section('An average day').innerHTML.split('</h2>')[1].trim();
+const graded = section('What gets graded').innerHTML.split('</h2>')[1].trim();
+const firstWeeks = section('The first two weeks').querySelector('p').outerHTML;
 const formula = doc.querySelector('#how-your-grade p').textContent.split('. ')[0] + '.';
 const minimums = doc.querySelectorAll('#how-your-grade p')[1].textContent.split('. ')[0] + '.';
-const topicRule = [...doc.querySelectorAll('tbody tr')].find(row => row.cells[0].textContent === 'Topic assessment').cells[3].textContent;
 const bonus = doc.querySelector('#bonus p').outerHTML;
 const quarters = section('Dates').querySelector('p').textContent.split('Quarters close ')[1];
 
@@ -88,27 +90,14 @@ function page(period) {
 <h2>The course</h2>
 <p>We use enVision Algebra 2. The year covers functions and their graphs, quadratics, polynomials, and rational functions, then bridges into radicals, exponentials, and trigonometry. Bring a charged Chromebook, a notebook, and a pencil every day.</p>
 <h2>An average day</h2>
-<ol>
-<li>Take out your Chromebook. It needs to be charged. No phones.</li>
-<li>We open with a Blooket. Starting Monday, Sep 21, it is scored on your accuracy and on how many questions you answer. Your rank is for fun and candy; it is not part of your grade.</li>
-<li>Then we do one of two things. On packet days I work the lesson's Examples in OneNote on the board while you copy them into your packet, and you do the Try-Its at the end of the lesson. On IXL days we run a Web Jam on one skill.</li>
-<li>If we finish the Web Jam with time left, that time is yours.</li>
-</ol>
-<p>The OneNote notebook and the class packet are on Schoology. If you are absent, use them to catch up.</p>
+${averageDay}
 <h2>What gets graded</h2>
-<table class="graded"><thead><tr><th>Piece</th><th>Category</th><th>How I score it</th></tr></thead><tbody>
-<tr><td>Daily Blooket</td><td>Engagement</td><td>Accuracy and number of questions answered, every day. A flashcard check on the same material can redeem a bad Blooket: I take your higher score and add half of your lower score, up to full credit. I will tell you when the flashcard check opens.</td></tr>
-<tr><td>Try-Its</td><td>Assignments</td><td>Effort and accuracy, at the end of the lesson. Right answer with your work shown earns full credit. Real effort with a wrong answer earns 80%. A right answer with no work earns 80%.</td></tr>
-<tr><td>IXL Web Jam</td><td>Bonus</td><td>Your accuracy at the end of the jam goes toward Bonus. Web Jams are for taking part and thinking out loud, so they can only help you.</td></tr>
-<tr><td>Quiz</td><td>Assessments</td><td>About two per topic, at the end of some lessons, taken in class. You may use your notes and the class packet on Schoology. Same rule as Try-Its: lots of work with a wrong answer earns 80%, and a right answer with no work earns 80%.</td></tr>
-<tr><td>Topic assessment</td><td>Assessments</td><td>${topicRule}</td></tr>
-</tbody></table>
-<p>I grade for evidence of your own thinking. That is why work counts as much as the answer.</p>
+${graded}
 <p>${formula} ${minimums}</p>
 <h2>Bonus</h2>
 ${bonus}
 <h2>The first two weeks</h2>
-<p>Work through Friday, Sep 18 could only help you. It became your starting Bonus points and nothing from those weeks counts against you. Graded work starts Monday, Sep 21.</p>
+${firstWeeks}
 <h2>Plan for the year</h2>
 <p>Each date is the day that lesson is due for Period ${period}. These are targets; I move them when the class needs more or less time.</p>
 <table class="pacing"><thead><tr><th>Topic</th><th>Lessons (due)</th><th>Topic test</th></tr></thead><tbody>

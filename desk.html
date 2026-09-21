@@ -6,7 +6,7 @@
     <title>Algebra 2 Desk</title>
     <!-- PWA (OFFLINE_MODE_SPEC §4.G): installable + offline shell via sw.js -->
     <link rel="manifest" href="manifest.webmanifest">
-    <link rel="icon" href="icon.svg">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='48' font-size='44'%3EA2%3C/text%3E%3C/svg%3E">
     <meta name="theme-color" content="#161616">
     <style>
         :root {
@@ -1480,6 +1480,19 @@
             .app-icon .icon-img { animation: none !important; }
         }
 .cell-exam:focus-visible, .cell-exam:hover { outline-color: var(--white); }
+        .a2-schoology-notice { display:none; }
+        .a2-hide-grades .a2-schoology-notice { display:block; }
+        .a2-hide-grades [data-app="progress"],
+        .a2-hide-grades #menu-gradecheckin-item,
+        .a2-hide-grades #grade-checkin-banner,
+        .a2-hide-grades #menu-grade-help,
+        .a2-hide-grades #donow-grades,
+        .a2-hide-grades #donow-grade-status,
+        .a2-hide-grades #donow-helper,
+        .a2-hide-grades .ws-grade-chip,
+        .a2-hide-grades #my-gradebook-overlay,
+        .a2-hide-grades #day-grade-overlay,
+        .a2-hide-grades #grade-help-overlay { display:none !important; }
 </style>
 </head>
 <body>
@@ -1673,7 +1686,7 @@
     </span>
     <span class="menu-item" data-menu="help">Help
         <div class="menu-dropdown" id="menu-help" role="menu">
-            <div class="menu-dd-item" role="menuitem" data-sfx onclick="closeMenus();if(typeof openGradeHelp==='function')openGradeHelp()">&#9432; How grades work</div>
+            <div class="menu-dd-item" role="menuitem" data-sfx id="menu-grade-help" onclick="closeMenus();if(typeof openGradeHelp==='function')openGradeHelp()">&#9432; How grades work</div>
             <div class="menu-dd-item" role="menuitem" data-sfx onclick="closeMenus();window.open('start-here.html','_blank','noopener')">&#127793; Start Here guide</div>
             <div class="menu-dd-item" role="menuitem" data-sfx onclick="closeMenus();_openStudentDmModal()">&#9993;&#65039; Ask the teacher...</div>
             <div class="menu-dd-sep"></div>
@@ -1691,7 +1704,7 @@
 
 
 <div class="app-icon" data-app="receipts" style="top:300px;right:20px;left:auto" ondblclick="openMyReceipts()" onclick="selectAppIcon(this)">
-  <div class="icon-img" data-emoji="&#129534;"><img src="icon.svg" alt="" onload="this.parentElement.classList.add('has-png')" onerror="this.style.display='none'"></div>
+  <div class="icon-img" data-emoji="&#129534;"></div>
   <div class="icon-label chicago">My Receipts</div>
 </div>
 <div class="app-icon" data-app="progress" style="top:396px;right:20px;left:auto" ondblclick="openMyGradebook()" onclick="selectAppIcon(this)">
@@ -1701,7 +1714,7 @@
 
 <!-- ═══ Main Window ═══ -->
 <div class="desktop-icon" id="desktop-icon" data-app="calendar" ondblclick="restoreWindow()" onclick="selectIcon(this)">
-    <div class="icon-img"><img src="icons/icon-calendar.png" alt="" onerror="this.style.display='none'" onload="this.parentElement.classList.add('has-png')"></div>
+    <div class="icon-img"><span aria-hidden="true">&#128197;</span></div>
     <div class="icon-label">Algebra 2 lessons</div>
 </div>
 
@@ -1722,9 +1735,7 @@
         <div class="window-body">
             <div class="cd-strip chicago">
                 <div class="cd-box cd-dark" id="cd-today"><div class="num">&mdash;</div><div class="lbl geneva">Today</div></div>
-                <div class="cd-box cd-dark" id="cd-days"><div class="num">&mdash;</div><div class="lbl geneva">Days to Exam</div></div>
                 <div class="cd-box" id="cd-school"><div class="num">&mdash;</div><div class="lbl geneva">School Days</div></div>
-                <div class="cd-box cd-dark" id="cd-exam"><div class="num">&mdash;</div><div class="lbl geneva">Exam Day</div></div>
             </div>
             <div class="per-tog chicago">
                 <button class="s7btn s7btn-default s7btn-inv" id="btn-b" onclick="setP('C')">Section C</button>
@@ -1799,6 +1810,7 @@
                     <div class="donow-ttl chicago">Do Now</div>
                     <div id="donow-msg" class="geneva">…</div>
                     <span data-a2-announcement class="a2-announcement geneva" hidden></span>
+                    <div class="a2-schoology-notice geneva">Your grade is in Schoology for now.</div>
                     <div id="donow-grades" class="geneva" aria-label="Quarter grade outlook"></div>
                     <div id="donow-grade-status" class="geneva" role="status" style="display:none"></div>
                     <div id="donow-helper" class="geneva"></div>
@@ -2071,6 +2083,7 @@
             <div id="bf-header" class="chicago" style="font-size:12px;padding-right:32px"></div>
             <button type="button" class="s7btn" aria-label="Close" onclick="closeBlooketFlashcards()" style="position:absolute;right:0;top:-4px;min-width:24px;padding:1px 5px;line-height:18px">✕</button>
         </div>
+        <button id="bf-full-deck" class="mac-btn" type="button">Full deck</button>
         <div id="bf-modepick" style="display:none;margin-bottom:8px"></div>
         <div id="bf-note" class="geneva" style="display:none;font-size:11px;margin-bottom:8px;color:#333"></div>
         <div id="bf-timer" class="geneva" style="display:none;font-size:14px;font-weight:bold;text-align:right;margin-bottom:6px"></div>
@@ -2170,6 +2183,7 @@
 
 <script src="gradebook-client.js"></script>
 <script src="lib/bkt.js" onerror=""></script>
+<script src="flashcards.js"></script>
 <script src="lib/flashcard-srs.js" onerror=""></script>
 <script src="lib/flashcard-store.js" onerror=""></script>
 <script src="lib/flashcard-flags.js" onerror=""></script>
@@ -2187,6 +2201,21 @@
 
 <script>
 /* ═══ BAKED REGISTRY — PHASE 4: A2 lessons ═══ */
+function a2GradesHidden() {
+  return typeof window.a2StudentGradesHidden === 'function' && window.a2StudentGradesHidden();
+}
+function a2SchoologyNotice() {
+  showDialog('\u2139', 'Your grade is in Schoology for now.', 'OK');
+}
+function a2UpdateGradeVisibility() {
+  document.documentElement.classList.toggle('a2-hide-grades', a2GradesHidden());
+}
+window.addEventListener('roster-session-changed', a2UpdateGradeVisibility);
+window.addEventListener('storage', a2UpdateGradeVisibility);
+a2UpdateGradeVisibility();
+window.addEventListener('a2:password-change-required', function () { openPwChangeModal(); });
+window.addEventListener('a2:session-expired', function () { closePwChangeModal(); openSignInModal(); });
+
 const LESSONS = [];
 const BAKED_REGISTRY = { lessons: {} };
 let REGISTRY = BAKED_REGISTRY;
@@ -2316,7 +2345,7 @@ function _mergeRegistryData(fresh) {
     }
   }
   // The C/D/G calendar is built only by applyA2Pacing (published model + year plan);
-  // the AP-era `calendar` array (B/E columns) is no longer read.
+  // the legacy `calendar` array (B/E columns) is no longer read.
   if (fresh.generatedAt) REGISTRY.generatedAt = fresh.generatedAt;
   if (fresh.registryVersion) REGISTRY.registryVersion = fresh.registryVersion;
   return true;
@@ -4336,6 +4365,7 @@ function _closeRosterDropdown() {
 // with the roster session. Called on page load + after sign-in/out, so
 // a stale or hand-set cache value is corrected on every call.
 function updateUserRoleUI() {
+  if (typeof a2UpdateGradeVisibility === 'function') a2UpdateGradeVisibility();
   var teacherMenu = document.getElementById('menu-item-teacher');
   var who = (window.rosterClient && window.rosterClient.current
              && window.rosterClient.current()) || null;
@@ -4924,6 +4954,12 @@ function _renderSignupSections(sections) {
 }
 
 async function openSignupModal() {
+  var handoff = document.getElementById('signup-handoff');
+  if (handoff && handoff.parentNode) {
+    var box = handoff.parentNode;
+    handoff.remove();
+    Array.from(box.children).forEach(function (el) { el.hidden = false; });
+  }
   var ov = document.getElementById('signup-overlay');
   if (!ov) return;
   var rn = document.getElementById('signup-realname'); if (rn) rn.value = '';
@@ -4988,6 +5024,34 @@ function _switchToSignIn() {
   openSignInModal();
 }
 
+function showAccountExists(result) {
+  var box = document.querySelector('#signup-overlay .dialog-box');
+  if (!box) return;
+  Array.from(box.children).forEach(function (el) { el.hidden = true; });
+  var host = document.createElement('div');
+  host.id = 'signup-handoff';
+  var text = document.createElement('p');
+  text.textContent = result.ambiguous
+    ? "Use 'Find my name on the class list' to sign in."
+    : 'You already have an account. Your username is ' + result.username + '. ' +
+      (result.startingPassword != null
+        ? 'Your starting password is ' + result.startingPassword + '. You will choose a new one right after you sign in.'
+        : 'Ask your teacher to reset your password.');
+  host.appendChild(text);
+  var button = document.createElement('button');
+  button.className = 's7btn';
+  button.textContent = 'Sign In';
+  button.onclick = function () {
+    host.remove();
+    Array.from(box.children).forEach(function (el) { el.hidden = false; });
+    _switchToSignIn();
+    var input = document.getElementById('signin-username');
+    if (input) input.value = result.username || '';
+  };
+  host.appendChild(button);
+  box.appendChild(host);
+}
+
 async function submitSignUp() {
   if (submitSignUp._pending) return;
   var err = document.getElementById('signup-error');
@@ -5027,7 +5091,9 @@ async function submitSignUp() {
       result = { ok: false, error: (e && e.message) || 'Network error' };
     }
     if (!result || !result.ok) {
-      if (result && (result.code === 'username-taken' || result.error === 'username-taken')) {
+      if (result && result.error === 'account-exists') {
+        showAccountExists(result);
+      } else if (result && (result.code === 'username-taken' || result.error === 'username-taken')) {
         var taken = username;
         _spinUsername();
         if (err) err.textContent = '“' + taken + '” was just taken. Here’s a new one: “' + _signupCandidate + '”. Tap Create account.';
@@ -5118,6 +5184,8 @@ function signOutStudent() {
 // voluntary=true → opened from the User menu (Cancel-able, generic copy).
 // voluntary falsy → the forced first-login flow (Sign-Out is the only exit).
 function openPwChangeModal(voluntary) {
+  var who = window.rosterClient && window.rosterClient.current();
+  if (who && who.mustChangePassword) voluntary = false;
   var ov = document.getElementById('pwchange-overlay');
   if (!ov) return;
   var n = document.getElementById('pwchange-new');
@@ -5141,6 +5209,8 @@ function openPwChangeModal(voluntary) {
       : function () { if (typeof signOutStudent === 'function') signOutStudent(); };
   }
   ov.style.display = 'flex';
+  // Make keyboard navigation as blocking as the pointer overlay.
+  if (typeof a2BlockPasswordBackground === 'function') a2BlockPasswordBackground(!voluntary);
   if (n) n.focus();
 }
 
@@ -5155,7 +5225,19 @@ function changeMyPassword() {
 }
 window.changeMyPassword = changeMyPassword;
 
+function a2BlockPasswordBackground(block) {
+  var ov = document.getElementById('pwchange-overlay');
+  Array.from(document.body.children).forEach(function (el) {
+    if (el === ov || el.tagName === 'SCRIPT' || el.tagName === 'STYLE') return;
+    if (block && !el.inert) { el.inert = true; el.dataset.passwordBlocked = 'true'; }
+    if (!block && el.dataset.passwordBlocked) { el.inert = false; delete el.dataset.passwordBlocked; }
+  });
+}
+
 function closePwChangeModal() {
+  var who = window.rosterClient && window.rosterClient.current();
+  if (who && who.mustChangePassword) return;
+  if (typeof a2BlockPasswordBackground === 'function') a2BlockPasswordBackground(false);
   var ov = document.getElementById('pwchange-overlay');
   if (ov) ov.style.display = 'none';
 }
@@ -5190,6 +5272,10 @@ async function submitPwChange() {
   var confirmPw = (c && c.value) || '';
   if (pw.length < 6) {
     if (err) err.textContent = 'Use at least 6 characters.';
+    return;
+  }
+  if (pw.toLowerCase() === 'password') {
+    if (err) err.textContent = 'Choose a password different from your starting password.';
     return;
   }
   if (pw !== confirmPw) {
@@ -6934,7 +7020,6 @@ const MacSFX = {
 };
 
 /* ═══ SCHEDULE DATA ═══ */
-let EX_DT=new Date(2026,4,7);
 const MN=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],DN=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const R="review",OFF="off",EX="exam",PO="post",NC="noclass";
 let SCHOOLOGY_COURSE_B = '7945275782';
@@ -6960,7 +7045,7 @@ function cedTeacherBridgeAllowed() {
 const SCHEDULE_DEFS = {
   'SY26-27': {
     label: '2026–27', school: 'Lynn English High School',
-    examDate: [2027, 5, 18], range: { start: [2026, 8, 2], end: [2027, 5, 17] },
+    range: { start: [2026, 8, 2], end: [2027, 5, 17] },
     periods: {
       C: { label: 'Section C', meetsDays: [1, 2, 4], schoologyCourse: null },
       D: { label: 'Section D', meetsDays: [1, 3, 5], schoologyCourse: null },
@@ -7083,7 +7168,7 @@ function applyA2Pacing(lessons, plan) {
   const rangeStart = dateFromArr(def.range.start);
   const dayKey = dt => dt.getFullYear() + '-' + dt.getMonth() + '-' + dt.getDate();
   // The published model is the label authority: overlay each lesson's title onto the
-  // registry so the calendar never shows the inherited AP crosswalk text for a key,
+  // registry so the calendar never shows the inherited crosswalk text for a key,
   // even before (or without) roadmap-data.json.
   if (typeof REGISTRY === 'object' && REGISTRY && REGISTRY.lessons) {
     for (const lesson of lessons) {
@@ -7212,7 +7297,6 @@ function loadYear(yearKey){
     if(saved){const ed=applyEdits(def,saved);S=generateSchedule(ed)}
     else S=generateSchedule(def);
   }
-  EX_DT=dateFromArr(def.examDate);
   updateInfoBar(def);
   updateLegend(def);
   SCHOOLOGY_COURSE_B=(def.periods.C || def.periods.B || {}).schoologyCourse||'';
@@ -8553,7 +8637,7 @@ function _bfSaveProgress() {
             deck: _bfState.deck,
             idx: _bfState.idx,
             score: _bfState.score,
-            answered: !!_bfState.answered,
+            answered: !!_bfState.answered && !_bfState.imageLoading,
             roundId: _bfState.roundId,
             seq: _bfState.seq,
             misses: Array.isArray(_bfState.misses) ? _bfState.misses : [],
@@ -8573,6 +8657,7 @@ function _bfLoadProgress(topic) {
         var saved = JSON.parse(localStorage.getItem(key) || '{}');
         var entry = saved[topic];
         if (!entry || !Array.isArray(entry.deck) || entry.deck.length === 0) return null;
+        if (entry.deck[0].dailyKey !== Flashcards.localDateKey() + '|' + topic) return null;
         // Defensive: if idx is beyond the deck, treat as no resume.
         if ((entry.idx || 0) >= entry.deck.length) return null;
         return entry;
@@ -9269,6 +9354,11 @@ function _bfParseCsv(text) {
 // Skips header rows (the first 3 rows are template metadata + column headers).
 function _bfRowsToDeck(rows) {
     var deck = [];
+    var imageColumn = -1;
+    for (var h = 0; h < (rows || []).length; h++) {
+      var column = rows[h].indexOf('image');
+      if (column >= 0) { imageColumn = column; break; }
+    }
     for (var i = 0; i < rows.length; i++) {
         var r = rows[i];
         // Skip rows without a numeric Q# in column 0 — gets us past header rows.
@@ -9285,7 +9375,9 @@ function _bfRowsToDeck(rows) {
         var correctIdx = parseInt((r[7] || '1').trim(), 10) - 1;
         if (correctIdx < 0 || correctIdx >= choices.length) correctIdx = 0;
         // qnum carried so _bfSelectTop10 can look up the difficulty tag.
-        deck.push({ qnum: qnum, q: qText, choices: choices, correctIdx: correctIdx });
+        var card = { qnum: qnum, q: qText, choices: choices, correctIdx: correctIdx };
+      if (imageColumn >= 0) card.image = (r[imageColumn] || '').trim();
+      deck.push(card);
     }
     return deck;
 }
@@ -9571,11 +9663,7 @@ function _bfKeydownHandler(e) {
     _bfAnswer(realIdx);
 }
 
-// Entry point (from studentMark): go straight into the full timed deck — it is the
-// only graded flashcard mode (teacher, 2026-09-13: "should just be full deck timed").
-// There is no mode picker any more. Practice-only review mode is reached from the
-// Do Now "Review due (N)" chip (_rvStartMixed); the quick check engine
-// (_bfStartQuick) is retained for flashcards.js parity tests but is unreachable.
+// Lesson launch: daily quick check, with a secondary full timed deck.
 async function openBlooketFlashcards(btn, topicId) {
     // Codex BLOCKER fold P2: opening the Flashcards flashcard quiz in view-as
     // mode would let the teacher drive a quiz that writes back as themselves
@@ -9587,7 +9675,9 @@ async function openBlooketFlashcards(btn, topicId) {
       return;
     }
     try { if (typeof _srsSyncPull === 'function') _srsSyncPull(); } catch (_) {}
-    _ftStart(btn, topicId);
+    await _bfStartQuick(btn, topicId);
+    var full = document.getElementById('bf-full-deck');
+    if (full) full.onclick = function () { _bfCloseUI(); _ftStart(btn, topicId); };
 }
 
 // One sentence every student sees before the first card: the deck IS the Engagement credit.
@@ -9899,18 +9989,26 @@ async function _rvStartMixed() {
     document.addEventListener('keydown', _rvKeydownHandler);
 }
 
-function _rvRenderCard() {
-    if (!_rvState.queue.length) {
+function _rvRenderCard(imageReady) {
+    if (!imageReady && !_rvState.queue.length) {
         _rvFinish();
         return;
     }
-    var card = _rvState.queue.shift();
+    var card = imageReady ? _rvState.current : _rvState.queue.shift();
     delete card._rvCorrect;
     delete card._rvChosenIdx;
     _rvState.current = card;
     _rvState.idx = _rvState.ratings;
     _rvState.stage = 'answer';
     _rvState.cardStart = Date.now();
+    if (card.image && !imageReady) {
+        var run = _rvState;
+        _rvState.stage = 'loading';
+        _bfShowCardImage(card, card._rvTopic || _rvState.topic, function () {
+            return _rvState === run && run.current === card && run.stage === 'loading';
+        }, function () { _rvRenderCard(true); }, function () { _rvRenderCard(); });
+        return;
+    }
 
     var feedback = document.getElementById('bf-feedback');
     var question = document.getElementById('bf-question');
@@ -9918,7 +10016,7 @@ function _rvRenderCard() {
     var progress = document.getElementById('bf-progress');
     var actions = document.getElementById('bf-actions');
     if (feedback) feedback.textContent = '';
-    if (question) {
+    if (question && !imageReady) {
         question.textContent = '';
         if (_rvState.mixed && card._rvLabel) {
             var label = document.createElement('div');
@@ -9938,6 +10036,7 @@ function _rvRenderCard() {
     }
     if (actions) while (actions.firstChild) actions.removeChild(actions.firstChild);
     if (!choices) return;
+    choices.style.display = "";
     while (choices.firstChild) choices.removeChild(choices.firstChild);
     for (var i = 0; i < card.choices.length; i++) {
         (function (choiceIdx) {
@@ -10251,17 +10350,16 @@ async function _bfStartQuick(btn, topicId) {
             showDialog('⚠️', 'The flashcard deck for this lesson is empty.', 'OK');
             return;
         }
-        // 2026-05-20: trim to top-10 by difficulty (hard > med > easy).
-        // If no tags available for this CSV, falls back to first-10.
+        // All students share the same local-day draw for this lesson.
         var tags = await _bfLoadDifficultyTags();
         var fileTags = tags[csvPath.split('/').pop()] || tags[csvPath] || {};
-        var deck = _bfSelectTop10(allCards, csvPath, fileTags);
+        var deck = Flashcards.dailyDraw(allCards, Flashcards.localDateKey() + '|' + topicId, Flashcards.QUICK_TARGET);
         var orderedCards = (typeof _bfOrderByDifficulty === 'function')
             ? _bfOrderByDifficulty(allCards, fileTags)
             : allCards.slice();
         _bfState.topic = topicId;
         _bfState.btn = btn;
-        _bfState.deck = _bfShuffle(deck);
+        _bfState.deck = deck;
         _bfState.idx = 0;
         _bfState.score = 0;
         _bfState.answered = false;
@@ -10295,7 +10393,28 @@ async function _bfStartQuick(btn, topicId) {
     document.addEventListener('keydown', _bfKeydownHandler);
 }
 
-function _bfRenderCard() {
+function _bfShowCardImage(card, topic, active, ready, skip) {
+    var question = document.getElementById('bf-question');
+    var choices = document.getElementById('bf-choices');
+    question.textContent = 'Loading number line?';
+    choices.style.display = 'none';
+    var img = document.createElement('img');
+    img.alt = 'number line';
+    img.style.maxWidth = '100%';
+    img.style.display = 'block';
+    img.onload = function () {
+        if (!active()) return;
+        question.textContent = '';
+        question.appendChild(img);
+        question.appendChild(document.createTextNode(card.q));
+        ready();
+    };
+    img.onerror = function () { if (active()) skip(); };
+    img.src = Flashcards.imagePath(_bfCsvPath(topic), card.image);
+}
+
+function _bfRenderCard(imageReady) {
+    _bfState.imageLoading = false;
     var feedback = document.getElementById('bf-feedback');
     var nextBtn = document.getElementById('bf-next');
     var q = document.getElementById('bf-question');
@@ -10309,6 +10428,19 @@ function _bfRenderCard() {
         return;
     }
     var card = _bfState.deck[_bfState.idx];
+    if (card.image && !imageReady) {
+        var activeDeck = _bfState.deck;
+        _bfState.imageLoading = true;
+        _bfState.answered = true;
+        _bfShowCardImage(card, _bfState.topic, function () {
+            return _bfState.deck === activeDeck && activeDeck[_bfState.idx] === card;
+        }, function () { _bfRenderCard(true); }, function () {
+            activeDeck.splice(_bfState.idx, 1);
+            _bfRenderCard();
+        });
+        return;
+    }
+    if (c) c.style.display = '';
     var identity = [];
     for (var identityIdx = 0; identityIdx < card.choices.length; identityIdx++) {
         identity.push(identityIdx);
@@ -10331,7 +10463,7 @@ function _bfRenderCard() {
     if (p) p.textContent = 'Question ' + (_bfState.idx + 1) + ' of ' + _bfState.deck.length
                          + '  ·  Right so far: ' + _bfState.score
                          + '  ·  Keys: a-d or 1-4 to answer, Enter for next';
-    if (q) q.textContent = card.q;
+    if (q && !imageReady) q.textContent = card.q;
     if (c) {
         while (c.firstChild) c.removeChild(c.firstChild);
         for (var i = 0; i < perm.length; i++) {
@@ -10902,13 +11034,28 @@ async function _ftStart(btn, topicId) {
     _ftRenderCard();
 }
 
-function _ftRenderCard() {
+function _ftRenderCard(imageReady) {
     _ftClearTimer();
     var round = _ftState.round;
     if (_ftDone(round)) { _ftFinish(); return; }
     _ftState.answered = false;
     var idx = _ftCurrentIdx(round);
     var card = round.deck[idx];
+    if (card.image && !imageReady) {
+        _ftState.answered = true;
+        _bfShowCardImage(card, _ftState.topic, function () {
+            return _ftState.round === round && _ftCurrentIdx(round) === idx;
+        }, function () { _ftRenderCard(true); }, function () {
+            round.order.shift();
+            round.status[idx].resolved = true;
+            round.status[idx].earned = 0;
+            round.total -= 1;
+            _ftRenderCard();
+        });
+        return;
+    }
+    document.getElementById('bf-choices').style.display = '';
+
     var identity = [];
     for (var identityIdx = 0; identityIdx < card.choices.length; identityIdx++) {
         identity.push(identityIdx);
@@ -10936,7 +11083,7 @@ function _ftRenderCard() {
     if (feedback) feedback.textContent = '';
     if (p) p.textContent = round.order.length + ' card' + (round.order.length === 1 ? '' : 's') + ' left'
                          + '  ·  Keys: a-d or 1-4';
-    if (q) q.textContent = card.q;
+    if (q && !imageReady) q.textContent = card.q;
     if (c) {
         while (c.firstChild) c.removeChild(c.firstChild);
         for (var i = 0; i < perm.length; i++) {
@@ -11223,6 +11370,7 @@ function _detachGradeHelpKeyHandler() {
 }
 
 function openGradeHelp() {
+    if (typeof a2GradesHidden === 'function' && a2GradesHidden()) { a2SchoologyNotice(); return; }
     var ov = document.getElementById('grade-help-overlay');
     if (!ov) return;
     ov.style.display = 'block';
@@ -11647,6 +11795,7 @@ function _sealedTranscriptFilename(transcript) {
 }
 
 async function exportSealedTranscript() {
+    if (typeof a2GradesHidden === 'function' && a2GradesHidden()) { a2SchoologyNotice(); return; }
     try {
         var base = (window.ROSTER_SERVICE_URL || (typeof ROSTER_SERVICE_URL !== 'undefined' ? ROSTER_SERVICE_URL : null));
         var token = '';
@@ -11697,6 +11846,7 @@ async function exportSealedTranscript() {
 }
 
 async function printSealedSummary() {
+    if (typeof a2GradesHidden === 'function' && a2GradesHidden()) { a2SchoologyNotice(); return; }
     try {
         var base = (window.ROSTER_SERVICE_URL || (typeof ROSTER_SERVICE_URL !== 'undefined' ? ROSTER_SERVICE_URL : null));
         var token = '';
@@ -12334,6 +12484,7 @@ function _renderGradeCheckinUI() {
 }
 
 function openGradeCheckin() {
+    if (typeof a2GradesHidden === 'function' && a2GradesHidden()) { a2SchoologyNotice(); return; }
   if (typeof _deskIsTeacher === 'function' && !_deskIsTeacher()) return;
   var overlay = document.getElementById('app-gradecheckin-overlay');
   if (!overlay) return;
@@ -13067,6 +13218,7 @@ function _firstGradebookQuarter(gb) {
 }
 
 function openMyGradebook() {
+    if (typeof a2GradesHidden === 'function' && a2GradesHidden()) { a2SchoologyNotice(); return; }
     var ov = document.getElementById('my-gradebook-overlay');
     if (!ov) return;
     // Student's own view — hide the teacher student-picker, reset the title.
@@ -13317,6 +13469,7 @@ function renderA2Categories(host, quarter) {
 }
 
 function renderMyGradebook(qk, bodyEl, tabsEl) {
+    if (typeof a2GradesHidden === 'function' && a2GradesHidden()) return;
     _myGradebookQuarter = qk;
     // bodyEl/tabsEl default to the modal's elements; My Ledger passes its OWN
     // containers so the same breakdown renders inline in the gradebook.
@@ -13490,6 +13643,7 @@ function renderMyGradebook(qk, bodyEl, tabsEl) {
 // dateStr: display string like "Sep 3" (used in header).
 // Data: looks up _gradeLessonsCache (populated by renderDoNowGrades).
 function openDayGrade(dateStr) {
+    if (typeof a2GradesHidden === 'function' && a2GradesHidden()) { a2SchoologyNotice(); return; }
     var ov = document.getElementById('day-grade-overlay');
     var header = document.getElementById('day-grade-header');
     var body = document.getElementById('day-grade-body');
@@ -14775,17 +14929,11 @@ function rCal(){
     paintDonowCells(); // DN3b — overlay completion state onto the fresh grid
 }
 function rCD(){
-    const t=tdy(),ms=864e5,dte=Math.max(0,Math.ceil((EX_DT-t)/ms));
-    let sd=0;for(const e of S){const dt=new Date(e[0],e[1],e[2]);if(dt>t&&dt<=EX_DT&&e[3]!==OFF&&e[3]!==PO)sd++;}
+    const t=tdy();
+    let sd=0;for(const e of S){const dt=new Date(e[0],e[1],e[2]);if(dt>t&&e[3]!==OFF&&e[3]!==PO)sd++;}
     document.querySelector("#cd-today .num").textContent=MN[t.getMonth()]+" "+t.getDate();
-    document.querySelector("#cd-days .num").textContent=dte;
     document.querySelector("#cd-school .num").textContent=sd;
     document.getElementById("ft").textContent=sd+" School Days Remaining";
-    // DN3c / D5: one school-year calendar — always the exam countdown
-    // (no summer "School Starts" special-casing).
-    const exN=document.querySelector("#cd-exam .num"); if(exN) exN.textContent=MN[EX_DT.getMonth()]+" "+EX_DT.getDate();
-    const exL=document.querySelector("#cd-exam .lbl"); if(exL) exL.textContent='Exam Day';
-    const dL=document.querySelector("#cd-days .lbl"); if(dL) dL.textContent='Days to Exam';
 }
 // Pure pace math (#13) — count DONE vs EXPECTED-by-today over the deduped DOT-LESSON
 // universe ONLY. `topics` (from _orderedPeriodTopics) also carries PC/poster/Welcome/
@@ -15000,7 +15148,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-21-gw9l';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-21-3qfk';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

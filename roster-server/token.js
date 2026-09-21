@@ -2,7 +2,7 @@
 // Format: b64url(JSON {sid,exp}) + "." + b64url(HMAC_SHA256(firstPart, secret))
 // Node crypto only — no JWT lib.
 
-import { createHmac } from 'crypto';
+import { createHmac, createHash } from 'crypto';
 
 const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
 
@@ -24,12 +24,22 @@ function hmac(payload, secret) {
   return createHmac('sha256', secret).update(payload).digest();
 }
 
-export function signToken(studentId) {
+export function passwordVersion(passwordHash) {
+  return createHash('sha256').update(passwordHash || '').digest('hex').slice(0, 12);
+}
+
+export function tokenMatchesPassword(token, passwordHash) {
+  if (!verifyToken(token) || !passwordHash) return false;
+  const payload = JSON.parse(fromBase64url(token.split('.')[0]).toString('utf8'));
+  return payload.pwv === passwordVersion(passwordHash);
+}
+
+export function signToken(studentId, passwordHash) {
   const secret = process.env.ROSTER_TOKEN_SECRET;
   if (!secret) throw new Error('ROSTER_TOKEN_SECRET is not set');
 
   const exp = Date.now() + THIRTY_DAYS_MS;
-  const header = toBase64url(Buffer.from(JSON.stringify({ sid: studentId, exp })));
+  const header = toBase64url(Buffer.from(JSON.stringify({ sid: studentId, exp, ...(passwordHash ? { pwv: passwordVersion(passwordHash) } : {}) })));
   const sig = toBase64url(hmac(header, secret));
 
   return `${header}.${sig}`;

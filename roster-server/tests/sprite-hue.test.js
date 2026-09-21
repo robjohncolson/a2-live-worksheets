@@ -210,6 +210,10 @@ async function seedStudent(realName = 'Test Student', section = 'PeriodB') {
     body: { realName, section, password: 'testpass1' }
   });
   expect(body.ok).toBe(true);
+  const changed = await srv.request('POST', '/roster/change-password', {
+    body: { token: (await signIn(body.username)).token, newPassword: 'testpass1' }
+  });
+  expect(changed.status).toBe(200);
   return body; // { ok, studentId, username, realName, section }
 }
 

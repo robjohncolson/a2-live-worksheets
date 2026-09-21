@@ -117,6 +117,7 @@ function createFakeRosterDb(section = 'SUMMER26') {
   const rows = [];
   return {
     rows,
+    async findByStudentId(studentId) { return { data: { student_id: studentId, must_change_password: false, password_hash: 'fixture-password-hash' }, error: null }; },
     async insertRoster() { return { data: null, error: { message: 'not used' } }; },
     async findByUsername() { return { data: null, error: { message: 'not used' } }; },
     async listRoster(filterSection) {
@@ -230,9 +231,9 @@ beforeEach(async () => {
   process.env.NODE_ENV = 'test';
 
   validStudentId = `uuid-student-${randomBytes(8).toString('hex')}`;
-  validToken = signToken(validStudentId);
+  validToken = signToken(validStudentId, 'fixture-password-hash');
   otherStudentId = `uuid-other-${randomBytes(8).toString('hex')}`;
-  otherToken = signToken(otherStudentId);
+  otherToken = signToken(otherStudentId, 'fixture-password-hash');
 
   rosterDb = createFakeRosterDb();
   rosterDb.seed(validStudentId, 'Alice', 'alice_aardvark', 'SUMMER26');

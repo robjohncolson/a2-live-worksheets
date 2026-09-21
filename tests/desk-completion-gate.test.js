@@ -216,8 +216,8 @@ describe('stale-panel fix -- storage event re-renders the open resource panel', 
   it('the listener is gated on the panel being visible (display !== "none")', () => {
     // The listener must check the resource-overlay display before re-rendering
     // -- a closed panel should not pop open on a worksheet write.
-    var stalePanelBlock = DESK.match(/addEventListener\(\s*['"]storage['"][\s\S]*?\}\);/);
-    expect(stalePanelBlock).not.toBeNull();
+    var stalePanelBlock = [...DESK.matchAll(/addEventListener\(\s*['"]storage['"][\s\S]*?\}\);/g)].find(match => match[0].includes('a2_ws_completion'));
+    expect(stalePanelBlock).toBeDefined();
     expect(stalePanelBlock[0]).toMatch(/resource-overlay/);
     expect(stalePanelBlock[0]).toMatch(/display/);
   });

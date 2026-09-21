@@ -102,7 +102,7 @@ describe('teacher-dashboard.html — Phase 4a structure', () => {
     // global-override contract that roster_config.js depends on.
     expect(DASH).toMatch(/URL_KEY\s*=\s*['"]a2_teacher_service_url['"]/);
     expect(DASH).toMatch(/SECRET_KEY\s*=\s*['"]a2_teacher_secret['"]/);
-    expect(DASH).toMatch(/GLOBAL_OVERRIDE_KEY\s*=\s*['"]roster_service_url_override['"]/);
+    expect(DASH).toMatch(/GLOBAL_OVERRIDE_KEY\s*=\s*['"]a2_roster_service_url_override['"]/);
 
     // The SECRET_KEY write must be guarded by the remember-secret checkbox.
     // Walk the persistSecretMaybe body and prove the setItem only fires when
@@ -181,6 +181,6 @@ describe('start-here.html — Algebra 2 orientation', () => {
   });
   it('offers the Desk and omits retired policies', () => {
     expect(START).toContain('desk.html');
-    expect(START).not.toMatch(/Progress Check|Blooket|video|summer on-ramp/i);
+    expect(START).not.toMatch(/Progress Check|Blooket warm|video|summer on-ramp/i);
   });
 });

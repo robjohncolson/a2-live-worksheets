@@ -6,12 +6,14 @@ import express from 'express';
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
 import { createLiveDb } from './db.js';
+import { mountPasswordGate, mountPasswordReset, STARTING_PASSWORD } from './starting-password.js';
+import { nameMatchScore } from './names-match.js';
 import { createLedgerDb, createServiceClient } from './ledger-db.js';
 import { createFrqLedgerDb } from './frq-ledger-db.js';
 import { createFrqWorker } from './frq-worker.js';
 import { loadFrqRubricRegistry } from './frq-prompt.js';
 import { createLiveRemediationDb } from './remediation-db.js';
-import { signToken, verifyToken } from './token.js';
+import { signToken, verifyToken, tokenMatchesPassword } from './token.js';
 import { generateUsername } from './username.js';
 import { mountLedger } from './ledger.js';
 import { mountA2 } from './a2-routes.js';
@@ -173,6 +175,8 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
   app.use(cors({ origin: origins === undefined ? '*' : origins.split(',').map(value => value.trim()).filter(Boolean) }));
   
   app.use(express.json({ limit: '8mb' }));
+  mountPasswordGate(app, db);
+  mountPasswordReset(app, db, bcryptCost());
   mountAnnouncements(app, { db, config: gradeConfig });
   // Railway runs behind a SINGLE edge proxy — trust exactly ONE hop so req.ip is
   // the proxy-appended client address. `true` (trust the whole chain) would let a
@@ -380,7 +384,7 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
 
     let token;
     try {
-      token = signToken(data.student_id);
+      token = signToken(data.student_id, data.password_hash);
     } catch (err) {
       return res.status(500).json({ ok: false, error: 'Failed to issue token' });
     }
@@ -457,6 +461,17 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
       return res.status(400).json({ ok: false, error: 'newPassword must be at least 6 characters' });
     }
 
+    if (String(newPassword).toLowerCase() === STARTING_PASSWORD.toLowerCase()) {
+      return res.status(400).json({ ok: false, error: 'Choose a different password from the starting password' });
+    }
+
+    const current = await db.findByStudentId(studentId);
+    if (current.error) return res.status(503).json({ ok: false, error: 'Unable to check password status' });
+    if (!current.data || !tokenMatchesPassword(token, current.data.password_hash)) {
+      return res.status(401).json({ ok: false, error: 'session expired' });
+    }
+    const expectedPasswordHash = current.data.password_hash;
+
     let passwordHash;
     try {
       passwordHash = await bcrypt.hash(String(newPassword), bcryptCost());
@@ -466,14 +481,15 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
 
     const passwordCipher = encryptPassword(String(newPassword));
 
-    const { error } = await db.updatePassword({ studentId, passwordHash, passwordCipher });
+    const { data, error } = await db.updatePassword({ studentId, passwordHash, passwordCipher, expectedPasswordHash });
 
     if (error) {
       console.error('change-password DB error:', error);
       return res.status(500).json({ ok: false, error: 'Database error' });
     }
 
-    return res.json({ ok: true });
+    if (!data) return res.status(401).json({ ok: false, error: 'session expired' });
+    return res.json({ ok: true, token: signToken(studentId, passwordHash) });
   });
 
   // ── GET /roster/open-sections (public — student self-signup) ─────────────────
@@ -505,10 +521,6 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
   //         (mirrors /roster/verify so the client persists the session and signs in)
   //   → 400 bad field · 403 section not open · 409 username taken · 429 rate-limited · 500 failure
   app.post('/roster/claim', async (req, res) => {
-    // TEMP go-live diagnostic — REMOVE after the req.ip check (CONTINUATION_PROMPT #1).
-    // Verify req.ip is the real per-client address on Railway (not a shared proxy hop).
-    // Hit this from a phone on cellular vs. school Wi-Fi and compare the two log lines.
-    console.log('[GOLIVE] claim req.ip=', req.ip, 'xff=', req.headers['x-forwarded-for']);
     if (!signupClaimLimiter(req.ip || 'unknown')) {
       return res.status(429).json({ ok: false, error: 'Too many sign-up attempts — please wait a few minutes and try again.' });
     }
@@ -516,7 +528,7 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
     const body = req.body || {};
 
     // realName — strip control chars + angle brackets (defense-in-depth), trim, 1..80.
-    const realName = String(body.realName || '').replace(/[^\p{L}\p{M} .'\-]/gu, '').trim();
+    const realName = String(body.realName || '').replace(/[^\p{L}\p{M} ,.'\-]/gu, '').trim();
     if (!realName || realName.length > 80) {
       return res.status(400).json({ ok: false, error: 'Please enter your real name.' });
     }
@@ -525,6 +537,32 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
     const section = String(body.section || '').trim();
     if (!isOpenSection(section)) {
       return res.status(403).json({ ok: false, error: 'That class is not open for signup.' });
+    }
+
+    let roster;
+    try {
+      roster = await db.listRoster();
+    } catch (_) {
+      return res.status(500).json({ ok: false, error: 'Unable to check existing accounts' });
+    }
+    if (roster.error) {
+      return res.status(500).json({ ok: false, error: 'Unable to check existing accounts' });
+    }
+    const matches = (roster.data || [])
+      .filter(row => row.status === 'active' && isOpenSection(row.section))
+      .map(row => ({ row, score: nameMatchScore(realName, row.real_name) }))
+      .filter(match => match.score > 0)
+      .sort((a, b) => b.score - a.score);
+    if (matches.length) {
+      if (matches[1]?.score === matches[0].score) {
+        return res.status(409).json({ ok: false, error: 'account-exists', ambiguous: true });
+      }
+      const row = matches[0].row;
+      return res.status(409).json({
+        ok: false, error: 'account-exists', username: row.login_username,
+        section: row.section, mustChangePassword: !!row.must_change_password,
+        ...(row.must_change_password ? { startingPassword: STARTING_PASSWORD } : {}),
+      });
     }
 
     // username — the re-rolled candidate.
@@ -585,7 +623,7 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
 
     let token;
     try {
-      token = signToken(data.student_id);
+      token = signToken(data.student_id, passwordHash);
     } catch (err) {
       return res.status(500).json({ ok: false, error: 'Failed to issue token' });
     }

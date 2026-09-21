@@ -40,7 +40,7 @@ export function createDb(client) {
   async function findByStudentId(studentId) {
     return client
       .from('roster')
-      .select('student_id, section, login_username, real_name, status, role')
+      .select('student_id, section, login_username, real_name, status, role, must_change_password, password_hash')
       .eq('student_id', studentId)
       .maybeSingle();
   }
@@ -192,17 +192,17 @@ export function createDb(client) {
 
   // Re-hash + re-encrypt a student's password and clear must_change_password.
   // Returns { data, error } — data has student_id on success.
-  async function updatePassword({ studentId, passwordHash, passwordCipher }) {
-    return client
+  async function updatePassword({ studentId, passwordHash, passwordCipher, mustChangePassword = false, expectedPasswordHash }) {
+    let query = client
       .from('roster')
       .update({
         password_hash:        passwordHash,
         password_cipher:      passwordCipher ?? null,
-        must_change_password: false
+        must_change_password: mustChangePassword
       })
-      .eq('student_id', studentId)
-      .select('student_id')
-      .single();
+      .eq('student_id', studentId);
+    if (expectedPasswordHash !== undefined) query = query.eq('password_hash', expectedPasswordHash);
+    return query.select('student_id').maybeSingle();
   }
 
   // Update a student's real_name and/or section. Touches updated_at always.

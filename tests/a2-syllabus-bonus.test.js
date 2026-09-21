@@ -2,6 +2,7 @@
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { it, expect } from 'vitest';
+import { JSDOM } from 'jsdom';
 import { bonusTotals } from '../scripts/a2-bonus-totals.mjs';
 
 it('sums bonus awards per student for one quarter and caps the column at 10', () => {
@@ -33,4 +34,21 @@ it('keeps the teacher name and contacts off the public syllabus pages', () => {
     const page = readFileSync(new URL(`../syllabus-${period}.html`, import.meta.url), 'utf8');
     expect(page).not.toMatch(/https?:|www\.|\b(?:Mr|Ms|Mrs)\.|Colson|\d{3}[-. ]\d{3}[-. ]\d{4}/i);
   }
+});
+
+it('lifts the daily routine, grading rules, and first two weeks verbatim from Start Here', () => {
+  const source = new JSDOM(readFileSync(new URL('../start-here.html', import.meta.url), 'utf8'));
+  const sections = [...source.window.document.querySelectorAll('section')];
+  for (const file of ['syllabus-c.html', 'syllabus-d.html', 'syllabus-g.html', 'open-house.html']) {
+    const page = new JSDOM(readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'));
+    for (const title of ['An average day', 'What gets graded', 'The first two weeks']) {
+      const section = sections.find(node => node.querySelector('h2').textContent === title);
+      for (const node of section.children) {
+        if (node.tagName === 'H2') continue;
+        expect([...page.window.document.querySelectorAll(node.tagName)].some(copy => copy.outerHTML === node.outerHTML)).toBe(true);
+      }
+    }
+    page.window.close();
+  }
+  source.window.close();
 });

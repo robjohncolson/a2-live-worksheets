@@ -29,7 +29,14 @@ describe('published A2 deck content', () => {
       for (const row of questions) {
         expect(row.length).toBeGreaterThanOrEqual(8);
         expect(row[1].trim()).not.toBe('');
-        expect(row.slice(2, 6).every(choice => choice.trim().length > 0)).toBe(true);
+        if (lesson.key === '1-1') {
+          const source = JSON.parse(readFileSync(resolve(ROOT, 'data/sources/blooket/a2-number-line-interval/set.json'), 'utf8'));
+          const original = source.questions.find(question => String(question.number) === row[0]);
+          expect(original).toBeDefined();
+          expect(row.slice(2, 6)).toEqual([...original.answers, ...Array(4 - original.answers.length).fill('')]);
+        } else {
+          expect(row.slice(2, 6).every(choice => choice.trim().length > 0)).toBe(true);
+        }
         expect(Number(row[6])).toBeGreaterThan(0);
         expect(['1', '2', '3', '4']).toContain(row[7].trim());
       }

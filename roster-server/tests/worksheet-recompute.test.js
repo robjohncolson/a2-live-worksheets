@@ -7,6 +7,7 @@ import { scoreWorksheetAnswer } from '../ledger.js';
 
 function createFakeRosterDb() {
   return {
+    async findByStudentId(studentId) { return { data: { student_id: studentId, must_change_password: false, password_hash: 'fixture-password-hash' }, error: null }; },
     async insertRoster() { return { data: null, error: { message: 'not used' } }; },
     async findByUsername() { return { data: null, error: { message: 'not used' } }; },
   };
@@ -72,7 +73,7 @@ beforeEach(async () => {
   process.env.NODE_ENV = 'test';
   process.env.ROSTER_TOKEN_SECRET = `token-${randomBytes(16).toString('hex')}`;
   validStudentId = `student-${randomBytes(8).toString('hex')}`;
-  validToken = signToken(validStudentId);
+  validToken = signToken(validStudentId, 'fixture-password-hash');
   ledgerDb = createFakeLedgerDb();
   const worksheetKey = {
     worksheetKey: {

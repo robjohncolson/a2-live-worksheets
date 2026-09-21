@@ -6,7 +6,7 @@
 //
 // @vitest-environment node
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -177,6 +177,8 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
     await flush(2);
     await flush();
 
+    win.document.getElementById('fc-full-deck').click();
+    await flush(4);
     const wrong = win.document.querySelector('#fc-choices .fc-choice[data-i="0"]');
     const correct = win.document.querySelector('#fc-choices .fc-choice[data-i="1"]');
     expect(wrong && correct, 'card did not render').toBeTruthy();
@@ -764,4 +766,26 @@ describe('mobile-home A2 lesson model', () => {
       expect(win.document.querySelectorAll('#main .lesson')).toHaveLength(A2_PUBLISHED.length);
     } finally { dom.window.close(); }
   });
+});
+
+
+it('the real mobile lesson button serves the deterministic daily ten, with a secondary full deck', async () => {
+  const deckCsv = ['Question #,Question Text,Answer 1,Answer 2,Answer 3,Answer 4,Time,Correct',
+    ...Array.from({ length: 40 }, (_, i) => `${i + 1},Question ${i + 1},Yes,No,,,20,1`)].join('\n');
+  const { win } = bootLauncher({ deckCsv });
+  try {
+    await flush();
+    const draw = vi.spyOn(win.Flashcards, 'dailyDraw');
+    win.document.querySelector('.btn.fc').click();
+    await flush(4);
+    expect(draw).toHaveBeenCalledOnce();
+    expect(draw.mock.calls[0][0]).toHaveLength(40);
+    expect(draw.mock.calls[0][1]).toBe(win.Flashcards.localDateKey() + '|1.1');
+    expect(draw.mock.calls[0][2]).toBe(10);
+    expect(win.document.getElementById('fc-prog').textContent).toContain('/ 10');
+    expect(win.document.getElementById('fco').classList.contains('timed')).toBe(false);
+    win.document.getElementById('fc-full-deck').click();
+    await flush(4);
+    expect(win.document.getElementById('fco').classList.contains('timed')).toBe(true);
+  } finally { win.close(); }
 });

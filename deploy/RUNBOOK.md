@@ -149,6 +149,35 @@ It rewrites the stamp in `sw.js`, `desk.html` (`APP_BUILD`) and `version.json` t
 `tests/pwa.test.js` fails if they drift. Students pick the new build up on their next
 visit (the worker activates immediately and refreshes on the following load).
 
+## Student launch: starting passwords
+
+`ROSTER_STARTING_PASSWORD` configures the shared starting password (default:
+`password`). After deployment, reset the three open sections with:
+
+```sh
+node scripts/teacher-reset-passwords.mjs --all --dry-run
+node scripts/teacher-reset-passwords.mjs --all
+node scripts/teacher-reset-passwords.mjs --section PeriodC
+node scripts/teacher-reset-passwords.mjs --student-id STUDENT_UUID
+```
+
+The script uses the same URL and teacher-secret lookup as `teacher-roster.mjs`;
+`--url` overrides the service URL. Dry-run prints selector counts and makes no
+network calls; live runs print only update counts. A reset affects active students,
+never teachers. The single-student command is the recovery path after a mistaken
+or unauthorized password change.
+
+Signup with an existing name reveals that account's username and section. Until
+its password is changed, signup also reveals the shared starting password. This
+is an intentional classroom onboarding trade-off: anyone who knows a classmate's
+name can learn these credentials. The server refuses authenticated work and
+feature writes until a password change; read-only access remains available.
+This gate does not verify identity: another person could change the password
+first and then record work. The teacher must resolve that situation with a
+single-student reset and hand the account back to its owner. After a password
+change, signup no longer returns the starting password. Ambiguous name matches
+reveal no account details.
+
 ## Rollback
 
 Pause A2 first: Railway → `a2-live-worksheets` → Deployments → active deployment's

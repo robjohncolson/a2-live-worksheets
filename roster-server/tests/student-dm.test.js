@@ -167,6 +167,7 @@ afterEach(async () => {
 // -- Fixtures ------------------------------------------------------------------
 
 const FIXTURE_TEACHER_ROW = {
+  password_hash: 'fixture-password-hash',
   student_id: 'stu_teacher',
   login_username: 'apple-fox',
   real_name: 'Mr. Colson',
@@ -175,6 +176,7 @@ const FIXTURE_TEACHER_ROW = {
 };
 
 const FIXTURE_STUDENT = {
+  password_hash: 'fixture-password-hash',
   student_id: 'stu_abc123',
   login_username: 'papaya-otter',
   real_name: 'Jane Doe',
@@ -235,7 +237,7 @@ describe('POST /student/nudge endpoint', () => {
     const nudgesDb = createFakeNudgesDb();
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/student/nudge', { text: 'Hi teacher!' }, { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(200);
     expect(r.body.ok).toBe(true);
@@ -255,7 +257,7 @@ describe('POST /student/nudge endpoint', () => {
     const nudgesDb = createFakeNudgesDb();
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/student/nudge', { text: 'test msg' }, { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(200);
     // The route does NOT pass parentNudgeId; the DAL sets it to null.
@@ -268,7 +270,7 @@ describe('POST /student/nudge endpoint', () => {
     const nudgesDb = createFakeNudgesDb();
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/student/nudge', {}, { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(400);
     expect(r.body.ok).toBe(false);
@@ -279,7 +281,7 @@ describe('POST /student/nudge endpoint', () => {
     const nudgesDb = createFakeNudgesDb();
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/student/nudge', { text: '   ' }, { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(400);
     expect(r.body.ok).toBe(false);
@@ -289,7 +291,7 @@ describe('POST /student/nudge endpoint', () => {
     const nudgesDb = createFakeNudgesDb();
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const longText = 'x'.repeat(350);
     const r = await srv.post('/student/nudge', { text: longText }, { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(200);
@@ -301,7 +303,7 @@ describe('POST /student/nudge endpoint', () => {
     const nudgesDb = createFakeNudgesDb({ fail42P01: true });
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/student/nudge', { text: 'hello' }, { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(503);
     expect(r.body.ok).toBe(false);
@@ -317,7 +319,7 @@ describe('POST /student/nudge endpoint', () => {
       rosterOpts: { teacherRow: false },
     });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/student/nudge', { text: 'hello' }, { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(503);
     expect(r.body.ok).toBe(false);
@@ -328,7 +330,7 @@ describe('POST /student/nudge endpoint', () => {
     const nudgesDb = createFakeNudgesDb({ throwOnInsert: true });
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.post('/student/nudge', { text: 'hello' }, { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(500);
     expect(r.body.ok).toBe(false);
@@ -339,7 +341,7 @@ describe('POST /student/nudge endpoint', () => {
     const nudgesDb = createFakeNudgesDb();
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     // Body contains no section field.
     const r = await srv.post('/student/nudge', { text: 'check section' }, { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(200);
@@ -351,7 +353,7 @@ describe('POST /student/nudge endpoint', () => {
     const nudgesDb = createFakeNudgesDb();
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     // Body intentionally omits recipientUsername; route must derive it server-side.
     const r = await srv.post('/student/nudge', { text: 'check recipient' }, { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(200);
@@ -377,7 +379,7 @@ describe('GET /student/nudge-history endpoint', () => {
     const nudgesDb = createFakeNudgesDb({ conversationRows: SAMPLE_ROWS });
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.get('/student/nudge-history', { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(200);
     expect(r.body.ok).toBe(true);
@@ -391,7 +393,7 @@ describe('GET /student/nudge-history endpoint', () => {
     const nudgesDb = createFakeNudgesDb({ conversationRows: [] });
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.get('/student/nudge-history?limit=999', { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(200);
     expect(r.body.limit).toBe(100);
@@ -401,7 +403,7 @@ describe('GET /student/nudge-history endpoint', () => {
     const nudgesDb = createFakeNudgesDb({ conversationRows: [] });
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.get('/student/nudge-history?limit=banana', { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(200);
     expect(r.body.limit).toBe(20);
@@ -411,7 +413,7 @@ describe('GET /student/nudge-history endpoint', () => {
     const nudgesDb = createFakeNudgesDb({ conversationRows: [] });
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.get('/student/nudge-history?offset=-5', { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(200);
     expect(r.body.offset).toBe(0);
@@ -421,7 +423,7 @@ describe('GET /student/nudge-history endpoint', () => {
     const nudgesDb = createFakeNudgesDb({ conversationRows: [] });
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.get('/student/nudge-history', { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(200);
     const calledWith = nudgesDb._listCalledWith();
@@ -435,7 +437,7 @@ describe('GET /student/nudge-history endpoint', () => {
     const nudgesDb = createFakeNudgesDb({ conversationRows: [] });
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, badStudent], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.get('/student/nudge-history', { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(400);
     expect(r.body.ok).toBe(false);
@@ -446,7 +448,7 @@ describe('GET /student/nudge-history endpoint', () => {
     const nudgesDb = createFakeNudgesDb({ fail42P01: true });
     const ctx = await startServer({ roster: [FIXTURE_TEACHER_ROW, FIXTURE_STUDENT], nudgesDb });
     srv = ctx.server;
-    const token = signToken('stu_abc123');
+    const token = signToken('stu_abc123', 'fixture-password-hash');
     const r = await srv.get('/student/nudge-history', { Authorization: `Bearer ${token}` });
     expect(r.status).toBe(503);
     expect(r.body.ok).toBe(false);

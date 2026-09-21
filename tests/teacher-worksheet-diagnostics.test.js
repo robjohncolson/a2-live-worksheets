@@ -50,7 +50,7 @@ describe('teacher worksheet report panel', () => {
     const dom = new JSDOM(html.replace(/<script\b[\s\S]*?<\/script>/gi, ''), { runScripts: 'outside-only', url: 'https://example.com/' });
     const w = dom.window; windows.push(w);
     w.$ = id => w.document.getElementById(id);
-    w.URL_KEY = 'a2_teacher_service_url'; w.GLOBAL_OVERRIDE_KEY = 'roster_service_url_override';
+    w.URL_KEY = 'a2_teacher_service_url'; w.GLOBAL_OVERRIDE_KEY = 'a2_roster_service_url_override';
     w.ROSTER_SERVICE_URL = 'https://a2-live-worksheets-production.up.railway.app'; w.FALLBACK_SVC = w.ROSTER_SERVICE_URL;
     w.eval(html.slice(start, end));
     expect(w.$('svc-url').value).toBe(w.ROSTER_SERVICE_URL);

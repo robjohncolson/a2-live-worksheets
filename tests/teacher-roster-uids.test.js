@@ -61,7 +61,7 @@ describe('pickConfigUrl: production URL from roster_config.js', () => {
 
   it('skips the http://... placeholder in comments (2026-08-29 regression)', () => {
     const cfg =
-      "//   localStorage.setItem('roster_service_url_override', 'http://...')\n" +
+      "//   localStorage.setItem('a2_roster_service_url_override', 'http://...')\n" +
       "window.ROSTER_SERVICE_URL = '" + PROD + "';\n";
     expect(pickConfigUrl(cfg)).toBe(PROD);
   });

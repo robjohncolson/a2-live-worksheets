@@ -144,10 +144,11 @@ describe('Timed deck — UI wiring (static parse)', () => {
     expect(fnBody(DESK, '_ftStart')).toMatch(/bf-overlay['"]\)\.style\.display\s*=\s*['"]block['"]/);
   });
 
-  it('12: openBlooketFlashcards goes straight to the timed deck and states the credit rule', () => {
+  it('12: openBlooketFlashcards defaults to daily quick check and offers the full timed credit action', () => {
     const body = fnBody(DESK, 'openBlooketFlashcards');
     expect(body).toMatch(/_ftStart\s*\(\s*btn\s*,\s*topicId\s*\)/);
-    expect(body).not.toMatch(/_bfStartQuick|_bfShowModePicker/);
+    expect(body).toMatch(/await _bfStartQuick\(btn, topicId\)/);
+    expect(body).toContain("getElementById('bf-full-deck')");
     expect(fnBody(DESK, '_ftStart')).toMatch(/_bfCreditNote\(topicId\)/);
     expect(fnBody(DESK, '_bfCreditNote')).toMatch(/Engagement credit[\s\S]*80%[\s\S]*100%[\s\S]*Your best so far/);
   });

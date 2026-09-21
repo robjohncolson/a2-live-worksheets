@@ -387,10 +387,10 @@
     // ── URL dropdown wiring ────────────────────────────────────────────────────
     // The dropdown writes BOTH:
     //   - URL_KEY (a2_teacher_service_url): drives this page's fetches
-    //   - GLOBAL_OVERRIDE_KEY (roster_service_url_override): consulted by
+    //   - GLOBAL_OVERRIDE_KEY (a2_roster_service_url_override): consulted by
     //     roster_config.js so the Desk, worksheets, and start-here all
     //     talk to the same backend without a second DevTools step.
-    const GLOBAL_OVERRIDE_KEY = 'roster_service_url_override';
+    const GLOBAL_OVERRIDE_KEY = 'a2_roster_service_url_override';
     (function wireUrlDropdown() {
       const sel = $('svc-url-select');
       const inp = $('svc-url');

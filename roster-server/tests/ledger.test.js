@@ -14,6 +14,7 @@ import { verifyReviewGrant } from '../receipts.js';
 
 function createFakeRosterDb() {
   return {
+    async findByStudentId(studentId) { return { data: { student_id: studentId, must_change_password: false, password_hash: 'fixture-password-hash' }, error: null }; },
     async insertRoster() { return { data: null, error: { message: 'not used in ledger tests' } }; },
     async findByUsername() { return { data: null, error: { message: 'not used in ledger tests' } }; },
     // Powers the teacher view-as path in GET /ledger/student/:id: a sid that
@@ -169,11 +170,11 @@ beforeEach(async () => {
 
   // A valid studentId + token for use in happy-path tests
   validStudentId = `uuid-student-${randomBytes(8).toString('hex')}`;
-  validToken = signToken(validStudentId);
+  validToken = signToken(validStudentId, 'fixture-password-hash');
 
   // A teacher studentId + token (the fake rosterDb maps 'uuid-teacher*' -> teacher).
   teacherStudentId = `uuid-teacher-${randomBytes(8).toString('hex')}`;
-  teacherToken = signToken(teacherStudentId);
+  teacherToken = signToken(teacherStudentId, 'fixture-password-hash');
 
   rosterDb  = createFakeRosterDb();
   ledgerDb  = createFakeLedgerDb();

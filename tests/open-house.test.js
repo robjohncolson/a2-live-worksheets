@@ -7,16 +7,16 @@ import { JSDOM } from 'jsdom';
 const source = readFileSync(new URL('../start-here.html', import.meta.url), 'utf8');
 const handout = readFileSync(new URL('../open-house.html', import.meta.url), 'utf8');
 
-it('keeps every grading-table cell and all four rules verbatim in Start Here', () => {
+it('keeps every grading-table cell and all five rules verbatim in Start Here', () => {
   const start = new JSDOM(source);
   const page = new JSDOM(handout);
   const rows = [...page.window.document.querySelectorAll('tbody tr')];
-  expect(rows).toHaveLength(4);
+  expect(rows).toHaveLength(5);
   expect(page.window.document.querySelector('table').outerHTML).toBe(start.window.document.querySelector('table').outerHTML);
   for (const row of rows) {
-    expect(row.cells).toHaveLength(4);
+    expect(row.cells).toHaveLength(3);
     for (const cell of row.cells) expect(source).toContain(cell.textContent);
-    const sentences = row.cells[3].textContent.match(/[^.!?]+[.!?]/g);
+    const sentences = row.cells[2].textContent.match(/[^.!?]+[.!?]/g);
     expect(sentences.length).toBeGreaterThan(0);
     for (const sentence of sentences) expect(source).toContain(sentence.trim());
   }
@@ -27,13 +27,14 @@ it('keeps every grading-table cell and all four rules verbatim in Start Here', (
 it('copies the average day and every policy sentence from Start Here', () => {
   const page = new JSDOM(handout);
   const start = new JSDOM(source);
+  expect(page.window.document.querySelector('main > ol').outerHTML).toBe(start.window.document.querySelector('section ol').outerHTML);
   expect(page.window.document.querySelector('main > p').outerHTML).toBe(start.window.document.querySelector('section p').outerHTML);
   for (const paragraph of page.window.document.querySelectorAll('main > p')) {
     for (const sentence of paragraph.textContent.match(/[^.!?]+[.!?]/g)) {
       expect(source).toContain(sentence.trim());
     }
   }
-  expect(page.window.document.body.textContent).toContain('Add/drop is open through Friday, Sep 18. Work due on or before Sep 18 can only raise your grade: I count it only when it helps, and I never count it against you. After Sep 18, due work you have not attempted counts as zero.');
+  expect(page.window.document.body.textContent).toContain('Work through Friday, Sep 18 could only help you. It became your starting Bonus points and nothing from those weeks counts against you. Graded work starts Monday, Sep 21.');
   expect(start.window.document.body.textContent.match(/Quarters? close/gi)).toHaveLength(1);
   page.window.close();
   start.window.close();

@@ -251,7 +251,8 @@ describe('Desk: Blooket flashcard verification', () => {
   it('24: _bfRowsToDeck carries qnum on each card (for tag lookup)', () => {
     const body = fnBody(DESK, '_bfRowsToDeck');
     // qnum must be on the pushed card.
-    expect(body).toMatch(/deck\.push\s*\(\s*\{\s*qnum\s*:\s*qnum/);
+    expect(body).toMatch(/var card = \{ qnum: qnum/);
+    expect(body).toContain('deck.push(card)');
   });
 
   it('25: _bfLoadDifficultyTags fetches data/blooket-difficulty.json + caches', () => {
@@ -294,16 +295,11 @@ describe('Desk: Blooket flashcard verification', () => {
     expect(body).toMatch(/allCards\.slice\s*\(\s*0\s*,\s*TARGET\s*\)/);
   });
 
-  it('30: the quick check (_bfStartQuick) calls _bfSelectTop10 in the fresh-load branch', () => {
+  it('30: the quick check uses the shared daily draw without shuffling it', () => {
     const body = fnBody(DESK, '_bfStartQuick');
-    expect(body).toMatch(/_bfLoadDifficultyTags\s*\(/);
-    expect(body).toMatch(/_bfSelectTop10\s*\(/);
-    // Selection happens BEFORE the shuffle.
-    const selIdx = body.indexOf('_bfSelectTop10');
-    const shufIdx = body.indexOf('_bfShuffle(deck)');
-    expect(selIdx).toBeGreaterThan(-1);
-    expect(shufIdx).toBeGreaterThan(-1);
-    expect(selIdx).toBeLessThan(shufIdx);
+    expect(body).toMatch(/Flashcards.dailyDraw\(allCards, Flashcards.localDateKey\(\) \+ '\|' \+ topicId, Flashcards.QUICK_TARGET\)/);
+    expect(body).toContain('_bfState.deck = deck;');
+    expect(body).not.toContain('_bfShuffle(deck)');
   });
 
   it('30b: the FULL timed deck (_ftStart) does NOT trim to top-10 (uses every card)', () => {

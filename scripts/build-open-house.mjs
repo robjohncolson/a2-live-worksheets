@@ -5,14 +5,14 @@ import { JSDOM } from 'jsdom';
 const source = new JSDOM(readFileSync(new URL('../start-here.html', import.meta.url), 'utf8'));
 const doc = source.window.document;
 const sections = [...doc.querySelectorAll('section')];
-const averageDay = sections.find(section => section.querySelector('h2')?.textContent === 'An average day').querySelector('p').outerHTML;
-const table = doc.querySelector('table').outerHTML;
+const averageDay = sections.find(section => section.querySelector('h2')?.textContent === 'An average day').innerHTML.split('</h2>')[1].trim();
+const table = sections.find(section => section.querySelector('h2')?.textContent === 'What gets graded').innerHTML.split('</h2>')[1].trim();
 const gradeParagraphs = doc.querySelectorAll('#how-your-grade p');
 const formula = gradeParagraphs[0].textContent.split('. ')[0] + '.';
 const gradeSentences = gradeParagraphs[1].textContent.match(/[^.]+\.(?:\s|$)/g).map(sentence => sentence.trim());
 const minimums = gradeSentences[0];
 const liveGrade = [gradeSentences[1], gradeSentences[3], gradeSentences[4]].join(' ');
-const addDrop = sections.find(section => section.querySelector('h2')?.textContent === 'Right now (through Fri Sep 18)').querySelector('p').outerHTML;
+const firstWeeks = sections.find(section => section.querySelector('h2')?.textContent === 'The first two weeks').querySelector('p').outerHTML;
 const bonus = doc.querySelector('#bonus p').outerHTML;
 const dates = sections.find(section => section.querySelector('h2')?.textContent === 'Dates').querySelector('p').textContent.split('Quarters close ')[1];
 const deskButton = doc.querySelector('nav a[href="desk.html"]').outerHTML;
@@ -57,7 +57,7 @@ ${averageDay}
 ${table}
 <p>${formula} ${minimums}</p>
 <p>${liveGrade}</p>
-${addDrop}
+${firstWeeks}
 ${bonus}
 <p>Quarters close ${dates}</p>
 <aside aria-labelledby="where-to-look">

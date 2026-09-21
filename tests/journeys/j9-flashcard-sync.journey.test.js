@@ -246,8 +246,14 @@ async function openTimedDeck(harness) {
     )
   ), { message: 'real lesson panel has no flashcards launcher' });
   launcher.click();
+  await harness.waitFor(() => harness.document.getElementById('bf-full-deck').onclick);
+  expect(harness.window._bfState.deck).toHaveLength(10);
+  const FC = harness.window.Flashcards;
+  const expected = FC.dailyDraw(harness.window._bfState.allCards, FC.localDateKey() + '|' + TOPIC, 10);
+  expect(harness.window._bfState.deck.map(card => card.qnum)).toEqual(expected.map(card => card.qnum));
+  harness.document.getElementById('bf-full-deck').click();
 
-  // No mode picker: the launcher opens the full timed deck directly (2026-09-13).
+  // The secondary action opens the full timed deck.
   await harness.waitFor(() => (
     harness.document.getElementById('bf-overlay').style.display === 'block'
       && harness.document.querySelector('#bf-choices .bf-choice:not(:disabled)')

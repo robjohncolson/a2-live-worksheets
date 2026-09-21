@@ -1,0 +1,284 @@
+[
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 2,
+    "code": "dupChoice",
+    "detail": "choices 1 and 2 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 4,
+    "code": "dupChoice",
+    "detail": "choices 2 and 3 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 4,
+    "code": "dupChoice",
+    "detail": "choices 1 and 4 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 6,
+    "code": "dupChoice",
+    "detail": "choices 3 and 4 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 13,
+    "code": "dupChoice",
+    "detail": "choices 1 and 3 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 13,
+    "code": "dupChoice",
+    "detail": "choices 2 and 4 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 17,
+    "code": "dupChoice",
+    "detail": "choices 1 and 3 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 17,
+    "code": "dupChoice",
+    "detail": "choices 2 and 4 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 29,
+    "code": "dupChoice",
+    "detail": "choices 1 and 3 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 29,
+    "code": "dupChoice",
+    "detail": "choices 2 and 4 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 35,
+    "code": "dupChoice",
+    "detail": "choices 2 and 3 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 35,
+    "code": "dupChoice",
+    "detail": "choices 1 and 4 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 37,
+    "code": "answerInStem",
+    "detail": "correct choice \"bounded\" appears in the normalized stem"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 38,
+    "code": "dupChoice",
+    "detail": "choices 1 and 3 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 38,
+    "code": "dupChoice",
+    "detail": "choices 2 and 4 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 40,
+    "code": "dupChoice",
+    "detail": "choices 1 and 3 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 40,
+    "code": "dupChoice",
+    "detail": "choices 2 and 4 normalize to the same text"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 2,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q1"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 3,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q1"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 4,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q1"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 5,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q1"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 6,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q1"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 7,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q1"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 8,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q1"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 3,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q2"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 4,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q2"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 5,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q2"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 6,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q2"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 7,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q2"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 8,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q2"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 4,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q3"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 5,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q3"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 6,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q3"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 7,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q3"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 8,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q3"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 5,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q4"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 6,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q4"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 7,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q4"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 8,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q4"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 6,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q5"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 7,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q5"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 8,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q5"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 7,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q6"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 8,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q6"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 8,
+    "code": "siblingStem",
+    "detail": "normalized stem is 1.000 similar to q7"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 23,
+    "code": "siblingStem",
+    "detail": "normalized stem is 0.969 similar to q11"
+  },
+  {
+    "csv": "content/a2/1-1/deck.csv",
+    "qnum": 38,
+    "code": "siblingStem",
+    "detail": "normalized stem is 0.911 similar to q13"
+  }
+]

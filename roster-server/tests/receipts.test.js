@@ -30,7 +30,7 @@ function createFakeRosterDb({ usernameByStudentId = {} } = {}) {
     async findByStudentId(studentId) {
       const loginUsername = usernameByStudentId[studentId];
       return {
-        data: loginUsername ? { student_id: studentId, login_username: loginUsername } : null,
+        data: { student_id: studentId, login_username: loginUsername, must_change_password: false, password_hash: 'fixture-password-hash' },
         error: null
       };
     },
@@ -178,7 +178,7 @@ describe('roster-server receipt integration', () => {
     proctorSecret = `proctor-${crypto.randomBytes(12).toString('hex')}`;
     process.env.ROSTER_PROCTOR_SECRET = proctorSecret;
     studentId = '00000000-0000-4000-8000-000000000000';
-    token = signToken(studentId);
+    token = signToken(studentId, 'fixture-password-hash');
   });
 
   afterEach(async () => {

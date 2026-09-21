@@ -23,11 +23,11 @@ function fnBody(src, name) {
 }
 
 describe('Desk review mode — static contract', () => {
-  it('loads the SRS, store, and flags libraries without loading flashcards.js', () => {
+  it('loads the SRS, store, flags and shared daily-draw engine', () => {
     for (const lib of ['flashcard-srs', 'flashcard-store', 'flashcard-flags']) {
       expect(DESK).toContain(`<script src="lib/${lib}.js" onerror=""></script>`);
     }
-    expect(DESK).not.toMatch(/<script[^>]+src=["']flashcards\.js["']/);
+    expect(DESK).toMatch(/<script[^>]+src=["']flashcards\.js["']/);
   });
 
   it('loads flags at boot and resolves them with roster, section, URL, and storage context', () => {

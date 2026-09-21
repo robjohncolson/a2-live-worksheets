@@ -250,10 +250,10 @@
       || (_successfulSequence[key] || 0) > sequence;
   }
 
-  function _enqueueOffline(opts) {
+  function _enqueueOffline(opts, ownerId) {
     if (!_hasQueue()) return Promise.resolve(false);
     if (_isSuperseded(opts)) return Promise.resolve(false);
-    var sid = _studentId();
+    var sid = ownerId || _studentId();
     try {
       // Cast: _hasQueue() above guarantees enqueue exists; tsc can't see across the call.
       return Promise.resolve(/** @type {any} */ (window.OfflineQueue).enqueue({
@@ -317,6 +317,10 @@
 
       var data = null;
       try { data = await res.json(); } catch (_) { data = null; }
+
+      if (token === _token() && window.rosterClient && typeof window.rosterClient.handleAuthResponse === 'function') {
+        window.rosterClient.handleAuthResponse(res.status, data);
+      }
 
       if (data && data.ok) {
         _captureReceipt(data.receipt, opts.source, opts.itemId, opts.score);
@@ -466,6 +470,8 @@
           return { ok: false, reason: 'no-identity' };
         }
 
+        var ownerId = _studentId();
+        var submittedToken = _token();
         var r = await _sendRecord(opts);
         if (r.ok) {
           var key = _recordKey(opts);
@@ -485,9 +491,9 @@
         // studentId (the token alone is drain-time state, not ownership).
         // 2026-09-09: an expired session (401 → 'auth') is captured too — the row carries the
         // owner's studentId and the ownership-gated drain replays it once they sign in again.
-        if ((r.reason === 'network' || r.reason === 'auth') && _hasQueue() && _studentId()) {
-          if (await _enqueueOffline(opts)) {
-            if (r.reason === 'auth') { _lastAuthFailToken = _token(); _showNoIdentityNudge('expired'); }
+        if ((r.reason === 'network' || r.reason === 'auth') && _hasQueue() && ownerId) {
+          if (await _enqueueOffline(opts, ownerId)) {
+            if (r.reason === 'auth') { _lastAuthFailToken = submittedToken; _showNoIdentityNudge('expired'); }
             _scheduleOfflineDrain(30000);
             return { ok: false, reason: r.reason, queued: true };
           }
@@ -537,8 +543,9 @@
             return { ok: false, reason: 'no-identity' };
           }
           if (_isSuperseded(r)) return { ok: true, superseded: true };
+          var replayToken = _token();
           return _sendRecord(r).then(function (result) {
-            if (result && result.reason === 'auth') _lastAuthFailToken = _token();
+            if (result && result.reason === 'auth') _lastAuthFailToken = replayToken;
             if (result && result.ok) _lastAuthFailToken = null;
             if (result && result.ok && typeof r.transportSequence === 'number') {
               var key = _recordKey(r);
@@ -733,6 +740,12 @@
   try {
     if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
       window.addEventListener('online', function () {
+        _offlineDrainBackoffMs = 30000;
+        _scheduleOfflineDrain(0);
+      });
+      window.addEventListener('roster-session-changed', function () {
+        if (_offlineDrainTimer) { window.clearTimeout(_offlineDrainTimer); _offlineDrainTimer = null; }
+        _lastAuthFailToken = null;
         _offlineDrainBackoffMs = 30000;
         _scheduleOfflineDrain(0);
       });

@@ -118,6 +118,7 @@
 
 <div id="fco" role="dialog" aria-modal="true" aria-labelledby="fc-title">
   <div class="fc-bar">
+    <button id="fc-full-deck" type="button">Full deck</button>
     <h2 class="fc-title" id="fc-title">🃏 Flashcards</h2>
     <span class="fc-prog" id="fc-prog"></span>
     <button type="button" onclick="closeFlashcards()">✕ Close</button>
@@ -178,6 +179,12 @@
   // localStorage session every bundled page uses). refreshIdentity() is re-run after
   // a sign-in so the student's name appears without a reload.
   function refreshIdentity() {
+    if (typeof window.a2StudentGradesHidden === 'function' && window.a2StudentGradesHidden()) {
+      var pill = document.getElementById('gradepill');
+      if (pill) { pill.textContent = 'Your grade is in Schoology for now.'; pill.style.display = ''; }
+    }
+    var session = window.rosterClient && window.rosterClient.current();
+    if (session && session.mustChangePassword) openMobilePasswordChange();
     var who = (window.rosterClient && rosterClient.current && rosterClient.current()) || null;
     var w = document.getElementById('who');
     var b = document.getElementById('signin-btn');
@@ -189,6 +196,50 @@
       if (b) b.textContent = '👤 Sign in';
     }
   }
+  function openMobilePasswordChange() {
+    var existing = document.getElementById('mobile-password-change');
+    if (existing && existing.open) return;
+    if (existing) existing.remove();
+    var dialog = document.createElement('dialog');
+    dialog.id = 'mobile-password-change';
+    dialog.setAttribute('aria-labelledby', 'mobile-password-title');
+    dialog.style.cssText = 'max-width:340px;width:85%;border-radius:12px;padding:24px';
+    dialog.innerHTML = '<h2 id="mobile-password-title">Set Your Password</h2>'
+      + '<p>Choose a new password (at least 6 characters).</p>'
+      + '<form><label>New password <input id="mobile-password-new" type="password" autocomplete="new-password" minlength="6" required></label>'
+      + '<label>Confirm new password <input id="mobile-password-confirm" type="password" autocomplete="new-password" minlength="6" required></label>'
+      + '<p id="mobile-password-error" role="alert"></p><button type="submit">Set Password</button></form>';
+    dialog.addEventListener('cancel', function (e) { e.preventDefault(); });
+    dialog.querySelector('form').onsubmit = async function (e) {
+      e.preventDefault();
+      var button = dialog.querySelector('button');
+      if (button.disabled) return;
+      var pw = dialog.querySelector('#mobile-password-new').value;
+      var confirm = dialog.querySelector('#mobile-password-confirm').value;
+      var error = dialog.querySelector('#mobile-password-error');
+      if (pw.length < 6) { error.textContent = 'Use at least 6 characters.'; return; }
+      if (pw !== confirm) { error.textContent = 'The two passwords do not match.'; return; }
+      button.disabled = true;
+      try {
+        var result = await window.rosterClient.changePassword(pw);
+        if (!result.ok) { error.textContent = result.error || 'Could not change password.'; return; }
+        dialog.close();
+        dialog.remove();
+        refreshIdentity();
+      } catch (_) { error.textContent = 'Could not change password. Try again.'; }
+      finally { button.disabled = false; }
+    };
+    document.body.appendChild(dialog);
+    dialog.showModal();
+  }
+  window.addEventListener('a2:password-change-required', openMobilePasswordChange);
+  window.addEventListener('a2:session-expired', function () {
+    var dialog = document.getElementById('mobile-password-change');
+    if (dialog) dialog.remove();
+    refreshIdentity();
+    document.getElementById('signin-btn').click();
+  });
+  window.addEventListener('storage', function () { refreshIdentity(); });
   window.refreshIdentity = refreshIdentity;
   try { refreshIdentity(); } catch (e) {}
 
@@ -467,10 +518,8 @@
         // Get-or-generate + register this device's mesh signing key (APK only; inert on web).
         try { if (window.meshKeyBoot) meshKeyBoot(); } catch (_) {}
         try { loadGrade(); } catch (_) {}   // fetch + show the current grade for the just-signed-in student
-        var msg = result.mustChangePassword
-          ? '✅ Signed in as ' + (who.realName || r.username) + ' — change your password in the full app.'
-          : '✅ Signed in as ' + (who.realName || r.username);
-        ; setTimeout(dlHide, 4000);
+        if (result.mustChangePassword) openMobilePasswordChange();
+        setTimeout(dlHide, 4000);
       })
       .then(function () { _nfSubmitPassword._pending = false; if (okBtn) okBtn.disabled = false; })
       .catch(function () { _nfSubmitPassword._pending = false; if (okBtn) okBtn.disabled = false; });
@@ -561,6 +610,29 @@
     }
   }
 
+  function _nfAccountExists(result) {
+    var host = document.getElementById('nf-content');
+    if (!host) return;
+    host.textContent = '';
+    var copy = document.createElement('p');
+    copy.textContent = result.ambiguous
+      ? "Use 'Find my name on the class list' to sign in."
+      : 'You already have an account. Your username is ' + result.username + '. ' +
+        (result.startingPassword != null
+          ? 'Your starting password is ' + result.startingPassword + '. You will choose a new one right after you sign in.'
+          : 'Ask your teacher to reset your password.');
+    host.appendChild(copy);
+    var button = document.createElement('button');
+    button.className = 'nf-go';
+    button.textContent = 'Sign In';
+    button.onclick = function () {
+      if (result.ambiguous) { _nfBackToDial(); return; }
+      _nfPicked = { username: result.username, section: result.section };
+      _nfRenderPassword();
+    };
+    host.appendChild(button);
+  }
+
   function _nfSubmitSignup() {
     if (_nfSubmitSignup._pending) return;
     var name = document.getElementById('nf-su-name');
@@ -589,6 +661,7 @@
     }
     attempt(5)
       .then(function (result) {
+        if (result && result.error === 'account-exists') { _nfAccountExists(result); return; }
         if (!result || !result.ok) { if (err) err.textContent = (result && result.error) || 'Signup failed.'; return; }
         var who = (window.rosterClient.current && window.rosterClient.current()) || {};
         try { localStorage.setItem('a2_desk_student_email', who.username || _suUsername); } catch (_) {}
@@ -717,7 +790,9 @@
     qs.forEach(function (q) { if (q && typeof q.quarterGrade === 'number' && isFinite(q.quarterGrade)) best = q; });
     var pill = document.getElementById('gradepill');
     if (pill) {
-      if (best) { var ql = best.quarter || best.label || best.key || ''; pill.textContent = '📊 Current grade: ' + Math.round(best.quarterGrade) + '%' + (ql ? (' · ' + ql) : ''); pill.style.display = ''; }
+      if (typeof window.a2StudentGradesHidden === 'function' && window.a2StudentGradesHidden()) {
+        pill.textContent = 'Your grade is in Schoology for now.'; pill.style.display = '';
+      } else if (best) { var ql = best.quarter || best.label || best.key || ''; pill.textContent = '📊 Current grade: ' + Math.round(best.quarterGrade) + '%' + (ql ? (' · ' + ql) : ''); pill.style.display = ''; }
       else { pill.style.display = 'none'; }
     }
     if (repaint && _lastLessons.length) render(_lastLessons);
@@ -905,6 +980,7 @@
       var all = JSON.parse(localStorage.getItem(key) || '{}');
       var entry = all && all[topic];
       if (!entry || !Array.isArray(entry.deck) || !entry.deck.length) return null;
+      if (entry.deck[0].dailyKey !== FC.localDateKey() + '|' + topic) return null;
       if ((entry.idx || 0) >= entry.deck.length) return null;
       return entry;
     } catch (_) { return null; }
@@ -924,7 +1000,7 @@
         deck: _fc.deck,
         idx: _fc.idx,
         score: _fc.correct,
-        answered: !!_fc.answered,
+        answered: !!_fc.answered && !_fc.imageLoading,
         ts: new Date().toISOString(),
         roundId: _fc.roundId,
         seq: _fc.seq,
@@ -1049,8 +1125,9 @@
         _fcBodyHtml('<div class="fc-result"><h2>No deck</h2><p>This lesson has no flashcard deck.</p></div>');
         return;
       }
-      // No mode picker: the full timed deck is the only graded mode (Desk parity, 2026-09-13).
-      _fcStart(lesson, 'full');
+      // Start with the daily ten; keep the full timed deck as a secondary action.
+      _fcStart(lesson, 'quick');
+      document.getElementById('fc-full-deck').onclick = function () { _fcTimerStop(); _fcStart(lesson, 'full'); };
     });
   }
   window.openFlashcards = openFlashcards;
@@ -1100,9 +1177,9 @@
       var deck = res[0], tags = res[1] || {};
       if (!deck || !deck.length) { _fcBodyHtml('<div class="fc-result"><h2>Empty deck</h2><p>Could not read cards for this lesson.</p></div>'); return; }
       if (mode === 'quick') {
-        var top = FC.selectTop10(deck, tags[csv] || {});
+        var top = FC.dailyDraw(deck, FC.localDateKey() + '|' + topic, FC.QUICK_TARGET);
         _fc = {
-          mode: 'quick', lesson: lesson, deck: FC.shuffle(top), idx: 0, correct: 0,
+          mode: 'quick', lesson: lesson, deck: top, idx: 0, correct: 0,
           need: FC.quickPassCount(top.length), answered: false, timer: null,
           csv: _fcCsvBase(csv), roundId: _fcRoundId(), seq: 0, misses: []
         };
@@ -1133,10 +1210,40 @@
     _fcRenderCard();
   }
 
-  function _fcRenderCard() {
+  function _fcRenderCard(imageReady) {
+    if (_fc) _fc.imageLoading = false;
     _fcTimerStop();
     var card = _fcCurrentCard();
     if (!card) { _fcFinish(); return; }
+    if (card.image && !imageReady) {
+      var activeRun = _fc;
+      _fc.imageLoading = true;
+      _fc.answered = true;
+      _fcBodyHtml('<p>Loading number line?</p>');
+      var img = document.createElement('img');
+      img.alt = 'number line';
+      img.style.maxWidth = '100%';
+      img.style.display = 'block';
+      img.onload = function () {
+        if (_fc !== activeRun || _fcCurrentCard() !== card) return;
+        _fcRenderCard(img);
+      };
+      img.onerror = function () {
+        if (_fc !== activeRun || _fcCurrentCard() !== card) return;
+        if (_fc.mode === 'quick') {
+          _fc.deck.splice(_fc.idx, 1);
+          _fc.need = FC.quickPassCount(_fc.deck.length);
+        } else {
+          var idx = _fc.round.order.shift();
+          _fc.round.status[idx].resolved = true;
+          _fc.round.status[idx].earned = 0;
+          _fc.round.total -= 1;
+        }
+        _fcRenderCard();
+      };
+      img.src = FC.imagePath(_fcCsvPath(_fc.lesson), card.image);
+      return;
+    }
     _fc.answered = false;
     if (_fc.mode === 'quick') _fcSetProg((_fc.idx + 1) + ' / ' + _fc.deck.length + ' · ' + _fc.correct + '✓');
     else _fcSetProg(_fc.round.order.length + ' left · ' + _fc.round.total + ' cards');
@@ -1165,6 +1272,7 @@
     }
     html += '</div><div class="fc-feedback" id="fc-feedback" aria-live="polite"></div><button class="fc-next" id="fc-next">Next →</button>';
     var b = fcBody(); b.innerHTML = html; b.scrollTop = 0;
+    if (imageReady) b.querySelector('.fc-q').prepend(imageReady);
     Array.prototype.forEach.call(b.querySelectorAll('.fc-choice'), function (btn) {
       btn.onclick = function () { _fcAnswer(parseInt(btn.getAttribute('data-i'), 10)); };
     });

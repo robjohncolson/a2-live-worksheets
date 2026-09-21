@@ -16,6 +16,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { JSDOM } from 'jsdom';
 
 const html = readFileSync(resolve(__dirname, '..', 'desk.html'), 'utf-8');
 
@@ -68,13 +69,16 @@ describe('app desktop icons: PNG xor emoji (no duplicate)', () => {
     expect(html).toMatch(/\.app-icon \.icon-img\.has-png::after\s*\{\s*content:\s*none/);
   });
   it('every current app-icon template carries data-emoji + an onload→has-png img (no inline emoji text)', () => {
-    const dataEmoji = html.match(/class="icon-img" data-emoji="&#\d+;"/g) || [];
-    // The current Desk intentionally keeps the visible desktop lean: wallet is
-    // active, progress remains as a re-enable template. New app icons should keep
-    // this same PNG-or-emoji fallback contract.
-    expect(dataEmoji.length).toBeGreaterThanOrEqual(2);
-    const onload = html.match(/onload="this\.parentElement\.classList\.add\('has-png'\)"/g) || [];
-    expect(onload.length).toBeGreaterThanOrEqual(dataEmoji.length);
+    const dom = new JSDOM(html);
+    const icons = [...dom.window.document.querySelectorAll('.app-icon .icon-img')];
+    expect(icons.length).toBeGreaterThanOrEqual(2);
+    for (const icon of icons) {
+      expect(icon.getAttribute('data-emoji')).toBeTruthy();
+      expect(icon.childNodes.length === 0 || icon.textContent.trim() === '').toBe(true);
+      const image = icon.querySelector('img');
+      if (image) expect(image.getAttribute('onload')).toContain("classList.add('has-png')");
+    }
+    dom.window.close();
     // the old inline "emoji-after-img" pattern is gone from the app icons
     expect(html).not.toMatch(/icon-XXX/); // sanity: no template leftover
     expect(html).not.toMatch(/dataset\.fallback='1'">&#\d+;<\/div>/);
