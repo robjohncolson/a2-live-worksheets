@@ -120,3 +120,13 @@ with `window is not defined` — new Desk code runs where those tests evaluate e
 without a window. Fix the code (guard or restructure) rather than the tests unless a test pins
 behaviour this spec changed. After this round the root suite's failing files must again be exactly
 the six inherited ones; `roster-server` `npm test` fully green.
+
+## Fix round 2 (after second review)
+
+G5 (major). A queued raw run can be posted with the next student's token on a shared Chromebook:
+ownership is checked when the drain picks the record, but `_postFlashcardRun` reads the current
+token later, after waiting behind an in-flight request. Carry the queued owner's `studentId` into
+the send, and re-check it against the current session **at the moment the request is built**; on a
+mismatch do not send and do not delete — leave it queued for its owner. The server must also
+reject a run whose body `studentId` differs from the token's student (400), so a client bug cannot
+misattribute. Test the interleaving (A queued, B signs in before the send starts).
