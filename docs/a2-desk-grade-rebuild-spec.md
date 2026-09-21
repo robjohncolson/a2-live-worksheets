@@ -140,3 +140,21 @@ H12 (known, not fixed here). The retained alternative v3 engine still compares U
 Production runs the district formula, and the v3 engine is frozen by decision; record this in
 `A2_FORK_BASELINE.md` as an inherited limitation rather than editing v3.
 After this round: root suite fails only the six inherited files; `roster-server` fully green.
+
+## Fix round 3 (after the third review) — teacher tap queue
+
+H13 (major). `teacher-tryits.html`: two taps on one item while the first POST is in flight both
+carry `expectedVersion N`; the second is replayed with a stale version, gets 409 and is discarded,
+so the teacher's latest tap is lost with no competing device. Same when a committed save's response
+is lost. Sends for one (student, item) must be strictly serialized, and the queued record's
+`expectedVersion` must be refreshed from the latest acknowledged response (or from the 409's
+`current.version` when the server's stored `requestId` is one of ours) before it is sent. A 409
+caused by a genuinely different writer still surfaces to the teacher.
+H14 (major). Before migration 0040, a correction that the old trigger refused returns 503 the
+first time but `200 ok` when the same `requestId` is retried (duplicate branch in
+`roster-server/a2-routes.js` and `a2-score-write.js`), so the page drops it and the correction is
+never retried. The duplicate branch must re-check that the stored score equals the requested
+score and return the same 503 otherwise; the page keeps such a record queued and says why.
+H15 (minor). "Saved" may be shown only for a request the server acknowledged. A record replaced in
+the queue by a newer tap shows nothing; a queued-offline record shows "Queued", never "Saved".
+Tests must drive the real page code through these interleavings. Same exit criteria as before.
