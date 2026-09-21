@@ -240,3 +240,11 @@ blocking dialog. Test a real work-write rejection through to the dialog/sign-in 
 
 F13 (minor). After a fresh token is stored in the same tab (`roster-session-changed`), restart the
 offline queue drain; today only the cross-tab `storage` event does.
+
+## Fix round 3 (found in the live smoke test)
+
+F14. Four kept Blooket questions (numbers 9, 10, 16, 22) use **images as answer choices**; the
+source stores each choice as `` <id>`~`https://media.blooket.com/...png `` and the flashcards print
+that string. `build-a2-blooket-deck.mjs` must drop any question with an answer containing `` `~` ``
+or `media.blooket.com`, and fail if a kept card still contains either. The deck becomes 36 cards
+(23 with a question image). Regenerate deck, lineage and the pinned fixtures/tests; keep ten a day.
