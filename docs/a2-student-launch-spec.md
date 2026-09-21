@@ -219,3 +219,24 @@ AP Stats' `localStorage['roster_service_url_override']` silently repointed the A
 AP Stats roster server (empty class list). Rename A2's key to `a2_roster_service_url_override`
 everywhere it is read or written (`roster_config.js`, the teacher console and dashboard
 dropdowns, tests) and never read the old key.
+
+## Fix round 2 (after second review)
+
+Owned paths as in fix round 1, plus `gradebook-client.js`.
+
+F11 (major). `/roster/change-password` checks the token's `pwv`, then awaits bcrypt, then updates
+by `student_id` alone, so a request already in flight can overwrite a teacher reset (or the
+owner's change) that landed in between and mint itself a fresh token. Make the update conditional
+on the `password_hash` observed during authentication (compare-and-set in `db.updatePassword`);
+if no row matched, respond `401 session expired` and issue no token. Test the interleaving.
+
+F12 (major). Work writes and offline replay go through `gradebook-client.js`'s own `fetch`, so a
+`401 session expired` or `403 password change required` from `/ledger/record` and friends never
+reaches the Desk/mobile handlers. Expose one scoped handler from rosterClient (for example
+`rosterClient.handleAuthResponse(status, body)`) and call it from gradebook-client's write and
+replay paths (no global fetch patch). `session expired` clears the stored roster session and
+returns the student to sign-in with their queued work kept; `password change required` opens the
+blocking dialog. Test a real work-write rejection through to the dialog/sign-in on Desk and mobile.
+
+F13 (minor). After a fresh token is stored in the same tab (`roster-session-changed`), restart the
+offline queue drain; today only the cross-tab `storage` event does.
