@@ -154,3 +154,68 @@ file:line with a concrete failure scenario; do not edit.
 4. Smoke on the live site: signup with an existing name is refused and hands off; sign-in with the
    starting password forces a change; quick check shows 10 cards including number-line images.
 5. Only then post the Desk link in the three Schoology courses.
+
+## Fix round 1 (after review, 2026-09-20)
+
+One agent, owned paths: everything the four work items owned, plus `roster_config.js`,
+`teacher-roster-console.html`, `teacher-dashboard.html` for F10. Same rules as above.
+
+F1 (blocker). **The daily 10 must be what students get.** The lesson's Flashcards button on the
+Desk (`openBlooketFlashcards` → `_ftStart`) and on mobile (`openFlashcards` → `_fcStart(lesson,
+'full')`) still serve the whole deck. Both must launch the quick check that uses
+`dailyDraw(cards, dateKey, 10)`. Keep the full timed deck reachable as a secondary "Full deck"
+action. Test through the real launch buttons, not only the pure function.
+
+F2 (blocker). **Reset and change-password must kill old sessions, with no schema migration.** Add a
+password-version claim to newly issued tokens: `pwv` = first 12 hex of sha256(password_hash). The
+must-change write guard already loads the roster row for every presented token; make it also
+reject (401 `{ ok:false, error:'session expired' }`) any token whose `pwv` is missing or differs
+from the row's current hash. `/roster/change-password` applies the same check to its own token
+before changing anything, and returns a fresh token (new `pwv`) that the client stores, so the
+student who just changed the password stays signed in. Reads stay open. Tests: a token issued
+before a reset cannot write or change the password afterwards; the owner's fresh token can.
+
+F3 (major). With `A2_STUDENT_GRADES_VISIBLE=false`, a student can still see a grade through
+My Receipts → Print Sealed Summary and the transcript export. Hide the grade and breakdown there
+for role `student` (keep the receipts themselves).
+
+F4 (major). The Do Now "Review due" renderer (`_rvRenderCard`) ignores `card.image`. Give it the
+same image handling as the quick/timed renderers (show above the question; skip a card whose
+image fails to load). Same on mobile if it has an equivalent.
+
+F5 (major). Remove the global `window.fetch` replacement from `roster-client.js`. Instead: (a) on
+Desk/mobile load, if the restored session says `mustChangePassword`, open the blocking dialog;
+(b) inside rosterClient's own request paths, treat `403 password change required` and
+`401 session expired` by raising one `a2:password-change-required` / `a2:session-expired` event
+the Desk listens for. No other page's `fetch` may be touched.
+
+F6 (major). B3 must apply to role `student` only. Signed-out visitors and teachers keep today's
+behaviour (`tests/a2-desk-chrome.test.js` must pass unchanged).
+
+F7 (major). Drop the custom `password` option from `POST /roster/reset-passwords` and from
+`scripts/teacher-reset-passwords.mjs`: a reset always sets the configured starting password, so
+the signup hand-off and the "may not reuse the starting password" rule can never disagree.
+
+F8. **Deck scope.** The teacher wants only the number-line / interval-notation portion of the
+Blooket: source questions whose `number` is 1–40 (all 23 images are in that range). Questions
+41–65 are lesson 1-2 transformations and 66–76 are algebra warm-ups written in Blooket math markup
+(`` `*`…`*` ``) that the flashcards cannot render. `build-a2-blooket-deck.mjs` filters to
+`number <= 40`, ordered by `number`, and fails if any kept card contains `` `*` ``. Regenerate the
+deck, lineage and pinned lint fixture. Ten a day then cycles the deck every four class days.
+
+F9. Update, without weakening, the inherited tests that pin removed behaviour:
+`tests/desk-donow-speedbump.test.js` (exam labels gone: assert they are absent and that Today /
+School Days remain), `tests/ced2026-surfaces.test.js` (assert the new grading vocabulary),
+`tests/journeys/a2-check.journey.test.js` (student sees the Schoology notice; keep the 10/10 and
+district-grade correctness checks on the server/teacher side), `tests/desk-gating-fixes.test.js`
+(icon PNG/emoji invariant over the icons that remain), `tests/desk-completion-gate.test.js`
+(select the completion storage listener by behaviour, not first occurrence). After this round the
+root suite's failing files must be exactly: `tests/a2-fork-freeze.test.js`,
+`tests/phase4b-structure.test.js`, the three `tests/progress-reset-matrix-*.test.js`, and
+`tests/journeys/j7-offline-grade.journey.test.js`. `roster-server` `npm test` must be fully green.
+
+F10. The Algebra 2 site shares the `robjohncolson.github.io` origin with the AP Stats site, so
+AP Stats' `localStorage['roster_service_url_override']` silently repointed the A2 Desk at the
+AP Stats roster server (empty class list). Rename A2's key to `a2_roster_service_url_override`
+everywhere it is read or written (`roster_config.js`, the teacher console and dashboard
+dropdowns, tests) and never read the old key.
