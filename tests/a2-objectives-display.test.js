@@ -25,6 +25,10 @@ describe('Desk observer objectives', () => {
       expect(strip.textContent).toContain(objectives.languageObjective);
       expect(strip.textContent).toContain('(HSF.IF.B.4, HSF.IF.B.6)');
       expect(strip.title).toContain(objectives.essentialQuestion);
+      window.A2_OBJECTIVES['1-1'] = { ...objectives, mathObjectives: ['First objective', 'Second objective'] };
+      window.renderA2Objectives();
+      expect(window.document.getElementById('a2-objectives-math').textContent)
+        .toBe('First objective · Second objective (HSF.IF.B.4, HSF.IF.B.6)');
       const toggle = window.document.getElementById('a2-objectives-toggle');
       toggle.focus();
       expect(window.document.activeElement).toBe(toggle);
@@ -65,6 +69,21 @@ describe('Desk observer objectives', () => {
       strip.getBoundingClientRect = () => ({ height: 112 });
       window.dispatchEvent(new window.Event('resize'));
       expect(window.document.documentElement.style.getPropertyValue('--a2-objectives-height')).toBe('112px');
+      const app = window.document.querySelector('.app-window');
+      app.style.transform = 'none';
+      app.style.top = '90px';
+      app.getBoundingClientRect = () => ({ top: parseFloat(app.style.top), height: 400 });
+      window.sizeA2Objectives();
+      expect(app.style.top).toBe('90px');
+      app.style.top = height + 'px';
+      window.sizeA2Objectives();
+      expect(app.style.top).toBe((height - 112 - 400) + 'px');
+      strip.getBoundingClientRect = () => ({ height: 200 });
+      window.sizeA2Objectives();
+      expect(app.style.top).toBe((height - 200 - 400) + 'px');
+      app.style.top = '-50px';
+      window.sizeA2Objectives();
+      expect(app.style.top).toBe('20px');
       const rules = [...window.document.styleSheets].flatMap(sheet => [...sheet.cssRules]);
       const reservation = rules.find(rule => rule.selectorText?.includes('body.a2-objectives-visible :is(.dialog-overlay'));
       expect(reservation.style.getPropertyValue('padding-bottom')).toBe('var(--a2-objectives-height)');

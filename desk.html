@@ -271,7 +271,7 @@
 
         .desktop-icon {
             position: fixed;
-            bottom: 40px;
+            bottom: calc(40px + var(--a2-objectives-height, 0px));
             left: 30px;
             display: none;
             flex-direction: column;
@@ -1207,7 +1207,7 @@
         /* (Boot overlay CSS removed 2026-08-19 — splash + chime retired.) */
         /* "A new version is available — reload" nudge (stale-tab fix). */
         #update-nudge {
-            position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+            position: fixed; left: 50%; bottom: calc(14px + var(--a2-objectives-height, 0px)); transform: translateX(-50%);
             z-index: 100050; display: flex; align-items: center; gap: 10px;
             background: var(--second); border: 2px solid var(--black); box-shadow: 2px 2px 0 var(--black);
             padding: 7px 10px; font-size: 12px; color: var(--black); max-width: 92vw;
@@ -1857,7 +1857,7 @@
 </div>
 
 <!-- Preview-as-student indicator (PREVIEW_AS_STUDENT_SPEC.md) -->
-<div id="preview-as-student-badge" style="display:none;position:fixed;left:8px;bottom:8px;z-index:9000;align-items:center;gap:8px;background:#1a1a1a;color:#fff;border:2px solid #fff;border-radius:4px;padding:5px 9px;font:11px Geneva,Helvetica,sans-serif;box-shadow:2px 2px 0 rgba(0,0,0,0.4)">
+<div id="preview-as-student-badge" style="display:none;position:fixed;left:8px;bottom:calc(8px + var(--a2-objectives-height, 0px));z-index:9000;align-items:center;gap:8px;background:#1a1a1a;color:#fff;border:2px solid #fff;border-radius:4px;padding:5px 9px;font:11px Geneva,Helvetica,sans-serif;box-shadow:2px 2px 0 rgba(0,0,0,0.4)">
   <span>&#128065; Previewing as student</span>
   <button data-sfx onclick="_togglePreviewAsStudent()" style="font:bold 10px Geneva,Helvetica,sans-serif;cursor:pointer;padding:2px 7px">Exit</button>
 </div>
@@ -2704,7 +2704,7 @@ function _wireViewAsWorksheetLinks() {
 function _showViewAsToast(msg) {
   try {
     var t = document.createElement('div');
-    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--platinum);color:#78350f;padding:10px 16px;border:1px solid #fbbf24;border-radius:6px;z-index:9999;font:13px system-ui,sans-serif;box-shadow:0 4px 12px rgba(0,0,0,0.18);';
+    t.style.cssText = 'position:fixed;bottom:calc(24px + var(--a2-objectives-height, 0px));left:50%;transform:translateX(-50%);background:var(--platinum);color:#78350f;padding:10px 16px;border:1px solid #fbbf24;border-radius:6px;z-index:9999;font:13px system-ui,sans-serif;box-shadow:0 4px 12px rgba(0,0,0,0.18);';
     t.textContent = msg;
     document.body.appendChild(t);
     setTimeout(function () { try { t.remove(); } catch (_) {} }, 3000);
@@ -11632,7 +11632,7 @@ function _showDeskToast(msg) {
         t.className = 'chicago';
         t.setAttribute('role', 'status');
         t.setAttribute('aria-live', 'polite');
-        t.style.cssText = 'position:fixed;bottom:18px;right:18px;z-index:9999;' +
+        t.style.cssText = 'position:fixed;bottom:calc(18px + var(--a2-objectives-height, 0px));right:18px;z-index:9999;' +
             'background:var(--platinum);color:var(--black);border:1px solid var(--black);' +
             'box-shadow:inset 1px 1px 0 0 var(--plat-hi),inset -1px -1px 0 0 var(--plat-lo),2px 2px 0 0 var(--black);' +
             'border-radius:2px;padding:8px 14px;font-size:12px;max-width:320px;pointer-events:none;';
@@ -14013,6 +14013,7 @@ document.querySelectorAll('.app-overlay').forEach(function(overlay) {
         if (!dragWin) return;
         dragWin.style.left = (origX + e.clientX - startX) + 'px';
         dragWin.style.top = (origY + e.clientY - startY) + 'px';
+        clampA2AppWindow(dragWin);
     });
 
     document.addEventListener('mouseup', function() {
@@ -15028,7 +15029,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-21-oqmx';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-21-6nkx';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
@@ -15195,10 +15196,19 @@ setTimeout(function() {
         padding-bottom: var(--a2-objectives-height) !important;
     }
     body.a2-objectives-visible :is(.dialog-box, .app-window, .ogm-panel, .sdm-panel, .tnm-panel) {
-        top: calc((100% - var(--a2-objectives-height)) / 2) !important;
         max-height: calc(100vh - var(--a2-objectives-height) - 32px) !important;
         box-sizing: border-box;
         overflow-y: auto;
+    }
+    /* Only centered windows use the reserved viewport midpoint. Dragging sets transform: none. */
+    body.a2-objectives-visible :is(.dialog-box, .ogm-panel, .sdm-panel, .tnm-panel),
+    body.a2-objectives-visible .app-window:not(.maximized):not([style*="transform: none"]) {
+        top: calc((100% - var(--a2-objectives-height)) / 2) !important;
+    }
+    body.a2-objectives-visible .app-window.maximized {
+        top: 20px !important;
+        height: calc(100vh - var(--a2-objectives-height) - 20px) !important;
+        max-height: calc(100vh - var(--a2-objectives-height) - 20px) !important;
     }
     body.a2-objectives-visible dialog {
         max-height: calc(100vh - var(--a2-objectives-height) - 48px);
@@ -15233,12 +15243,20 @@ setTimeout(function() {
 // Uses the same published lessons and due-date window as a2-desk.js paintDueLine.
 // Keep the observer-facing display independent of grade and authentication requests.
 var A2_OBJECTIVES = {};
+function clampA2AppWindow(win) {
+    if (win.classList.contains('maximized') || win.style.transform !== 'none') return;
+    var reserved = parseFloat(document.documentElement.style.getPropertyValue('--a2-objectives-height')) || 0;
+    var rect = win.getBoundingClientRect();
+    var lowestTop = Math.max(20, window.innerHeight - reserved - rect.height);
+    win.style.top = Math.max(20, Math.min(parseFloat(win.style.top) || rect.top, lowestTop)) + 'px';
+}
 function sizeA2Objectives() {
     var strip = document.getElementById('a2-objectives');
     if (!strip) return;
     var height = strip.hidden ? 0 : Math.ceil(strip.getBoundingClientRect().height);
     document.documentElement.style.setProperty('--a2-objectives-height', height + 'px');
     document.body.classList.toggle('a2-objectives-visible', !strip.hidden);
+    document.querySelectorAll('.app-window').forEach(clampA2AppWindow);
 }
 function renderA2Objectives() {
     var strip = document.getElementById('a2-objectives');
@@ -15253,7 +15271,7 @@ function renderA2Objectives() {
     var entry = today >= startDay && current && A2_OBJECTIVES[current.key];
     strip.hidden = !entry;
     if (!entry) { sizeA2Objectives(); return; }
-    var math = entry.mathObjectives.join(' ? ') + (entry.standards.length ? ' (' + entry.standards.join(', ') + ')' : '');
+    var math = entry.mathObjectives.join(' · ') + (entry.standards.length ? ' (' + entry.standards.join(', ') + ')' : '');
     document.getElementById('a2-objectives-math').textContent = math;
     document.getElementById('a2-objectives-language').textContent = entry.languageObjective;
     document.getElementById('a2-objectives-question').textContent = entry.essentialQuestion;
