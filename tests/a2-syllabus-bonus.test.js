@@ -22,7 +22,8 @@ it('keeps the three section syllabi in sync with Start Here and the year plan', 
   for (const [period, meets] of [['c', 'Monday, Tuesday, Thursday'], ['d', 'Monday, Wednesday, Friday'], ['g', 'Tuesday, Wednesday, Thursday, Friday']]) {
     const page = readFileSync(new URL(`../syllabus-${period}.html`, import.meta.url), 'utf8');
     expect(page).toContain(`Meets ${meets}.`);
-    expect(page).toContain('Blooket counts only as bonus and never against you.');
+    expect(page).toContain('Bonus is there to even out a rough quiz.');
+    expect(page).toContain('I take your higher score and add half of your lower score, up to full credit.');
     expect(start).toContain(`href="syllabus-${period}.html"`);
   }
 });

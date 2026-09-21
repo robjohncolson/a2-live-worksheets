@@ -181,8 +181,6 @@ describe('start-here.html — Algebra 2 orientation', () => {
   });
   it('offers the Desk and omits retired policies', () => {
     expect(START).toContain('desk.html');
-    // Blooket returned on 2026-09-20 as bonus-only credit (#bonus); the retired graded warm-up stays out.
-    expect(START).not.toMatch(/Progress Check|Blooket warm|video|summer on-ramp/i);
-    expect(START).toContain('Blooket counts only as bonus and never against you.');
+    expect(START).not.toMatch(/Progress Check|Blooket|video|summer on-ramp/i);
   });
 });
