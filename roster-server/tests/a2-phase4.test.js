@@ -215,3 +215,18 @@ it('returns the newer score on a delayed teacher retry even after the quarter cl
   expect(retry).toMatchObject({ status: 200, body: { duplicate: true, score: 90 } });
   expect(JSON.stringify(rows)).toBe(before);
 });
+
+
+it('keeps a refused correction a 503 on every duplicate retry', async () => {
+  const body = { studentId: student.student_id, source: 'topic-assessment', itemId: 'TA-T1',
+    score: 70, expectedVersion: 1, requestId: 'refused-correction' };
+  await write('topic-assessment', 'TA-T1', 90, 'initial');
+  // State left by the old best-score trigger: new response metadata, old score.
+  rows[0].response = { ...rows[0].response, requestId: body.requestId, version: 2 };
+  const before = JSON.stringify(rows);
+  for (let retry = 0; retry < 2; retry++) {
+    const result = await teacher(request().post('/ledger/record')).send(body);
+    expect(result).toMatchObject({ status: 503, body: { error: expect.stringContaining('0040'), current: { score: 90, version: 2 } } });
+    expect(JSON.stringify(rows)).toBe(before);
+  }
+});

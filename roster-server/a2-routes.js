@@ -3,7 +3,7 @@ import './lib/a2-year-plan.js';
 import { loadA2Lessons, loadA2Targets, loadA2SchoolYear, overlayLessons, lessonScheduleFromModel, validatePacing, reflowPacing, createA2Store } from './a2-lessons.js';
 import { requireTeacher } from './teacher-auth.js';
 import { verifyToken } from './token.js';
-import { serializeStudent, saveTeacherScore, repairScoreReceipt, scoreWriteError, checkScoreVersion } from './a2-score-write.js';
+import { serializeStudent, saveTeacherScore, repairScoreReceipt, scoreWriteError, checkScoreVersion, checkStoredScore } from './a2-score-write.js';
 import { todayInTz } from './lesson-grade.js';
 import { A2_FEEDERS } from './district-grade.js';
 import { bestA2Attempt } from './district-ledger.js';
@@ -160,6 +160,10 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
       if (source !== 'lesson-check') {
         checkScoreVersion(current, body.requestId, body.expectedVersion);
         if (current?.response?.requestId === body.requestId) {
+          const requestedScore = source === 'quiz' && Array.isArray(body.questionScores)
+            ? body.questionScores.reduce((sum, value) => sum + value, 0) / 20 * ((config.a2Feeders || A2_FEEDERS)[source]?.maxPoints || 10)
+            : body.score;
+          checkStoredScore(current, requestedScore);
           const receipt = await repairScoreReceipt(ledgerDb, current, student.login_username);
           return res.json({ ok: true, score: current.score, version: current.response.version || 0,
             attempt: current.attempt, receipt, bestScore: current.score, duplicate: true });

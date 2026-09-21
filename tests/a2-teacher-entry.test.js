@@ -89,3 +89,76 @@ it('shows a conflict without Saved and uses the current version only on another 
   expect(writes[0]).toMatchObject({ expectedVersion: 2, score: 0 });
   await vi.waitFor(() => expect(doc.getElementById('message').textContent).toBe('Saved'));
 });
+
+function deferred() {
+  let resolve, reject;
+  const promise = new Promise((yes, no) => { resolve = yes; reject = no; });
+  return { promise, resolve, reject };
+}
+
+it('serializes rapid taps and refreshes the next POST from the acknowledgement', async () => {
+  const { doc, win } = await boot();
+  const first = deferred(), second = deferred(), posts = [];
+  const original = win.A2Client.request.getMockImplementation();
+  win.A2Client.request.mockImplementation((path, body, ...rest) => {
+    if (path !== '/ledger/record') return original(path, body, ...rest);
+    posts.push({ ...body });
+    return posts.length === 1 ? first.promise : second.promise;
+  });
+  button(doc, 10).click();
+  await vi.waitFor(() => expect(posts).toHaveLength(1));
+  button(doc, 8).click();
+  await vi.waitFor(async () => expect((await win.OfflineQueue.all())[0]?.score).toBe(8));
+  expect(posts).toHaveLength(1);
+  first.resolve({ ok: true, version: 1 });
+  await vi.waitFor(() => expect(posts).toHaveLength(2));
+  expect(posts[1]).toMatchObject({ score: 8, expectedVersion: 1 });
+  expect(doc.getElementById('message').textContent).not.toBe('Saved');
+  second.resolve({ ok: true, version: 2 });
+  await vi.waitFor(() => expect(doc.getElementById('message').textContent).toBe('Saved'));
+  await vi.waitFor(async () => expect(await win.OfflineQueue.all()).toHaveLength(0));
+});
+
+it('recovers a lost committed response without discarding the newer tap', async () => {
+  const ledger = [], { doc, win } = await boot('tryits', ledger);
+  const first = deferred(), posts = [];
+  const original = win.A2Client.request.getMockImplementation();
+  win.A2Client.request.mockImplementation((path, body, ...rest) => {
+    if (path !== '/ledger/record') return original(path, body, ...rest);
+    posts.push({ ...body });
+    if (posts.length === 1) {
+      ledger.push({ source: body.source, item_id: body.itemId, score: body.score, attempt: 1,
+        response: { requestId: body.requestId, version: 1 } });
+      return first.promise;
+    }
+    if (body.expectedVersion !== 1) return Promise.reject(Object.assign(new Error('score-changed'), { status: 409 }));
+    return Promise.resolve({ ok: true, version: 2 });
+  });
+  button(doc, 10).click();
+  await vi.waitFor(() => expect(posts).toHaveLength(1));
+  button(doc, 0).click();
+  await vi.waitFor(async () => expect((await win.OfflineQueue.all())[0]?.score).toBe(0));
+  first.reject(new Error('Response lost'));
+  await vi.waitFor(() => expect(posts).toHaveLength(3));
+  expect(posts[2]).toMatchObject({ score: 0, expectedVersion: 1, requestId: posts[1].requestId });
+  await vi.waitFor(async () => expect(await win.OfflineQueue.all()).toHaveLength(0));
+  expect(doc.getElementById('message').textContent).toBe('Saved');
+});
+
+it('never claims Saved for replaced offline taps or repeated migration failures', async () => {
+  const { doc, win, setOffline } = await boot();
+  setOffline(true);
+  button(doc, 10).click(); button(doc, 8).click();
+  await vi.waitFor(() => expect(doc.getElementById('message').textContent).toContain('Queued'));
+  await vi.waitFor(async () => expect((await win.OfflineQueue.all())[0]?.score).toBe(8));
+  const original = win.A2Client.request.getMockImplementation();
+  win.A2Client.request.mockImplementation((path, ...args) => path === '/ledger/record'
+    ? Promise.reject(Object.assign(new Error('Run migration 0040_a2_teacher_entry.sql'), { status: 503 }))
+    : original(path, ...args));
+  for (let retry = 0; retry < 2; retry++) {
+    win.dispatchEvent(new win.Event('online'));
+    await vi.waitFor(() => expect(doc.getElementById('message').textContent).toContain('Queued: Run migration 0040'));
+    expect(await win.OfflineQueue.all()).toHaveLength(1);
+    expect(doc.getElementById('message').textContent).not.toContain('Saved');
+  }
+});

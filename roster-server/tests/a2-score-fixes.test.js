@@ -53,7 +53,7 @@ it('retries the same request and unchanged scores without modifying the academic
   const f = fixture();
   await f.save(8, 0);
   const before = JSON.stringify(f.row());
-  expect((await f.save(0, 0)).duplicate).toBe(true);
+  expect((await f.save(8, 0)).duplicate).toBe(true);
   expect((await f.save(8, 1, { requestId: 'unchanged' })).unchanged).toBe(true);
   const previous = JSON.parse(before);
   expect(f.row()).toMatchObject({ score: previous.score, recorded_at: previous.recorded_at, receipt_compact: previous.receipt_compact });
@@ -147,6 +147,9 @@ it('signs the stored score and names 0040 when the old trigger prevents a correc
   f.db.insertLedgerRow.mockImplementation(input => original({ ...input, score: Math.max(input.score, 8) }));
   await expect(f.save(7, 1, { requestId: 'lower' })).rejects.toMatchObject({ status: 503,
     message: expect.stringContaining('0040'), current: { score: 8 } });
+  const before = JSON.stringify(f.row());
+  await expect(f.save(7, 1, { requestId: 'lower' })).rejects.toMatchObject({ status: 503, message: expect.stringContaining('0040') });
+  expect(JSON.stringify(f.row())).toBe(before);
   expect(receiptMatchesRow(f.row())).toBe(true);
 });
 

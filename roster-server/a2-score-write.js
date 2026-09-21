@@ -72,8 +72,14 @@ export function checkScoreVersion(existing, requestId, expectedVersion) {
   const version = existing?.response?.version || 0;
   if (!Number.isSafeInteger(expectedVersion) || expectedVersion < 0 || expectedVersion !== version) {
     throw Object.assign(new Error('score-changed'), { status: 409,
-      current: { score: existing?.score ?? null, version } });
+      current: { score: existing?.score ?? null, version, requestId: existing?.response?.requestId } });
   }
+}
+
+export function checkStoredScore(row, score) {
+  if ((row.score == null ? null : Number(row.score)) === score) return;
+  throw Object.assign(new Error('Correction did not take effect. Run migration 0040_a2_teacher_entry.sql in Supabase.'),
+    { status: 503, current: { score: row.score, version: row.response?.version || 0 } });
 }
 
 // Caller holds serializeStudent across reading, deciding, and writing.
@@ -82,6 +88,7 @@ export async function saveTeacherScore(ledgerDb, existing, input, expectedVersio
   if (versioned) checkScoreVersion(existing, input.response.requestId, expectedVersion);
   const duplicate = !!existing && input.response.requestId && input.response.requestId === existing.response?.requestId;
   if (duplicate) {
+    checkStoredScore(existing, input.score);
     return { row: existing, receipt: await repairScoreReceipt(ledgerDb, existing, input.username), duplicate: true, unchanged: true };
   }
   const unchanged = !!existing && (existing.score == null ? null : Number(existing.score)) === input.score
@@ -103,9 +110,6 @@ export async function saveTeacherScore(ledgerDb, existing, input, expectedVersio
     attempt: input.attempt, response, recorded_at: recordedAt, evidence_tier: input.evidenceTier,
     receipt_id: receiptId, receipt_compact: receiptCompact, ...saved.data };
   const receipt = await repairScoreReceipt(ledgerDb, row, input.username);
-  if ((row.score == null ? null : Number(row.score)) !== input.score) {
-    throw Object.assign(new Error('Correction did not take effect. Run migration 0040_a2_teacher_entry.sql in Supabase.'),
-      { status: 503, current: { score: row.score, version: row.response?.version || 0 } });
-  }
+  checkStoredScore(row, input.score);
   return { row, receipt, unchanged };
 }

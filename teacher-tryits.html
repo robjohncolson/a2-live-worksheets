@@ -25,26 +25,55 @@
   function say(text) { el('message').textContent = text; }
   const scoreVersions = new Map(), conflicts = new Set();
   const scoreKey = record => [record.studentId, record.source, record.itemId].join('|');
+  const acknowledgedVersions = new Map(), latestTaps = new Map();
+  // Survive a reload after a committed POST loses its response.
+  let ownRequests;
+  try { ownRequests = new Set(JSON.parse(sessionStorage.getItem('a2-teacher-requests') || '[]')); }
+  catch (_) { ownRequests = new Set(); }
   async function send(record) {
-    try {
-      const result = await api('/ledger/record', record);
-      scoreVersions.set(scoreKey(record), result.version || 0);
-      A2Client.changed(); return { ok: true };
-    } catch (error) {
-      if (error.status === 409) {
-        conflicts.add(record.requestId);
+    const key = scoreKey(record);
+    record.expectedVersion = Math.max(record.expectedVersion || 0, acknowledgedVersions.get(key) || 0);
+    ownRequests.add(record.requestId);
+    try { sessionStorage.setItem('a2-teacher-requests', JSON.stringify([...ownRequests])); } catch (_) {}
+    for (let retry = 0; retry < 3; retry++) {
+      try {
+        const result = await api('/ledger/record', record);
+        if (!result.ok) throw new Error('Score was not acknowledged');
+        scoreVersions.set(key, result.version || 0);
+        acknowledgedVersions.set(key, result.version || 0);
+        A2Client.changed();
+        const pending = await OfflineQueue.all();
+        if (!pending.some(row => scoreKey(row) === key && row.requestId !== record.requestId)) say('Saved');
+        return { ok: true };
+      } catch (error) {
+        if (error.status !== 409) {
+          say(error.status ? 'Queued: ' + error.message : 'Queued: offline. Scores are saved on this device.');
+          return { ok: false };
+        }
         try {
+          // A2Client does not retain error JSON, so read the authoritative row.
           const ledger = await api('/ledger/student/' + encodeURIComponent(record.studentId));
           const rows = ledger.rows || ledger.items || ledger.ledger || [];
           const current = rows.filter(row => row.item_id === record.itemId && row.source === record.source)
             .sort((a, b) => b.attempt - a.attempt)[0];
-          scoreVersions.set(scoreKey(record), current?.response?.version || 0);
+          const version = current?.response?.version || 0;
+          scoreVersions.set(key, version);
+          if (ownRequests.has(current?.response?.requestId)) {
+            record.expectedVersion = version;
+            acknowledgedVersions.set(key, version);
+            continue;
+          }
+          conflicts.add(record.requestId);
           say('Score changed. Current score: ' + (current?.score ?? 'not scored') + '. Tap again to overwrite.');
           return { ok: true }; // Discard rejection; another tap creates a fresh request.
-        } catch (_) { say('Score changed. Reload to see the current score before trying again.'); }
-      } else say(error.status ? error.message + ' ? score remains queued for review.' : 'Offline ? scores are saved on this device.');
-      return { ok: false };
+        } catch (_) {
+          say('Queued: score changed. Reload to see the current score before trying again.');
+          return { ok: false };
+        }
+      }
     }
+    say('Queued: score keeps changing. Try again when connected.');
+    return { ok: false };
   }
   function flush() {
     sending = sending.catch(() => {}).then(() => OfflineQueue.drain(record => record.source === 'try-it' || record.source === 'topic-assessment' || record.source === 'quiz' ? send(record) : Promise.resolve({ ok: false })));
@@ -55,11 +84,13 @@
       score, maxPoints: source === 'try-it' ? 10 : source === 'quiz' ? 20 : 100, lesson: el('lesson').value,
       attempt: 1, ...(questionScores ? { questionScores: [...questionScores] } : {}), transportSequence: ++sequence,
       requestId: crypto.randomUUID(), expectedVersion: scoreVersions.get([student.studentId || student.student_id, source, itemId].join('|')) || 0 };
+    latestTaps.set(scoreKey(record), record.requestId);
     control.classList.add('pending');
     await OfflineQueue.enqueue(record); // Capture before the network request, including rapid taps.
-    say('Saving…'); await flush();
-    const pending = (await OfflineQueue.all()).some(row => row.requestId === record.requestId);
-    if (!pending) { control.classList.remove('pending'); if (!conflicts.has(record.requestId)) say('Saved'); }
+    if (latestTaps.get(scoreKey(record)) === record.requestId) say('Queued');
+    await flush();
+    const pending = (await OfflineQueue.all()).some(row => scoreKey(row) === scoreKey(record));
+    if (!pending) control.classList.remove('pending');
   }
   function text(tag, value, host) { const node = document.createElement(tag); node.textContent = value; host.append(node); return node; }
   function scoreControls(host, label, initial, onScore) {
@@ -225,7 +256,10 @@
   el('section').onchange = () => { el('lesson').textContent = ''; load(); };
   el('lesson').onchange = load;
   ['tryits','quizzes','assessments','pacing'].forEach(view => { el(view).onclick = () => { mode = view; load(); }; });
-  window.addEventListener('online', async () => { await flush(); if (!conflicts.size) await load(); });
+  window.addEventListener('online', async () => {
+    await flush();
+    if (!(await OfflineQueue.all()).length) document.querySelectorAll('.pending').forEach(control => control.classList.remove('pending'));
+  });
   load();
 })();
 </script></html>
