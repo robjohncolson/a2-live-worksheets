@@ -7,7 +7,7 @@
  *
  * Regenerate after any engine edit:  node scripts/build-grade-engine.mjs
  * Parity is pinned by tests/grade-engine-bundle-parity.test.js.
- * engine-version: c4efda122f20
+ * engine-version: 4c18225c8862
  */
 ;(function (root) {
   'use strict';
@@ -263,7 +263,7 @@
           || (hasScore && (scores.map(rowAssignedDate).filter(Boolean).sort()[0] || definition.dueDate));
         if (!assignedDate || assignedDate > cfg.today) continue;
         if (!/^\d{4}-\d{2}-\d{2}$/.test(assignedDate) || !Number.isFinite(Date.parse(assignedDate))) continue;
-        const dueDate = selected?.response?.dueDate || definition.dueDate || assignedDate;
+        const dueDate = selected?.response?.dueDate || (definition.source === 'try-it' ? assignedDate : definition.dueDate) || assignedDate;
         const quarter = Object.keys(cfg.quarters).find(key => dueDate >= cfg.quarters[key].start && dueDate <= cfg.quarters[key].end);
         if (!quarter) continue;
         // No imported row means absence, not a zero Engagement item.
@@ -276,7 +276,7 @@
         const savedDates = [selected?.response?.assignedDate, selected?.response?.dueDate].filter(Boolean);
         const historical = cfg.bonusOnlyThrough && (savedDates.length
           ? savedDates.some(date => schoolDate(date) <= cfg.bonusOnlyThrough)
-          : dueDate <= cfg.bonusOnlyThrough);
+          : assignedDate <= cfg.bonusOnlyThrough);
         const extraCredit = feeder.extraCredit || !!historical;
         const points = attempted ? Math.max(0, Number(selected.score)) : 0;
         const provisional = !extraCredit && definition.source === 'try-it' && !attempted && cfg.today >= provisionalDate;
@@ -2721,7 +2721,7 @@
     isCorrect: __reg["scoring"].isCorrect,
     normalizeResponse: __reg["scoring"].normalizeResponse,
     scoreAgainstKey: __reg["scoring"].scoreAgainstKey,
-    _engineVersion: "c4efda122f20",
+    _engineVersion: "4c18225c8862",
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = __api;

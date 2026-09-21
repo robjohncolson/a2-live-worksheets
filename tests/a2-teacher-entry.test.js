@@ -16,7 +16,7 @@ async function boot(mode = 'tryits', ledger = []) {
     if (path.startsWith('/lesson-status/')) return { tryIts: { scores: [] } };
     if (path.startsWith('/ledger/student/')) return { rows: ledger };
     if (path === '/teacher/tryits/collected') return { assignedDate: '2026-09-21' };
-    if (path === '/ledger/record') { if (offline) throw new Error('offline'); writes.push(JSON.parse(JSON.stringify(body))); return { ok: true }; }
+    if (path === '/ledger/record') { if (offline) throw new Error('offline'); writes.push(JSON.parse(JSON.stringify(body))); return { ok: true, version: body.expectedVersion + 1 }; }
     throw new Error('Unexpected endpoint');
   }) };
   win.eval(read('offline-queue.js'));
@@ -33,8 +33,8 @@ it('offers one-tap 10/8/0, all other integer scores, stable item IDs and section
     await vi.waitFor(() => expect(writes.at(-1)?.score).toBe(score));
   }
   expect(writes.every(row => row.studentId === 'synthetic-c' && row.itemId === 'TI-1-1-1' && row.attempt === 1 && row.maxPoints === 10)).toBe(true);
-  expect(writes.map(row => row.ts)).toEqual([...writes.map(row => row.ts)].sort((a, b) => a - b));
-  expect(new Set(writes.map(row => row.ts)).size).toBe(writes.length);
+  expect(writes.map(row => row.expectedVersion)).toEqual([0, 1, 2]);
+  expect(writes.every(row => row.clientTimestamp === undefined)).toBe(true);
   const select = doc.querySelector('.score-controls select');
   expect([...select.options].map(option => option.value)).toEqual(['', '1', '2', '3', '4', '5', '6', '7', '9']);
   select.value = '7'; select.dispatchEvent(new win.Event('change'));
@@ -72,4 +72,20 @@ it('collection failures remain retryable and never claim assignment', async () =
   await vi.waitFor(() => expect(doc.getElementById('message').textContent).toContain('collection was not saved'));
   expect(doc.getElementById('collection').disabled).toBe(false);
   expect(doc.getElementById('collection-status').textContent).toBe('Not collected');
+});
+
+it('shows a conflict without Saved and uses the current version only on another tap', async () => {
+  const ledger = [{ source: 'try-it', item_id: 'TI-1-1-1', score: 8, attempt: 1, response: { version: 1 } }];
+  const { doc, win, writes } = await boot('tryits', ledger);
+  ledger[0] = { ...ledger[0], score: 10, response: { version: 2 } };
+  win.A2Client.request.mockRejectedValueOnce(Object.assign(new Error('score-changed'), { status: 409 }));
+  button(doc, 0).click();
+  await vi.waitFor(() => expect(doc.getElementById('message').textContent).toContain('Current score: 10'));
+  expect(doc.getElementById('message').textContent).not.toContain('Saved');
+  await vi.waitFor(async () => expect(await win.OfflineQueue.all()).toHaveLength(0));
+  expect(writes).toHaveLength(0);
+  button(doc, 0).click();
+  await vi.waitFor(() => expect(writes).toHaveLength(1));
+  expect(writes[0]).toMatchObject({ expectedVersion: 2, score: 0 });
+  await vi.waitFor(() => expect(doc.getElementById('message').textContent).toBe('Saved'));
 });

@@ -78,7 +78,7 @@ describe('R1 district engine contract', () => {
   });
 
   it('work through September 18 can only add capped Bonus and never a denominator', () => {
-    const items = [item('TI', 'try-it'), item('OLD', 'try-it', { dueDate: '2026-09-18' })];
+    const items = [item('TI', 'try-it'), item('OLD', 'try-it', { dueDate: '2026-09-18', assignedDates: { C: '2026-09-18' } })];
     const result = grade([row('TI', 'try-it', 8), row('OLD', 'try-it', 2)], items);
     expect(result.quarters.Q1.categoryBreakdown.assignments).toMatchObject({ earned: 10, possible: 10, count: 1 });
     expect(grade([], [items[1]]).quarters.Q1.quarterGrade).toBeNull();

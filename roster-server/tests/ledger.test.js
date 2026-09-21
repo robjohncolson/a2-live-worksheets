@@ -596,7 +596,7 @@ describe('createLedgerDb', () => {
             upsertOpts = opts;
             return {
               select(cols) {
-                expect(cols).toBe('ledger_id, evidence_tier, score');
+                expect(cols).toBe('*');
                 return {
                   async single() {
                     return { data: { ledger_id: 'ledger-1', evidence_tier: 'practice' }, error: null };

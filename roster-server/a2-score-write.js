@@ -27,7 +27,7 @@ export function scoreWriteError(error) {
 }
 
 function academicResponse(response) {
-  const { requestId, clientTimestamp, ...academic } = response || {};
+  const { requestId, clientTimestamp, version, receiptResponse, ...academic } = response || {};
   return academic;
 }
 
@@ -44,7 +44,9 @@ function storageResponse(value) {
 export function receiptMatchesRow(row) {
   try {
     const payload = JSON.parse(Buffer.from(row.receipt_compact.split('.')[0], 'base64url'));
-    const hash = createHash('sha256').update(JSON.stringify(row.response)).digest('hex').slice(0, 16);
+    const signedResponse = row.response?.receiptResponse;
+    if (signedResponse && !isDeepStrictEqual(academicResponse(signedResponse), academicResponse(row.response))) return false;
+    const hash = createHash('sha256').update(JSON.stringify(signedResponse || row.response)).digest('hex').slice(0, 16);
     return payload.sid === row.student_id && payload.src === row.source && payload.i === row.item_id
       && payload.a === row.attempt && (payload.sc ?? null) === (row.score == null ? null : Number(row.score)) && payload.ah === hash;
   } catch { return false; }
@@ -53,40 +55,57 @@ export function receiptMatchesRow(row) {
 export async function repairScoreReceipt(ledgerDb, row, username) {
   if (receiptMatchesRow(row)) return row.receipt_compact;
   const receipt = issueLedgerReceipt({ studentId: row.student_id, username, source: row.source,
-    itemId: row.item_id, score: row.score, response: row.response, attempt: row.attempt,
+    itemId: row.item_id, score: row.score, response: row.response?.receiptResponse || row.response, attempt: row.attempt,
     evidenceTier: row.evidence_tier || 'practice', ts: Date.parse(row.recorded_at), nonce: 'a2-score' });
   if (receipt && ledgerDb.updateLedgerReceipt) {
     const saved = await ledgerDb.updateLedgerReceipt(row.ledger_id,
       { receiptId: receipt.receiptId, receiptCompact: receipt.compact });
     if (saved?.error) throw scoreWriteError(saved.error);
+    row.receipt_id = receipt.receiptId;
+    row.receipt_compact = receipt.compact;
   }
   return receipt?.compact || null;
 }
 
-export function validateClientTimestamp(timestamp) {
-  if (!Number.isSafeInteger(timestamp) || timestamp <= 0) {
-    throw Object.assign(new Error('A positive client timestamp is required'), { status: 400 });
+export function checkScoreVersion(existing, requestId, expectedVersion) {
+  if (existing && requestId && existing.response?.requestId === requestId) return;
+  const version = existing?.response?.version || 0;
+  if (!Number.isSafeInteger(expectedVersion) || expectedVersion < 0 || expectedVersion !== version) {
+    throw Object.assign(new Error('score-changed'), { status: 409,
+      current: { score: existing?.score ?? null, version } });
   }
 }
 
 // Caller holds serializeStudent across reading, deciding, and writing.
-export async function saveTeacherScore(ledgerDb, existing, input, clientTimestamp) {
-  if (input.source !== 'lesson-check') validateClientTimestamp(clientTimestamp);
-  const storedTimestamp = existing?.response?.clientTimestamp || 0;
-  const superseded = !!existing && (clientTimestamp || 0) < storedTimestamp;
-  const duplicate = !!existing && (clientTimestamp != null && clientTimestamp === storedTimestamp
-    || input.response.requestId && input.response.requestId === existing.response?.requestId);
+export async function saveTeacherScore(ledgerDb, existing, input, expectedVersion) {
+  const versioned = input.source !== 'lesson-check';
+  if (versioned) checkScoreVersion(existing, input.response.requestId, expectedVersion);
+  const duplicate = !!existing && input.response.requestId && input.response.requestId === existing.response?.requestId;
+  if (duplicate) {
+    return { row: existing, receipt: await repairScoreReceipt(ledgerDb, existing, input.username), duplicate: true, unchanged: true };
+  }
   const unchanged = !!existing && (existing.score == null ? null : Number(existing.score)) === input.score
     && isDeepStrictEqual(academicResponse(existing.response), academicResponse(input.response));
-  if (superseded || duplicate || unchanged) {
-    const receipt = superseded ? existing.receipt_compact : await repairScoreReceipt(ledgerDb, existing, input.username);
-    return { row: existing, receipt, superseded, duplicate, unchanged: true };
+  const version = (existing?.response?.version || 0) + 1;
+  let response = storageResponse({ ...academicResponse(input.response), requestId: input.response.requestId,
+    ...(versioned ? { version } : {}) });
+  let receiptCompact = null, receiptId = null;
+  if (unchanged) {
+    receiptCompact = await repairScoreReceipt(ledgerDb, existing, input.username);
+    receiptId = existing.receipt_id;
+    // Preserve the exact signed response while advancing transport metadata.
+    response = storageResponse({ ...response, receiptResponse: existing.response.receiptResponse || existing.response });
   }
-  const response = storageResponse({ ...input.response, ...(clientTimestamp != null ? { clientTimestamp } : {}) });
-  const recordedAt = new Date().toISOString();
-  const receipt = issueLedgerReceipt({ ...input, response, ts: Date.parse(recordedAt), nonce: 'a2-score' });
-  const saved = await ledgerDb.insertLedgerRow({ ...input, response, recordedAt,
-    receiptId: receipt?.receiptId || null, receiptCompact: receipt?.compact || null });
+  const recordedAt = unchanged ? existing.recorded_at : new Date().toISOString();
+  const saved = await ledgerDb.insertLedgerRow({ ...input, response, recordedAt, receiptId, receiptCompact });
   if (saved.error) throw scoreWriteError(saved.error);
-  return { row: { ...saved.data, score: input.score, attempt: input.attempt }, receipt, unchanged: false };
+  const row = { student_id: input.studentId, source: input.source, item_id: input.itemId,
+    attempt: input.attempt, response, recorded_at: recordedAt, evidence_tier: input.evidenceTier,
+    receipt_id: receiptId, receipt_compact: receiptCompact, ...saved.data };
+  const receipt = await repairScoreReceipt(ledgerDb, row, input.username);
+  if ((row.score == null ? null : Number(row.score)) !== input.score) {
+    throw Object.assign(new Error('Correction did not take effect. Run migration 0040_a2_teacher_entry.sql in Supabase.'),
+      { status: 503, current: { score: row.score, version: row.response?.version || 0 } });
+  }
+  return { row, receipt, unchanged };
 }

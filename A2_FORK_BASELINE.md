@@ -2630,3 +2630,7 @@ See A2_FORK_DIFF_AUDIT.md. tests/phase4-structure.test.js now passes (the teache
 localStorage key is allowlisted), so the accepted inherited root failures are five:
 tests/journeys/j7-offline-grade.journey.test.js, tests/phase4b-structure.test.js and the three
 tests/progress-reset-matrix-*.test.js files. Server suite 82/82, Python 194 passed.
+
+## Inherited limitation: alternative v3 date comparisons (H12)
+
+The frozen alternative v3 engine still compares UTC date prefixes. Production uses the district formula, which converts timestamps to America/New_York school dates. H9?H12 deliberately leave v3 unchanged.

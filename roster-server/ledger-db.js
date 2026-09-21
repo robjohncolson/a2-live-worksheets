@@ -82,7 +82,7 @@ export function createLedgerDb(client) {
         }],
         { onConflict: 'student_id,source,item_id,attempt' }
       )
-      .select('ledger_id, evidence_tier, score')
+      .select('*')
       .single();
   }
 

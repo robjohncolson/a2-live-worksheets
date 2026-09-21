@@ -12,14 +12,13 @@ import { PGlite } from '@electric-sql/pglite';
 import { readFileSync } from 'node:fs';
 
 let app, rows, pacing, rescores, student, token, lesson, date, server, baseUrl, assignments, schedule;
-let clientClock = 0;
 function request() {
   return Object.fromEntries(['get', 'put', 'post'].map(method => [method, path => {
     const options = { method: method.toUpperCase(), headers: {} };
     const chain = {
       set(key, value) { options.headers[key] = value; return chain; },
       send(body) {
-        if (['try-it', 'quiz', 'topic-assessment'].includes(body.source) && body.ts == null) body = { ...body, ts: ++clientClock };
+        if (['try-it', 'quiz', 'topic-assessment'].includes(body.source) && body.expectedVersion == null) body = { ...body, expectedVersion: rows.find(row => row.source === body.source && row.item_id === body.itemId)?.response?.version || 0 };
         options.body = JSON.stringify(body); options.headers['Content-Type'] = 'application/json'; return chain; },
       then(resolve, reject) {
         return fetch(baseUrl + path, options).then(async response => ({ status: response.status, body: await response.json() })).then(resolve, reject);
@@ -205,14 +204,14 @@ describe('R2 teacher entry', () => {
 
 it('returns the newer score on a delayed teacher retry even after the quarter closes', async () => {
   const body = { studentId: student.student_id, source: 'topic-assessment', itemId: 'TA-T1' };
-  await teacher(request().post('/ledger/record')).send({ ...body, score: 80, ts: 100, requestId: 'older' });
-  await teacher(request().post('/ledger/record')).send({ ...body, score: 90, ts: 200, requestId: 'newer' });
+  await teacher(request().post('/ledger/record')).send({ ...body, score: 80, expectedVersion: 0, requestId: 'older' });
+  await teacher(request().post('/ledger/record')).send({ ...body, score: 90, expectedVersion: 1, requestId: 'newer' });
   const before = JSON.stringify(rows);
   date = '2027-01-15';
-  const stale = await teacher(request().post('/ledger/record')).send({ ...body, score: 80, ts: 100, requestId: 'older' });
-  expect(stale).toMatchObject({ status: 200, body: { superseded: true, score: 90 } });
+  const stale = await teacher(request().post('/ledger/record')).send({ ...body, score: 80, expectedVersion: 0, requestId: 'older' });
+  expect(stale).toMatchObject({ status: 409, body: { error: 'score-changed', current: { score: 90, version: 2 } } });
   expect(JSON.stringify(rows)).toBe(before);
-  const retry = await teacher(request().post('/ledger/record')).send({ ...body, score: 90, ts: 200, requestId: 'newer' });
+  const retry = await teacher(request().post('/ledger/record')).send({ ...body, score: 90, expectedVersion: 1, requestId: 'newer' });
   expect(retry).toMatchObject({ status: 200, body: { duplicate: true, score: 90 } });
   expect(JSON.stringify(rows)).toBe(before);
 });

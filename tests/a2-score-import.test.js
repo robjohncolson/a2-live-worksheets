@@ -49,7 +49,7 @@ function run(root, script, args) {
   });
 }
 
-async function service() {
+async function service(result = { ok: true }) {
   const requests = [];
   const expectedSecret = resolveTeacherSecret(repo, { ROSTER_TEACHER_SECRET: 'fixture-ambient-key' });
   let authorized = true;
@@ -59,7 +59,7 @@ async function service() {
     for await (const chunk of req) body += chunk;
     requests.push({ path: req.url, body: JSON.parse(body) });
     res.writeHead(200, { 'content-type': 'application/json' });
-    res.end(JSON.stringify({ ok: true }));
+    res.end(JSON.stringify(result));
   });
   servers.push(server);
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -72,10 +72,10 @@ it('engagement defaults to dry-run; repeated commits send identical point snapsh
   const args = ['--section', 'PeriodC', '--date', '2026-09-21', '--offline', 'flashcards.json', '--url', server.url];
   for (const flags of [[], ['--dry-run'], ['--commit'], ['--commit']]) {
     const result = await run(root, 'a2-daily-engagement.mjs', [...args, ...flags]);
-    expect(result).toEqual({ code: 0, stderr: '', stdout: 'scored: 1, absent: 1, unmatched: 0\n' });
+    expect(result).toEqual({ code: 0, stderr: '', stdout: (flags.includes('--commit') ? 'rejected: 0\n' : '') + 'scored: 1, absent: 1, unmatched: 0\n' });
   }
   expect(server.requests).toHaveLength(2);
-  expect(server.requests[1].body.clientTimestamp).toBeGreaterThan(server.requests[0].body.clientTimestamp);
+  expect(server.requests[1].body).not.toHaveProperty('clientTimestamp');
   const academic = request => ({ ...request, body: { ...request.body, clientTimestamp: undefined } });
   expect(academic(server.requests[0])).toEqual(academic(server.requests[1]));
   expect(server.requests[0]).toMatchObject({ path: '/teacher/score-import', body: {
@@ -90,7 +90,7 @@ it('bonus dry-runs print counts only and commits overwrite capped quarter snapsh
   const server = await service();
   for (const flags of [[], ['--dry-run'], ['--commit'], ['--commit']]) {
     const result = await run(root, 'a2-bonus-totals.mjs', ['--url', server.url, ...flags]);
-    expect(result).toEqual({ code: 0, stderr: '', stdout: 'awards: 2, scored: 1\n' });
+    expect(result).toEqual({ code: 0, stderr: '', stdout: (flags.includes('--commit') ? 'rejected: 0\n'.repeat(3) : '') + 'awards: 2, scored: 1\n' });
   }
   expect(server.requests).toHaveLength(6);
   const academic = request => ({ ...request, body: { ...request.body, clientTimestamp: undefined } });
@@ -107,4 +107,13 @@ it('rejects conflicting flags and malformed bonus input without leaking private 
   const result = await run(root, 'a2-bonus-totals.mjs', []);
   expect(result.code).toBe(1);
   expect(result.stdout + result.stderr).not.toMatch(/Private Fixture|fixture-ambient-key/);
+});
+
+it.each(['a2-bonus-totals.mjs', 'a2-daily-engagement.mjs'])('%s reports rejected writes and exits nonzero', async script => {
+  const root = workspace();
+  const server = await service({ ok: true, rejected: 2 });
+  const args = script.includes('daily') ? ['--section', 'PeriodC', '--date', '2026-09-21', '--offline', 'flashcards.json'] : [];
+  const result = await run(root, script, [...args, '--commit', '--url', server.url]);
+  expect(result.code).toBe(1);
+  expect(result.stdout).toContain('rejected: 2');
 });

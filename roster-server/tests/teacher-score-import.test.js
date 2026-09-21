@@ -10,7 +10,6 @@ function fixture() {
   vi.stubEnv('ROSTER_TEACHER_SECRET', 'fixture-import-key');
   const rows = new Map();
   let writes = 0;
-  let clientClock = 0;
   const db = { listRoster: async () => ({ data: [
     { student_id: 'a', section: 'C', real_name: 'Fixture One', login_username: 'fixture1', status: 'active' },
     { student_id: 'b', section: 'PeriodC', real_name: 'Fixture Two', login_username: 'fixture2', status: 'active' },
@@ -32,7 +31,7 @@ function fixture() {
     let status = 200;
     let result;
     const res = { status(code) { status = code; return this; }, json(value) { result = value; return this; } };
-    await importTeacherScores({ headers: { 'x-teacher-secret': secret }, body: { clientTimestamp: ++clientClock, ...body } }, res, { db, ledgerDb, config: PHASE3_CONFIG });
+    await importTeacherScores({ headers: { 'x-teacher-secret': secret }, body }, res, { db, ledgerDb, config: PHASE3_CONFIG });
     return { status, body: result };
   }
   return { rows, request, db, ledgerDb, writes: () => writes };
@@ -50,7 +49,7 @@ describe('teacher score imports', () => {
     try {
       const result = await fetch(`http://127.0.0.1:${server.address().port}/teacher/score-import`, {
         method: 'POST', headers: { 'content-type': 'application/json', 'x-teacher-secret': 'fixture-import-key' },
-        body: JSON.stringify({ ...engagement, clientTimestamp: 1 }),
+        body: JSON.stringify(engagement),
       });
       expect(result.status).toBe(200);
       expect((await result.json()).written).toBe(1);
@@ -72,13 +71,13 @@ describe('teacher score imports', () => {
     expect((await f.request(engagement)).status).toBe(200);
     const first = JSON.stringify([...f.rows]);
     expect((await f.request(engagement)).status).toBe(200);
-    expect(JSON.stringify([...f.rows])).toBe(first);
-    expect(f.writes()).toBe(1);
+    expect([...f.rows.values()][0].response.version).toBe(2);
+    expect(f.writes()).toBe(2);
     // PostgreSQL jsonb does not preserve the insertion order of object keys.
     const stored = [...f.rows.values()][0];
     stored.response = { maxPoints: 10, dueDate: '2026-09-21', assignedDate: '2026-09-21' };
     await f.request(engagement);
-    expect(f.writes()).toBe(1);
+    expect(f.writes()).toBe(3);
     const items = districtItemsFromLedger([...f.rows.values()], {}, 'C', { ...PHASE3_CONFIG, useDistrictFormula: true, today: '2026-11-06' });
     expect(items).toHaveLength(1);
     expect(items[0]).toMatchObject({ itemId: '2026-09-21-PeriodC', source: 'daily-engagement', points: 9.5, maxPoints: 10, quarter: 'Q1' });
@@ -95,8 +94,8 @@ describe('teacher score imports', () => {
     expect((await f.request(body)).status).toBe(200);
     const first = JSON.stringify([...f.rows]);
     await f.request(body);
-    expect(JSON.stringify([...f.rows])).toBe(first);
-    expect(f.writes()).toBe(2);
+    expect([...f.rows.values()][0].response.version).toBe(2);
+    expect(f.writes()).toBe(4);
     const row = [...f.rows.values()][0];
     expect(row).toMatchObject({ source: 'bonus', item_id: 'BONUS-Q1', score: 10 });
     expect(districtItemsFromLedger([row], {}, 'C', { ...PHASE3_CONFIG, useDistrictFormula: true, today: '2026-11-06' })[0])
@@ -128,14 +127,12 @@ describe('teacher score imports', () => {
 });
 
 
-it('returns 200 superseded for an older import without touching the current row', async () => {
+it('imports snapshots in lock acquisition order without consulting client clocks', async () => {
   const f = fixture();
-  const newer = { ...engagement, clientTimestamp: 300 };
-  expect((await f.request(newer)).status).toBe(200);
-  const before = JSON.stringify([...f.rows]);
-  const stale = await f.request({ ...engagement, clientTimestamp: 200, scores: [{ studentId: 'a', score: 0 }] });
-  expect(stale).toMatchObject({ status: 200, body: { superseded: true, written: 0 } });
-  expect(JSON.stringify([...f.rows])).toBe(before);
+  await f.request({ ...engagement, clientTimestamp: 300 });
+  const latest = await f.request({ ...engagement, clientTimestamp: 200, scores: [{ studentId: 'a', score: 0 }] });
+  expect(latest).toMatchObject({ status: 200, body: { written: 1, rejected: 0 } });
+  expect([...f.rows.values()][0]).toMatchObject({ score: 0, response: { version: 2 } });
 });
 
 it('names migration 0040 in a 503 when a new source cannot be stored', async () => {

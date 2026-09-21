@@ -23,27 +23,43 @@
   let pacingOverlay = {}, yearPlan = null;
   let sending = Promise.resolve(), loadVersion = 0, sequence = Date.now();
   function say(text) { el('message').textContent = text; }
+  const scoreVersions = new Map(), conflicts = new Set();
+  const scoreKey = record => [record.studentId, record.source, record.itemId].join('|');
   async function send(record) {
-    try { await api('/ledger/record', record); A2Client.changed(); return { ok: true }; }
-    catch (error) { say(error.status ? error.message + ' — score remains queued for review.' : 'Offline — scores are saved on this device.'); return { ok: false }; }
+    try {
+      const result = await api('/ledger/record', record);
+      scoreVersions.set(scoreKey(record), result.version || 0);
+      A2Client.changed(); return { ok: true };
+    } catch (error) {
+      if (error.status === 409) {
+        conflicts.add(record.requestId);
+        try {
+          const ledger = await api('/ledger/student/' + encodeURIComponent(record.studentId));
+          const rows = ledger.rows || ledger.items || ledger.ledger || [];
+          const current = rows.filter(row => row.item_id === record.itemId && row.source === record.source)
+            .sort((a, b) => b.attempt - a.attempt)[0];
+          scoreVersions.set(scoreKey(record), current?.response?.version || 0);
+          say('Score changed. Current score: ' + (current?.score ?? 'not scored') + '. Tap again to overwrite.');
+          return { ok: true }; // Discard rejection; another tap creates a fresh request.
+        } catch (_) { say('Score changed. Reload to see the current score before trying again.'); }
+      } else say(error.status ? error.message + ' ? score remains queued for review.' : 'Offline ? scores are saved on this device.');
+      return { ok: false };
+    }
   }
   function flush() {
     sending = sending.catch(() => {}).then(() => OfflineQueue.drain(record => record.source === 'try-it' || record.source === 'topic-assessment' || record.source === 'quiz' ? send(record) : Promise.resolve({ ok: false })));
     return sending;
   }
-  let lastScoreTimestamp = Number(localStorage.getItem('a2-score-timestamp')) || 0;
   async function saveScore(student, itemId, source, score, control, questionScores) {
-    lastScoreTimestamp = Math.max(Date.now(), lastScoreTimestamp + 1, Number(localStorage.getItem('a2-score-timestamp')) + 1 || 0);
-    localStorage.setItem('a2-score-timestamp', String(lastScoreTimestamp));
     const record = { source, itemId, studentId: student.studentId || student.student_id,
       score, maxPoints: source === 'try-it' ? 10 : source === 'quiz' ? 20 : 100, lesson: el('lesson').value,
       attempt: 1, ...(questionScores ? { questionScores: [...questionScores] } : {}), transportSequence: ++sequence,
-      requestId: crypto.randomUUID(), ts: lastScoreTimestamp };
+      requestId: crypto.randomUUID(), expectedVersion: scoreVersions.get([student.studentId || student.student_id, source, itemId].join('|')) || 0 };
     control.classList.add('pending');
     await OfflineQueue.enqueue(record); // Capture before the network request, including rapid taps.
     say('Saving…'); await flush();
     const pending = (await OfflineQueue.all()).some(row => row.requestId === record.requestId);
-    if (!pending) { control.classList.remove('pending'); say('Saved'); }
+    if (!pending) { control.classList.remove('pending'); if (!conflicts.has(record.requestId)) say('Saved'); }
   }
   function text(tag, value, host) { const node = document.createElement(tag); node.textContent = value; host.append(node); return node; }
   function scoreControls(host, label, initial, onScore) {
@@ -98,6 +114,7 @@
       const rows = ledger.rows || ledger.items || ledger.ledger || [];
       const previous = rows.filter(row => row.item_id === itemId && row.source === (quiz ? 'quiz' : 'try-it'))
         .sort((a, b) => b.attempt - a.attempt || String(b.recorded_at).localeCompare(String(a.recorded_at)))[0];
+      scoreVersions.set([id, quiz ? 'quiz' : 'try-it', itemId].join('|'), previous?.response?.version || 0);
       const queued = pending.find(row => row.studentId === id && row.itemId === itemId);
       return { student, previous, queued, rescoreRequested: status?.tryIts?.scores.find(item => item.itemId === itemId)?.rescoreRequested };
     }));
@@ -195,6 +212,7 @@
           for (const key of topics) {
             const cell = document.createElement('td'); row.append(cell); const input = document.createElement('input'); input.type = 'number'; input.min = 0; input.max = 100; input.step = 'any'; input.setAttribute('aria-label', 'Topic assessment ' + key); cell.append(input);
             const previous = rows.filter(item => item.source === 'topic-assessment' && item.item_id === 'TA-' + key).sort((a,b) => b.attempt - a.attempt)[0]; input.value = previous?.score ?? '';
+            scoreVersions.set([id, 'topic-assessment', 'TA-' + key].join('|'), previous?.response?.version || 0);
             input.onchange = () => { if (input.value !== '' && input.checkValidity()) saveScore(student, 'TA-' + key, 'topic-assessment', Number(input.value), input).catch(error => say(error.message)); };
           }
         }
@@ -207,7 +225,7 @@
   el('section').onchange = () => { el('lesson').textContent = ''; load(); };
   el('lesson').onchange = load;
   ['tryits','quizzes','assessments','pacing'].forEach(view => { el(view).onclick = () => { mode = view; load(); }; });
-  window.addEventListener('online', async () => { await flush(); await load(); });
+  window.addEventListener('online', async () => { await flush(); if (!conflicts.size) await load(); });
   load();
 })();
 </script></html>

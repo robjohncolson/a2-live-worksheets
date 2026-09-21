@@ -58,10 +58,7 @@ function parseArgs(argv) {
   return args;
 }
 
-let lastImportTimestamp = 0;
 export async function importScores(body, url) {
-  lastImportTimestamp = Math.max(Date.now(), lastImportTimestamp + 1);
-  body.clientTimestamp ??= lastImportTimestamp;
   const secret = resolveTeacherSecret(REPO_ROOT);
   if (!secret) throw new Error('secret');
   const response = await fetch(resolveUrl(url).replace(/\/+$/, '') + '/teacher/score-import', {
@@ -69,8 +66,10 @@ export async function importScores(body, url) {
     headers: { 'content-type': 'application/json', 'x-teacher-secret': secret },
     body: JSON.stringify(body),
   });
-  if (!response.ok) throw new Error('response');
   const result = await response.json();
+  const rejected = result.rejected ?? (response.ok ? 0 : body.scores.length);
+  console.log(`rejected: ${rejected}`);
+  if (!response.ok || rejected > 0) throw new Error('response');
   if (!result.ok) throw new Error('response');
   return result;
 }

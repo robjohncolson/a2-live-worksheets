@@ -139,7 +139,7 @@ export function districtItemsFromLedger(rows, schedule = {}, section, cfg, extra
       || (hasScore && (scores.map(rowAssignedDate).filter(Boolean).sort()[0] || definition.dueDate));
     if (!assignedDate || assignedDate > cfg.today) continue;
     if (!/^\d{4}-\d{2}-\d{2}$/.test(assignedDate) || !Number.isFinite(Date.parse(assignedDate))) continue;
-    const dueDate = selected?.response?.dueDate || definition.dueDate || assignedDate;
+    const dueDate = selected?.response?.dueDate || (definition.source === 'try-it' ? assignedDate : definition.dueDate) || assignedDate;
     const quarter = Object.keys(cfg.quarters).find(key => dueDate >= cfg.quarters[key].start && dueDate <= cfg.quarters[key].end);
     if (!quarter) continue;
     // No imported row means absence, not a zero Engagement item.
@@ -152,7 +152,7 @@ export function districtItemsFromLedger(rows, schedule = {}, section, cfg, extra
     const savedDates = [selected?.response?.assignedDate, selected?.response?.dueDate].filter(Boolean);
     const historical = cfg.bonusOnlyThrough && (savedDates.length
       ? savedDates.some(date => schoolDate(date) <= cfg.bonusOnlyThrough)
-      : dueDate <= cfg.bonusOnlyThrough);
+      : assignedDate <= cfg.bonusOnlyThrough);
     const extraCredit = feeder.extraCredit || !!historical;
     const points = attempted ? Math.max(0, Number(selected.score)) : 0;
     const provisional = !extraCredit && definition.source === 'try-it' && !attempted && cfg.today >= provisionalDate;

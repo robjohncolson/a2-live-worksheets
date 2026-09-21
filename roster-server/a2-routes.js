@@ -3,7 +3,7 @@ import './lib/a2-year-plan.js';
 import { loadA2Lessons, loadA2Targets, loadA2SchoolYear, overlayLessons, lessonScheduleFromModel, validatePacing, reflowPacing, createA2Store } from './a2-lessons.js';
 import { requireTeacher } from './teacher-auth.js';
 import { verifyToken } from './token.js';
-import { serializeStudent, saveTeacherScore, repairScoreReceipt, scoreWriteError, validateClientTimestamp } from './a2-score-write.js';
+import { serializeStudent, saveTeacherScore, repairScoreReceipt, scoreWriteError, checkScoreVersion } from './a2-score-write.js';
 import { todayInTz } from './lesson-grade.js';
 import { A2_FEEDERS } from './district-grade.js';
 import { bestA2Attempt } from './district-ledger.js';
@@ -33,7 +33,7 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
     return async (req, res, next) => {
       res.set('Cache-Control', 'no-store');
       try { await handler(req, res, next); }
-      catch (error) { error = scoreWriteError(error); res.status(error.status || 503).json({ ok: false, error: error.status ? error.message : 'Lesson service unavailable' }); }
+      catch (error) { error = scoreWriteError(error); res.status(error.status || 503).json({ ok: false, error: error.status ? error.message : 'Lesson service unavailable', ...(error.current ? { current: error.current } : {}) }); }
     };
   }
   function fail(status, message) { throw Object.assign(new Error(message), { status }); }
@@ -149,8 +149,7 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
       const existing = rows.filter(row => row.item_id === body.itemId && row.source === source)
         .sort((a, b) => Number(a.attempt) - Number(b.attempt));
       const current = existing.at(-1);
-      const clientTimestamp = body.clientTimestamp ?? body.ts;
-      if (source !== 'lesson-check') validateClientTimestamp(clientTimestamp);
+
       if (typeof body.requestId !== 'string' || body.requestId.length > 100 || !body.requestId) fail(400, 'requestId required');
       const duplicate = existing.find(row => row.response?.requestId === body.requestId);
       if (duplicate && source === 'lesson-check') {
@@ -158,14 +157,13 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
         return res.json({ ok: true, score: duplicate.score, attempt: duplicate.attempt, receipt,
           bestScore: source === 'lesson-check' ? bestA2Attempt(existing).score : duplicate.score, duplicate: true });
       }
-      if (source !== 'lesson-check' && current && (duplicate
-        || clientTimestamp <= (current.response?.clientTimestamp || 0))) {
-        const saved = await saveTeacherScore(ledgerDb, current, { studentId: student.student_id,
-          username: student.login_username, source, itemId: body.itemId, score: current.score,
-          response: { ...current.response, requestId: body.requestId }, attempt: current.attempt }, clientTimestamp);
-        return res.json({ ok: true, score: saved.row.score, attempt: saved.row.attempt,
-          receipt: saved.receipt, bestScore: saved.row.score, duplicate: saved.duplicate,
-          superseded: saved.superseded, unchanged: true });
+      if (source !== 'lesson-check') {
+        checkScoreVersion(current, body.requestId, body.expectedVersion);
+        if (current?.response?.requestId === body.requestId) {
+          const receipt = await repairScoreReceipt(ledgerDb, current, student.login_username);
+          return res.json({ ok: true, score: current.score, version: current.response.version || 0,
+            attempt: current.attempt, receipt, bestScore: current.score, duplicate: true });
+        }
       }
       const dueDate = ensureOpen(lesson, student, rows, source, body.itemId);
       if (source === 'topic-assessment' && body.quarter) {
@@ -198,12 +196,12 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
       const saved = await saveTeacherScore(ledgerDb, source === 'lesson-check' ? null : current, {
         studentId: student.student_id, username: student.login_username, source, itemId: body.itemId,
         score, response, attempt, evidenceTier: 'practice', unit: `U${lesson.topic}`, topic: lesson.key,
-      }, source === 'lesson-check' ? undefined : body.clientTimestamp ?? body.ts);
+      }, source === 'lesson-check' ? undefined : body.expectedVersion);
       if (saved.unchanged) return res.json({ ok: true, score: saved.row.score, attempt: saved.row.attempt,
         receipt: saved.receipt, bestScore: saved.row.score, duplicate: saved.duplicate,
-        superseded: saved.superseded, unchanged: true });
+        version: saved.row.response.version, unchanged: true });
       const receipt = saved.receipt;
-      res.json({ ok: true, ...result, score, maxPoints, attempt, receipt,
+      res.json({ ok: true, ...result, score: saved.row.score, version: saved.row.response.version, maxPoints, attempt, receipt,
         bestScore: source === 'lesson-check' ? bestA2Attempt([...existing, { score }]).score : score });
     });
   }));

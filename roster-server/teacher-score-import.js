@@ -1,6 +1,6 @@
 import { requireTeacher } from './teacher-auth.js';
 import { A2_FEEDERS } from './district-grade.js';
-import { serializeStudent, saveTeacherScore, scoreWriteError, validateClientTimestamp } from './a2-score-write.js';
+import { serializeStudent, saveTeacherScore, scoreWriteError } from './a2-score-write.js';
 
 const sectionKey = value => String(value || '').replace(/^Period/i, '').toUpperCase();
 const nameKey = value => String(value || '').normalize('NFC').trim().toLowerCase();
@@ -10,7 +10,6 @@ const nameKey = value => String(value || '').normalize('NFC').trim().toLowerCase
 export async function importTeacherScores(req, res, { db, ledgerDb, config }) {
   try {
     if (!await requireTeacher(req, db)) return res.status(401).json({ ok: false, error: 'teacher only' });
-    validateClientTimestamp(req.body?.clientTimestamp ?? req.body?.ts);
     const { source, date, quarter, scores } = req.body || {};
     const section = sectionKey(req.body?.section);
     const feeder = (config.a2Feeders || A2_FEEDERS)[source];
@@ -53,22 +52,30 @@ export async function importTeacherScores(req, res, { db, ledgerDb, config }) {
     const response = { assignedDate: dueDate, dueDate, maxPoints: feeder.maxPoints };
     let written = 0;
     let unchanged = 0;
-    let superseded = false;
+    let rejected = 0;
+    let rejection;
     const currentRows = [];
     for (const [studentId, score] of selected) {
-      await serializeStudent(ledgerDb, studentId, async () => {
-        const previous = await ledgerDb.getLedgerByStudent(studentId);
-        if (previous.error) throw previous.error;
-        const existing = (previous.data || []).find(row => row.source === source && row.item_id === itemId && row.attempt === 1);
-        if (!existing && score === null) { unchanged++; return; }
-        const result = await saveTeacherScore(ledgerDb, existing, { studentId, source, itemId, score,
-          response, attempt: 1, evidenceTier: 'practice' }, req.body.clientTimestamp ?? req.body.ts);
-        if (result.unchanged) unchanged++; else written++;
-        superseded ||= result.superseded === true;
-        currentRows.push({ studentId, itemId, score: result.row.score, receipt: result.receipt });
-      });
+      try {
+        await serializeStudent(ledgerDb, studentId, async () => {
+          const previous = await ledgerDb.getLedgerByStudent(studentId);
+          if (previous.error) throw previous.error;
+          const existing = (previous.data || []).find(row => row.source === source && row.item_id === itemId && row.attempt === 1);
+          if (!existing && score === null) { unchanged++; return; }
+          const result = await saveTeacherScore(ledgerDb, existing, { studentId, source, itemId, score,
+            response, attempt: 1, evidenceTier: 'practice' }, existing?.response?.version || 0);
+          if (result.unchanged) unchanged++; else written++;
+          currentRows.push({ studentId, itemId, score: result.row.score, version: result.row.response.version, receipt: result.receipt });
+        });
+      } catch (error) {
+        error = scoreWriteError(error);
+        if (![409, 503].includes(error.status)) throw error;
+        rejected++;
+        rejection = error;
+      }
     }
-    return res.json({ ok: true, written, unchanged, superseded, rows: currentRows });
+    if (rejected) return res.status(rejection.status).json({ ok: false, written, unchanged, rejected, error: rejection.message });
+    return res.json({ ok: true, written, unchanged, rejected, rows: currentRows });
   } catch (error) {
     error = scoreWriteError(error);
     if (error.status) return res.status(error.status).json({ ok: false, error: error.message });
