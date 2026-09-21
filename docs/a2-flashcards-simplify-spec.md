@@ -34,3 +34,19 @@ rows (history), and the district formula already ignores them.
 S5. Calendar cells and the lesson panel then show only what still exists: Try-Its (n of m scored)
 and, once grades are visible, nothing about flashcards passing. Start Here, the syllabus and the
 Open House handout must not mention a lesson check or a flashcard pass; fix any leftover wording.
+
+## Fix round 1 (after review)
+
+T1 (major, pre-existing). A flashcard run in progress does not remember whose it is. On a shared
+Chromebook, student A's open run finished after student B signs in (another tab) is recorded as
+B's. Capture the owner's `studentId` when a run starts or resumes; on `roster-session-changed` /
+cross-tab storage change to a different student, close the active run; at finish, if the current
+session is not the owner, do not record and tell the student to sign in again. Desk and mobile.
+T2 (moderate). Finish handlers ignore the `recordFlashcardRun` promise and delete saved progress
+immediately, so a failed durable enqueue loses the run while the recap looks fine. Keep the
+finished result until the writer confirms durable enqueue or server acceptance; on failure show a
+retryable "Couldn't save yet" with a Retry button, and keep it across reload.
+T3 (moderate). `tests/journeys/j5-timed-deck.journey.test.js` replaced the real daily writer with
+an always-successful spy. Drive the real writer from the finish UI with a deferred and a failed
+queue write and an identity switch; assert an owner-scoped durable record and replay on reconnect.
+Same exit criteria as above.
