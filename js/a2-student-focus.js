@@ -7,8 +7,8 @@ function a2FocusedView() {
   return !identity || identity.role !== 'teacher';
 }
 
-function a2StudentLine(dt) {
-  return a2DayLogFor(dt).map(entry => entry.student || '').filter(Boolean).join(' · ');
+function a2StudentLine(dt, section) {
+  return a2DayLogFor(dt, section).map(entry => entry.student || '').filter(Boolean).join(' · ');
 }
 
 function a2FocusTitle(inf) {
@@ -17,13 +17,19 @@ function a2FocusTitle(inf) {
   return String(inf.t).replace('.', '-') + ' · ' + (lesson?.title || inf.n || 'Lesson');
 }
 
+function a2FocusSection() {
+  const viewed = typeof _viewAsContext === 'function' ? _viewAsContext() : null;
+  const identity = window.rosterClient && rosterClient.current();
+  return viewed?.section || (identity?.role === 'student' ? identity.section : null) || cP;
+}
 function a2FocusSentence() {
   const today = tdy();
+  const section = a2FocusSection();
   for (const row of S) {
     const date = new Date(row[0], row[1], row[2]);
-    const inf = calendarEntry(row);
+    const inf = calendarEntry(row, section);
     if (date < today || !inf || typeof inf !== 'object' || !inf.t) continue;
-    const line = a2StudentLine(date) || a2FocusTitle(inf);
+    const line = a2StudentLine(date, section) || a2FocusTitle(inf);
     return (eq(date, today) ? 'Today: ' : 'Next class ' + date.toLocaleDateString('en-US', { weekday: 'long' }) + ': ') + line;
   }
   return 'Today: No class scheduled.';

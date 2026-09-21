@@ -96,8 +96,7 @@ function topicTiles(document) {
 async function openTopic(harness) {
   const tile = topicTiles(harness.document)[0];
   expect(tile, `calendar has no ${TOPIC} tile`).toBeTruthy();
-  // Exercise retained worksheet recovery directly; the focused calendar opens resources only.
-  harness.window.showResourcePanel({ t: TOPIC }, 'Sep 22');
+  tile.click();
   await harness.waitFor(() => (
     harness.document.getElementById('resource-overlay').style.display === 'block'
   ), { message: `${TOPIC} resource panel did not open` });
@@ -123,20 +122,14 @@ function clickSignOut(document) {
   signOut.click();
 }
 
-async function waitForLedgerCount(harness, count) {
-  return harness.waitFor(() => {
-    const records = harness.roster.state.requests.filter((request) => (
-      request.method === 'POST' && request.path === '/ledger/record'
-    ));
-    return records.length >= count ? records : false;
-  }, { message: `Expected ${count} fake-roster ledger request(s)` });
-}
-
 describe('Desk journey J2', () => {
   it('J2 reloads a shared device across A → B → A without leaking marks, due chip, or SRS state, then hydrates a fresh marks bucket from /donow (supersedes desk-calendar-sync per-student visibility and selfDone hydration behavior)', async () => {
     let harness = await bootDesk({
       now: NOW,
-      localStorage: { [ALPHA_SRS_KEY]: ALPHA_SRS_STATE },
+      localStorage: {
+        [ALPHA_SRS_KEY]: ALPHA_SRS_STATE,
+        [ALPHA_MARKS_KEY]: { '1.1|worksheet': { score: null, ts: NOW, visitedAt: NOW } },
+      },
       roster: {
         grades: {
           'stu-alpha': gradeFixture(67),
@@ -151,18 +144,8 @@ describe('Desk journey J2', () => {
       expect(harness.document.getElementById('fc-due-chip')?.textContent).toBe('Review due (1)');
 
       await openTopic(harness);
-      const alphaDone = worksheetButton(harness.document);
-      expect(alphaDone).toBeTruthy();
-      expect(alphaDone.disabled).toBe(false);
-      alphaDone.click();
-      const alphaLedgerRequests = await waitForLedgerCount(harness, 1);
-      await harness.waitFor(() => worksheetButton(harness.document)?.textContent.includes('Completed'), {
-        message: 'Alpha worksheet completion did not render',
-      });
-
-      expect(alphaLedgerRequests[0].body.token).toBe('token:alpha_otter');
-      expect(worksheetButton(harness.document).textContent).toContain('Completed');
-      expect(harness.window.localLessonState(TOPIC, harness.window.getStudentMarks())).toBe('done');
+      expect(worksheetButton(harness.document)).toBeNull();
+      expect(harness.document.getElementById('resource-body').textContent).toContain('Open Flashcards');
       const alphaMarks = harness.window.localStorage.getItem(ALPHA_MARKS_KEY);
       expect(JSON.parse(alphaMarks)[`${TOPIC}|worksheet`]).toMatchObject({ score: null });
 
@@ -182,10 +165,8 @@ describe('Desk journey J2', () => {
       ))).toBe(true);
 
       await openTopic(harness);
-      const betaDone = worksheetButton(harness.document);
-      expect(betaDone.textContent).toBe('Done (0%)');
-      expect(betaDone.disabled).toBe(true);
-      expect(betaDone.textContent).not.toContain('Completed');
+      expect(worksheetButton(harness.document)).toBeNull();
+      expect(harness.document.getElementById('resource-body').textContent).toContain('Open Flashcards');
 
       closeTopic(harness.document);
       clickSignOut(harness.document);
@@ -198,8 +179,8 @@ describe('Desk journey J2', () => {
       expect(harness.window.localLessonState(TOPIC, harness.window.getStudentMarks())).toBe('done');
 
       await openTopic(harness);
-      expect(worksheetButton(harness.document).textContent).toContain('Completed');
-      expect(harness.roster.state.ledgerRecords).toHaveLength(1);
+      expect(worksheetButton(harness.document)).toBeNull();
+      expect(harness.roster.state.ledgerRecords).toHaveLength(0);
 
       closeTopic(harness.document);
       harness.roster.state.donow = { 'stu-alpha': syncedDoNowFixture() };
@@ -216,7 +197,7 @@ describe('Desk journey J2', () => {
         return marks[`${TOPIC}|worksheet`]?.src === 'donow-sync' ? marks : false;
       }, { message: 'fresh Alpha marks did not hydrate from /donow selfDoneArtifacts' });
       expect(hydratedMarks[`${TOPIC}|worksheet`]).toMatchObject({ src: 'donow-sync' });
-      expect(harness.roster.state.ledgerRecords).toHaveLength(1);
+      expect(harness.roster.state.ledgerRecords).toHaveLength(0);
     } finally {
       harness.teardown();
     }

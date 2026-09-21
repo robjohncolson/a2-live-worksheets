@@ -2222,6 +2222,9 @@ function a2SchoologyNotice() {
   showDialog('\u2139', 'Your grade is in Schoology for now.', 'OK');
 }
 function a2UpdateGradeVisibility() {
+  var tooltip = document.getElementById('tip');
+  if (tooltip) { tooltip.style.display = 'none'; tooltip.textContent = ''; }
+  if (document.getElementById('my-receipts-overlay')?.style.display === 'block') renderMyReceipts();
   document.documentElement.classList.toggle('a2-hide-grades', a2GradesHidden());
   if (typeof a2FocusedView === 'function') {
     document.documentElement.classList.toggle('a2-focused', a2FocusedView());
@@ -7800,9 +7803,13 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
         row.appendChild(link); body.appendChild(row);
     });
 
-    if (typeof a2FocusedView === 'function' && a2FocusedView() && lesson && lesson.onenoteUrl) {
+    // Each section has its own OneNote class notebook (the links posted on Schoology).
+    var _nbSec = (typeof a2FocusSection === 'function' ? a2FocusSection() : cP) || cP;
+    var _nbBy = _log.resources.notebookUrlBySection || {};
+    var notebookUrl = (lesson && lesson.onenoteUrl) || _nbBy[String(_nbSec || '').replace(/^Period/i, '')] || _log.resources.notebookUrl;
+    if (typeof a2FocusedView === 'function' && a2FocusedView() && notebookUrl) {
         var notebook = document.createElement('a');
-        notebook.textContent = 'OneNote notebook'; notebook.href = lesson.onenoteUrl;
+        notebook.textContent = 'OneNote notebook'; notebook.href = notebookUrl;
         notebook.target = '_blank'; notebook.rel = 'noopener'; body.appendChild(notebook);
     }
 
@@ -11467,6 +11474,14 @@ function _receiptGroups(receipts) {
 }
 
 function _receiptRenderGroupedReceipts(host, receipts) {
+    if (typeof a2FocusedView === 'function' && a2FocusedView()) {
+        receipts = receipts.filter(function (r) {
+            var payload = _receiptPayload(r) || {};
+            return ![r.src, r.source, payload.src, payload.source].some(function (source) {
+                return source === 'try-it' || source === 'lesson-check';
+            });
+        });
+    }
     // Display only the fields covered by the compact signature. Wrapper metadata
     // may be stale or tampered with; decoding alone does not establish trust.
     receipts = receipts.map(function (r) {
@@ -14391,6 +14406,7 @@ function setP(p){
     }
     updateViewMenu();
     rCal();rProg();
+    if (typeof renderDoNow === 'function') renderDoNow();
     var pu=new URL(window.location);pu.searchParams.set('period',p);history.replaceState(null,'',pu);
 }
 function tdy(){
@@ -15072,7 +15088,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-21-6nkx';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-21-k47z';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
