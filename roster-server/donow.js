@@ -112,6 +112,8 @@ export function computeDonow(ledgerRows, manifest) {
       const lessonActivities = Array.isArray(lesson?.activities) ? lesson.activities : [];
 
       for (const act of lessonActivities) {
+        // Retired A2 activities remain in history but never block current work.
+        if (['lesson-check', 'flashcard'].includes(act.source)) continue;
         const itemIds = Array.isArray(act?.itemIds) ? act.itemIds : [];
         const stats = activityStats(act, doneSet);
         activitiesOut.push({

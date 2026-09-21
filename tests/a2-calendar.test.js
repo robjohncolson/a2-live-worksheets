@@ -160,14 +160,14 @@ it('calendar chips use lesson statuses without lesson tiles and isolate view-as 
     runInContext(source, dom.getInternalVMContext(), { filename: pathToFileURL(resolve('desk.html')).href });
     win.renderA2LessonChips(cell, '1.1');
     expect(getStatus).toHaveBeenCalledWith('1.1');
-    expect([...cell.children].map(item => item.textContent)).toEqual(win.A2Client.chips(status));
+    expect([...cell.children].map(item => item.textContent)).toEqual(['Try-Its 2/5 scored, 3 points']);
     cell.textContent = '';
     win.__WS_READ_ONLY__ = true;
     win._gradeLessonsCache = [{ lessonKey: '1.1', ...status, lessonCheck: 50 }];
     getStatus.mockClear();
     win.renderA2LessonChips(cell, '1.1');
     expect(getStatus).not.toHaveBeenCalled();
-    expect(cell.textContent).toContain('Lesson check 50%');
+    expect(cell.textContent).not.toContain('Lesson check');
     cell.textContent = '';
     win._gradeLessonsCache = [];
     win.renderA2LessonChips(cell, '1.1');

@@ -38,11 +38,10 @@ describe('Desk flashcards — scoring guards', () => {
     );
   });
 
-  it('_bfFinish has no commit or progress-clear token before the pass gate', () => {
+  it('_bfFinish records daily results without pass or ledger completion', () => {
     const body = fnBody(DESK, '_bfFinish');
-    const passedIdx = body.indexOf('if (passed');
-    expect(passedIdx).toBeGreaterThan(-1);
-    expect(body.slice(0, passedIdx)).not.toMatch(/_blooketCommit|_bfClearProgress/);
+    expect(body).not.toMatch(/if \(passed|_blooketCommit/);
+    expect(body).toContain('recordFlashcardRun');
   });
 
   it('_bfFinish uses one scoring decision and labels a read-only pass honestly', () => {
@@ -50,8 +49,8 @@ describe('Desk flashcards — scoring guards', () => {
     expect(body).toMatch(
       /var\s+canScore\s*=\s*\(typeof\s+_mayScore\s*!==\s*['"]function['"]\)\s*\|\|\s*_mayScore\(\)/
     );
-    expect(body).toMatch(/✓ Passed \(view-only — not recorded\)\./);
-    expect(body).toMatch(/if\s*\(passed\)\s*\{\s*if\s*\(!canScore\)\s*return;/);
+    expect(body).not.toContain('Passed');
+    expect(body).toContain('if (canScore &&');
   });
 
   it('localStorage writers guard view-as first and worksheet read-only second', () => {
@@ -96,12 +95,10 @@ describe('Desk flashcards — timed keyboard guards and honest picker', () => {
     expect(body).toMatch(/ov\.style\.display\s*===\s*['"]none['"]/);
   });
 
-  it('the timed deck note states the credit rule and current best honestly', () => {
+  it('the deck note describes daily Engagement', () => {
     const body = fnBody(DESK, '_bfCreditNote');
-    expect(body).toMatch(/Engagement credit/);
-    expect(body).toMatch(/80% or higher counts it as done/);
-    expect(body).toMatch(/100%/);
-    expect(body).toMatch(/Your best so far/);
+    expect(body).toContain('daily 10 for Engagement redemption');
+    expect(body).not.toMatch(/80%|pass/i);
   });
 });
 
@@ -136,8 +133,8 @@ describe('A2 flashcard percentage and district credit copy', () => {
   it('shows the percentage best separately from the one-point quarterly rule', () => {
     const note = new Function('_blooketScoreFor', 'return (' +
       fnBody(DESK, '_bfCreditNote') + ');')(() => 100);
-    expect(note('1.1')).toContain('80% or higher');
-    expect(note('1.1')).toContain('Your best so far: 100%');
-    expect(DESK).toContain('Passing a lesson deck earns one Engagement point per quarter.');
+    expect(note('1.1')).toContain('daily 10');
+    expect(note('1.1')).not.toContain('100%');
+    expect(DESK).toContain('Flashcards count through daily Engagement redemption.');
   });
 });

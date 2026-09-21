@@ -378,9 +378,10 @@ describe('launcher best-wins floor (mobile-home _fcCommit, prop 12b)', () => {
 
   it('the shipped _fcFinish refreshes /grade BEFORE _fcCommit (the discipline E2E-A models)', () => {
     const body = fnBody(HOME, '_fcFinish');
-    expect(body).toContain('Promise.resolve(loadGrade()).then(finishCommit, finishCommit)');
+    expect(body).not.toContain('_fcCommit(');
+    expect(body).toContain('recordFlashcardRun');
     const gate = body.indexOf('function finishCommit');
-    expect(gate).toBeGreaterThan(-1);
+    expect(gate).toBe(-1);
     expect(body.slice(0, gate)).not.toMatch(/_fcCommit\s*\(/);   // no commit path skips the refresh
   });
 });

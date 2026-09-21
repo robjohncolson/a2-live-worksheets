@@ -4,7 +4,7 @@
 
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { bootDesk } from './harness.js';
 
 const NOW = '2026-08-18T12:00:00.000Z';
@@ -132,19 +132,18 @@ async function j5OpenPicker(harness) {
     )
   ), { message: 'real lesson panel has no flashcards launcher' });
   launcher.click();
-  await harness.waitFor(() => harness.document.getElementById('bf-full-deck').onclick);
+  await harness.waitFor(() => harness.window._bfState.deck.length === 10);
   expect(harness.window._bfState.deck).toHaveLength(10);
   const FC = harness.window.Flashcards;
   const expected = FC.dailyDraw(J5_DECK, FC.localDateKey() + '|' + TOPIC, 10);
   expect(harness.window._bfState.deck.map(card => card.qnum)).toEqual(expected.map(card => card.qnum));
-  harness.document.getElementById('bf-full-deck').click();
+  expect(harness.document.getElementById('bf-full-deck')).toBeNull();
   // The secondary action opens the full timed deck.
   await harness.waitFor(() => (
     harness.document.getElementById('bf-overlay').style.display === 'block'
-      && harness.document.getElementById('bf-note').style.display === 'block'
       && harness.document.querySelector('#bf-choices .bf-choice')
   ), { timeoutMs: 3_000, message: 'timed deck did not open directly' });
-  return harness.document.getElementById('bf-note');
+  return harness.document.getElementById('bf-header');
 }
 
 function j5CorrectButton(harness) {
@@ -161,7 +160,7 @@ function j5CorrectButton(harness) {
 }
 
 async function j5CompleteTimedRun(harness, { missFirst }) {
-  const maximumAnswers = J5_DECK.length + (missFirst ? 1 : 0);
+  const maximumAnswers = 10;
   let deliberatelyMissed = false;
 
   for (let answer = 0; answer < maximumAnswers; answer += 1) {
@@ -181,6 +180,7 @@ async function j5CompleteTimedRun(harness, { missFirst }) {
       deliberatelyMissed = true;
     }
     choice.click();
+    if (choice !== current.button) harness.document.getElementById('bf-next').click();
 
     await harness.waitFor(() => {
       const result = harness.document.getElementById('bf-result');
@@ -193,7 +193,7 @@ async function j5CompleteTimedRun(harness, { missFirst }) {
     const candidate = harness.document.getElementById('bf-result');
     return candidate.style.display === 'block' ? candidate : false;
   }, { timeoutMs: 1_500, message: 'timed deck did not render its recap' });
-  const match = /You scored ([\d.]+)% on the full timed deck\./.exec(result.textContent);
+  const match = /You got (\d+) of 10/.exec(result.textContent);
   expect(match, 'timed deck recap omitted its score').toBeTruthy();
   return Number(match[1]);
 }
@@ -211,101 +211,33 @@ async function j5SettleRoster(harness) {
   });
 }
 
-describe('Desk journey J5', () => {
-  it('J5 Full timed deck rejects a lower re-run and posts one higher best (supersedes desk-timed-deck it 17 “_ftFinish logs, recaps, and commits the score (best-wins)” and it 24 “_blooketCommit only saves a NEW best + refreshes /grade BEFORE the floor”)', async () => {
-    const harness = await bootDesk({
-      now: NOW,
-      fakeTimers: true,
-      roster: { grades: j5GradeFixture() },
-    });
-
+describe('Desk daily flashcard journey', () => {
+  it('finishes all ten, records raw accuracy and retries without a completion row', async () => {
+    const harness = await bootDesk({ now: NOW, fakeTimers: true, roster: { grades: j5GradeFixture() } });
     try {
       await j5SettleSignIn(harness);
-      const srsLogBefore = JSON.parse(harness.window.localStorage.getItem(LOG_KEY) || '[]');
-      let picker = await j5OpenPicker(harness);
-      expect(picker.textContent).toContain(`Your best so far: ${INITIAL_BLOOKET}%`);
-      expect(picker.textContent).toMatch(/Engagement credit/);
-      const gradeRequestsBeforeLower = harness.roster.state.requests.filter((request) => (
-        request.method === 'GET' && request.path === '/grade'
-      )).length;
-      harness.roster.state.grades.lessons[0].blooket = FRESH_BLOOKET;
-      expect(picker.textContent).not.toContain(`${FRESH_BLOOKET}%`);
-
-      const lowerScore = await j5CompleteTimedRun(harness, { missFirst: true });
-      const expectedLower = Math.round(
-        ((J5_DECK.length - (1 / 3)) / J5_DECK.length) * 1000,
-      ) / 10;
-      expect(lowerScore).toBe(expectedLower);
-      expect(lowerScore).toBeGreaterThan(INITIAL_BLOOKET);
-      expect(lowerScore).toBeLessThan(FRESH_BLOOKET);
-      await harness.waitFor(() => (
-        harness.roster.state.requests.filter((request) => (
-          request.method === 'GET' && request.path === '/grade'
-        )).length >= gradeRequestsBeforeLower + 2
-      ), { message: 'lower run did not complete both best-wins grade refreshes' });
+      const daily = vi.fn(async () => ({ ok: true }));
+      harness.window.gradebookClient.recordFlashcardRun = daily;
+      const heading = await j5OpenPicker(harness);
+      expect(heading.textContent).toContain('Flashcards —');
+      expect(await j5CompleteTimedRun(harness, { missFirst: true })).toBe(9);
+      expect(daily).toHaveBeenCalledWith(TOPIC, 'quick', 9, 10);
+      expect(j5LedgerPosts(harness)).toEqual([]);
+      const result = harness.document.getElementById('bf-result');
+      expect(result.textContent).not.toMatch(/passed|80%/i);
+      expect(result.textContent).toContain('Review your misses');
+      const retry = [...result.querySelectorAll('button')]
+        .find(button => button.textContent === 'Try again (new shuffle)');
+      retry.click();
+      expect(await j5CompleteTimedRun(harness, { missFirst: false })).toBe(10);
+      expect(daily).toHaveBeenCalledTimes(2);
+      expect(daily).toHaveBeenLastCalledWith(TOPIC, 'quick', 10, 10);
       await j5SettleRoster(harness);
       expect(j5LedgerPosts(harness)).toEqual([]);
-      const lowerLog = JSON.parse(harness.window.localStorage.getItem(LOG_KEY) || '[]');
-      const lowerEntries = lowerLog.slice(srsLogBefore.length);
-      expect(lowerEntries.length).toBeGreaterThan(0);
-      expect(lowerEntries.every((entry) => entry.mode === 'full')).toBe(true);
-      const lowerMarks = JSON.parse(
-        harness.window.localStorage.getItem('a2_desk_marks_alpha_otter') || '{}',
-      );
-      expect(lowerMarks[`${TOPIC}|blooket`]).toBeUndefined();
-
-      const cancel = [...harness.document.querySelectorAll('#bf-actions button')]
-        .find((button) => button.textContent.trim() === 'Cancel');
-      expect(cancel, 'timed deck has no Cancel button').toBeTruthy();
-      cancel.click();
-      await harness.waitFor(() => (
-        harness.document.getElementById('bf-overlay').style.display === 'none'
-      ), { message: 'lower timed recap did not close' });
-
-      picker = await j5OpenPicker(harness);
-      const gradeRequestsBeforeHigher = harness.roster.state.requests.filter((request) => (
-        request.method === 'GET' && request.path === '/grade'
-      )).length;
-
-      const higherScore = await j5CompleteTimedRun(harness, { missFirst: false });
-      expect(higherScore).toBe(100);
-      expect(higherScore).toBeGreaterThan(FRESH_BLOOKET);
-      await harness.waitFor(() => {
-        const recorded = j5LedgerPosts(harness);
-        return recorded.length >= 1;
-      }, { timeoutMs: 3_000, message: 'higher timed run did not post its new best' });
-      await harness.waitFor(() => (
-        harness.roster.state.requests.filter((request) => (
-          request.method === 'GET' && request.path === '/grade'
-        )).length >= gradeRequestsBeforeHigher + 2
-      ), { message: 'higher run did not complete both best-wins grade refreshes' });
-      await j5SettleRoster(harness);
-
-      const posts = j5LedgerPosts(harness);
-      expect(j5LedgerPosts(harness)).toHaveLength(1);
-      expect(harness.roster.state.ledgerRecords).toHaveLength(1);
-      const higherLog = JSON.parse(harness.window.localStorage.getItem(LOG_KEY) || '[]');
-      const higherEntries = higherLog.slice(lowerLog.length);
-      expect(higherEntries.length).toBeGreaterThan(0);
-      expect(higherEntries.every((entry) => entry.mode === 'full')).toBe(true);
-      expect(posts[0].body.token).toBe('token:alpha_otter');
-      const { token, ...payload } = posts[0].body;
-      expect(token).toBe('token:alpha_otter');
-      expect(payload).toEqual({
-        source: 'worksheet',
-        itemId: 'BL-U1-L1-DESK_DONE',
-        unit: 'U1',
-        topic: TOPIC,
-        response: { selfAttest: 'blooket' },
-        score: 100,
-        attempt: 1,
-      });
-      // One daily quick draw fetch, then one fetch for each full timed run.
-      expect(harness.requests.filter(({ method, url }) => (
-        method === 'GET' && new URL(url).pathname.endsWith(`/${CSV_FILE}`)
-      ))).toHaveLength(3);
-    } finally {
-      harness.teardown();
-    }
+      const entries = JSON.parse(harness.window.localStorage.getItem(LOG_KEY) || '[]');
+      expect(entries).toHaveLength(20);
+      expect(entries.every(entry => entry.mode === 'quick')).toBe(true);
+      expect(result.textContent).toContain('You got 10 of 10');
+    } finally { harness.teardown(); }
   }, 60_000);
 });

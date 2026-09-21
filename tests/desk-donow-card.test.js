@@ -25,8 +25,8 @@ afterAll(() => document?.defaultView.close());
 describe('A2 Do Now actions', () => {
   it.each([
     ['try-it', 'Try-Its (scored in class)'],
-    ['lesson-check', 'Lesson Check'],
-    ['flashcard', 'Flashcards'],
+    ['lesson-check', 'Try-Its (scored in class)'],
+    ['flashcard', 'Try-Its (scored in class)'],
   ])('renders %s with the A2 title and correct action', async (source, activityLabel) => {
     const dom = new JSDOM('<div id="donow-card"><span id="donow-msg"></span></div>');
     const launches = [];
@@ -49,14 +49,8 @@ describe('A2 Do Now actions', () => {
     await sandbox.run();
     const msg = dom.window.document.getElementById('donow-msg');
     expect(msg.textContent).toContain('Do Now: 1-1 · Key Features of Functions — ' + activityLabel);
-    if (source === 'try-it') {
-      expect(msg.querySelector('a, button')).toBeNull();
-    } else if (source === 'lesson-check') {
-      expect(msg.querySelector('a').getAttribute('href')).toBe('check.html?lesson=1-1');
-    } else {
-      msg.querySelector('button').click();
-      expect(launches).toEqual([[null, '1.1']]);
-    }
+    expect(msg.querySelector('a, button')).toBeNull();
+    expect(launches).toEqual([]);
     dom.window.close();
   });
 });

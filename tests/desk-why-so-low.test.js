@@ -256,18 +256,15 @@ describe('Why-so-low coach: Blooket make-up awareness', () => {
     expect(body).toMatch(/hasBlooket:\s*!!l\.hasBlooket/);
   });
 
-  it('92: _renderCoachPanel surfaces the Blooket make-up line (80% via flashcards)', () => {
+  it('92: flashcards never produce a completion nudge', () => {
     const body = fnBody(DESK, '_renderCoachPanel');
-    expect(body).toMatch(/ctx\.blooket\s*&&\s*ctx\.blooket\.due\s*>\s*0/);
-    expect(body).toMatch(/Flashcards:/);
-    expect(body).toMatch(/flashcards/);
-    expect(body).toMatch(/80%/);
+    expect(body).not.toMatch(/Make one up to 80%|pass each lesson|threshold: 80/);
   });
 
   it('93: a weak-lesson line mentions Blooket ONLY when the lesson has one', () => {
     const body = fnBody(DESK, '_renderCoachPanel');
-    expect(body).toMatch(/w\.hasBlooket/);
-    expect(body).toMatch(/Flashcards not done/);
+    expect(body).not.toMatch(/w\.hasBlooket/);
+    expect(body).not.toMatch(/Flashcards not done/);
   });
 });
 
@@ -277,18 +274,13 @@ describe('Why-so-low coach: PC-not-open + flashcard gate', () => {
     expect(body).toMatch(/pcDue:\s*!!\(q && q\.pcDue === true\)/);
   });
 
-  it('A2: _buildCoachContext builds flashcardGate from worksheet-done-but-flashcard-owed lessons', () => {
+  it('A2: flashcards never produce a completion nudge', () => {
     const body = fnBody(DESK, '_buildCoachContext');
-    expect(body).toMatch(/flashcardGate/);
-    expect(body).toMatch(/_fl\.hasBlooket/);          // lesson must actually have flashcards
-    expect(body).toMatch(/_fcws\s*>=\s*60/);          // worksheet done
-    expect(body).toMatch(/_fbl\s*<\s*80/);            // flashcards still owed (same signals as _isLessonComplete)
+    expect(body).not.toMatch(/Make one up to 80%|pass each lesson|threshold: 80/);
   });
 
-  it('A3: _renderCoachPanel explains unfinished flashcards without blocking other lessons', () => {
+  it('A3: flashcards never produce a completion nudge', () => {
     const body = fnBody(DESK, '_renderCoachPanel');
-    expect(body).toMatch(/ctx\.flashcardGate/);
-    expect(body).toMatch(/Flashcards to finish/);
-    expect(body).toMatch(/You can open other lessons while catching up/);
+    expect(body).not.toMatch(/Make one up to 80%|pass each lesson|threshold: 80/);
   });
 });

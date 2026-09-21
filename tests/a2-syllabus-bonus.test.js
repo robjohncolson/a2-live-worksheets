@@ -24,7 +24,7 @@ it('publishes the approved points and retry policy on every grading page', () =>
     expect(rows.get('Topic assessment')).toContain("No topic test in Quarter 1: Topic 1's test is November 9–10.");
     expect(rows.get('IXL homework, when assigned')).toContain('Bonus Up to the award I set. When I assign IXL homework, a SmartScore of 80 counts as complete. You do not need 100.');
     expect(rows.get('Bonus')).toContain('Assignments, extra credit 0 points possible; bonus awards add up to at most 10 earned points per quarter.');
-    expect(page.window.document.body.textContent).toContain('Digital lesson checks and per-lesson flashcard passes no longer count toward the grade; flashcards count through daily Engagement redemption.');
+    expect(page.window.document.body.textContent).toContain('Flashcards count through daily Engagement redemption.');
     page.window.close();
   }
 });

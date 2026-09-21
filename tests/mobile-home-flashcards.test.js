@@ -42,7 +42,7 @@ describe('mobile-home — native flashcards wiring (static)', () => {
     expect(HOME).toContain("response: { selfAttest: 'blooket' }");
     expect(HOME).toContain('if (!(score > floor)) return { skipped: true');
     // Quick records only on pass; the full deck always records its score.
-    expect(HOME).toContain("var doCommit = (_fc.mode === 'quick') ? passed : true;");
+    expect(HOME).toContain('recordFlashcardRun(topic, mode, correct, total)');
   });
 });
 
@@ -126,7 +126,7 @@ function bootLauncher({
       window.fetch = fakeFetch;
       window.ROSTER_SERVICE_URL = 'https://api.test';
       window.rosterClient = { current: () => ({ username: 'kid' }), token: () => 'tok' };
-      window.gradebookClient = { record: (a) => { recorded.push(a); return { ok: true, ledgerId: 'L1' }; } };
+      window.gradebookClient = { record: vi.fn(), recordFlashcardRun: (lesson, mode, correct, total) => { recorded.push({ lesson, mode, correct, total }); return Promise.resolve({ ok: true }); } };
     },
   });
   return { dom, win: dom.window, recorded };
@@ -162,10 +162,9 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
 
     expect(recorded.length).toBe(1);
     expect(recorded[0]).toMatchObject({
-      source: 'worksheet', itemId: 'BL-U1-L1-DESK_DONE', unit: 'U1',
-      topic: '1.1', response: { selfAttest: 'blooket' }, score: 100, attempt: 1,
+      lesson: '1.1', mode: 'quick', correct: 1, total: 1,
     });
-    expect(win.document.querySelector('.fc-score').textContent).toContain('100');
+    expect(win.document.querySelector('.fc-result').textContent).toContain('You got 1 of 1');
     dom.window.close();
   });
 
@@ -177,7 +176,7 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
     await flush(2);
     await flush();
 
-    win.document.getElementById('fc-full-deck').click();
+    expect(win.document.getElementById('fc-full-deck')).toBeNull();
     await flush(4);
     const wrong = win.document.querySelector('#fc-choices .fc-choice[data-i="0"]');
     const correct = win.document.querySelector('#fc-choices .fc-choice[data-i="1"]');
@@ -186,8 +185,8 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
     await flush(1);
 
     expect(wrong.classList.contains('wrong')).toBe(true);
-    expect(correct.classList.contains('right')).toBe(false);
-    expect(win.document.getElementById('fc-feedback').textContent).toMatch(/come back/);
+    expect(correct.classList.contains('right')).toBe(true);
+    expect(win.document.getElementById('fc-feedback').textContent).toContain('Not quite');
     dom.window.close();
   });
 
@@ -202,7 +201,7 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
     expect(win.document.getElementById('fc-mode-quick')).toBeNull();
     expect(win.document.getElementById('fc-mode-full')).toBeNull();
     expect(win.document.querySelector('#fc-choices .fc-choice'), 'timed deck card did not render').toBeTruthy();
-    expect(win.document.getElementById('fco').classList.contains('timed')).toBe(true);
+    expect(win.document.getElementById('fco').classList.contains('timed')).toBe(false);
     dom.window.close();
   });
 
@@ -218,8 +217,8 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
     win.document.getElementById('fc-next').click();
     await flush(2);
 
-    expect(recorded.length).toBe(0);                                // 100 !> 100 → dropped
-    expect(win.document.querySelector('.fc-result p').textContent).toMatch(/best score/i);
+    expect(recorded.length).toBe(1);
+    expect(recorded[0]).toMatchObject({ correct: 1, total: 1 });
     dom.window.close();
   });
 
@@ -231,8 +230,7 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
     expect(fcBtn, 'tiles did not render from the published fallback').toBeTruthy();
     // Worksheet link is ORIGIN-RELATIVE (github.io base stripped) so a Vercel mirror is self-sufficient.
     const wsA = win.document.querySelector('.btn.ws');
-    expect(wsA.getAttribute('href')).toBe('check.html?lesson=1-1');
-    expect(wsA.getAttribute('href')).not.toMatch(/github\.io/);
+    expect(wsA).toBeNull();
     fcBtn.click();
     await flush(2);
     await flush();
@@ -242,7 +240,7 @@ describe('mobile-home — native flashcards (behavioral boot)', () => {
     await flush(2);
 
     expect(recorded.length).toBe(1);
-    expect(recorded[0].itemId).toBe('BL-U1-L1-DESK_DONE');        // flashcards work off the fallback too
+    expect(recorded[0]).toMatchObject({ lesson: '1.1', correct: 1, total: 1 });        // flashcards work off the fallback too
     dom.window.close();
   });
 });
@@ -274,7 +272,7 @@ describe('mobile-home — choice permutation flags and keyboard', () => {
     await flush(3);
 
     expect(recorded).toHaveLength(1);
-    expect(recorded[0].score).toBe(100);
+    expect(recorded[0]).toMatchObject({ correct: 1, total: 1 });
     dom.window.close();
   });
 
@@ -334,7 +332,8 @@ describe('mobile-home — native flashcards commit note + accessibility', () => 
     const finish = inlineFunctionSource('_fcFinish');
     const commit = inlineFunctionSource('_fcCommit');
 
-    expect(finish).toContain('Promise.resolve(committed).then');
+    expect(finish).toContain('recordFlashcardRun');
+    expect(finish).not.toContain('_fcCommit(');
     expect(HOME).toContain('function _fcCommit(');
     expect(commit).not.toMatch(/\b(?:async|await)\b/);
   });
@@ -356,7 +355,7 @@ describe('mobile-home — native flashcards commit note + accessibility', () => 
     await flush(2);
 
     expect(recorded).toHaveLength(1);
-    expect(win.document.querySelector('.fc-result p').textContent).toContain('Saved offline');
+    expect(recorded[0]).toMatchObject({ correct: 1, total: 1 });
     dom.window.close();
   });
 
@@ -371,7 +370,7 @@ describe('mobile-home — native flashcards commit note + accessibility', () => 
     await finishOneCardFullDeck(win);
 
     expect(recorded).toHaveLength(1);
-    expect(win.document.querySelector('.fc-result p').textContent).toContain('Sign in to save');
+    expect(recorded[0]).toMatchObject({ correct: 1, total: 1 });
     dom.window.close();
   });
 
@@ -386,7 +385,7 @@ describe('mobile-home — native flashcards commit note + accessibility', () => 
     await expect(finishOneCardFullDeck(win)).resolves.toBeUndefined();
 
     expect(recorded).toHaveLength(1);
-    expect(win.document.querySelector('.fc-result p').textContent).toContain('Couldn’t save');
+    expect(recorded[0]).toMatchObject({ correct: 1, total: 1 });
     dom.window.close();
   });
 
@@ -430,7 +429,7 @@ describe('mobile-home — native flashcards commit note + accessibility', () => 
     const start = HOME.indexOf('// ── Native flashcards');
     const end = HOME.indexOf('// Cached grade', start);
     const flashcardsBlock = HOME.slice(start, end);
-    expect(flashcardsBlock).toContain('Blooket half of Done');
+    expect(flashcardsBlock).not.toContain('Blooket half of Done');
     expect(flashcardsBlock).not.toMatch(/lesson unlocked|to unlock|enough to unlock/i);
   });
 });
@@ -723,7 +722,7 @@ describe('mobile-home A2 lesson model', () => {
       rows.forEach((row, index) => {
         const lesson = A2_PUBLISHED[index];
         expect(row.querySelector('.title').textContent).toBe(lesson.key + ' \u00b7 ' + lesson.title);
-        expect(row.querySelector('.btn.ws').getAttribute('href')).toBe('check.html?lesson=' + lesson.key);
+        expect(row.querySelector('.btn.ws')).toBeNull();
         expect([...row.querySelectorAll('.btn.ixl')].map(link => link.getAttribute('href')))
           .toEqual(lesson.supportingSkills.map(skill => skill.url));
         expect(row.querySelector('.btn.fc')).toBeTruthy();
@@ -782,10 +781,10 @@ it('the real mobile lesson button serves the deterministic daily ten, with a sec
     expect(draw.mock.calls[0][0]).toHaveLength(40);
     expect(draw.mock.calls[0][1]).toBe(win.Flashcards.localDateKey() + '|1.1');
     expect(draw.mock.calls[0][2]).toBe(10);
-    expect(win.document.getElementById('fc-prog').textContent).toContain('/ 10');
+    expect(win.document.getElementById('fc-prog').textContent).toContain('Question 1 of 10');
     expect(win.document.getElementById('fco').classList.contains('timed')).toBe(false);
-    win.document.getElementById('fc-full-deck').click();
+    expect(win.document.getElementById('fc-full-deck')).toBeNull();
     await flush(4);
-    expect(win.document.getElementById('fco').classList.contains('timed')).toBe(true);
+    expect(win.document.getElementById('fco').classList.contains('timed')).toBe(false);
   } finally { win.close(); }
 });

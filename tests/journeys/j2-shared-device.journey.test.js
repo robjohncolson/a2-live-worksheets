@@ -161,7 +161,7 @@ describe('Desk journey J2', () => {
 
       expect(alphaLedgerRequests[0].body.token).toBe('token:alpha_otter');
       expect(worksheetButton(harness.document).textContent).toContain('Completed');
-      expect(topicTiles(harness.document).some((tile) => tile.classList.contains('dc-localpartial'))).toBe(true);
+      expect(topicTiles(harness.document).some((tile) => tile.classList.contains('dc-localdone'))).toBe(true);
       const alphaMarks = harness.window.localStorage.getItem(ALPHA_MARKS_KEY);
       expect(JSON.parse(alphaMarks)[`${TOPIC}|worksheet`]).toMatchObject({ score: null });
 
@@ -177,7 +177,7 @@ describe('Desk journey J2', () => {
       expect(harness.window.localStorage.getItem(ALPHA_MARKS_KEY)).toBe(alphaMarks);
       expect(harness.window.localStorage.getItem(ALPHA_SRS_KEY)).toBe(JSON.stringify(ALPHA_SRS_STATE));
       expect(topicTiles(harness.document).every((tile) => (
-        !tile.classList.contains('dc-localpartial') && !tile.classList.contains('dc-localdone')
+        !tile.classList.contains('dc-localdone') && !tile.classList.contains('dc-localdone')
       ))).toBe(true);
 
       await openTopic(harness);
@@ -194,7 +194,7 @@ describe('Desk journey J2', () => {
       expect(harness.document.getElementById('menu-identity').textContent).toContain('Alpha Otter');
       expect(harness.document.getElementById('fc-due-chip')?.textContent).toBe('Review due (1)');
       expect(harness.window.localStorage.getItem(ALPHA_MARKS_KEY)).toBe(alphaMarks);
-      expect(topicTiles(harness.document).some((tile) => tile.classList.contains('dc-localpartial'))).toBe(true);
+      expect(topicTiles(harness.document).some((tile) => tile.classList.contains('dc-localdone'))).toBe(true);
 
       await openTopic(harness);
       expect(worksheetButton(harness.document).textContent).toContain('Completed');

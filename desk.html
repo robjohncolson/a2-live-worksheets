@@ -2003,7 +2003,7 @@
         <div class="chicago" style="font-size:12px;margin-bottom:8px;border-bottom:1px solid var(--black);padding-bottom:6px">How your grade works</div>
         <div class="geneva" style="font-size:11px;max-height:60vh;overflow-y:auto;line-height:1.5">
             <p>Assessments 50% · Assignments 40% · Engagement 10%.</p>
-            <p>Lesson checks and topic assessments earn Assessments points. Try-Its earn Assignments points. Passing a lesson deck earns one Engagement point per quarter.</p>
+            <p>Quizzes and topic assessments earn Assessments points. Try-Its earn Assignments points. Flashcards count through daily Engagement redemption.</p>
             <p>Unattempted due work counts as zero after the lesson day, except work due through Sep 18: those bonus items count only when attempted and only when they help the category grade. The live grade includes it; Schoology today includes due, completed work using the same district formula.</p>
             <p>The ceiling is the best grade still reachable from remaining work.</p>
             <p style="margin:6px 0 0"><a href="start-here.html#how-your-grade" target="_blank" rel="noopener" style="color:var(--accent-ink);text-decoration:underline">Full explanation &rarr;</a></p>
@@ -2059,7 +2059,7 @@
 <!-- ═══ Flashcards Flashcard Quiz (2026-05-20) ═══
      Chain-of-custody verification for Flashcards completion. Sources the
      question set from the same _blooket.csv that built the Flashcards game.
-     Student must pass >=80% on a single pass to unlock Done. -->
+     Daily practice records raw accuracy for Engagement redemption. -->
 <style>
     #bf-overlay .bf-choice{display:block;width:100%;text-align:left;
       padding:6px 10px;margin:3px 0;min-height:44px;font-family:'Geneva',sans-serif;
@@ -2083,7 +2083,6 @@
             <div id="bf-header" class="chicago" style="font-size:12px;padding-right:32px"></div>
             <button type="button" class="s7btn" aria-label="Close" onclick="closeBlooketFlashcards()" style="position:absolute;right:0;top:-4px;min-width:24px;padding:1px 5px;line-height:18px">✕</button>
         </div>
-        <button id="bf-full-deck" class="mac-btn" type="button">Full deck</button>
         <div id="bf-modepick" style="display:none;margin-bottom:8px"></div>
         <div id="bf-note" class="geneva" style="display:none;font-size:11px;margin-bottom:8px;color:#333"></div>
         <div id="bf-timer" class="geneva" style="display:none;font-size:14px;font-weight:bold;text-align:right;margin-bottom:6px"></div>
@@ -3760,11 +3759,22 @@ function _isLessonComplete(topic, marks) {
       if (_parts.length > 1 && _parts.every(function (p) { return _isLessonComplete(p, marks); })) return true;
       // else fall through to the combined-key check below (a fall student's own mark)
     }
+    // A2 completion follows scored Try-Its, independent of retired activities.
+    var viewing = typeof _viewAsContext === 'function' && _viewAsContext();
+    var status = !viewing && typeof window !== 'undefined' && window.A2Desk
+      && typeof window.A2Desk.getStatus === 'function' ? window.A2Desk.getStatus(topic) : null;
+    if (!status && typeof _gradeLessonsCache !== 'undefined' && Array.isArray(_gradeLessonsCache)) {
+      status = _gradeLessonsCache.find(function (lesson) {
+        return lesson && String(lesson.lessonKey).replace('-', '.') === String(topic).replace('-', '.');
+      });
+    }
+    if (status && status.tryIts && status.tryIts.total > 0) {
+      return status.tryIts.scored >= status.tryIts.total;
+    }
     var reg = (typeof getRegistryEntry === 'function') ? getRegistryEntry(topic) : null;
     var urls = (reg && reg.urls) || {};
     var m = marks || {};
     var cws = (typeof _getCwsForTopic === 'function') ? _getCwsForTopic(topic) : null;
-    var blScore = (typeof _blooketScoreFor === 'function') ? _blooketScoreFor(topic) : null;
     var wsGate = (typeof DESK_WORKSHEET_DONE_THRESHOLD === 'number') ? DESK_WORKSHEET_DONE_THRESHOLD : 60;
     // PROGRESS_RESET_FIX_SPEC D3 -- third disjunct: a durable per-student latch
     // written only on a live /grade success (see _latchServerComplete). Makes
@@ -3776,12 +3786,7 @@ function _isLessonComplete(topic, marks) {
     var wsDone = !!(m[topic + '|worksheet'] && m[topic + '|worksheet'].ts)
       || (typeof cws === 'number' && cws >= wsGate)
       || !!(_sc && _sc.ws);
-    var blDone = !!(m[topic + '|blooket'] && m[topic + '|blooket'].ts)
-      || (typeof blScore === 'number' && blScore >= 80)
-      || !!(_sc && _sc.bl);
-    var wsOk = !urls.worksheet || wsDone;
-    var blOk = !urls.blooket   || blDone;
-    return wsOk && blOk;
+    return !urls.worksheet || wsDone;
   } catch (_) { return true; }
 }
 // ── P5: lesson-unlock cache (TEACHER_STUDENT_CONSOLE_SPEC.md §9) ─────────────
@@ -6443,26 +6448,6 @@ function _buildCoachContext(curQ, q) {
     }
   } catch (_) { /* blooket summary optional */ }
   try {
-    // Flashcard completion gate: lessons whose worksheet is done (Cws >= 60) but whose
-    // flashcards (Flashcards) are still < 80 — exactly what _isLessonComplete requires to
-    // mark a lesson done + unlock the next. This is the gate the teacher cares about and
-    // is otherwise invisible to the coach. (Doing the flashcards completes/unlocks the
-    // lesson; it does NOT change the grade — Flashcards isn't a grade component yet.)
-    if (Array.isArray(_gradeLessonsCache)) {
-      var _fg = [];
-      for (var _fi = 0; _fi < _gradeLessonsCache.length; _fi++) {
-        var _fl = _gradeLessonsCache[_fi];
-        if (!_fl || !_fl.hasBlooket) continue;
-        var _fcws = (typeof _fl.Cws === 'number') ? _fl.Cws : null;
-        var _fbl = (typeof _fl.blooket === 'number') ? _fl.blooket : null;
-        if (_fcws != null && _fcws >= 60 && (_fbl == null || _fbl < 80)) {
-          _fg.push({ lesson: _fl.lessonKey, worksheet: _fcws, blooket: _fbl, threshold: 80 });
-        }
-      }
-      ctx.flashcardGate = _fg.slice(0, 3);
-    }
-  } catch (_) { /* flashcardGate is optional */ }
-  try {
     if (_donowData && _donowData.nextTask && _donowData.nextTask.unit) {
       var n = _donowData.nextTask;
       // unit arrives as "U1"; strip the leading U so renders read "Unit 1", not "Unit U1".
@@ -6578,31 +6563,6 @@ function _renderCoachPanel(panel, ctx) {
     facts.appendChild(prog);
   }
 
-  // Flashcards make-up — a real Work-track component (10%) the student can't see
-  // anywhere else. Show the standing; when any are undone, point at the flashcard
-  // make-up (a pass = 80%), which is often the fastest Work-track lift.
-  if (ctx.blooket && ctx.blooket.due > 0) {
-    var blk = document.createElement('div');
-    var bTrk = (ctx.blooket.track != null) ? (Math.round(ctx.blooket.track) + '%') : '—';
-    var bMsg = 'Flashcards: ' + bTrk + ' (' + ctx.blooket.done + ' of ' + ctx.blooket.due + ' done).';
-    if (ctx.blooket.todo && ctx.blooket.todo.length) {
-      bMsg += ' Make one up to 80% with the Desk flashcards — e.g. ' + ctx.blooket.todo.slice(0, 3).map(function (key) { return cedLabel(key).text; }).join('; ') + '.';
-    }
-    blk.textContent = bMsg;
-    facts.appendChild(blk);
-  }
-
-  // Flashcard completion gate — lessons whose worksheet is done but flashcards
-  // (Flashcards >=80) are still owed, which is what blocks completion + the next-lesson
-  // unlock. (Passing flashcards completes/unlocks the lesson; it does not change the
-  // grade — Flashcards isn't a grade component yet.)
-  if (Array.isArray(ctx.flashcardGate) && ctx.flashcardGate.length) {
-    var fg = document.createElement('div');
-    var fgTopics = ctx.flashcardGate.slice(0, 3).map(function (g) { return cedLabel(g.lesson).text; }).join('; ');
-    fg.textContent = 'Flashcards to finish: ' + fgTopics + ' — pass each lesson’s flashcards to 80% on the Desk to complete it. You can open other lessons while catching up.';
-    facts.appendChild(fg);
-  }
-
   // Only show the earliest-incomplete "start here" when there's no low-scoring
   // component to fix first (otherwise it competes with the biggest win above).
   if (!ctx.biggestWin && ctx.nextTask && ctx.nextTask.unit) {
@@ -6624,7 +6584,6 @@ function _renderCoachPanel(panel, ctx) {
       if (w.quizTotal > 0) bits.push((w.quiz != null) ? 'quiz ' + Math.round(w.quiz) + '%' : 'quiz not done');
       if (w.worksheet != null) bits.push('worksheet ' + Math.round(w.worksheet) + '%');
       // Mention Flashcards only when the lesson actually HAS one (never invent it).
-      if (w.hasBlooket) bits.push((w.blooket != null) ? 'Flashcards ' + Math.round(w.blooket) + '%' : 'Flashcards not done');
       if (!bits.length && typeof w.grade === 'number') bits.push('grade ' + Math.round(w.grade) + '%');
       li.textContent = cedLabel(w.lesson).text + (bits.length ? ' (' + bits.join(', ') + ')' : '');
       ul.appendChild(li);
@@ -6916,22 +6875,9 @@ async function renderDoNow() {
         ? REGISTRY.lessons[nt.lesson] : null;
       var label = entry && entry.title
         ? lessonKey + ' · ' + entry.title : cedLabel(nt.lesson).text;
-      var activityLabel = nt.source === 'try-it' ? 'Try-Its (scored in class)'
-        : nt.source === 'lesson-check' ? 'Lesson Check' : 'Flashcards';
+      var activityLabel = 'Try-Its (scored in class)';
       _dnNextApp = nt.source === 'flashcard' ? 'flashcards' : 'progress';
       show('Do Now: ' + label + ' — ' + activityLabel, 'todo');
-      if (nt.source === 'try-it') return;
-
-      var action = document.createElement(nt.source === 'lesson-check' ? 'a' : 'button');
-      action.textContent = nt.source === 'lesson-check' ? 'Open Lesson Check' : 'Open Flashcards';
-      if (nt.source === 'lesson-check') {
-        action.href = 'check.html?lesson=' + encodeURIComponent(lessonKey);
-      } else {
-        action.type = 'button';
-        action.onclick = function () { openBlooketFlashcards(null, nt.lesson); };
-      }
-      msg.appendChild(document.createTextNode(' '));
-      msg.appendChild(action);
       return;
     }
 
@@ -7125,7 +7071,7 @@ function _showPlannedLessonPanel(inf, dateStr) {
   var note = document.createElement('p');
   var due = null;
   try { const entry = REGISTRY && REGISTRY.lessons && REGISTRY.lessons[inf.t]; due = entry && entry.periods && entry.periods[cP] && entry.periods[cP].date; } catch (_) {}
-  note.textContent = 'This lesson is not published yet' + (due ? '; Section ' + cP + ' window closes ' + due : '') + '. The IXL skills below are open now; the lesson check and Try-Its arrive with the lesson.';
+  note.textContent = 'This lesson is not published yet' + (due ? '; Section ' + cP + ' window closes ' + due : '') + '. The IXL skills below are open now; Try-Its arrive with the lesson.';
   body.appendChild(note);
   var skills = a2LessonSkills(inf.t);
   if (skills.length) _appendIxlLinks(body, skills);
@@ -7772,20 +7718,9 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
     var body = document.getElementById('resource-body');
     body.textContent = '';
 
-    var checkRow = document.createElement('p');
-    var check = document.createElement('a');
-    check.textContent = 'Open lesson check';
     var viewing = typeof _viewAsContext === 'function' && _viewAsContext();
     var publishedLesson = window.A2Desk && typeof window.A2Desk.getLesson === 'function'
         ? window.A2Desk.getLesson(inf.t) : null;
-    var checkHref = publishedLesson ? 'check.html?lesson=' + encodeURIComponent(key)
-        : entry.urls.check;
-    if (viewing) checkHref += (checkHref.indexOf('?') === -1 ? '?' : '&') + 'viewAsUserId=' + encodeURIComponent(viewing.studentId);
-    check.setAttribute('href', checkHref);
-    check.className = 's7btn chicago';
-    check.style.cssText = 'display:inline-block;padding:10px 16px;font-weight:bold';
-    checkRow.appendChild(check);
-    body.appendChild(checkRow);
 
     var deckRow = document.createElement('span');
     deckRow.className = 'desk-quiz-done-slot';
@@ -7851,7 +7786,7 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
             },
             lessonCheck: lessonStatus.lessonCheck == null ? null : lessonStatus.lessonCheck,
             flashcardPassed: !!lessonStatus.flashcardPassed
-        }).join(' \u00b7 ');
+        }).slice(0, 1).join(' \u00b7 ');
     }
     if (summary) {
         var status = document.createElement('p');
@@ -8107,15 +8042,9 @@ function showResourcePanel(inf, dateStr) {
                 // available so a student can re-run the flashcards to IMPROVE — the
                 // full timed deck is the only graded mode (80% = done, up to 100%).
                 var _blScore = (typeof _blooketScoreFor === 'function') ? _blooketScoreFor(_stuTopicId) : null;
-                // Label by the 80% gate, not 100: >=80 already PASSES (done) — say so, and
-                // keep the click as an optional redo. <80 = a make-up; 100 = perfected.
-                var _blLabel = (typeof _blScore === 'number')
-                    ? (_blScore >= 100 ? 'Flashcards ✓ perfected'
-                       : _blScore >= 80 ? 'Flashcards ✓ done — redo to improve'
-                       : 'Flashcards — need 80%')
-                    : 'Do flashcards (Engagement credit)';
+                var _blLabel = 'Flashcards';
                 var _blBtn = _signedIn
-                    ? ' <button class="s7btn chicago" style="font-size:9px;padding:1px 4px;margin-left:4px" title="The timed flashcard deck earns your Engagement credit: 80% = done, up to 100%" onclick="studentMark(this,\'' + _stuTopicId + '\',\'blooket\')">' + _blLabel + '</button>'
+                    ? ' <button class="s7btn chicago" style="font-size:9px;padding:1px 4px;margin-left:4px" title="Practice the daily 10 for Engagement redemption" onclick="studentMark(this,\'' + _stuTopicId + '\',\'blooket\')">' + _blLabel + '</button>'
                     : '';
                 var _blDueText = '';
                 if (typeof _fcFlag === 'function' && _fcFlag('readinessBadge')) {
@@ -8143,7 +8072,7 @@ function showResourcePanel(inf, dateStr) {
                         : 0;
                     if (_blDue > 0) _blDueText += ' · ' + _blDue + ' due';
                 }
-                lessonHtml += '<div style="margin:3px 0"><a href="' + u.blooket + '" target="_blank" onclick="' + _linkClick('blooket') + '" style="color:var(--accent-ink);text-decoration:underline">Flashcards Review</a>' + _visitedTag('blooket') + _scoreChip(_blScore, 80) + _blDueText + '<span class="desk-quiz-done-slot" data-topic="' + _stuTopicId + '" data-artifact="blooket">' + _blBtn + '</span></div>';
+                lessonHtml += '<div style="margin:3px 0"><a href="' + u.blooket + '" target="_blank" onclick="' + _linkClick('blooket') + '" style="color:var(--accent-ink);text-decoration:underline">Flashcards Review</a>' + _visitedTag('blooket') + _blDueText + '<span class="desk-quiz-done-slot" data-topic="' + _stuTopicId + '" data-artifact="blooket">' + _blBtn + '</span></div>';
             }
         }
 
@@ -8262,20 +8191,6 @@ function showResourcePanel(inf, dateStr) {
     }
 
     document.getElementById('resource-body').innerHTML = html;
-    if (a2Lesson) {
-        var checkRow = document.createElement('p');
-        var check = document.createElement('a');
-        var key = String(inf.t).replace('.', '-');
-        var checkHref = 'check.html?lesson=' + encodeURIComponent(key);
-        var viewing = typeof _viewAsContext === 'function' && _viewAsContext();
-        if (viewing) checkHref += '&viewAsUserId=' + encodeURIComponent(viewing.studentId);
-        check.textContent = 'Open lesson check';
-        check.setAttribute('href', checkHref);
-        check.className = 's7btn chicago';
-        check.style.cssText = 'display:inline-block;padding:10px 16px;font-weight:bold';
-        checkRow.appendChild(check);
-        document.getElementById('resource-body').prepend(checkRow);
-    }
     document.getElementById('resource-overlay').style.display = 'block';
     _lastResourcePanel = { inf: inf, dateStr: dateStr };
 
@@ -8700,7 +8615,7 @@ function _bfWorksheetUrl(topicId) {
     try {
         var reg = (typeof getRegistryEntry === 'function') ? getRegistryEntry(topicId) : null;
         if (!reg || !reg.urls || !reg.urls.worksheet) return null;
-        return reg.urls.worksheet;
+        return /check\.html(?:[?#]|$)/.test(reg.urls.worksheet) ? null : reg.urls.worksheet;
     } catch (_) { return null; }
 }
 
@@ -9663,7 +9578,7 @@ function _bfKeydownHandler(e) {
     _bfAnswer(realIdx);
 }
 
-// Lesson launch: daily quick check, with a secondary full timed deck.
+// Lesson launch: the daily ten is the only student flashcard activity.
 async function openBlooketFlashcards(btn, topicId) {
     // Codex BLOCKER fold P2: opening the Flashcards flashcard quiz in view-as
     // mode would let the teacher drive a quiz that writes back as themselves
@@ -9676,16 +9591,11 @@ async function openBlooketFlashcards(btn, topicId) {
     }
     try { if (typeof _srsSyncPull === 'function') _srsSyncPull(); } catch (_) {}
     await _bfStartQuick(btn, topicId);
-    var full = document.getElementById('bf-full-deck');
-    if (full) full.onclick = function () { _bfCloseUI(); _ftStart(btn, topicId); };
 }
 
 // One sentence every student sees before the first card: the deck IS the Engagement credit.
 function _bfCreditNote(topicId) {
-    var note = 'This timed deck is how you earn Engagement credit for this lesson. 80% or higher counts it as done; you can reach 100%.';
-    var best = (typeof _blooketScoreFor === 'function') ? _blooketScoreFor(topicId) : null;
-    if (typeof best === 'number') note += ' Your best so far: ' + best + '%.';
-    return note;
+    return 'Practice the daily 10 for Engagement redemption.';
 }
 
 // Show/hide the quiz UI vs the mode picker (both share the bf-overlay modal).
@@ -10282,7 +10192,7 @@ function _rvKeydownHandler(e) {
     _rvAnswer(idx);
 }
 
-// Quick check (top-10, untimed, early-stop 8/10, caps 80%). Unchanged behavior,
+// Daily ten: untimed, every card answered, raw correct/total recorded.
 // extracted from the old openBlooketFlashcards so the picker can route to it.
 async function _bfStartQuick(btn, topicId) {
     // 2026-05-20: try to resume saved progress first. If present, use the
@@ -10324,8 +10234,7 @@ async function _bfStartQuick(btn, topicId) {
         if (resumed.answered === true) {
             _bfState.idx = (resumed.idx || 0) + 1;
             _bfState.answered = false;
-            var passCount = Math.ceil(BLOOKET_PASS_THRESHOLD * _bfState.deck.length);
-            finishOnResume = _bfState.score >= passCount || _bfState.idx >= _bfState.deck.length;
+            finishOnResume = _bfState.idx >= _bfState.deck.length;
         }
         if (!canReuseRoundId) _bfSaveProgress();
         isResume = true;
@@ -10380,7 +10289,7 @@ async function _bfStartQuick(btn, topicId) {
         _bfSaveProgress();
     }
     var header = document.getElementById('bf-header');
-    if (header) header.textContent = 'Quick check — ' + cedLabel(topicId).text + (isResume ? ' (resuming)' : '') + ' (pass ≥ 80%, caps at 80%)';
+    if (header) header.textContent = 'Flashcards — ' + cedLabel(topicId).text;
     _bfShowQuizUI(false);  // hide the picker, show the quiz, no timer
     document.getElementById('bf-result').style.display = 'none';
     if (finishOnResume) {
@@ -10549,19 +10458,6 @@ function _bfAnswer(idx) {
             : 'Wrong. Correct answer: ' + String.fromCharCode(65 + correctDisplayIdx)
               + '. ' + card.choices[card.correctIdx];
     }
-    // Early-stop: once enough cards are correct to PASS (>=80% of the deck —
-    // 8 of 10), stop here. The remaining cards can't change the pass, so don't
-    // make the student answer them; show the result + mark complete.
-    var _passCount = Math.ceil(BLOOKET_PASS_THRESHOLD * _bfState.deck.length);
-    if (_bfState.score >= _passCount) {
-        if (feedback) feedback.textContent += '  ✓ That’s a pass!';
-        if (nextBtn) nextBtn.style.display = 'none';
-        _bfState.finishId = setTimeout(function () {
-            _bfState.finishId = null;
-            _bfFinish();
-        }, 900);   // brief beat so the student sees the feedback
-        return;
-    }
     if (isRight) {
         if (nextBtn) nextBtn.style.display = 'none';
         _bfState.advanceId = setTimeout(function () {
@@ -10592,9 +10488,7 @@ async function _bfFinish() {
         window.gradebookClient.recordFlashcardRun(_bfState.topic, 'quick', _bfState.score,
             Math.min(_bfState.idx + (_bfState.answered ? 1 : 0), _bfState.deck.length));
     }
-    var pct = _bfState.deck.length > 0 ? (_bfState.score / _bfState.deck.length) : 0;
-    var passed = pct >= BLOOKET_PASS_THRESHOLD;
-    if (!passed) _bfState.lastFinishAt = Date.now();
+    _bfClearProgress(_bfState.topic);
     var q = document.getElementById('bf-question');
     var c = document.getElementById('bf-choices');
     var p = document.getElementById('bf-progress');
@@ -10608,20 +10502,9 @@ async function _bfFinish() {
     var result = document.getElementById('bf-result');
     if (result) {
         while (result.firstChild) result.removeChild(result.firstChild);
-        var pctRound = Math.round(pct * 1000) / 10;
         var line1 = document.createElement('div');
-        line1.textContent = 'You scored ' + _bfState.score + ' of ' + _bfState.deck.length
-                          + ' (' + pctRound.toFixed(1) + '%).';
+        line1.textContent = 'You got ' + _bfState.score + ' of ' + _bfState.deck.length;
         result.appendChild(line1);
-        var line2 = document.createElement('div');
-        line2.style.marginTop = '6px';
-        line2.className = passed ? 'bf-result-pass' : 'bf-result-fail';
-        line2.textContent = passed
-            ? (canScore
-                ? '✓ Passed. Marking Done...'
-                : '✓ Passed (view-only — not recorded).')
-            : '✗ Need ≥ 80% to mark Done. Try again.';
-        result.appendChild(line2);
         var misses = Array.isArray(_bfState.misses) ? _bfState.misses : [];
         var worksheetUrl = (typeof _bfWorksheetUrl === 'function')
             ? _bfWorksheetUrl(_bfState.topic)
@@ -10664,7 +10547,7 @@ async function _bfFinish() {
             perfect.textContent = 'Perfect — no misses!';
             result.appendChild(perfect);
         }
-        var closeBtn = passed ? document.createElement('button') : null;
+        var closeBtn = document.createElement('button');
         if (closeBtn) {
             var closeHandled = false;
             closeBtn.className = 's7btn s7btn-default';
@@ -10677,108 +10560,25 @@ async function _bfFinish() {
             };
             result.appendChild(closeBtn);
         }
-        if (!passed) {
-            var retryCooldownMs = 0;
-            if (typeof BLOOKET_RETRY_COOLDOWN_MS !== 'undefined'
-                && BLOOKET_RETRY_COOLDOWN_MS > 0) {
-                retryCooldownMs = BLOOKET_RETRY_COOLDOWN_MS;
-            }
-            var retryWaitMs = retryCooldownMs > 0
-                ? Math.max(0, retryCooldownMs - (Date.now() - _bfState.lastFinishAt))
-                : 0;
-            if (retryWaitMs > 0) {
-                var retryNote = document.createElement('div');
-                retryNote.style.marginTop = '8px';
-                retryNote.textContent = 'Try again in ' + Math.ceil(retryWaitMs / 1000) + 's';
-                result.appendChild(retryNote);
-            } else {
-                var retry = document.createElement('button');
-                retry.className = 's7btn s7btn-default';
-                retry.style.marginTop = '8px';
-                retry.textContent = 'Try again (new shuffle)';
-                retry.onclick = async function () {
-                    retry.disabled = true;
-                    var retryTopic = _bfState.topic;
-                    var retryRoundId = _bfState.roundId;
-                    var redrawDeck = null;
-                    var retainedMissQnums = [];
-                    var redrawEnabled = typeof _fcFlag === 'function'
-                        && _fcFlag('quickRetryRedraw');
-                    if (redrawEnabled && typeof _bfLoadAllCardsForRetry === 'function') {
-                        var allCardsReady = await _bfLoadAllCardsForRetry();
-                        if (allCardsReady && typeof _bfBuildRetryDeck === 'function') {
-                            redrawDeck = _bfBuildRetryDeck(
-                                _bfState.deck,
-                                _bfState.misses,
-                                _bfState.poolQnums,
-                                _bfState.seenQnums,
-                                _bfState.allCards
-                            );
-                        }
-                    }
-                    if (redrawDeck) {
-                        var missedQnums = {};
-                        var retryMisses = Array.isArray(_bfState.misses) ? _bfState.misses : [];
-                        for (var missIdx = 0; missIdx < retryMisses.length; missIdx++) {
-                            var retryMiss = retryMisses[missIdx];
-                            if (!retryMiss || retryMiss.qnum == null) continue;
-                            missedQnums[String(retryMiss.qnum)] = true;
-                        }
-                        for (var redrawIdx = 0; redrawIdx < redrawDeck.length; redrawIdx++) {
-                            var redrawCard = redrawDeck[redrawIdx];
-                            if (!redrawCard || redrawCard.qnum == null) continue;
-                            if (!missedQnums[String(redrawCard.qnum)]) continue;
-                            retainedMissQnums.push(redrawCard.qnum);
-                        }
-                    }
-                    if (_bfState.topic !== retryTopic || _bfState.roundId !== retryRoundId) return;
-                    if (redrawDeck) {
-                        _bfState.primedQnums = retainedMissQnums;
-                        _bfState.deck = _bfShuffle(redrawDeck);
-                        if (typeof _bfMergeSeenQnums === 'function') {
-                            _bfState.seenQnums = _bfMergeSeenQnums(
-                                _bfState.seenQnums,
-                                redrawDeck
-                            );
-                        }
-                    } else {
-                        _bfState.primedQnums = [];
-                        _bfState.deck = _bfShuffle(_bfState.deck);
-                    }
-                    _bfState.idx = 0;
-                    _bfState.score = 0;
-                    _bfState.answered = false;
-                    _bfState.finished = false;
-                    _bfState.roundId = (typeof _srsRoundId === 'function') ? _srsRoundId('desk') : null;
-                    _bfState.seq = 0;
-                    _bfState.cardStart = 0;
-                    _bfState.misses = [];
-                    _bfState.lastFinishAt = null;
-                    result.style.display = 'none';
-                    _bfSaveProgress();   // new shuffle → save so close-mid-retry resumes here
-                    _bfRenderCard();
-                };
-                result.appendChild(retry);
-            }
-        }
+        var retry = document.createElement('button');
+        retry.className = 's7btn s7btn-default';
+        retry.textContent = 'Try again (new shuffle)';
+        retry.onclick = function () {
+            _bfState.deck = _bfShuffle(_bfState.deck);
+            _bfState.idx = 0;
+            _bfState.score = 0;
+            _bfState.answered = false;
+            _bfState.finished = false;
+            _bfState.roundId = typeof _srsRoundId === 'function' ? _srsRoundId('desk') : null;
+            _bfState.seq = 0;
+            _bfState.misses = [];
+            _bfState.primedQnums = [];
+            result.style.display = 'none';
+            _bfSaveProgress();
+            _bfRenderCard();
+        };
+        result.appendChild(retry);
         result.style.display = 'block';
-    }
-    if (passed) {
-        if (!canScore) return;
-        var btn = _bfState.btn;
-        var topicId = _bfState.topic;
-        var score = Math.round(pct * 1000) / 10;
-        // Deck is complete and passed — clear saved progress so a future
-        // re-do (e.g. for practice) starts a fresh shuffle.
-        _bfClearProgress(topicId);
-        // Brief pause so the student sees the pass message before the modal closes.
-        var finishingRound = _bfState.roundId;
-        setTimeout(async function () {
-            if (finishingRound === _bfState.roundId) {
-                _bfCloseUI();   // don't re-save on close; we just cleared.
-            }
-            await _blooketCommit(btn, topicId, score);   // best-wins + grade refresh
-        }, 1200);
     }
 }
 
@@ -13441,7 +13241,7 @@ function renderA2LessonChips(tile, topic) {
         lessonCheck: status.lessonCheck == null ? null : status.lessonCheck,
         flashcardPassed: !!status.flashcardPassed
     });
-    texts.forEach(function (text) {
+    texts.slice(0, 1).forEach(function (text) {
         var chip = document.createElement('span');
         chip.className = 'a2-lesson-chip';
         chip.textContent = text;

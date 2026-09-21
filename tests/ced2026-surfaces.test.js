@@ -50,7 +50,7 @@ describe('published A2 mobile lessons', () => {
     await vi.waitFor(() => expect(win.document.querySelector('.done-badge')?.textContent).toContain('84%'));
     const card = win.document.querySelector('.lesson');
     expect(card.querySelector('.title').textContent).toContain('1-1 · Key Features of Functions');
-    expect(card.querySelector('a.ws').getAttribute('href')).toBe('check.html?lesson=1-1');
+    expect(card.querySelector('a.ws')).toBeNull();
     expect(card.querySelector('button.fc').textContent).toContain('Flashcards');
     expect(card.querySelector('a.ixl').getAttribute('href')).toBe(published[0].supportingSkills[0].url);
     expect(JSON.stringify(published)).toBe(snapshot);
@@ -64,7 +64,7 @@ describe('published A2 mobile lessons', () => {
     // Let the response/rejection and fallback continuation settle.
     for (let i = 0; i < 8; i++) await Promise.resolve();
     expect(win.document.querySelectorAll('.lesson')).toHaveLength(1);
-    expect(win.document.querySelector('a.ws').getAttribute('href')).toBe('check.html?lesson=1-1');
+    expect(win.document.querySelector('a.ws')).toBeNull();
     expect(win.document.querySelector('a[href*="lesson=1-2"]')).toBeNull();
     expect(fetch.mock.calls.some(([url]) => url === 'content/a2/lessons.json')).toBe(true);
   });
@@ -74,7 +74,7 @@ describe('published A2 mobile lessons', () => {
     const { win } = bootMobile({ live });
     await vi.waitFor(() => expect(win.document.querySelector('.title')?.textContent).toContain('Updated function lesson'));
     expect(win.document.querySelectorAll('.lesson')).toHaveLength(1);
-    expect(win.document.querySelector('a.ws').getAttribute('href')).toBe('check.html?lesson=1-1');
+    expect(win.document.querySelector('a.ws')).toBeNull();
   });
 });
 

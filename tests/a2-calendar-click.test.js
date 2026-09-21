@@ -39,15 +39,7 @@ describe('A2 calendar resource panel', () => {
       c.click();
       const doc = dom.window.document;
       expect(doc.getElementById('resource-overlay').style.display).toBe('block');
-      const check = doc.querySelector('#resource-body a');
-      expect(check.textContent).toBe('Open lesson check');
-      const href = check.getAttribute('href');
-      if (viewAs) {
-        expect(href).toBe('check.html?lesson=1-1&viewAsUserId=student-123');
-      } else {
-        expect(href).toBe('check.html?lesson=1-1');
-        expect(href).not.toContain('viewAsUserId');
-      }
+      expect(doc.querySelector('#resource-body a[href*="check.html"]')).toBeNull();
       const deck = doc.querySelector('#resource-body button');
       deck.click();
       expect(openBlooketFlashcards).toHaveBeenCalledWith(deck, '1.1');
@@ -60,12 +52,12 @@ describe('A2 calendar resource panel', () => {
     } finally { dom.window.close(); }
   });
 
-  it('opens the check and deck with optional lesson metadata and status absent', () => {
+  it('opens the deck with optional lesson metadata and status absent', () => {
     const { dom, c, context } = calendar();
     try {
       context.window.A2Desk = { getLesson: () => ({}) };
       c.click();
-      expect(dom.window.document.querySelector('#resource-body a').getAttribute('href')).toBe('check.html?lesson=1-1');
+      expect(dom.window.document.querySelector('#resource-body a[href*="check.html"]')).toBeNull();
       expect(dom.window.document.querySelector('#resource-body button').textContent).toBe('Open Flashcards');
       expect(dom.window.document.querySelector('#resource-body .a2-lesson-chip')).toBeNull();
     } finally { dom.window.close(); }
@@ -84,8 +76,8 @@ describe('A2 resource panel grade-cache fallback', () => {
       c.click();
       const summary = dom.window.document.querySelector('#resource-body .a2-lesson-chip').textContent;
       expect(summary).toContain('Try-Its 3/5 scored, 6 points');
-      expect(summary).toContain('Lesson check 80%');
-      expect(summary).toContain('Flashcards passed');
+      expect(summary).not.toContain('Lesson check 80%');
+      expect(summary).not.toContain('Flashcards passed');
       expect(JSON.stringify(cached)).toBe(before);
       if (viewAs) expect(context.window.A2Desk.getStatus).not.toHaveBeenCalled();
     } finally { dom.window.close(); }
@@ -101,8 +93,8 @@ describe('A2 resource panel grade-cache fallback', () => {
       c.click();
       const summary = dom.window.document.querySelector('#resource-body .a2-lesson-chip').textContent;
       expect(summary).toContain('Try-Its 0/' + (fields.tryIts?.scores?.length || 0) + ' scored, 0 points');
-      expect(summary).toContain('Lesson check not attempted');
-      expect(summary).toContain('Flashcards not passed');
+      expect(summary).not.toContain('Lesson check not attempted');
+      expect(summary).not.toContain('Flashcards not passed');
       expect(summary).not.toMatch(/undefined|NaN/);
       expect(JSON.stringify(cached)).toBe(before);
     } finally { dom.window.close(); }

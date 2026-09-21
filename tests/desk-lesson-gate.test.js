@@ -100,9 +100,9 @@ describe('Desk: A2 access and completion', () => {
     expect(fn('both', { 'both|worksheet': { ts: 1 }, 'both|blooket': { ts: 1 } })).toBe(true);
   });
 
-  it('10: _isLessonComplete — worksheet Done but Blooket NOT → incomplete', () => {
+  it('10: _isLessonComplete — worksheet Done without Blooket is complete', () => {
     const fn = makeIsLessonComplete();
-    expect(fn('both', { 'both|worksheet': { ts: 1 } })).toBe(false);
+    expect(fn('both', { 'both|worksheet': { ts: 1 } })).toBe(true);
   });
 
   it('11: _isLessonComplete — a lesson with no Blooket is complete on the worksheet alone', () => {
@@ -210,7 +210,7 @@ describe('Desk: A2 access and completion', () => {
   });
 
   it.each([
-    [60, 80, true], [59, 80, false], [60, 79, false], [null, null, false],
+    [60, 80, true], [59, 80, false], [60, 79, true], [null, null, false],
   ])('24: worksheet %s and deck %s yield completion %s', (worksheet, deck, complete) => {
     const src = fnBody(DESK, '_isLessonComplete');
     const fn = new Function(

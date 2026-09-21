@@ -246,12 +246,12 @@ async function openTimedDeck(harness) {
     )
   ), { message: 'real lesson panel has no flashcards launcher' });
   launcher.click();
-  await harness.waitFor(() => harness.document.getElementById('bf-full-deck').onclick);
+  await harness.waitFor(() => harness.window._bfState.deck.length === 10);
   expect(harness.window._bfState.deck).toHaveLength(10);
   const FC = harness.window.Flashcards;
   const expected = FC.dailyDraw(harness.window._bfState.allCards, FC.localDateKey() + '|' + TOPIC, 10);
   expect(harness.window._bfState.deck.map(card => card.qnum)).toEqual(expected.map(card => card.qnum));
-  harness.document.getElementById('bf-full-deck').click();
+  expect(harness.document.getElementById('bf-full-deck')).toBeNull();
 
   // The secondary action opens the full timed deck.
   await harness.waitFor(() => (
@@ -277,7 +277,7 @@ async function completeOneTimedRun(harness) {
   const before = readLog(harness).length;
   await openTimedDeck(harness);
 
-  for (let answer = 0; answer < DECK.length; answer += 1) {
+  for (let answer = 0; answer < 10; answer += 1) {
     const ready = await harness.waitFor(() => {
       if (harness.document.getElementById('bf-result').style.display === 'block') return 'finished';
       return harness.document.querySelector('#bf-choices .bf-choice:not(:disabled)');
@@ -292,7 +292,7 @@ async function completeOneTimedRun(harness) {
 
   const log = await harness.waitFor(() => {
     const entries = readLog(harness);
-    return entries.length === before + DECK.length ? entries : false;
+    return entries.length === before + 10 ? entries : false;
   }, { timeoutMs: 1_500, message: 'timed deck did not append one SRS entry per card at finish' });
 
   const cancel = [...harness.document.querySelectorAll('#bf-actions button')]
@@ -345,20 +345,17 @@ describe('Desk journey J9', () => {
       await settleSignIn(deviceA, KID);
 
       const aLog = await completeOneTimedRun(deviceA);
-      expect(aLog).toHaveLength(DECK.length);
+      expect(aLog).toHaveLength(10);
       expect(aLog[0]).toMatchObject({
         topic: TOPIC,
-        mode: 'full',
+        mode: 'quick',
         csv: CSV_FILE,
         surface: 'desk',
         seq: 0,
       });
 
-      deviceA.clock.advance(2_999);
-      await settleRoster(deviceA);
-      expect(trainerRequests(sharedRoster, 'PUT', 'token:alpha_otter')).toEqual([]);
-
-      deviceA.clock.advance(2);
+      // Daily answers append during the run; allow the final debounced push.
+      deviceA.clock.advance(3_001);
       await settleRoster(deviceA);
 
       const aGets = trainerRequests(sharedRoster, 'GET', 'token:alpha_otter');
@@ -401,8 +398,8 @@ describe('Desk journey J9', () => {
       expect(logKeys(bAfterPull)).toEqual(logKeys(aLog));
 
       const bLog = await completeOneTimedRun(deviceB);
-      expect(bLog).toHaveLength(2 * DECK.length);
-      expect(new Set(logKeys(bLog)).size).toBe(2 * DECK.length);
+      expect(bLog).toHaveLength(20);
+      expect(new Set(logKeys(bLog)).size).toBe(20);
       deviceB.clock.advance(3_001);
       await settleRoster(deviceB);
 

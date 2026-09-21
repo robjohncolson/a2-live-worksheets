@@ -35,7 +35,7 @@ describe('Desk readiness badge — static contract', () => {
     const gate = panel.indexOf("_fcFlag('readinessBadge')");
     const lookup = panel.indexOf('_srsReadinessFor', gate);
     const badge = panel.indexOf('class="fc-ready-badge"', gate);
-    const row = panel.indexOf('_scoreChip(_blScore, 80) + _blDueText');
+    const row = panel.lastIndexOf('_blDueText');
 
     expect(gate).toBeGreaterThan(-1);
     expect(lookup).toBeGreaterThan(gate);

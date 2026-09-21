@@ -239,6 +239,10 @@ function makeDeskHarness(mode) {
     __WS_READ_ONLY__: false,
     rosterClient: null,
     gradebookClient: {
+      recordFlashcardRun(lesson, mode, correct, total) {
+        recorded.push({ lesson, mode, correct, total });
+        return { ok: true };
+      },
       record(payload) {
         recorded.push(clone(payload));
         return { ok: true };
@@ -360,6 +364,10 @@ function makeMobileHarness(mode) {
     FlashcardSrs: { stemHash },
     rosterClient: null,
     gradebookClient: {
+      recordFlashcardRun(lesson, mode, correct, total) {
+        recorded.push({ lesson, mode, correct, total });
+        return { ok: true };
+      },
       record(payload) {
         recorded.push(clone(payload));
         return { ok: true };
@@ -573,25 +581,21 @@ describe('Desk ⇄ mobile flashcard surface parity', function () {
     const result = await runQuickPair();
     expect(result.deskRecords).toHaveLength(1);
     expect(result.mobileRecords).toHaveLength(1);
-    expect(result.deskRecords[0].score).toBe(80);
-    expect(result.mobileRecords[0].score).toBe(result.deskRecords[0].score);
+    expect(result.deskRecords[0]).toEqual({ lesson: TOPIC, mode: 'quick', correct: 8, total: 10 });
+    expect(result.mobileRecords[0]).toEqual(result.deskRecords[0]);
   });
 
-  it('commits the same timed-mode score for the same outcome sequence', async function () {
+  it('keeps the retired timed engine log parity without a mobile completion write', async function () {
     const result = await runTimedPair();
-    expect(result.deskRecords).toHaveLength(1);
-    expect(result.mobileRecords).toHaveLength(1);
-    expect(result.deskRecords[0].score).toBe(86.7);
-    expect(result.mobileRecords[0].score).toBe(result.deskRecords[0].score);
+    expect(result.deskRecords.find(record => record.score != null).score).toBe(86.7);
+    expect(result.mobileRecords[0].mode).toBe('full');
+    expect(result.mobileRecords[0]).not.toHaveProperty('itemId');
   });
 
-  it('records the same frozen gradebook payload shape', async function () {
-    const result = await runTimedPair();
-    const deskPayload = result.deskRecords[0];
-    const mobilePayload = result.mobileRecords[0];
-    expect(Object.keys(deskPayload).sort()).toEqual(Object.keys(mobilePayload).sort());
-    expect(Object.keys(deskPayload.response).sort()).toEqual(Object.keys(mobilePayload.response).sort());
-    expect(payloadContract(deskPayload)).toEqual(payloadContract(mobilePayload));
+  it('records the same daily payload shape on both surfaces', async function () {
+    const result = await runQuickPair();
+    expect(result.deskRecords).toEqual(result.mobileRecords);
+    expect(Object.keys(result.deskRecords[0]).sort()).toEqual(['correct', 'lesson', 'mode', 'total']);
   });
 
   it('writes normalized quick-mode log entries with field-by-field parity', async function () {

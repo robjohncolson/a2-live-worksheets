@@ -55,8 +55,7 @@ describe('mobile A2 lesson check links', () => {
     const { document, fetch } = boot({ offlineMode });
     await flush();
     const link = document.querySelector('a.btn.ws');
-    expect(link.textContent).toBe('Lesson Check');
-    expect(link.getAttribute('href')).toBe('check.html?lesson=1-1');
+    expect(link).toBeNull();
     expect(document.querySelector('a.btn.quiz')).toBeNull();
     expect(document.querySelector('.done-badge')).toBeNull();
     expect(fetch).toHaveBeenCalledWith('content/a2/lessons.json');
@@ -82,7 +81,8 @@ describe('mobile A2 lesson check links', () => {
   it('preserves the local lesson when the service rejects', async () => {
     const { document } = boot({ liveFailure: true });
     await flush();
-    expect(document.querySelector('a.btn.ws').getAttribute('href')).toBe('check.html?lesson=1-1');
+    expect(document.querySelector('a.btn.ws')).toBeNull();
+    expect(document.querySelector('.lesson .title').textContent).toContain(LESSON.title);
   });
 
   it('uses live lessons when the local registry fails', async () => {

@@ -29,8 +29,8 @@ describe('Desk quick flashcard misses recap', () => {
     expect(body).toMatch(/Review your misses/);
     expect(body).toMatch(/_bfWorksheetUrl/);
     expect(body).not.toMatch(/rationale/i);
-    expect(passGate).toBeGreaterThan(-1);
-    expect(body.slice(0, passGate)).not.toMatch(/_blooketCommit|_bfClearProgress/);
+    expect(passGate).toBe(-1);
+    expect(body).not.toContain('_blooketCommit');
   });
 
   it('_bfAnswer captures each wrong card and the resume record persists misses', () => {
@@ -47,7 +47,7 @@ describe('Desk quick flashcard misses recap', () => {
     expect(body).toMatch(/closeBtn\.textContent\s*=\s*['"]Close['"]/);
     expect(body).toMatch(/if\s*\(closeHandled\)\s*return/);
     expect(body).toMatch(/closeBlooketFlashcards\s*\(\s*\)/);
-    expect(body).toMatch(/1200/);
+    expect(body).not.toContain('setTimeout');
   });
 
   it('_bfWorksheetFragmentUrl uses six stem words and returns null without a worksheet', () => {
@@ -167,8 +167,7 @@ describe('Desk quick flashcard misses recap', () => {
       await api.start(reopenedButton, '4.1');
       await vi.advanceTimersByTimeAsync(2000);
 
-      expect(commit).toHaveBeenCalledTimes(1);
-      expect(commit).toHaveBeenCalledWith(passedButton, '4.1', 80);
+      expect(commit).not.toHaveBeenCalled();
       expect(state.roundId).toBe('desk-new-round');
       expect(state.deck).toEqual(freshDeck);
       expect(state.idx).toBe(0);
@@ -208,7 +207,7 @@ describe('Desk quick flashcard misses recap', () => {
     const fragmentUrl = fragmentFactory(worksheetUrl);
     const finishFactory = new Function(
       'document', '_bfState', 'BLOOKET_PASS_THRESHOLD', '_mayScore',
-      '_bfWorksheetUrl', '_bfWorksheetFragmentUrl',
+      '_bfWorksheetUrl', '_bfWorksheetFragmentUrl', '_bfClearProgress',
       fnBody(DESK, '_bfFinish') + '\nreturn _bfFinish;'
     );
     const finish = finishFactory(
@@ -217,7 +216,7 @@ describe('Desk quick flashcard misses recap', () => {
       0.80,
       function () { return true; },
       worksheetUrl,
-      fragmentUrl
+      fragmentUrl, () => {}
     );
 
     await finish();

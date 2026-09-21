@@ -111,7 +111,7 @@ describe('Desk journey J3', () => {
       await settleSignIn(harness);
 
       const tile = topicTiles(harness.document)[0];
-      expect(tile.classList.contains('dc-localpartial')).toBe(false);
+      expect(tile.classList.contains('dc-localdone')).toBe(true);
       const done = await openWorksheet(harness);
       expect(done).toBeTruthy();
       expect(done.disabled, 'Cws=60 must clear the real worksheet gate').toBe(false);
@@ -150,7 +150,7 @@ describe('Desk journey J3', () => {
 
       const updatedTiles = topicTiles(harness.document);
       expect(updatedTiles.length).toBeGreaterThan(0);
-      expect(updatedTiles.every((updated) => updated.classList.contains('dc-localpartial'))).toBe(true);
+      expect(updatedTiles.every((updated) => updated.classList.contains('dc-localdone'))).toBe(true);
       expect(harness.roster.state.requests.filter((request) => (
         request.method === 'POST' && request.path === '/ledger/record'
       ))).toHaveLength(1);

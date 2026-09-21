@@ -50,8 +50,8 @@ describe('Desk: Blooket flashcard verification', () => {
     const body = fnBody(DESK, 'showResourcePanel');
     // The launcher routes to studentMark(..., 'blooket') and is always clickable.
     expect(body).toMatch(/studentMark\(this,[^\n]*blooket/);
-    expect(body).toMatch(/Do flashcards/);
-    expect(body).toMatch(/Flashcards — need 80%/);
+    expect(body).toContain("var _blLabel = 'Flashcards'");
+    expect(body).not.toContain('Flashcards — need 80%');
   });
 
   it('03: _doneBtn no longer handles blooket (it is launcher + chip in its row now)', () => {
@@ -124,35 +124,30 @@ describe('Desk: Blooket flashcard verification', () => {
     expect(body).toMatch(/bf-wrong/);
   });
 
-  it('10b: _bfAnswer early-stops once the pass is secured (8 of 10) — no need to answer the rest', () => {
+  it('10b: answers never finish early at eight correct', () => {
     const body = fnBody(DESK, '_bfAnswer');
-    // Pass count = ceil(threshold * deck length); once score reaches it, finish.
-    expect(body).toMatch(/Math\.ceil\(BLOOKET_PASS_THRESHOLD \* _bfState\.deck\.length\)/);
-    expect(body).toMatch(/_bfState\.score\s*>=\s*_passCount/);
-    expect(body).toMatch(/_bfFinish/);
+    expect(body).not.toContain('BLOOKET_PASS_THRESHOLD');
+    expect(body).not.toContain('_bfFinish');
+    expect(body).toContain('_bfNext');
   });
 
-  it('11: _bfFinish gates auto-mark on ≥ 80% pass + commits via _blooketCommit', () => {
+  it('11: every completed run records through the daily path', () => {
     const body = fnBody(DESK, '_bfFinish');
-    expect(body).toMatch(/BLOOKET_PASS_THRESHOLD/);
-    // The quick pass now commits through _blooketCommit (best-wins + refresh).
-    expect(body).toMatch(/_blooketCommit\s*\(\s*btn\s*,\s*topicId\s*,\s*score\s*\)/);
-    // Fail path provides a retry button.
-    expect(body).toMatch(/Try again/);
+    expect(body).toContain('recordFlashcardRun');
+    expect(body).not.toContain('_blooketCommit');
+    expect(body).toContain('Try again (new shuffle)');
   });
 
-  it('12: _bfFinish only commits the score when passed===true', () => {
+  it('12: results have no pass threshold', () => {
     const body = fnBody(DESK, '_bfFinish');
-    const commitIdx = body.indexOf('_blooketCommit');
-    expect(commitIdx).toBeGreaterThan(-1);
-    const slice = body.slice(0, commitIdx);
-    expect(slice.lastIndexOf('if (passed'), 'commit must be guarded by if (passed)').toBeGreaterThan(-1);
+    expect(body).not.toMatch(/passed|BLOOKET_PASS_THRESHOLD/);
+    expect(body).toContain('You got ');
   });
 
   it('13: blooket row shows a launcher (not an immediate Done) + best-wins commit exists', () => {
     // The launcher label tells the student the click opens flashcards, not a mark.
     const body = fnBody(DESK, 'showResourcePanel');
-    expect(body).toMatch(/Do flashcards/);
+    expect(body).toContain("var _blLabel = 'Flashcards'");
     // _blooketCommit implements best-wins (re-running can't lower the score).
     expect(DESK).toMatch(/async\s+function\s+_blooketCommit\s*\(/);
     const commit = fnBody(DESK, '_blooketCommit');
@@ -167,7 +162,7 @@ describe('Desk: Blooket flashcard verification', () => {
     expect(helper).toMatch(/\.blooket/);
     const body = fnBody(DESK, 'showResourcePanel');
     // The chip is built from the blooket score against the 80% gate.
-    expect(body).toMatch(/_scoreChip\(\s*_blScore\s*,\s*80\s*\)/);
+    expect(body).not.toMatch(/_scoreChip\(\s*_blScore\s*,\s*80\s*\)/);
     expect(body).toMatch(/_blooketScoreFor\(/);
   });
 
@@ -217,14 +212,10 @@ describe('Desk: Blooket flashcard verification', () => {
     expect(body).toMatch(/_bfSaveProgress\s*\(\s*\)/);
   });
 
-  it('20: _bfFinish clears progress on pass (deck complete) before auto-mark', () => {
+  it('20: every completed run clears saved progress', () => {
     const body = fnBody(DESK, '_bfFinish');
-    expect(body).toMatch(/_bfClearProgress\s*\(\s*topicId\s*\)/);
-    // The clear must be inside the if(passed) block (before the auto-mark
-    // setTimeout). Walk backward from the clear call to confirm.
-    const clearIdx = body.indexOf('_bfClearProgress');
-    const slice = body.slice(0, clearIdx);
-    expect(slice.lastIndexOf('if (passed')).toBeGreaterThan(-1);
+    expect(body).toContain('_bfClearProgress(_bfState.topic)');
+    expect(body).not.toContain('if (passed)');
   });
 
   it('21: storage key is scoped per student email', () => {

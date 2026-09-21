@@ -101,7 +101,7 @@ describe('Desk quick-retry redraw', () => {
       currentDeck
     )).toBeNull();
     expect(fnBody(DESK, '_bfFinish')).toMatch(
-      /else\s*\{\s*(?:_bfState\.primedQnums\s*=\s*\[\]\s*;\s*)?_bfState\.deck\s*=\s*_bfShuffle\(_bfState\.deck\)/
+      /_bfState\.deck\s*=\s*_bfShuffle\(_bfState\.deck\)/
     );
   });
 
@@ -144,7 +144,7 @@ describe('Desk quick-retry redraw', () => {
       '_bfWorksheetUrl', 'BLOOKET_RETRY_COOLDOWN_MS', '_fcFlag',
       '_bfLoadAllCardsForRetry', '_bfShuffle', '_bfMergeSeenQnums',
       '_srsRoundId', '_bfSaveProgress', '_bfRenderCard', '_srsAppendLog',
-      '_srsCsvFor', '_srsStemHash', 'Date', 'setTimeout', '_bfNext',
+      '_srsCsvFor', '_srsStemHash', 'Date', 'setTimeout', '_bfNext', '_bfClearProgress',
       fnBody(DESK, '_bfBuildRetryDeck') + '\n'
         + fnBody(DESK, '_bfFinish') + '\n'
         + fnBody(DESK, '_bfAnswer') + '\n'
@@ -169,7 +169,7 @@ describe('Desk quick-retry redraw', () => {
       function () { return 'feedbeef'; },
       { now() { return 2000; } },
       function () { return 1; },
-      function () {}
+      function () {}, function () {}
     );
 
     await api.finish();
@@ -178,12 +178,12 @@ describe('Desk quick-retry redraw', () => {
     expect(retry).toBeTruthy();
     await retry.onclick();
 
-    expect(state.primedQnums).toEqual([2, 5, 9]);
+    expect(state.primedQnums).toEqual([]);
     api.answer(0);
     state.idx = 3;
     state.answered = false;
     api.answer(0);
 
-    expect(logged.map(function (entry) { return entry.missIndex; })).toEqual([1, 0]);
+    expect(logged.map(function (entry) { return entry.missIndex; })).toEqual([0, 0]);
   });
 });

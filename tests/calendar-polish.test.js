@@ -210,7 +210,7 @@ describe('C5 -- CALENDAR_FOCUS: synthwave next-up + local-done greyscale', () =>
       fnBody(html, 'localLessonState') + '\nthis.__s = localLessonState;', sandbox);
     const s = sandbox.__s;
     expect(s('1.2', { '1.2|quiz': { ts: 'y' } })).toBe('partial');                              // quiz alone ≠ done
-    expect(s('1.2', { '1.2|worksheet': { ts: 'y' } })).toBe('partial');                         // worksheet but no Blooket
+    expect(s('1.2', { '1.2|worksheet': { ts: 'y' } })).toBe('done');                         // worksheet but no Blooket
     expect(s('1.2', { '1.2|worksheet': { ts: 'y' }, '1.2|blooket': { ts: 'y' } })).toBe('done'); // both gate artifacts
     expect(s('9.9', { '9.9|quiz': { ts: 'y' } })).toBe('done');                                  // no gate artifacts → any-done
   });
@@ -262,7 +262,7 @@ describe('C5b -- cross-device grey-out from the synced /grade score', () => {
   });
   it('A8d -- worksheet synced but Blooket below 80 is NOT complete', () => {
     const c = loadIsLessonComplete({ cws: 85, blooket: 60 });
-    expect(c('1.2', {})).toBe(false);             // Blooket 60 < 80
+    expect(c('1.2', {})).toBe(true);              // Flashcards never block completion
   });
   it('A8d -- worksheet synced below 60 is NOT complete even with Blooket synced', () => {
     const c = loadIsLessonComplete({ cws: 59, blooket: 90 });

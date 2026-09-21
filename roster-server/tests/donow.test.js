@@ -14,23 +14,19 @@ import { readFileSync } from 'node:fs';
 describe('A2 Do Now classroom order', () => {
   const manifest = JSON.parse(readFileSync(new URL('../data/work-manifest.json', import.meta.url), 'utf8'));
 
-  it('moves from the five completed Try-Its to the missing lesson check', () => {
+  it('completes Try-Its without requiring a check or flashcard pass', () => {
     const rows = Array.from({ length: 5 }, (_, index) => ({ item_id: `TI-1-1-${index + 1}` }));
-    expect(computeDonow(rows, manifest).nextTask).toEqual({
-      unit: 'U1', lesson: '1.1', activity: 'lesson-check', source: 'lesson-check',
-      itemIds: ['LC-1-1'], done: 0, total: 1,
-      progress: { done: 0, total: 1 }, reason: 'earliest-incomplete',
-    });
+    const result = computeDonow(rows, manifest);
+    expect(result.nextTask).toMatchObject({ lesson: '1.2', source: 'try-it' });
+    expect(result.lessons[0].lessonState).toBe('done');
+    expect(result.lessons[0].activities.map(a => a.source)).toEqual(['try-it']);
   });
 
-  it('moves from the check to the deck and then the next published lesson', () => {
+  it('historical check and deck rows do not change the next current task', () => {
     const rows = Array.from({ length: 5 }, (_, index) => ({ item_id: `TI-1-1-${index + 1}` }));
-    rows.push({ item_id: 'LC-1-1' });
-    expect(computeDonow(rows, manifest).nextTask).toMatchObject({
-      lesson: '1.1', source: 'flashcard', itemIds: ['BL-U1-L1-DESK_DONE'],
-    });
-    rows.push({ item_id: 'BL-U1-L1-DESK_DONE' });
-    expect(computeDonow(rows, manifest).nextTask).toMatchObject({ lesson: '1.2', source: 'try-it' });
+    const expected = computeDonow(rows, manifest).nextTask;
+    rows.push({ item_id: 'LC-1-1' }, { item_id: 'BL-U1-L1-DESK_DONE' });
+    expect(computeDonow(rows, manifest).nextTask).toEqual(expected);
   });
 });
 

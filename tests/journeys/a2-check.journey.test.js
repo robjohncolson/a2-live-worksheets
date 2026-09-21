@@ -39,9 +39,9 @@ it('C student signs in, completes 4/6 then 6/6, retains the best check receipt w
     await desk.window.A2Desk.refresh();
     expect(desk.window.rosterClient.current().section).toBe('C');
     desk.window.showResourcePanel({ t: '1.1' }, 'Sep 13');
-    const checkLink = desk.document.querySelector('#resource-body a');
-    expect(checkLink.getAttribute('href')).toBe('check.html?lesson=1-1');
-    check = new JSDOM(readFileSync('check.html', 'utf8'), { url: new URL(checkLink.getAttribute('href'), 'https://desk.test/').href, runScripts: 'outside-only' });
+    const checkLink = { href: 'https://desk.test/check.html?lesson=1-1' };
+    expect(desk.document.querySelector('#resource-body a[href*="check.html"]')).toBeNull();
+    check = new JSDOM(readFileSync('check.html', 'utf8'), { url: checkLink.href, runScripts: 'outside-only' });
     const win = check.window;
     win.ROSTER_SERVICE_URL = base;
     win.rosterClient = { token: () => desk.window.rosterClient.token() };

@@ -118,7 +118,6 @@
 
 <div id="fco" role="dialog" aria-modal="true" aria-labelledby="fc-title">
   <div class="fc-bar">
-    <button id="fc-full-deck" type="button">Full deck</button>
     <h2 class="fc-title" id="fc-title">🃏 Flashcards</h2>
     <span class="fc-prog" id="fc-prog"></span>
     <button type="button" onclick="closeFlashcards()">✕ Close</button>
@@ -720,12 +719,11 @@
     card.appendChild(t);
     var btns = document.createElement('div'); btns.className = 'btns';
     ;
-    var w = document.createElement('a'); w.className = 'btn ws';
-    w.textContent = l.key ? 'Lesson Check' : '✍ Worksheet';
-    if (l.key) w.href = 'check.html?lesson=' + encodeURIComponent(l.key);
-    else if (l.worksheet) w.href = l.worksheet;
-    else w.setAttribute('disabled', '');
-    btns.appendChild(w);
+    if (!l.key && l.worksheet && !/check\.html/.test(l.worksheet)) {
+      var w = document.createElement('a'); w.className = 'btn ws';
+      w.textContent = '✍ Worksheet'; w.href = l.worksheet;
+      btns.appendChild(w);
+    }
     (l.supportingSkills || []).forEach(function (skill) {
       if (!skill || !skill.url || !skill.name) return;
       var link = document.createElement('a');
@@ -1115,7 +1113,7 @@
     if (!FC) { _fcBodyHtml('<div class="fc-result"><h2>Unavailable</h2><p>Flashcards engine not loaded.</p></div>'); fcoEl() && fcoEl().classList.add('show'); return; }
     var el = fcoEl(); if (!el) return;
     _fcTimerStop(); _fc = null; el.classList.remove('timed');
-    document.getElementById('fc-title').textContent = '🃏 ' + (lesson && lesson.key ? lesson.key + ' · ' + lesson.title : cedLabel(lesson && lesson.id).text);
+    document.getElementById('fc-title').textContent = 'Flashcards — ' + (lesson && lesson.key ? lesson.key + ' · ' + lesson.title : cedLabel(lesson && lesson.id).text);
     _fcSetProg(''); el.classList.add('show');
     // Ensure topic→csv map is warm before mode pick (ID-only combined-lesson fix).
     _fcLoadTopicCsvMap().then(function () {
@@ -1125,9 +1123,8 @@
         _fcBodyHtml('<div class="fc-result"><h2>No deck</h2><p>This lesson has no flashcard deck.</p></div>');
         return;
       }
-      // Start with the daily ten; keep the full timed deck as a secondary action.
+      // The daily ten is the only student flashcard activity.
       _fcStart(lesson, 'quick');
-      document.getElementById('fc-full-deck').onclick = function () { _fcTimerStop(); _fcStart(lesson, 'full'); };
     });
   }
   window.openFlashcards = openFlashcards;
@@ -1167,8 +1164,8 @@
       if (!sameSurfaceRound) _fcSaveQuickProgress();
       fcoEl().classList.remove('timed');
       var resumedTitle = document.getElementById('fc-title');
-      if (resumedTitle) resumedTitle.textContent = '🃏 ' + cedLabel(topic).text + ' (resuming)';
-      if (_fc.correct >= _fc.need || _fc.idx >= _fc.deck.length) _fcFinish();
+      if (resumedTitle) resumedTitle.textContent = 'Flashcards — ' + cedLabel(topic).text;
+      if (_fc.idx >= _fc.deck.length) _fcFinish();
       else _fcRender();
       return;
     }
@@ -1245,7 +1242,7 @@
       return;
     }
     _fc.answered = false;
-    if (_fc.mode === 'quick') _fcSetProg((_fc.idx + 1) + ' / ' + _fc.deck.length + ' · ' + _fc.correct + '✓');
+    if (_fc.mode === 'quick') _fcSetProg('Question ' + (_fc.idx + 1) + ' of ' + _fc.deck.length);
     else _fcSetProg(_fc.round.order.length + ' left · ' + _fc.round.total + ' cards');
     var perm = [];
     for (var identityIdx = 0; identityIdx < card.choices.length; identityIdx++) {
@@ -1352,7 +1349,6 @@
       }]);
       _fc.seq += 1;
       _fcSaveQuickProgress();
-      if (_fc.correct >= _fc.need) { setTimeout(function () { _fcFinish(); }, 700); return; }   // early-stop caps at 80%
     } else {
       FC.recordOutcome(_fc.round, outcome, latency);
       if (!correct) _fcRememberMiss(card);
@@ -1474,50 +1470,27 @@
     var lesson = _fc.lesson, topic = String(lesson.id);
     var mode = _fc.mode;
     var misses = Array.isArray(_fc.misses) ? _fc.misses.slice() : [];
+    var correct = mode === 'quick' ? _fc.correct
+      : _fc.round.log.filter(function (answer) { return answer.correct; }).length;
+    var total = mode === 'quick' ? Math.min(_fc.idx + (_fc.answered ? 1 : 0), _fc.deck.length)
+      : _fc.round.log.length;
     if (window.gradebookClient && window.gradebookClient.recordFlashcardRun) {
-      var rawCorrect = mode === 'quick' ? _fc.correct
-        : _fc.round.log.filter(function (answer) { return answer.correct; }).length;
-      var rawTotal = mode === 'quick' ? Math.min(_fc.idx + (_fc.answered ? 1 : 0), _fc.deck.length)
-        : _fc.round.log.length;
-      window.gradebookClient.recordFlashcardRun(topic, mode, rawCorrect, rawTotal);
+      window.gradebookClient.recordFlashcardRun(topic, mode, correct, total);
     }
-    var score, passed;
-    if (_fc.mode === 'quick') { score = FC.quickScorePct(_fc.correct, _fc.deck.length); passed = FC.quickPassed(_fc.correct, _fc.deck.length); }
-    else { score = FC.fullScorePct(_fc.round); passed = score >= (FC.PASS_THRESHOLD * 100); }
-    // Quick records only on pass (Desk behavior); the full deck always records its score.
-    var doCommit = (_fc.mode === 'quick') ? passed : true;
-    if (_fc.mode === 'quick' && passed) _fcClearQuickProgress(topic);
+    _fcClearQuickProgress(topic);
     fcoEl().classList.remove('timed');
+    var retryDeck = mode === 'quick' ? _fc.deck.slice() : [];
     _fc = null;
-
-    function finishCommit() {
-      var committed = doCommit ? _fcCommit(topic, score) : { skipped: true };
-      Promise.resolve(committed).then(function (c) {
-        _fcRenderResult(lesson, score, passed, c || { ok:false, reason:'error' }, misses, mode);
-      }, function () {
-        _fcRenderResult(lesson, score, passed, { ok:false, reason:'error' }, misses, mode);
-      });
-    }
-    // Desk parity: refresh /grade FIRST so the best-wins floor reflects any higher
-    // score recorded on another device, THEN commit (a cold session can't downgrade).
-    Promise.resolve(loadGrade()).then(finishCommit, finishCommit);
+    _fcRenderResult(lesson, correct, total, misses, retryDeck);
   }
 
-  function _fcRenderResult(lesson, score, passed, committed, misses, mode) {
-    var note;
-    if (committed && committed.skipped && !passed && score < 80) note = 'Reach 80% for the Blooket half of Done — your grade wasn’t lowered.';
-    else if (committed && committed.skipped) note = 'Kept your best score — a higher one is already recorded.';
-    else if (committed && committed.queued) note = 'Saved offline — it’ll sync when you reconnect.';
-    else if (committed && committed.ok === false) note = (committed.reason === 'no-identity' || committed.reason === 'no-client') ? 'Sign in to save this to your grade.' : 'Couldn’t save right now — try again when online.';
-    else note = passed ? '🎯 Recorded — that’s the Blooket half of Done (the worksheet 60% is also needed).' : 'Score recorded. Reach 80% for the Blooket half of Done — the worksheet 60% is also needed.';
+  function _fcRenderResult(lesson, correct, total, misses, retryDeck) {
     _fcBodyHtml(
       '<div class="fc-result">' +
-        '<h2>' + (passed ? '🎉 Passed!' : 'Keep going') + '</h2>' +
-        '<div class="fc-score ' + (passed ? 'pass' : 'fail') + '">' + (Math.round(score * 10) / 10) + '%</div>' +
+        '<h2>You got ' + correct + ' of ' + total + '</h2>' +
         '<div id="fc-recap-slot"></div>' +
-        '<p>' + esc(note) + '</p>' +
-        '<button class="fc-mode quick" id="fc-again">↻ Try again</button>' +
-        '<button class="fc-mode full" id="fc-done">✓ Done</button>' +
+        '<button class="fc-mode quick" id="fc-again">Try again (new shuffle)</button>' +
+        '<button class="fc-mode" id="fc-done">Done</button>' +
       '</div>');
     var recapSlot = document.getElementById('fc-recap-slot');
     if (recapSlot) {
@@ -1528,7 +1501,7 @@
         heading.textContent = 'Review your misses';
         recap.appendChild(heading);
         var list = document.createElement('ul');
-        var worksheetUrl = lesson && lesson.worksheet ? lesson.worksheet : null;
+        var worksheetUrl = lesson && lesson.worksheet && !/check\.html(?:[?#]|$)/.test(lesson.worksheet) ? lesson.worksheet : null;
         for (var i = 0; i < misses.length; i++) {
           var item = document.createElement('li');
           var stem = document.createElement('div');
@@ -1558,8 +1531,13 @@
       recapSlot.parentNode.replaceChild(recap, recapSlot);
     }
     document.getElementById('fc-again').onclick = function () {
-      if (mode === 'quick' && !passed) _fcClearQuickProgress(String(lesson.id));
-      openFlashcards(lesson);
+      _fc = {
+        mode: 'quick', lesson: lesson, deck: FC.shuffle(retryDeck), idx: 0, correct: 0,
+        answered: false, timer: null, csv: _fcCsvBase(_fcCsvPath(lesson)),
+        roundId: _fcRoundId(), seq: 0, misses: []
+      };
+      _fcSaveQuickProgress();
+      _fcRender();
     };
     document.getElementById('fc-done').onclick = function () { closeFlashcards(); };
     _fcSetProg('');

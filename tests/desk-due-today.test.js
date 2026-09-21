@@ -30,7 +30,7 @@ describe('Desk due-today deck — static contract', () => {
     expect(panel).toMatch(/_fcFlag\('dueTodayDeck'\)/);
     expect(panel).toMatch(/_blDueSummary\.byCsv\[_blCsv\]/);
     expect(panel).toContain("' · ' + _blDue + ' due'");
-    expect(panel).toMatch(/_scoreChip\(_blScore, 80\) \+ _blDueText \+ '<span class="desk-quiz-done-slot"/);
+    expect(panel).toMatch(/_blDueText \+ '<span class="desk-quiz-done-slot"/);
   });
 
   it('shares one cached fold and invalidates it whenever the SRS log changes', () => {

@@ -86,20 +86,12 @@ describe('Desk quick flashcards — two-action stage flow', () => {
     }
   });
 
-  it('returns from the pass branch before the auto-advance assignment', () => {
+  it('advances every correct answer without a pass timer', () => {
     const body = fnBody(DESK, '_bfAnswer');
-    const passStart = body.indexOf('if (_bfState.score >= _passCount)');
-    const finishTimer = body.indexOf('_bfState.finishId = setTimeout', passStart);
-    const passReturn = body.indexOf('return;', finishTimer);
-    const advanceTimer = body.indexOf('_bfState.advanceId = setTimeout');
-    expect(passStart).toBeGreaterThan(-1);
-    expect(finishTimer).toBeGreaterThan(passStart);
-    expect(passReturn).toBeGreaterThan(finishTimer);
-    expect(advanceTimer).toBeGreaterThan(passReturn);
-    expect(body.slice(passStart, passReturn)).not.toMatch(/advanceId/);
-  });
-
-  it('has a header Close button without nesting it inside #bf-header', () => {
+    expect(body).not.toContain('_passCount');
+    expect(body).not.toContain('_bfState.finishId = setTimeout');
+    expect(body).toContain('_bfState.advanceId = setTimeout');
+  });  it('has a header Close button without nesting it inside #bf-header', () => {
     const headerStart = DESK.indexOf('<div class="bf-modal-header"');
     const modePickerStart = DESK.indexOf('<div id="bf-modepick"', headerStart);
     const header = DESK.slice(headerStart, modePickerStart);

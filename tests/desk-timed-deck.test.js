@@ -144,16 +144,12 @@ describe('Timed deck — UI wiring (static parse)', () => {
     expect(fnBody(DESK, '_ftStart')).toMatch(/bf-overlay['"]\)\.style\.display\s*=\s*['"]block['"]/);
   });
 
-  it('12: openBlooketFlashcards defaults to daily quick check and offers the full timed credit action', () => {
+  it('12: the daily draw is the only reachable mode', () => {
     const body = fnBody(DESK, 'openBlooketFlashcards');
-    expect(body).toMatch(/_ftStart\s*\(\s*btn\s*,\s*topicId\s*\)/);
-    expect(body).toMatch(/await _bfStartQuick\(btn, topicId\)/);
-    expect(body).toContain("getElementById('bf-full-deck')");
-    expect(fnBody(DESK, '_ftStart')).toMatch(/_bfCreditNote\(topicId\)/);
-    expect(fnBody(DESK, '_bfCreditNote')).toMatch(/Engagement credit[\s\S]*80%[\s\S]*100%[\s\S]*Your best so far/);
-  });
-
-  it('13: the timer ticks every second and times out the card at 0', () => {
+    expect(body).toContain('await _bfStartQuick(btn, topicId)');
+    expect(body).not.toContain('_ftStart');
+    expect(DESK).not.toContain('id="bf-full-deck"');
+  });  it('13: the timer ticks every second and times out the card at 0', () => {
     const start = fnBody(DESK, '_ftStartTimer');
     expect(start).toMatch(/BLOOKET_FULLDECK_SECONDS/);
     expect(start).toMatch(/setInterval/);
@@ -234,7 +230,7 @@ describe('Score color thresholds (executed) + one chip per row', () => {
   });
   it('23: NO duplicate chip — worksheet/quiz rows have no inline _scoreChip (only Blooket does)', () => {
     const body = fnBody(DESK, 'showResourcePanel');
-    expect(body).toMatch(/_scoreChip\(\s*_blScore\s*,\s*80\s*\)/);     // blooket inline chip
+    expect(body).not.toMatch(/_scoreChip\(\s*_blScore\s*,\s*80\s*\)/);     // blooket inline chip
     expect(body, 'worksheet must not also add an inline _scoreChip').not.toMatch(/_scoreChip\([^)]*_getCwsForTopic/);
     // the persistent _mkGradeChip block colors worksheet/quiz against their gates
     // 2026-09-11: the worksheet chip now DISPLAYS the Follow-Along grade (what Schoology shows)
