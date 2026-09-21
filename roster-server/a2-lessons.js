@@ -60,6 +60,7 @@ export function overlayLessons(lessons, overlay = {}) {
 export function lessonScheduleFromModel(lessons) {
   return Object.fromEntries(lessons.map(lesson => [lesson.key, {
     unit: lesson.topic, worksheetKey: lesson.key.split('-')[1], periods: lesson.sections || {},
+    assignedDates: lesson.assignedDates || {},
     items: [
       { itemId: `LC-${lesson.key}`, source: 'lesson-check' },
       ...lesson.tryIts.map(item => ({ itemId: `TI-${lesson.key}-${item.n}`, source: 'try-it' })),
@@ -92,6 +93,20 @@ export function validatePacing(lessons, changes, targets) {
 // One row per lesson prevents an editor from overwriting other lessons.
 export function createA2Store(client = createServiceClient()) {
   return {
+    async getAssignments() {
+      const { data, error } = await client.from('a2_tryit_assignments').select('lesson, section, assigned_date');
+      if (error) throw error;
+      const assignments = {};
+      for (const row of data) (assignments[row.lesson] ||= {})[row.section] = row.assigned_date;
+      return assignments;
+    },
+    async assignTryIts(lesson, section, date) {
+      // First collection starts the grace period; retries never move it forward.
+      const { error } = await client.from('a2_tryit_assignments').upsert(
+        { lesson, section, assigned_date: date }, { onConflict: 'lesson,section', ignoreDuplicates: true });
+      if (error) throw error;
+      return (await this.getAssignments())[lesson][section];
+    },
     async getPacing() {
       const { data, error } = await client.from('a2_lesson_pacing').select('lesson, sections, onenote_url');
       if (error) throw error;

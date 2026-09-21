@@ -78,3 +78,37 @@ impossible (registry keyed by item id).
 
 Order: R1 → R2 and R3 in parallel → review → R4 → R5. Nothing is visible to students until R4, so
 R1–R3 can ship early without risk. Deploys happen outside school hours.
+
+## Fix round 1 (after review of R0–R3)
+
+One agent. Owned paths: `roster-server/**`, the engine sources and generated bundle, `scripts/**`,
+`lib/**`, `teacher-tryits.html`, `deploy/**`, `tests/**`.
+
+H1 (major). Score rows are filtered by the UTC date prefix of `recorded_at`, so anything saved
+after 8 pm New York time is dated "tomorrow" and dropped until midnight (an evening re-score can
+even remove a counted score). Convert timestamps to the school date (America/New_York) before every
+date comparison, in the server engine and the generated client bundle.
+H2 (major). A delayed retry of an older save can overwrite a newer score. Every teacher save and
+import carries a monotonic client timestamp; the server stores it on the row and rejects (200,
+`superseded: true`, no write) any write older than what is stored. Retrying the same request is a
+no-op that returns the current row.
+H3 (major). After a rescore whose receipt update failed, a retry returns the new score with the old
+receipt. A receipt is valid only if it matches the row's current score and response; otherwise
+reissue it.
+H4 (major). `teacher-score-import.js` does not use the per-student serialization the teacher-entry
+route uses, so concurrent imports can leave a row with another write's receipt. Share the same
+lock and write score + receipt as one consistent step.
+H5 (major). Protection of work through 2026-09-18 is decided from the *current* lesson date, so
+re-pacing a lesson can turn protected September work into a penalty. Decide it from the dates
+saved on the row (`assignedDate` / `dueDate` at the time of scoring).
+H6 (minor). Saving an unchanged score must leave the row byte-identical (same `recorded_at`, same
+receipt); detect "no academic change" before writing.
+H7. Migration `0040_a2_teacher_entry.sql` stays (the `item_ledger.source` check constraint makes it
+unavoidable). Regenerate `deploy/supabase_a2_bootstrap.sql` with `node
+scripts/build-bootstrap-sql.mjs`, and add to `deploy/RUNBOOK.md` the one teacher step this deploy
+needs: run the bootstrap (or migration 0040) in the Supabase SQL editor **before** the new server
+code is used, plus how to verify it. The server must degrade safely if the migration has not been
+run yet: reads keep working and a write of a new source fails with a clear 503 message naming the
+migration, never a silent loss.
+H8. `tests/journeys/a2-check.journey.test.js` and `roster-server/tests/bootstrap-sql.test.js` fail
+now. After this round: root suite fails only the six inherited files; `roster-server` fully green.

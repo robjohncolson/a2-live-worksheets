@@ -11,7 +11,7 @@ import { signToken } from '../token.js';
 import { PGlite } from '@electric-sql/pglite';
 import { readFileSync } from 'node:fs';
 
-let app, rows, pacing, rescores, student, token, lesson, date, server, baseUrl;
+let app, rows, pacing, rescores, student, token, lesson, date, server, baseUrl, assignments, schedule;
 function request() {
   return Object.fromEntries(['get', 'put', 'post'].map(method => [method, path => {
     const options = { method: method.toUpperCase(), headers: {} };
@@ -31,7 +31,7 @@ beforeEach(async () => {
   const keys = generateKeyPairSync('ed25519');
   vi.stubEnv('RECEIPT_ISSUER_PRIVATE_KEY', keys.privateKey.export({ format: 'der', type: 'pkcs8' }).toString('base64'));
   initReceipts();
-  rows = []; pacing = {}; rescores = {}; date = '2026-09-13';
+  rows = []; assignments = {}; schedule = {}; pacing = {}; rescores = {}; date = '2026-09-13';
   student = { student_id: 'student-c', section: 'C', login_username: 'student-c', status: 'active' };
   token = signToken(student.student_id); lesson = loadA2Lessons()[0];
   const db = { findByStudentId: async id => ({ data: id === student.student_id ? student : null }),
@@ -41,14 +41,19 @@ beforeEach(async () => {
     insertLedgerRow: async row => {
       const saved = { ledger_id: String(rows.length + 1), student_id: row.studentId, source: row.source, item_id: row.itemId,
         score: row.score, response: row.response, attempt: row.attempt, recorded_at: date + 'T12:00:00.000Z' };
-      rows.push(saved); return { data: saved };
+      const index = rows.findIndex(item => item.student_id === row.studentId && item.source === row.source && item.item_id === row.itemId && item.attempt === row.attempt);
+      if (index < 0) rows.push(saved);
+      else { saved.ledger_id = rows[index].ledger_id; rows[index] = saved; }
+      return { data: saved };
     },
     updateLedgerReceipt: async (id, receipt) => { Object.assign(rows.find(row => row.ledger_id === id), { receipt_compact: receipt.receiptCompact }); return {}; },
   };
-  const store = { getPacing: async () => pacing, putPacing: async changes => Object.assign(pacing, changes),
+  const store = { getAssignments: async () => assignments,
+    assignTryIts: async (key, section, day) => ((assignments[key] ||= {})[section] ||= day),
+    getPacing: async () => pacing, putPacing: async changes => Object.assign(pacing, changes),
     getRescores: async () => rescores, requestRescore: async (_id, item) => { rescores[item] = date + 'T13:00:00.000Z'; } };
   app = express(); app.use(express.json());
-  mountA2(app, { db, ledgerDb, config: PHASE3_CONFIG, store, now: () => date });
+  mountA2(app, { db, ledgerDb, config: PHASE3_CONFIG, store, schedule, now: () => date });
   server = await new Promise(resolve => { const listener = app.listen(0, '127.0.0.1', () => resolve(listener)); });
   baseUrl = 'http://127.0.0.1:' + server.address().port;
 });
@@ -90,14 +95,14 @@ describe('A2 trusted writes and status', () => {
     date = '2026-09-14'; await write('try-it', 'TI-1-1-1', 0);
     const status = (await auth(request(app).get('/lesson-status/1-1'))).body;
     expect(status.tryIts.points).toBe(0); expect(status.tryIts.scores[0].rescoreRequested).toBe(false);
-    expect(rows).toHaveLength(2);
+    expect(rows).toHaveLength(1);
   });
-  it('topic retakes replace instead of best-wins and close Try-It rescoring', async () => {
+  it('topic retakes upsert and leave Try-It rescoring open', async () => {
     await write('topic-assessment', 'TA-T1', 100); await write('topic-assessment', 'TA-T1', 65);
-    expect(rows).toHaveLength(2);
+    expect(rows).toHaveLength(1); expect(rows[0].score).toBe(65);
     const grade = computeGrade(rows, {}, { ...PHASE3_CONFIG, useDistrictFormula: true }, { asOf: new Date('2026-09-14T16:00:00Z') });
     expect(grade.quarters.Q1.quarterGrade).toBeNull(); // Pre-Sep-19 work is Bonus only.
-    expect((await write('try-it', 'TI-1-1-1', 2)).status).toBe(409);
+    expect((await write('try-it', 'TI-1-1-1', 2)).status).toBe(200);
   });
   it('rejects invalid scores and writes after the original quarter closes', async () => {
     expect((await write('try-it', 'TI-1-1-1', 1.5)).status).toBe(400);
@@ -105,10 +110,10 @@ describe('A2 trusted writes and status', () => {
     await write('topic-assessment', 'TA-T1', 70); date = '2026-11-10';
     expect((await write('topic-assessment', 'TA-T1', 80)).status).toBe(409);
   });
-  it('serializes concurrent attempts and deduplicates retry requests', async () => {
+  it('serializes concurrent teacher upserts and deduplicates the latest retry', async () => {
     await Promise.all([write('try-it', 'TI-1-1-1', 1, 'a'), write('try-it', 'TI-1-1-1', 2, 'b')]);
-    expect(rows.map(row => row.attempt)).toEqual([1, 2]);
-    await write('try-it', 'TI-1-1-1', 1, 'a'); expect(rows).toHaveLength(2);
+    expect(rows.map(row => row.attempt)).toEqual([1]);
+    await write('try-it', 'TI-1-1-1', 2, 'b'); expect(rows).toHaveLength(1);
   });
 });
 describe('pacing and profile', () => {
@@ -152,3 +157,44 @@ it('provisions pacing and roster-cascading rescore storage with RLS', async () =
   } finally { await pg.close(); }
 });
 
+
+describe('R2 teacher entry', () => {
+  it('collects only the chosen section, preserves the first date and feeds provisional zeros', async () => {
+    date = '2026-09-21';
+    const collect = () => teacher(request().put('/teacher/tryits/collected')).send({ lesson: '1-1', section: 'C' });
+    expect((await auth(request().put('/teacher/tryits/collected')).send({ lesson: '1-1', section: 'C' })).status).toBe(403);
+    expect((await teacher(request().put('/teacher/tryits/collected')).send({ lesson: 'missing', section: 'C' })).status).toBe(400);
+    expect((await collect()).body.assignedDate).toBe(date);
+    date = '2026-09-28';
+    expect((await collect()).body.assignedDate).toBe('2026-09-21');
+    expect(schedule['1-1'].assignedDates).toEqual({ C: '2026-09-21' });
+    const { districtItemsFromLedger } = await import('../district-ledger.js');
+    const cfg = { ...PHASE3_CONFIG, useDistrictFormula: true, today: date };
+    const items = districtItemsFromLedger([], schedule, 'C', cfg);
+    expect(items.filter(item => item.source === 'try-it').every(item => item.provisional)).toBe(true);
+    expect(districtItemsFromLedger([], schedule, 'D', cfg)).toEqual([]);
+    expect(rows).toHaveLength(0);
+  });
+  it('accepts 10/8/0 and partial scores, auto-assigns, and keeps one item through re-saves', async () => {
+    date = '2026-09-21';
+    for (const score of [10, 8, 0, 7, 7]) expect((await write('try-it', 'TI-1-1-1', score)).status).toBe(200);
+    expect(rows).toHaveLength(1); expect(rows[0].score).toBe(7);
+    expect(rows[0].response.maxPoints).toBe(10);
+    expect(assignments['1-1']).toEqual({ C: date });
+    expect((await write('try-it', 'TI-1-1-1', 11)).status).toBe(400);
+    date = '2027-01-15';
+    expect((await write('try-it', 'TI-1-1-1', 10)).status).toBe(200);
+    expect(rows[0].response.assignedDate).toBe('2026-09-21');
+  });
+  it('validates and totals quiz questions server-side and overwrites one quiz item', async () => {
+    date = '2026-09-21';
+    const body = { studentId: student.student_id, source: 'quiz', itemId: 'QZ-1-1', score: 999, questionScores: [10, 8], requestId: 'quiz-a' };
+    expect((await auth(request().post('/ledger/record')).send(body)).status).toBe(403);
+    expect((await teacher(request().post('/ledger/record')).send(body)).body.score).toBe(18);
+    expect((await teacher(request().post('/ledger/record')).send({ ...body, questionScores: [8, 0], requestId: 'quiz-b' })).body.score).toBe(8);
+    expect(rows).toHaveLength(1); expect(rows[0].response.questionScores).toEqual([8, 0]);
+    for (const questionScores of [[10], [10, 11], [8, null], [1.5, 8]]) {
+      expect((await teacher(request().post('/ledger/record')).send({ ...body, questionScores, requestId: 'invalid' })).status).toBe(400);
+    }
+  });
+});

@@ -17,12 +17,12 @@ it('matches regeneration and safely bootstraps a populated isolated schema twice
     await pg.exec(sql);
     const tables = await pg.query("SELECT tablename FROM pg_tables WHERE schemaname = 'a2' ORDER BY tablename");
     expect(tables.rows.map(row => row.tablename)).toEqual([
-      '_bootstrap_migrations', 'a2_lesson_pacing', 'a2_rescore_requests', 'announcements',
+      '_bootstrap_migrations', 'a2_lesson_pacing', 'a2_rescore_requests', 'a2_tryit_assignments', 'announcements',
       'flashcard_state', 'item_ledger', 'lesson_unlock', 'nudges_log', 'quarter_grade_snapshot',
       'remediation_assignment', 'review_marks', 'roster', 'roster_alias', 'schoology_assignment',
       'schoology_grade_sync', 'schoology_sync_log', 'student_keys', 'submission_archive', 'trusted_issuers',
     ]);
-    expect((await pg.query('SELECT count(*)::int AS n FROM a2._bootstrap_migrations')).rows[0].n).toBe(24);
+    expect((await pg.query('SELECT count(*)::int AS n FROM a2._bootstrap_migrations')).rows[0].n).toBe(25);
     expect((await pg.query('SELECT score FROM a2.item_ledger')).rows[0].score).toBe('1');
     // A REST-like caller search path must not change RPC table resolution.
     await pg.exec('SET search_path TO pg_catalog');

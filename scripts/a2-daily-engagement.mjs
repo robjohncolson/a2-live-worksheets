@@ -32,7 +32,7 @@ export function resolveTeacherSecret(root, env = process.env) {
   return env.ROSTER_TEACHER_SECRET || null;
 }
 
-function resolveUrl(flag) {
+export function resolveUrl(flag) {
   if (flag) return flag;
   if (process.env.ROSTER_SERVICE_URL) return process.env.ROSTER_SERVICE_URL;
   const text = readOptional(resolve(REPO_ROOT, 'roster_config.js')) || '';
@@ -44,16 +44,32 @@ function parseArgs(argv) {
   const args = {};
   for (let i = 0; i < argv.length; i++) {
     const key = argv[i];
+    if (key === '--commit' || key === '--dry-run') { args[key.slice(2)] = true; continue; }
     if (!['--section', '--date', '--url', '--offline'].includes(key)) throw new Error('arguments');
     const value = argv[++i];
     if (!value || value.startsWith('--')) throw new Error('arguments');
     args[key.slice(2)] = value;
   }
+  if (args.commit && args['dry-run']) throw new Error('arguments');
   if (!['PeriodC', 'PeriodD', 'PeriodG'].includes(args.section)) throw new Error('section');
   if (!/^\d{4}-\d{2}-\d{2}$/.test(args.date || '')) throw new Error('date');
   const date = new Date(args.date + 'T12:00:00Z');
   if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== args.date) throw new Error('date');
   return args;
+}
+
+export async function importScores(body, url) {
+  const secret = resolveTeacherSecret(REPO_ROOT);
+  if (!secret) throw new Error('secret');
+  const response = await fetch(resolveUrl(url).replace(/\/+$/, '') + '/teacher/score-import', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'x-teacher-secret': secret },
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) throw new Error('response');
+  const result = await response.json();
+  if (!result.ok) throw new Error('response');
+  return result;
 }
 
 function validateCounts(correct, total) {
@@ -153,6 +169,7 @@ async function main() {
   }
 
   const rows = [csvRow(['realName', 'username', 'blooketPct', 'flashcardPct', 'combinedPct', 'points', 'note'])];
+  const scores = [];
   let scored = 0;
   for (const student of students) {
     const players = matched.get(student.studentId) || [];
@@ -162,6 +179,7 @@ async function main() {
     const b = student.best == null ? null : flashcardScore(student.best);
     const score = combine(a, b, config.cap);
     if (score != null) scored++;
+    scores.push({ studentId: student.studentId, score: dayPoints(score, config) });
     const note = duplicate ? 'Blooket duplicate; resolve source entries' : score == null ? 'absent' : '';
     rows.push(csvRow([student.realName, student.username, percent(a), percent(b), percent(score), dayPoints(score, config), note]));
   }
@@ -170,6 +188,10 @@ async function main() {
   writeFileSync(resolve(output, stem + '.csv'), rows.join('\r\n') + '\r\n', { mode: 0o600 });
   // Keep unresolved nicknames private, and preserve one CSV row per student.
   writeFileSync(resolve(output, stem + '.unmatched.json'), JSON.stringify({ unmatched }, null, 2) + '\n', { mode: 0o600 });
+  if (args.commit) {
+    if (unmatched.length) throw new Error('unresolved players');
+    await importScores({ source: 'daily-engagement', section: args.section, date: args.date, scores }, args.url);
+  }
   console.log(`scored: ${scored}, absent: ${students.length - scored}, unmatched: ${unmatched.length}`);
 }
 

@@ -991,9 +991,7 @@ export function mountLedger(app, {
     const { studentId } = req.params;
 
     // ── Auth resolution ────────────────────────────────────────────────────
-    const teacherSecret = process.env.ROSTER_TEACHER_SECRET;
-    const providedTeacher = req.headers['x-teacher-secret'];
-    const teacherOk = teacherSecret && providedTeacher === teacherSecret;
+    const teacherOk = await requireTeacher(req, rosterDb);
 
     // Extract token from Authorization: Bearer <t> OR ?token=<t>.
     let token = null;

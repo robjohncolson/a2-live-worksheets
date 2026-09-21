@@ -186,6 +186,7 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
   app.set('trust proxy', 1);
   initReceipts();
   mountReceipts(app, { db, requireTeacher });
+  app.post('/teacher/score-import', (req, res) => import('./teacher-score-import.js').then(({ importTeacherScores }) => importTeacherScores(req, res, { db, ledgerDb, config: gradeConfig })));
   // OFFLINE_GRADING_MESH_SPEC §0.1-0.3 — the student SUBMISSION trust set
   // (authenticated pubkey→sid binding + terminal revocation). 503 until
   // migration 0027 runs. Disjoint from the issuer trust set by construction.

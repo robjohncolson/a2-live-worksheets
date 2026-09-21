@@ -5,6 +5,7 @@ import { requireTeacher } from './teacher-auth.js';
 import { verifyToken } from './token.js';
 import { issueLedgerReceipt } from './receipts.js';
 import { todayInTz } from './lesson-grade.js';
+import { A2_FEEDERS } from './district-grade.js';
 import { bestA2Attempt } from './district-ledger.js';
 
 export function lessonStatus(lesson, rows, rescores = {}) {
@@ -30,7 +31,7 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
   const storage = () => liveStore ||= createA2Store();
   const locks = new Map();
   // The roster service runs as one instance. Serialize score writes per student,
-  // including retries, so each retained attempt has a distinct number.
+  // including retries, so teacher upserts and student attempts cannot race.
   async function serialized(studentId, action) {
     const prior = locks.get(studentId) || Promise.resolve();
     const next = prior.catch(() => {}).then(action);
@@ -58,7 +59,9 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
     return { ...data, student_id: studentId, isTeacher };
   }
   async function currentLessons() {
-    const current = overlayLessons(lessons, await storage().getPacing());
+    const assignments = await storage().getAssignments();
+    const current = overlayLessons(lessons, await storage().getPacing())
+      .map(lesson => ({ ...lesson, assignedDates: assignments[lesson.key] || {} }));
     if (schedule) Object.assign(schedule, lessonScheduleFromModel(current));
     return current;
   }
@@ -66,7 +69,7 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
   // pacing tool can date year-plan lessons that are not published yet.
   async function lessonsResponse() {
     const pacing = await storage().getPacing();
-    const current = overlayLessons(lessons, pacing);
+    const current = await currentLessons();
     if (schedule) Object.assign(schedule, lessonScheduleFromModel(current));
     return { ok: true, lessons: current, pacing };
   }
@@ -81,14 +84,22 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
     const date = source === 'topic-assessment' ? previous?.response?.dueDate || now()
       : lesson.sections?.[section] || String(previous?.recorded_at || now()).slice(0, 10);
     const quarter = Object.values(config.quarters).find(q => date >= q.start && date <= q.end);
+    if (source === 'try-it') return date; // Try-Its can always be attempted.
     if (!quarter || now() > quarter.end) fail(409, 'Quarter is closed');
-    if (source === 'try-it' && rows.some(row => row.source === 'topic-assessment' && row.item_id === `TA-${lesson.topicAssessmentKey}`)) fail(409, 'Topic assessment has closed Try-It rescoring');
     return date;
   }
   app.get('/lessons', route(async (_req, res) => res.json(await lessonsResponse())));
   app.get('/teacher/lessons', route(async (req, res) => {
     if (!await requireTeacher(req, db)) fail(403, 'Teacher sign-in required');
     res.json(await lessonsResponse());
+  }));
+  app.put('/teacher/tryits/collected', route(async (req, res) => {
+    if (!await requireTeacher(req, db)) fail(403, 'Teacher sign-in required');
+    const { lesson, section } = req.body || {};
+    if (!lessons.some(item => item.key === lesson) || !['C', 'D', 'G'].includes(section)) fail(400, 'Choose a published lesson and section');
+    const assignedDate = await storage().assignTryIts(lesson, section, now());
+    await currentLessons();
+    res.json({ ok: true, lesson, section, assignedDate });
   }));
   app.put('/teacher/lessons', route(async (req, res) => {
     if (!await requireTeacher(req, db)) fail(403, 'Teacher sign-in required');
@@ -135,8 +146,9 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
   app.post('/ledger/record', route(async (req, res, next) => {
     const body = req.body || {};
     const source = body.source;
-    if (!['try-it', 'lesson-check', 'topic-assessment'].includes(source)) return next();
+    if (!['try-it', 'lesson-check', 'topic-assessment', 'quiz'].includes(source)) return next();
     const model = lessons.find(lesson => source === 'topic-assessment' ? body.itemId === `TA-${lesson.topicAssessmentKey}`
+      : source === 'quiz' ? body.itemId === `QZ-${lesson.key}`
       : source === 'lesson-check' ? body.itemId === `LC-${lesson.key}` : lesson.tryIts.some(item => body.itemId === `TI-${lesson.key}-${item.n}`));
     if (!model) return next(); // Retained fixtures/older registered sources use their original validator.
     const student = await identity(req, source !== 'lesson-check');
@@ -172,10 +184,21 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
         result = globalThis.A2Answers.scoreLessonCheck(lesson.lessonCheck, body.answers);
         score = result.score;
       }
-      const maxPoints = source === 'try-it' ? 2 : source === 'lesson-check' ? 10 : 100;
+      const maxPoints = (config.a2Feeders || A2_FEEDERS)[source]?.maxPoints || 10;
+      if (source === 'quiz') {
+        if (!Array.isArray(body.questionScores) || body.questionScores.length !== 2
+          || body.questionScores.some(value => !Number.isInteger(value) || value < 0 || value > 10)) fail(400, 'Score both quiz questions from 0 to 10');
+        score = body.questionScores.reduce((sum, value) => sum + value, 0) / 20 * maxPoints;
+      }
       if (!Number.isFinite(score) || score < 0 || score > maxPoints || source === 'try-it' && !Number.isInteger(score)) fail(400, 'Invalid score');
-      const attempt = Math.max(0, ...existing.map(row => Number(row.attempt) || 1)) + 1;
-      const response = { requestId: body.requestId, lesson: lesson.key, maxPoints, dueDate,
+      const previousAttempt = Math.max(0, ...existing.map(row => Number(row.attempt) || 1));
+      const attempt = source === 'lesson-check' ? previousAttempt + 1 : Math.max(1, previousAttempt);
+      const section = String(student.section).replace(/^Period/i, '').toUpperCase();
+      const assignedDate = source === 'try-it'
+        ? await storage().assignTryIts(lesson.key, section, now())
+        : existing[0]?.response?.assignedDate || now();
+      const response = { requestId: body.requestId, lesson: lesson.key, maxPoints, dueDate, assignedDate,
+        ...(source === 'quiz' ? { questionScores: body.questionScores } : {}),
         ...(result ? { answers: body.answers, registryIds: lesson.lessonCheck.map(item => item.registryId) } : {}) };
       const saved = await ledgerDb.insertLedgerRow({ studentId: student.student_id, source, itemId: body.itemId,
         score, response, attempt, evidenceTier: 'practice', unit: `U${lesson.topic}`, topic: lesson.key });
