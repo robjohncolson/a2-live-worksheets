@@ -64,7 +64,7 @@ describe('Desk journey J1', () => {
       const doNow = harness.document.getElementById('donow-card');
       expect(doNow.style.display).toBe('flex');
       expect(doNow.className).toContain('donow-todo');
-      expect(harness.document.getElementById('donow-msg').textContent).toContain('1.1');
+      expect(harness.document.getElementById('donow-msg').textContent).toContain('1-1');
 
       const grades = harness.document.getElementById('donow-grades');
       expect(grades.style.display).toBe('flex');

@@ -16,7 +16,7 @@ const ROADMAP = JSON.parse(readFileSync(resolve(import.meta.dirname, '../fixture
 
 describe('Desk journey harness smoke', () => {
   it('boots the real Desk cleanly with Do Now and disk-backed roadmap tiles in under 3 seconds', async () => {
-    const harness = await bootDesk();
+    const harness = await bootDesk({ now: '2026-09-22T12:00:00Z' });
     try {
       expect(harness.consoleErrors, 'Desk called console.error during boot').toEqual([]);
       expect(harness.jsdomErrors, 'JSDOM reported an exception during boot').toEqual([]);

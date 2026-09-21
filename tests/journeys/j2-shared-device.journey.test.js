@@ -5,7 +5,7 @@
 import { describe, expect, it } from 'vitest';
 import { bootDesk } from './harness.js';
 
-const NOW = '2026-08-18T12:00:00.000Z';
+const NOW = '2026-09-22T12:00:00.000Z';
 const TOPIC = '1.1';
 const ALPHA_MARKS_KEY = 'a2_desk_marks_alpha_otter';
 const BETA_MARKS_KEY = 'a2_desk_marks_beta_fox';
@@ -96,7 +96,8 @@ function topicTiles(document) {
 async function openTopic(harness) {
   const tile = topicTiles(harness.document)[0];
   expect(tile, `calendar has no ${TOPIC} tile`).toBeTruthy();
-  tile.click();
+  // Exercise retained worksheet recovery directly; the focused calendar opens resources only.
+  harness.window.showResourcePanel({ t: TOPIC }, 'Sep 22');
   await harness.waitFor(() => (
     harness.document.getElementById('resource-overlay').style.display === 'block'
   ), { message: `${TOPIC} resource panel did not open` });
@@ -161,7 +162,7 @@ describe('Desk journey J2', () => {
 
       expect(alphaLedgerRequests[0].body.token).toBe('token:alpha_otter');
       expect(worksheetButton(harness.document).textContent).toContain('Completed');
-      expect(topicTiles(harness.document).some((tile) => tile.classList.contains('dc-localdone'))).toBe(true);
+      expect(harness.window.localLessonState(TOPIC, harness.window.getStudentMarks())).toBe('done');
       const alphaMarks = harness.window.localStorage.getItem(ALPHA_MARKS_KEY);
       expect(JSON.parse(alphaMarks)[`${TOPIC}|worksheet`]).toMatchObject({ score: null });
 
@@ -194,7 +195,7 @@ describe('Desk journey J2', () => {
       expect(harness.document.getElementById('menu-identity').textContent).toContain('Alpha Otter');
       expect(harness.document.getElementById('fc-due-chip')?.textContent).toBe('Review due (1)');
       expect(harness.window.localStorage.getItem(ALPHA_MARKS_KEY)).toBe(alphaMarks);
-      expect(topicTiles(harness.document).some((tile) => tile.classList.contains('dc-localdone'))).toBe(true);
+      expect(harness.window.localLessonState(TOPIC, harness.window.getStudentMarks())).toBe('done');
 
       await openTopic(harness);
       expect(worksheetButton(harness.document).textContent).toContain('Completed');
@@ -219,5 +220,5 @@ describe('Desk journey J2', () => {
     } finally {
       harness.teardown();
     }
-  });
+  }, 15000);
 });

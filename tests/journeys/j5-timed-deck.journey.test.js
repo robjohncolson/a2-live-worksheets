@@ -7,7 +7,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { bootDesk } from './harness.js';
 
-const NOW = '2026-08-18T12:00:00.000Z';
+const NOW = '2026-09-22T12:00:00.000Z';
 const TOPIC = '1.1';
 const CSV_FILE = 'u1_l1_blooket.csv';
 const INITIAL_BLOOKET = 50;

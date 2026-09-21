@@ -8,7 +8,7 @@ import { describe, expect, it } from 'vitest';
 import { createFakeRoster } from './fake-roster.js';
 import { bootDesk } from './harness.js';
 
-const NOW = '2026-08-18T12:00:00.000Z';
+const NOW = '2026-09-22T12:00:00.000Z';
 const TOPIC = '1.1';
 const CSV_FILE = 'u1_l1_blooket.csv';
 const KID = 'alpha_otter';

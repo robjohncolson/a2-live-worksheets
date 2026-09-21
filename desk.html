@@ -1481,6 +1481,20 @@
         }
 .cell-exam:focus-visible, .cell-exam:hover { outline-color: var(--white); }
         .a2-schoology-notice { display:none; }
+        .a2-focused .prog-area,
+        .a2-focused #legend-bar,
+        .a2-focused #menu-item-teacher,
+        .a2-focused [data-app="progress"],
+        .a2-focused #menu-gradecheckin-item,
+        .a2-focused #menu-grade-help,
+        .a2-focused #donow-grades,
+        .a2-focused #donow-helper,
+        .a2-focused #my-gradebook-overlay,
+        .a2-focused #day-grade-overlay { display:none !important; }
+        .a2-focused .a2-schoology-notice { display:block; }
+        .a2-focused .dc.a2-quiet { background:transparent; border:1px solid transparent; box-shadow:none; cursor:default; }
+        .a2-focused .dc.cell-today { border:3px solid #174da0; background:#eaf3ff; color:#102e57; box-shadow:0 0 0 2px #fff; font-weight:bold; }
+        .a2-focused .a2-student-line { margin-top:5px; font-size:12px; }
         .a2-hide-grades .a2-schoology-notice { display:block; }
         .a2-hide-grades [data-app="progress"],
         .a2-hide-grades #menu-gradecheckin-item,
@@ -2195,6 +2209,7 @@
 
 <script src="js/ced2026-crosswalk.js"></script>
 <script src="js/ced2026-labels.js"></script>
+<script src="js/a2-student-focus.js"></script>
 <script src="lib/qrcode.min.js"></script>
 
 
@@ -2208,6 +2223,16 @@ function a2SchoologyNotice() {
 }
 function a2UpdateGradeVisibility() {
   document.documentElement.classList.toggle('a2-hide-grades', a2GradesHidden());
+  if (typeof a2FocusedView === 'function') {
+    document.documentElement.classList.toggle('a2-focused', a2FocusedView());
+    try {
+      rCal(); renderDoNow();
+      if (a2FocusedView() && _lastResourcePanel && document.getElementById('resource-overlay').style.display === 'block') {
+        const panel = _lastResourcePanel;
+        _showA2ResourcePanel(panel.inf, panel.dateStr, window.A2Desk?.getLesson(panel.inf.t) || { title: panel.inf.n });
+      }
+    } catch (_) { /* schedule is still loading */ }
+  }
 }
 window.addEventListener('roster-session-changed', a2UpdateGradeVisibility);
 window.addEventListener('storage', a2UpdateGradeVisibility);
@@ -2365,6 +2390,7 @@ async function loadRegistry() {
   } catch (_) {
     _setRoadmapStatus('cached', saved ? 'Using the last saved roadmap.' : 'Lesson source is not available yet.');
   }
+  if (typeof window !== 'undefined' && !window.document) return; // Ignore a fetch finishing after the page closes.
   rCal(); rProg();
   maybeForcePasswordChange(); // TR2 — gate BEFORE any feature render
   renderDoNow();
@@ -5361,6 +5387,7 @@ function donowCellState(topic) {
 // DN3b — apply the 4-state overlay onto already-rendered cells. Pure class
 // toggles (no rCal rebuild → no flicker / scroll loss on poll/visibility).
 function paintDonowCells() {
+  if (typeof a2FocusedView === 'function' && a2FocusedView()) return;
   try {
     var today = +tdy();
     var cells = document.querySelectorAll('#cg .dc[data-topic]');
@@ -5477,6 +5504,7 @@ function _prevTopicInSequence(topic) {
 // derive the lock from _isLessonUnlocked with identical inputs, so after one
 // rebuild the next paint finds no mismatch. Idempotent + never throws.
 function paintLocalDoneCells() {
+  if (typeof a2FocusedView === 'function' && a2FocusedView()) return;
   try {
     var marks = (typeof getStudentMarks === 'function') ? getStudentMarks() : {};
     var signedIn = (typeof getStudentEmail === 'function') ? !!getStudentEmail() : false;
@@ -6703,6 +6731,9 @@ async function renderDoNow() {
   var _dnNextApp = 'progress';
 
   function show(text, mode) {
+    if (typeof a2FocusedView === 'function' && a2FocusedView() && !text.startsWith('Set your password')) {
+      text = a2FocusSentence();
+    }
     msg.textContent = text;
     card.className = 'donow-' + (mode || 'signin');
     card.style.display = 'flex';
@@ -7037,6 +7068,7 @@ function applyA2DayLog(log) {
     (byKey[entry.date + '|' + entry.section] ||= []).push(entry);
   }
   A2_DAY_LOG = { entries: log.entries, resources: log.resources || {}, byKey };
+  if (typeof a2FocusedView === 'function' && a2FocusedView()) renderDoNow();
   if (typeof rCal === 'function') { try { rCal(); } catch (_) {} }
   return true;
 }
@@ -7749,7 +7781,7 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
         row.appendChild(link); body.appendChild(row);
     });
     var logged = _log.entries.filter(function (e) { return e && e.lesson === key && (e.note || e.plan); });
-    if (logged.length) {
+    if (logged.length && !(typeof a2FocusedView === 'function' && a2FocusedView())) {
         var logList = document.createElement('ul'); logList.className = 'desk-day-log';
         logged.forEach(function (e) {
             var li = document.createElement('li');
@@ -7767,6 +7799,12 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
         link.href = skill.url; link.target = '_blank'; link.rel = 'noopener';
         row.appendChild(link); body.appendChild(row);
     });
+
+    if (typeof a2FocusedView === 'function' && a2FocusedView() && lesson && lesson.onenoteUrl) {
+        var notebook = document.createElement('a');
+        notebook.textContent = 'OneNote notebook'; notebook.href = lesson.onenoteUrl;
+        notebook.target = '_blank'; notebook.rel = 'noopener'; body.appendChild(notebook);
+    }
 
     // View-as uses only the viewed student's /grade cache.
     var lessonStatus = !viewing && !window.__WS_READ_ONLY__ && window.A2Desk && typeof window.A2Desk.getStatus === 'function'
@@ -7791,7 +7829,7 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
             flashcardPassed: !!lessonStatus.flashcardPassed
         }).slice(0, 1).join(' \u00b7 ');
     }
-    if (summary) {
+    if (summary && !(typeof a2FocusedView === 'function' && a2FocusedView())) {
         var status = document.createElement('p');
         status.className = 'a2-lesson-chip';
         status.textContent = summary;
@@ -13290,6 +13328,7 @@ function _gbDateStr(d) {
 }
 
 function renderA2LessonChips(tile, topic) {
+    if (typeof a2FocusedView === 'function' && a2FocusedView()) return;
     var viewing = window.__WS_READ_ONLY__ || (typeof _viewAsContext === 'function' && _viewAsContext());
     var status = !viewing && window.A2Desk && typeof window.A2Desk.getStatus === 'function'
         ? window.A2Desk.getStatus(topic) : null;
@@ -14647,6 +14686,7 @@ function rCal(){
                 CAL_FOCUS_WEEKS = Math.min(CAL_MAX_WEEKS, Math.max(CAL_MIN_WEEKS, _anchorWk - _nextUpWk + 1));
             }
         }
+        if (typeof a2FocusedView === 'function' && a2FocusedView()) { CAL_FOCUS_WEEKS = 2; _winAnchor = -1; }
         CAL_FOCUS_WEEKS = Math.min(CAL_FOCUS_WEEKS, _origLen);   // never exceed the array
         // In-school: anchor at today's week (or, when behind, the overdue next-up week).
         // Pre/post: clamp to either end. _calPageOffset (the nav arrows) shifts the window;
@@ -14684,6 +14724,9 @@ function rCal(){
             const en=dm[dw];if(!en){c.classList.add("cell-noclass");r.appendChild(c);continue;}
             const dt=new Date(en[0],en[1],en[2]),ds=MN[dt.getMonth()]+" "+dt.getDate();
             const inf=calendarEntry(en);
+            if (typeof a2FocusedView === 'function' && a2FocusedView()) {
+                a2PaintFocusedCell(c, dt, inf, ds, t); r.appendChild(c); continue;
+            }
             c.classList.add(cls(inf));c.innerHTML=htm(inf,ds);
             if(eq(dt,t)){
               c.classList.add("cell-today");

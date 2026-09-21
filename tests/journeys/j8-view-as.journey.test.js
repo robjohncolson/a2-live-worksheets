@@ -5,7 +5,7 @@
 import { describe, expect, it } from 'vitest';
 import { bootDesk, DESK_URL } from './harness.js';
 
-const NOW = '2026-08-18T12:00:00.000Z';
+const NOW = '2026-09-22T12:00:00.000Z';
 const TOPIC = '1.1';
 const VIEWED_STUDENT_ID = 'stu-alpha';
 const VIEWED_LOG_KEY = 'a2_srs_log_alpha_otter';
@@ -236,13 +236,7 @@ describe('Desk journey J8', () => {
       const worksheetDone = harness.document.querySelector(
         `#resource-body .worksheet-done-slot[data-topic="${TOPIC}"] button`,
       );
-      expect(worksheetDone, 'view-as worksheet row has no Done control').toBeTruthy();
-      expect(worksheetDone.disabled).toBe(false);
-      worksheetDone.click();
-      await harness.waitFor(() => viewAsToast(
-        harness.document,
-        'Read-only view: cannot mark progress for this student.',
-      ), { message: 'worksheet Done did not show its view-as read-only message' });
+      expect(worksheetDone, 'focused view has no worksheet scoring control').toBeNull();
 
       const flashcards = harness.document.querySelector(
         `#resource-body .desk-quiz-done-slot[data-topic="${TOPIC}"][data-artifact="blooket"] button`,
@@ -259,13 +253,8 @@ describe('Desk journey J8', () => {
       const importInput = harness.document.querySelector(
         '#resource-body input[type="file"][accept*="application/json"]',
       );
-      expect(exportButton, 'teacher passport escape hatch did not render').toBeTruthy();
-      expect(exportButton.disabled).toBe(true);
-      expect(exportButton.title).toContain('Unavailable while viewing as another student');
-      expect(importInput, 'teacher passport import control did not render').toBeTruthy();
-      expect(importInput.disabled).toBe(true);
-      exportButton.click();
-      importInput.click();
+      expect(exportButton, 'focused view has no passport controls').toBeUndefined();
+      expect(importInput).toBeNull();
 
       await harness.flush(6);
       await harness.waitFor(() => harness.roster.state.inflight === 0, {

@@ -37,6 +37,7 @@ it('labels Algebra 2 topics from the roadmap overlay instead of the inherited AP
 it('the Desk calendar fills each section from the two-week lesson windows and shows the unit strip', async () => {
   const desk = await bootDesk({ now: '2026-09-16T16:00:00Z' });
   try {
+    await desk.signIn('teacher_one', 'teacher-pass');
     await desk.window.A2Desk.refresh();
     const win = desk.window;
     // Pacing can finish after refresh resolves while the full suite is loading.

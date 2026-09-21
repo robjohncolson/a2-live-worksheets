@@ -42,9 +42,11 @@
     return lessonStatuses.get(String(topic).replace('.', '-'));
   }
   function paintDueLine() {
+    if (!window.document) return;
     const message = document.getElementById('donow-msg');
     if (!message) return;
     message.querySelector('[data-a2-due]')?.remove();
+    if (typeof a2FocusedView === 'function' && a2FocusedView()) return;
     const identity = window.rosterClient?.current();
     if (!identity || readonly() || identity.mustChangePassword) return;
     if (document.getElementById('donow-card')?.classList.contains('donow-signin')) return;
@@ -117,6 +119,7 @@
       if (gradeHost) {
         gradeHost.textContent = '';
         lessons.forEach((lesson, i) => {
+          if (typeof a2FocusedView === 'function' && a2FocusedView()) return;
           if (!statuses[i]) return;
           node('h3', lesson.key + ' Try-Its', gradeHost);
           scores(gradeHost, statuses[i]);

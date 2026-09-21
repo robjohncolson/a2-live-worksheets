@@ -5,7 +5,7 @@
 import { describe, expect, it } from 'vitest';
 import { bootDesk } from './harness.js';
 
-const NOW = '2026-08-18T12:00:00.000Z';
+const NOW = '2026-09-22T12:00:00.000Z';
 const TOPIC = '1.1';
 const EXACT_LEDGER_PAYLOAD = {
   source: 'worksheet',
@@ -64,7 +64,8 @@ function topicTiles(document) {
 async function openWorksheet(harness) {
   const tile = topicTiles(harness.document)[0];
   expect(tile, `calendar has no ${TOPIC} tile`).toBeTruthy();
-  tile.click();
+  // Exercise retained worksheet recovery directly; the focused calendar opens resources only.
+  harness.window.showResourcePanel({ t: TOPIC }, 'Sep 22');
   await harness.waitFor(() => (
     harness.document.getElementById('resource-overlay').style.display === 'block'
   ), { message: `${TOPIC} resource panel did not open` });
@@ -111,7 +112,7 @@ describe('Desk journey J3', () => {
       await settleSignIn(harness);
 
       const tile = topicTiles(harness.document)[0];
-      expect(tile.classList.contains('dc-localdone')).toBe(true);
+      expect(harness.window.localLessonState(TOPIC, harness.window.getStudentMarks())).toBe('done');
       const done = await openWorksheet(harness);
       expect(done).toBeTruthy();
       expect(done.disabled, 'Cws=60 must clear the real worksheet gate').toBe(false);
@@ -150,7 +151,8 @@ describe('Desk journey J3', () => {
 
       const updatedTiles = topicTiles(harness.document);
       expect(updatedTiles.length).toBeGreaterThan(0);
-      expect(updatedTiles.every((updated) => updated.classList.contains('dc-localdone'))).toBe(true);
+      expect(harness.window.localLessonState(TOPIC, harness.window.getStudentMarks())).toBe('done');
+      expect(updatedTiles.every((updated) => !updated.classList.contains('dc-localdone'))).toBe(true);
       expect(harness.roster.state.requests.filter((request) => (
         request.method === 'POST' && request.path === '/ledger/record'
       ))).toHaveLength(1);

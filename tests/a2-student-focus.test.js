@@ -1,0 +1,85 @@
+import { it, expect, vi } from 'vitest';
+import { bootDesk } from './journeys/harness.js';
+
+function cell(win, iso) {
+  return [...win.document.querySelectorAll('#cg .dc')].find(node =>
+    node.dataset.dts && win._a2IsoDate(new win.Date(+node.dataset.dts)) === iso);
+}
+
+function visibleText(win) {
+  const walker = win.document.createTreeWalker(win.document.body, win.NodeFilter.SHOW_TEXT);
+  const visible = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (!/Try-?Its?|scored|Lesson check|On pace|Landed/.test(node.textContent)) continue;
+    let parent = node.parentElement, hidden = false;
+    while (parent) {
+      if (['SCRIPT', 'STYLE'].includes(parent.tagName) || parent.hidden) { hidden = true; break; }
+      const style = win.getComputedStyle(parent);
+      if (style.display === 'none' || style.visibility === 'hidden') { hidden = true; break; }
+      parent = parent.parentElement;
+    }
+    if (!hidden) visible.push(node.textContent);
+  }
+  return visible.join(' ');
+}
+
+it.each(['signed-out', 'student'])('%s sees only the focused student Desk', async role => {
+  const desk = await bootDesk({ now: '2026-09-22T16:00:00Z' });
+  const win = desk.window;
+  try {
+    if (role === 'student') await desk.signIn('alpha_otter');
+    await win.A2Desk.refresh();
+    await vi.waitFor(() => expect(win.eval('A2_DAY_LOG.entries.length')).toBeGreaterThan(0));
+    win.setP('C'); win.calToday(); await win.renderDoNow();
+    expect(win.a2FocusedView()).toBe(true);
+    expect(win.A2_SHOW_TRYIT_GRADES).toBe(false);
+    expect(cell(win, '2026-09-21').textContent).toBe('');
+    expect(cell(win, '2026-09-21').onmouseenter).toBeNull();
+    expect(cell(win, '2026-09-21').hasAttribute('title')).toBe(false);
+    expect(cell(win, '2026-09-22').textContent).toBe('1-1 · Key Features of FunctionsExample 5, Try It 5, then Example 4');
+    expect(cell(win, '2026-09-22').classList.contains('cell-today')).toBe(true);
+    expect(cell(win, '2026-09-23').textContent).toBe('');
+    expect(cell(win, '2026-09-28').textContent).toBe('1-2 · Transformations of Functions');
+    expect(win.document.getElementById('donow-msg').textContent).toBe('Today: Example 5, Try It 5, then Example 4');
+    expect(win.getComputedStyle(win.document.querySelector('.prog-area')).display).toBe('none');
+    cell(win, '2026-09-22').click();
+    expect(win.document.getElementById('resource-body').textContent).toContain('Open Flashcards');
+    expect(win.document.querySelector('#resource-body .desk-day-log')).toBeNull();
+    expect(win.document.querySelector('#resource-body .a2-lesson-chip')).toBeNull();
+    expect(visibleText(win)).not.toMatch(/Try-?Its?|scored|Lesson check|On pace|Landed/);
+    win.eval('_calPageOffset = 2'); win.rCal();
+    expect(cell(win, '2026-10-05').textContent).toBe('');
+    win.eval('_calPageOffset = 7'); win.rCal();
+    expect(cell(win, '2026-11-09').textContent).toBe('Topic 1 Assessment');
+    expect(cell(win, '2026-11-10').textContent).toBe('');
+  } finally { win.close(); }
+}, 15000);
+
+it('uses the next meeting on a non-meeting day', async () => {
+  const desk = await bootDesk({ now: '2026-09-23T16:00:00Z' });
+  try {
+    await desk.window.A2Desk.refresh(); desk.window.setP('C');
+    await desk.window.renderDoNow();
+    expect(desk.document.getElementById('donow-msg').textContent).toBe('Next class Thursday: 1-1 Quiz');
+  } finally { desk.window.close(); }
+});
+
+it('keeps teacher details and focuses the page after sign-out', async () => {
+  const desk = await bootDesk({ now: '2026-09-21T16:00:00Z' });
+  const win = desk.window;
+  try {
+    await desk.signIn('teacher_one', 'teacher-pass');
+    await win.A2Desk.refresh();
+    await vi.waitFor(() => expect(win.eval('A2_DAY_LOG.entries.length')).toBeGreaterThan(0));
+    win.setP('C'); win.calToday();
+    expect(win.a2FocusedView()).toBe(false);
+    expect(cell(win, '2026-09-21').getAttribute('aria-label')).toContain('Landed: Blooket opener');
+    expect(cell(win, '2026-09-21').onmouseenter).toBeTypeOf('function');
+    expect(win.getComputedStyle(win.document.querySelector('.prog-area')).display).not.toBe('none');
+    win.localStorage.removeItem('a2_roster.v1');
+    win.dispatchEvent(new win.Event('roster-session-changed'));
+    expect(win.a2FocusedView()).toBe(true);
+    expect(win.document.documentElement.classList.contains('a2-focused')).toBe(true);
+  } finally { win.close(); }
+}, 15000);

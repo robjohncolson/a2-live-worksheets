@@ -26,6 +26,8 @@ const CORE = [
   'a2-announcement.css',
   'grade-engine.bundle.js',
   'a2-desk.js',
+  'js/a2-student-focus.js',
+  'content/a2/day-log.json',
   'lib/a2-answers.js',
   'lib/a2-year-plan.js',
   'teacher-tryits.html',

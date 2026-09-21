@@ -49,7 +49,7 @@
       "date": "2026-09-21",
       "section": "C",
       "lesson": "1-1",
-      "note": "Blooket opener (number lines and interval notation). Web Jam: Estimate average rate of change from a graph (Algebra 1, W42); hard going, best scores 4 of 4. Did not reach Example 5. IXL on average rate of change assigned as homework, due Wed Sep 23; a SmartScore of 80 counts as complete."
+      "note": "Blooket opener (number lines and interval notation). Web Jam: Estimate average rate of change from a graph (Algebra 1, W42); hard going, best scores 4 of 4. Did not reach Example 5. No homework."
     },
     {
       "date": "2026-09-21",
@@ -61,19 +61,57 @@
       "date": "2026-09-22",
       "section": "C",
       "lesson": "1-1",
-      "plan": "Blooket opener, then Example 5 A and B together, class time for Try It 5 (students are responsible for it by Thursday's quiz), then Example 4 on paper with the Concept Summary table."
+      "plan": "Maybe no Blooket (pushing for Thursday's quiz). Example 5 A and B together, then assign Try It 5 (responsible by the quiz). Then a Web Jam on the skill for Example 4: Characteristics of quadratic functions, graphs (A2).",
+      "student": "Example 5, Try It 5, then a Web Jam for Example 4"
     },
     {
       "date": "2026-09-22",
       "section": "G",
       "lesson": "1-1",
-      "plan": "Blooket opener. Web Jam: Estimate average rate of change from a graph (W42), the same skill C and D ran Monday. Then Example 5 A and B together and class time for Try It 5. PS2 homework is due tonight; 80 counts as complete."
+      "plan": "Blooket opener. Web Jam: Estimate average rate of change from a graph (W42), the same skill C and D ran Monday. Then Example 5 A and B together and class time for Try It 5. PS2 homework is due tonight; 80 counts as complete.",
+      "student": "IXL Web Jam, then Example 5 and Try It 5"
     },
     {
       "date": "2026-09-23",
       "section": "D",
       "lesson": "1-1",
-      "plan": "Blooket opener, class time for Try It 5, then Example 4 on paper. Group Jam: Interpret points on the graph of a linear function (grade 8)."
+      "plan": "Blooket opener, class time for Try It 5, then Example 4 on paper. Group Jam: Interpret points on the graph of a linear function (grade 8).",
+      "student": "Try It 5, then Example 4"
+    },
+    {
+      "date": "2026-09-24",
+      "section": "C",
+      "lesson": "1-1",
+      "plan": "1-1 Quiz",
+      "student": "1-1 Quiz"
+    },
+    {
+      "date": "2026-09-25",
+      "section": "D",
+      "lesson": "1-1",
+      "plan": "1-1 Quiz",
+      "student": "1-1 Quiz"
+    },
+    {
+      "date": "2026-09-23",
+      "section": "G",
+      "lesson": "1-1",
+      "plan": "Example 4",
+      "student": "Example 4"
+    },
+    {
+      "date": "2026-09-24",
+      "section": "G",
+      "lesson": "1-1",
+      "plan": "Quiz review",
+      "student": "Quiz review"
+    },
+    {
+      "date": "2026-09-25",
+      "section": "G",
+      "lesson": "1-1",
+      "plan": "1-1 Quiz",
+      "student": "1-1 Quiz"
     }
   ]
 }
