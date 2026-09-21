@@ -281,6 +281,7 @@
   // call from a drain without re-queuing). Returns { ok, reason?, ledgerId? }.
   /** @param {RecordOpts} opts @returns {Promise<RecordResult>} */
   async function _postRecord(opts) {
+    if (opts.kind === 'flashcard-run') return _postFlashcardRun(opts.response, opts.studentId);
     try {
       var token = _token();
       if (!token) return { ok: false, reason: 'no-identity' };
@@ -343,6 +344,22 @@
       // fetch rejection / JSON error → treat as offline-ish (queueable)
       return { ok: false, reason: 'network' };
     }
+  }
+
+  async function _postFlashcardRun(run, ownerId) {
+    try {
+      if (window.__WS_READ_ONLY__) return { ok: false, reason: 'read-only' };
+      var token = _token();
+      if (!token) return { ok: false, reason: 'no-identity' };
+      if (!ownerId || ownerId !== _studentId()) return { ok: false, reason: 'no-identity' };
+      var response = await fetch(window.ROSTER_SERVICE_URL.replace(/\/$/, '') + '/flashcards/daily', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+        body: JSON.stringify(Object.assign({}, run, { studentId: ownerId }))
+      });
+      if (response.ok) return { ok: true };
+      return { ok: false, status: response.status,
+        reason: response.status === 401 || response.status === 403 ? 'auth' : 'server' };
+    } catch (_) { return { ok: false, reason: 'network' }; }
   }
 
   // Serialize network sends per source/item/attempt. Sequences are still
@@ -412,6 +429,40 @@
   }
 
   window.gradebookClient = {
+
+    // Raw daily accuracy is separate from the existing capped completion item.
+    recordFlashcardRun: async function (lesson, mode, correct, total) {
+      try {
+        if (window.__WS_READ_ONLY__) return { ok: false, reason: 'read-only' };
+        var token = _token();
+        var ownerId = _studentId();
+        if (!token || !ownerId) return { ok: false, reason: 'no-identity' };
+        if (!total) return { ok: false, reason: 'bad-args' };
+        var finishedAt = new Date();
+        var parts = new Intl.DateTimeFormat('en-CA', {
+          timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit'
+        }).formatToParts(finishedAt);
+        var date = ['year', 'month', 'day'].map(function (type) {
+          return parts.find(function (part) { return part.type === type; }).value;
+        }).join('-');
+        // Each run has its own queue key: a later lower score must not erase it.
+        var opts = _stampRecord({ source: 'flashcard-run', kind: 'flashcard-run', studentId: ownerId,
+          itemId: 'daily-' + finishedAt.getTime() + '-' + Math.random().toString(36).slice(2),
+          response: { lesson: String(lesson).replace('.', '-'), date: date,
+            timestamp: finishedAt.getTime(), mode: mode, correct: correct, total: total }
+        });
+        var queued = await _enqueueOffline(opts, ownerId);
+        if (!_canDrainOnline()) return { ok: queued, queued: queued };
+        if (_studentId() !== ownerId || _token() !== token) return { ok: false, queued: queued };
+        var result = await _sendRecord(opts);
+        if (result.ok) await _supersedeOffline(Object.assign({}, opts, { studentId: ownerId }));
+        else {
+          if (result.reason === 'auth') _lastAuthFailToken = token;
+          _scheduleOfflineDrain(30000);
+        }
+        return result.ok ? { ok: true } : { ok: false, reason: result.reason, queued: queued };
+      } catch (_) { return { ok: false, reason: 'network' }; }
+    },
 
     // Fire-and-forget ledger write.
     // NEVER throws. NEVER rejects. NEVER blocks the caller.

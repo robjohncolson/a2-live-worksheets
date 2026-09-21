@@ -10588,6 +10588,10 @@ async function _bfFinish() {
     if (_bfState.finished) return;
     _bfState.finished = true;
     var canScore = (typeof _mayScore !== 'function') || _mayScore();
+    if (canScore && typeof window !== 'undefined' && window.gradebookClient && window.gradebookClient.recordFlashcardRun) {
+        window.gradebookClient.recordFlashcardRun(_bfState.topic, 'quick', _bfState.score,
+            Math.min(_bfState.idx + (_bfState.answered ? 1 : 0), _bfState.deck.length));
+    }
     var pct = _bfState.deck.length > 0 ? (_bfState.score / _bfState.deck.length) : 0;
     var passed = pct >= BLOOKET_PASS_THRESHOLD;
     if (!passed) _bfState.lastFinishAt = Date.now();
@@ -11193,6 +11197,10 @@ async function _ftFinish() {
     _ftLogToStore(topic, round.log);   // per-card log (SRS/BKT foundation)
     _ftRenderRecap(round, score);      // "review your misses"
     if (typeof _mayScore === 'function' && !_mayScore()) return;
+    if (typeof window !== 'undefined' && window.gradebookClient && window.gradebookClient.recordFlashcardRun) {
+        window.gradebookClient.recordFlashcardRun(topic, 'full',
+            round.log.filter(function (answer) { return answer.correct; }).length, round.log.length);
+    }
     await _blooketCommit(btn, topic, score);   // best-wins + grade refresh
 }
 
@@ -15148,7 +15156,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-21-pvhq';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-21-ot9j';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

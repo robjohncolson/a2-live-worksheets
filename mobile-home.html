@@ -1474,6 +1474,13 @@
     var lesson = _fc.lesson, topic = String(lesson.id);
     var mode = _fc.mode;
     var misses = Array.isArray(_fc.misses) ? _fc.misses.slice() : [];
+    if (window.gradebookClient && window.gradebookClient.recordFlashcardRun) {
+      var rawCorrect = mode === 'quick' ? _fc.correct
+        : _fc.round.log.filter(function (answer) { return answer.correct; }).length;
+      var rawTotal = mode === 'quick' ? Math.min(_fc.idx + (_fc.answered ? 1 : 0), _fc.deck.length)
+        : _fc.round.log.length;
+      window.gradebookClient.recordFlashcardRun(topic, mode, rawCorrect, rawTotal);
+    }
     var score, passed;
     if (_fc.mode === 'quick') { score = FC.quickScorePct(_fc.correct, _fc.deck.length); passed = FC.quickPassed(_fc.correct, _fc.deck.length); }
     else { score = FC.fullScorePct(_fc.round); passed = score >= (FC.PASS_THRESHOLD * 100); }

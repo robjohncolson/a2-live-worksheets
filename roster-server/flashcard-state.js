@@ -1,6 +1,7 @@
 // Practice state is private to the roster identity and is never grade evidence.
 import { verifyToken } from './token.js';
 import { createServiceClient } from './ledger-db.js';
+import { mountFlashcardDaily } from './flashcard-daily.js';
 
 export const FLASHCARD_STATE_MAX_BYTES = 262144;
 
@@ -45,6 +46,8 @@ export function mountFlashcardState(app, { db, store }) {
       const { data, error } = await db.findByStudentId(studentId);
       if (error) throw error;
       if (!data) return res.status(401).json({ ok: false, error: 'forbidden' });
+      if (req.method === 'POST' && data.status === 'archived') return res.status(401).json({ ok: false, error: 'forbidden' });
+      if (req.method === 'POST' && data.must_change_password) return res.status(403).json({ ok: false, error: 'password change required' });
       req.flashcardStudentId = studentId;
       next();
     } catch (_) {
@@ -76,11 +79,20 @@ export function mountFlashcardState(app, { db, store }) {
       return res.status(413).json({ ok: false, error: 'state too large' });
     }
     try {
-      const row = await getStore().put(req.flashcardStudentId, state, baseUpdatedAt);
+      const old = await getStore().get(req.flashcardStudentId);
+      if ((old?.updated_at || null) !== baseUpdatedAt) return res.status(409).json({ ok: false, error: 'stale' });
+      const preserved = { ...state };
+      delete preserved.dailyRuns;
+      if (old?.state?.dailyRuns) preserved.dailyRuns = old.state.dailyRuns;
+      if (Buffer.byteLength(JSON.stringify(preserved), 'utf8') > FLASHCARD_STATE_MAX_BYTES) {
+        return res.status(413).json({ ok: false, error: 'state too large' });
+      }
+      const row = await getStore().put(req.flashcardStudentId, preserved, baseUpdatedAt);
       if (!row) return res.status(409).json({ ok: false, error: 'stale' });
       return res.json({ ok: true, updatedAt: row.updated_at });
     } catch (_) {
       return res.status(503).json({ ok: false, error: 'flashcard state unavailable' });
     }
   });
+  mountFlashcardDaily(app, { db, getStore, studentIdentity, maxStateBytes: FLASHCARD_STATE_MAX_BYTES });
 }

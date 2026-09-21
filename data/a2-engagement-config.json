@@ -1,0 +1,7 @@
+{
+  "pointsPerDay": 10,
+  "accuracyWeight": 0.7,
+  "participationWeight": 0.3,
+  "questionsForFullParticipation": 20,
+  "cap": 1
+}
