@@ -12,12 +12,15 @@ import { PGlite } from '@electric-sql/pglite';
 import { readFileSync } from 'node:fs';
 
 let app, rows, pacing, rescores, student, token, lesson, date, server, baseUrl, assignments, schedule;
+let clientClock = 0;
 function request() {
   return Object.fromEntries(['get', 'put', 'post'].map(method => [method, path => {
     const options = { method: method.toUpperCase(), headers: {} };
     const chain = {
       set(key, value) { options.headers[key] = value; return chain; },
-      send(body) { options.body = JSON.stringify(body); options.headers['Content-Type'] = 'application/json'; return chain; },
+      send(body) {
+        if (['try-it', 'quiz', 'topic-assessment'].includes(body.source) && body.ts == null) body = { ...body, ts: ++clientClock };
+        options.body = JSON.stringify(body); options.headers['Content-Type'] = 'application/json'; return chain; },
       then(resolve, reject) {
         return fetch(baseUrl + path, options).then(async response => ({ status: response.status, body: await response.json() })).then(resolve, reject);
       },
@@ -40,7 +43,7 @@ beforeEach(async () => {
     getLedgerByStudent: async () => ({ data: rows }),
     insertLedgerRow: async row => {
       const saved = { ledger_id: String(rows.length + 1), student_id: row.studentId, source: row.source, item_id: row.itemId,
-        score: row.score, response: row.response, attempt: row.attempt, recorded_at: date + 'T12:00:00.000Z' };
+        score: row.score, response: row.response, attempt: row.attempt, recorded_at: date + 'T12:00:00.000Z', receipt_id: row.receiptId, receipt_compact: row.receiptCompact };
       const index = rows.findIndex(item => item.student_id === row.studentId && item.source === row.source && item.item_id === row.itemId && item.attempt === row.attempt);
       if (index < 0) rows.push(saved);
       else { saved.ledger_id = rows[index].ledger_id; rows[index] = saved; }
@@ -197,4 +200,19 @@ describe('R2 teacher entry', () => {
       expect((await teacher(request().post('/ledger/record')).send({ ...body, questionScores, requestId: 'invalid' })).status).toBe(400);
     }
   });
+});
+
+
+it('returns the newer score on a delayed teacher retry even after the quarter closes', async () => {
+  const body = { studentId: student.student_id, source: 'topic-assessment', itemId: 'TA-T1' };
+  await teacher(request().post('/ledger/record')).send({ ...body, score: 80, ts: 100, requestId: 'older' });
+  await teacher(request().post('/ledger/record')).send({ ...body, score: 90, ts: 200, requestId: 'newer' });
+  const before = JSON.stringify(rows);
+  date = '2027-01-15';
+  const stale = await teacher(request().post('/ledger/record')).send({ ...body, score: 80, ts: 100, requestId: 'older' });
+  expect(stale).toMatchObject({ status: 200, body: { superseded: true, score: 90 } });
+  expect(JSON.stringify(rows)).toBe(before);
+  const retry = await teacher(request().post('/ledger/record')).send({ ...body, score: 90, ts: 200, requestId: 'newer' });
+  expect(retry).toMatchObject({ status: 200, body: { duplicate: true, score: 90 } });
+  expect(JSON.stringify(rows)).toBe(before);
 });

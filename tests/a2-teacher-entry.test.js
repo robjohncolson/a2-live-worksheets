@@ -33,6 +33,8 @@ it('offers one-tap 10/8/0, all other integer scores, stable item IDs and section
     await vi.waitFor(() => expect(writes.at(-1)?.score).toBe(score));
   }
   expect(writes.every(row => row.studentId === 'synthetic-c' && row.itemId === 'TI-1-1-1' && row.attempt === 1 && row.maxPoints === 10)).toBe(true);
+  expect(writes.map(row => row.ts)).toEqual([...writes.map(row => row.ts)].sort((a, b) => a - b));
+  expect(new Set(writes.map(row => row.ts)).size).toBe(writes.length);
   const select = doc.querySelector('.score-controls select');
   expect([...select.options].map(option => option.value)).toEqual(['', '1', '2', '3', '4', '5', '6', '7', '9']);
   select.value = '7'; select.dispatchEvent(new win.Event('change'));

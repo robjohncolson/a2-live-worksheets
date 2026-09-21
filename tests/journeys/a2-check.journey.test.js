@@ -18,7 +18,7 @@ it('C student signs in, completes 4/6 then 6/6, retains the best check receipt w
     section: 'C', status: 'active', password_hash: bcrypt.hashSync('1234', 4), must_change_password: false };
   const db = { findByUsername: async () => ({ data: rosterRow }), findByStudentId: async () => ({ data: rosterRow }),
     getRoleByStudentId: async () => 'student', getSpriteHueByStudentId: async () => null };
-  const store = { getPacing: async () => ({ '1-1': { sections: { C: '2026-09-10' } } }), getRescores: async () => ({}) };
+  const store = { getAssignments: async () => ({}), getPacing: async () => ({ '1-1': { sections: { C: '2026-09-10' } } }), getRescores: async () => ({}) };
   const ledgerDb = { a2Store: store, getLedgerByStudent: async () => ({ data: rows }),
     insertLedgerRow: async row => { const saved = { ledger_id: String(rows.length + 1), student_id: row.studentId, item_id: row.itemId,
       source: row.source, score: row.score, response: row.response, attempt: row.attempt, recorded_at: '2026-09-13T12:00:00Z' }; rows.push(saved); return { data: saved }; } };

@@ -1,5 +1,27 @@
 # Algebra 2 deployment
 
+Before using the grade-rebuild server, run the regenerated
+`deploy/supabase_a2_bootstrap.sql` in the Supabase SQL Editor. Alternatively, on an
+already provisioned A2 schema, run `SET search_path TO a2;` followed by migration
+`roster-server/migrations/0040_a2_teacher_entry.sql` and
+`NOTIFY pgrst, 'reload schema';`. Do this before deploying the new server code,
+outside school hours. No student scores need to be re-entered.
+
+Verify with this read-only query in the same SQL Editor:
+
+```sql
+SELECT to_regclass('a2.a2_tryit_assignments') AS assignments;
+SELECT pg_get_constraintdef(oid) AS allowed_sources
+FROM pg_constraint
+WHERE conrelid = 'a2.item_ledger'::regclass
+  AND conname = 'item_ledger_source_check';
+```
+
+The first result must name `a2.a2_tryit_assignments`; the second must include
+`quiz`, `daily-engagement`, and `bonus`. Without migration 0040, reads remain
+available, but new-source writes return 503 with the migration name. Apply the
+SQL, then retry the same queued save/import.
+
 Manual steps for the teacher, 2026-09-14. Repository: private
 `robjohncolson/a2-live-worksheets`, branch `main`. Both Vercel and GitHub Pages are
 required. This preparation has not created any cloud resources or applied SQL.

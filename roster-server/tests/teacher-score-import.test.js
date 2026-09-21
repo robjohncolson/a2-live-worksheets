@@ -10,6 +10,7 @@ function fixture() {
   vi.stubEnv('ROSTER_TEACHER_SECRET', 'fixture-import-key');
   const rows = new Map();
   let writes = 0;
+  let clientClock = 0;
   const db = { listRoster: async () => ({ data: [
     { student_id: 'a', section: 'C', real_name: 'Fixture One', login_username: 'fixture1', status: 'active' },
     { student_id: 'b', section: 'PeriodC', real_name: 'Fixture Two', login_username: 'fixture2', status: 'active' },
@@ -31,7 +32,7 @@ function fixture() {
     let status = 200;
     let result;
     const res = { status(code) { status = code; return this; }, json(value) { result = value; return this; } };
-    await importTeacherScores({ headers: { 'x-teacher-secret': secret }, body }, res, { db, ledgerDb, config: PHASE3_CONFIG });
+    await importTeacherScores({ headers: { 'x-teacher-secret': secret }, body: { clientTimestamp: ++clientClock, ...body } }, res, { db, ledgerDb, config: PHASE3_CONFIG });
     return { status, body: result };
   }
   return { rows, request, db, ledgerDb, writes: () => writes };
@@ -49,7 +50,7 @@ describe('teacher score imports', () => {
     try {
       const result = await fetch(`http://127.0.0.1:${server.address().port}/teacher/score-import`, {
         method: 'POST', headers: { 'content-type': 'application/json', 'x-teacher-secret': 'fixture-import-key' },
-        body: JSON.stringify(engagement),
+        body: JSON.stringify({ ...engagement, clientTimestamp: 1 }),
       });
       expect(result.status).toBe(200);
       expect((await result.json()).written).toBe(1);
@@ -124,4 +125,21 @@ describe('teacher score imports', () => {
     expect(result.status).toBe(500);
     expect(JSON.stringify(result)).not.toContain('private fixture');
   });
+});
+
+
+it('returns 200 superseded for an older import without touching the current row', async () => {
+  const f = fixture();
+  const newer = { ...engagement, clientTimestamp: 300 };
+  expect((await f.request(newer)).status).toBe(200);
+  const before = JSON.stringify([...f.rows]);
+  const stale = await f.request({ ...engagement, clientTimestamp: 200, scores: [{ studentId: 'a', score: 0 }] });
+  expect(stale).toMatchObject({ status: 200, body: { superseded: true, written: 0 } });
+  expect(JSON.stringify([...f.rows])).toBe(before);
+});
+
+it('names migration 0040 in a 503 when a new source cannot be stored', async () => {
+  const f = fixture();
+  f.ledgerDb.insertLedgerRow = async () => ({ error: { code: '23514', message: 'violates item_ledger_source_check' } });
+  expect(await f.request(engagement)).toMatchObject({ status: 503, body: { error: expect.stringContaining('0040') } });
 });

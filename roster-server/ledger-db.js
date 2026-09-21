@@ -53,8 +53,12 @@ export function createLedgerDb(client) {
   // [frqResult]/[gradedAt] are OPTIONAL (2026-09-09): the legacy /ledger/frq-regrade
   // path stores the grader's verdict + feedback alongside the score so the worksheet can
   // explain the grade. Omitted by every other caller → columns untouched.
-  async function insertLedgerRow({ studentId, source, itemId, unit, topic, skill, response, score, evidenceTier, attempt, recordedAt, frqResult, gradedAt }) {
+  async function insertLedgerRow({ studentId, source, itemId, unit, topic, skill, response, score, evidenceTier, attempt, recordedAt, frqResult, gradedAt, receiptId, receiptCompact }) {
     const extra = {};
+    if (receiptCompact !== undefined) {
+      extra.receipt_id = receiptId;
+      extra.receipt_compact = receiptCompact;
+    }
     if (frqResult && typeof frqResult === 'object') {
       extra.frq_result = frqResult;
       extra.graded_at  = gradedAt || new Date().toISOString();

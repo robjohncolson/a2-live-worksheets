@@ -75,7 +75,9 @@ it('engagement defaults to dry-run; repeated commits send identical point snapsh
     expect(result).toEqual({ code: 0, stderr: '', stdout: 'scored: 1, absent: 1, unmatched: 0\n' });
   }
   expect(server.requests).toHaveLength(2);
-  expect(server.requests[0]).toEqual(server.requests[1]);
+  expect(server.requests[1].body.clientTimestamp).toBeGreaterThan(server.requests[0].body.clientTimestamp);
+  const academic = request => ({ ...request, body: { ...request.body, clientTimestamp: undefined } });
+  expect(academic(server.requests[0])).toEqual(academic(server.requests[1]));
   expect(server.requests[0]).toMatchObject({ path: '/teacher/score-import', body: {
     source: 'daily-engagement', date: '2026-09-21', section: 'PeriodC',
     scores: [{ studentId: 'a', score: 9 }, { studentId: 'b', score: null }],
@@ -91,8 +93,9 @@ it('bonus dry-runs print counts only and commits overwrite capped quarter snapsh
     expect(result).toEqual({ code: 0, stderr: '', stdout: 'awards: 2, scored: 1\n' });
   }
   expect(server.requests).toHaveLength(6);
-  expect(server.requests.slice(0, 3)).toEqual(server.requests.slice(3));
-  expect(server.requests[0].body).toEqual({ source: 'bonus', quarter: 'Q1', section: 'C', scores: [{ student: 'Private Fixture', score: 10 }] });
+  const academic = request => ({ ...request, body: { ...request.body, clientTimestamp: undefined } });
+  expect(server.requests.slice(0, 3).map(academic)).toEqual(server.requests.slice(3).map(academic));
+  expect(server.requests[0].body).toMatchObject({ source: 'bonus', quarter: 'Q1', section: 'C', scores: [{ student: 'Private Fixture', score: 10 }] });
   expect(server.requests[1].body.scores).toEqual([]);
   expect(server.authorized()).toBe(true);
 });

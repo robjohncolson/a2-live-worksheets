@@ -31,11 +31,14 @@
     sending = sending.catch(() => {}).then(() => OfflineQueue.drain(record => record.source === 'try-it' || record.source === 'topic-assessment' || record.source === 'quiz' ? send(record) : Promise.resolve({ ok: false })));
     return sending;
   }
+  let lastScoreTimestamp = Number(localStorage.getItem('a2-score-timestamp')) || 0;
   async function saveScore(student, itemId, source, score, control, questionScores) {
+    lastScoreTimestamp = Math.max(Date.now(), lastScoreTimestamp + 1, Number(localStorage.getItem('a2-score-timestamp')) + 1 || 0);
+    localStorage.setItem('a2-score-timestamp', String(lastScoreTimestamp));
     const record = { source, itemId, studentId: student.studentId || student.student_id,
       score, maxPoints: source === 'try-it' ? 10 : source === 'quiz' ? 20 : 100, lesson: el('lesson').value,
       attempt: 1, ...(questionScores ? { questionScores: [...questionScores] } : {}), transportSequence: ++sequence,
-      requestId: crypto.randomUUID(), ts: Date.now() };
+      requestId: crypto.randomUUID(), ts: lastScoreTimestamp };
     control.classList.add('pending');
     await OfflineQueue.enqueue(record); // Capture before the network request, including rapid taps.
     say('Saving…'); await flush();

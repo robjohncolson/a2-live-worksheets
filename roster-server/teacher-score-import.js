@@ -1,6 +1,6 @@
 import { requireTeacher } from './teacher-auth.js';
 import { A2_FEEDERS } from './district-grade.js';
-import { issueLedgerReceipt } from './receipts.js';
+import { serializeStudent, saveTeacherScore, scoreWriteError, validateClientTimestamp } from './a2-score-write.js';
 
 const sectionKey = value => String(value || '').replace(/^Period/i, '').toUpperCase();
 const nameKey = value => String(value || '').normalize('NFC').trim().toLowerCase();
@@ -10,6 +10,7 @@ const nameKey = value => String(value || '').normalize('NFC').trim().toLowerCase
 export async function importTeacherScores(req, res, { db, ledgerDb, config }) {
   try {
     if (!await requireTeacher(req, db)) return res.status(401).json({ ok: false, error: 'teacher only' });
+    validateClientTimestamp(req.body?.clientTimestamp ?? req.body?.ts);
     const { source, date, quarter, scores } = req.body || {};
     const section = sectionKey(req.body?.section);
     const feeder = (config.a2Feeders || A2_FEEDERS)[source];
@@ -52,35 +53,25 @@ export async function importTeacherScores(req, res, { db, ledgerDb, config }) {
     const response = { assignedDate: dueDate, dueDate, maxPoints: feeder.maxPoints };
     let written = 0;
     let unchanged = 0;
+    let superseded = false;
+    const currentRows = [];
     for (const [studentId, score] of selected) {
-      const previous = await ledgerDb.getLedgerByStudent(studentId);
-      if (previous.error) throw new Error('ledger');
-      const existing = (previous.data || []).find(row => row.source === source && row.item_id === itemId && row.attempt === 1);
-      if (!existing && score === null) { unchanged++; continue; }
-      const same = existing && existing.score === score
-        && Object.keys(existing.response || {}).length === Object.keys(response).length
-        && Object.entries(response).every(([key, value]) => existing.response[key] === value);
-      const recordedAt = same ? existing.recorded_at : new Date().toISOString();
-      let ledgerId = existing?.ledger_id;
-      if (!same) {
-        const saved = await ledgerDb.insertLedgerRow({ studentId, source, itemId, score, response,
-          attempt: 1, evidenceTier: 'practice', recordedAt });
-        if (saved.error) throw new Error('write');
-        ledgerId = saved.data.ledger_id;
-        written++;
-      } else unchanged++;
-      // Deterministic issuance also repairs a failed receipt save on a retry,
-      // even if an older score's receipt is still present on the upserted row.
-      const receipt = issueLedgerReceipt({ studentId, source, itemId, score, response,
-        attempt: 1, evidenceTier: 'practice', gradingProvenance: 'teacher-score-import',
-        ts: Date.parse(recordedAt), nonce: 'teacher-score-import' });
-      if (receipt && existing?.receipt_compact !== receipt.compact && ledgerDb.updateLedgerReceipt) {
-        const saved = await ledgerDb.updateLedgerReceipt(ledgerId, { receiptId: receipt.receiptId, receiptCompact: receipt.compact });
-        if (saved?.error) throw new Error('receipt');
-      }
+      await serializeStudent(ledgerDb, studentId, async () => {
+        const previous = await ledgerDb.getLedgerByStudent(studentId);
+        if (previous.error) throw previous.error;
+        const existing = (previous.data || []).find(row => row.source === source && row.item_id === itemId && row.attempt === 1);
+        if (!existing && score === null) { unchanged++; return; }
+        const result = await saveTeacherScore(ledgerDb, existing, { studentId, source, itemId, score,
+          response, attempt: 1, evidenceTier: 'practice' }, req.body.clientTimestamp ?? req.body.ts);
+        if (result.unchanged) unchanged++; else written++;
+        superseded ||= result.superseded === true;
+        currentRows.push({ studentId, itemId, score: result.row.score, receipt: result.receipt });
+      });
     }
-    return res.json({ ok: true, written, unchanged });
-  } catch (_) {
+    return res.json({ ok: true, written, unchanged, superseded, rows: currentRows });
+  } catch (error) {
+    error = scoreWriteError(error);
+    if (error.status) return res.status(error.status).json({ ok: false, error: error.message });
     return res.status(500).json({ ok: false, error: 'Score import failed; retry the same import.' });
   }
 }

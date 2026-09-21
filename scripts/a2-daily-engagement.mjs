@@ -58,7 +58,10 @@ function parseArgs(argv) {
   return args;
 }
 
+let lastImportTimestamp = 0;
 export async function importScores(body, url) {
+  lastImportTimestamp = Math.max(Date.now(), lastImportTimestamp + 1);
+  body.clientTimestamp ??= lastImportTimestamp;
   const secret = resolveTeacherSecret(REPO_ROOT);
   if (!secret) throw new Error('secret');
   const response = await fetch(resolveUrl(url).replace(/\/+$/, '') + '/teacher/score-import', {

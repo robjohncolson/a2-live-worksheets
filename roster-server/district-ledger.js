@@ -82,8 +82,16 @@ function rowDate(row) {
   return String(row.updated_at || row.recorded_at || row.created_at || '');
 }
 
+function schoolDate(value) {
+  if (!value) return '';
+  if (/^\d{4}-\d{2}-\d{2}$/.test(String(value))) return String(value);
+  const date = new Date(value);
+  if (!Number.isFinite(date.getTime())) return '';
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York',
+    year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
+}
 function rowAssignedDate(row) {
-  return String(row.response?.assignedDate || row.created_at || row.recorded_at || row.updated_at || '').slice(0, 10);
+  return schoolDate(row.response?.assignedDate || row.created_at || row.recorded_at || row.updated_at);
 }
 
 export function districtItemsFromLedger(rows, schedule = {}, section, cfg, extraItems = []) {
@@ -121,26 +129,30 @@ export function districtItemsFromLedger(rows, schedule = {}, section, cfg, extra
     if (definition.section && String(definition.section).replace(/^Period/i, '').toUpperCase()
       !== String(section || '').replace(/^Period/i, '').toUpperCase()) continue;
     const candidates = sectionRows.filter(row => (row.item_id || row.itemId) === definition.itemId
-      && row.source === definition.source && (!rowDate(row) || rowDate(row).slice(0, 10) <= cfg.today));
+      && row.source === definition.source && (!rowDate(row) || schoolDate(rowDate(row)) <= cfg.today));
     const scores = candidates.filter(row => row.score != null && row.score !== '' && Number.isFinite(Number(row.score)));
     scores.sort((a, b) => rowDate(a).localeCompare(rowDate(b)) || Number(a.attempt || 1) - Number(b.attempt || 1));
-    const selected = scores.at(-1);
+    const selected = candidates.sort((a, b) => rowDate(a).localeCompare(rowDate(b)) || Number(a.attempt || 1) - Number(b.attempt || 1)).at(-1);
+    const hasScore = selected && selected.score != null && selected.score !== '' && Number.isFinite(Number(selected.score));
     // A score proves assignment for this student; a schedule alone never does.
-    const assignedDate = assignmentDate(definition, section)
-      || (selected && (scores.map(rowAssignedDate).filter(Boolean).sort()[0] || definition.dueDate));
+    const assignedDate = selected?.response?.assignedDate || assignmentDate(definition, section)
+      || (hasScore && (scores.map(rowAssignedDate).filter(Boolean).sort()[0] || definition.dueDate));
     if (!assignedDate || assignedDate > cfg.today) continue;
     if (!/^\d{4}-\d{2}-\d{2}$/.test(assignedDate) || !Number.isFinite(Date.parse(assignedDate))) continue;
-    const dueDate = definition.dueDate || assignedDate;
+    const dueDate = selected?.response?.dueDate || definition.dueDate || assignedDate;
     const quarter = Object.keys(cfg.quarters).find(key => dueDate >= cfg.quarters[key].start && dueDate <= cfg.quarters[key].end);
     if (!quarter) continue;
     // No imported row means absence, not a zero Engagement item.
-    if (definition.source === 'daily-engagement' && !selected) continue;
-    const attempted = !!selected && selected.response?.attempted !== false
+    if (definition.source === 'daily-engagement' && !hasScore) continue;
+    const attempted = !!hasScore && selected.response?.attempted !== false
       && (definition.source !== 'try-it' || Number(selected.score) > 0 || selected.response?.attempted === true);
     const graceDate = new Date(`${assignedDate}T00:00:00Z`);
     graceDate.setUTCDate(graceDate.getUTCDate() + (cfg.a2ProvisionalDays ?? 7));
     const provisionalDate = graceDate.toISOString().slice(0, 10);
-    const historical = cfg.bonusOnlyThrough && dueDate <= cfg.bonusOnlyThrough;
+    const savedDates = [selected?.response?.assignedDate, selected?.response?.dueDate].filter(Boolean);
+    const historical = cfg.bonusOnlyThrough && (savedDates.length
+      ? savedDates.some(date => schoolDate(date) <= cfg.bonusOnlyThrough)
+      : dueDate <= cfg.bonusOnlyThrough);
     const extraCredit = feeder.extraCredit || !!historical;
     const points = attempted ? Math.max(0, Number(selected.score)) : 0;
     const provisional = !extraCredit && definition.source === 'try-it' && !attempted && cfg.today >= provisionalDate;

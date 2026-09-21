@@ -1,3 +1,4 @@
+import { migrationError, scoreWriteError } from './a2-score-write.js';
 import { readFileSync } from 'node:fs';
 import { createServiceClient } from './ledger-db.js';
 
@@ -95,6 +96,7 @@ export function createA2Store(client = createServiceClient()) {
   return {
     async getAssignments() {
       const { data, error } = await client.from('a2_tryit_assignments').select('lesson, section, assigned_date');
+      if (migrationError(error)) return {}; // Pre-migration reads remain available.
       if (error) throw error;
       const assignments = {};
       for (const row of data) (assignments[row.lesson] ||= {})[row.section] = row.assigned_date;
@@ -104,7 +106,7 @@ export function createA2Store(client = createServiceClient()) {
       // First collection starts the grace period; retries never move it forward.
       const { error } = await client.from('a2_tryit_assignments').upsert(
         { lesson, section, assigned_date: date }, { onConflict: 'lesson,section', ignoreDuplicates: true });
-      if (error) throw error;
+      if (error) throw scoreWriteError(error);
       return (await this.getAssignments())[lesson][section];
     },
     async getPacing() {

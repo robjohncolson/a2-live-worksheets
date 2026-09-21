@@ -3,7 +3,7 @@ import './lib/a2-year-plan.js';
 import { loadA2Lessons, loadA2Targets, loadA2SchoolYear, overlayLessons, lessonScheduleFromModel, validatePacing, reflowPacing, createA2Store } from './a2-lessons.js';
 import { requireTeacher } from './teacher-auth.js';
 import { verifyToken } from './token.js';
-import { issueLedgerReceipt } from './receipts.js';
+import { serializeStudent, saveTeacherScore, repairScoreReceipt, scoreWriteError, validateClientTimestamp } from './a2-score-write.js';
 import { todayInTz } from './lesson-grade.js';
 import { A2_FEEDERS } from './district-grade.js';
 import { bestA2Attempt } from './district-ledger.js';
@@ -29,20 +29,11 @@ export function lessonStatus(lesson, rows, rescores = {}) {
 export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2Lessons(), targets = loadA2Targets(), schoolYear = loadA2SchoolYear(), store, now = () => todayInTz(config.schoolTz) }) {
   let liveStore = store;
   const storage = () => liveStore ||= createA2Store();
-  const locks = new Map();
-  // The roster service runs as one instance. Serialize score writes per student,
-  // including retries, so teacher upserts and student attempts cannot race.
-  async function serialized(studentId, action) {
-    const prior = locks.get(studentId) || Promise.resolve();
-    const next = prior.catch(() => {}).then(action);
-    locks.set(studentId, next);
-    try { return await next; } finally { if (locks.get(studentId) === next) locks.delete(studentId); }
-  }
   function route(handler) {
     return async (req, res, next) => {
       res.set('Cache-Control', 'no-store');
       try { await handler(req, res, next); }
-      catch (error) { res.status(error.status || 503).json({ ok: false, error: error.status ? error.message : 'Lesson service unavailable' }); }
+      catch (error) { error = scoreWriteError(error); res.status(error.status || 503).json({ ok: false, error: error.status ? error.message : 'Lesson service unavailable' }); }
     };
   }
   function fail(status, message) { throw Object.assign(new Error(message), { status }); }
@@ -81,8 +72,8 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
   function ensureOpen(lesson, student, rows, source, itemId) {
     const section = String(student.section).replace(/^Period/i, '');
     const previous = rows.find(row => row.source === source && row.item_id === itemId);
-    const date = source === 'topic-assessment' ? previous?.response?.dueDate || now()
-      : lesson.sections?.[section] || String(previous?.recorded_at || now()).slice(0, 10);
+    const date = previous?.response?.dueDate || (source === 'topic-assessment' ? now()
+      : lesson.sections?.[section] || todayInTz(config.schoolTz, new Date(previous?.recorded_at || Date.now())));
     const quarter = Object.values(config.quarters).find(q => date >= q.start && date <= q.end);
     if (source === 'try-it') return date; // Try-Its can always be attempted.
     if (!quarter || now() > quarter.end) fail(409, 'Quarter is closed');
@@ -153,24 +144,28 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
     if (!model) return next(); // Retained fixtures/older registered sources use their original validator.
     const student = await identity(req, source !== 'lesson-check');
     const lesson = (await currentLessons()).find(item => item.key === model.key);
-    await serialized(student.student_id, async () => {
+    await serializeStudent(ledgerDb, student.student_id, async () => {
       const rows = await rowsFor(student.student_id);
-      const existing = rows.filter(row => row.item_id === body.itemId && row.source === source);
+      const existing = rows.filter(row => row.item_id === body.itemId && row.source === source)
+        .sort((a, b) => Number(a.attempt) - Number(b.attempt));
+      const current = existing.at(-1);
+      const clientTimestamp = body.clientTimestamp ?? body.ts;
+      if (source !== 'lesson-check') validateClientTimestamp(clientTimestamp);
       if (typeof body.requestId !== 'string' || body.requestId.length > 100 || !body.requestId) fail(400, 'requestId required');
       const duplicate = existing.find(row => row.response?.requestId === body.requestId);
-      if (duplicate) {
-        if (!duplicate.receipt_compact && ledgerDb.updateLedgerReceipt) {
-          const receipt = issueLedgerReceipt({ studentId: student.student_id, username: student.login_username,
-            source, itemId: body.itemId, score: duplicate.score, response: duplicate.response,
-            attempt: duplicate.attempt, evidenceTier: duplicate.evidence_tier || 'practice' });
-          if (receipt) {
-            const saved = await ledgerDb.updateLedgerReceipt(duplicate.ledger_id, { receiptId: receipt.receiptId, receiptCompact: receipt.compact });
-            if (saved?.error) throw saved.error;
-            duplicate.receipt_compact = receipt.compact;
-          }
-        }
-        return res.json({ ok: true, score: duplicate.score, attempt: duplicate.attempt, receipt: duplicate.receipt_compact,
+      if (duplicate && source === 'lesson-check') {
+        const receipt = await repairScoreReceipt(ledgerDb, duplicate, student.login_username);
+        return res.json({ ok: true, score: duplicate.score, attempt: duplicate.attempt, receipt,
           bestScore: source === 'lesson-check' ? bestA2Attempt(existing).score : duplicate.score, duplicate: true });
+      }
+      if (source !== 'lesson-check' && current && (duplicate
+        || clientTimestamp <= (current.response?.clientTimestamp || 0))) {
+        const saved = await saveTeacherScore(ledgerDb, current, { studentId: student.student_id,
+          username: student.login_username, source, itemId: body.itemId, score: current.score,
+          response: { ...current.response, requestId: body.requestId }, attempt: current.attempt }, clientTimestamp);
+        return res.json({ ok: true, score: saved.row.score, attempt: saved.row.attempt,
+          receipt: saved.receipt, bestScore: saved.row.score, duplicate: saved.duplicate,
+          superseded: saved.superseded, unchanged: true });
       }
       const dueDate = ensureOpen(lesson, student, rows, source, body.itemId);
       if (source === 'topic-assessment' && body.quarter) {
@@ -195,20 +190,19 @@ export function mountA2(app, { db, ledgerDb, config, schedule, lessons = loadA2L
       const attempt = source === 'lesson-check' ? previousAttempt + 1 : Math.max(1, previousAttempt);
       const section = String(student.section).replace(/^Period/i, '').toUpperCase();
       const assignedDate = source === 'try-it'
-        ? await storage().assignTryIts(lesson.key, section, now())
+        ? existing[0]?.response?.assignedDate || await storage().assignTryIts(lesson.key, section, now())
         : existing[0]?.response?.assignedDate || now();
       const response = { requestId: body.requestId, lesson: lesson.key, maxPoints, dueDate, assignedDate,
         ...(source === 'quiz' ? { questionScores: body.questionScores } : {}),
         ...(result ? { answers: body.answers, registryIds: lesson.lessonCheck.map(item => item.registryId) } : {}) };
-      const saved = await ledgerDb.insertLedgerRow({ studentId: student.student_id, source, itemId: body.itemId,
-        score, response, attempt, evidenceTier: 'practice', unit: `U${lesson.topic}`, topic: lesson.key });
-      if (saved.error) throw saved.error;
-      const receipt = issueLedgerReceipt({ studentId: student.student_id, username: student.login_username,
-        source, itemId: body.itemId, score, response, attempt, evidenceTier: 'practice' });
-      if (receipt && ledgerDb.updateLedgerReceipt) {
-        const persisted = await ledgerDb.updateLedgerReceipt(saved.data.ledger_id, { receiptId: receipt.receiptId, receiptCompact: receipt.compact });
-        if (persisted?.error) throw persisted.error;
-      }
+      const saved = await saveTeacherScore(ledgerDb, source === 'lesson-check' ? null : current, {
+        studentId: student.student_id, username: student.login_username, source, itemId: body.itemId,
+        score, response, attempt, evidenceTier: 'practice', unit: `U${lesson.topic}`, topic: lesson.key,
+      }, source === 'lesson-check' ? undefined : body.clientTimestamp ?? body.ts);
+      if (saved.unchanged) return res.json({ ok: true, score: saved.row.score, attempt: saved.row.attempt,
+        receipt: saved.receipt, bestScore: saved.row.score, duplicate: saved.duplicate,
+        superseded: saved.superseded, unchanged: true });
+      const receipt = saved.receipt;
       res.json({ ok: true, ...result, score, maxPoints, attempt, receipt,
         bestScore: source === 'lesson-check' ? bestA2Attempt([...existing, { score }]).score : score });
     });
