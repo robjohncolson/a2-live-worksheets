@@ -47,9 +47,9 @@ it.each([
 it('wires raw daily recording on both surfaces', () => {
   const desk = readFileSync(new URL('../desk.html', import.meta.url), 'utf8');
   const mobile = readFileSync(new URL('../mobile-home.html', import.meta.url), 'utf8');
-  expect(desk).toContain("recordFlashcardRun(_bfState.topic, 'quick', _bfState.score");
+  expect(desk).toContain("recordFlashcardRun(topic, 'quick', correct, total, pending)");
   expect(desk).toContain("recordFlashcardRun(topic, 'full',");
-  expect(mobile).toContain('recordFlashcardRun(topic, mode, correct, total)');
+  expect(mobile).toContain('recordFlashcardRun(topic, mode, correct, total, run.pendingResult)');
   const engine = {};
   vm.runInNewContext(readFileSync(new URL('../flashcards.js', import.meta.url), 'utf8'), engine);
   expect(engine.Flashcards.quickScorePct(8, 10)).toBe(80);

@@ -978,8 +978,9 @@
       var all = JSON.parse(localStorage.getItem(key) || '{}');
       var entry = all && all[topic];
       if (!entry || !Array.isArray(entry.deck) || !entry.deck.length) return null;
-      if (entry.deck[0].dailyKey !== FC.localDateKey() + '|' + topic) return null;
-      if ((entry.idx || 0) >= entry.deck.length) return null;
+      if (entry.ownerId && entry.ownerId !== _fcOwner()) return null;
+      if (!entry.pendingResult && entry.deck[0].dailyKey !== FC.localDateKey() + '|' + topic) return null;
+      if (!entry.pendingResult && (entry.idx || 0) >= entry.deck.length) return null;
       return entry;
     } catch (_) { return null; }
   }
@@ -987,6 +988,7 @@
   function _fcSaveQuickProgress() {
     if (typeof _viewAsContext === 'function' && _viewAsContext()) return;
     if (typeof window !== 'undefined' && window.__WS_READ_ONLY__) return;
+    if (_fc && _fc.ownerId && _fc.ownerId !== _fcOwner()) return;
     if (!_fc || _fc.mode !== 'quick' || !_fc.lesson || !_fc.deck.length) return;
     try {
       var email = typeof _fcEmail === 'function' ? _fcEmail() : null;
@@ -995,6 +997,8 @@
       var all = JSON.parse(localStorage.getItem(key) || '{}');
       if (!all || typeof all !== 'object' || Array.isArray(all)) all = {};
       all[String(_fc.lesson.id)] = {
+        ownerId: _fc.ownerId,
+        pendingResult: _fc.pendingResult,
         deck: _fc.deck,
         idx: _fc.idx,
         score: _fc.correct,
@@ -1129,7 +1133,19 @@
   }
   window.openFlashcards = openFlashcards;
 
+  function _fcOwner() {
+    try { return window.rosterClient.studentId(); } catch (_) { return null; }
+  }
+  function _fcIdentityChanged() {
+    if (!_fc || _fc.ownerId === _fcOwner()) return;
+    closeFlashcards();
+    _fcSetProg('Sign in again to continue your flashcards.');
+  }
+  window.addEventListener('roster-session-changed', _fcIdentityChanged);
+  window.addEventListener('storage', _fcIdentityChanged);
+
   function _fcStart(lesson, mode) {
+    var ownerId = _fcOwner();
     var csv = _fcCsvPath(lesson);
     if (!csv) { _fcBodyHtml('<div class="fc-result"><h2>No deck</h2><p>This lesson has no flashcard deck.</p></div>'); return; }
     _fcBodyHtml('<div class="fc-result"><h2>Loading deck…</h2></div>');
@@ -1152,6 +1168,7 @@
         }
       }
       _fc = {
+        ownerId: ownerId, pendingResult: resumed.pendingResult || null,
         mode: 'quick', lesson: lesson, deck: resumed.deck,
         idx: resumed.idx || 0, correct: resumed.score || 0,
         need: FC.quickPassCount(resumed.deck.length), answered: false, timer: null,
@@ -1165,17 +1182,19 @@
       fcoEl().classList.remove('timed');
       var resumedTitle = document.getElementById('fc-title');
       if (resumedTitle) resumedTitle.textContent = 'Flashcards — ' + cedLabel(topic).text;
-      if (_fc.idx >= _fc.deck.length) _fcFinish();
+      if (_fc.pendingResult || _fc.idx >= _fc.deck.length) _fcFinish();
       else _fcRender();
       return;
     }
     var tagsP = (mode === 'quick') ? _fcLoadTags() : Promise.resolve({});
     Promise.all([_fcLoadDeck(csv), tagsP]).then(function (res) {
+      if (_fcOwner() !== ownerId) return;
       var deck = res[0], tags = res[1] || {};
       if (!deck || !deck.length) { _fcBodyHtml('<div class="fc-result"><h2>Empty deck</h2><p>Could not read cards for this lesson.</p></div>'); return; }
       if (mode === 'quick') {
         var top = FC.dailyDraw(deck, FC.localDateKey() + '|' + topic, FC.QUICK_TARGET);
         _fc = {
+          ownerId: ownerId,
           mode: 'quick', lesson: lesson, deck: top, idx: 0, correct: 0,
           need: FC.quickPassCount(top.length), answered: false, timer: null,
           csv: _fcCsvBase(csv), roundId: _fcRoundId(), seq: 0, misses: []
@@ -1464,9 +1483,19 @@
     return res;
   }
 
-  function _fcFinish() {
+  async function _fcFinish() {
     _fcTimerStop();
-    if (!_fc) return;
+    if (!_fc || _fc.finished) return;
+    if (!_fc.ownerId || _fc.ownerId !== _fcOwner()) {
+      _fcBodyHtml('<p>Sign in again to save your flashcards.</p>');
+      _fc = null;
+      return;
+    }
+    _fc.finished = true;
+    _fc.pendingResult = _fc.pendingResult || { ownerId: _fc.ownerId,
+      runId: _fc.roundId, timestamp: Date.now() };
+    _fcSaveQuickProgress();
+    var run = _fc;
     var lesson = _fc.lesson, topic = String(lesson.id);
     var mode = _fc.mode;
     var misses = Array.isArray(_fc.misses) ? _fc.misses.slice() : [];
@@ -1474,14 +1503,44 @@
       : _fc.round.log.filter(function (answer) { return answer.correct; }).length;
     var total = mode === 'quick' ? Math.min(_fc.idx + (_fc.answered ? 1 : 0), _fc.deck.length)
       : _fc.round.log.length;
-    if (window.gradebookClient && window.gradebookClient.recordFlashcardRun) {
-      window.gradebookClient.recordFlashcardRun(topic, mode, correct, total);
-    }
-    _fcClearQuickProgress(topic);
     fcoEl().classList.remove('timed');
     var retryDeck = mode === 'quick' ? _fc.deck.slice() : [];
-    _fc = null;
     _fcRenderResult(lesson, correct, total, misses, retryDeck);
+    var again = document.getElementById('fc-again');
+    again.disabled = true;
+    var status = document.createElement('p');
+    var retry = document.createElement('button');
+    retry.textContent = 'Retry';
+    fcBody().appendChild(status);
+    fcBody().appendChild(retry);
+    var saving = false;
+    async function saveResult() {
+      if (saving) return;
+      if (_fcOwner() !== run.ownerId) {
+        status.textContent = 'Sign in again to save your flashcards.';
+        return;
+      }
+      saving = true;
+      status.textContent = 'Saving...';
+      retry.hidden = true;
+      var outcome;
+      try {
+        outcome = await window.gradebookClient.recordFlashcardRun(topic, mode, correct, total, run.pendingResult);
+      } catch (_) {}
+      saving = false;
+      if (_fc !== run || _fcOwner() !== run.ownerId) return;
+      if (outcome && (outcome.ok || outcome.queued)) {
+        _fcClearQuickProgress(topic);
+        run.pendingResult = null;
+        status.textContent = outcome.queued ? 'Saved on this device.' : 'Saved.';
+        again.disabled = false;
+      } else {
+        status.textContent = "Couldn't save yet";
+        retry.hidden = false;
+      }
+    }
+    retry.onclick = saveResult;
+    await saveResult();
   }
 
   function _fcRenderResult(lesson, correct, total, misses, retryDeck) {
@@ -1532,6 +1591,7 @@
     }
     document.getElementById('fc-again').onclick = function () {
       _fc = {
+        ownerId: _fcOwner(),
         mode: 'quick', lesson: lesson, deck: FC.shuffle(retryDeck), idx: 0, correct: 0,
         answered: false, timer: null, csv: _fcCsvBase(_fcCsvPath(lesson)),
         roundId: _fcRoundId(), seq: 0, misses: []

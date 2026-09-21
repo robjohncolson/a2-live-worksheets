@@ -106,7 +106,7 @@ describe('A2 quick-check resume identity', () => {
     const resumed = { deck, idx: 0, score: 0, roundId: 'desk-a2-round', seq: 4 };
     const snapshot = JSON.stringify(resumed);
     const load = vi.fn(() => resumed), fetch = vi.fn(), render = vi.fn();
-    const win = boot(['_bfStartQuick'], {
+    const win = boot(['_bfStartQuick'], { _bfOwner: () => 'owner',
       _bfState: {}, _bfLoadProgress: load, fetch,
       _bfSaveProgress: vi.fn(), _bfShowQuizUI: vi.fn(),
       _bfRenderCard: render, _bfKeydownHandler: vi.fn(),

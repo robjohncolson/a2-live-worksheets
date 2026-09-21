@@ -8537,6 +8537,18 @@ function _bfStorageKey() {
     } catch (_) { return null; }
 }
 
+function _bfOwner() {
+    try { return window.rosterClient.studentId(); } catch (_) { return null; }
+}
+
+function _bfIdentityChanged() {
+    if (!_bfState.topic || _bfState.ownerId === _bfOwner()) return;
+    _bfCloseUI();
+    showDialog('', 'Your sign-in changed. Sign in again to continue your flashcards.', 'OK');
+}
+window.addEventListener('roster-session-changed', _bfIdentityChanged);
+window.addEventListener('storage', _bfIdentityChanged);
+
 function _bfSaveProgress() {
     // Codex BLOCKER fold P2: gating the Flashcards progress write prevents the
     // teacher's localStorage from being polluted with student-attributed
@@ -8544,11 +8556,14 @@ function _bfSaveProgress() {
     // not the student's, so it'd cross-contaminate the teacher's real tabs).
     if (typeof _viewAsContext === 'function' && _viewAsContext()) return;
     if (typeof window !== 'undefined' && window.__WS_READ_ONLY__) return;
+    if (_bfState.ownerId && _bfState.ownerId !== _bfOwner()) return;
     var key = _bfStorageKey();
     if (!key || !_bfState.topic || !Array.isArray(_bfState.deck) || _bfState.deck.length === 0) return;
     try {
         var saved = JSON.parse(localStorage.getItem(key) || '{}');
         saved[_bfState.topic] = {
+            ownerId: _bfState.ownerId,
+            pendingResult: _bfState.pendingResult,
             deck: _bfState.deck,
             idx: _bfState.idx,
             score: _bfState.score,
@@ -8572,9 +8587,10 @@ function _bfLoadProgress(topic) {
         var saved = JSON.parse(localStorage.getItem(key) || '{}');
         var entry = saved[topic];
         if (!entry || !Array.isArray(entry.deck) || entry.deck.length === 0) return null;
-        if (entry.deck[0].dailyKey !== Flashcards.localDateKey() + '|' + topic) return null;
+        if (entry.ownerId && entry.ownerId !== _bfOwner()) return null;
+        if (!entry.pendingResult && entry.deck[0].dailyKey !== Flashcards.localDateKey() + '|' + topic) return null;
         // Defensive: if idx is beyond the deck, treat as no resume.
-        if ((entry.idx || 0) >= entry.deck.length) return null;
+        if (!entry.pendingResult && (entry.idx || 0) >= entry.deck.length) return null;
         return entry;
     } catch (_) { return null; }
 }
@@ -10195,6 +10211,9 @@ function _rvKeydownHandler(e) {
 // Daily ten: untimed, every card answered, raw correct/total recorded.
 // extracted from the old openBlooketFlashcards so the picker can route to it.
 async function _bfStartQuick(btn, topicId) {
+    var ownerId = _bfOwner();
+    _bfState.ownerId = ownerId;
+    _bfState.pendingResult = null;
     // 2026-05-20: try to resume saved progress first. If present, use the
     // saved deck (preserves the shuffle order so the student picks up at
     // the same card) and skip the CSV fetch entirely.
@@ -10202,6 +10221,8 @@ async function _bfStartQuick(btn, topicId) {
     var isResume = false;
     var finishOnResume = false;
     if (resumed) {
+        _bfState.pendingResult = resumed.pendingResult || null;
+        finishOnResume = !!resumed.pendingResult;
         _bfState.topic = topicId;
         _bfState.btn = btn;
         _bfState.deck = resumed.deck;
@@ -10261,6 +10282,7 @@ async function _bfStartQuick(btn, topicId) {
         }
         // All students share the same local-day draw for this lesson.
         var tags = await _bfLoadDifficultyTags();
+        if (_bfOwner() !== ownerId) return;
         var fileTags = tags[csvPath.split('/').pop()] || tags[csvPath] || {};
         var deck = Flashcards.dailyDraw(allCards, Flashcards.localDateKey() + '|' + topicId, Flashcards.QUICK_TARGET);
         var orderedCards = (typeof _bfOrderByDifficulty === 'function')
@@ -10484,11 +10506,15 @@ async function _bfFinish() {
     if (_bfState.finished) return;
     _bfState.finished = true;
     var canScore = (typeof _mayScore !== 'function') || _mayScore();
-    if (canScore && typeof window !== 'undefined' && window.gradebookClient && window.gradebookClient.recordFlashcardRun) {
-        window.gradebookClient.recordFlashcardRun(_bfState.topic, 'quick', _bfState.score,
-            Math.min(_bfState.idx + (_bfState.answered ? 1 : 0), _bfState.deck.length));
+    if (!canScore) return;
+    if (!_bfState.ownerId || _bfState.ownerId !== _bfOwner()) {
+        _bfCloseUI();
+        showDialog('', 'Sign in again to save your flashcards.', 'OK');
+        return;
     }
-    _bfClearProgress(_bfState.topic);
+    _bfState.pendingResult = _bfState.pendingResult || { ownerId: _bfState.ownerId,
+        runId: _bfState.roundId, timestamp: Date.now() };
+    _bfSaveProgress();
     var q = document.getElementById('bf-question');
     var c = document.getElementById('bf-choices');
     var p = document.getElementById('bf-progress');
@@ -10563,7 +10589,10 @@ async function _bfFinish() {
         var retry = document.createElement('button');
         retry.className = 's7btn s7btn-default';
         retry.textContent = 'Try again (new shuffle)';
+        retry.disabled = true;
         retry.onclick = function () {
+            _bfState.pendingResult = null;
+            _bfState.ownerId = _bfOwner();
             _bfState.deck = _bfShuffle(_bfState.deck);
             _bfState.idx = 0;
             _bfState.score = 0;
@@ -10579,6 +10608,43 @@ async function _bfFinish() {
         };
         result.appendChild(retry);
         result.style.display = 'block';
+        var status = document.createElement('div');
+        var saveRetry = document.createElement('button');
+        saveRetry.textContent = 'Retry';
+        result.appendChild(status);
+        result.appendChild(saveRetry);
+        var pending = _bfState.pendingResult;
+        var topic = _bfState.topic;
+        var correct = _bfState.score;
+        var total = Math.min(_bfState.idx + (_bfState.answered ? 1 : 0), _bfState.deck.length);
+        var saving = false;
+        async function saveResult() {
+            if (saving) return;
+            if (_bfOwner() !== pending.ownerId) {
+                status.textContent = 'Sign in again to save your flashcards.';
+                return;
+            }
+            saving = true;
+            status.textContent = 'Saving...';
+            saveRetry.hidden = true;
+            var outcome;
+            try {
+                outcome = await window.gradebookClient.recordFlashcardRun(topic, 'quick', correct, total, pending);
+            } catch (_) {}
+            saving = false;
+            if (_bfState.pendingResult !== pending || _bfOwner() !== pending.ownerId) return;
+            if (outcome && (outcome.ok || outcome.queued)) {
+                _bfClearProgress(topic);
+                _bfState.pendingResult = null;
+                status.textContent = outcome.queued ? 'Saved on this device.' : 'Saved.';
+                retry.disabled = false;
+            } else {
+                status.textContent = "Couldn't save yet";
+                saveRetry.hidden = false;
+            }
+        }
+        saveRetry.onclick = saveResult;
+        await saveResult();
     }
 }
 
@@ -10606,6 +10672,8 @@ function _bfCloseUI() {
         }
         if (returnFocus && typeof returnFocus.focus === 'function') returnFocus.focus();
     } catch (_) {}
+    _bfState.pendingResult = null;
+    _bfState.ownerId = null;
     _bfState.topic = null;
     _bfState.btn = null;
     _bfState.deck = [];
@@ -14956,7 +15024,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-21-igpz';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-21-oqmx';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

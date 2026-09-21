@@ -118,7 +118,7 @@ describe('Desk quick-retry redraw', () => {
       return card(index + 1);
     });
     const state = {
-      topic: '4.1',
+      ownerId: 'owner', topic: '4.1',
       btn: {},
       deck: allCards.slice(0, 10),
       idx: 10,
@@ -145,7 +145,7 @@ describe('Desk quick-retry redraw', () => {
       '_bfLoadAllCardsForRetry', '_bfShuffle', '_bfMergeSeenQnums',
       '_srsRoundId', '_bfSaveProgress', '_bfRenderCard', '_srsAppendLog',
       '_srsCsvFor', '_srsStemHash', 'Date', 'setTimeout', '_bfNext', '_bfClearProgress',
-      fnBody(DESK, '_bfBuildRetryDeck') + '\n'
+      'function _bfOwner() { return "owner"; } var window = { gradebookClient: { recordFlashcardRun: async () => ({ ok: true }) } };\n' + fnBody(DESK, '_bfBuildRetryDeck') + '\n'
         + fnBody(DESK, '_bfFinish') + '\n'
         + fnBody(DESK, '_bfAnswer') + '\n'
         + 'return { finish: _bfFinish, answer: _bfAnswer };'

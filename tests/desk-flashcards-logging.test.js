@@ -122,7 +122,7 @@ describe('Desk flashcard per-card logging — static contract', () => {
       '_bfState', '_bfLoadProgress', '_bfSaveProgress', '_srsRoundId',
       'document', '_bfShowQuizUI', '_bfRenderCard', '_bfKeydownHandler',
       'cedLabel',
-      fnBody(DESK, '_bfStartQuick') + '\nreturn _bfStartQuick;'
+      'function _bfOwner() { return "owner"; }\n' + fnBody(DESK, '_bfStartQuick') + '\nreturn _bfStartQuick;'
     );
     const start = factory(
       state,

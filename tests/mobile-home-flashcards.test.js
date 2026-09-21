@@ -42,7 +42,7 @@ describe('mobile-home — native flashcards wiring (static)', () => {
     expect(HOME).toContain("response: { selfAttest: 'blooket' }");
     expect(HOME).toContain('if (!(score > floor)) return { skipped: true');
     // Quick records only on pass; the full deck always records its score.
-    expect(HOME).toContain('recordFlashcardRun(topic, mode, correct, total)');
+    expect(HOME).toContain('recordFlashcardRun(topic, mode, correct, total, run.pendingResult)');
   });
 });
 
@@ -125,7 +125,7 @@ function bootLauncher({
       }
       window.fetch = fakeFetch;
       window.ROSTER_SERVICE_URL = 'https://api.test';
-      window.rosterClient = { current: () => ({ username: 'kid' }), token: () => 'tok' };
+      window.rosterClient = { studentId: () => 'fixture-owner', current: () => ({ username: 'kid' }), token: () => 'tok' };
       window.gradebookClient = { record: vi.fn(), recordFlashcardRun: (lesson, mode, correct, total) => { recorded.push({ lesson, mode, correct, total }); return Promise.resolve({ ok: true }); } };
     },
   });
@@ -787,4 +787,73 @@ it('the real mobile lesson button serves the deterministic daily ten, with a sec
     await flush(4);
     expect(win.document.getElementById('fco').classList.contains('timed')).toBe(false);
   } finally { win.close(); }
+});
+
+
+describe('mobile daily save ownership and durability', () => {
+  function realWriter(win) {
+    Object.defineProperty(win.navigator, 'onLine', { configurable: true, value: false });
+    win.eval(readFileSync(resolve(repo, 'offline-queue.js'), 'utf8'));
+    win.eval(readFileSync(resolve(repo, 'gradebook-client.js'), 'utf8'));
+  }
+  function progress(win) {
+    return JSON.parse(win.localStorage.getItem('a2_desk_bf_progress_kid@roster.local') || '{}')['1.1'];
+  }
+  it('retains a failed finish, resumes it, and clears only after the real writer queues it', async () => {
+    const { dom, win } = bootLauncher({ gradeBlooket: 40 });
+    try {
+      await flush();
+      realWriter(win);
+      const enqueue = vi.spyOn(win.OfflineQueue, 'enqueue').mockRejectedValue(new Error('queue failed'));
+      await finishOneCardFullDeck(win);
+      expect(win.document.getElementById('fc-body').textContent).toContain("Couldn't save yet");
+      const pending = progress(win).pendingResult;
+      win.closeFlashcards();
+      win.document.querySelector('.btn.fc').click();
+      await flush();
+      expect(progress(win).pendingResult).toEqual(pending);
+      expect(win.document.getElementById('fc-body').textContent).toContain("Couldn't save yet");
+      enqueue.mockRestore();
+      [...win.document.querySelectorAll('#fc-body button')].find(button => button.textContent === 'Retry').click();
+      await flush();
+      expect(progress(win)).toBeUndefined();
+      expect(await win.OfflineQueue.all()).toEqual([expect.objectContaining({ studentId: 'fixture-owner', response: expect.objectContaining({ correct: 1, total: 1, timestamp: pending.timestamp }) })]);
+    } finally { dom.window.close(); }
+  });
+  it('waits for durable enqueue and closes when identity switches during that wait', async () => {
+    const { dom, win } = bootLauncher({ gradeBlooket: 40 });
+    try {
+      await flush();
+      realWriter(win);
+      const enqueue = win.OfflineQueue.enqueue.bind(win.OfflineQueue);
+      let release;
+      vi.spyOn(win.OfflineQueue, 'enqueue').mockImplementation(row => new Promise(resolve => {
+        release = async () => resolve(await enqueue(row));
+      }));
+      await finishOneCardFullDeck(win);
+      expect(progress(win).pendingResult.ownerId).toBe('fixture-owner');
+      expect(win.document.getElementById('fc-body').textContent).toContain('Saving...');
+      win.rosterClient.studentId = () => 'other-owner';
+      win.dispatchEvent(new win.Event('storage'));
+      expect(win.document.getElementById('fco').classList.contains('show')).toBe(false);
+      await release();
+      await flush();
+      expect((await win.OfflineQueue.all())[0].studentId).toBe('fixture-owner');
+    } finally { dom.window.close(); }
+  });
+  it('rejects a changed owner at finish even without a session event', async () => {
+    const { dom, win } = bootLauncher({ gradeBlooket: 40 });
+    try {
+      await flush();
+      realWriter(win);
+      win.document.querySelector('.btn.fc').click();
+      await flush();
+      win.document.querySelector('#fc-choices .fc-choice[data-i="1"]').click();
+      win.rosterClient.studentId = () => 'other-owner';
+      win.document.getElementById('fc-next').click();
+      await flush();
+      expect(win.document.getElementById('fc-body').textContent).toContain('Sign in again');
+      expect(await win.OfflineQueue.all()).toHaveLength(0);
+    } finally { dom.window.close(); }
+  });
 });

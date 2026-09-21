@@ -50,7 +50,7 @@ describe('Desk flashcards — scoring guards', () => {
       /var\s+canScore\s*=\s*\(typeof\s+_mayScore\s*!==\s*['"]function['"]\)\s*\|\|\s*_mayScore\(\)/
     );
     expect(body).not.toContain('Passed');
-    expect(body).toContain('if (canScore &&');
+    expect(body).toContain('if (!canScore) return;');
   });
 
   it('localStorage writers guard view-as first and worksheet read-only second', () => {

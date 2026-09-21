@@ -85,7 +85,7 @@ describe('Desk quick flashcard misses recap', () => {
       const reopenedButton = { focus() {} };
       const freshDeck = [{ qnum: 99, q: 'Fresh question', choices: ['Yes', 'No'], correctIdx: 0 }];
       const state = {
-        topic: '4.1',
+        ownerId: 'owner', topic: '4.1',
         btn: passedButton,
         deck: Array.from({ length: 10 }, function () { return {}; }),
         idx: 8,
@@ -101,6 +101,7 @@ describe('Desk quick flashcard misses recap', () => {
       const timedState = { topic: null, btn: null, round: null, answered: false, roundId: null };
       const commit = vi.fn(async function () {});
       const source = [
+        'function _bfOwner() { return "owner"; }',
         fnBody(DESK, '_bfFinish'),
         fnBody(DESK, '_bfCloseUI'),
         fnBody(DESK, 'closeBlooketFlashcards'),
@@ -187,7 +188,7 @@ describe('Desk quick flashcard misses recap', () => {
       <div id="bf-result"></div>
     </body>`);
     const state = {
-      topic: '4.1',
+      ownerId: 'owner', topic: '4.1',
       btn: {},
       deck: [{}, {}, {}, {}],
       idx: 4,
@@ -208,7 +209,7 @@ describe('Desk quick flashcard misses recap', () => {
     const finishFactory = new Function(
       'document', '_bfState', 'BLOOKET_PASS_THRESHOLD', '_mayScore',
       '_bfWorksheetUrl', '_bfWorksheetFragmentUrl', '_bfClearProgress',
-      fnBody(DESK, '_bfFinish') + '\nreturn _bfFinish;'
+      'function _bfOwner() { return "owner"; } function _bfSaveProgress() {}\n' + fnBody(DESK, '_bfFinish') + '\nreturn _bfFinish;'
     );
     const finish = finishFactory(
       dom.window.document,

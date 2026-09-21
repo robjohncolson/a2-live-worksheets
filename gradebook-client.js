@@ -431,14 +431,15 @@
   window.gradebookClient = {
 
     // Raw daily accuracy is separate from the existing capped completion item.
-    recordFlashcardRun: async function (lesson, mode, correct, total) {
+    recordFlashcardRun: async function (lesson, mode, correct, total, run) {
       try {
         if (window.__WS_READ_ONLY__) return { ok: false, reason: 'read-only' };
         var token = _token();
         var ownerId = _studentId();
         if (!token || !ownerId) return { ok: false, reason: 'no-identity' };
+        if (run && run.ownerId !== ownerId) return { ok: false, reason: 'no-identity' };
         if (!total) return { ok: false, reason: 'bad-args' };
-        var finishedAt = new Date();
+        var finishedAt = run && run.timestamp ? new Date(run.timestamp) : new Date();
         var parts = new Intl.DateTimeFormat('en-CA', {
           timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit'
         }).formatToParts(finishedAt);
@@ -447,7 +448,7 @@
         }).join('-');
         // Each run has its own queue key: a later lower score must not erase it.
         var opts = _stampRecord({ source: 'flashcard-run', kind: 'flashcard-run', studentId: ownerId,
-          itemId: 'daily-' + finishedAt.getTime() + '-' + Math.random().toString(36).slice(2),
+          itemId: 'daily-' + (run && run.runId || finishedAt.getTime() + '-' + Math.random().toString(36).slice(2)),
           response: { lesson: String(lesson).replace('.', '-'), date: date,
             timestamp: finishedAt.getTime(), mode: mode, correct: correct, total: total }
         });

@@ -214,7 +214,7 @@ describe('Desk: Blooket flashcard verification', () => {
 
   it('20: every completed run clears saved progress', () => {
     const body = fnBody(DESK, '_bfFinish');
-    expect(body).toContain('_bfClearProgress(_bfState.topic)');
+    expect(body).toContain('_bfClearProgress(topic)');
     expect(body).not.toContain('if (passed)');
   });
 

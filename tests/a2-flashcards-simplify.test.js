@@ -21,26 +21,26 @@ function source(text, name) {
 function boot(text, names, values) {
   const dom = new JSDOM(text, { runScripts: 'outside-only', url: 'https://desk.test/' });
   opened.push(dom);
-  Object.assign(dom.window, values);
+  Object.assign(dom.window, { _bfOwner: () => 'owner', _fcOwner: () => 'owner' }, values);
   dom.window.eval(names.map(name => source(text, name)).join('\n'));
   return dom.window;
 }
 
 describe('daily flashcards without pass/fail', () => {
   it.each([0, 7, 8, 10])('Desk records raw %s/10, keeps the result open and supports a fresh retry', async correct => {
-    const recordFlashcardRun = vi.fn();
+    const recordFlashcardRun = vi.fn(async () => ({ ok: true }));
     const clear = vi.fn(), save = vi.fn(), render = vi.fn(), commit = vi.fn();
-    const state = { topic: '1.1', score: correct, idx: 10, deck: Array.from({ length: 10 }, (_, qnum) => ({ qnum })),
+    const state = { ownerId: 'owner', topic: '1.1', score: correct, idx: 10, deck: Array.from({ length: 10 }, (_, qnum) => ({ qnum })),
       answered: false, finished: false, misses: correct === 10 ? [] : [{ q: 'Domain?', correctAnswer: 'All real numbers' }] };
     const win = boot(desk, ['_bfFinish'], {
-      _bfState: state, gradebookClient: { recordFlashcardRun }, _bfClearProgress: clear,
+      _bfOwner: () => 'owner', _bfState: state, gradebookClient: { recordFlashcardRun }, _bfClearProgress: clear,
       _bfSaveProgress: save, _bfRenderCard: render, _bfShuffle: cards => [...cards].reverse(),
       _blooketCommit: commit,
     });
     await win._bfFinish();
     await win._bfFinish();
     expect(recordFlashcardRun).toHaveBeenCalledOnce();
-    expect(recordFlashcardRun).toHaveBeenCalledWith('1.1', 'quick', correct, 10);
+    expect(recordFlashcardRun).toHaveBeenCalledWith('1.1', 'quick', correct, 10, expect.objectContaining({ ownerId: 'owner' }));
     expect(clear).toHaveBeenCalledWith('1.1');
     expect(commit).not.toHaveBeenCalled();
     const result = win.document.getElementById('bf-result');
@@ -50,24 +50,24 @@ describe('daily flashcards without pass/fail', () => {
     [...result.querySelectorAll('button')].find(b => b.textContent === 'Try again (new shuffle)').click();
     expect(state).toMatchObject({ idx: 0, score: 0, finished: false, misses: [] });
     expect(state.deck[0].qnum).toBe(9);
-    expect(save).toHaveBeenCalledOnce();
+    expect(save).toHaveBeenCalledTimes(2);
     expect(render).toHaveBeenCalledOnce();
   });
 
-  it.each([0, 7, 8, 10])('mobile records raw %s/10 without writing a completion row', correct => {
-    const recordFlashcardRun = vi.fn(), commit = vi.fn(), clear = vi.fn();
-    const state = { lesson: { id: '1.1' }, mode: 'quick', correct, idx: 10, answered: false,
+  it.each([0, 7, 8, 10])('mobile records raw %s/10 without writing a completion row', async correct => {
+    const recordFlashcardRun = vi.fn(async () => ({ ok: true })), commit = vi.fn(), clear = vi.fn();
+    const state = { ownerId: 'owner', lesson: { id: '1.1' }, mode: 'quick', correct, idx: 10, answered: false,
       deck: Array.from({ length: 10 }, (_, qnum) => ({ qnum })), misses: [] };
     const win = boot(mobile, ['_fcFinish', '_fcRenderResult'], {
-      _fc: state, gradebookClient: { recordFlashcardRun }, _fcCommit: commit,
+      _fcOwner: () => 'owner', _fcSaveQuickProgress: vi.fn(), fcBody: () => win.document.getElementById('fc-body'), _fc: state, gradebookClient: { recordFlashcardRun }, _fcCommit: commit,
       _fcTimerStop: vi.fn(), _fcClearQuickProgress: clear, _fcSetProg: vi.fn(),
       _fcBodyHtml: vi.fn(), fcoEl: () => ({ classList: { remove: vi.fn() } }),
     });
     win._fcBodyHtml = html => { win.document.getElementById('fc-body').innerHTML = html; };
-    win._fcFinish();
-    win._fcFinish();
+    await win._fcFinish();
+    await win._fcFinish();
     expect(recordFlashcardRun).toHaveBeenCalledOnce();
-    expect(recordFlashcardRun).toHaveBeenCalledWith('1.1', 'quick', correct, 10);
+    expect(recordFlashcardRun).toHaveBeenCalledWith('1.1', 'quick', correct, 10, expect.objectContaining({ ownerId: 'owner' }));
     expect(commit).not.toHaveBeenCalled();
     expect(clear).toHaveBeenCalledWith('1.1');
     expect(win.document.getElementById('fc-body').textContent).toContain(`You got ${correct} of 10`);

@@ -216,12 +216,12 @@ describe('Desk daily flashcard journey', () => {
     const harness = await bootDesk({ now: NOW, fakeTimers: true, roster: { grades: j5GradeFixture() } });
     try {
       await j5SettleSignIn(harness);
-      const daily = vi.fn(async () => ({ ok: true }));
-      harness.window.gradebookClient.recordFlashcardRun = daily;
+      const daily = vi.spyOn(harness.window.OfflineQueue, 'enqueue');
       const heading = await j5OpenPicker(harness);
       expect(heading.textContent).toContain('Flashcards —');
       expect(await j5CompleteTimedRun(harness, { missFirst: true })).toBe(9);
-      expect(daily).toHaveBeenCalledWith(TOPIC, 'quick', 9, 10);
+      expect(daily).toHaveBeenCalledWith(expect.objectContaining({ kind: 'flashcard-run', studentId: harness.window.rosterClient.studentId(), response: expect.objectContaining({ correct: 9, total: 10 }) }));
+      await harness.waitFor(() => ![...harness.document.querySelectorAll('#bf-result button')].find(button => button.textContent === 'Try again (new shuffle)').disabled);
       expect(j5LedgerPosts(harness)).toEqual([]);
       const result = harness.document.getElementById('bf-result');
       expect(result.textContent).not.toMatch(/passed|80%/i);
@@ -231,13 +231,98 @@ describe('Desk daily flashcard journey', () => {
       retry.click();
       expect(await j5CompleteTimedRun(harness, { missFirst: false })).toBe(10);
       expect(daily).toHaveBeenCalledTimes(2);
-      expect(daily).toHaveBeenLastCalledWith(TOPIC, 'quick', 10, 10);
+      expect(daily).toHaveBeenLastCalledWith(expect.objectContaining({ kind: 'flashcard-run', response: expect.objectContaining({ correct: 10, total: 10 }) }));
       await j5SettleRoster(harness);
       expect(j5LedgerPosts(harness)).toEqual([]);
       const entries = JSON.parse(harness.window.localStorage.getItem(LOG_KEY) || '[]');
       expect(entries).toHaveLength(20);
       expect(entries.every(entry => entry.mode === 'quick')).toBe(true);
       expect(result.textContent).toContain('You got 10 of 10');
+    } finally { harness.teardown(); }
+  }, 60_000);
+});
+
+
+function progress(harness) {
+  return JSON.parse(harness.window.localStorage.getItem(harness.window._bfStorageKey()) || '{}')[TOPIC];
+}
+function saveRetry(harness) {
+  return [...harness.document.querySelectorAll('#bf-result button')].find(button => button.textContent === 'Retry');
+}
+
+describe('daily writer durability and ownership', () => {
+  it('keeps a deferred enqueue until durable, then replays the owner record on reconnect', async () => {
+    const harness = await bootDesk({ now: NOW, fakeTimers: true, roster: { grades: j5GradeFixture() } });
+    try {
+      await j5SettleSignIn(harness);
+      Object.defineProperty(harness.window.navigator, 'onLine', { configurable: true, value: false });
+      const queue = harness.window.OfflineQueue;
+      const enqueue = queue.enqueue.bind(queue);
+      let release;
+      vi.spyOn(queue, 'enqueue').mockImplementation(record => new Promise(resolve => {
+        release = async () => resolve(await enqueue(record));
+      }));
+      await j5OpenPicker(harness);
+      await j5CompleteTimedRun(harness, { missFirst: true });
+      expect(progress(harness).pendingResult.ownerId).toBe(harness.window.rosterClient.studentId());
+      expect(harness.document.getElementById('bf-result').textContent).toContain('Saving...');
+      await release();
+      await harness.waitFor(() => !progress(harness));
+      const rows = await queue.all();
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({ studentId: harness.window.rosterClient.studentId(), kind: 'flashcard-run', response: { correct: 9, total: 10 } });
+      const fetch = harness.window.fetch.bind(harness.window);
+      const posts = [];
+      harness.window.fetch = (url, options) => {
+        if (String(url).endsWith('/flashcards/daily')) {
+          posts.push(JSON.parse(options.body));
+          return Promise.resolve({ ok: true, json: async () => ({ ok: true }) });
+        }
+        return fetch(url, options);
+      };
+      Object.defineProperty(harness.window.navigator, 'onLine', { configurable: true, value: true });
+      harness.window.dispatchEvent(new harness.window.Event('online'));
+      await harness.waitFor(() => posts.length === 1);
+      await harness.window.gradebookClient.syncOfflineQueue();
+      expect(await queue.all()).toHaveLength(0);
+      expect(posts[0]).toMatchObject({ studentId: rows[0].studentId, correct: 9, total: 10 });
+    } finally { harness.teardown(); }
+  }, 60_000);
+
+  it('retains a failed finished run across reload and retries the real writer', async () => {
+    let harness = await bootDesk({ now: NOW, fakeTimers: true, roster: { grades: j5GradeFixture() } });
+    try {
+      await j5SettleSignIn(harness);
+      Object.defineProperty(harness.window.navigator, 'onLine', { configurable: true, value: false });
+      vi.spyOn(harness.window.OfflineQueue, 'enqueue').mockRejectedValue(new Error('queue unavailable'));
+      await j5OpenPicker(harness);
+      await j5CompleteTimedRun(harness, { missFirst: true });
+      await harness.waitFor(() => !saveRetry(harness).hidden);
+      const pending = progress(harness).pendingResult;
+      expect(harness.document.getElementById('bf-result').textContent).toContain("Couldn't save yet");
+      harness = await harness.reboot();
+      Object.defineProperty(harness.window.navigator, 'onLine', { configurable: true, value: false });
+      const enqueue = vi.spyOn(harness.window.OfflineQueue, 'enqueue');
+      await harness.window._bfStartQuick(null, TOPIC);
+      await harness.waitFor(() => !progress(harness));
+      expect(enqueue).toHaveBeenCalledWith(expect.objectContaining({ studentId: pending.ownerId, response: expect.objectContaining({ timestamp: pending.timestamp, correct: 9, total: 10 }) }));
+    } finally { harness.teardown(); }
+  }, 60_000);
+
+  it.each(['roster-session-changed', 'storage'])('closes a run on %s and refuses a mismatched finish', async event => {
+    const harness = await bootDesk({ now: NOW, fakeTimers: true, roster: { grades: j5GradeFixture() } });
+    try {
+      await j5SettleSignIn(harness);
+      await j5OpenPicker(harness);
+      const owner = harness.window._bfState.ownerId;
+      const enqueue = vi.spyOn(harness.window.OfflineQueue, 'enqueue');
+      vi.spyOn(harness.window.rosterClient, 'studentId').mockReturnValue('different-owner');
+      harness.window.dispatchEvent(new harness.window.Event(event));
+      expect(harness.document.getElementById('bf-overlay').style.display).toBe('none');
+      Object.assign(harness.window._bfState, { ownerId: owner, topic: TOPIC, finished: false });
+      await harness.window._bfFinish();
+      expect(enqueue).not.toHaveBeenCalled();
+      expect(harness.document.getElementById('dialog-overlay').textContent).toContain('Sign in again');
     } finally { harness.teardown(); }
   }, 60_000);
 });

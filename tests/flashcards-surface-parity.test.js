@@ -211,7 +211,7 @@ function makeDeskHarness(mode) {
   const timers = createTimers();
   const recorded = [];
   dom.window.localStorage.setItem('a2_desk_student_email', EMAIL);
-  const bfState = {
+  const bfState = { ownerId: 'owner',
     topic: TOPIC,
     btn: dom.window.document.getElementById('launcher'),
     deck: clone(DECK),
@@ -237,7 +237,7 @@ function makeDeskHarness(mode) {
   };
   const windowObject = {
     __WS_READ_ONLY__: false,
-    rosterClient: null,
+    rosterClient: { studentId: () => 'owner' },
     gradebookClient: {
       recordFlashcardRun(lesson, mode, correct, total) {
         recorded.push({ lesson, mode, correct, total });
@@ -274,6 +274,7 @@ function makeDeskHarness(mode) {
 
   const factory = new Function('deps', [
     'var _bfState = deps.bfState;',
+    fnSource(DESK, '_bfOwner'),
     'var _ftState = deps.ftState;',
     'var window = deps.windowObject;',
     'var document = deps.document;',
@@ -362,7 +363,7 @@ function makeMobileHarness(mode) {
   const windowObject = {
     __WS_READ_ONLY__: false,
     FlashcardSrs: { stemHash },
-    rosterClient: null,
+    rosterClient: { studentId: () => 'owner' },
     gradebookClient: {
       recordFlashcardRun(lesson, mode, correct, total) {
         recorded.push({ lesson, mode, correct, total });
@@ -395,7 +396,8 @@ function makeMobileHarness(mode) {
 
   const factory = new Function('deps', [
     'var FC = deps.FC;',
-    'var _fc = deps.fcState;',
+    'var _fc = deps.fcState; _fc.ownerId = "owner";',
+    fnSource(MOBILE, '_fcOwner'),
     'var window = deps.windowObject;',
     'var document = deps.document;',
     'var localStorage = deps.localStorage;',
@@ -407,7 +409,9 @@ function makeMobileHarness(mode) {
     'var _fcSaveQuickProgress = deps.noop;',
     'var _fcClearQuickProgress = deps.noop;',
     'var _fcRender = deps.render;',
-    'var _fcRenderResult = deps.noop;',
+    'var _fcSetProg = deps.noop;',
+    'function _fcBodyHtml(html) { fcBody().innerHTML = html; }',
+    fnSource(MOBILE, '_fcRenderResult'),
     'var loadGrade = deps.loadGrade;',
     'var _fcBlooketFloor = deps.floor;',
     'var _fcBumpLocalBlooket = deps.noop;',
