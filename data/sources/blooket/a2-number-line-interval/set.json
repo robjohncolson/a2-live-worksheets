@@ -1,0 +1,1074 @@
+{
+ "about": "Teacher's own Blooket set 'a2 number line interval' (dashboard.blooket.com/set/68f84a1540ca0ac2393b4936), exported 2026-09-20. Source for the flashcard deck that mirrors the daily Blooket opener.",
+ "setId": "68f84a1540ca0ac2393b4936",
+ "title": "a2 number line interval",
+ "questions": [
+  {
+   "number": 21,
+   "question": "Look at Figure 14: Which inequality best describes this number line?",
+   "answers": [
+    "3 < x ≤ 6",
+    "3 ≤ x < 6",
+    "3 < x < 6",
+    "3 ≤ x ≤ 6"
+   ],
+   "correctAnswers": [
+    "3 < x ≤ 6"
+   ],
+   "timeLimit": 45,
+   "image": "q21.png"
+  },
+  {
+   "number": 2,
+   "question": "The number line expresses which inequality?",
+   "answers": [
+    "(-∞, -2]",
+    "(-∞, -2)",
+    "[-2, ∞)",
+    "(-2, ∞)"
+   ],
+   "correctAnswers": [
+    "(-∞, -2]"
+   ],
+   "timeLimit": 45,
+   "image": "q02.png"
+  },
+  {
+   "number": 12,
+   "question": "Look at Figure 10: Which English description matches this number line?",
+   "answers": [
+    "All real numbers less than 2",
+    "All real numbers less than or equal to 2",
+    "All real numbers greater than 2",
+    "All real numbers greater than or equal to 2"
+   ],
+   "correctAnswers": [
+    "All real numbers less than 2"
+   ],
+   "timeLimit": 45,
+   "image": "q12.png"
+  },
+  {
+   "number": 40,
+   "question": "What is the correct way to write x is between -1 and 4 inclusive in interval notation?",
+   "answers": [
+    "[-1, 4]",
+    "(-1, 4)",
+    "[-1, 4)",
+    "(-1, 4]"
+   ],
+   "correctAnswers": [
+    "[-1, 4]"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 29,
+   "question": "Look at Figure 18: Which interval notation is correct?",
+   "answers": [
+    "[-2, 3)",
+    "(-2, 3]",
+    "[-2, 3]",
+    "(-2, 3)"
+   ],
+   "correctAnswers": [
+    "[-2, 3)"
+   ],
+   "timeLimit": 45,
+   "image": "q29.png"
+  },
+  {
+   "number": 3,
+   "question": "The number line expresses which inequality?",
+   "answers": [
+    "x ≥ 1",
+    "x > 1",
+    "x ≤ 1",
+    "x < 1"
+   ],
+   "correctAnswers": [
+    "x ≥ 1"
+   ],
+   "timeLimit": 45,
+   "image": "q03.png"
+  },
+  {
+   "number": 13,
+   "question": "Which interval notation represents -2 ≤ x < 5?",
+   "answers": [
+    "[-2, 5)",
+    "(-2, 5]",
+    "[-2, 5]",
+    "(-2, 5)"
+   ],
+   "correctAnswers": [
+    "[-2, 5)"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 18,
+   "question": "Which inequality represents the union (-∞, -1) ∪ (2, ∞)?",
+   "answers": [
+    "x < -1 or x > 2",
+    "x ≤ -1 or x ≥ 2",
+    "x < -1 and x > 2",
+    "-1 < x < 2"
+   ],
+   "correctAnswers": [
+    "x < -1 or x > 2"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 31,
+   "question": "Look at Figure 19: What type of endpoint is at x = -3?",
+   "answers": [
+    "Open circle",
+    "Closed circle",
+    "Arrow",
+    "No endpoint shown"
+   ],
+   "correctAnswers": [
+    "Closed circle"
+   ],
+   "timeLimit": 45,
+   "image": "q31.png"
+  },
+  {
+   "number": 22,
+   "question": "Which number line representation would show x ≥ -5?",
+   "answers": [
+    "w37xkqns3quxuqryk3ii`~`https://media.blooket.com/image/upload/v1761202102/w37xkqns3quxuqryk3ii.png",
+    "dwnbbrvo9i2x4mk1njtv`~`https://media.blooket.com/image/upload/v1761202102/dwnbbrvo9i2x4mk1njtv.png",
+    "mlwhmn4ehvg7v2ha9dvk`~`https://media.blooket.com/image/upload/v1761202102/mlwhmn4ehvg7v2ha9dvk.png",
+    "urb6uebdjj4qh7bkpzvu`~`https://media.blooket.com/image/upload/v1761202102/urb6uebdjj4qh7bkpzvu.png"
+   ],
+   "correctAnswers": [
+    "w37xkqns3quxuqryk3ii`~`https://media.blooket.com/image/upload/v1761202102/w37xkqns3quxuqryk3ii.png"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 24,
+   "question": "Which interval represents all real numbers?",
+   "answers": [
+    "(-∞, ∞)",
+    "[-∞, ∞]",
+    "(0, ∞)",
+    "(-∞, 0)"
+   ],
+   "correctAnswers": [
+    "(-∞, ∞)"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 30,
+   "question": "Which inequality represents [1, ∞)?",
+   "answers": [
+    "x ≥ 1",
+    "x > 1",
+    "x ≤ 1",
+    "x < 1"
+   ],
+   "correctAnswers": [
+    "x ≥ 1"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 5,
+   "question": "The number line expresses which inequality?",
+   "answers": [
+    "-3 < x < 2",
+    "-3 ≤ x ≤ 2",
+    "-3 < x ≤ 2",
+    "-3 ≤ x < 2"
+   ],
+   "correctAnswers": [
+    "-3 < x ≤ 2"
+   ],
+   "timeLimit": 45,
+   "image": "q05.png"
+  },
+  {
+   "number": 6,
+   "question": "The number line expresses which inequality?",
+   "answers": [
+    "(2, ∞)",
+    "[2, ∞)",
+    "(-∞, 2)",
+    "(-∞, 2]"
+   ],
+   "correctAnswers": [
+    "[2, ∞)"
+   ],
+   "timeLimit": 45,
+   "image": "q06.png"
+  },
+  {
+   "number": 14,
+   "question": "Which inequality represents the interval (-∞, 7]?",
+   "answers": [
+    "x ≤ 7",
+    "x < 7",
+    "x ≥ 7",
+    "x > 7"
+   ],
+   "correctAnswers": [
+    "x ≤ 7"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 39,
+   "question": "Look at Figure 23: How many separate intervals are shown?",
+   "answers": [
+    "1",
+    "2",
+    "3",
+    "0"
+   ],
+   "correctAnswers": [
+    "2"
+   ],
+   "timeLimit": 45,
+   "image": "q39.png"
+  },
+  {
+   "number": 11,
+   "question": "Look at Figure 9: Which set notation represents this number line?",
+   "answers": [
+    "{x | x > -1}",
+    "{x | x ≥ -1}",
+    "{x | x < -1}",
+    "{x | x ≤ -1}"
+   ],
+   "correctAnswers": [
+    "{x | x ≥ -1}"
+   ],
+   "timeLimit": 45,
+   "image": "q11.png"
+  },
+  {
+   "number": 8,
+   "question": "The number line expresses which inequality?",
+   "answers": [
+    "(-∞, 0) ∪ (5, ∞)",
+    "(-∞, 0] ∪ [5, ∞)",
+    "[0, 5]",
+    "(0, 5)"
+   ],
+   "correctAnswers": [
+    "(-∞, 0] ∪ [5, ∞)"
+   ],
+   "timeLimit": 45,
+   "image": "q08.png"
+  },
+  {
+   "number": 37,
+   "question": "Look at Figure 22: Is this interval bounded or unbounded?",
+   "answers": [
+    "Bounded",
+    "Unbounded",
+    "Semi-bounded",
+    "Cannot determine"
+   ],
+   "correctAnswers": [
+    "Bounded"
+   ],
+   "timeLimit": 45,
+   "image": "q37.png"
+  },
+  {
+   "number": 10,
+   "question": "Which number line would represent the interval (3, ∞)?",
+   "answers": [
+    "ba1tq2lsbvier4z1bqzx`~`https://media.blooket.com/image/upload/v1761201754/ba1tq2lsbvier4z1bqzx.png",
+    "dxo9vrhon8rt0bgdknok`~`https://media.blooket.com/image/upload/v1761201755/dxo9vrhon8rt0bgdknok.png",
+    "ogqxusxylkyarp236pws`~`https://media.blooket.com/image/upload/v1761201754/ogqxusxylkyarp236pws.png",
+    "ewweh75i3a21al4xo79h`~`https://media.blooket.com/image/upload/v1761201754/ewweh75i3a21al4xo79h.png"
+   ],
+   "correctAnswers": [
+    "ba1tq2lsbvier4z1bqzx`~`https://media.blooket.com/image/upload/v1761201754/ba1tq2lsbvier4z1bqzx.png"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 9,
+   "question": "which number line expresses x ≤ 4?",
+   "answers": [
+    "fgitcserxhqrjm7zkbep`~`https://media.blooket.com/image/upload/v1761201691/fgitcserxhqrjm7zkbep.png",
+    "hsqauxtrb27mpiwqu8pw`~`https://media.blooket.com/image/upload/v1761201691/hsqauxtrb27mpiwqu8pw.png",
+    "gtbswwltkxywvcpxewid`~`https://media.blooket.com/image/upload/v1761201691/gtbswwltkxywvcpxewid.png",
+    "hgnurz3cyt3mrqaxgej6`~`https://media.blooket.com/image/upload/v1761201691/hgnurz3cyt3mrqaxgej6.png"
+   ],
+   "correctAnswers": [
+    "hsqauxtrb27mpiwqu8pw`~`https://media.blooket.com/image/upload/v1761201691/hsqauxtrb27mpiwqu8pw.png"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 32,
+   "question": "Which interval notation represents x ≠ 2?",
+   "answers": [
+    "(-∞, 2) ∪ (2, ∞)",
+    "(-∞, 2] ∪ [2, ∞)",
+    "(-∞, ∞)",
+    "(2, 2)"
+   ],
+   "correctAnswers": [
+    "(-∞, 2) ∪ (2, ∞)"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 16,
+   "question": "Which number line would show an open circle at -2 and a closed circle at 3 with a line segment between them?",
+   "answers": [
+    "asdzmoenoo4gdtasjio6`~`https://media.blooket.com/image/upload/v1761201981/asdzmoenoo4gdtasjio6.png",
+    "otj1yrtuovdgdmfm2ecq`~`https://media.blooket.com/image/upload/v1761201981/otj1yrtuovdgdmfm2ecq.png",
+    "vwny8ghpqfdvt7aehkp1`~`https://media.blooket.com/image/upload/v1761201981/vwny8ghpqfdvt7aehkp1.png",
+    "i6ctwfygrxmg0zbpbabz`~`https://media.blooket.com/image/upload/v1761201981/i6ctwfygrxmg0zbpbabz.png"
+   ],
+   "correctAnswers": [
+    "asdzmoenoo4gdtasjio6`~`https://media.blooket.com/image/upload/v1761201981/asdzmoenoo4gdtasjio6.png"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 17,
+   "question": "Look at Figure 12: Which interval notation represents this number line?",
+   "answers": [
+    "[0, 4]",
+    "(0, 4)",
+    "[0, 4)",
+    "(0, 4]"
+   ],
+   "correctAnswers": [
+    "[0, 4)"
+   ],
+   "timeLimit": 45,
+   "image": "q17.png"
+  },
+  {
+   "number": 20,
+   "question": "Which interval notation means all real numbers except between -3 and 3 (exclusive)?",
+   "answers": [
+    "(-∞, -3) ∪ (3, ∞)",
+    "(-∞, -3] ∪ [3, ∞)",
+    "[-3, 3]",
+    "(-3, 3)"
+   ],
+   "correctAnswers": [
+    "(-∞, -3) ∪ (3, ∞)"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 4,
+   "question": "The number line expresses which inequality?",
+   "answers": [
+    "(-1, 4)",
+    "[-1, 4]",
+    "[-1, 4)",
+    "(-1, 4]"
+   ],
+   "correctAnswers": [
+    "[-1, 4]"
+   ],
+   "timeLimit": 45,
+   "image": "q04.png"
+  },
+  {
+   "number": 28,
+   "question": "What does an open circle on a number line indicate?",
+   "answers": [
+    "The endpoint is not included",
+    "The endpoint is included",
+    "The interval continues forever",
+    "The interval stops at that point"
+   ],
+   "correctAnswers": [
+    "The endpoint is not included"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 36,
+   "question": "Which type of bracket is used when x = a is included in the interval?",
+   "answers": [
+    "Square bracket [",
+    "Parenthesis (",
+    "Curly brace {",
+    "Angle bracket <"
+   ],
+   "correctAnswers": [
+    "Square bracket ["
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 19,
+   "question": "Look at Figure 13: What type of interval is shown?",
+   "answers": [
+    "Single interval",
+    "Union of two intervals",
+    "Intersection of two intervals",
+    "Empty set"
+   ],
+   "correctAnswers": [
+    "Union of two intervals"
+   ],
+   "timeLimit": 45,
+   "image": "q19.png"
+  },
+  {
+   "number": 1,
+   "question": "The number line expresses which inequality?",
+   "answers": [
+    "x > 3",
+    "x ≥ 3",
+    "x < 3",
+    "x ≤ 3"
+   ],
+   "correctAnswers": [
+    "x > 3"
+   ],
+   "timeLimit": 45,
+   "image": "q01.png"
+  },
+  {
+   "number": 26,
+   "question": "Which symbol is always used with infinity in interval notation?",
+   "answers": [
+    "Parenthesis ( )",
+    "Bracket [ ]",
+    "Either parenthesis or bracket",
+    "Square bracket only"
+   ],
+   "correctAnswers": [
+    "Parenthesis ( )"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 15,
+   "question": "Look at Figure 11: Which inequality represents this number line?",
+   "answers": [
+    "x ≤ -3 or x ≥ 1",
+    "x < -3 or x > 1",
+    "-3 ≤ x ≤ 1",
+    "-3 < x < 1"
+   ],
+   "correctAnswers": [
+    "x ≤ -3 or x ≥ 1"
+   ],
+   "timeLimit": 45,
+   "image": "q15.png"
+  },
+  {
+   "number": 33,
+   "question": "Look at Figure 20: Which inequality matches this union?",
+   "answers": [
+    "x ≤ -2 or x > 5",
+    "x < -2 or x ≥ 5",
+    "x ≤ -2 and x > 5",
+    "-2 ≤ x ≤ 5"
+   ],
+   "correctAnswers": [
+    "x ≤ -2 or x > 5"
+   ],
+   "timeLimit": 45,
+   "image": "q33.png"
+  },
+  {
+   "number": 7,
+   "question": "The number line expresses which inequality?",
+   "answers": [
+    "x < -4 or x > 3",
+    "x ≤ -4 or x ≥ 3",
+    "x < -4 and x > 3",
+    "-4 < x < 3"
+   ],
+   "correctAnswers": [
+    "x < -4 or x > 3"
+   ],
+   "timeLimit": 45,
+   "image": "q07.png"
+  },
+  {
+   "number": 35,
+   "question": "Look at Figure 21: Which interval best describes this bounded region?",
+   "answers": [
+    "(1, 3]",
+    "[1, 3)",
+    "[1, 3]",
+    "(1, 3)"
+   ],
+   "correctAnswers": [
+    "[1, 3)"
+   ],
+   "timeLimit": 45,
+   "image": "q35.png"
+  },
+  {
+   "number": 27,
+   "question": "Look at Figure 17: Which compound inequality represents this graph?",
+   "answers": [
+    "x < 0 or x ≥ 4",
+    "x ≤ 0 or x > 4",
+    "x < 0 and x ≥ 4",
+    "0 < x < 4"
+   ],
+   "correctAnswers": [
+    "x < 0 or x ≥ 4"
+   ],
+   "timeLimit": 45,
+   "image": "q27.png"
+  },
+  {
+   "number": 34,
+   "question": "What does the union symbol ∪ mean in interval notation?",
+   "answers": [
+    "Or",
+    "And",
+    "Not",
+    "Equals"
+   ],
+   "correctAnswers": [
+    "Or"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 25,
+   "question": "Look at Figure 16: What is the correct English description?",
+   "answers": [
+    "All numbers from 2 to 5 including 2 but not 5",
+    "All numbers from 2 to 5 including both",
+    "All numbers from 2 to 5 including 5 but not 2",
+    "All numbers from 2 to 5 excluding both"
+   ],
+   "correctAnswers": [
+    "All numbers from 2 to 5 including 2 but not 5"
+   ],
+   "timeLimit": 45,
+   "image": "q25.png"
+  },
+  {
+   "number": 38,
+   "question": "Which interval notation represents -5 < x ≤ 0?",
+   "answers": [
+    "(-5, 0]",
+    "[-5, 0)",
+    "(-5, 0)",
+    "[-5, 0]"
+   ],
+   "correctAnswers": [
+    "(-5, 0]"
+   ],
+   "timeLimit": 45
+  },
+  {
+   "number": 23,
+   "question": "Look at Figure 15: Which set notation represents this number line?",
+   "answers": [
+    "{x | -4 < x < -1}",
+    "{x | -4 ≤ x ≤ -1}",
+    "{x | -4 < x ≤ -1}",
+    "{x | -4 ≤ x < -1}"
+   ],
+   "correctAnswers": [
+    "{x | -4 ≤ x < -1}"
+   ],
+   "timeLimit": 45,
+   "image": "q23.png"
+  },
+  {
+   "number": 41,
+   "question": "Parabola vertex at (5, 0)",
+   "answers": [
+    "y = x² - 5",
+    "y = x² + 5",
+    "y = (x - 5)²",
+    "y = (x + 5)²"
+   ],
+   "correctAnswers": [
+    "y = (x - 5)²"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 42,
+   "question": "g(x) = |x| + 100, f(x) = |x| [See Q15]",
+   "answers": [
+    "Shift ↑ 100 units",
+    "Shift ↓ 100 units",
+    "Shift ← 100 units",
+    "Shift → 100 units"
+   ],
+   "correctAnswers": [
+    "Shift ↑ 100 units"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 43,
+   "question": "How does g(x) relate to f(x)?`*`g(x)=f(x)-3`*`",
+   "answers": [
+    "Graph moves ↑ 3 units",
+    "Graph moves ↓ 3 units",
+    "Graph moves ← 3 units",
+    "Graph moves → 3 units"
+   ],
+   "correctAnswers": [
+    "Graph moves ↓ 3 units"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 44,
+   "question": "How does g(x) relate to f(x)?`*`g(x)=f(x+5)`*`",
+   "answers": [
+    "Move → 5 units (horizontal)",
+    "Move ← 5 units (horizontal)",
+    "Move ↑ 5 units (vertical)",
+    "Move ↓ 5 units (vertical)"
+   ],
+   "correctAnswers": [
+    "Move ← 5 units (horizontal)"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 45,
+   "question": "|x| shift down 7: equation?",
+   "answers": [
+    "|x| - 7",
+    "|x| + 7",
+    "|x - 7|",
+    "|x + 7|"
+   ],
+   "correctAnswers": [
+    "|x| - 7"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 46,
+   "question": "Range f = [0, 4], g(x) = f(x) + 2",
+   "answers": [
+    "Range = [2, 6] ↑",
+    "Range = [-2, 2] ↓",
+    "Range = [0, 4] same",
+    "Range = [0, 6] expand"
+   ],
+   "correctAnswers": [
+    "Range = [2, 6] ↑"
+   ],
+   "timeLimit": 25
+  },
+  {
+   "number": 47,
+   "question": "g(x) = f(x + h), h > 0",
+   "answers": [
+    "Vertical shift ↑ by h units",
+    "Vertical shift ↓ by h units",
+    "Horizontal shift → by h units",
+    "Horizontal shift ← by h units"
+   ],
+   "correctAnswers": [
+    "Horizontal shift ← by h units"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 48,
+   "question": "f(x) = |x| → g(x) = |x - 4|",
+   "answers": [
+    "Points move ← 4 units",
+    "Points move → 4 units",
+    "Points move ↑ 4 units",
+    "Points move ↓ 4 units"
+   ],
+   "correctAnswers": [
+    "Points move → 4 units"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 49,
+   "question": "x² → (x - 2)², vertex (0,0) → ?",
+   "answers": [
+    "Vertex → (2, 0)",
+    "Vertex → (-2, 0)",
+    "Vertex → (0, 2)",
+    "Vertex → (0, -2)"
+   ],
+   "correctAnswers": [
+    "Vertex → (2, 0)"
+   ],
+   "timeLimit": 25
+  },
+  {
+   "number": 50,
+   "question": "How does g(x) relate to f(x)?`*`g(x)=f(x)+3`*`",
+   "answers": [
+    "Graph moves ↑ 3 units",
+    "Graph moves ↓ 3 units",
+    "Graph moves ← 3 units",
+    "Graph moves → 3 units"
+   ],
+   "correctAnswers": [
+    "Graph moves ↑ 3 units"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 51,
+   "question": "|x| shift right 7: equation?",
+   "answers": [
+    "|x| - 7",
+    "|x| + 7",
+    "|x - 7|",
+    "|x + 7|"
+   ],
+   "correctAnswers": [
+    "|x - 7|"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 52,
+   "question": "g(x) = f(x) - k, k > 0",
+   "answers": [
+    "Vertical shift ↑ by k units",
+    "Vertical shift ↓ by k units",
+    "Horizontal shift → by k units",
+    "Horizontal shift ← by k units"
+   ],
+   "correctAnswers": [
+    "Vertical shift ↓ by k units"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 53,
+   "question": "Parabola vertex at (0, -5)",
+   "answers": [
+    "y = x² - 5",
+    "y = x² + 5",
+    "y = (x - 5)²",
+    "y = (x + 5)²"
+   ],
+   "correctAnswers": [
+    "y = x² - 5"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 54,
+   "question": "How does the Domain of g differ than the Domain of f = [-2, 2]?`*`g(x)=f(x-3)`*`",
+   "answers": [
+    "Domain stays [-2, 2]",
+    "Domain = [-5, -1]",
+    "Domain = [1, 5]",
+    "Domain = [-3, 3]"
+   ],
+   "correctAnswers": [
+    "Domain = [1, 5]"
+   ],
+   "timeLimit": 25
+  },
+  {
+   "number": 55,
+   "question": "g(x) = f(x) + k, k > 0",
+   "answers": [
+    "Vertical shift ↑ by k units",
+    "Vertical shift ↓ by k units",
+    "Horizontal shift → by k units",
+    "Horizontal shift ← by k units"
+   ],
+   "correctAnswers": [
+    "Vertical shift ↑ by k units"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 56,
+   "question": "How does the Domain of g differ than the Domain of f = [-2, 2]?`*`g(x)=f(x)-4`*`",
+   "answers": [
+    "Domain stays [-2, 2]",
+    "Domain = [-6, -2]",
+    "Domain = [2, 6]",
+    "Domain = [-4, 0]"
+   ],
+   "correctAnswers": [
+    "Domain stays [-2, 2]"
+   ],
+   "timeLimit": 25
+  },
+  {
+   "number": 57,
+   "question": "Range f = [0, 4], g(x) = f(x) - 2",
+   "answers": [
+    "Range = [2, 6] ↑",
+    "Range = [-2, 2] ↓",
+    "Range = [0, 4] same",
+    "Range = [0, 2] shrink"
+   ],
+   "correctAnswers": [
+    "Range = [-2, 2] ↓"
+   ],
+   "timeLimit": 25
+  },
+  {
+   "number": 58,
+   "question": "f(x) = |x| → g(x) = |x + 4|",
+   "answers": [
+    "mx8xqn5up2b58jvhvuyv`~`https://media.blooket.com/image/upload/v1762310473/mx8xqn5up2b58jvhvuyv.png",
+    "kqtkh9dv1obzjtca4zi0`~`https://media.blooket.com/image/upload/v1762310473/kqtkh9dv1obzjtca4zi0.png",
+    "dvobbsokjteiagbtrow2`~`https://media.blooket.com/image/upload/v1762310473/dvobbsokjteiagbtrow2.png",
+    "ktav2bfmd3yaflozqrun`~`https://media.blooket.com/image/upload/v1762310473/ktav2bfmd3yaflozqrun.png"
+   ],
+   "correctAnswers": [
+    "mx8xqn5up2b58jvhvuyv`~`https://media.blooket.com/image/upload/v1762310473/mx8xqn5up2b58jvhvuyv.png"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 59,
+   "question": "g(x) = |x + 100|, f(x) = |x|",
+   "answers": [
+    "Shift ↑ 100 units",
+    "Shift ↓ 100 units",
+    "Shift ← 100 units",
+    "Shift → 100 units"
+   ],
+   "correctAnswers": [
+    "Shift ← 100 units"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 60,
+   "question": "x² → (x + 2)², vertex (0,0) → ?",
+   "answers": [
+    "Vertex → (2, 0)",
+    "Vertex → (-2, 0)",
+    "Vertex → (0, 2)",
+    "Vertex → (0, -2)"
+   ],
+   "correctAnswers": [
+    "Vertex → (-2, 0)"
+   ],
+   "timeLimit": 25
+  },
+  {
+   "number": 61,
+   "question": "g(x) = f(x - h), h > 0",
+   "answers": [
+    "Vertical shift ↑ by h units",
+    "Vertical shift ↓ by h units",
+    "Horizontal shift → by h units",
+    "Horizontal shift ← by h units"
+   ],
+   "correctAnswers": [
+    "Horizontal shift → by h units"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 62,
+   "question": "y = x² - 5",
+   "answers": [
+    "ilxsj4pymztb9f0lwtjb`~`https://media.blooket.com/image/upload/v1762312247/ilxsj4pymztb9f0lwtjb.png",
+    "scvhd8demxa7xwnseame`~`https://media.blooket.com/image/upload/v1762312248/scvhd8demxa7xwnseame.png",
+    "xpcbrqibie9hkv3wg4bi`~`https://media.blooket.com/image/upload/v1762312247/xpcbrqibie9hkv3wg4bi.png",
+    "enube92i16ntzsrytsbz`~`https://media.blooket.com/image/upload/v1762312247/enube92i16ntzsrytsbz.png"
+   ],
+   "correctAnswers": [
+    "ilxsj4pymztb9f0lwtjb`~`https://media.blooket.com/image/upload/v1762312247/ilxsj4pymztb9f0lwtjb.png"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 63,
+   "question": "y = x² + 5",
+   "answers": [
+    "o8vmeyfajvmvbnxaxdrr`~`https://media.blooket.com/image/upload/v1762312281/o8vmeyfajvmvbnxaxdrr.png",
+    "rz93rgmmnrx8i7bphvvb`~`https://media.blooket.com/image/upload/v1762312282/rz93rgmmnrx8i7bphvvb.png",
+    "lv2zooz7wlelnaj6oyxb`~`https://media.blooket.com/image/upload/v1762312283/lv2zooz7wlelnaj6oyxb.png",
+    "z2ut9dla8ixxnfqowbh3`~`https://media.blooket.com/image/upload/v1762312284/z2ut9dla8ixxnfqowbh3.png"
+   ],
+   "correctAnswers": [
+    "rz93rgmmnrx8i7bphvvb`~`https://media.blooket.com/image/upload/v1762312282/rz93rgmmnrx8i7bphvvb.png"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 64,
+   "question": "y = (x - 5)²",
+   "answers": [
+    "fbyr69vktnuayn93nqtl`~`https://media.blooket.com/image/upload/v1762312330/fbyr69vktnuayn93nqtl.png",
+    "kynkijlobftqmw7vhej9`~`https://media.blooket.com/image/upload/v1762312331/kynkijlobftqmw7vhej9.png",
+    "dhkwtm3khnjbikzpjavy`~`https://media.blooket.com/image/upload/v1762312334/dhkwtm3khnjbikzpjavy.png",
+    "ovslv7y9vpcrgpn5cn9y`~`https://media.blooket.com/image/upload/v1762312334/ovslv7y9vpcrgpn5cn9y.png"
+   ],
+   "correctAnswers": [
+    "dhkwtm3khnjbikzpjavy`~`https://media.blooket.com/image/upload/v1762312334/dhkwtm3khnjbikzpjavy.png"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 65,
+   "question": "y = (x + 5)²",
+   "answers": [
+    "kxd9obqs1oxtrzoiff2w`~`https://media.blooket.com/image/upload/v1762312363/kxd9obqs1oxtrzoiff2w.png",
+    "h2gxvfqumtffrrjzzrak`~`https://media.blooket.com/image/upload/v1762312363/h2gxvfqumtffrrjzzrak.png",
+    "s1lziqepqmwnvnmdavw1`~`https://media.blooket.com/image/upload/v1762312364/s1lziqepqmwnvnmdavw1.png",
+    "tgoraujderpl538fbhhf`~`https://media.blooket.com/image/upload/v1762312365/tgoraujderpl538fbhhf.png"
+   ],
+   "correctAnswers": [
+    "tgoraujderpl538fbhhf`~`https://media.blooket.com/image/upload/v1762312365/tgoraujderpl538fbhhf.png"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 66,
+   "question": "Factor this:`*`x^2`*`",
+   "answers": [
+    "`*`x\\cdot x`*`",
+    "`*`x+x`*`"
+   ],
+   "correctAnswers": [
+    "`*`x\\cdot x`*`"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 67,
+   "question": "Simplify`*`2x+3x`*`",
+   "answers": [
+    "`*`5x`*`",
+    "`*`x^5`*`",
+    "0"
+   ],
+   "correctAnswers": [
+    "`*`5x`*`"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 68,
+   "question": "Solve for x:`*`x\\ +\\ 1\\ =\\ 0`*`",
+   "answers": [
+    "`*`\\left(x+1\\right)^2`*`",
+    "`*`x=-1`*`"
+   ],
+   "correctAnswers": [
+    "`*`x=-1`*`"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 69,
+   "question": "Simplify`*`x^2+x^2`*`",
+   "answers": [
+    "`*`2x^2`*`",
+    "`*`x^4`*`"
+   ],
+   "correctAnswers": [
+    "`*`2x^2`*`"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 70,
+   "question": "Factor`*`x^4`*`",
+   "answers": [
+    "`*`x\\cdot x\\cdot x\\cdot x`*`",
+    "`*`4x`*`"
+   ],
+   "correctAnswers": [
+    "`*`x\\cdot x\\cdot x\\cdot x`*`"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 71,
+   "question": "Combine like terms:`*`x^2+3x+3x+9`*`",
+   "answers": [
+    "`*`x^2+6x+9`*`",
+    "`*`\\left(x+3\\right)^2`*`"
+   ],
+   "correctAnswers": [
+    "`*`x^2+6x+9`*`"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 72,
+   "question": "Expand`*`\\left(x+2\\right)\\cdot\\left(x+2\\right)`*`",
+   "answers": [
+    "`*`x\\cdot x+2\\cdot x+2\\cdot x+2\\cdot2`*`",
+    "`*`\\left(x+2\\right)^2`*`"
+   ],
+   "correctAnswers": [
+    "`*`x\\cdot x+2\\cdot x+2\\cdot x+2\\cdot2`*`"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 73,
+   "question": "simplify`*`x\\cdot x+2\\cdot x+2\\cdot x+2\\cdot2`*`",
+   "answers": [
+    "`*`x^2+2x+2x+4`*`",
+    "`*`\\left(x+2\\right)\\cdot\\left(x+2\\right)`*`"
+   ],
+   "correctAnswers": [
+    "`*`x^2+2x+2x+4`*`"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 74,
+   "question": "What is the standard form of a quadratic equation?",
+   "answers": [
+    "`*`ax^2+bx+c\\ =0`*`",
+    "`*`\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}`*`"
+   ],
+   "correctAnswers": [
+    "`*`ax^2+bx+c\\ =0`*`"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 75,
+   "question": "Choose the quadratic equation",
+   "answers": [
+    "`*`x+1`*`",
+    "`*`2x`*`",
+    "`*`x^2-8x+16`*`"
+   ],
+   "correctAnswers": [
+    "`*`x^2-8x+16`*`"
+   ],
+   "timeLimit": 20
+  },
+  {
+   "number": 76,
+   "question": "simplify`*`x\\cdot x+2\\cdot x+2\\cdot x+2\\cdot2`*`",
+   "answers": [
+    "`*`x^2+2x+2x+4`*`",
+    "`*`\\left(x+2\\right)\\cdot\\left(x+2\\right)`*`"
+   ],
+   "correctAnswers": [
+    "`*`x^2+2x+2x+4`*`"
+   ],
+   "timeLimit": 20
+  }
+ ]
+}
