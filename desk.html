@@ -6689,6 +6689,7 @@ async function _coachAsk(ctx, message, transcriptEl, history, askBtn) {
 }
 
 async function renderDoNow() {
+  if (typeof renderA2Objectives === 'function') renderA2Objectives();
   var card = document.getElementById('donow-card');
   var msg = document.getElementById('donow-msg');
   if (!card || !msg) return;
@@ -7094,6 +7095,8 @@ function _showPlannedLessonPanel(inf, dateStr) {
 // Grading never reads planned cells; only the published model has due work.
 function applyA2Pacing(lessons, plan) {
   if (!Array.isArray(lessons)) return false;
+  if (typeof window !== 'undefined') window.A2_OBJECTIVE_LESSONS = lessons;
+  if (typeof renderA2Objectives === 'function') renderA2Objectives();
   const def = SCHEDULE_DEFS['SY26-27'];
   const publishedKeys = new Set(lessons.map(l => l.key));
   const overlay = (plan && plan.overlay) || {};
@@ -14517,6 +14520,7 @@ function _summerWeeks() {
 }
 
 function rCal(){
+    if (typeof renderA2Objectives === 'function') renderA2Objectives();
     const t=tdy(),g=document.getElementById("cg");if(!g)return;
     const _frag=document.createDocumentFragment();
     // ── 1. Build Mon-anchored week rows from the flat schedule S ──
@@ -15182,6 +15186,112 @@ setTimeout(function() {
 </script>
 <dialog id="a2-profile"><form id="a2-profile-form"><h2>Profile · Class section</h2><label>Section <select aria-label="Section"><option>C</option><option>D</option><option>G</option></select></label><button>Save section</button><button type="button" onclick="document.getElementById('a2-profile').close()">Cancel</button><p id="a2-profile-message" role="status"></p></form></dialog>
 <style>#a2-gradebook-scores button,#a2-profile button,#a2-profile select{min-height:44px}.a2-lesson-chip{display:block;margin:4px 0}</style>
+
+<style>
+    :root { --a2-objectives-height: 0px; }
+    body { padding-bottom: var(--a2-objectives-height); }
+    body.a2-objectives-visible :is(.dialog-overlay, .app-overlay, [id$="-overlay"], [id$="-modal"]) {
+        box-sizing: border-box;
+        padding-bottom: var(--a2-objectives-height) !important;
+    }
+    body.a2-objectives-visible :is(.dialog-box, .app-window, .ogm-panel, .sdm-panel, .tnm-panel) {
+        top: calc((100% - var(--a2-objectives-height)) / 2) !important;
+        max-height: calc(100vh - var(--a2-objectives-height) - 32px) !important;
+        box-sizing: border-box;
+        overflow-y: auto;
+    }
+    body.a2-objectives-visible dialog {
+        max-height: calc(100vh - var(--a2-objectives-height) - 48px);
+        margin-bottom: calc(var(--a2-objectives-height) + 16px);
+        overflow-y: auto;
+    }
+    #a2-objectives {
+        position: fixed; inset: auto 0 0; width: 100%; margin: 0;
+        box-sizing: border-box; z-index: 2147483647;
+        color: #202020; background: #fffdf4; border: 0; border-top: 3px solid #454545;
+        padding: 8px 18px; font: clamp(15px, 1.15vw, 22px)/1.35 Geneva, sans-serif;
+    }
+    #a2-objectives[hidden] { display: none; }
+    #a2-objectives-toggle { display: block; width: 100%; border: 0; padding: 0;
+        color: inherit; background: transparent; font: inherit; text-align: left; cursor: pointer; }
+    #a2-objectives-toggle:focus-visible { outline: 2px solid #202020; outline-offset: 3px; }
+    .a2-objective-line { display: -webkit-box; -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2; overflow: hidden; text-overflow: ellipsis; }
+    #a2-objectives[data-expanded="true"] .a2-objective-line { display: block; }
+    #a2-objectives[data-expanded="true"] { max-height: 50vh; overflow-y: auto; }
+    #a2-objectives-question { margin: 6px 0 0; }
+    @media print { #a2-objectives { display: none !important; } body { padding-bottom: 0; } }
+</style>
+<section id="a2-objectives" role="region" aria-label="Today's objectives" hidden>
+    <button id="a2-objectives-toggle" type="button" aria-expanded="false" aria-controls="a2-objectives-question">
+        <span class="a2-objective-line"><strong>Learning objective</strong> <span id="a2-objectives-math"></span></span>
+        <span class="a2-objective-line"><strong>Language objective</strong> <span id="a2-objectives-language"></span></span>
+    </button>
+    <p id="a2-objectives-question" hidden></p>
+</section>
+<script>
+// Uses the same published lessons and due-date window as a2-desk.js paintDueLine.
+// Keep the observer-facing display independent of grade and authentication requests.
+var A2_OBJECTIVES = {};
+function sizeA2Objectives() {
+    var strip = document.getElementById('a2-objectives');
+    if (!strip) return;
+    var height = strip.hidden ? 0 : Math.ceil(strip.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--a2-objectives-height', height + 'px');
+    document.body.classList.toggle('a2-objectives-visible', !strip.hidden);
+}
+function renderA2Objectives() {
+    var strip = document.getElementById('a2-objectives');
+    if (!strip || typeof A2_OBJECTIVES === 'undefined') return;
+    var identity = window.rosterClient?.current();
+    var section = identity && identity.role !== 'teacher' ? String(identity.section || '').replace(/^Period/i, '') : cP;
+    var today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
+    var start = SCHEDULE_DEFS['SY26-27'].range.start;
+    var startDay = start[0] + '-' + String(start[1] + 1).padStart(2, '0') + '-' + String(start[2]).padStart(2, '0');
+    var current = (window.A2_OBJECTIVE_LESSONS || []).filter(function (lesson) { return lesson.sections?.[section] >= today; })
+        .sort(function (a, b) { return a.sections[section].localeCompare(b.sections[section]); })[0];
+    var entry = today >= startDay && current && A2_OBJECTIVES[current.key];
+    strip.hidden = !entry;
+    if (!entry) { sizeA2Objectives(); return; }
+    var math = entry.mathObjectives.join(' ? ') + (entry.standards.length ? ' (' + entry.standards.join(', ') + ')' : '');
+    document.getElementById('a2-objectives-math').textContent = math;
+    document.getElementById('a2-objectives-language').textContent = entry.languageObjective;
+    document.getElementById('a2-objectives-question').textContent = entry.essentialQuestion;
+    strip.title = math + '\n' + entry.languageObjective + '\n' + entry.essentialQuestion;
+    sizeA2Objectives();
+}
+(function () {
+    var strip = document.getElementById('a2-objectives');
+    var toggle = document.getElementById('a2-objectives-toggle');
+    toggle.addEventListener('click', function () {
+        var expanded = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', String(expanded));
+        strip.dataset.expanded = String(expanded);
+        document.getElementById('a2-objectives-question').hidden = !expanded;
+        sizeA2Objectives();
+    });
+    if (typeof ResizeObserver === 'function') new ResizeObserver(sizeA2Objectives).observe(strip);
+    window.addEventListener('resize', sizeA2Objectives);
+    // A manual popover also keeps the strip above native modal dialogs in the top layer.
+    if (typeof strip.showPopover === 'function') {
+        strip.setAttribute('popover', 'manual');
+        new MutationObserver(function () {
+            if (strip.matches(':popover-open')) strip.hidePopover();
+            if (!strip.hidden) strip.showPopover();
+        }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['open', 'hidden'] });
+    }
+    function readObjectives(response) {
+        if (!response.ok) throw new Error('Objectives unavailable');
+        return response.json();
+    }
+    fetch('content/a2/lesson-objectives.json?v=' + encodeURIComponent(APP_BUILD))
+        .then(readObjectives)
+        .catch(function () { return fetch('content/a2/lesson-objectives.json').then(readObjectives); })
+        .then(function (data) { A2_OBJECTIVES = data.lessons || {}; renderA2Objectives(); })
+        .catch(function () { /* Optional content: leave the strip hidden offline if uncached. */ });
+})();
+</script>
+
 <script src="lib/a2-year-plan.js"></script><script src="a2-client.js"></script><script src="a2-desk.js"></script>
 <link rel="stylesheet" href="a2-announcement.css"><script src="a2-announcement.js"></script>
 </body>

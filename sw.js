@@ -30,6 +30,7 @@ const CORE = [
   'lib/a2-year-plan.js',
   'teacher-tryits.html',
   'content/a2/lessons.json',
+  'content/a2/lesson-objectives.json',
   'content/a2/1-1/deck.csv',
   'content/a2/1-1/images/1-1_savvas_q18-22_graph.png',
   'content/a2/1-1/images/1-1_savvas_q23-27_graph.png',
