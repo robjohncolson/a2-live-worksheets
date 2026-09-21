@@ -112,3 +112,31 @@ run yet: reads keep working and a write of a new source fails with a clear 503 m
 migration, never a silent loss.
 H8. `tests/journeys/a2-check.journey.test.js` and `roster-server/tests/bootstrap-sql.test.js` fail
 now. After this round: root suite fails only the six inherited files; `roster-server` fully green.
+
+## Fix round 2 (after the second review)
+
+Same owned paths as fix round 1.
+
+H9 (major, replaces H2's mechanism). Ordering by client timestamps is wrong: clocks differ between
+the teacher's phone and laptop, and an unchanged save forgets that it was newer. Use optimistic
+versioning instead, with no clocks: each score row carries an integer `version` (in the response
+JSON; no new column). A write sends the `expectedVersion` it last saw (0 for a new row). Inside the
+per-student lock: same `requestId` as the stored one → return the current row (idempotent retry);
+`expectedVersion` equal to the stored version → accept and increment the version, **even when the
+score is unchanged** (then `recorded_at`, score and receipt stay exactly as they were: only the
+version moves); anything else → `409 { error: 'score-changed', current: { score, version } }` and
+no write. `teacher-tryits.html` must surface a 409 (show the current score, let the teacher tap
+again to overwrite it with the fresh version) and must never say "Saved" for a rejected write.
+Imports read the current version and write inside the same lock (a snapshot import is
+last-writer-wins by design); the CLIs print how many writes were rejected and exit non-zero if any.
+H10 (major). September protection for a student with **no score row**: fall back to the saved
+section assignment date (`a2_tryit_assignments.assigned_date`), never to the current schedule
+date, in the server engine and the generated bundle.
+H11 (major). Before migration 0040 is applied, the old trigger still keeps the best
+topic-assessment score, so lowering 90 → 70 stores 90 while the helper signs and reports 70. Always
+sign the receipt for, and return, the score the database actually stored; when it differs from the
+requested score respond `503` naming migration 0040 (the correction did not take effect).
+H12 (known, not fixed here). The retained alternative v3 engine still compares UTC date prefixes.
+Production runs the district formula, and the v3 engine is frozen by decision; record this in
+`A2_FORK_BASELINE.md` as an inherited limitation rather than editing v3.
+After this round: root suite fails only the six inherited files; `roster-server` fully green.
