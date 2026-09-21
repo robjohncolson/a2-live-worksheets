@@ -91,3 +91,32 @@ Re-modelling the Desk's grade engine to the syllabus (daily Engagement items, Tr
 with the 80% work rule, Bonus). Open decisions: point value of a Try-It set and of a quiz; whether
 an absent day is excused or zero; whether the Desk or Schoology is the book of record once both
 can compute the grade. Until then `A2_STUDENT_GRADES_VISIBLE` stays false.
+
+## Fix round 1 (after review)
+
+One agent; owned paths: WI-E's, plus `lib/flashcard-sync.js` only if G2 cannot be solved on the
+server side.
+
+G1 (major). A raw run finished offline, or whose POST fails, is lost: `recordFlashcardRun` fires
+one fetch and forgets it, and a later retry would stamp the replay date. Persist pending raw runs
+locally **with the date key and timestamp of the run itself**, and replay them through the same
+retry/reconnect machinery the capped ledger record already uses (including after a fresh token is
+stored). The server accepts a client-supplied run date only if it is not in the future and not
+more than 7 days old (America/New_York); otherwise 400. Test: finish offline on day N, reconnect
+on day N+1, the teacher endpoint shows the run under day N.
+
+G2 (major). For a student with no `flashcard_state` row, the daily POST inserts a state that holds
+only `dailyRuns`; `lib/flashcard-sync.js` `fromWire` then treats the row as unreadable and
+cross-device practice sync never initialises. Whenever the daily route creates or rewrites the
+row, the practice envelope must stay valid (`v: 1`, `e: []` when empty) and untouched when it
+already exists. Test with the real `fromWire`.
+
+G3 (minor). Bound the store: keep at most the 60 most recent run dates per student, accept only
+lesson keys that exist in the lesson model, and keep the practice-state size check meaningful
+(the daily data must not be able to push the row past the existing limit).
+
+G4. `tests/desk-flashcards-recap.test.js` and `tests/desk-quick-retry-redraw.test.js` now fail
+with `window is not defined` — new Desk code runs where those tests evaluate extracted functions
+without a window. Fix the code (guard or restructure) rather than the tests unless a test pins
+behaviour this spec changed. After this round the root suite's failing files must again be exactly
+the six inherited ones; `roster-server` `npm test` fully green.
