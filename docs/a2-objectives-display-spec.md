@@ -40,3 +40,20 @@ O5. **Tests** with the real Desk page in jsdom: strip shows 1-1's two objectives
 signed-out visitor on Section C; switches with the section pill; hidden for a lesson with no
 entry; its z-index is above the flashcard overlay's; overlays get the reserved bottom padding; the
 json is in the service worker's precache list if day-log.json is.
+
+## Fix round 1 (after review)
+
+P1 (major). The strip's `top: … !important` rule for app windows overrides both the drag handler's
+inline `top` and `.app-window.maximized`, while those states drop the centering transform, so a
+dragged or maximized window (Teacher workspace, Nightly Review) ends up half way down and extends
+under the strip with its lower controls unreachable. Apply the reserved-space centering only to
+windows that are still centered; dragged windows keep the user's position but are clamped so their
+bottom edge stays above the strip; maximized windows fill the viewport **minus** the strip height.
+P2 (major). Bottom-anchored fixed UI is covered by the strip: `#update-nudge` (its Reload button
+becomes unclickable), `_showDeskToast`, `_showViewAsToast`. Offset every bottom-anchored fixed
+element by the measured strip height (a CSS variable such as `--a2-objectives-h`, 0 when hidden)
+so it sits fully above the strip.
+P3 (minor). Several math objectives must be joined with " · " (middle dot, U+00B7); the file
+currently writes " ? ". Save the file as UTF-8 and add a test with two objectives.
+Add browser-level evidence where jsdom cannot: geometry assertions may use fixed mocked heights,
+but every selector touched by P1/P2 needs a test. Same exit criteria as above.
