@@ -5,10 +5,11 @@ export const A2_CATEGORIES = {
   engagement: { weight: 0.10, min: 10 },
 };
 export const A2_FEEDERS = {
-  'lesson-check': { category: 'assessments', maxPoints: 10 },
-  'try-it': { category: 'assignments', maxPoints: 2 },
+  quiz: { category: 'assessments', maxPoints: 20 },
+  'try-it': { category: 'assignments', maxPoints: 10 },
   'topic-assessment': { category: 'assessments', maxPoints: 100 },
-  flashcard: { category: 'engagement', maxPoints: 1 },
+  'daily-engagement': { category: 'engagement', maxPoints: 10 },
+  bonus: { category: 'assignments', maxPoints: 0, extraCredit: true, quarterCap: 10 },
 };
 
 // Callers supply due items from one category (or one v3 source track).
@@ -44,22 +45,28 @@ export function quarterGradeDistrict(items, quarter, cfg) {
   if (!cfg.today) throw new Error('District grading requires cfg.today');
   const categories = cfg.a2Categories || A2_CATEGORIES;
   const inQuarter = (items || []).filter(item => window && item.dueDate >= window.start
-    && item.dueDate <= window.end && Number.isFinite(item.maxPoints) && item.maxPoints > 0);
-  const due = inQuarter.filter(item => cfg.dueAfterLessonDay
-    ? item.dueDate < cfg.today : item.dueDate <= cfg.today);
+    && item.dueDate <= window.end && Number.isFinite(item.maxPoints)
+    && (item.maxPoints > 0 || item.extraCredit)
+    && (cfg.useDistrictFormula === false || !['lesson-check', 'flashcard'].includes(item.source)));
+  const due = inQuarter.filter(item => item.due ?? (cfg.dueAfterLessonDay
+    ? item.dueDate < cfg.today : item.dueDate <= cfg.today));
   const categoryBreakdown = {};
   let earnedGrade = 0, presentWeight = 0, bestGrade = 0, bestWeight = 0;
   for (const [category, rule] of Object.entries(categories)) {
-    const categoryDue = due.filter(item => item.category === category);
-    const { members, excluded: bonusExcluded, ignored, earned, possible } =
+    const categoryDue = due.filter(item => item.category === category && !item.extraCredit);
+    const bonusCap = (cfg.a2Feeders || A2_FEEDERS).bonus?.quarterCap ?? A2_FEEDERS.bonus.quarterCap;
+    const bonus = Math.min(bonusCap, due.filter(item => item.category === category && item.extraCredit && item.attempted)
+      .reduce((sum, item) => sum + Math.max(0, Number(item.points) || 0), 0));
+    const { members, excluded: bonusExcluded, ignored, earned: baseEarned, possible } =
       selectOnlyRaiseBonus(categoryDue, cfg.bonusOnlyThrough);
+    const earned = baseEarned + bonus;
     const score = possible ? 100 * earned / possible : null;
     categoryBreakdown[category] = { score, earned, possible, count: members.length,
       bonusWindowExcluded: bonusExcluded.length,
       bonusWindowIgnored: { count: ignored.length, itemIds: ignored.map(item => item.itemId) },
       minimum: rule.min, minimumMet: members.length >= rule.min };
     if (possible) { earnedGrade += score * rule.weight; presentWeight += rule.weight; }
-    const all = inQuarter.filter(item => item.category === category
+    const all = inQuarter.filter(item => item.category === category && !item.extraCredit
       && !(cfg.today > window.end && cfg.bonusOnlyThrough
         && item.dueDate <= cfg.bonusOnlyThrough && !item.attempted));
     const allPossible = all.reduce((sum, item) => sum + item.maxPoints, 0);
@@ -70,7 +77,7 @@ export function quarterGradeDistrict(items, quarter, cfg) {
       return sum + (remaining ? item.maxPoints : item.attempted
         ? Math.min(item.maxPoints, Math.max(0, Number(item.points) || 0)) : 0);
     }, 0);
-    if (allPossible) { bestGrade += 100 * best / allPossible * rule.weight; bestWeight += rule.weight; }
+    if (allPossible) { bestGrade += 100 * (best + bonus) / allPossible * rule.weight; bestWeight += rule.weight; }
   }
   return { quarterGrade: presentWeight ? earnedGrade / presentWeight : null,
     categoryBreakdown, ceiling: presentWeight && bestWeight ? Math.max(earnedGrade / presentWeight, bestGrade / bestWeight) : null,

@@ -6,6 +6,110 @@
     "district": {
       "a2-full": {
         "formula": "district",
+        "yearGrade": 64.444444,
+        "quarters": {
+          "Q1": {
+            "quarterGrade": 64.444444,
+            "ceiling": 64.444444
+          },
+          "Q2": {
+            "quarterGrade": null,
+            "ceiling": null
+          },
+          "Q3": {
+            "quarterGrade": null,
+            "ceiling": null
+          },
+          "Q4": {
+            "quarterGrade": null,
+            "ceiling": null
+          }
+        },
+        "categories": {
+          "assessments": [
+            100,
+            100,
+            100,
+            1,
+            4,
+            false
+          ],
+          "assignments": [
+            20,
+            2,
+            10,
+            1,
+            10,
+            false
+          ],
+          "engagement": [
+            null,
+            0,
+            0,
+            0,
+            10,
+            false
+          ]
+        },
+        "cells": {
+          "TI-U1-L1-1": 2,
+          "TA-U1": 100
+        }
+      },
+      "a2-floor": {
+        "formula": "district",
+        "yearGrade": 48.888889,
+        "quarters": {
+          "Q1": {
+            "quarterGrade": 48.888889,
+            "ceiling": 48.888889
+          },
+          "Q2": {
+            "quarterGrade": null,
+            "ceiling": null
+          },
+          "Q3": {
+            "quarterGrade": null,
+            "ceiling": null
+          },
+          "Q4": {
+            "quarterGrade": null,
+            "ceiling": null
+          }
+        },
+        "categories": {
+          "assessments": [
+            80,
+            80,
+            100,
+            1,
+            4,
+            false
+          ],
+          "assignments": [
+            10,
+            1,
+            10,
+            1,
+            10,
+            false
+          ],
+          "engagement": [
+            null,
+            0,
+            0,
+            0,
+            10,
+            false
+          ]
+        },
+        "cells": {
+          "TI-U1-L1-1": 1,
+          "TA-U1": 80
+        }
+      },
+      "a2-cap": {
+        "formula": "district",
         "yearGrade": 100,
         "quarters": {
           "Q1": {
@@ -28,151 +132,90 @@
         "categories": {
           "assessments": [
             100,
-            110,
-            110,
-            2,
+            100,
+            100,
+            1,
             4,
             false
           ],
           "assignments": [
-            100,
-            2,
-            2,
-            1,
+            null,
+            0,
+            0,
+            0,
             10,
             false
           ],
           "engagement": [
-            100,
-            1,
-            1,
-            1,
+            null,
+            0,
+            0,
+            0,
             10,
             false
           ]
         },
         "cells": {
-          "LC-U1-L1": 10,
-          "TI-U1-L1-1": 2,
-          "BL-U1-L1-DESK_DONE": 1,
-          "TA-U1": 100
-        }
-      },
-      "a2-floor": {
-        "formula": "district",
-        "yearGrade": 58.636364,
-        "quarters": {
-          "Q1": {
-            "quarterGrade": 58.636364,
-            "ceiling": 58.636364
-          },
-          "Q2": {
-            "quarterGrade": null,
-            "ceiling": null
-          },
-          "Q3": {
-            "quarterGrade": null,
-            "ceiling": null
-          },
-          "Q4": {
-            "quarterGrade": null,
-            "ceiling": null
-          }
-        },
-        "categories": {
-          "assessments": [
-            77.272727,
-            85,
-            110,
-            2,
-            4,
-            false
-          ],
-          "assignments": [
-            50,
-            1,
-            2,
-            1,
-            10,
-            false
-          ],
-          "engagement": [
-            0,
-            0,
-            1,
-            1,
-            10,
-            false
-          ]
-        },
-        "cells": {
-          "LC-U1-L1": 5,
-          "TI-U1-L1-1": 1,
-          "BL-U1-L1-DESK_DONE": 0,
-          "TA-U1": 80
-        }
-      },
-      "a2-cap": {
-        "formula": "district",
-        "yearGrade": 45.454545,
-        "quarters": {
-          "Q1": {
-            "quarterGrade": 45.454545,
-            "ceiling": 45.454545
-          },
-          "Q2": {
-            "quarterGrade": null,
-            "ceiling": null
-          },
-          "Q3": {
-            "quarterGrade": null,
-            "ceiling": null
-          },
-          "Q4": {
-            "quarterGrade": null,
-            "ceiling": null
-          }
-        },
-        "categories": {
-          "assessments": [
-            90.909091,
-            100,
-            110,
-            2,
-            4,
-            false
-          ],
-          "assignments": [
-            0,
-            0,
-            2,
-            1,
-            10,
-            false
-          ],
-          "engagement": [
-            0,
-            0,
-            1,
-            1,
-            10,
-            false
-          ]
-        },
-        "cells": {
-          "LC-U1-L1": 0,
-          "TI-U1-L1-1": 0,
-          "BL-U1-L1-DESK_DONE": 0,
+          "TI-U1-L1-1": null,
           "TA-U1": 100
         }
       },
       "a2-missing": {
         "formula": "district",
+        "yearGrade": null,
+        "quarters": {
+          "Q1": {
+            "quarterGrade": null,
+            "ceiling": null
+          },
+          "Q2": {
+            "quarterGrade": null,
+            "ceiling": null
+          },
+          "Q3": {
+            "quarterGrade": null,
+            "ceiling": null
+          },
+          "Q4": {
+            "quarterGrade": null,
+            "ceiling": null
+          }
+        },
+        "categories": {
+          "assessments": [
+            null,
+            0,
+            0,
+            0,
+            4,
+            false
+          ],
+          "assignments": [
+            null,
+            0,
+            0,
+            0,
+            10,
+            false
+          ],
+          "engagement": [
+            null,
+            0,
+            0,
+            0,
+            10,
+            false
+          ]
+        },
+        "cells": {}
+      },
+      "a2-work": {
+        "formula": "district",
         "yearGrade": 0,
         "quarters": {
           "Q1": {
             "quarterGrade": 0,
-            "ceiling": 100
+            "ceiling": 44.444444
           },
           "Q2": {
             "quarterGrade": null,
@@ -191,86 +234,30 @@
           "assessments": [
             0,
             0,
-            110,
-            2,
-            4,
-            false
-          ],
-          "assignments": [
-            0,
-            0,
-            2,
-            1,
-            10,
-            false
-          ],
-          "engagement": [
-            0,
-            0,
-            1,
-            1,
-            10,
-            false
-          ]
-        },
-        "cells": {
-          "LC-U1-L1": null,
-          "TI-U1-L1-1": null,
-          "BL-U1-L1-DESK_DONE": null,
-          "TA-U1": null
-        }
-      },
-      "a2-work": {
-        "formula": "district",
-        "yearGrade": 14.545455,
-        "quarters": {
-          "Q1": {
-            "quarterGrade": 14.545455,
-            "ceiling": 14.545455
-          },
-          "Q2": {
-            "quarterGrade": null,
-            "ceiling": null
-          },
-          "Q3": {
-            "quarterGrade": null,
-            "ceiling": null
-          },
-          "Q4": {
-            "quarterGrade": null,
-            "ceiling": null
-          }
-        },
-        "categories": {
-          "assessments": [
-            9.090909,
-            10,
-            110,
-            2,
-            4,
-            false
-          ],
-          "assignments": [
-            0,
-            0,
-            2,
-            1,
-            10,
-            false
-          ],
-          "engagement": [
             100,
             1,
-            1,
-            1,
+            4,
+            false
+          ],
+          "assignments": [
+            null,
+            0,
+            0,
+            0,
+            10,
+            false
+          ],
+          "engagement": [
+            null,
+            0,
+            0,
+            0,
             10,
             false
           ]
         },
         "cells": {
-          "LC-U1-L1": 10,
-          "TI-U1-L1-1": 0,
-          "BL-U1-L1-DESK_DONE": 1,
+          "TI-U1-L1-1": null,
           "TA-U1": 0
         }
       }

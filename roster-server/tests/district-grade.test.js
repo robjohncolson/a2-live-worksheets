@@ -49,23 +49,21 @@ describe('A2 ledger adapter and gradebook', () => {
   const rows=[row('lesson-check','LC-U1-L1',10),row('lesson-check','LC-U1-L1',4,2),
     row('try-it','TI-U1-L1-1',2),row('try-it','TI-U1-L1-1',1,2),
     row('worksheet','BL-U1-L1-DESK_DONE',80),row('flashcard','BL-U1-L1-DESK_DONE',100,2)];
-  it('best checks, latest Try-It rescore and one existing flashcard commit',()=>{
+  it('retires checks and deck passes, and uses the latest ten-point Try-It score',()=>{
     const grade=computeGrade(rows,{},cfg,opts);
-    expect(grade.formula).toBe('district');expect(grade.quarters.Q1.quarterGrade).toBe(80);
-    expect(grade.lessons[0].tryIts.points).toBe(1);
-    expect(grade.lessons[0].lessonCheck).toBe(100);
-    expect(grade.quarters.Q1.categoryBreakdown.engagement.possible).toBe(1);
-    expect(grade.lessons[0].flashcardPassed).toBe(true);
+    expect(grade.formula).toBe('district');
+    expect(grade.quarters.Q1.quarterGrade).toBe(10);
+    expect(grade.lessons[0].tryIts).toMatchObject({points:1,maxPoints:10});
+    expect(grade.items.map(item=>item.source)).toEqual(['try-it']);
   });
   it('district wins when both flags are set',()=>expect(computeGrade(rows,{}, {...cfg,useV3:true},opts).formula).toBe('district'));
-  it('section dates differ and future work does not create zeros',()=>expect(computeGrade(rows,{},cfg,{...opts,section:'D'}).quarters.Q1.quarterGrade).toBeNull());
-  it('Schoology counts points over due completed items, while Desk includes missing work',()=>{
+  it('a score is assignment evidence even before a planned lesson date',()=>expect(computeGrade(rows,{},cfg,{...opts,section:'D'}).items).toHaveLength(1));
+  it('retired work alone creates no district columns or grade',()=>{
     const grade=computeGrade(rows.slice(0,2),{},cfg,opts);const grid=buildGradebook(grade);
     expect(grid.weights).toEqual({Assessments:50,Assignments:40,Engagement:10});
-    expect(grid.quarters.Q1.schoologyTotal).toBe(100);
-    expect(grade.quarters.Q1.quarterGrade).toBe(50);
-    expect(grid.quarters.Q1.columns.map(c=>c.kind)).toEqual(['lesson_check','try_it','flashcard']);
-    expect(grid.quarters.Q1.cells['LC-U1-L1']).toBe(10);
+    expect(grid.quarters.Q1.schoologyTotal).toBeNull();
+    expect(grade.quarters.Q1.quarterGrade).toBeNull();
+    expect(grid.quarters.Q1.columns).toEqual([]);
   });
 });
 
@@ -180,7 +178,7 @@ describe('add/drop bonus-only window', () => {
       asOf: new Date('2026-09-19T03:59:00Z')};
     expect(computeGrade([], {}, cfg, opts).quarters.Q1.categoryBreakdown.assessments.bonusWindowExcluded).toBe(0);
     opts.asOf = new Date('2026-09-19T04:00:00Z');
-    expect(computeGrade([], {}, cfg, opts).quarters.Q1.categoryBreakdown.assessments.bonusWindowExcluded).toBe(1);
+    expect(computeGrade([], {}, cfg, opts).quarters.Q1.categoryBreakdown.assessments.bonusWindowExcluded).toBe(0);
   });
   it('excludes missing bonus mastery in v3 and retains its completion projection', () => {
     const opts = {items: [

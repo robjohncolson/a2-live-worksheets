@@ -93,9 +93,14 @@ describe('A2 resolver grade contracts', () => {
         ? { topicAssessments: fixture.schedule.topicAssessments } : null);
       expect(prod.blooketPresence).toEqual([]);
       expect(prod.blooketRequired).toEqual([]);
-      expect(projectGrade(grade)).toEqual(fixture.expected);
-      expect(grade.items.map(item => item.maxPoints)).toEqual(
-        name === 'mixed' ? [10, 2, 2, 1, 100] : [10, 2, 2, 1]);
+      const currentRows = fixture.rows.filter(row => ['try-it', 'topic-assessment'].includes(row.source));
+      const hasTries = currentRows.some(row => row.source === 'try-it');
+      const expectedGrade = { empty: null, quiz_partial: null, frq_work: 15, mixed: 46 / 0.9, 'env-schedule-override': null }[name];
+      expect(projectGrade(grade)).toEqual({ formula: 'district', quarterGrade: expectedGrade,
+        lessonsDue: hasTries ? 1 : 0, lessonsGraded: hasTries ? 1 : 0, lessonsTotal: hasTries ? 1 : 0,
+        points: Object.fromEntries(currentRows.map(row => [row.item_id, row.score])),
+      });
+      expect(grade.items.map(item => item.maxPoints)).toEqual(currentRows.map(row => row.source === 'try-it' ? 10 : 100));
       expect(prod.config.a2Categories).toEqual({
         assessments: { weight: 0.5, min: 4 },
         assignments: { weight: 0.4, min: 10 },
@@ -103,7 +108,7 @@ describe('A2 resolver grade contracts', () => {
       });
       if (name === 'env-schedule-override') {
         expect(grade.items.every(item => item.quarter === 'Q2' && !item.due)).toBe(true);
-        expect(grade.quarters.Q2.lessonsTotal).toBe(1);
+        expect(grade.quarters.Q2.lessonsTotal).toBe(0);
       } else {
         expect(grade.items.every(item => item.quarter === 'Q1' && item.due)).toBe(true);
         expect(grade.quarters.Q1.categoryBreakdown.assessments.minimumMet).toBe(false);
@@ -117,7 +122,7 @@ describe('A2 resolver grade contracts', () => {
     const onDay = gradeViaResolver(fixture, section, Date.parse('2026-10-14T16:00:00Z')).grade;
     expect(onDay.quarters.Q1.quarterGrade).toBeNull();
     expect(onDay.items.every(item => !item.due)).toBe(true);
-    expect(gradeViaResolver(fixture, section).grade.quarters.Q1.quarterGrade).toBe(0);
+    expect(gradeViaResolver(fixture, section).grade.quarters.Q1.quarterGrade).toBeNull();
   });
 
   it('historical year keeps the full synthetic frozen config and explicitly selects A2 v3', () => {

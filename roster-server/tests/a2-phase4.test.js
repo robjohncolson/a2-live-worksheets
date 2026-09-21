@@ -72,9 +72,9 @@ describe('A2 trusted writes and status', () => {
     expect(status.body.lessonCheck).toBe(100);
     const schedule = lessonScheduleFromModel(overlayLessons([lesson], { '1-1': { sections: { C: '2026-09-10' } } }));
     const grade = computeGrade(rows, {}, { ...PHASE3_CONFIG, useDistrictFormula: true }, { lessonSchedule: schedule, section: 'C', asOf: new Date('2026-09-14T16:00:00Z') });
-    expect(grade.quarters.Q1.quarterGrade).toBe(100);
-    expect(buildGradebook(grade).quarters.Q1.cells['LC-1-1']).toBe(10);
-    expect(grade.lessons[0].lessonCheck).toBe(100);
+    expect(grade.quarters.Q1.quarterGrade).toBeNull();
+    expect(buildGradebook(grade).quarters.Q1.cells['LC-1-1']).toBeUndefined();
+    expect(grade.lessons[0].lessonCheck).toBeNull();
     const repeated = await auth(request(app).post('/ledger/record')).send({ source: 'lesson-check', itemId: 'LC-1-1', answers, requestId: 'second' });
     expect(repeated.body.duplicate).toBe(true); expect(rows).toHaveLength(2);
   });
@@ -96,7 +96,7 @@ describe('A2 trusted writes and status', () => {
     await write('topic-assessment', 'TA-T1', 100); await write('topic-assessment', 'TA-T1', 65);
     expect(rows).toHaveLength(2);
     const grade = computeGrade(rows, {}, { ...PHASE3_CONFIG, useDistrictFormula: true }, { asOf: new Date('2026-09-14T16:00:00Z') });
-    expect(grade.quarters.Q1.quarterGrade).toBe(65);
+    expect(grade.quarters.Q1.quarterGrade).toBeNull(); // Pre-Sep-19 work is Bonus only.
     expect((await write('try-it', 'TI-1-1-1', 2)).status).toBe(409);
   });
   it('rejects invalid scores and writes after the original quarter closes', async () => {

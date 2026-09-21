@@ -21,6 +21,7 @@ export const PHASE3_CONFIG = {
   bonusOnlyThrough: '2026-09-18', // Inclusive school-timezone due date; null disables.
   a2Categories: A2_CATEGORIES,
   a2Feeders: A2_FEEDERS,
+  a2ProvisionalDays: 7,
   useDistrictFormula: process.env.USE_DISTRICT_FORMULA !== 'false',
   meetingDays: { C: [1, 2, 4], D: [1, 3, 5], G: [2, 3, 4, 5] },
   

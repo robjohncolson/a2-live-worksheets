@@ -91,6 +91,10 @@ function defineOracleTests(mode) {
       expect(actual.ok).toBe(true);
       expectGoldenEqual(gradeProjection(actual), expected[student.id], `${mode}: ${student.id}`);
       expect(actual.gradebook.weights).toEqual({ Assessments: 50, Assignments: 40, Engagement: 10 });
+      if (mode === 'district') {
+        expect(actual.items.map(item => item.maxPoints)).toEqual(student.records.length ? [10, 100] : []);
+        return;
+      }
       expect(actual.items).toHaveLength(4);
       expect(actual.items.every(item => item.due && item.quarter === 'Q1')).toBe(true);
       expect(actual.items.map(item => item.maxPoints)).toEqual([10, 2, 1, 100]);
@@ -143,13 +147,13 @@ describe('A2 golden master has teeth', () => {
     expectReadableDifference(difference, oracle.quarterGrade);
   });
 
-  it('detects a passed flashcard becoming a failed attempt at 79', async () => {
+  it('retired flashcard changes cannot alter district grades', async () => {
     const studentsDoc = structuredClone(fixture.studentsDoc);
     const oracle = fixture.expected.perturbations.flashcard;
     const student = studentsDoc.students.find(row => row.id === oracle.studentId);
     student.records.find(row => row.source === 'flashcard').score = 79;
     const difference = await firstPerturbedDifference({ mode: 'district', studentId: student.id, studentsDoc });
-    expectReadableDifference(difference, oracle.quarterGrade);
+    expect(difference.path).toBeNull();
   });
 
   it('counts missing work only after its section lesson day, including Wednesday', async () => {

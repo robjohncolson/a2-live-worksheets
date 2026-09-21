@@ -113,139 +113,66 @@ async function grades(section = 'C') {
 }
 
 describe('production district formula through HTTP', () => {
-  it('uses district=true with v3 absent, and defaults to district when both flags are unset', async () => {
-    expect(process.env.USE_DISTRICT_FORMULA).toBe('true');
-    expect(process.env.USE_V3_GRADING).toBeUndefined();
+  const collected = () => ({ '1-1': {
+    unit: 1, periods: { C: '2026-09-22', D: '2026-09-23', G: '2026-09-24' },
+    assignedDates: { C: '2026-09-22', D: '2026-09-23', G: '2026-09-24' },
+    items: [
+      { itemId: 'TI-1', source: 'try-it' },
+      { itemId: 'Q-1', source: 'quiz' },
+      { itemId: 'DE-1', source: 'daily-engagement' },
+    ],
+  } });
+
+  it('uses the production default without exposing unassigned work', async () => {
     expect(PHASE3_CONFIG.useDistrictFormula).toBe(true);
     expect(PHASE3_CONFIG.useV3).toBe(false);
     await start();
-    await grades();
-    vi.stubEnv('USE_DISTRICT_FORMULA', undefined);
-    vi.resetModules();
-    const { PHASE3_CONFIG: defaults } = await import('../../grade-config.js');
-    expect(defaults.useDistrictFormula).toBe(true);
-    expect(defaults.useV3).toBe(false);
+    const grade = await grades();
+    expect(grade.items).toEqual([]);
+    expect(grade.quarters.Q1.quarterGrade).toBeNull();
   });
 
-  it.each(['C', 'D', 'G'])('applies 50/40/10 weights in section %s without minimum-count padding', async section => {
-    fill({ 'lesson-check': 8, 'try-it': 1, flashcard: 0 });
-    await start();
+  it.each(['C', 'D', 'G'])('applies 50/40/10 on all HTTP surfaces for %s', async section => {
+    const lessons = collected();
+    fill({ 'try-it': 5, quiz: 16, 'daily-engagement': 0 }, lessons);
+    await start(lessons);
     const grade = await grades(section);
-    expect(grade.lessons.map(lesson => lesson.lessonKey)).toEqual(['1-1', '1-2', '1-3', '1-4', '1-5', '1-6']);
-    expect(grade.quarters.Q1.quarterGrade).toBeCloseTo(60, 10); // .5*80 + .4*50 + .1*0
+    expect(grade.quarters.Q1.quarterGrade).toBeCloseTo(60);
     expect(grade.quarters.Q1.categoryBreakdown).toMatchObject({
-      assessments: { score: 80, count: 6, minimum: 4, minimumMet: true },
-      assignments: { score: 50, count: 27, minimum: 10, minimumMet: true },
-      engagement: { score: 0, count: 6, minimum: 10, minimumMet: false },
+      assessments: { possible: 20, count: 1, minimum: 4, minimumMet: false },
+      assignments: { possible: 10, count: 1, minimum: 10, minimumMet: false },
+      engagement: { possible: 10, count: 1, minimum: 10, minimumMet: false },
     });
   });
 
-  it('reports unmet minima without lowering perfect work or adding phantom denominators', async () => {
-    vi.setSystemTime(new Date('2026-09-26T17:00:00Z'));
-    fill({ 'lesson-check': 10, 'try-it': 2, flashcard: 100 });
-    await start();
-    const grade = await grades();
-    expect(grade.quarters.Q1.quarterGrade).toBe(100);
-    expect(grade.quarters.Q1.categoryBreakdown).toMatchObject({
-      assessments: { count: 1, possible: 10, minimum: 4, minimumMet: false },
-      assignments: { count: 5, possible: 10, minimum: 10, minimumMet: false },
-      engagement: { count: 1, possible: 1, minimum: 10, minimumMet: false },
-    });
-  });
-
-  it.each([false, true])('minimum flags switch at exactly 4/10/10 (at threshold: %s)', async atThreshold => {
-    const boundary = structuredClone(schedule);
-    // Synthetic distinct decks let the six-lesson fixture reach ten engagements.
-    boundary['1-1'].items.push(...[7, 8, 9, 10].map(n => ({
-      source: 'flashcard', itemId: `BL-U1-L${n}-DESK_DONE`,
-    })));
-    const remaining = { 'lesson-check': atThreshold ? 4 : 3,
-      'try-it': atThreshold ? 10 : 9, flashcard: atThreshold ? 10 : 9 };
-    for (const lesson of Object.values(boundary)) {
-      lesson.items = lesson.items.filter(item => remaining[item.source]-- > 0);
-    }
-    fill({ 'lesson-check': 10, 'try-it': 2, flashcard: 100 }, boundary);
-    await start(boundary);
-    const grade = await grades();
-    expect(grade.quarters.Q1.quarterGrade).toBe(100);
-    for (const [category, minimum] of Object.entries({ assessments: 4, assignments: 10, engagement: 10 })) {
-      expect(grade.quarters.Q1.categoryBreakdown[category]).toMatchObject({
-        count: atThreshold ? minimum : minimum - 1, minimum, minimumMet: atThreshold,
-      });
-    }
-  });
-
-  it.each(['C', 'D', 'G'])('counts missing work only after section %s finishes its lesson day', async section => {
-    await start();
-    const day = modelSchedule['1-1'].periods[section];
-    const midnight = Date.parse(`${day}T04:00:00Z`);
-    for (const instant of [midnight - 1, midnight, midnight + 86400000 - 1]) {
-      vi.setSystemTime(new Date(instant));
-      const grade = await grades(section);
-      expect(grade.quarters.Q1.quarterGrade).toBeNull();
-      expect(grade.items.every(item => !item.due)).toBe(true);
-    }
-    vi.setSystemTime(new Date(midnight + 86400000));
+  it.each(['C', 'D', 'G'])('exposes a provisional zero exactly seven days after collection in %s', async section => {
+    const lessons = collected();
+    lessons['1-1'].items = [{ itemId: 'TI-1', source: 'try-it' }];
+    await start(lessons);
+    const collectedAt = Date.parse(lessons['1-1'].assignedDates[section] + 'T04:00:00Z');
+    vi.setSystemTime(new Date(collectedAt + 7 * 86400000 - 1));
+    expect((await grades(section)).quarters.Q1.quarterGrade).toBeNull();
+    vi.setSystemTime(new Date(collectedAt + 7 * 86400000));
     const grade = await grades(section);
     expect(grade.quarters.Q1.quarterGrade).toBe(0);
-    expect(grade.quarters.Q1.categoryBreakdown).toMatchObject({
-      assessments: { earned: 0, possible: 10 }, assignments: { earned: 0, possible: 10 },
-      engagement: { earned: 0, possible: 1 },
-    });
-    expect(grade.items.filter(item => item.due)).toHaveLength(7);
-    expect(grade.gradebook.quarters.Q1.cells['LC-1-1']).toBeNull();
-    expect(grade.gradebook.quarters.Q1.schoologyTotal).toBeNull();
+    expect(grade.items[0]).toMatchObject({ provisional: true, attempted: false });
+    expect(grade.gradebook.quarters.Q1.cells['TI-1']).toBe(0);
+    expect(grade.gradebook.quarters.Q1.columns[0].provisional).toBe(true);
+    ledger[`district-${section}`].push(record(lessons['1-1'].items[0], 8));
+    const recovered = await grades(section);
+    expect(recovered.quarters.Q1.quarterGrade).toBe(80);
+    expect(recovered.items[0].provisional).toBe(false);
   });
 
-  it('keeps the best check, improves Try-Its by rescore, and counts a passed deck once', async () => {
-    vi.setSystemTime(new Date('2026-09-26T17:00:00Z'));
-    fill({ 'lesson-check': 8, 'try-it': 1, flashcard: 79 });
-    await start();
-    expect((await grades()).quarters.Q1.quarterGrade).toBeCloseTo(60, 10);
-    const check = { source: 'lesson-check', itemId: 'LC-1-1' };
-    const tryIt = { source: 'try-it', itemId: 'TI-1-1-1' };
-    const deck = { source: 'flashcard', itemId: 'BL-U1-L1-DESK_DONE' };
-    ledger['district-C'].push(record(check, 10, 2), record(check, 4, 3),
-      record(tryIt, 2, 2), record(deck, 80, 2), record(deck, 100, 3));
+  it('uses latest scores and does not invent absent Engagement days', async () => {
+    const lessons = collected();
+    ledger['district-C'] = [record(lessons['1-1'].items[0], 10),
+      record(lessons['1-1'].items[0], 8, 2), record(lessons['1-1'].items[1], 20),
+      record(lessons['1-1'].items[1], 16, 2)];
+    await start(lessons);
     const grade = await grades();
-    expect(grade.quarters.Q1.quarterGrade).toBeCloseTo(84, 10); // 50 + 24 + 10
-    expect(grade.gradebook.quarters.Q1.cells).toMatchObject({
-      'LC-1-1': 10, 'TI-1-1-1': 2, 'BL-U1-L1-DESK_DONE': 1,
-    });
-    expect(grade.quarters.Q1.categoryBreakdown.engagement).toMatchObject({ earned: 1, possible: 1, count: 1 });
-    // Try-Its use the latest teacher rescore, unlike best-score lesson checks.
-    ledger['district-C'].push(record(tryIt, 0, 3));
-    expect((await grades()).gradebook.quarters.Q1.cells['TI-1-1-1']).toBe(0);
-  });
-
-  it('treats September 18 as only-raise and September 19 as required', async () => {
-    const bonusSchedule = structuredClone(schedule);
-    for (const [key, date] of Object.entries({ '1-1': '2026-09-18', '1-2': '2026-09-19' })) {
-      bonusSchedule[key].periods = { C: date, D: date, G: date };
-    }
-    vi.setSystemTime(new Date('2026-09-20T17:00:00Z'));
-    fill({ 'lesson-check': 5, 'try-it': 1, flashcard: 100 }, { '1-2': bonusSchedule['1-2'] });
-    await start(bonusSchedule);
-    const baseline = await grades();
-    expect(baseline.quarters.Q1.quarterGrade).toBeCloseTo(55, 10);
-    expect(baseline.quarters.Q1.categoryBreakdown.assessments).toMatchObject({
-      earned: 5, possible: 10, bonusWindowExcluded: 1,
-    });
-    ledger['district-C'].push(...bonusSchedule['1-1'].items.map(item => record(item, 0)));
-    const lower = await grades();
-    expect(lower.quarters.Q1.quarterGrade).toBeCloseTo(55, 10);
-    expect(lower.quarters.Q1.categoryBreakdown.assessments.bonusWindowIgnored).toEqual({ count: 1, itemIds: ['LC-1-1'] });
-    ledger['district-C'].push(...bonusSchedule['1-1'].items.map(item =>
-      record(item, { 'lesson-check': 10, 'try-it': 2, flashcard: 100 }[item.source], 2)));
-    const raised = await grades();
-    expect(raised.quarters.Q1.quarterGrade).toBeCloseTo(0.5 * 75 + 0.4 * (1600 / 22) + 10, 10);
-    expect(raised.quarters.Q1.quarterGrade).toBeGreaterThan(baseline.quarters.Q1.quarterGrade);
-    // A second student leaves September 19 missing: its denominator is required.
-    ledger['district-D'] = [];
-    const missing = await grades('D');
-    expect(missing.quarters.Q1.quarterGrade).toBe(0);
-    expect(missing.quarters.Q1.categoryBreakdown.assessments).toMatchObject({
-      earned: 0, possible: 10, count: 1, bonusWindowExcluded: 1,
-    });
+    expect(grade.quarters.Q1.quarterGrade).toBe(80);
+    expect(grade.quarters.Q1.categoryBreakdown.engagement.possible).toBe(0);
+    expect(grade.items).toHaveLength(2);
   });
 });

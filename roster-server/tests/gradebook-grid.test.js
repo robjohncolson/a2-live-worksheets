@@ -31,25 +31,17 @@ describe('A2 gradebook identity, categories, and totals', () => {
   const grid = buildGradebook(grade);
   const q1 = grid.quarters.Q1;
 
-  it('keeps all four feeder IDs and their raw point scales', () => {
-    expect(q1.columns.map(column => column.key).sort()).toEqual(
-      ['LC-U1-L1', 'TI-U1-L1-1', 'BL-U1-L1-DESK_DONE', 'TA-U1'].sort());
-    const columns = Object.fromEntries(q1.columns.map(column => [column.key, column]));
-    expect(columns['LC-U1-L1']).toMatchObject({ category: 'Assessments', maxPoints: 10, topicKeys: ['1.1'] });
-    expect(columns['TA-U1']).toMatchObject({ category: 'Assessments', maxPoints: 100 });
-    expect(columns['TI-U1-L1-1']).toMatchObject({ category: 'Assignments', maxPoints: 2 });
-    expect(columns['BL-U1-L1-DESK_DONE']).toMatchObject({ category: 'Engagement', maxPoints: 1 });
-    expect(q1.cells).toEqual({ 'LC-U1-L1': 10, 'TI-U1-L1-1': 1, 'BL-U1-L1-DESK_DONE': 1, 'TA-U1': 80 });
+  it('retains active IDs and retires lesson-check and flashcard columns', () => {
+    expect(q1.columns.map(column => column.key).sort()).toEqual(['TA-U1', 'TI-U1-L1-1']);
+    expect(q1.columns.find(column => column.key === 'TI-U1-L1-1')).toMatchObject({ category: 'Assignments', maxPoints: 10 });
+    expect(q1.cells).toEqual({ 'TI-U1-L1-1': 1, 'TA-U1': 80 });
   });
 
-  it('keeps district weights and category-weighted totals', () => {
-    expect(SCHOOLOGY_CATEGORY_WEIGHTS).toEqual({ Assessments: 50, Assignments: 40, Engagement: 10 });
-    expect(grid.weights).toEqual(SCHOOLOGY_CATEGORY_WEIGHTS);
-    expect(q1.categoryAverages).toMatchObject({ Assignments: 50, Engagement: 100 });
-    expect(q1.categoryAverages.Assessments).toBeCloseTo(90 / 110 * 100, 8);
-    expect(q1.schoologyTotal).toBeCloseTo(90 / 110 * 50 + 30, 8);
-    expect(q1.quarterGrade).toBeCloseTo(q1.schoologyTotal, 8);
-    expect(q1.reconciliation.delta).toBeCloseTo(0, 8);
+  it('renormalizes the 50/40/10 weights over present categories', () => {
+    expect(grid.weights).toEqual({ Assessments: 50, Assignments: 40, Engagement: 10 });
+    expect(q1.categoryAverages).toEqual({ Assessments: 80, Assignments: 10, Engagement: null });
+    expect(q1.schoologyTotal).toBeCloseTo(44 / 0.9);
+    expect(q1.reconciliation.delta).toBe(0);
   });
 
   it('standalone column and row helpers preserve the same cells and totals', () => {
@@ -60,39 +52,21 @@ describe('A2 gradebook identity, categories, and totals', () => {
     expect(row.schoologyTotal).toBe(q1.schoologyTotal);
   });
 
-  it.each(['C', 'D', 'G'])('uses %s lesson-day boundaries and late missing work', section => {
-    const date = A2_SCHEDULE['1.1'].periods[section];
-    const onDay = computeGrade([], {}, A2_CONFIG, {
-      ...A2_OPTS, section, items: [], asOf: date + 'T16:00:00Z',
-    });
-    expect(buildGradebook(onDay).quarters.Q1.columns.every(column => !column.due)).toBe(true);
-    const overdue = computeGrade([], {}, A2_CONFIG, { ...A2_OPTS, section, items: [] });
-    const quarter = buildGradebook(overdue).quarters.Q1;
-    expect(quarter.columns.every(column => column.due)).toBe(true);
-    expect(Object.values(quarter.cells).every(value => value === null)).toBe(true);
-    expect(quarter.quarterGrade).toBe(0);
-    expect(quarter.schoologyTotal).toBeNull();
+  it.each(['C', 'D', 'G'])('does not make unassigned columns for %s', section => {
+    const result = computeGrade([], {}, A2_CONFIG, { ...A2_OPTS, section });
+    expect(buildGradebook(result).quarters.Q1.columns).toEqual([]);
   });
 
-  it('late submitted work keeps its identity and closes the missing-work gap', () => {
-    const rows = a2Rows(null, 10, null, null);
-    const missing = buildGradebook(computeGrade(rows, {}, A2_CONFIG, A2_OPTS)).quarters.Q1;
-    expect(missing.schoologyTotal).toBe(100);
-    expect(missing.quarterGrade).toBeLessThan(missing.schoologyTotal);
-    const lateRows = a2Rows(100, 10, 2, 100).map(row => ({ ...row, recorded_at: '2026-10-01T16:00:00Z' }));
-    const late = buildGradebook(computeGrade(lateRows, {}, A2_CONFIG,
-      { ...A2_OPTS, asOf: '2026-10-02T16:00:00Z' })).quarters.Q1;
+  it('keeps a provisional cell identity when a later attempt replaces zero', () => {
+    const items = [{ itemId: 'TI', source: 'try-it', dueDate: '2026-09-22', assignedDates: { C: '2026-09-22' } }];
+    const opts = { items, section: 'C', asOf: '2026-10-01T16:00:00Z' };
+    const missing = buildGradebook(computeGrade([], {}, A2_CONFIG, opts)).quarters.Q1;
+    const late = buildGradebook(computeGrade([{ item_id: 'TI', source: 'try-it', score: 10 }], {}, A2_CONFIG, opts)).quarters.Q1;
+    expect(missing.cells).toEqual({ TI: 0 });
+    expect(missing.columns[0].provisional).toBe(true);
     expect(late.columns.map(column => column.key)).toEqual(missing.columns.map(column => column.key));
-    expect(late.quarterGrade).toBeCloseTo(100, 8);
-    expect(late.reconciliation.delta).toBeCloseTo(0, 8);
-  });
-
-  it('deduplicates a shared deck within the quarter', () => {
-    const schedule = { ...A2_SCHEDULE,
-      '1.2': { ...A2_SCHEDULE['1.1'], worksheetKey: '1' },
-    };
-    const result = buildGradebook(computeGrade([], {}, A2_CONFIG, { ...A2_OPTS, lessonSchedule: schedule }));
-    expect(result.quarters.Q1.columns.filter(column => column.key === 'BL-U1-L1-DESK_DONE')).toHaveLength(1);
+    expect(late.cells).toEqual({ TI: 10 });
+    expect(late.quarterGrade).toBe(100);
   });
 });
 

@@ -36,11 +36,16 @@ const configurations = [
 ];
 
 describe.each(configurations)('A2 %s trajectories', (_formula, config) => {
-  const gradeOf = scores => computeGrade(a2Rows(...scores), {}, config, A2_OPTS).quarters.Q1;
+  const gradeOf = scores => {
+    const rows = a2Rows(...scores).map(row => _formula === 'district' && row.source === 'try-it'
+      ? { ...row, score: row.score * 5, response: { attempted: true } } : row);
+    return computeGrade(rows, {}, config, A2_OPTS).quarters.Q1;
+  };
 
   it('keeps grades bounded and below their ceiling', () => {
     fc.assert(fc.property(scoreArb, scores => {
       const quarter = gradeOf(scores);
+      if (quarter.quarterGrade === null) { expect(quarter.ceiling).toBeNull(); return; }
       expect(quarter.quarterGrade).toBeGreaterThanOrEqual(0);
       expect(quarter.quarterGrade).toBeLessThanOrEqual(100 + 1e-8);
       expect(quarter.ceiling + 1e-8).toBeGreaterThanOrEqual(quarter.quarterGrade);
@@ -50,7 +55,7 @@ describe.each(configurations)('A2 %s trajectories', (_formula, config) => {
 
   it('raising a present score never lowers the grade', () => {
     fc.assert(fc.property(scoreArb, fc.integer({ min: 0, max: 3 }), (scores, pick) => {
-      if (scores[pick] == null) return;
+      if (scores[pick] == null || gradeOf(scores).quarterGrade === null) return;
       const improved = [...scores];
       improved[pick] = [100, 10, 2, 100][pick];
       expect(gradeOf(improved).quarterGrade + 1e-8).toBeGreaterThanOrEqual(gradeOf(scores).quarterGrade);
@@ -59,10 +64,10 @@ describe.each(configurations)('A2 %s trajectories', (_formula, config) => {
 
   it('perfect on-pace work reaches 100 and empty due work is zero', () => {
     expect(gradeOf([100, 10, 2, 100]).quarterGrade).toBeCloseTo(100, 8);
-    expect(gradeOf([null, null, null, null]).quarterGrade).toBe(0);
+    expect(gradeOf([null, null, null, null]).quarterGrade).toBe(_formula === 'district' ? null : 0);
   });
 
-  it('attempting low-scoring future work does not lower the current grade', () => {
+  it('counts scored district work immediately and preserves v3 scheduling', () => {
     const opts = { ...A2_OPTS, lessonSchedule: { ...A2_SCHEDULE,
       '1.2': { unit: 1, worksheetKey: '2', tryItCount: 1, periods: { C: '2026-10-01' } },
     } };
@@ -71,7 +76,8 @@ describe.each(configurations)('A2 %s trajectories', (_formula, config) => {
     const after = computeGrade([...rows,
       { item_id: 'TI-U1-L2-1', source: 'try-it', score: 0.4, recorded_at: '2026-09-28T16:00:00Z' },
     ], {}, config, opts).quarters.Q1.quarterGrade;
-    expect(after).toBeCloseTo(before, 8);
+    if (_formula === 'district') expect(after).toBeLessThan(before);
+    else expect(after).toBeCloseTo(before, 8);
   });
 });
 

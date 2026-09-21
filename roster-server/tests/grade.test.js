@@ -176,36 +176,36 @@ const A2_SCHEDULE = { '1.1': {
 const A2_ASSESSMENT = { itemId: 'TA-U1', source: 'topic-assessment', dueDate: '2026-09-25' };
 const A2_OPTS = { lessonSchedule: A2_SCHEDULE, section: 'PeriodC',
   asOf: '2026-09-28T16:00:00Z', items: [A2_ASSESSMENT] };
-const a2Rows = (mastery, check, work, deck = 100) => [
+const a2Rows = (mastery, check, work, deck = 10) => [
   { item_id: 'TA-U1', source: 'topic-assessment', score: mastery },
-  { item_id: 'LC-U1-L1', source: 'lesson-check', score: check },
+  { item_id: 'LC-U1-L1', source: 'quiz', score: check },
   { item_id: 'TI-U1-L1-1', source: 'try-it', score: work },
-  { item_id: 'BL-U1-L1-DESK_DONE', source: 'flashcard', score: deck },
+  { item_id: 'BL-U1-L1-DESK_DONE', source: 'daily-engagement', score: deck },
 ].filter(row => row.score != null).map(row => ({ ...row, recorded_at: '2026-09-25T16:00:00Z' }));
 
 describe('A2 district grading', () => {
-  it('uses 50/40/10 weights, 4/10/10 minima, and raw 10/100/2/1 points', () => {
-    const grade = computeGrade(a2Rows(80, 10, 1), {}, A2_CONFIG, A2_OPTS);
+  it('uses 50/40/10 weights, 4/10/10 minima, and raw 20/100/10/10 points', () => {
+    const grade = computeGrade(a2Rows(80, 20, 5), {}, A2_CONFIG, A2_OPTS);
     const quarter = grade.quarters.Q1;
     expect(grade.formula).toBe('district');
-    expect(quarter.quarterGrade).toBeCloseTo(90 / 110 * 50 + 50 * 0.4 + 100 * 0.1, 8);
-    expect(quarter.categoryBreakdown.assessments).toMatchObject({ earned: 90, possible: 110, count: 2, minimum: 4, minimumMet: false });
-    expect(quarter.categoryBreakdown.assignments).toMatchObject({ earned: 1, possible: 2, minimum: 10, minimumMet: false });
-    expect(quarter.categoryBreakdown.engagement).toMatchObject({ earned: 1, possible: 1, minimum: 10, minimumMet: false });
+    expect(quarter.quarterGrade).toBeCloseTo(100 / 120 * 50 + 50 * 0.4 + 100 * 0.1, 8);
+    expect(quarter.categoryBreakdown.assessments).toMatchObject({ earned: 100, possible: 120, count: 2, minimum: 4, minimumMet: false });
+    expect(quarter.categoryBreakdown.assignments).toMatchObject({ earned: 5, possible: 10, minimum: 10, minimumMet: false });
+    expect(quarter.categoryBreakdown.engagement).toMatchObject({ earned: 10, possible: 10, minimum: 10, minimumMet: false });
   });
 
-  it('meets category minima with four checks, ten Try-Its, and ten distinct passed decks', () => {
+  it('meets category minima with four quizzes, ten Try-Its, and ten imported days', () => {
     const schedule = Object.fromEntries(Array.from({ length: 10 }, (_, index) => {
       const lesson = index + 1;
       return ['1.' + lesson, { unit: 1, periods: { C: '2026-09-24' }, items: [
-        ...(index < 4 ? [{ itemId: 'LC-U1-L' + lesson, source: 'lesson-check' }] : []),
+        ...(index < 4 ? [{ itemId: 'LC-U1-L' + lesson, source: 'quiz' }] : []),
         { itemId: 'TI-U1-L' + lesson + '-1', source: 'try-it' },
-        { itemId: 'BL-U1-L' + lesson + '-DESK_DONE', source: 'flashcard' },
+        { itemId: 'BL-U1-L' + lesson + '-DESK_DONE', source: 'daily-engagement' },
       ] }];
     }));
     const rows = Object.values(schedule).flatMap(lesson => lesson.items.map(item => ({
       item_id: item.itemId, source: item.source,
-      score: item.source === 'lesson-check' ? 10 : item.source === 'try-it' ? 2 : 100,
+      score: item.source === 'quiz' ? 20 : 10,
       recorded_at: '2026-09-24T16:00:00Z',
     })));
     const quarter = computeGrade(rows, {}, A2_CONFIG, {
@@ -215,20 +215,20 @@ describe('A2 district grading', () => {
     for (const category of Object.values(quarter.categoryBreakdown)) expect(category.minimumMet).toBe(true);
   });
 
-  it('missing work counts as zero only after the section lesson day', () => {
+  it('unassigned work stays absent after the planned lesson day', () => {
     const onDay = computeGrade([], {}, A2_CONFIG, { ...A2_OPTS, items: [], asOf: '2026-09-24T16:00:00Z' });
     const afterDay = computeGrade([], {}, A2_CONFIG, { ...A2_OPTS, items: [], asOf: '2026-09-25T16:00:00Z' });
     expect(onDay.quarters.Q1.quarterGrade).toBeNull();
-    expect(afterDay.quarters.Q1.quarterGrade).toBe(0);
-    expect(afterDay.quarters.Q1.lessonsDue).toBe(1);
+    expect(afterDay.quarters.Q1.quarterGrade).toBeNull();
+    expect(afterDay.quarters.Q1.lessonsDue).toBe(0);
   });
 
-  it('uses latest teacher scores and best lesson-check scores', () => {
+  it('uses latest teacher scores for every active source', () => {
     const earlier = a2Rows(100, 10, 2, 100);
     const later = a2Rows(50, 5, 1, 79).map(row => ({ ...row, attempt: 2, recorded_at: '2026-09-26T16:00:00Z' }));
     const grade = computeGrade([...earlier, ...later], {}, A2_CONFIG, A2_OPTS);
     const points = Object.fromEntries(grade.items.map(item => [item.itemId, item.points]));
-    expect(points).toEqual({ 'TA-U1': 50, 'LC-U1-L1': 10, 'TI-U1-L1-1': 1, 'BL-U1-L1-DESK_DONE': 1 });
+    expect(points).toEqual({ 'TA-U1': 50, 'LC-U1-L1': 5, 'TI-U1-L1-1': 1, 'BL-U1-L1-DESK_DONE': 10 });
   });
 
   it('ignores unsupported sources instead of manufacturing grade credit', () => {
@@ -236,7 +236,7 @@ describe('A2 district grading', () => {
       { item_id: 'LC-U1-L1', source: 'unknown', score: 10 },
       { item_id: 'unrelated', source: 'worksheet', score: 100 },
     ];
-    expect(computeGrade(rows, {}, A2_CONFIG, A2_OPTS).quarters.Q1.quarterGrade).toBe(0);
+    expect(computeGrade(rows, {}, A2_CONFIG, A2_OPTS).quarters.Q1.quarterGrade).toBeNull();
   });
 });
 
@@ -253,7 +253,7 @@ describe('GET /grade — A2 response contract', () => {
 
   it('tolerates malformed ledger fields without a server error', async () => {
     const ctx = await startServer([
-      { source: 'lesson-check' },
+      { source: 'quiz' },
       { source: 'try-it', item_id: 'TI-U1-L1-1', score: 'not-a-number' },
     ]); srv = ctx.server;
     expect((await srv.get('/grade?token=' + ctx.token)).status).toBe(200);

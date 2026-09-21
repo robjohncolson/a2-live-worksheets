@@ -44,15 +44,15 @@ it('pins the five short orientation sections and grading table', () => {
  const doc=dom.window.document;
  expect([...doc.querySelectorAll('h2')].slice(0,5).map(n=>n.textContent)).toEqual([
   'An average day','What gets graded','How the number is computed','The first two weeks','Dates']);
- expect([...doc.querySelectorAll('tbody tr')].map(n=>n.cells[0].textContent)).toEqual(['Daily Blooket','Try-Its','IXL Web Jam','Quiz','Topic assessment']);
+ expect([...doc.querySelectorAll('tbody tr')].map(n=>n.cells[0].textContent)).toEqual(['Daily Engagement','Try-Its','IXL Web Jam','IXL homework, when assigned','Quiz','Topic assessment','Bonus']);
  expect(doc.body.textContent).toContain('Work through Friday, Sep 18 could only help you. It became your starting Bonus points and nothing from those weeks counts against you. Graded work starts Monday, Sep 21.');
- expect(doc.body.textContent).toContain('Once or twice a quarter; retake any number of times; latest score counts; makeup and retake times announced in class.');
+ expect(doc.body.textContent).toContain('Retake any number of times; makeup and retake times announced in class.');
  expect(doc.querySelectorAll('section')).toHaveLength(7);
  expect([...doc.querySelectorAll('h2')].slice(5).map(n=>n.textContent)).toEqual(['Bonus','Try the grade playground']);
  expect(doc.body.textContent).not.toMatch(/\bAP\b|Progress Check|video|Blooket warm/i);
  const prose=[...doc.querySelectorAll('section')].slice(0,5).flatMap(n=>[...n.querySelectorAll('p, li, td')]).map(n=>n.textContent).join(' ');
  expect(prose.split(/\s+/).length).toBeGreaterThanOrEqual(450);
- expect(prose.split(/\s+/).length).toBeLessThanOrEqual(575);
+ expect(prose.split(/\s+/).length).toBeLessThanOrEqual(725);
  dom.window.close();
 });
 it('shows the configured bonus date read-only in the teacher header', () => {

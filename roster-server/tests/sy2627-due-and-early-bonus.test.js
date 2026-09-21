@@ -278,7 +278,8 @@ function a2Grade(formula, rows, today, overrides = {}) {
   });
 }
 
-describe.each(['district', 'v3'])('A2 %s due dates and quarter close', formula => {
+// District collection/grace boundaries are covered by tests/district/engine.test.js.
+describe.each(['v3'])('A2 %s due dates and quarter close', formula => {
   it.each([
     ['PeriodC', '2026-09-21', '2026-09-22'],
     ['PeriodD', '2026-09-23', '2026-09-24'],

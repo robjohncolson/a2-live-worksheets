@@ -153,7 +153,7 @@ describe('A2 v3 integration — topic assessment and work tracks', () => {
     const result = computeGrade(a2Rows(100, 0, 0, 0), {},
       { ...A2_CONFIG, useV3: true }, A2_OPTS);
     expect(result.formula).toBe('district');
-    expect(result.quarters.Q1.quarterGrade).toBeCloseTo(100 / 110 * 100 * 0.5, 8);
+    expect(result.quarters.Q1.quarterGrade).toBe(100); // Only the scored topic assessment counts before Try-It grace expires.
   });
 
   it('the ceiling covers recovery during the quarter and closes with it', () => {

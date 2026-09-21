@@ -7,11 +7,11 @@ import { JSDOM } from 'jsdom';
 const source = readFileSync(new URL('../start-here.html', import.meta.url), 'utf8');
 const handout = readFileSync(new URL('../open-house.html', import.meta.url), 'utf8');
 
-it('keeps every grading-table cell and all five rules verbatim in Start Here', () => {
+it('keeps every grading-table cell and all seven rules verbatim in Start Here', () => {
   const start = new JSDOM(source);
   const page = new JSDOM(handout);
   const rows = [...page.window.document.querySelectorAll('tbody tr')];
-  expect(rows).toHaveLength(5);
+  expect(rows).toHaveLength(7);
   expect(page.window.document.querySelector('table').outerHTML).toBe(start.window.document.querySelector('table').outerHTML);
   for (const row of rows) {
     expect(row.cells).toHaveLength(3);

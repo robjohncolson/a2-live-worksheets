@@ -36,7 +36,7 @@ const OUT = resolve(ROOT, 'grade-engine.bundle.js');
 
 // Dependency order: a module's deps must be registered before it.
 const MODULES = [
-  { key: 'district-grade', file: 'district-grade.js', exports: ['A2_CATEGORIES', 'A2_FEEDERS', 'quarterGradeDistrict', 'yearGradeDistrict'] },
+  { key: 'district-grade', file: 'district-grade.js', exports: ['A2_CATEGORIES', 'A2_FEEDERS', 'selectOnlyRaiseBonus', 'quarterGradeDistrict', 'yearGradeDistrict'] },
   { key: 'district-ledger', file: 'district-ledger.js', exports: ['districtItemsFromLedger', 'computeDistrictGrade', 'districtGradebook'] },
   { key: 'grade-config',   file: 'grade-config.js',   exports: ['PHASE3_CONFIG', 'unitNumber', 'quarterOfUnit', 'quarterOfDate'] },
   { key: 'scoring',        file: 'scoring.js',        exports: ['blooketScore', 'normalizeResponse', 'isCorrect', 'stableLedgerSort', 'latestPerItem', 'unitOf', 'answerKeyMapOrNull', 'skillMapValidOrNull', 'scoreAgainstKey'] },

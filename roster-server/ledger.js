@@ -348,7 +348,7 @@ export function mountLedger(app, {
       const today = todayInTz(config.schoolTz || 'America/New_York');
       const roster = rosterDb?.findByStudentId ? (await rosterDb.findByStudentId(studentId)).data : null;
       const definitions = districtItemsFromLedger([], lessonSchedule || {}, roster?.section,
-        { ...config, today }, eventSchedule?.topicAssessments || config.a2Items || []);
+        { ...config, today, useDistrictFormula: false }, eventSchedule?.topicAssessments || config.a2Items || []);
       const definition = definitions.find(item => item.itemId === itemId && item.source === source);
       if (!definition) return res.status(400).json({ ok: false, error: 'Unknown scheduled A2 item' });
       const quarter = config.quarters[definition.quarter];

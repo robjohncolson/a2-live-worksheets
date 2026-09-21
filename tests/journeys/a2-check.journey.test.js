@@ -9,7 +9,7 @@ import { createFakeRoster } from './fake-roster.js';
 import { loadA2Lessons, lessonScheduleFromModel } from '../../roster-server/a2-lessons.js';
 import { PHASE3_CONFIG } from '../../roster-server/grade-config.js';
 
-it('C student signs in, completes 4/6 then 6/6, sees best 10/10 in the Desk and gradebook, and bonus-window district grade 100', async () => {
+it('C student signs in, completes 4/6 then 6/6, retains the best check receipt without district grade credit', async () => {
   vi.stubEnv('ROSTER_TOKEN_SECRET', 'a2-journey-test');
   const lesson = loadA2Lessons()[0];
   const rows = [];
@@ -67,8 +67,8 @@ it('C student signs in, completes 4/6 then 6/6, sees best 10/10 in the Desk and 
     expect(desk.document.body.textContent).toContain('Your grade is in Schoology for now.');
     expect(desk.document.getElementById('my-gradebook-overlay').style.display).not.toBe('flex');
     const grade = await (await fetch(base + '/grade', { headers: { Authorization: 'Bearer ' + desk.window.rosterClient.token() } })).json();
-    expect(grade.quarters.Q1.quarterGrade).toBe(100);
-    expect(grade.quarters.Q1.categoryBreakdown.assignments.bonusWindowExcluded).toBe(5);
+    expect(grade.quarters.Q1.quarterGrade).toBeNull();
+    expect(grade.quarters.Q1.categoryBreakdown.assignments.bonusWindowExcluded).toBe(0);
     expect(grade.quarters.Q1.categoryBreakdown.assignments.possible).toBe(0);
     expect(grade.quarters.Q1.categoryBreakdown.engagement.possible).toBe(0);
   } finally {

@@ -7,7 +7,7 @@
  *
  * Regenerate after any engine edit:  node scripts/build-grade-engine.mjs
  * Parity is pinned by tests/grade-engine-bundle-parity.test.js.
- * engine-version: a714f3a02ea1
+ * engine-version: d3b6a870e426
  */
 ;(function (root) {
   'use strict';
@@ -33,10 +33,11 @@
       engagement: { weight: 0.10, min: 10 },
     };
     const A2_FEEDERS = {
-      'lesson-check': { category: 'assessments', maxPoints: 10 },
-      'try-it': { category: 'assignments', maxPoints: 2 },
+      quiz: { category: 'assessments', maxPoints: 20 },
+      'try-it': { category: 'assignments', maxPoints: 10 },
       'topic-assessment': { category: 'assessments', maxPoints: 100 },
-      flashcard: { category: 'engagement', maxPoints: 1 },
+      'daily-engagement': { category: 'engagement', maxPoints: 10 },
+      bonus: { category: 'assignments', maxPoints: 0, extraCredit: true, quarterCap: 10 },
     };
     
     // Callers supply due items from one category (or one v3 source track).
@@ -72,22 +73,28 @@
       if (!cfg.today) throw new Error('District grading requires cfg.today');
       const categories = cfg.a2Categories || A2_CATEGORIES;
       const inQuarter = (items || []).filter(item => window && item.dueDate >= window.start
-        && item.dueDate <= window.end && Number.isFinite(item.maxPoints) && item.maxPoints > 0);
-      const due = inQuarter.filter(item => cfg.dueAfterLessonDay
-        ? item.dueDate < cfg.today : item.dueDate <= cfg.today);
+        && item.dueDate <= window.end && Number.isFinite(item.maxPoints)
+        && (item.maxPoints > 0 || item.extraCredit)
+        && (cfg.useDistrictFormula === false || !['lesson-check', 'flashcard'].includes(item.source)));
+      const due = inQuarter.filter(item => item.due ?? (cfg.dueAfterLessonDay
+        ? item.dueDate < cfg.today : item.dueDate <= cfg.today));
       const categoryBreakdown = {};
       let earnedGrade = 0, presentWeight = 0, bestGrade = 0, bestWeight = 0;
       for (const [category, rule] of Object.entries(categories)) {
-        const categoryDue = due.filter(item => item.category === category);
-        const { members, excluded: bonusExcluded, ignored, earned, possible } =
+        const categoryDue = due.filter(item => item.category === category && !item.extraCredit);
+        const bonusCap = (cfg.a2Feeders || A2_FEEDERS).bonus?.quarterCap ?? A2_FEEDERS.bonus.quarterCap;
+        const bonus = Math.min(bonusCap, due.filter(item => item.category === category && item.extraCredit && item.attempted)
+          .reduce((sum, item) => sum + Math.max(0, Number(item.points) || 0), 0));
+        const { members, excluded: bonusExcluded, ignored, earned: baseEarned, possible } =
           selectOnlyRaiseBonus(categoryDue, cfg.bonusOnlyThrough);
+        const earned = baseEarned + bonus;
         const score = possible ? 100 * earned / possible : null;
         categoryBreakdown[category] = { score, earned, possible, count: members.length,
           bonusWindowExcluded: bonusExcluded.length,
           bonusWindowIgnored: { count: ignored.length, itemIds: ignored.map(item => item.itemId) },
           minimum: rule.min, minimumMet: members.length >= rule.min };
         if (possible) { earnedGrade += score * rule.weight; presentWeight += rule.weight; }
-        const all = inQuarter.filter(item => item.category === category
+        const all = inQuarter.filter(item => item.category === category && !item.extraCredit
           && !(cfg.today > window.end && cfg.bonusOnlyThrough
             && item.dueDate <= cfg.bonusOnlyThrough && !item.attempted));
         const allPossible = all.reduce((sum, item) => sum + item.maxPoints, 0);
@@ -98,7 +105,7 @@
           return sum + (remaining ? item.maxPoints : item.attempted
             ? Math.min(item.maxPoints, Math.max(0, Number(item.points) || 0)) : 0);
         }, 0);
-        if (allPossible) { bestGrade += 100 * best / allPossible * rule.weight; bestWeight += rule.weight; }
+        if (allPossible) { bestGrade += 100 * (best + bonus) / allPossible * rule.weight; bestWeight += rule.weight; }
       }
       return { quarterGrade: presentWeight ? earnedGrade / presentWeight : null,
         categoryBreakdown, ceiling: presentWeight && bestWeight ? Math.max(earnedGrade / presentWeight, bestGrade / bestWeight) : null,
@@ -110,7 +117,7 @@
         .filter(value => typeof value === 'number' && Number.isFinite(value));
       return values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
     }
-    return { A2_CATEGORIES: A2_CATEGORIES, A2_FEEDERS: A2_FEEDERS, quarterGradeDistrict: quarterGradeDistrict, yearGradeDistrict: yearGradeDistrict };
+    return { A2_CATEGORIES: A2_CATEGORIES, A2_FEEDERS: A2_FEEDERS, selectOnlyRaiseBonus: selectOnlyRaiseBonus, quarterGradeDistrict: quarterGradeDistrict, yearGradeDistrict: yearGradeDistrict };
   })();
 
   // ── district-ledger.js ──────────────────────────────────────────────────────
@@ -128,7 +135,14 @@
     
     // The content pipeline can provide explicit items (including individual Try-Its).
     // Default lesson IDs only apply to future A2 authoring; flashcards keep BL-...-DESK_DONE.
-    function districtItemsFromLedger(rows, schedule = {}, section, cfg, extraItems = []) {
+    const LEGACY_FEEDERS = {
+      'lesson-check': { category: 'assessments', maxPoints: 10 },
+      'try-it': { category: 'assignments', maxPoints: 2 },
+      'topic-assessment': { category: 'assessments', maxPoints: 100 },
+      flashcard: { category: 'engagement', maxPoints: 1 },
+    };
+    
+    function legacyDistrictItems(rows, schedule = {}, section, cfg, extraItems = []) {
       const definitions = [];
       for (const [lessonKey, lesson] of Object.entries(schedule || {})) {
         const dueDate = periodDate(lesson, section);
@@ -151,7 +165,7 @@
       }
       const result = new Map();
       for (const definition of definitions) {
-        const feeder = A2_FEEDERS[definition.source];
+        const feeder = LEGACY_FEEDERS[definition.source];
         if (!feeder) continue;
         const id = definition.itemId;
         const quarter = Object.keys(cfg.quarters).find(key => definition.dueDate >= cfg.quarters[key].start
@@ -178,6 +192,93 @@
       return [...result.values()];
     }
     
+    // Assignment metadata belongs to the section, not the planned lesson date.
+    // R2 supplies assignedDates: { C: 'YYYY-MM-DD' } on a lesson or item;
+    // imports may instead supply assignedDate plus section on an explicit item.
+    function assignmentDate(entry, section) {
+      const period = String(section || '').replace(/^Period/i, '').toUpperCase();
+      if (entry.assignedDates) return entry.assignedDates[period] || null;
+      if (entry.section && String(entry.section).replace(/^Period/i, '').toUpperCase() !== period) return null;
+      return entry.assignedDate || null;
+    }
+    
+    function rowDate(row) {
+      return String(row.updated_at || row.recorded_at || row.created_at || '');
+    }
+    
+    function rowAssignedDate(row) {
+      return String(row.response?.assignedDate || row.created_at || row.recorded_at || row.updated_at || '').slice(0, 10);
+    }
+    
+    function districtItemsFromLedger(rows, schedule = {}, section, cfg, extraItems = []) {
+      if (cfg.useDistrictFormula === false) return legacyDistrictItems(rows, schedule, section, cfg, extraItems);
+      const feeders = cfg.a2Feeders || A2_FEEDERS;
+      const definitions = new Map();
+      for (const [lessonKey, lesson] of Object.entries(schedule || {})) {
+        const [unit, number] = lessonKey.split('.');
+        const items = lesson.items || Array.from({ length: lesson.tryItCount ?? 5 }, (_, index) => ({
+          itemId: `TI-U${unit}-L${number}-${index + 1}`, source: 'try-it',
+        }));
+        for (const item of items) definitions.set(item.itemId, {
+          lessonKey, dueDate: periodDate(lesson, section),
+          assignedDate: assignmentDate(lesson, section), ...item,
+        });
+      }
+      for (const item of extraItems || []) definitions.set(item.itemId, {
+        ...definitions.get(item.itemId), ...item, dueDate: periodDate(item, section),
+      });
+      const sectionRows = (rows || []).filter(row => !row.section
+        || String(row.section).replace(/^Period/i, '').toUpperCase()
+          === String(section || '').replace(/^Period/i, '').toUpperCase())
+        .sort((a, b) => rowAssignedDate(a).localeCompare(rowAssignedDate(b)) || rowDate(a).localeCompare(rowDate(b)));
+      for (const row of sectionRows) {
+        const id = row.item_id || row.itemId;
+        if (!feeders[row.source] || !id || definitions.has(id)) continue;
+        definitions.set(id, { itemId: id, source: row.source,
+          dueDate: row.response?.dueDate || rowAssignedDate(row),
+          assignedDate: rowAssignedDate(row) });
+      }
+      const result = [];
+      for (const definition of definitions.values()) {
+        const feeder = feeders[definition.source];
+        if (!feeder || ['lesson-check', 'flashcard'].includes(definition.source)) continue;
+        if (definition.section && String(definition.section).replace(/^Period/i, '').toUpperCase()
+          !== String(section || '').replace(/^Period/i, '').toUpperCase()) continue;
+        const candidates = sectionRows.filter(row => (row.item_id || row.itemId) === definition.itemId
+          && row.source === definition.source && (!rowDate(row) || rowDate(row).slice(0, 10) <= cfg.today));
+        const scores = candidates.filter(row => row.score != null && row.score !== '' && Number.isFinite(Number(row.score)));
+        scores.sort((a, b) => rowDate(a).localeCompare(rowDate(b)) || Number(a.attempt || 1) - Number(b.attempt || 1));
+        const selected = scores.at(-1);
+        // A score proves assignment for this student; a schedule alone never does.
+        const assignedDate = assignmentDate(definition, section)
+          || (selected && (scores.map(rowAssignedDate).filter(Boolean).sort()[0] || definition.dueDate));
+        if (!assignedDate || assignedDate > cfg.today) continue;
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(assignedDate) || !Number.isFinite(Date.parse(assignedDate))) continue;
+        const dueDate = definition.dueDate || assignedDate;
+        const quarter = Object.keys(cfg.quarters).find(key => dueDate >= cfg.quarters[key].start && dueDate <= cfg.quarters[key].end);
+        if (!quarter) continue;
+        // No imported row means absence, not a zero Engagement item.
+        if (definition.source === 'daily-engagement' && !selected) continue;
+        const attempted = !!selected && selected.response?.attempted !== false
+          && (definition.source !== 'try-it' || Number(selected.score) > 0 || selected.response?.attempted === true);
+        const graceDate = new Date(`${assignedDate}T00:00:00Z`);
+        graceDate.setUTCDate(graceDate.getUTCDate() + (cfg.a2ProvisionalDays ?? 7));
+        const provisionalDate = graceDate.toISOString().slice(0, 10);
+        const historical = cfg.bonusOnlyThrough && dueDate <= cfg.bonusOnlyThrough;
+        const extraCredit = feeder.extraCredit || !!historical;
+        const points = attempted ? Math.max(0, Number(selected.score)) : 0;
+        const provisional = !extraCredit && definition.source === 'try-it' && !attempted && cfg.today >= provisionalDate;
+        const due = definition.source === 'try-it' && !attempted ? provisional
+          : assignedDate <= cfg.today;
+        result.push({ ...definition, ...feeder, quarter, dueDate, assignedDate,
+          ...(extraCredit ? { category: 'assignments', maxPoints: 0, extraCredit: true } : {}),
+          points: feeder.extraCredit ? points : Math.min(feeder.maxPoints, points),
+          attempted, provisional, provisionalDate: definition.source === 'try-it' ? provisionalDate : null,
+          due: extraCredit ? attempted : due });
+      }
+      return result;
+    }
+    
     function computeDistrictGrade(rows, config, opts, today) {
       const cfg = { ...config, today };
       const schedule = opts.lessonSchedule || {};
@@ -198,13 +299,13 @@
         const flashcard = members.find(item => item.source === 'flashcard');
         return { lessonKey, unit: lesson.unit, worksheetKey: lesson.worksheetKey, due: lesson.periods || {},
           tryIts: { scored: tries.filter(item => item.attempted).length, total: tries.length,
-            points: tries.reduce((sum, item) => sum + item.points, 0), maxPoints: tries.length * 2 },
+            points: tries.reduce((sum, item) => sum + item.points, 0), maxPoints: tries.reduce((sum, item) => sum + item.maxPoints, 0) },
           lessonCheck: check?.attempted ? check.points / check.maxPoints * 100 : null,
           flashcardPassed: flashcard?.points === 1,
           items: { 'try-it': tries, 'lesson-check': check ? [check] : [], flashcard: flashcard ? [flashcard] : [] } };
       });
       return { units: {}, completion: {}, quarters, lessons, items, formula: 'district', today,
-        yearGrade: yearGradeDistrict(quarters), a2Categories: cfg.a2Categories };
+        yearGrade: yearGradeDistrict(quarters), a2Categories: cfg.a2Categories, a2Feeders: cfg.a2Feeders };
     }
     
     function districtGradebook(grade) {
@@ -214,12 +315,12 @@
       for (const [key, quarter] of Object.entries(grade.quarters)) {
         const items = grade.items.filter(item => item.quarter === key);
         const columns = items.map(item => ({ key: item.itemId, kind: item.source.replaceAll('-', '_'),
-          category: labels[item.category], title: item.title || `${item.lessonKey || ''} ${{'lesson-check': 'Lesson check', 'topic-assessment': 'Topic assessment', 'try-it': 'Try-It', flashcard: 'Flashcards'}[item.source]}${item.source === 'try-it' ? ' ' + item.itemId.split('-').at(-1) : ''}`.trim(),
-          maxPoints: item.maxPoints, due: item.due, dueDate: item.dueDate, topicKeys: item.lessonKey ? [item.lessonKey] : [] }));
-        const cells = Object.fromEntries(items.map(item => [item.itemId, item.attempted ? item.points : null]));
+          category: labels[item.category], title: item.title || `${item.lessonKey || ''} ${{'lesson-check': 'Lesson check', 'topic-assessment': 'Topic assessment', 'try-it': 'Try-It', flashcard: 'Flashcards', quiz: 'Quiz', 'daily-engagement': 'Daily Engagement', bonus: 'Bonus'}[item.source]}${item.source === 'try-it' ? ' ' + item.itemId.split('-').at(-1) : ''}`.trim(),
+          maxPoints: item.maxPoints, provisional: item.provisional === true, extraCredit: item.extraCredit === true, due: item.due, dueDate: item.dueDate, topicKeys: item.lessonKey ? [item.lessonKey] : [] }));
+        const cells = Object.fromEntries(items.map(item => [item.itemId, item.attempted || item.provisional ? item.points : null]));
         const completed = items.filter(item => item.due && item.attempted);
         const total = quarterGradeDistrict(completed, { start: '0000', end: '9999' }, {
-          today: grade.today, a2Categories: grade.a2Categories,
+          today: grade.today, useDistrictFormula: grade.formula !== 'v3', a2Categories: grade.a2Categories, a2Feeders: grade.a2Feeders,
         });
         quarters[key] = { columns, cells, categoryAverages: Object.fromEntries(Object.entries(total.categoryBreakdown)
           .map(([category, value]) => [labels[category], value.score])), schoologyTotal: total.quarterGrade,
@@ -259,6 +360,7 @@
       bonusOnlyThrough: '2026-09-18', // Inclusive school-timezone due date; null disables.
       a2Categories: A2_CATEGORIES,
       a2Feeders: A2_FEEDERS,
+      a2ProvisionalDays: 7,
       useDistrictFormula: process.env.USE_DISTRICT_FORMULA !== 'false',
       meetingDays: { C: [1, 2, 4], D: [1, 3, 5], G: [2, 3, 4, 5] },
       
@@ -2607,7 +2709,7 @@
     isCorrect: __reg["scoring"].isCorrect,
     normalizeResponse: __reg["scoring"].normalizeResponse,
     scoreAgainstKey: __reg["scoring"].scoreAgainstKey,
-    _engineVersion: "a714f3a02ea1",
+    _engineVersion: "d3b6a870e426",
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = __api;

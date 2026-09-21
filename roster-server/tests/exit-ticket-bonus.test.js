@@ -94,14 +94,16 @@ describe.each(['district', 'v3'])('A2 %s exit-ticket isolation', formula => {
       const withoutExits = computeGrade(sample.rows, {}, config, opts);
       const withExits = computeGrade([...sample.rows, ...fixture.legacyExitRows], {}, config, opts);
       expect(withoutExits.formula, sample.name).toBe(formula);
-      expect(withoutExits.items, sample.name).toHaveLength(4);
-      expect(withoutExits.quarters.Q1.lessonsDue, sample.name).toBe(1);
+      expect(withoutExits.items, sample.name).toHaveLength(formula === 'v3' ? 4 : sample.rows.filter(row => ['try-it', 'topic-assessment'].includes(row.source)).length);
+      expect(withoutExits.quarters.Q1.lessonsDue, sample.name).toBe(formula === 'district' && !sample.rows.length ? 0 : 1);
       // Compare the entire response, including denominators, ceilings and items.
       // No filtering before computation: the real A2 adapter must ignore exits.
       expect(withExits, sample.name).toEqual(withoutExits);
       if (formula === 'district') {
-        expect(withoutExits.quarters.Q1.quarterGrade, sample.name)
-          .toBeCloseTo(sample.districtGrade, 10);
+        const expected = { 'missing all due work': null, 'perfect feeders': 58 / 0.9,
+          'partial Try-It': 54 / 0.9, 'missing topic assessment': 20 }[sample.name];
+        if (expected === null) expect(withoutExits.quarters.Q1.quarterGrade).toBeNull();
+        else expect(withoutExits.quarters.Q1.quarterGrade).toBeCloseTo(expected, 10);
       }
       if (formula === 'v3' && sample.name === 'missing topic assessment') {
         expect(withoutExits.quarters.Q1.masteryAvg).toBe(0);

@@ -19,6 +19,7 @@ import { fileURLToPath } from 'url';
 import { generateBundle } from '../scripts/build-grade-engine.mjs';
 import { computeGrade as serverComputeGrade } from '../roster-server/grade.js';
 import { buildGradebook as serverBuildGradebook } from '../roster-server/gradebook-grid.js';
+import { PHASE3_CONFIG } from '../roster-server/grade-config.js';
 import {
   CONFIG,
   ANSWER_KEY,
@@ -50,6 +51,40 @@ describe('grade-engine bundle — drift', () => {
     const fresh = generateBundle();
     // Tip on failure: run `node scripts/build-grade-engine.mjs`.
     expect(committed).toBe(fresh);
+  });
+});
+
+describe('R1 district bundle parity', () => {
+  it('preserves the alternative A2 v3 engine in the browser', () => {
+    const Engine = loadBundle(readFileSync(BUNDLE_PATH, 'utf8'));
+    const config = { ...PHASE3_CONFIG, useDistrictFormula: false, useV3: true };
+    const opts = { section: 'C', asOf: new Date('2026-10-10T16:00:00Z'), items: [
+      { itemId: 'TA', source: 'topic-assessment', dueDate: '2026-10-01' },
+      { itemId: 'TI', source: 'try-it', dueDate: '2026-10-01' },
+    ] };
+    const rows = [{ item_id: 'TA', source: 'topic-assessment', score: 80 },
+      { item_id: 'TI', source: 'try-it', score: 2 }];
+    expect(Engine.computeGrade(rows, {}, config, opts)).toEqual(serverComputeGrade(rows, {}, config, opts));
+    expect(Engine.computeGrade(rows, {}, config, opts).quarters.Q1.quarterGrade).toBe(100);
+  });
+  it.each(['2026-09-28', '2026-09-29', '2026-10-01'])('matches assignment, provisional and bonus math at %s', today => {
+    const Engine = loadBundle(readFileSync(BUNDLE_PATH, 'utf8'));
+    const config = { ...PHASE3_CONFIG, useDistrictFormula: true };
+    const items = ['try-it', 'quiz', 'daily-engagement', 'bonus'].map(source => ({
+      itemId: source, source, dueDate: '2026-09-22', assignedDates: { C: '2026-09-22' },
+    }));
+    const rows = [
+      { item_id: 'quiz', source: 'quiz', score: 16, recorded_at: '2026-09-22' },
+      { item_id: 'daily-engagement', source: 'daily-engagement', score: 8, recorded_at: '2026-09-22' },
+      { item_id: 'bonus', source: 'bonus', score: 12, recorded_at: '2026-09-22' },
+      { item_id: 'try-it', source: 'try-it', score: 8, recorded_at: '2026-10-01' },
+    ];
+    const opts = { items, section: 'C', asOf: new Date(today + 'T16:00:00Z') };
+    const server = serverComputeGrade(rows, {}, config, opts);
+    const client = Engine.computeGrade(rows, {}, config, opts);
+    expect(client).toEqual(server);
+    expect(Engine.buildGradebook(client)).toEqual(serverBuildGradebook(server));
+    expect(client.items.find(item => item.source === 'try-it').provisional).toBe(today === '2026-09-29');
   });
 });
 

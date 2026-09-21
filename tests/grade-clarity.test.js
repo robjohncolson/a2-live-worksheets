@@ -33,9 +33,12 @@ describe('start-here.html — district grade explanation', () => {
     }
     expect(START).toContain('4 Assessments, 10 Assignments, and 10 Engagement items');
     expect(START).toContain('100-point topic assessment');
-    expect(START).toContain('10-point lesson check');
-    expect(START).toContain('Unattempted due work counts as zero after the lesson day');
-    expect(DESK).toContain('Unattempted due work counts as zero after the lesson day');
+    expect(START).toContain('20-point quiz');
+    expect(START).toContain('provisional zero one week after I score that set for your section');
+    expect(START).toContain('you can attempt or redo it any time, and your later attempt replaces the zero');
+    expect(START).toContain('Nothing counts as zero before I score the set.');
+    expect(START).not.toContain('Unattempted due work counts as zero after the lesson day');
+    expect(START).not.toContain('10-point lesson check');
   });
 
   it('exposes the how-your-grade anchor for the Desk deep-link', () => {

@@ -292,9 +292,8 @@ describe('GET /teacher/student/:studentId/grade', () => {
     expect(r.body.ok).toBe(true);
     expect(r.body.formula).toBe('district');
     expect(r.body.section).toBe('C');
-    expect(r.body.items).toContainEqual(expect.objectContaining({
-      itemId: 'LC-U1-L1', dueDate: '2026-09-03', quarter: 'Q1', maxPoints: 10,
-    }));
+    expect(r.body.items).toEqual([]);
+    expect(r.body.lessons[0].due.C).toBe('2026-09-03');
   });
 });
 

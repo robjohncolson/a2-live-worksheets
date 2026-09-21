@@ -53,8 +53,9 @@ describe('redacted A2 offline inputs', () => {
         const offline = computeGrade(rows, buildRedactedKey(ANSWER_KEY, rows), config, OPTIONS);
         expect(offline).toEqual(real);
         expect(offline.formula).toBe(mode);
-        expect(offline.items).toHaveLength(4);
-        expect(offline.quarters.Q1.quarterGrade).not.toBeNull();
+        expect(offline.items).toHaveLength(mode === 'v3' ? 4 : name === 'empty' ? 0 : name === 'partial' ? 1 : 2);
+        if (mode === 'district' && name === 'empty') expect(offline.quarters.Q1.quarterGrade).toBeNull();
+        else expect(offline.quarters.Q1.quarterGrade).not.toBeNull();
       });
     }
   }
@@ -134,7 +135,7 @@ describe('GET /grade/offline-inputs', () => {
     });
     expect(offline).toEqual(computeGrade(ROWS, ANSWER_KEY, CONFIG, OPTIONS));
     expect(offline.lessons[0]).toMatchObject({
-      lessonKey: '1.1', lessonCheck: 80, flashcardPassed: true,
+      lessonKey: '1.1', lessonCheck: null, flashcardPassed: false,
       tryIts: { scored: 1, total: 1, points: 2 },
     });
   });
