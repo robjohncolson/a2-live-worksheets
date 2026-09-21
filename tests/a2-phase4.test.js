@@ -33,15 +33,15 @@ describe('shared interval normalizer', () => {
     expect(A2Answers.answerMatches('1', '')).toBe(false);
   });
 });
-it('ships six traced items, five verbatim Try-Its and a faithful 40-card Blooket deck', () => {
+it('ships six traced items, five verbatim Try-Its and a faithful 36-card Blooket deck', () => {
   expect(lessons[0].sections).toEqual({ C: '2026-09-24', D: '2026-09-25', G: '2026-09-25' });
   expect(lessons[0].lessonCheck.map(item => item.registryId)).toEqual([18,21,22,23,27,32].map(n => '1-1-savvas-q' + n));
   expect(lessons[0].tryIts.map(item => item.n)).toEqual([1,2,3,4,5]);
   const report = JSON.parse(execFileSync(process.execPath, ['scripts/lint-blooket-deck.mjs', '--csv', lessons[0].deck], { encoding: 'utf8' }));
-  expect(report.findings).toEqual(blooketFindings); expect(report.decks[0].cards).toBe(40);
+  expect(report.findings).toEqual(blooketFindings); expect(report.decks[0].cards).toBe(36);
   const sources = JSON.parse(readFileSync('content/a2/1-1/deck.sources.json', 'utf8'));
   const source = JSON.parse(readFileSync('data/sources/blooket/a2-number-line-interval/set.json', 'utf8'));
-  expect(sources).toEqual(Object.fromEntries(source.questions.filter(q => q.number <= 40).map(q => [q.number, `blooket:${source.setId}:q${q.number}`])));
+  expect(sources).toEqual(Object.fromEntries(source.questions.filter(q => q.number >= 1 && q.number <= 40 && ![9, 10, 16, 22].includes(q.number)).map(q => [q.number, `blooket:${source.setId}:q${q.number}`])));
 });
 it('teacher offline queue keeps different students separate and the latest tap for each', async () => {
   const dom = new JSDOM('', { runScripts: 'outside-only' });
@@ -68,7 +68,7 @@ it('publishes the Topic 1 keep lessons with traced Try-Its, six answerable check
     }
     const report = JSON.parse(execFileSync(process.execPath, ['scripts/lint-blooket-deck.mjs', '--csv', lesson.deck], { encoding: 'utf8' }));
     expect(report.findings, lesson.key).toEqual(lesson.key === '1-1' ? blooketFindings : []);
-    expect(report.decks[0].cards).toBe(lesson.key === '1-1' ? 40 : 14);
+    expect(report.decks[0].cards).toBe(lesson.key === '1-1' ? 36 : 14);
     expect(lesson.topicAssessmentKey).toBe('T1');
   }
 });

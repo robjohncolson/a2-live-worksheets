@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { resolve, dirname } from 'node:path';
 import { createContext, runInContext } from 'node:vm';
 import { JSDOM } from 'jsdom';
 import { describe, it, expect, vi } from 'vitest';
@@ -23,21 +24,42 @@ function fn(file, name) {
   throw new Error('Missing function ' + name);
 }
 
-it('reproduces all source cards, answer order, lineage, UTF-8 and image bytes', () => {
-  expect(execFileSync(process.execPath, ['scripts/build-a2-blooket-deck.mjs', '--check'], { encoding: 'utf8' })).toContain('40 cards and 23 images');
+it('reproduces the 36 supported source cards, answer order, lineage, UTF-8 and image bytes', () => {
+  expect(execFileSync(process.execPath, ['scripts/build-a2-blooket-deck.mjs', '--check'], { encoding: 'utf8' })).toContain('36 cards and 23 images');
   expect(csv.charCodeAt(0)).not.toBe(0xfeff);
   expect(csv).not.toContain('\ufffd');
   expect(csv).not.toContain('`*');
+  expect(csv).not.toContain('`~`');
+  expect(csv).not.toContain('media.blooket.com');
   expect(FC.parseCsv(csv)[0]).toEqual(['Question #', 'Question Text', 'Answer 1', 'Answer 2', 'Answer 3', 'Answer 4', 'Time Limit (sec)', 'Correct Answer(s)', 'source', 'image']);
-  expect(cards).toHaveLength(40);
+  expect(cards).toHaveLength(36);
+  const originals = source.questions.filter(q => q.number >= 1 && q.number <= 40 && ![9, 10, 16, 22].includes(q.number)).sort((a, b) => a.number - b.number);
+  expect(cards.map(card => card.qnum)).toEqual(originals.map(q => q.number));
   const lineage = JSON.parse(readFileSync('content/a2/1-1/deck.sources.json', 'utf8'));
+  expect(Object.keys(lineage)).toEqual(originals.map(q => String(q.number)));
   cards.forEach((card, i) => {
-    const original = source.questions.filter(q => q.number <= 40).sort((a, b) => a.number - b.number)[i];
+    const original = originals[i];
     expect(card).toEqual({ qnum: original.number, q: original.question, choices: original.answers, correctIdx: original.answers.indexOf(original.correctAnswers[0]), image: original.image || '' });
     expect(lineage[card.qnum]).toBe(`blooket:${source.setId}:q${original.number}`);
     if (card.image) expect(readFileSync(`content/a2/1-1/images/blooket/${card.image}`)).toEqual(readFileSync(`data/sources/blooket/a2-number-line-interval/${card.image}`));
   });
   expect(cards.filter(card => card.image)).toHaveLength(23);
+});
+
+it.each(['`~`', 'media.blooket.com'])('drops image answers and rejects retained prompt markup: %s', marker => {
+  const builder = readFileSync('scripts/build-a2-blooket-deck.mjs', 'utf8');
+  const question = { number: 1, question: 'Choose an interval', answers: ['[0, 1]', '(0, 1)'], correctAnswers: ['[0, 1]'], timeLimit: 20 };
+  const write = vi.fn();
+  const run = questions => runInContext(builder.slice(builder.indexOf('const sourcePath =')), createContext({
+    root: '.', resolve, dirname, Buffer, process: { argv: [] }, console: { log() {} },
+    readFileSync: () => JSON.stringify({ setId: 'fixture', questions }),
+    mkdirSync() {}, writeFileSync: write
+  }));
+  run([{ ...question, number: 2, answers: [question.answers[0], marker] }, question]);
+  expect(FC.rowsToDeck(FC.parseCsv(write.mock.calls[0][1].toString())).map(card => card.qnum)).toEqual([1]);
+  write.mockClear();
+  expect(() => run([{ ...question, question: marker }])).toThrow('Unsupported image answer in question 1');
+  expect(write).not.toHaveBeenCalled();
 });
 
 it('parses optional image columns in both parsers without confusing the source column', () => {
@@ -66,8 +88,8 @@ describe('daily draw', () => {
       expect(new Set(draw).size).toBe(10);
       stream.push(...draw);
     }
-    expect(new Set(stream.slice(0, 40)).size).toBe(40);
-    expect(stream.slice(0, 40)).toEqual(stream.slice(40, 80));
+    expect(new Set(stream.slice(0, 36)).size).toBe(36);
+    expect(stream.slice(0, 36)).toEqual(stream.slice(36, 72));
     expect(FC.dailyDraw([], '2026-09-20|1.1', 10)).toEqual([]);
     expect(FC.dailyDraw(cards.slice(0, 4), '2026-09-20|1.1', 10)).toHaveLength(4);
   });

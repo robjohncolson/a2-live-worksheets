@@ -11,9 +11,13 @@ const header = ['Question #', 'Question Text', 'Answer 1', 'Answer 2', 'Answer 3
 const rows = [header];
 const lineage = {};
 const artifacts = new Map();
-const questions = source.questions.filter(question => question.number >= 1 && question.number <= 40).sort((a, b) => a.number - b.number);
+const questions = source.questions
+  .filter(question => question.number >= 1 && question.number <= 40)
+  .filter(question => !question.answers.some(answer => answer.includes('`~`') || answer.includes('media.blooket.com')))
+  .sort((a, b) => a.number - b.number);
 for (const question of questions) {
   if ([question.question, ...question.answers].some(text => text.includes('`*'))) throw new Error(`Unsupported math markup in question ${question.number}`);
+  if ([question.question, ...question.answers].some(text => text.includes('`~`') || text.includes('media.blooket.com'))) throw new Error(`Unsupported image answer in question ${question.number}`);
   const { number, answers, correctAnswers, image = '' } = question;
   if (lineage[number] || answers.length < 2 || answers.length > 4 || correctAnswers.length !== 1 || !answers.includes(correctAnswers[0])) {
     throw new Error(`Invalid Blooket question ${number}`);
