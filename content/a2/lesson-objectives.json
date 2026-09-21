@@ -1,0 +1,13 @@
+{
+  "about": "Learning and language objectives per lesson, copied verbatim from the first page of each class packet (Lesson_planning/a2_<lesson>.pdf). The Desk shows the current lesson's entry on the desktop so an observer can read it from the back of the room. A lesson with no entry shows nothing; never invent an objective.",
+  "lessons": {
+    "1-1": {
+      "mathObjectives": [
+        "Identify key features of a graph of a function, including the intercepts, positive and negative intervals, and areas where the function is increasing or decreasing."
+      ],
+      "standards": ["HSF.IF.B.4", "HSF.IF.B.6"],
+      "languageObjective": "Students will explain key features of functions, provided pre-taught vocabulary, the three-reads strategy, and structured student-talk time.",
+      "essentialQuestion": "How do key features help you understand functions and their graphs?"
+    }
+  }
+}
