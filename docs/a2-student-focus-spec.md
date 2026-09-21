@@ -52,3 +52,26 @@ V7. Tests with the real Desk page: signed-out and student see the focused calend
 exact visible text of a past cell = empty, today's cell, a next-week cell, a far-future cell);
 teacher still sees today's full detail; no student-visible string matches
 /Try-?Its?|scored|Lesson check|On pace|Landed/ anywhere on the Desk in the focused view.
+
+## Fix round 1 (after review)
+
+W1 (major). My Receipts renders every receipt, including `try-it` and `lesson-check` ones the
+teacher's scoring page issues, so a student can read Try-It scores there. In the focused view
+filter those sources out of the wallet (and its counts, print and export); keep the rest.
+W2 (major). The Do Now sentence takes its section from the pill (`cP`). For a signed-in student it
+must be the student's own section, regardless of pill; for teacher "view as" the viewed student's
+section; the pill only for signed-out visitors and the teacher's own view. `setP` must refresh the
+Do Now so banner and calendar never disagree.
+W3 (major). On a sign-out / role change from another tab the calendar re-renders but an open hover
+tooltip (`#tip`) keeps the teacher's Landed/Plan text. Hide and clear the tooltip on every
+focus/identity transition; test it.
+W4 (major). `tests/a2-student-focus.test.js` pins "Example 5, Try It 5, then Example 4" but the
+day log now says "Example 5, Try It 5, then a Web Jam for Example 4"; read the expectation from
+`content/a2/day-log.json` instead of hard-coding it.
+W5. `lessons.json` has `onenoteUrl: null` for every lesson, so the focused panel shows no notebook
+link. Add a single configured fallback (the section's OneNote notebook link is already posted on
+Schoology; use the value in `content/a2/lessons.json` if present, else a `notebookUrl` field at
+the top level of `content/a2/day-log.json` `resources`) and show it when a lesson has none.
+Leave the URL empty if you cannot find it in the repo; never invent one.
+W6. Journey tests j2/j3 bypass the real click; restore the click path through the focused panel.
+Same exit criteria as above.
