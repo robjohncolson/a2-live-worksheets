@@ -1,4 +1,4 @@
-# Desk grade rebuild — spec (draft 2026-09-21, awaiting the teacher's go on point values)
+# Desk grade rebuild — spec (approved by the teacher 2026-09-21)
 
 Make the Desk the book of record for the grade the syllabus describes, with every grading pathway
 idempotent, then let students see it again (`A2_STUDENT_GRADES_VISIBLE = true`) and push it to
@@ -15,7 +15,7 @@ Schoology instead of typing it there.
   section (a packet the teacher has not collected cannot hurt anyone).
 - Work through Fri Sep 18 never counts against anyone (it became Bonus).
 
-## Proposed point values (config, not code: `grade-config` / `A2_FEEDERS`)
+## Point values (approved) (config, not code: `grade-config` / `A2_FEEDERS`)
 
 | Piece | Category | Points | Counted score |
 | --- | --- | --- | --- |
@@ -23,6 +23,7 @@ Schoology instead of typing it there.
 | Quiz | Assessments | 20 | latest; same 80% rule per question |
 | Topic assessment | Assessments | 100 | latest (unchanged) |
 | Daily Engagement | Engagement | 10 per class day | from `scripts/a2-daily-engagement.mjs` (Blooket + flashcard redemption); an absent day is no item, not a zero |
+| IXL homework, when assigned | Bonus | up to the award the teacher sets | **A SmartScore of 80 counts as complete.** 100 is never required: past 80, IXL gets redundant and frustrating |
 | Bonus | Assignments, extra credit | 0 possible, capped at 10 earned per quarter | sum of the bonus ledger |
 
 Why these numbers, for Quarter 1 (4 lessons: 1-1, 1-2, 1-5, 1-6; 17 Try-Its; 19–27 class days left
@@ -36,6 +37,24 @@ per section; no topic test lands inside Q1 because Topic 1's test is dated Nov 9
 - Engagement: one 10-point item per class day clears the minimum of 10 in about three weeks.
 - Retired from the grade: the digital lesson check and the per-lesson flashcard pass (flashcards
   now count through the daily Engagement redemption instead).
+
+Quarter 1 has no topic test (Topic 1's is dated Nov 9-10), so Assessments in Q1 are one short quiz
+per lesson. The schedule is not changed by this work.
+
+Rules for every work item: match surrounding style; no new dependencies; do not run
+`scripts/bump-build.mjs`, commit or push; stay inside owned paths; add tests; the root suite may
+fail only the six inherited files (`tests/a2-fork-freeze`, `tests/phase4b-structure`, the three
+`tests/progress-reset-matrix-*`, `tests/journeys/j7-offline-grade`) and `roster-server` `npm test`
+must be fully green; never print, log or commit student names or secrets. GitNexus does not index
+this checkout: do not refresh or write any index; grep for callers before editing a function and
+list the blast radius in your report. `A2_STUDENT_GRADES_VISIBLE` stays `false` until R4.
+
+R0. **Copy.** Start Here's "What gets graded" table (the syllabus and Open House handout lift it)
+states the points above and the IXL rule in the teacher's words: "When I assign IXL homework, a
+SmartScore of 80 counts as complete. You do not need 100." Also: an unattempted Try-It becomes a
+zero one week after I score that set, it is not final, and you can redo it any time. Owned paths:
+`start-here.html`, `open-house.html`, `syllabus-*.html`, `scripts/build-open-house.mjs`,
+`scripts/build-a2-syllabus.mjs`, and the tests that pin them.
 
 ## Work items (each idempotent by construction: one stable item id per thing, upsert not insert)
 
