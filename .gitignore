@@ -146,3 +146,7 @@ tools/.schoology-sync-logs/
 
 # Schoology syllabus PDFs carry the teacher name; rebuild with build-a2-syllabus.mjs --teacher
 syllabus/*.pdf
+
+# Blooket/IXL screenshots carry student names: keep them under roster-local/, never in the site root
+/unnamed*.png
+/image*.png
