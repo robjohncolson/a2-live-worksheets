@@ -7444,7 +7444,7 @@ function updateLegend(def){
   // the key can never drift from the real CSS.
   h+='<details class="legend-states"><summary>What the marks mean</summary><div class="legend-states-grid">'
     +'<div class="legend-item"><span class="legend-st cell-today"></span>Today</div>'
-    +'<div class="legend-item"><span class="legend-st cal-current"></span>Up next</div>'
+    +'<div class="legend-item"><span class="legend-st cal-current"></span><span id="legend-current-label">Up next</span></div>'
     +'<div class="legend-item"><span class="legend-st cell-u1 dc-done"></span>Done</div>'
     +'<div class="legend-item"><span class="legend-st cell-u1 dc-localpartial"></span>In progress</div>'
     +(a2 ? '' : '<div class="legend-item"><span class="legend-st cell-u1 dc-ahead"></span>Ahead</div>'
@@ -14848,7 +14848,10 @@ function rCal(){
     const _suppressProgress = (typeof _deskIsTeacher === 'function') && _deskIsTeacher();
     const _teacherQuiet = _suppressProgress && (typeof cYear === 'undefined' || cYear === 'SY26-27');
     try { document.body.classList.toggle('a2-teacher-quiet', _teacherQuiet); } catch (_) {}
+    try { var _lcl = document.getElementById('legend-current-label'); if (_lcl) _lcl.textContent = _teacherQuiet ? 'No note logged yet (this week)' : 'Up next'; } catch (_) {}
     let _prevLessonKey = null; // teacher view: print a lesson title only where the lesson changes
+    const _weekMon = new Date(t); _weekMon.setDate(t.getDate() - (t.getDay() + 6) % 7); _weekMon.setHours(0, 0, 0, 0);
+    const _weekFri = new Date(_weekMon); _weekFri.setDate(_weekMon.getDate() + 4); _weekFri.setHours(23, 59, 59, 999);
     let _lastQ = 0; // Thread 2 -- the quarter band already emitted
     // ── 5. Render the week rows + day cells ──
     for(const wk of W){
@@ -14924,8 +14927,10 @@ function rCal(){
               // off / exam cells excluded). rCal owns .cal-current; paintDonowCells
               // no longer touches it.
               if (_teacherQuiet) {
-                // no "up next" marks on the teacher's planning board (every cell of the
-                // current lesson would otherwise carry the ants + glyph)
+                // Teacher's board (2026-09-22): the ants mark a meeting day of THIS week,
+                // today or earlier, with no note logged yet ("evidence of work done by a
+                // teacher is simply having some notes logged"). Logging a note clears it.
+                if (dt >= _weekMon && dt <= _weekFri && dt <= t && !_dayLog.some(function (e) { return e.note; })) c.classList.add('cal-current');
               } else if (inf.t === _nextUpTopic) {
                 c.classList.add('cal-current');
               } else if (wk._summer && _summerNextUp && inf.t === _summerNextUp) {
@@ -15228,7 +15233,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-22-kq4v';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-22-4lhr';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
