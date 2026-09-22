@@ -35,6 +35,7 @@ it('resolves the codes the day log and 1-1 already use', () => {
 it('every skill page URL in lessons.json and the day log matches the lookup when it names a code', () => {
   const dayLog = JSON.parse(readFileSync('content/a2/day-log.json', 'utf8'));
   for (const links of Object.values(dayLog.resources || {})) {
+    if (!Array.isArray(links)) continue; // notebookUrlBySection is a map, not a link list
     for (const link of links) {
       const code = /\(([0-9A-Z]{3})\)\s*$/.exec(link.label)?.[1];
       if (!code || !/ixl\.com/.test(link.url)) continue;

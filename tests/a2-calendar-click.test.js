@@ -22,7 +22,7 @@ function calendar(viewAs = false) {
       { name: 'Read a graph', url: 'https://www.ixl.com/math/algebra-2/domain-and-range', level: 'prereq' },
     ] }), getStatus: () => ({ tryIts: { scored: 2, total: 5, points: 3, scores: [] }, lessonCheck: null, flashcardPassed: false }) } },
     REGISTRY: roadmap, getRegistryEntry: () => null, _donowData: null, _bumpAcked: false, _lastResourcePanel: null,
-    _viewAsContext: () => viewAs ? { studentId: 'student-123' } : null, hTip: vi.fn(), openDayGrade, openBlooketFlashcards,
+    _viewAsContext: () => viewAs ? { studentId: 'student-123' } : null, hTip: vi.fn(), a2FocusSection: () => 'C', openDayGrade, openBlooketFlashcards,
     c, inf: { t: '1.1' }, ds: 'Sep 16',
   });
   const click = html.match(/c\.onclick=\(\)=>\{hTip\(\);maybeBumpThenOpen[^\n]+/)[0];
