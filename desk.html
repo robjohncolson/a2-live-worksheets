@@ -695,6 +695,13 @@
         .a2-day-line { font-size: 9px; line-height: 1.15; margin-top: 3px; opacity: .9;
             display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
         .desk-day-log { margin: 8px 0; padding-left: 18px; font-size: 13px; }
+        .a2-day-panel-today { margin: 6px 0 10px; padding: 8px 10px; border: 2px solid var(--black); font-size: 14px; }
+        .a2-day-panel-today p { margin: 4px 0; }
+        .a2-day-panel-h { margin: 10px 0 2px; font-size: 13px; }
+        .a2-day-past { opacity: .6; }
+        .a2-day-fold { margin: 10px 0 0; font-size: 13px; }
+        .a2-day-fold summary { cursor: pointer; font-weight: bold; }
+        .a2-day-fold p { margin: 4px 0; }
         .desk-day-log li { margin: 3px 0; }
         .teacher-pacing select, .teacher-pacing input { font: inherit; min-height: 32px; }
         /* Today: a crisp 2px inset frame (thinner than the 3px state rings — a deliberate
@@ -7110,6 +7117,12 @@ function _appendIxlLinks(body, skills) {
 }
 // Panel for a planned (unpublished) lesson: the window, the IXL skills, extra resources.
 function _showPlannedLessonPanel(inf, dateStr) {
+  if (document.body.classList.contains('a2-teacher-quiet') && !(typeof _viewAsContext === 'function' && _viewAsContext())) {
+    var _h = document.getElementById('resource-header'), _b = document.getElementById('resource-body');
+    _h.style.color = ''; _h.style.fontStyle = ''; _b.textContent = '';
+    _showA2TeacherDayPanel(inf, dateStr, { title: inf.n }, String(inf.t).replace('.', '-'), _h, _b);
+    return;
+  }
   var key = String(inf.t).replace('.', '-');
   var header = document.getElementById('resource-header');
   header.textContent = key + ' \u00b7 ' + (inf.n || 'Lesson') + ' (planned)';
@@ -7774,6 +7787,10 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
     body.textContent = '';
 
     var viewing = typeof _viewAsContext === 'function' && _viewAsContext();
+    if (document.body.classList.contains('a2-teacher-quiet') && !viewing) {
+        _showA2TeacherDayPanel(inf, dateStr, entry, key, header, body);
+        return;
+    }
     var publishedLesson = window.A2Desk && typeof window.A2Desk.getLesson === 'function'
         ? window.A2Desk.getLesson(inf.t) : null;
 
@@ -7863,6 +7880,88 @@ function _showA2ResourcePanel(inf, dateStr, entry) {
     document.getElementById('resource-overlay').style.display = 'block';
 }
 
+// ISO date of a calendar cell from its "Sep 22" label, via the schedule rows.
+function _a2IsoFromDs(ds) {
+    for (var i = 0; i < S.length; i++) {
+        var e = S[i];
+        if (MN[e[1]] + ' ' + e[2] === ds) return e[0] + '-' + String(e[1] + 1).padStart(2, '0') + '-' + String(e[2]).padStart(2, '0');
+    }
+    return null;
+}
+// The teacher's day panel (2026-09-22): what this section did / will do on the clicked
+// day, then this section's other days of the same lesson. Resources, IXL skills and the
+// pacing control sit in collapsed sections; no student status chips.
+function _showA2TeacherDayPanel(inf, dateStr, entry, key, header, body) {
+    var section = cP;
+    var isoDate = _a2IsoFromDs(dateStr);
+    var _log = (typeof A2_DAY_LOG === 'object' && A2_DAY_LOG) ? A2_DAY_LOG : { entries: [], resources: {} };
+    var pretty = function (iso) {
+        var d = new Date(iso + 'T12:00:00');
+        return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    };
+    header.textContent = (isoDate ? pretty(isoDate) : dateStr) + ' · Section ' + section + ' · ' + key + ' ' + (entry.title || inf.n || 'Lesson');
+    var mine = _log.entries.filter(function (e) { return e && e.section === section && e.lesson === key && (e.note || e.plan || e.student); })
+        .sort(function (a, b) { return a.date.localeCompare(b.date); });
+    var today = mine.filter(function (e) { return e.date === isoDate; });
+    var top = document.createElement('div'); top.className = 'a2-day-panel-today';
+    if (today.length) {
+        today.forEach(function (e) {
+            var p = document.createElement('p');
+            var b = document.createElement('strong'); b.textContent = e.note ? 'Landed: ' : 'Plan: ';
+            p.appendChild(b); p.appendChild(document.createTextNode(e.note || e.plan || e.student));
+            top.appendChild(p);
+        });
+    } else {
+        var none = document.createElement('p'); none.className = 'a2-week-muted';
+        none.textContent = inf.kind === 'assessment' ? 'Topic assessment day.' : (inf.planned ? 'Planned window; nothing logged for this day yet.' : 'Nothing logged for this day yet.');
+        top.appendChild(none);
+    }
+    body.appendChild(top);
+    var others = mine.filter(function (e) { return e.date !== isoDate; });
+    if (others.length) {
+        var h = document.createElement('h4'); h.textContent = 'This lesson in Section ' + section; h.className = 'a2-day-panel-h'; body.appendChild(h);
+        var ul = document.createElement('ul'); ul.className = 'desk-day-log';
+        others.forEach(function (e) {
+            var li = document.createElement('li');
+            var when = document.createElement('strong'); when.textContent = pretty(e.date) + ' ';
+            li.appendChild(when);
+            li.appendChild(document.createTextNode(e.student || (e.note ? e.note : 'Plan: ' + e.plan)));
+            if (e.student && (e.note || e.plan)) li.title = e.note || e.plan;
+            if (e.date < (isoDate || '')) li.className = 'a2-day-past';
+            ul.appendChild(li);
+        });
+        body.appendChild(ul);
+    }
+    var lesson = window.A2Desk && typeof window.A2Desk.getLesson === 'function' ? window.A2Desk.getLesson(inf.t) : null;
+    var fold = function (label) {
+        var d = document.createElement('details'); d.className = 'a2-day-fold';
+        var s = document.createElement('summary'); s.textContent = label; d.appendChild(s);
+        body.appendChild(d); return d;
+    };
+    var res = fold('Resources and IXL skills');
+    var deckRow = document.createElement('p');
+    var deck = document.createElement('button'); deck.type = 'button'; deck.className = 's7btn'; deck.textContent = 'Open Flashcards';
+    deck.onclick = function () { openBlooketFlashcards(deck, inf.t); };
+    deckRow.appendChild(deck); res.appendChild(deckRow);
+    (_log.resources[key] || []).forEach(function (r) {
+        if (!r || !r.url || !r.label) return;
+        var row = document.createElement('p'); var a = document.createElement('a');
+        a.textContent = r.label; a.href = r.url; a.target = '_blank'; a.rel = 'noopener';
+        row.appendChild(a); res.appendChild(row);
+    });
+    var skills = lesson && Array.isArray(lesson.supportingSkills) && lesson.supportingSkills.length ? lesson.supportingSkills
+        : (typeof a2LessonSkills === 'function' ? a2LessonSkills(inf.t) : []);
+    if (typeof _appendIxlLinks === 'function') _appendIxlLinks(res, skills);
+    var nb = (_log.resources.notebookUrlBySection || {})[section] || _log.resources.notebookUrl;
+    if (nb) { var np = document.createElement('p'); var na = document.createElement('a'); na.textContent = 'OneNote notebook (Section ' + section + ')'; na.href = nb; na.target = '_blank'; na.rel = 'noopener'; np.appendChild(na); res.appendChild(np); }
+    if (!inf.planned && inf.kind !== 'assessment') {
+        var pace = fold('Teacher pacing');
+        _appendTeacherPacingControl(pace, key, lesson);
+    }
+    _lastResourcePanel = { inf: inf, dateStr: dateStr };
+    document.getElementById('resource-overlay').style.display = 'block';
+}
+
 // Teacher-only pacing control on a published lesson's panel: "we finished this early
 // (or late)". Closes the lesson for one section on the chosen date and re-flows every
 // later lesson and topic assessment for that section at the two-week cadence
@@ -7906,6 +8005,13 @@ function showResourcePanel(inf, dateStr) {
     }
     var a2Lesson = window.A2Desk && typeof window.A2Desk.getLesson === 'function'
         ? window.A2Desk.getLesson(inf.t) : null;
+    // Teacher's quiet board: every lesson cell opens the day panel (2026-09-22).
+    if (document.body.classList.contains('a2-teacher-quiet') && !(typeof _viewAsContext === 'function' && _viewAsContext()) && inf.t !== R) {
+        var _th = document.getElementById('resource-header'), _tb = document.getElementById('resource-body');
+        _th.style.color = ''; _th.style.fontStyle = ''; _tb.textContent = '';
+        _showA2TeacherDayPanel(inf, dateStr, a2Lesson || { title: inf.n }, String(inf.t).replace('.', '-'), _th, _tb);
+        return;
+    }
     var reg = getRegistryEntry(inf.t);
     var hasWorksheet = !!(reg && reg.urls && reg.urls.worksheet && !/check\.html/.test(reg.urls.worksheet));
     if (a2Lesson && !hasWorksheet) {
@@ -15122,7 +15228,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-22-a3a3';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-22-kq4v';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

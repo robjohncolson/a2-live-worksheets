@@ -86,6 +86,15 @@ it('keeps teacher details and focuses the page after sign-out', async () => {
     expect(win.getComputedStyle(win.document.querySelector('.prog-area')).display).toBe('none');
     expect(win.document.querySelectorAll('#cg .dc.a2-same-lesson').length).toBeGreaterThan(0);
     expect(win.document.querySelector('#cg .dc.cal-current')).toBeNull();
+    // The teacher's day panel: the clicked day's note for this section on top, the rest of
+    // the lesson's days for this section below, resources folded, no student chips.
+    cell(win, '2026-09-21').click();
+    expect(win.document.getElementById('resource-header').textContent).toContain('Section C');
+    expect(win.document.querySelector('#resource-body .a2-day-panel-today').textContent).toContain('Landed: Blooket opener');
+    expect(win.document.querySelector('#resource-body .a2-lesson-chip')).toBeNull();
+    expect(win.document.querySelector('#resource-body .desk-day-log').textContent).not.toMatch(/Section [CDG]/); // one section only
+    expect([...win.document.querySelectorAll('#resource-body details summary')].map(s => s.textContent)).toEqual(['Resources and IXL skills', 'Teacher pacing']);
+    win.document.getElementById('resource-overlay').style.display = 'none';
     cell(win, '2026-09-21').dispatchEvent(new win.MouseEvent('mouseenter'));
     expect(win.document.getElementById('tip').textContent).toContain('Landed');
     win.localStorage.removeItem('a2_roster.v1');
