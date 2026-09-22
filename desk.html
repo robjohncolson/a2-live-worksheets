@@ -7058,6 +7058,7 @@ const SCHEDULE_DEFS = {
 };
 let S = [];
 let _a2PacingSignature = '';
+let _a2PlanTopics = null; // topics the year plan schedules (legend filter); set by applyA2Pacing
 // Day log (content/a2/day-log.json): what actually landed per section and meeting
 // day, plus extra lesson resources. Pacing dates are the goals; the log never moves
 // them. It only decorates cells (mark + tooltip) and the lesson panel.
@@ -7148,6 +7149,7 @@ function applyA2Pacing(lessons, plan) {
   const signature = JSON.stringify([lessons.map(l => [l.key, l.title, l.sections]), planned.map(l => [l.key, l.sections]), assessments]);
   if (signature === _a2PacingSignature) return false;
   _a2PacingSignature = signature;
+  _a2PlanTopics = new Set(lessons.concat(planned).filter(l => l.sections).map(l => Number(String(l.key).split('-')[0])));
   const offSet = buildOffSet(def.daysOff || []);
   const rangeStart = dateFromArr(def.range.start);
   const dayKey = dt => dt.getFullYear() + '-' + dt.getMonth() + '-' + dt.getDate();
@@ -7401,25 +7403,31 @@ function updateLegend(def){
   const el=document.getElementById('legend-bar');
   if(!el) return;
   let h='';
-  if (def === SCHEDULE_DEFS['SY26-27']) h+='<div class="legend-item"><div class="legend-sw cell-work"></div>Work Day</div>';
-  for(const u of def.units) h+='<div class="legend-item"><div class="legend-sw" style="background:var(--u'+u.id+')"></div>U'+u.id+' '+u.label+'</div>';
-  if (def === SCHEDULE_DEFS['SY26-27']) h+='<div class="legend-item"><div class="legend-sw" style="background:var(--bonus)"></div>★ Beyond the Exam</div>';
-  if (def === SCHEDULE_DEFS['SY26-27']) h+='<div class="legend-item"><div class="legend-sw cell-planned" style="background:var(--u2)"></div>Planned (not yet published)</div>';
-  if (def === SCHEDULE_DEFS['SY26-27']) h+='<div class="legend-item"><div class="legend-sw cell-assess"></div>Topic Assessment</div>';
-  h+='<div class="legend-item"><div class="legend-sw" style="background:var(--rev)"></div>Review</div>';
-  h+='<div class="legend-item"><div class="legend-sw" style="background:var(--exam-bg);border:1px solid #999"></div>Exam</div>';
+  // SY26-27 (Algebra 2): the key lists only the topics the year plan schedules
+  // (_a2PlanTopics, set by applyA2Pacing) and the cell kinds the A2 calendar draws;
+  // the inherited statistics-course leftovers (Beyond the Exam, Review, Exam, Class poll, Ahead, Locked)
+  // are gone so the teacher's board reads at a glance (teacher, 2026-09-22).
+  const a2 = def === SCHEDULE_DEFS['SY26-27'];
+  const units = a2 && _a2PlanTopics ? def.units.filter(u => _a2PlanTopics.has(u.id)) : def.units;
+  for(const u of units) h+='<div class="legend-item"><div class="legend-sw" style="background:var(--u'+u.id+')"></div>Topic '+u.id+' '+u.label+'</div>';
+  if (a2) h+='<div class="legend-item"><div class="legend-sw cell-planned" style="background:var(--u2)"></div>Planned (not yet published)</div>';
+  if (a2) h+='<div class="legend-item"><div class="legend-sw cell-assess"></div>Topic Assessment</div>';
+  if (!a2) h+='<div class="legend-item"><div class="legend-sw" style="background:var(--rev)"></div>Review</div>';
+  if (!a2) h+='<div class="legend-item"><div class="legend-sw" style="background:var(--exam-bg);border:1px solid #999"></div>Exam</div>';
   h+='<div class="legend-item"><div class="legend-sw cell-off" style="border:1px solid #999"></div>No School</div>';
   // STATE key — decode the OVERLAY signals (today / up-next / done / in-progress /
-  // ahead / locked / PC / poster / dots), not just the unit pastels. Each swatch
-  // reuses the LIVE cell class, so the key can never drift from the real CSS.
+  // day log), not just the unit pastels. Each swatch reuses the LIVE cell class, so
+  // the key can never drift from the real CSS.
   h+='<details class="legend-states"><summary>What the marks mean</summary><div class="legend-states-grid">'
     +'<div class="legend-item"><span class="legend-st cell-today"></span>Today</div>'
     +'<div class="legend-item"><span class="legend-st cal-current"></span>Up next</div>'
     +'<div class="legend-item"><span class="legend-st cell-u1 dc-done"></span>Done</div>'
     +'<div class="legend-item"><span class="legend-st cell-u1 dc-localpartial"></span>In progress</div>'
-    +'<div class="legend-item"><span class="legend-st cell-u1 dc-ahead"></span>Ahead</div>'
-    +'<div class="legend-item"><span class="legend-st cell-locked">🔒</span>Locked</div>'
-    +'<div class="legend-item"><span class="legend-st cell-u1"><span class="poll-dot"></span></span>Class poll</div>'
+    +(a2 ? '<div class="legend-item"><span class="legend-st cell-u1">●</span>Day log: landed</div>'
+         + '<div class="legend-item"><span class="legend-st cell-u1">○</span>Day log: planned</div>' : '')
+    +(a2 ? '' : '<div class="legend-item"><span class="legend-st cell-u1 dc-ahead"></span>Ahead</div>'
+             + '<div class="legend-item"><span class="legend-st cell-locked">🔒</span>Locked</div>'
+             + '<div class="legend-item"><span class="legend-st cell-u1"><span class="poll-dot"></span></span>Class poll</div>')
     +'</div>'
     // #9 — let the student/teacher choose the "Up next" cell style. Default = marching ants;
     // alternatives layered after the frozen .cal-current rule so the neon RULE stays test-green.
@@ -14460,8 +14468,9 @@ function htm(i,ds){
     const doubleBadge=i.db?'<span class="dbl">2x</span>':'';
     if(typeof cYear==='undefined'||cYear==='SY26-27'){
         i.ced=i.group?groupLabel(i):cedLabel(i.t);
-        const plannedTag=i.planned?'<div class="tt plan-tag">planned</div>':'';
-        return`<div class="dn">${ds}</div><div class="tl">${_resourcePanelEsc(i.ced.text)}</div>`+plannedTag+doubleBadge;
+        // A planned (unpublished) window is shown by the dashed, receded cell + legend;
+        // the old "PLANNED" text line was noise on every future cell (teacher, 2026-09-22).
+        return`<div class="dn">${ds}</div><div class="tl">${_resourcePanelEsc(i.ced.text)}</div>`+doubleBadge;
     }
     return`<div class="dn">${ds}</div><div class="tl">${i.t}</div><div class="tt">${i.n}</div>`+doubleBadge;
 }
@@ -15088,7 +15097,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-21-k47z';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-22-ligs';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

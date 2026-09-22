@@ -91,7 +91,7 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
     expect(ixl).toContain('IXL N.4: Transformations of quadratic functions');
     expect(win.document.getElementById('resource-body').textContent).not.toContain('Open lesson check');
     win.document.getElementById('resource-overlay').style.display = 'none';
-    expect(planned.dataset.planned).toBe('2.1'); expect(planned.textContent).toContain('planned');
+    expect(planned.dataset.planned).toBe('2.1'); expect(planned.textContent).not.toContain('planned'); // dashed cell + legend only
     const assessment = win.document.querySelector('#cg .dc.cell-assess');
     expect(assessment).toBeTruthy(); expect(assessment.onclick).toBeNull();
     expect(win.a2LessonSkills('1.6').map(s => s.directoryId)).toEqual(['E.1', 'E.2', 'E.4', 'E.6', 'E.8', 'E.10', 'E.12', 'E.13', 'F.4']);

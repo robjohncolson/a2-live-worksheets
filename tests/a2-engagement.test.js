@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import { blooketScore, flashcardScore, combine, dayPoints } from '../lib/a2-engagement.js';
+import { blooketScore, flashcardScore, paperScore, combine, combineAll, dayPoints } from '../lib/a2-engagement.js';
 import { resolveTeacherSecret } from '../scripts/a2-daily-engagement.mjs';
 
 const config = JSON.parse(readFileSync(new URL('../data/a2-engagement-config.json', import.meta.url), 'utf8'));
@@ -57,6 +57,19 @@ describe('daily engagement arithmetic', () => {
   it('caps only the both-present case as specified', () => {
     expect(combine(0.8, 0.4, 0.9)).toBe(0.9);
     expect(combine(1, null, 0.9)).toBe(1);
+  });
+
+  it.each([[3, 4, 0.75], [4, 4, 1], [0, 4, 0], [5, 4, 1], [1, 0, 0]])(
+    'scores paper %s of %s', (score, outOf, expected) => expect(paperScore({ score, outOf })).toBe(expected)
+  );
+
+  it('combines any number of sources as best plus half the second best', () => {
+    expect(combineAll([null, null, null])).toBeNull();
+    expect(combineAll([null, 0.6, null])).toBe(0.6);
+    expect(combineAll([0.2, 0.6, 0.4])).toBeCloseTo(0.8);
+    expect(combineAll([0.9, 0.9, 0.9])).toBe(1);
+    expect(combineAll([0.9, 0.6], 0.9)).toBe(0.9);
+    expect(combineAll([0, null, 0])).toBe(0);
   });
 
   it.each([[null, null], [0, 0], [0.0249, 0], [0.025, 0.5], [0.0749, 0.5], [0.075, 1], [0.93, 9.5], [1, 10]])(
@@ -111,15 +124,15 @@ describe('offline daily engagement CLI', () => {
     expect(result.stderr).toBe('');
     expect(result.stdout.trim()).toBe('scored: 5, absent: 1, unmatched: 1');
     expect(csv(root)).toBe([
-      'realName,username,blooketPct,flashcardPct,combinedPct,points,note',
-      'Avery Example,fictional_a,93,60,100,10,',
-      'Blair Sample,fictional_b,,90,90,9,',
-      'Casey Fiction,fictional_c,0,,0,0,',
-      'Drew Imaginary,fictional_d,,,,,absent',
-      'Ellis Placeholder,fictional_e,50,,50,5,',
-      '"Finley ""F"", Pretend",fictional_f,100,,100,10,', ''
+      'realName,username,blooketPct,paperPct,flashcardPct,combinedPct,points,note',
+      'Avery Example,fictional_a,93,,60,100,10,',
+      'Blair Sample,fictional_b,,,90,90,9,',
+      'Casey Fiction,fictional_c,0,,,0,0,',
+      'Drew Imaginary,fictional_d,,,,,,absent',
+      'Ellis Placeholder,fictional_e,50,,,50,5,',
+      '"Finley ""F"", Pretend",fictional_f,100,,,100,10,', ''
     ].join('\r\n'));
-    expect(unresolved(root)).toEqual([{ name: 'unknown nickname', correct: 10, answered: 20, reason: 'unmatched' }]);
+    expect(unresolved(root)).toEqual([{ name: 'unknown nickname', correct: 10, answered: 20, source: 'blooket', reason: 'unmatched' }]);
   });
 
   it('does not guess ambiguous first names, fuzzy full names, surnames, or invalid aliases', () => {
@@ -137,7 +150,7 @@ describe('offline daily engagement CLI', () => {
       { name: 'Robin', correct: 20, answered: 20 }, { name: 'Robin Fiction', correct: 1, answered: 20 }
     ]);
     expect(run(root).stdout.trim()).toBe('scored: 1, absent: 0, unmatched: 2');
-    expect(csv(root)).toContain('Robin Fiction,fictional_a,,50,50,5,Blooket duplicate; resolve source entries');
+    expect(csv(root)).toContain('Robin Fiction,fictional_a,,,50,50,5,Blooket duplicate; resolve source entries');
     expect(unresolved(root)).toHaveLength(2);
   });
 
@@ -170,6 +183,53 @@ describe('offline daily engagement CLI', () => {
   it('rejects invalid counts instead of silently producing a grade', () => {
     const root = fixture([student('a', 'Robin Fiction')], [{ name: 'Robin', correct: 21, answered: 20 }]);
     expect(run(root).status).toBe(1);
+  });
+});
+
+describe('paper Do Now source', () => {
+  function paper(root, sheet) {
+    mkdirSync(resolve(root, 'roster-local/paper'), { recursive: true });
+    writeFileSync(resolve(root, 'roster-local/paper/2026-09-21-PeriodC.json'), JSON.stringify(sheet));
+  }
+
+  it('scores a paper tally alone (no Blooket file that day) and leaves missing students absent', () => {
+    const root = fixture([student('a', 'Avery Example'), student('b', 'Blair Sample'), student('c', 'Casey Fiction')], []);
+    rmSync(resolve(root, 'roster-local/blooket/2026-09-21-PeriodC.json'));
+    paper(root, { outOf: 4, students: [{ name: 'Avery Example', score: 3 }, { name: 'Blair', score: 0 }] });
+    const result = run(root);
+    expect(result.status).toBe(0);
+    expect(result.stdout.trim()).toBe('scored: 2, absent: 1, unmatched: 0');
+    expect(csv(root)).toContain('Avery Example,fictional_a,,75,,75,7.5,');
+    expect(csv(root)).toContain('Blair Sample,fictional_b,,0,,0,0,');
+    expect(csv(root)).toContain('Casey Fiction,fictional_c,,,,,,absent');
+  });
+
+  it('combines paper with Blooket and flashcards as best plus half the second best', () => {
+    const root = fixture([student('a', 'Avery Example', { correct: 6, total: 10, mode: 'quick' })],
+      [{ name: 'Avery', correct: 10, answered: 20 }]);
+    paper(root, { outOf: 4, students: [{ name: 'Avery', score: 2 }] });
+    expect(run(root).status).toBe(0);
+    // blooket 0.7*0.5+0.3*1 = 0.65, paper 0.5, flashcards 0.6 -> 0.65 + 0.3 = 0.95
+    expect(csv(root)).toContain('Avery Example,fictional_a,65,50,60,95,9.5,');
+  });
+
+  it('refuses a day with no source, a bad total, and a score over the total', () => {
+    const root = fixture([student('a', 'Avery Example')], []);
+    rmSync(resolve(root, 'roster-local/blooket/2026-09-21-PeriodC.json'));
+    expect(run(root).status).toBe(1);
+    paper(root, { outOf: 0, students: [] });
+    expect(run(root).status).toBe(1);
+    paper(root, { outOf: 4, students: [{ name: 'Avery', score: 5 }] });
+    expect(run(root).status).toBe(1);
+  });
+
+  it('reports paper names it cannot place with their source', () => {
+    const root = fixture([student('a', 'Robin Fiction'), student('b', 'Robin Sample')], []);
+    paper(root, { outOf: 2, students: [{ name: 'Robin', score: 2 }, { name: 'Robin Fiction', score: 1 }, { name: 'Robin Fiction', score: 2 }] });
+    expect(run(root).stdout.trim()).toBe('scored: 0, absent: 2, unmatched: 3');
+    expect(unresolved(root).map(item => item.source + ':' + item.reason))
+      .toEqual(['paper:ambiguous', 'paper:multiple entries for student', 'paper:multiple entries for student']);
+    expect(csv(root)).toContain('Paper duplicate; resolve source entries');
   });
 });
 

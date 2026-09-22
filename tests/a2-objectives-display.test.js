@@ -6,7 +6,7 @@ import { bootDesk } from './journeys/harness.js';
 const objectives = JSON.parse(readFileSync('content/a2/lesson-objectives.json', 'utf8')).lessons['1-1'];
 const lessons = [
   { key: '1-1', title: 'Functions', sections: { C: '2026-09-24', D: '2026-09-18', G: '2026-09-25' } },
-  { key: '1-2', title: 'Next lesson', sections: { C: '2026-10-01', D: '2026-09-25', G: '2026-10-02' } },
+  { key: '1-3', title: 'Next lesson (no objectives authored)', sections: { C: '2026-10-01', D: '2026-09-25', G: '2026-10-02' } },
 ];
 
 describe('Desk observer objectives', () => {

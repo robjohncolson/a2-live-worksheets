@@ -5,9 +5,25 @@
       "mathObjectives": [
         "Identify key features of a graph of a function, including the intercepts, positive and negative intervals, and areas where the function is increasing or decreasing."
       ],
-      "standards": ["HSF.IF.B.4", "HSF.IF.B.6"],
+      "standards": [
+        "HSF.IF.B.4",
+        "HSF.IF.B.6"
+      ],
       "languageObjective": "Students will explain key features of functions, provided pre-taught vocabulary, the three-reads strategy, and structured student-talk time.",
       "essentialQuestion": "How do key features help you understand functions and their graphs?"
+    },
+    "1-2": {
+      "mathObjectives": [
+        "Graph a transformed function by identifying the effect on the graph of replacing f(x) by f(x) + k, kf(x), f(kx), and f(x + k) for specific values of k.",
+        "Write an equation of a transformed function.",
+        "Relate the domain of a function to its graph and the real-world situation it describes."
+      ],
+      "standards": [
+        "HSF.BF.B.3",
+        "HSF.IF.B.5"
+      ],
+      "languageObjective": "Students will explain transformations of functions, provided pre-taught vocabulary, the three-reads strategy, and structured student-talk time.",
+      "essentialQuestion": "How do the values a, b, h, and k in a·f(b(x − h)) + k transform the graph of a parent function, f(x)?"
     }
   }
 }

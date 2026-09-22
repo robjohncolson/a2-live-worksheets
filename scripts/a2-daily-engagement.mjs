@@ -4,7 +4,13 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { namesMatch } from '../roster-server/names-match.js';
-import { blooketScore, flashcardScore, combine, dayPoints } from '../lib/a2-engagement.js';
+import { blooketScore, flashcardScore, paperScore, combineAll, dayPoints } from '../lib/a2-engagement.js';
+// Sources for one section-day, all optional, at least one of blooket/paper required:
+//   roster-local/blooket/<date>-<section>.json  {"players":[{"name","correct","answered"}]}
+//   roster-local/paper/<date>-<section>.json    {"outOf":n,"students":[{"name","score"}]}
+//     (a paper Do Now / exit ticket checked in the room; names as on the roster, or an
+//      alias from roster-local/blooket-aliases.json; a student left out is absent)
+//   /teacher/flashcards/daily                    best Desk flashcard run (also the roster)
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -125,10 +131,16 @@ async function main() {
   validateConfig(config);
   const local = resolve(process.cwd(), 'roster-local');
   const stem = args.date + '-' + args.section;
-  const blooket = JSON.parse(readFileSync(resolve(local, 'blooket', stem + '.json'), 'utf8'));
+  const blooketText = readOptional(resolve(local, 'blooket', stem + '.json'));
+  const paperText = readOptional(resolve(local, 'paper', stem + '.json'));
+  if (blooketText == null && paperText == null) throw new Error('no source');
+  const blooket = blooketText == null ? { players: [] } : JSON.parse(blooketText);
+  const paper = paperText == null ? { outOf: 0, students: [] } : JSON.parse(paperText);
   const aliases = JSON.parse(readOptional(resolve(local, 'blooket-aliases.json')) || '{}');
   if (!aliases || typeof aliases !== 'object' || Array.isArray(aliases)) throw new Error('aliases');
   if (!Array.isArray(blooket.players)) throw new Error('players');
+  if (!Array.isArray(paper.students)) throw new Error('students');
+  if (paperText != null && (!Number.isInteger(paper.outOf) || paper.outOf <= 0)) throw new Error('outOf');
 
   let daily;
   if (args.offline) {
@@ -154,36 +166,54 @@ async function main() {
     if (student.best != null) validateCounts(student.best.correct, student.best.total);
   }
 
-  const matched = new Map();
   const unmatched = [];
-  for (const player of blooket.players) {
-    if (typeof player.name !== 'string') throw new Error('player');
-    validateCounts(player.correct, player.answered);
-    const candidates = matchPlayer(player.name, students, aliases);
-    if (candidates.length !== 1) {
-      unmatched.push({ ...player, reason: candidates.length ? 'ambiguous' : 'unmatched' });
-      continue;
+  // Match one source's entries to students; a nickname that fits no one or more than one
+  // student is reported, never guessed.
+  function matchSource(entries, source) {
+    const matched = new Map();
+    for (const entry of entries) {
+      if (typeof entry.name !== 'string') throw new Error('player');
+      const candidates = matchPlayer(entry.name, students, aliases);
+      if (candidates.length !== 1) {
+        unmatched.push({ ...entry, source, reason: candidates.length ? 'ambiguous' : 'unmatched' });
+        continue;
+      }
+      const id = candidates[0].studentId;
+      const list = matched.get(id) || [];
+      list.push(entry);
+      matched.set(id, list);
     }
-    const id = candidates[0].studentId;
-    const entries = matched.get(id) || [];
-    entries.push(player);
-    matched.set(id, entries);
+    return matched;
   }
+  for (const player of blooket.players) validateCounts(player.correct, player.answered);
+  for (const entry of paper.students) validateCounts(entry.score, paper.outOf);
+  const blooketMatched = matchSource(blooket.players, 'blooket');
+  const paperMatched = matchSource(paper.students, 'paper');
 
-  const rows = [csvRow(['realName', 'username', 'blooketPct', 'flashcardPct', 'combinedPct', 'points', 'note'])];
+  const rows = [csvRow(['realName', 'username', 'blooketPct', 'paperPct', 'flashcardPct', 'combinedPct', 'points', 'note'])];
   const scores = [];
   let scored = 0;
   for (const student of students) {
-    const players = matched.get(student.studentId) || [];
-    const duplicate = players.length > 1;
-    if (duplicate) unmatched.push(...players.map(player => ({ ...player, reason: 'multiple players for student' })));
-    const a = players.length === 1 ? blooketScore(players[0], config) : null;
+    const notes = [];
+    const one = (matched, source, label) => {
+      const list = matched.get(student.studentId) || [];
+      if (list.length > 1) {
+        unmatched.push(...list.map(entry => ({ ...entry, source, reason: 'multiple entries for student' })));
+        notes.push(label + ' duplicate; resolve source entries');
+        return null;
+      }
+      return list[0] || null;
+    };
+    const player = one(blooketMatched, 'blooket', 'Blooket');
+    const sheet = one(paperMatched, 'paper', 'Paper');
+    const a = player ? blooketScore(player, config) : null;
+    const p = sheet ? paperScore({ score: sheet.score, outOf: paper.outOf }) : null;
     const b = student.best == null ? null : flashcardScore(student.best);
-    const score = combine(a, b, config.cap);
+    const score = combineAll([a, p, b], config.cap);
     if (score != null) scored++;
     scores.push({ studentId: student.studentId, score: dayPoints(score, config) });
-    const note = duplicate ? 'Blooket duplicate; resolve source entries' : score == null ? 'absent' : '';
-    rows.push(csvRow([student.realName, student.username, percent(a), percent(b), percent(score), dayPoints(score, config), note]));
+    const note = notes.length ? notes.join('; ') : score == null ? 'absent' : '';
+    rows.push(csvRow([student.realName, student.username, percent(a), percent(p), percent(b), percent(score), dayPoints(score, config), note]));
   }
   const output = resolve(local, 'engagement');
   mkdirSync(output, { recursive: true });

@@ -130,3 +130,19 @@ the send, and re-check it against the current session **at the moment the reques
 mismatch do not send and do not delete — leave it queued for its owner. The server must also
 reject a run whose body `studentId` differs from the token's student (400), so a client bug cannot
 misattribute. Test the interleaving (A queued, B signs in before the send starts).
+
+## Round 3 — paper source, Blooket optional (2026-09-22)
+
+The supervisor asked that Blooket not run every day (district walkthroughs), and the
+Desk is not student-facing for now, so the daily Engagement evidence comes from the room.
+
+- `roster-local/paper/<date>-<section>.json`: `{ "outOf": n, "students": [{ "name": "<as on
+  the roster, or an alias>", "score": k }] }` — a paper Do Now / exit ticket checked by
+  walking the room. `paperScore = k / outOf`. A student left out is absent (blank), never zero.
+- The Blooket file is now optional; at least one of the Blooket or paper files must exist
+  for the day, otherwise the script exits with `no source`.
+- `combineAll([blooket, paper, flashcards], cap)`: best source plus half the second best,
+  capped; one source → itself; none → absent. `combine(a, b)` stays for two sources.
+- CSV columns: `realName, username, blooketPct, paperPct, flashcardPct, combinedPct, points, note`.
+  Unmatched entries carry `source: "blooket" | "paper"`; a duplicate paper entry notes
+  `Paper duplicate; resolve source entries`.
