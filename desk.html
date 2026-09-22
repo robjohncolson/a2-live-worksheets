@@ -692,6 +692,8 @@
         /* Day log: a filled dot = something landed that day; hollow = a plan for the day. */
         .cell-logged, .cell-log-plan { position: relative; }
         .cell-log { position: absolute; bottom: 2px; right: 3px; font-size: 9px; line-height: 1; pointer-events: none; opacity: .8; }
+        .a2-day-line { font-size: 9px; line-height: 1.15; margin-top: 3px; opacity: .9;
+            display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
         .desk-day-log { margin: 8px 0; padding-left: 18px; font-size: 13px; }
         .desk-day-log li { margin: 3px 0; }
         .teacher-pacing select, .teacher-pacing input { font: inherit; min-height: 32px; }
@@ -7423,8 +7425,6 @@ function updateLegend(def){
     +'<div class="legend-item"><span class="legend-st cal-current"></span>Up next</div>'
     +'<div class="legend-item"><span class="legend-st cell-u1 dc-done"></span>Done</div>'
     +'<div class="legend-item"><span class="legend-st cell-u1 dc-localpartial"></span>In progress</div>'
-    +(a2 ? '<div class="legend-item"><span class="legend-st cell-u1">●</span>Day log: landed</div>'
-         + '<div class="legend-item"><span class="legend-st cell-u1">○</span>Day log: planned</div>' : '')
     +(a2 ? '' : '<div class="legend-item"><span class="legend-st cell-u1 dc-ahead"></span>Ahead</div>'
              + '<div class="legend-item"><span class="legend-st cell-locked">🔒</span>Locked</div>'
              + '<div class="legend-item"><span class="legend-st cell-u1"><span class="poll-dot"></span></span>Class poll</div>')
@@ -14763,16 +14763,21 @@ function rCal(){
             if(dt<t&&!eq(dt,t))c.classList.add("cell-past");
             // Day log: what landed (or is planned) that day for this section, on top of the goal.
             const _dayLog = a2DayLogFor(dt);
+            // The cell shows only the day's short line (`student` in day-log.json: what
+            // was covered / what is assigned); the long note/plan stays in the tooltip and
+            // panel. Teacher 2026-09-22: "each day should show a minimal amount of things".
             if (_dayLog.length) {
               c.classList.add(_dayLog.some(function (e) { return e.note; }) ? 'cell-logged' : 'cell-log-plan');
-              c.insertAdjacentHTML('beforeend', '<span class="cell-log" aria-hidden="true">' + (_dayLog.some(function (e) { return e.note; }) ? '\u25CF' : '\u25CB') + '</span>');
+              var _line = _dayLog.map(function (e) { return e.student || ''; }).filter(Boolean).join(' \u00B7 ');
+              if (_line) { var _ld = document.createElement('div'); _ld.className = 'a2-day-line'; _ld.textContent = _line; c.appendChild(_ld); }
             }
             // Year-plan cells: a planned (unpublished) lesson window or a topic assessment
             // day. Neither has work to open, a status, or a place in the lesson gate.
             const _isPlanCell = typeof inf === 'object' && inf && (inf.planned || inf.kind === 'assessment');
             if (_isPlanCell) { if (inf.planned) { c.classList.add('cell-planned'); c.dataset.planned = inf.t; } }
             if (typeof inf === 'object' && inf.t && !_isPlanCell) {
-              renderA2LessonChips(c, inf.t);
+              // (Try-It / lesson-check / flashcard chips are no longer drawn on cells: too
+              // much per day, and students are not on the Desk. The lesson panel keeps them.)
               c.dataset.topic = inf.t; c.dataset.dts = +dt; // DN3b — completion overlay hooks
               if (wk._summer) c.dataset.summer = '1';        // gate dispatch: summer cells use the individual summer sequence
               // (Removed s14: the registry "readiness" status-dot was teacher-facing
@@ -15097,7 +15102,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-22-0u49';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-22-5zxz';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
