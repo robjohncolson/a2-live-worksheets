@@ -5549,8 +5549,15 @@ function paintLocalDoneCells() {
       var c = cells[i];
       var topic = c.dataset.topic;
       // Greying + next-up — the flicker-free common path.
-      c.classList.remove('dc-localdone', 'dc-localpartial', 'cal-current');
-      if (topic) {
+      // Teacher's quiet board: rCal already decided cal-current (this week, no note
+      // logged); this repaint must not turn it back into "every cell of the lesson".
+      var _quietBoard = document.body.classList.contains('a2-teacher-quiet');
+      c.classList.remove('dc-localdone', 'dc-localpartial');
+      if (!_quietBoard) c.classList.remove('cal-current');
+      if (topic && _quietBoard) {
+        var stq = localLessonState(topic, marks);
+        if (stq === 'done') c.classList.add('dc-localdone');
+      } else if (topic) {
         var st = localLessonState(topic, marks);
         if (suppressProgress && st === 'partial') st = '';   // teacher: drop browsing "partial", keep real "done"
         if (st) c.classList.add(st === 'done' ? 'dc-localdone' : 'dc-localpartial');
@@ -15233,7 +15240,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-22-4lhr';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-22-pt9y';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
