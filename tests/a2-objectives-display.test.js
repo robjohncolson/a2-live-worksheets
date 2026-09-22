@@ -55,6 +55,37 @@ describe('Desk observer objectives', () => {
     } finally { desk.close(); }
   });
 
+  it('lists the whole week for all three sections when the teacher expands the strip', async () => {
+    const desk = await bootDesk({ now: '2026-09-22T16:00:00Z' });
+    try {
+      const { window } = desk;
+      await desk.waitFor(() => window.A2_OBJECTIVES?.['1-1']);
+      window.applyA2Pacing(lessons);
+      window.setP('C');
+      const currentIdentity = window.rosterClient.current;
+      window.rosterClient.current = () => ({ role: 'teacher', section: 'C' });
+      window.renderA2Objectives();
+      const week = window.document.getElementById('a2-objectives-week');
+      expect(week.hidden).toBe(true);
+      window.document.getElementById('a2-objectives-toggle').click();
+      expect(week.hidden).toBe(false);
+      expect(week.textContent).toContain('This week: Sep 21 – Sep 25');
+      expect(week.textContent).toContain('Section C');
+      expect(week.textContent).toContain('Section D');
+      expect(week.textContent).toContain('Section G');
+      expect(week.textContent).toContain('1-1 Functions');
+      expect(week.textContent).toContain(objectives.mathObjectives[0]);
+      expect(week.textContent).toContain('Tue: 1-1');
+      // D finished 1-1 on Sep 18; its week is the next lesson, which has no authored entry.
+      expect(week.textContent).toContain('1-3 Next lesson');
+      expect(week.textContent).toContain('Objectives not yet authored');
+      window.rosterClient.current = () => ({ role: 'student', section: 'PeriodC' });
+      window.renderA2WeekObjectives();
+      expect(week.hidden).toBe(true);
+      window.rosterClient.current = currentIdentity;
+    } finally { desk.close(); }
+  });
+
   it.each([[1366, 768], [1920, 1080]])('reserves the measured strip height for dialogs at %sx%s', async (width, height) => {
     const desk = await bootDesk({ now: '2026-09-21T16:00:00Z' });
     try {
