@@ -262,10 +262,6 @@
       "class": "HISTORY"
     },
     {
-      "path": "CONTINUATION_PROMPT.md",
-      "class": "HISTORY"
-    },
-    {
       "path": "CR_SY2627_ATTENUATION_SPEC.md",
       "class": "HISTORY"
     },
@@ -6931,6 +6927,7 @@
   "a2Additions": [
     "A2_FORK_BASELINE.md",
     "A2_FORK_PLAN.md",
+    "CONTINUATION_PROMPT.md",
     "README.md",
     "a2-announcement.css",
     "a2-announcement.js",

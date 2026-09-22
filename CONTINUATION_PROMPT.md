@@ -1,56 +1,86 @@
-# Continuation Prompt — Algebra 2 Desk calendar and year plan
+# Continuation Prompt — Algebra 2 Desk, SY26-27
 
-Updated 2026-09-17 after the implementation session. Paste into the next Claude Code /
-Codex session after `git pull`. Read `CLAUDE.md`, `A2_FORK_PLAN.md`, `A2_FORK_BASELINE.md`
-and `docs/a2-lesson-targets.md` first.
+Updated 2026-09-21, end of the launch day. Paste into the next Claude Code / Codex session after
+`git pull`. Read `CLAUDE.md`, `A2_FORK_PLAN.md`, `A2_FORK_BASELINE.md` and the specs under
+`docs/a2-*-spec.md` first. Everything below is deployed unless marked otherwise.
 
-## Where things stand
+## The class, as the teacher runs it (source of truth: `start-here.html`)
 
-The calendar is no longer empty past Nov 6. The five steps of the 2026-09-17 audit plan are
-implemented:
+Sections C (Mon/Tue/Thu), D (Mon/Wed/Fri), G (Tue/Wed/Thu/Fri). Each period: charged Chromebook,
+Blooket opener, then either the paper packet or an IXL Web Jam, free time if the jam ends early.
+Grading (district formula 50/40/10):
 
-1. **Cadence: two calendar weeks per lesson (teacher decision, 2026-09-17).**
-   `scripts/build-a2-year-plan.mjs` (mode `weeks`, `weeks: 2`) dates every keep and bridge
-   lesson in plan order; a window closes on the Friday of its second week, closures shorten
-   it, and a window that would open on Thursday/Friday opens the next Monday. The year reaches
-   5-6 (June 4-10) plus the Topic 5 assessment; **6-1 through 7-3 do not fit** and are listed
-   in `pacing.unscheduled`. `--mode fit` and `--cadence C=n,D=n,G=n` remain for comparison.
-2. **Calendar decoupled from publishing.** `data/a2-lesson-targets.json` carries `pacing`,
-   `assessments` and per-lesson `sections`/`days`. `applyA2Pacing(lessons, plan)` in
-   `desk.html` draws unpublished scheduled lessons as `planned` cells (dimmed, dashed,
-   no click, no chips, excluded from next-up / gate / pace) and each topic's assessment day as
-   a `kind: 'assessment'` cell. `a2-desk.js` fetches the plan and passes the server pacing
-   overlay. `validatePacing(lessons, changes, targets)` accepts any non-`later` lesson;
-   `/lessons` and `/teacher/lessons` return `{ lessons, pacing }`; `teacher-tryits.html`
-   lists planned lessons in the pacing editor. Grading still reads only the published model.
-3. **Dates by script**, from `SCHEDULE_DEFS` in `desk.html` (single source for closures).
-   `docs/a2-lesson-targets.md` holds the generated table between `pacing-table` markers.
-   `roster-server/grade-config.js` quarter unit bands are now Q1 [1], Q2 [2], Q3 [3,4],
-   Q4 [5,6,7].
-4. **Publishing next lessons** is unchanged: author 2-1 next (plan order), then run
-   `node scripts/build-a2-year-plan.mjs` so its published dates replace the planned ones.
-   Pre-existing tex in `../Lesson_planning` covers 3-5, 4-3, 4-4, 4-5, 5-1, 5-5.
-5. **Small fixes:** `calendar.html` maps B→C, E→D, accepts G; the AP `calendar` branch in
-   `_mergeRegistryData` is removed.
+| Piece | Category | Points | Rule |
+| --- | --- | --- | --- |
+| Daily Engagement | Engagement | 10 per class day | Blooket accuracy + questions answered; a same-day flashcard run can redeem it: final = higher + half the lower, capped. Absent day = no item, never a zero. |
+| Try-It | Assignments | 10 each | Teacher grades the **physical packet on quiz day**: 10 right with work · 8 effort-but-wrong or right-without-work · 1–7 partial · 0 unattempted (provisional zero 7 days after the set is scored; redoable). Students cannot see or change Try-Its on the Desk (`A2_SHOW_TRYIT_GRADES=false` is the seam for a read-only line later). |
+| Quiz | Assessments | 20 | ~1 per lesson in Q1 (no topic test lands in Q1; Topic 1 test is Nov 9–10). Notes and packet allowed; same 80% work rule. |
+| Topic assessment | Assessments | 100 | latest score counts. |
+| Bonus | Assignments, extra credit | 0 possible, ≤10 earned/quarter | weeks 1–2 opener (≤3), Web Jam accuracy (≤1 per jam), IXL homework at SmartScore **80+** (+1; 80 = complete, 100 never required). |
 
-## Open items
+Flashcards are ONE activity (the daily draw of 10 from the Blooket-mirroring deck), never
+pass/fail, no 80% language; they count only through the Engagement redemption. The digital lesson
+check is retired. Students see "Your grade is in Schoology for now." (`A2_STUDENT_GRADES_VISIBLE
+= false` in `roster-client.js`) until the Desk grade view is switched on.
 
-- Topics 6-7 (the bridge material) do not fit at two weeks per lesson. The teacher can now
-  close a lesson early from its Desk panel ("Teacher pacing": `PUT /teacher/pacing/reflow`,
-  `lib/a2-year-plan.js` `reflowSection`), which re-dates the rest of that section; enough early
-  finishes pull 6-1 onward onto the calendar.
-- 2-6 has a two-day window (Dec 21-23) because of winter recess; the teacher may want to move
-  its due date into January from the pacing tool.
-- Brief lessons (1-3, 1-4, 2-4, 2-5, 3-3, 3-7, 4-1) are unscheduled (`--brief-days 1` dates them).
-- Assessment dates come from the JSON, overridden by `TA-<topic>` pacing rows written by
-  re-flow; the pacing editor still lists lessons only.
-- Publish 2-1 onward in plan order.
+## What was built 2026-09-20/21 (all by spec → Codex build → Codex review → fix rounds)
 
-## Verification checklist
+- `docs/a2-student-launch-spec.md`: shared starting password `password` (must change on first
+  sign-in), duplicate-proof self-signup (`roster-server/names-match.js`), password-versioned
+  tokens, Desk grade hidden, AP leftovers removed, Blooket-mirroring deck
+  (`scripts/build-a2-blooket-deck.mjs`, 36 cards, 23 number-line images), A2's own roster
+  override key `a2_roster_service_url_override`.
+- `docs/a2-daily-engagement-spec.md`: raw flashcard runs per America/New_York day
+  (`/flashcards/daily`, teacher read `GET /teacher/flashcards/daily`), calculator
+  `scripts/a2-daily-engagement.mjs` (config `data/a2-engagement-config.json`), `--commit`
+  writes idempotently through `roster-server/teacher-score-import.js`.
+- `docs/a2-desk-grade-rebuild-spec.md`: district engine with the table above, assigned-only
+  Try-Its + provisional zeros, optimistic versioning on every teacher write (`expectedVersion`,
+  409 `score-changed`), `teacher-tryits.html` 10/8/0 + "collected today", migration
+  `roster-server/migrations/0040_a2_teacher_entry.sql` (APPLIED in the live Supabase project
+  "lrsl-trainer", schema `a2`). R4 (student grade view) and R5 (Schoology mirror via
+  `tools/schoology-sync.py`) are NOT built.
+- `docs/a2-flashcards-simplify-spec.md`, `docs/a2-objectives-display-spec.md` (bottom strip with
+  each lesson's learning + language objective for observers; data in
+  `content/a2/lesson-objectives.json`, only 1-1 authored, verbatim from the packet),
+  `docs/a2-student-focus-spec.md` (focused two-week student calendar with one `student` line per
+  class day from `content/a2/day-log.json`; teacher view unchanged).
 
-- `npx vitest run` at root (new: `tests/a2-year-plan.test.js`; extended:
-  `tests/a2-calendar.test.js`), `npm test` from `roster-server/` (new:
-  `roster-server/tests/a2-year-plan.test.js`), `pytest tests/` at root.
-- `node scripts/build-a2-year-plan.mjs --check` must print "a2 year plan is current".
-- `tests/a2-lesson-targets.test.js` refuses to publish a `later` lesson; keep that.
-- `node scripts/bump-build.mjs` before committing any Desk change (PWA cache).
+## Daily operating procedure (teacher-local data lives in gitignored `roster-local/`)
+
+1. Blooket screenshot → `roster-local/blooket/<date>-<Period>.json` (`{players:[{name,correct,answered}]}`;
+   nicknames in `roster-local/blooket-aliases.json`, never guess) →
+   `node scripts/a2-daily-engagement.mjs --section PeriodC --date <date> --url <railway> --commit`.
+2. Web Jam results → rows in `roster-local/a2-bonus-ledger.json` (1 pt × accuracy) →
+   `node scripts/a2-bonus-totals.mjs --commit --url <railway>` → Schoology Bonus column overwrite
+   (gradebook keystroke method, browser-harness `domain-skills/schoology/course-admin.md`).
+3. IXL homework → IXL's `/analytics/skill-score-chart/run?skill=<id>` JSON from the signed-in
+   Chrome (browser-harness `domain-skills/blooket|schoology`), +1 at 80+, then step 2. A helper
+   lived in the session temp dir (`ixl_bonus_run.sh`); recreate under `tools/` if wanted.
+4. Day log: every upcoming class day needs a short `student` line; `note`/`plan` are teacher-only.
+5. Deploy only outside school hours (Railway restarts); push only when the root suite fails
+   exactly the six inherited files (`tests/a2-fork-freeze`, `tests/phase4b-structure`, the three
+   `tests/progress-reset-matrix-*`, `tests/journeys/j7-offline-grade`) and `roster-server`
+   `npm test` is green. `unset ROSTER_TEACHER_SECRET` first: the teacher's PC has a stale AP Stats
+   env var that overrides `roster-server/.env` (which holds the real teacher key as
+   `ROSTER_TEACHER_SECRET`). Never `git add -A` from the repo root (it once published Blooket
+   screenshots); stage files explicitly.
+6. GitNexus does not index this checkout; tell agents to grep callers instead or they stop.
+
+## Schoology state (courses C 8537065947, D 8537065922, G 8537065934)
+
+Materials per course: OneNote link, 1-1 blooket, Week 3 IXL focus folder (day folders say "80
+counts as complete"), Bonus (0 pts, Assignments, count-in-grade OFF), 1-1 Quiz (20 pts,
+Assessments), syllabus PDF, Desk link (**unpublished** in all three until the teacher says go).
+Categories Assessments/Assignments/Engagement 50/40/10; old categories at 0%. Quiz: C Thu Sep 24,
+D and G Fri Sep 25; handout with Q1/Q3/Q4 only at `roster-local/handouts/`.
+
+## Open items, in order
+
+1. Publish the Desk link when the teacher says the site is ready (students then sign in with
+   `password` and must change it).
+2. Author `student` lines for the week of Sep 28 and lesson 1-2's objectives (packet needed).
+3. R4: switch `A2_STUDENT_GRADES_VISIBLE` on once real scores exist (after the 1-1 quizzes).
+4. R5: Schoology mirror so the teacher stops typing scores.
+5. Teacher account `date_frog` still has a 4-digit password; the teacher key was pasted into a
+   chat and should be rotated (`TEACHER_KEY` in Railway, then `roster-server/.env`).
