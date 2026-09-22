@@ -80,7 +80,12 @@ it('keeps teacher details and focuses the page after sign-out', async () => {
     expect(win.a2FocusedView()).toBe(false);
     expect(cell(win, '2026-09-21').getAttribute('aria-label')).toContain('Landed: Blooket opener');
     expect(cell(win, '2026-09-21').onmouseenter).toBeTypeOf('function');
-    expect(win.getComputedStyle(win.document.querySelector('.prog-area')).display).not.toBe('none');
+    // 2026-09-22: the teacher's own board hides the student chrome (unit progress, Do Now
+    // card, check-in banner) and prints a lesson title only where the lesson changes.
+    expect(win.document.body.classList.contains('a2-teacher-quiet')).toBe(true);
+    expect(win.getComputedStyle(win.document.querySelector('.prog-area')).display).toBe('none');
+    expect(win.document.querySelectorAll('#cg .dc.a2-same-lesson').length).toBeGreaterThan(0);
+    expect(win.document.querySelector('#cg .dc.cal-current')).toBeNull();
     cell(win, '2026-09-21').dispatchEvent(new win.MouseEvent('mouseenter'));
     expect(win.document.getElementById('tip').textContent).toContain('Landed');
     win.localStorage.removeItem('a2_roster.v1');

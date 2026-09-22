@@ -703,6 +703,15 @@
            top-right corner is now free for the state glyph / lock (date owns top-left). */
         .cell-today { box-shadow: inset 0 0 0 2px var(--black); z-index: 2; }
         .cell-past { opacity: var(--cell-past-dim); }
+        /* Teacher's own Algebra 2 view (body.a2-teacher-quiet, set by rCal): the Desk is a
+           planning board, not a student dashboard. Student-facing chrome (Do Now card,
+           grade check-in banner, unit progress, school-day countdown) is hidden, a lesson
+           title prints only where the lesson changes, and no "up next" marks. (2026-09-22) */
+        body.a2-teacher-quiet #donow-card, body.a2-teacher-quiet #grade-checkin-banner,
+        body.a2-teacher-quiet .prog-area, body.a2-teacher-quiet #cd-school,
+        body.a2-teacher-quiet #ft { display: none !important; }
+        body.a2-teacher-quiet .dc.a2-same-lesson .tl { display: none; }
+        body.a2-teacher-quiet .dc .dn { font-size: 10px; }
         /* Sequential lesson gate (LESSON_GATE_BUILD.md) — a locked lesson is
            dimmed with a small lock badge; still clickable to show the why. */
         .cell-locked { position: relative; opacity: var(--cell-lock-dim); }
@@ -14731,6 +14740,9 @@ function rCal(){
     // themselves — their marks come from browsing the lessons, so "in progress" was noise.
     // Preview-as-student (where _deskIsTeacher() returns false) + real students keep it.
     const _suppressProgress = (typeof _deskIsTeacher === 'function') && _deskIsTeacher();
+    const _teacherQuiet = _suppressProgress && (typeof cYear === 'undefined' || cYear === 'SY26-27');
+    try { document.body.classList.toggle('a2-teacher-quiet', _teacherQuiet); } catch (_) {}
+    let _prevLessonKey = null; // teacher view: print a lesson title only where the lesson changes
     let _lastQ = 0; // Thread 2 -- the quarter band already emitted
     // ── 5. Render the week rows + day cells ──
     for(const wk of W){
@@ -14753,6 +14765,11 @@ function rCal(){
                 a2PaintFocusedCell(c, dt, inf, ds, t); r.appendChild(c); continue;
             }
             c.classList.add(cls(inf));c.innerHTML=htm(inf,ds);
+            if (_teacherQuiet && inf && typeof inf === 'object' && inf.t) {
+              const _lk = (inf.kind || '') + ':' + (inf.group ? groupTopics(inf).join('+') : inf.t);
+              if (_lk === _prevLessonKey) c.classList.add('a2-same-lesson');
+              _prevLessonKey = _lk;
+            }
             if(eq(dt,t)){
               c.classList.add("cell-today");
               // Stash today's lesson so the lesson shortcut opens its
@@ -14800,7 +14817,10 @@ function rCal(){
               // via calNextUpTopic (first not-locally-done real lesson; review /
               // off / exam cells excluded). rCal owns .cal-current; paintDonowCells
               // no longer touches it.
-              if (inf.t === _nextUpTopic) {
+              if (_teacherQuiet) {
+                // no "up next" marks on the teacher's planning board (every cell of the
+                // current lesson would otherwise carry the ants + glyph)
+              } else if (inf.t === _nextUpTopic) {
                 c.classList.add('cal-current');
               } else if (wk._summer && _summerNextUp && inf.t === _summerNextUp) {
                 // SUMMER twin: the next individual summer lesson (the fall _nextUpTopic
@@ -15102,7 +15122,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-22-5zxz';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-22-a3a3';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
