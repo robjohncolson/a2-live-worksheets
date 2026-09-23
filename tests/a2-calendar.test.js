@@ -114,7 +114,9 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
     const sep21 = [...win.document.querySelectorAll('#cg .dc')].find(c => c.dataset.dts && new Date(+c.dataset.dts).getDate() === 21 && new Date(+c.dataset.dts).getMonth() === 8);
     expect(sep21.classList.contains('cell-logged')).toBe(true);          // Sep 21 landed for C (Blooket opener + Web Jam)
     const sep22 = [...win.document.querySelectorAll('#cg .dc')].find(c => c.dataset.dts && new Date(+c.dataset.dts).getDate() === 22 && new Date(+c.dataset.dts).getMonth() === 8);
-    expect(sep22.classList.contains('cell-log-plan')).toBe(true);        // C's next meeting is still a plan
+    expect(sep22.classList.contains('cell-logged')).toBe(true);          // C's Sep 22 landed (Ex 5 finished)
+    const sep24 = [...win.document.querySelectorAll('#cg .dc')].find(c => c.dataset.dts && new Date(+c.dataset.dts).getDate() === 24 && new Date(+c.dataset.dts).getMonth() === 8);
+    expect(sep24.classList.contains('cell-log-plan')).toBe(true);        // C's Thursday is still a plan
     expect(win.a2DayLogFor(new win.Date(2026, 8, 17), 'G')[0].note).toContain('FS8');
     expect(win.a2DayLogFor(new win.Date(2026, 8, 18), 'G')[0].note).toContain('homework');
     expect(win.a2DayLogFor(new win.Date(2026, 8, 17), 'D')).toEqual([]);
