@@ -48,6 +48,18 @@
         "name": "Average rate of change",
         "url": "https://www.ixl.com/math/algebra-2/average-rate-of-change",
         "level": "core"
+      },
+      {
+        "code": "WMS",
+        "directoryId": "N.1",
+        "name": "Characteristics of quadratic functions: graphs",
+        "url": "https://www.ixl.com/math/algebra-2/characteristics-of-quadratic-functions-graphs",
+        "level": "core"
+      },
+      {
+        "name": "Estimate average rate of change from a graph (Algebra 1 W42, Ex 5)",
+        "url": "https://www.ixl.com/math/algebra-1/estimate-average-rate-of-change-from-a-graph",
+        "level": "core"
       }
     ],
     "1-2": [

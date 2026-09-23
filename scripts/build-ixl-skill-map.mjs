@@ -30,6 +30,8 @@ const KNOWN_URLS = {
   PS2: 'https://www.ixl.com/math/algebra-2/evaluate-functions',
   FS8: 'https://www.ixl.com/math/algebra-2/find-values-using-function-graphs',
   W5Z: 'https://www.ixl.com/math/algebra-2/complete-a-table-for-a-function-graph',
+  WMS: 'https://www.ixl.com/math/algebra-2/characteristics-of-quadratic-functions-graphs', // 1-1 Ex 4 (increasing/decreasing intervals), verified 2026-09-23
+  PHD: 'https://www.ixl.com/math/algebra-2/average-rate-of-change', // 1-1 Ex 5, verified 2026-09-23
 };
 
 // --- minimal zip reader (stored + deflate entries) ---------------------------------
