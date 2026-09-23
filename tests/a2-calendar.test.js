@@ -87,8 +87,9 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
     expect(win.document.getElementById('resource-overlay').style.display).toBe('block');
     expect(win.document.getElementById('resource-header').textContent).toContain('2-1');
     const ixl = [...win.document.querySelectorAll('#resource-body a')].map(a => a.textContent);
-    expect(ixl[0]).toBe('IXL A.4: Find values using function graphs (prerequisite)');
-    expect(ixl).toContain('IXL N.4: Transformations of quadratic functions');
+    // Teacher day panel: core skills first, prerequisites in a sub-fold, codes appended.
+    expect(ixl.some(t => /^IXL N\.4: Transformations of quadratic functions/.test(t))).toBe(true);
+    expect(ixl.some(t => /^IXL A\.4: Find values using function graphs/.test(t))).toBe(true);
     expect(win.document.getElementById('resource-body').textContent).not.toContain('Open lesson check');
     win.document.getElementById('resource-overlay').style.display = 'none';
     expect(planned.dataset.planned).toBe('2.1'); expect(planned.textContent).not.toContain('planned'); // dashed cell + legend only

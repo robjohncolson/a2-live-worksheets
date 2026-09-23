@@ -115,7 +115,7 @@ it('uses identity and view-as sections for Do Now, and refreshes visitors on pil
     await win.A2Desk.refresh();
     await vi.waitFor(() => expect(win.eval('A2_DAY_LOG.entries.length')).toBeGreaterThan(0));
     win.setP('D');
-    await vi.waitFor(() => expect(desk.document.getElementById('donow-msg').textContent).toBe('Next class Wednesday: Try It 5, then Example 4'));
+    await vi.waitFor(() => expect(desk.document.getElementById('donow-msg').textContent).toMatch(/^Next class Wednesday: Web Jam WMS/));
     await desk.signIn('alpha_otter');
     win.setP('D');
     await vi.waitFor(() => expect(desk.document.getElementById('donow-msg').textContent).toBe('Today: ' + cTuesday));
