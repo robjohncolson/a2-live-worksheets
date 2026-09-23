@@ -44,7 +44,7 @@ it.each(['signed-out', 'student'])('%s sees only the focused student Desk', asyn
     expect(cell(win, '2026-09-22').textContent).toBe('1-1 · Key Features of Functions' + cTuesday);
     expect(cell(win, '2026-09-22').classList.contains('cell-today')).toBe(true);
     expect(cell(win, '2026-09-23').textContent).toBe('');
-    expect(cell(win, '2026-09-28').textContent).toBe('1-2 · Transformations of Functions');
+    expect(cell(win, '2026-09-28').textContent).toContain('1-2 · Transformations of Functions'); // plus C's deferred 1-1 Quiz line
     expect(win.document.getElementById('donow-msg').textContent).toBe('Today: ' + cTuesday);
     expect(win.getComputedStyle(win.document.querySelector('.prog-area')).display).toBe('none');
     cell(win, '2026-09-22').click();
@@ -65,7 +65,7 @@ it('uses the next meeting on a non-meeting day', async () => {
   try {
     await desk.window.A2Desk.refresh(); desk.window.setP('C');
     await desk.window.renderDoNow();
-    expect(desk.document.getElementById('donow-msg').textContent).toBe('Next class Thursday: 1-1 Quiz');
+    expect(desk.document.getElementById('donow-msg').textContent).toMatch(/^Next class Thursday: Try Its 4 and 5/); // C's quiz moved to Mon Sep 28
   } finally { desk.window.close(); }
 });
 
