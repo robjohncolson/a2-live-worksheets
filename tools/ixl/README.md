@@ -12,6 +12,6 @@ Two routes to the IXL analytics JSON (`/analytics/skill-score-chart/run?...&skil
 2. **browser-harness end to end**: `ixl_bonus_run.sh <skillId> <code> <section> <due> "<label>"`
    (IXL_DRY=1 for a dry run). Requires the harness Chrome to be signed in to IXL.
 
-IXL sign-in is the district ClassLink SSO ("Looking for Lynn Public School District? Sign in here"),
-never a typed password. Skill ids resolve from `data/ixl-algebra2-skills.json`.
+IXL sign-in is the district SSO link on the IXL sign-in dialog, never a typed password.
+Set `IXL_TEACHER_ID` (the teacher id in the IXL analytics URL) and `A2_TEACHER_SURNAME` in the environment. Skill ids resolve from `data/ixl-algebra2-skills.json`.
 The award is idempotent per source label; a late finisher after the pull must be added by hand.
