@@ -7945,22 +7945,48 @@ function _showA2TeacherDayPanel(inf, dateStr, entry, key, header, body) {
         var s = document.createElement('summary'); s.textContent = label; d.appendChild(s);
         body.appendChild(d); return d;
     };
-    var res = fold('Resources and IXL skills');
+    // IXL skills: the lesson's core skills first (what the teacher jams), then the
+    // prerequisites, one line each, no duplicates. The client-side skill file
+    // (content/a2/lesson-skills.json) is the freshest authority; the server copy of the
+    // lesson can lag a deploy, so both are merged by URL. Day-log resource links that
+    // repeat a skill page are dropped. (Teacher 2026-09-23: "the chip IXL area needs to
+    // be overhauled" - WMS was missing because the server copy was stale.)
+    var clientSkills = typeof a2LessonSkills === 'function' ? a2LessonSkills(inf.t) : [];
+    var serverSkills = lesson && Array.isArray(lesson.supportingSkills) ? lesson.supportingSkills : [];
+    var seen = {}; var skills = [];
+    clientSkills.concat(serverSkills).forEach(function (sk) {
+        if (!sk || !sk.url || !sk.name || seen[sk.url]) return;
+        seen[sk.url] = true; skills.push(sk);
+    });
+    var core = skills.filter(function (sk) { return sk.level !== 'prereq'; });
+    var prereq = skills.filter(function (sk) { return sk.level === 'prereq'; });
+    var skillLine = function (host, sk) {
+        var row = document.createElement('p'); var a = document.createElement('a');
+        a.textContent = 'IXL' + (sk.directoryId ? ' ' + sk.directoryId : '') + ': ' + sk.name + (sk.code ? ' (' + sk.code + ')' : '');
+        a.href = sk.url; a.target = '_blank'; a.rel = 'noopener'; row.appendChild(a); host.appendChild(row);
+    };
+    var res = fold('IXL skills for this lesson (' + core.length + ' core)');
+    res.open = true;
+    core.forEach(function (sk) { skillLine(res, sk); });
+    if (prereq.length) {
+        var pre = document.createElement('details'); pre.className = 'a2-day-fold';
+        var ps = document.createElement('summary'); ps.textContent = 'Prerequisites (' + prereq.length + ')'; pre.appendChild(ps);
+        prereq.forEach(function (sk) { skillLine(pre, sk); });
+        res.appendChild(pre);
+    }
+    var other = fold('Other resources');
     var deckRow = document.createElement('p');
     var deck = document.createElement('button'); deck.type = 'button'; deck.className = 's7btn'; deck.textContent = 'Open Flashcards';
     deck.onclick = function () { openBlooketFlashcards(deck, inf.t); };
-    deckRow.appendChild(deck); res.appendChild(deckRow);
+    deckRow.appendChild(deck); other.appendChild(deckRow);
     (_log.resources[key] || []).forEach(function (r) {
-        if (!r || !r.url || !r.label) return;
+        if (!r || !r.url || !r.label || seen[r.url]) return;
         var row = document.createElement('p'); var a = document.createElement('a');
         a.textContent = r.label; a.href = r.url; a.target = '_blank'; a.rel = 'noopener';
-        row.appendChild(a); res.appendChild(row);
+        row.appendChild(a); other.appendChild(row);
     });
-    var skills = lesson && Array.isArray(lesson.supportingSkills) && lesson.supportingSkills.length ? lesson.supportingSkills
-        : (typeof a2LessonSkills === 'function' ? a2LessonSkills(inf.t) : []);
-    if (typeof _appendIxlLinks === 'function') _appendIxlLinks(res, skills);
     var nb = (_log.resources.notebookUrlBySection || {})[section] || _log.resources.notebookUrl;
-    if (nb) { var np = document.createElement('p'); var na = document.createElement('a'); na.textContent = 'OneNote notebook (Section ' + section + ')'; na.href = nb; na.target = '_blank'; na.rel = 'noopener'; np.appendChild(na); res.appendChild(np); }
+    if (nb) { var np = document.createElement('p'); var na = document.createElement('a'); na.textContent = 'OneNote notebook (Section ' + section + ')'; na.href = nb; na.target = '_blank'; na.rel = 'noopener'; np.appendChild(na); other.appendChild(np); }
     if (!inf.planned && inf.kind !== 'assessment') {
         var pace = fold('Teacher pacing');
         _appendTeacherPacingControl(pace, key, lesson);
@@ -15240,7 +15266,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-23-ozo5';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-23-0ft5';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

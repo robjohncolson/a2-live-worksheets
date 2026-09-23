@@ -93,7 +93,8 @@ it('keeps teacher details and focuses the page after sign-out', async () => {
     expect(win.document.querySelector('#resource-body .a2-day-panel-today').textContent).toContain('Landed: Blooket opener');
     expect(win.document.querySelector('#resource-body .a2-lesson-chip')).toBeNull();
     expect(win.document.querySelector('#resource-body .desk-day-log').textContent).not.toMatch(/Section [CDG]/); // one section only
-    expect([...win.document.querySelectorAll('#resource-body details summary')].map(s => s.textContent)).toEqual(['Resources and IXL skills', 'Teacher pacing']);
+    expect([...win.document.querySelectorAll('#resource-body details summary')].map(s => s.textContent)).toEqual(expect.arrayContaining(['Other resources', 'Teacher pacing']));
+    expect(win.document.querySelector('#resource-body details summary').textContent).toMatch(/^IXL skills for this lesson/);
     win.document.getElementById('resource-overlay').style.display = 'none';
     cell(win, '2026-09-21').dispatchEvent(new win.MouseEvent('mouseenter'));
     expect(win.document.getElementById('tip').textContent).toContain('Landed');
