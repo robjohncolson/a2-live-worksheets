@@ -15240,7 +15240,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-22-pt9y';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-23-ozo5';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
@@ -15347,7 +15347,13 @@ if(typeof _renderPreviewAsStudentUI==='function')_renderPreviewAsStudentUI();   
     bar.id = 'update-nudge'; bar.className = 'chicago'; bar.setAttribute('role','status');
     var msg = document.createElement('span'); msg.textContent = '\u{1F504} A new version is available.';
     var reload = document.createElement('button'); reload.className = 's7btn s7btn-default'; reload.textContent = 'Reload';
-    reload.addEventListener('click', function(){ try { location.reload(); } catch(_) { location.href = location.href; } });
+    // Refetch the page past the HTTP cache first (GitHub Pages / CDN edges hold desk.html
+    // for minutes after a deploy while version.json, fetched no-store, is already new;
+    // a plain reload then boots the same old build and nudges again). 2026-09-23.
+    reload.addEventListener('click', function(){
+      var go = function(){ try { location.reload(); } catch(_) { location.href = location.href; } };
+      try { fetch(location.pathname, { cache: 'reload' }).then(go, go); } catch(_) { go(); }
+    });
     var dismiss = document.createElement('button'); dismiss.className = 's7btn'; dismiss.textContent = '×';
     dismiss.setAttribute('aria-label','Dismiss'); dismiss.addEventListener('click', function(){ bar.remove(); });
     bar.appendChild(msg); bar.appendChild(reload); bar.appendChild(dismiss);
@@ -15358,7 +15364,14 @@ if(typeof _renderPreviewAsStudentUI==='function')_renderPreviewAsStudentUI();   
     try {
       fetch('version.json?_=' + Date.now(), { cache: 'no-store' })
         .then(function(r){ return r.ok ? r.json() : null; })
-        .then(function(v){ if (v && v.build && v.build !== APP_BUILD) showBanner(); })
+        .then(function(v){
+          if (!(v && v.build && v.build !== APP_BUILD)) return;
+          // Nudge once per newer build per tab: if a reload still boots the old build
+          // (edge cache lag), don't keep nagging for the same version.json build.
+          var k = 'a2_update_nudged_' + v.build;
+          try { if (sessionStorage.getItem(k)) return; sessionStorage.setItem(k, '1'); } catch(_) {}
+          showBanner();
+        })
         .catch(function(){});
     } catch(_) {}
   }
