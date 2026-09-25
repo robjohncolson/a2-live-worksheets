@@ -65,7 +65,7 @@ it('uses the next meeting on a non-meeting day', async () => {
   try {
     await desk.window.A2Desk.refresh(); desk.window.setP('C');
     await desk.window.renderDoNow();
-    expect(desk.document.getElementById('donow-msg').textContent).toMatch(/^Next class Thursday: Try Its 4 and 5/); // C's quiz moved to Mon Sep 28
+    expect(desk.document.getElementById('donow-msg').textContent).toMatch(/^Next class Thursday: Poster work on Try Its 4 and 5/); // C's quiz moved to Mon Sep 28; Thursday landed as poster work
   } finally { desk.window.close(); }
 });
 

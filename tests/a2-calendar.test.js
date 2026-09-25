@@ -117,7 +117,7 @@ it('the Desk calendar fills each section from the two-week lesson windows and sh
     const sep22 = [...win.document.querySelectorAll('#cg .dc')].find(c => c.dataset.dts && new Date(+c.dataset.dts).getDate() === 22 && new Date(+c.dataset.dts).getMonth() === 8);
     expect(sep22.classList.contains('cell-logged')).toBe(true);          // C's Sep 22 landed (Ex 5 finished)
     const sep24 = [...win.document.querySelectorAll('#cg .dc')].find(c => c.dataset.dts && new Date(+c.dataset.dts).getDate() === 24 && new Date(+c.dataset.dts).getMonth() === 8);
-    expect(sep24.classList.contains('cell-log-plan')).toBe(true);        // C's Thursday is still a plan
+    expect(sep24.classList.contains('cell-logged')).toBe(true);          // C's Thursday landed (poster work; no W42 jam)
     expect(win.a2DayLogFor(new win.Date(2026, 8, 17), 'G')[0].note).toContain('FS8');
     expect(win.a2DayLogFor(new win.Date(2026, 8, 18), 'G')[0].note).toContain('homework');
     expect(win.a2DayLogFor(new win.Date(2026, 8, 17), 'D')).toEqual([]);

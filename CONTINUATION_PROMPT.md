@@ -66,9 +66,13 @@ Grading (district formula 50/40/10):
 
 | Section | Ex 4 and 5 | Next meeting | 1-1 Quiz |
 | --- | --- | --- | --- |
-| C | done Tue 9/22 | Thu 9/24: Try-It time, quick W42 + WMS jam, WMS homework due Mon at 80+ only if still hard | **Mon 9/28** (deferred; the Schoology assignment still says Thu 9/24 — teacher to move it) |
-| D | done Wed 9/23 (WMS jam + Ex 4) | Fri 9/25: Try-It time | Fri 9/25 |
-| G | done Tue 9/22 | Thu 9/24: Try-It time, quiz review | Fri 9/25 |
+| C | done Tue 9/22 | Thu 9/24: poster work on Try Its 4 and 5 (worked); no W42/WMS jam, no WMS homework | **Mon 9/28** (deferred; the Schoology assignment still says Thu 9/24 — teacher to move it) |
+| D | done Wed 9/23 (WMS jam + Ex 4) | Fri 9/25: Try Its 4 and 5 in class, no poster, Nintendo when done | Fri 9/25 — confirm whether it was taken |
+| G | done Tue 9/22 | Thu 9/24: poster work (worked). Fri 9/25: Try Its 4 and 5 took the period, heavy teacher help | **not taken Fri 9/25** — reschedule |
+
+**Decision (9/25):** C and G never really did the average rate of change IXL work (W42 / PHD) and
+1-1 goes on without it. Do not plan a make-up jam or homework for it; the skill stays listed on
+the lesson for reference only.
 
 Course Updates posted 9/23 in C and G with Thursday's plan. G's PS2 IXL homework was awarded
 9/22 evening (5 of 16 at 80+; late finishers by hand). Samuel Betancourt Ruiz (C) mastered W42.

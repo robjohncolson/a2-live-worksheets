@@ -110,8 +110,9 @@ it('supporting IXL skills are https links, prerequisites first, and never graded
     const firstCore = skills.findIndex(item => item.level === 'core');
     expect(skills.slice(firstCore < 0 ? skills.length : firstCore).some(item => item.level === 'prereq')).toBe(false);
   }
-  // 1-1 warms up on the Group Jam skills (2026-09-17) and lands on domain/range and rate of change.
-  expect(lessons[0].supportingSkills.map(item => item.code || item.name)).toEqual(['Graph inequalities on number lines', 'LBJ', 'PS2', 'FS8', 'W5Z', '78A', 'PHD']);
+  // 1-1 warms up on the Group Jam skills (2026-09-17) and lands on domain/range, rate of change (PHD, W42; listed for
+  // reference: C and G went on without it, decision 2026-09-25) and WMS (closest skill to Ex 4).
+  expect(lessons[0].supportingSkills.map(item => item.code || item.name)).toEqual(['Graph inequalities on number lines', 'LBJ', 'PS2', 'FS8', 'W5Z', '78A', 'PHD', 'WMS', 'Estimate average rate of change from a graph (Algebra 1 W42, Ex 5)']);
   // The server's lesson schedule has no IXL item, so a jam cannot reach the ledger.
   expect(readFileSync('roster-server/a2-lessons.js', 'utf8')).not.toMatch(/ixl|supportingSkills/i);
 });
