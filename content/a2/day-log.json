@@ -94,8 +94,8 @@
       "date": "2026-09-25",
       "section": "D",
       "lesson": "1-1",
-      "student": "Try Its 4 and 5 (Nintendo when done)",
-      "note": "Try Its 4 and 5 in class (no poster work for D), Nintendo promised for finishing; everyone working through it. 1-1 Quiz status to confirm after class."
+      "student": "Try Its 4 and 5 (Nintendo when done) · quiz moved to Mon",
+      "note": "Try Its 4 and 5 in class (no poster work for D), Nintendo for finishing; everyone worked through it. No quiz today; the 1-1 Quiz moves to Mon Sep 28."
     },
     {
       "date": "2026-09-23",
@@ -115,15 +115,29 @@
       "date": "2026-09-25",
       "section": "G",
       "lesson": "1-1",
-      "student": "Try Its 4 and 5 worked in class · quiz moved",
-      "note": "Whole period on Try Its 4 and 5. Students struggled and the teacher ended up walking them almost all the way to the answers (noted as something not to repeat). The 1-1 Quiz was not taken today; reschedule it."
+      "student": "Try Its 4 and 5 worked in class · quiz moved to Tue",
+      "note": "Whole period on Try Its 4 and 5. Students struggled and the teacher ended up walking them almost all the way to the answers (noted as something not to repeat). No quiz today; the 1-1 Quiz moves to Tue Sep 29."
     },
     {
       "date": "2026-09-28",
       "section": "C",
       "lesson": "1-1",
-      "plan": "1-1 Quiz (deferred from Thu Sep 24). Packets collected; Try Its 4 and 5 graded from them. WMS homework (80+) due today if it was assigned Thursday.",
-      "student": "1-1 Quiz · packets and Try Its 4 and 5 turned in"
+      "plan": "1-1 Quiz (deferred from Thu Sep 24). Packets collected; Try Its 4 and 5 graded from them. Then 1-2 starts.",
+      "student": "1-1 Quiz · packets and Try Its 4 and 5 turned in · then 1-2"
+    },
+    {
+      "date": "2026-09-28",
+      "section": "D",
+      "lesson": "1-1",
+      "plan": "1-1 Quiz (moved from Fri Sep 25). Packets collected; Try Its 4 and 5 graded from them. Then 1-2 starts.",
+      "student": "1-1 Quiz · packets and Try Its 4 and 5 turned in · then 1-2"
+    },
+    {
+      "date": "2026-09-29",
+      "section": "G",
+      "lesson": "1-1",
+      "plan": "1-1 Quiz (moved from Fri Sep 25). Packets collected; Try Its 4 and 5 graded from them. Then 1-2 starts.",
+      "student": "1-1 Quiz · packets and Try Its 4 and 5 turned in · then 1-2"
     }
   ]
 }

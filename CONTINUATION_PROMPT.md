@@ -67,8 +67,11 @@ Grading (district formula 50/40/10):
 | Section | Ex 4 and 5 | Next meeting | 1-1 Quiz |
 | --- | --- | --- | --- |
 | C | done Tue 9/22 | Thu 9/24: poster work on Try Its 4 and 5 (worked); no W42/WMS jam, no WMS homework | **Mon 9/28** (deferred; the Schoology assignment still says Thu 9/24 — teacher to move it) |
-| D | done Wed 9/23 (WMS jam + Ex 4) | Fri 9/25: Try Its 4 and 5 in class, no poster, Nintendo when done | Fri 9/25 — confirm whether it was taken |
-| G | done Tue 9/22 | Thu 9/24: poster work (worked). Fri 9/25: Try Its 4 and 5 took the period, heavy teacher help | **not taken Fri 9/25** — reschedule |
+| D | done Wed 9/23 (WMS jam + Ex 4) | Fri 9/25: Try Its 4 and 5 in class, no poster, Nintendo when done; no quiz | **Mon 9/28** (moved from Fri 9/25; Schoology assignment to move) |
+| G | done Tue 9/22 | Thu 9/24: poster work (worked). Fri 9/25: Try Its 4 and 5 took the period, heavy teacher help; no quiz | **Tue 9/29** (moved from Fri 9/25; Schoology assignment to move) |
+
+After each section's quiz, 1-2 (Transformations of Functions) starts; the year plan still dates
+1-2 at Oct 8/9, so no reflow is needed.
 
 **Decision (9/25):** C and G never really did the average rate of change IXL work (W42 / PHD) and
 1-1 goes on without it. Do not plan a make-up jam or homework for it; the skill stays listed on
