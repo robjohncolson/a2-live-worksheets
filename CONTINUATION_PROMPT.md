@@ -120,6 +120,11 @@ Wed 9/23 that the teacher made but never assigned; harmless, leave it. Advisory 
 2. Monday 9/28: C's 1-1 Quiz; grade Try Its 4 and 5 from packets on each quiz day
    (`teacher-tryits.html`); pull WMS scores for C if the homework was assigned Thursday.
 3. Lesson 1-2 packet (C opens 1-2 Mon 9/28); the objectives are already on the board.
+   **Decision (9/27):** Examples 1-3 required for everyone; Example 5 is the main example, with
+   Example 4 or 5 chosen in class by student confidence; Try It 5 is the graded Try It; Example 6
+   not needed. This targets 1-2 Lesson Quiz Q1 (`aga_24_a2_na_0102_lq.pdf`, answer C, D, F:
+   reflection across the x-axis, horizontal stretch by 2, translation 2 down). Recorded in the
+   day log as 1-2 plan entries (C Tue 9/29, D and G Wed 9/30).
 4. First paper Do Now tally through the Engagement script.
 5. R4 (student grade view) and R5 (Schoology mirror) stay parked while students are off the Desk.
 6. Teacher account `date_frog` still has a 4-digit password; rotate the teacher key
