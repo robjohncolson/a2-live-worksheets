@@ -1,0 +1,29 @@
+{
+  "about": "IXL numeric skill ids (currSkillId on the skill page) for skills the Algebra 2 map does not carry, plus PHD for the 1-1 rate-of-change set. Read by hand when running ixl_bonus_run.sh / the analytics pull. Verified 2026-09-28 against PS2 = 2005000198.",
+  "skills": {
+    "W42": {
+      "skillId": 2021664817,
+      "course": "algebra-1",
+      "name": "Estimate average rate of change from a graph",
+      "url": "https://www.ixl.com/math/algebra-1/estimate-average-rate-of-change-from-a-graph"
+    },
+    "BNH": {
+      "skillId": 2020034589,
+      "course": "algebra-1",
+      "name": "Find rate of change from a line graph",
+      "url": "https://www.ixl.com/math/algebra-1/find-rate-of-change-from-a-line-graph"
+    },
+    "PHD": {
+      "skillId": 2020019790,
+      "course": "algebra-2",
+      "name": "Average rate of change",
+      "url": "https://www.ixl.com/math/algebra-2/average-rate-of-change"
+    },
+    "PS2": {
+      "skillId": 2005000198,
+      "course": "algebra-2",
+      "name": "Evaluate functions",
+      "url": "https://www.ixl.com/math/algebra-2/evaluate-functions"
+    }
+  }
+}

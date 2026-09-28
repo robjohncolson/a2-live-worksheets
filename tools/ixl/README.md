@@ -15,3 +15,7 @@ Two routes to the IXL analytics JSON (`/analytics/skill-score-chart/run?...&skil
 IXL sign-in is the district SSO link on the IXL sign-in dialog, never a typed password.
 Set `IXL_TEACHER_ID` (the teacher id in the IXL analytics URL) and `A2_TEACHER_SURNAME` in the environment. Skill ids resolve from `data/ixl-algebra2-skills.json`.
 The award is idempotent per source label; a late finisher after the pull must be added by hand.
+
+
+## Skill ids outside the Algebra 2 map
+`tools/ixl/skill-ids.json` holds numeric ids found via `currSkillId` in the skill page source (W42, BNH, PHD, PS2). The 2026-09-28 rule for the 1-1 quiz: SmartScore 80+ on W42, BNH and PHD replaces the 1-1 Quiz score with 20/20 (roster-local/quiz/2026-09-28-PeriodD-1-1-quiz.json); pull all three, then overwrite the quiz column for qualifiers.
