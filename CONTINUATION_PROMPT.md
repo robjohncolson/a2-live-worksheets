@@ -120,11 +120,14 @@ Wed 9/23 that the teacher made but never assigned; harmless, leave it. Advisory 
 2. Monday 9/28: C's 1-1 Quiz; grade Try Its 4 and 5 from packets on each quiz day
    (`teacher-tryits.html`); pull WMS scores for C if the homework was assigned Thursday.
 3. Lesson 1-2 packet (C opens 1-2 Mon 9/28); the objectives are already on the board.
-   **Decision (9/27):** Examples 1-3 required for everyone; Example 5 is the main example, with
-   Example 4 or 5 chosen in class by student confidence; Try It 5 is the graded Try It; Example 6
-   not needed. This targets 1-2 Lesson Quiz Q1 (`aga_24_a2_na_0102_lq.pdf`, answer C, D, F:
-   reflection across the x-axis, horizontal stretch by 2, translation 2 down). Recorded in the
-   day log as 1-2 plan entries (C Tue 9/29, D and G Wed 9/30).
+   **Decision (9/27):** the class goes through Examples 1-5 with the focus on Example 5; Try It 5
+   is the graded Try It; Example 6 is dropped from the packet. This targets 1-2 Lesson Quiz Q1
+   (`aga_24_a2_na_0102_lq.pdf`, answer C, D, F: reflection across the x-axis, horizontal stretch
+   by 2, translation 2 down). Recorded in the day log as 1-2 plan entries (C Tue 9/29, D and G
+   Wed 9/30). The class packet is `../Lesson_planning/a2_1-2.pdf` (source `a2_1-2.docx`): the
+   Savvas-derived doc from `content/a2/source-docs/` with the Example 6 section removed and
+   Try It 5 marked "Collected and graded"; 8 pages, Examples 1-5 plus the Concept Summary and
+   Do You Understand / Know How pages. No TE PDF for 1-2 is on disk, so there is no `a2_1-2_TE.tex`.
 4. First paper Do Now tally through the Engagement script.
 5. R4 (student grade view) and R5 (Schoology mirror) stay parked while students are off the Desk.
 6. Teacher account `date_frog` still has a 4-digit password; rotate the teacher key
