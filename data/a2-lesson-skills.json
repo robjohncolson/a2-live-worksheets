@@ -55,6 +55,13 @@
         "example": 5
       },
       {
+        "name": "Find rate of change from a line graph (Algebra 1 BNH, Ex 5 warm-up)",
+        "url": "https://www.ixl.com/math/algebra-1/find-rate-of-change-from-a-line-graph",
+        "level": "core",
+        "example": 5,
+        "note": "Assigned with W42 and PHD to D on 2026-09-28 after the 1-1 quiz (Q3 rate-of-change misses)"
+      },
+      {
         "name": "Estimate average rate of change from a graph (Algebra 1 W42, Ex 5)",
         "url": "https://www.ixl.com/math/algebra-1/estimate-average-rate-of-change-from-a-graph",
         "level": "core",
