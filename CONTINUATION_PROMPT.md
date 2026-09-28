@@ -128,7 +128,13 @@ Wed 9/23 that the teacher made but never assigned; harmless, leave it. Advisory 
    Wed 9/30). The class packet is `../Lesson_planning/a2_1-2.pdf` (source `a2_1-2.docx`): the
    Savvas-derived doc from `content/a2/source-docs/` with the Example 6 section removed and
    Try It 5 marked "Collected and graded"; 8 pages, Examples 1-5 plus the Concept Summary and
-   Do You Understand / Know How pages. No TE PDF for 1-2 is on disk, so there is no `a2_1-2_TE.tex`.
+   Do You Understand / Know How pages. The 1-2 TE (pp. 24-36, 13 pages) is at
+   `../Lesson_planning/a2_1-2_TE.pdf` (untracked, copyrighted; original at this repo's root as
+   `a2_1-2.pdf`), transcribed by Codex to `a2_1-2_TE.tex` and ingested 2026-09-27: calibration
+   `questionbank/calibration/1-2.json` (item analysis + quiz DOKs), 77 registry rows (`1-2-savvas-q13`
+   .. `q38`, Try Its, examples, TE addenda, the Lesson Quiz row), graph crops `questionbank/images/1-2_*`.
+   DOK-3 practice items: 13, 15, 17, 33, 34, 35, 37, 38. dok2/dok3 anchors in the calibration are still
+   unpopulated (hand step when the DOK-3 driver is picked).
 4. First paper Do Now tally through the Engagement script.
 5. R4 (student grade view) and R5 (Schoology mirror) stay parked while students are off the Desk.
 6. Teacher account `date_frog` still has a 4-digit password; rotate the teacher key
