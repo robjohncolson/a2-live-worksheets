@@ -122,8 +122,9 @@ Wed 9/23 that the teacher made but never assigned; harmless, leave it. Advisory 
 3. Lesson 1-2 packet (C opens 1-2 Mon 9/28); the objectives are already on the board.
    **Decision (9/27):** the class goes through Examples 1-5 with the focus on Example 5; Try It 5
    is the graded Try It; Example 6 is dropped from the packet. This targets 1-2 Lesson Quiz Q1
-   (`aga_24_a2_na_0102_lq.pdf`, answer C, D, F: reflection across the x-axis, horizontal stretch
-   by 2, translation 2 down). Recorded in the day log as 1-2 plan entries (C Tue 9/29, D and G
+   (`aga_24_a2_na_0102_lq.pdf`; TE key A, C, D, F: translation 1 left, translation 2 down,
+   horizontal stretch by 2, reflection across the x-axis; the vertex is at (-1,-2). An earlier
+   session read it as C, D, F, which was wrong). Recorded in the day log as 1-2 plan entries (C Tue 9/29, D and G
    Wed 9/30). The class packet is `../Lesson_planning/a2_1-2.pdf` (source `a2_1-2.docx`): the
    Savvas-derived doc from `content/a2/source-docs/` with the Example 6 section removed and
    Try It 5 marked "Collected and graded"; 8 pages, Examples 1-5 plus the Concept Summary and
