@@ -7960,12 +7960,23 @@ function _showA2TeacherDayPanel(inf, dateStr, entry, key, header, body) {
     });
     var core = skills.filter(function (sk) { return sk.level !== 'prereq'; });
     var prereq = skills.filter(function (sk) { return sk.level === 'prereq'; });
+    // Core skills are ordered by the Savvas example they back (`example` from
+    // data/a2-lesson-skills.json), so the teacher can break a struggling example
+    // straight into a Web Jam; lesson-wide skills (no example) come last.
+    var exampleOf = function (sk) { return Array.isArray(sk.example) && sk.example.length ? sk.example : null; };
+    core.sort(function (a, b) {
+        var ea = exampleOf(a), eb = exampleOf(b);
+        if (!ea && !eb) return 0; if (!ea) return 1; if (!eb) return -1;
+        return ea[0] - eb[0];
+    });
     var skillLine = function (host, sk) {
         var row = document.createElement('p'); var a = document.createElement('a');
+        var ex = exampleOf(sk);
+        if (ex) { var tag = document.createElement('strong'); tag.className = 'a2-skill-ex'; tag.textContent = 'Ex ' + ex.join(', ') + ' · '; row.appendChild(tag); }
         a.textContent = 'IXL' + (sk.directoryId ? ' ' + sk.directoryId : '') + ': ' + sk.name + (sk.code ? ' (' + sk.code + ')' : '');
         a.href = sk.url; a.target = '_blank'; a.rel = 'noopener'; row.appendChild(a); host.appendChild(row);
     };
-    var res = fold('IXL skills for this lesson (' + core.length + ' core)');
+    var res = fold('IXL skills for this lesson (' + core.length + ' core, by example)');
     res.open = true;
     core.forEach(function (sk) { skillLine(res, sk); });
     if (prereq.length) {
@@ -15266,7 +15277,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-09-28-ybgg';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-09-28-rrcd';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

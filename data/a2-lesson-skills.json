@@ -1,5 +1,5 @@
 {
-  "about": "IXL skills per Savvas lesson, authored by IXL shortcut code (data/ixl-algebra2-skills.json resolves code -> name, directory id, link). `prereq` skills come first and are what a Group Jam warms up on; `core` skills are the lesson itself. A literal { name, url, level } entry is allowed for a skill outside the Algebra 2 map. Resolved by scripts/build-a2-lesson-skills.mjs into content/a2/lesson-skills.json (every lesson, for the calendar) and content/a2/lessons.json supportingSkills (published lessons). Topics 1-2 mapped 2026-09-17 from the lesson objectives in the Topic 2 docs and the Savvas lesson titles.",
+  "about": "IXL skills per Savvas lesson, authored by IXL shortcut code (data/ixl-algebra2-skills.json resolves code -> name, directory id, link). `prereq` skills come first and are what a Group Jam warms up on; `core` skills are the lesson itself. A literal { name, url, level } entry is allowed for a skill outside the Algebra 2 map. Resolved by scripts/build-a2-lesson-skills.mjs into content/a2/lesson-skills.json (every lesson, for the calendar) and content/a2/lessons.json supportingSkills (published lessons). Topics 1-2 mapped 2026-09-17 from the lesson objectives in the Topic 2 docs and the Savvas lesson titles. Each entry may carry `example` (an example number or list of numbers from the Savvas lesson) so the Desk can name the IXL skill to Web Jam when that example is going badly; skills without `example` are lesson-wide.",
   "lessons": {
     "1-1": [
       {
@@ -25,21 +25,40 @@
       },
       {
         "code": "78A",
-        "level": "core"
+        "level": "core",
+        "example": 1
       },
       {
-        "code": "PHD",
-        "level": "core"
+        "code": "Y8C",
+        "level": "core",
+        "example": 1,
+        "note": "Domain and range read off absolute value graphs (Ex 1A style)"
+      },
+      {
+        "code": "UQJ",
+        "level": "core",
+        "example": 1,
+        "note": "Domain and range read off quadratic graphs (Ex 1 y=x^2-3)"
       },
       {
         "code": "WMS",
         "level": "core",
-        "note": "Loosely tied to Ex 4: labels maximum, minimum and intercepts; no real increasing/decreasing interval work (teacher 2026-09-23)"
+        "example": [
+          2,
+          4
+        ],
+        "note": "Loosely tied to Ex 4: labels maximum, minimum and intercepts; no real increasing/decreasing interval work (teacher 2026-09-23). Covers Ex 2 intercepts."
+      },
+      {
+        "code": "PHD",
+        "level": "core",
+        "example": 5
       },
       {
         "name": "Estimate average rate of change from a graph (Algebra 1 W42, Ex 5)",
         "url": "https://www.ixl.com/math/algebra-1/estimate-average-rate-of-change-from-a-graph",
-        "level": "core"
+        "level": "core",
+        "example": 5
       }
     ],
     "1-2": [
@@ -53,27 +72,55 @@
       },
       {
         "code": "R7X",
-        "level": "core"
+        "level": "core",
+        "example": 5,
+        "note": "Rules a*f(b(x-h))+k; pairs with Ex 5 identify-the-transformation"
       },
       {
         "code": "F6J",
-        "level": "core"
+        "level": "core",
+        "example": 1
       },
       {
         "code": "PHV",
-        "level": "core"
+        "level": "core",
+        "example": 2
       },
       {
         "code": "NNY",
-        "level": "core"
+        "level": "core",
+        "example": 3
       },
       {
         "code": "RSN",
-        "level": "core"
+        "level": "core",
+        "example": 4
       },
       {
         "code": "KT8",
-        "level": "core"
+        "level": "core",
+        "example": 5
+      },
+      {
+        "code": "KQL",
+        "level": "core",
+        "example": 5,
+        "note": "Transformations of quadratic functions: Ex 5 uses f(x)=x^2 and the quiz Q1 parent"
+      },
+      {
+        "code": "FYJ",
+        "level": "core",
+        "example": [
+          5,
+          6
+        ],
+        "note": "Transformations of absolute value functions: Try It 5 and the Ex 6 train graph"
+      },
+      {
+        "code": "A73",
+        "level": "core",
+        "example": 6,
+        "note": "Write absolute value equations from graphs (Ex 6, dropped from the class packet 2026-09-27)"
       }
     ],
     "1-3": [

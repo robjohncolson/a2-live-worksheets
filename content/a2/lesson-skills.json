@@ -40,26 +40,59 @@
         "directoryId": "A.1",
         "name": "Domain and range",
         "url": "https://www.ixl.com/math/algebra-2/domain-and-range",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1
+        ]
       },
       {
-        "code": "PHD",
-        "directoryId": "A.9",
-        "name": "Average rate of change",
-        "url": "https://www.ixl.com/math/algebra-2/average-rate-of-change",
-        "level": "core"
+        "code": "Y8C",
+        "directoryId": "H.1",
+        "name": "Domain and range of absolute value functions: graphs",
+        "url": "https://www.ixl.com/math/algebra-2/domain-and-range-of-absolute-value-functions-graphs",
+        "level": "core",
+        "example": [
+          1
+        ]
+      },
+      {
+        "code": "UQJ",
+        "directoryId": "N.8",
+        "name": "Domain and range of quadratic functions: graphs",
+        "url": "https://www.ixl.com/math/algebra-2/domain-and-range-of-quadratic-functions-graphs",
+        "level": "core",
+        "example": [
+          1
+        ]
       },
       {
         "code": "WMS",
         "directoryId": "N.1",
         "name": "Characteristics of quadratic functions: graphs",
         "url": "https://www.ixl.com/math/algebra-2/characteristics-of-quadratic-functions-graphs",
-        "level": "core"
+        "level": "core",
+        "example": [
+          2,
+          4
+        ]
+      },
+      {
+        "code": "PHD",
+        "directoryId": "A.9",
+        "name": "Average rate of change",
+        "url": "https://www.ixl.com/math/algebra-2/average-rate-of-change",
+        "level": "core",
+        "example": [
+          5
+        ]
       },
       {
         "name": "Estimate average rate of change from a graph (Algebra 1 W42, Ex 5)",
         "url": "https://www.ixl.com/math/algebra-1/estimate-average-rate-of-change-from-a-graph",
-        "level": "core"
+        "level": "core",
+        "example": [
+          5
+        ]
       }
     ],
     "1-2": [
@@ -82,42 +115,91 @@
         "directoryId": "W.1",
         "name": "Function transformation rules",
         "url": "https://www.ixl.com/math/algebra-2/function-transformation-rules",
-        "level": "core"
+        "level": "core",
+        "example": [
+          5
+        ]
       },
       {
         "code": "F6J",
         "directoryId": "W.2",
         "name": "Translations of functions",
         "url": "https://www.ixl.com/math/algebra-2/translations-of-functions",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1
+        ]
       },
       {
         "code": "PHV",
         "directoryId": "W.3",
         "name": "Reflections of functions",
         "url": "https://www.ixl.com/math/algebra-2/reflections-of-functions",
-        "level": "core"
+        "level": "core",
+        "example": [
+          2
+        ]
       },
       {
         "code": "NNY",
         "directoryId": "W.4",
         "name": "Dilations of functions",
         "url": "https://www.ixl.com/math/algebra-2/dilations-of-functions",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3
+        ]
       },
       {
         "code": "RSN",
         "directoryId": "W.5",
         "name": "Transformations of functions",
         "url": "https://www.ixl.com/math/algebra-2/transformations-of-functions",
-        "level": "core"
+        "level": "core",
+        "example": [
+          4
+        ]
       },
       {
         "code": "KT8",
         "directoryId": "W.6",
         "name": "Describe function transformations",
         "url": "https://www.ixl.com/math/algebra-2/describe-function-transformations",
-        "level": "core"
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "KQL",
+        "directoryId": "N.4",
+        "name": "Transformations of quadratic functions",
+        "url": "https://www.ixl.com/math/algebra-2/transformations-of-quadratic-functions",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "FYJ",
+        "directoryId": "H.4",
+        "name": "Transformations of absolute value functions",
+        "url": "https://www.ixl.com/math/algebra-2/transformations-of-absolute-value-functions",
+        "level": "core",
+        "example": [
+          5,
+          6
+        ]
+      },
+      {
+        "code": "A73",
+        "directoryId": "G.3",
+        "name": "Write absolute value equations from graphs",
+        "url": "https://www.ixl.com/math/algebra-2/write-absolute-value-equations-from-graphs",
+        "level": "core",
+        "example": [
+          6
+        ]
       }
     ],
     "1-3": [

@@ -24,19 +24,29 @@ export function skillUrl(skill) {
   return 'https://www.ixl.com/math/algebra-2/' + slug;
 }
 
+// `example` on an authored entry ties the skill to one or more Savvas example numbers
+// (a Web Jam target when that example is going badly). Returned as a sorted array or null.
+function normalizeExample(key, entry) {
+  if (entry.example === undefined || entry.example === null) return null;
+  const list = Array.isArray(entry.example) ? entry.example : [entry.example];
+  if (!list.length || list.some(n => !Number.isInteger(n) || n < 1)) throw new Error(`${key}: example must be a positive integer or a list of them`);
+  return [...new Set(list)].sort((a, b) => a - b);
+}
+
 export function resolveLessonSkills({ authored, map }) {
   const byCode = Object.fromEntries(map.skills.map(skill => [skill.code, skill]));
   const lessons = {};
   for (const [key, entries] of Object.entries(authored.lessons)) {
     lessons[key] = entries.map(entry => {
       if (!LEVELS.includes(entry.level)) throw new Error(`${key}: level must be prereq or core`);
+      const example = normalizeExample(key, entry);
       if (entry.code) {
         const skill = byCode[entry.code];
         if (!skill) throw new Error(`${key}: unknown IXL code ${entry.code}`);
-        return { code: skill.code, directoryId: skill.directoryId, name: skill.skill, url: skillUrl(skill), level: entry.level };
+        return { code: skill.code, directoryId: skill.directoryId, name: skill.skill, url: skillUrl(skill), level: entry.level, ...(example ? { example } : {}) };
       }
       if (!entry.name || !entry.url) throw new Error(`${key}: a literal skill needs name and url`);
-      return { name: entry.name, url: entry.url, level: entry.level };
+      return { name: entry.name, url: entry.url, level: entry.level, ...(example ? { example } : {}) };
     });
     const firstCore = lessons[key].findIndex(skill => skill.level === 'core');
     if (firstCore >= 0 && lessons[key].slice(firstCore).some(skill => skill.level === 'prereq')) throw new Error(`${key}: prereq skills must come first`);
@@ -46,7 +56,7 @@ export function resolveLessonSkills({ authored, map }) {
 
 export function applyToPublished(published, lessons) {
   return published.map(lesson => lessons[lesson.key]
-    ? { ...lesson, supportingSkills: lessons[lesson.key].map(({ name, url, level, code, directoryId }) => ({ name, url, level, ...(code ? { code, directoryId } : {}) })) }
+    ? { ...lesson, supportingSkills: lessons[lesson.key].map(({ name, url, level, code, directoryId, example }) => ({ name, url, level, ...(code ? { code, directoryId } : {}), ...(example ? { example } : {}) })) }
     : lesson);
 }
 

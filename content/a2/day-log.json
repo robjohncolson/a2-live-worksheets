@@ -122,8 +122,8 @@
       "date": "2026-09-28",
       "section": "C",
       "lesson": "1-1",
-      "plan": "1-1 Quiz (deferred from Thu Sep 24). Packets collected; Try Its 4 and 5 graded from them. Then 1-2 starts.",
-      "student": "1-1 Quiz · packets and Try Its 4 and 5 turned in · then 1-2"
+      "student": "Try Its 4 and 5 finished in class · quiz moved to Tue",
+      "note": "No quiz today. Whole period to finish Try Its 4 and 5 (1-1 packet). The 1-1 Quiz moves to the next C meeting, Tue Sep 29."
     },
     {
       "date": "2026-09-28",
@@ -142,9 +142,9 @@
     {
       "date": "2026-09-29",
       "section": "C",
-      "lesson": "1-2",
-      "plan": "1-2 packet plan (decided Sun Sep 27): the class goes through Examples 1-5 with the focus on Example 5 (identify the transformations that produce g). Try It 5 is the graded Try It. Example 6 is dropped from the packet. Targets 1-2 Quiz Q1 (TE key: A, C, D, F; the vertex is at (-1,-2), so 1 left, 2 down, horizontal stretch 2, reflect over the x-axis).",
-      "student": "1-2: Examples 1-5, focus on Example 5 · Try It 5 is graded"
+      "lesson": "1-1",
+      "plan": "1-1 Quiz (moved from Mon Sep 28). Packets collected; Try Its 4 and 5 graded from them. Then 1-2 starts.",
+      "student": "1-1 Quiz · packets and Try Its 4 and 5 turned in · then 1-2"
     },
     {
       "date": "2026-09-30",
@@ -156,6 +156,13 @@
     {
       "date": "2026-09-30",
       "section": "G",
+      "lesson": "1-2",
+      "plan": "1-2 packet plan (decided Sun Sep 27): the class goes through Examples 1-5 with the focus on Example 5 (identify the transformations that produce g). Try It 5 is the graded Try It. Example 6 is dropped from the packet. Targets 1-2 Quiz Q1 (TE key: A, C, D, F; the vertex is at (-1,-2), so 1 left, 2 down, horizontal stretch 2, reflect over the x-axis).",
+      "student": "1-2: Examples 1-5, focus on Example 5 · Try It 5 is graded"
+    },
+    {
+      "date": "2026-10-01",
+      "section": "C",
       "lesson": "1-2",
       "plan": "1-2 packet plan (decided Sun Sep 27): the class goes through Examples 1-5 with the focus on Example 5 (identify the transformations that produce g). Try It 5 is the graded Try It. Example 6 is dropped from the packet. Targets 1-2 Quiz Q1 (TE key: A, C, D, F; the vertex is at (-1,-2), so 1 left, 2 down, horizontal stretch 2, reflect over the x-axis).",
       "student": "1-2: Examples 1-5, focus on Example 5 · Try It 5 is graded"
