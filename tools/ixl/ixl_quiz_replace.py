@@ -27,11 +27,14 @@ def match(name, table):
     return m[0] if len(m) == 1 else None
 
 def main():
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    section, date, codes = args[0], args[1], args[2:]
+    argv = sys.argv[1:]
     quiz_path = None
-    if "--quiz" in sys.argv:
-        quiz_path = ROOT / sys.argv[sys.argv.index("--quiz") + 1]
+    if "--quiz" in argv:
+        i = argv.index("--quiz")
+        quiz_path = ROOT / argv[i + 1]
+        argv = argv[:i] + argv[i + 2:]
+    args = [a for a in argv if not a.startswith("--")]
+    section, date, codes = args[0], args[1], args[2:]
     roster = [r for r in csv.DictReader(open(ROOT / f"roster-local/roster-view-Period{section}.csv", encoding="utf8"))
               if r.get("role", "student") == "student" and "colson" not in r["realName"].lower()]
     tables = {}
