@@ -39,7 +39,7 @@ it('schedules keep and bridge lessons in plan order in every section until the y
   expect(scheduled.map(lesson => lesson.key)).toEqual(order.slice(0, scheduled.length));
   // Two calendar weeks per lesson (teacher, 2026-09-17) reaches 5-6; Topics 6-7 do not fit.
   expect(targets.pacing).toMatchObject({ mode: 'weeks', weeks: 2, briefDays: 0, assessmentDays: 1 });
-  const overflow = ['6-1', '6-2', '6-3', '6-6', '7-1', '7-2', '7-3'];
+  const overflow = ['6-1', '6-2', '6-3', '6-6', '7-1', '7-2'];
   expect(targets.pacing.unscheduled).toEqual({ C: overflow, D: overflow, G: overflow });
   expect(scheduled.at(-1).key).toBe('5-6');
   for (const lesson of scheduled) {
@@ -98,11 +98,11 @@ it('a window that opens on a Thursday or Friday starts the following Monday, and
 it('fit and cadence modes remain available for comparison and report what falls off the year', () => {
   const fit = buildYearPlan({ targets, published, def, options: { mode: 'fit' } });
   expect(fit.pacing.unscheduled).toEqual({});
-  expect(fit.lessons.find(lesson => lesson.key === '7-3').sections.C).toBe('2027-06-15');
+  expect(fit.lessons.find(lesson => lesson.key === '7-2').sections.C).toBe('2027-06-15');
   const plan = buildYearPlan({ targets, published, def, options: { mode: 'cadence', cadence: { C: 4, D: 4, G: 5 } } });
-  expect(plan.pacing.unscheduled.C).toEqual(['6-6', '7-1', '7-2', '7-3']);
-  expect(plan.lessons.find(lesson => lesson.key === '7-3').sections).toBeUndefined();
-  expect(pacingTable(plan, published)).toContain('Does not fit: C: 6-6, 7-1, 7-2, 7-3');
+  expect(plan.pacing.unscheduled.C).toEqual(['6-6', '7-1', '7-2']);
+  expect(plan.lessons.find(lesson => lesson.key === '7-2').sections).toBeUndefined();
+  expect(pacingTable(plan, published)).toContain('Does not fit: C: 6-6, 7-1, 7-2');
 });
 
 it('teacher re-flow: finishing a lesson early pulls every later window and assessment forward for that section only', () => {
@@ -125,8 +125,8 @@ it('teacher re-flow: finishing a lesson early pulls every later window and asses
   }
   expect(result.lessons['5-6'].C).toBe('2027-06-03');
   expect(result.assessments['5'].C).toBe('2027-06-07');
-  expect(result.unscheduled).toEqual(['6-1', '6-2', '6-3', '6-6', '7-1', '7-2', '7-3']);
-  expect(result.lessons['7-3']).toEqual({});
+  expect(result.unscheduled).toEqual(['6-1', '6-2', '6-3', '6-6', '7-1', '7-2']);
+  expect(result.lessons['7-2']).toEqual({});
   // Finishing late works the same way and can push a lesson off the year.
   const late = A2YearPlan.reflowSection({ def, section: 'G', order, current, assessments: targets.assessments, lesson: '5-1', due: '2027-05-21', weeks: 2 });
   expect(late.lessons['5-5'].G).toBe('2027-06-04');

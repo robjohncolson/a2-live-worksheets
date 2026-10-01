@@ -53,8 +53,7 @@
     "6-3",
     "6-6",
     "7-1",
-    "7-2",
-    "7-3"
+    "7-2"
   ],
   "pacing": {
     "mode": "weeks",
@@ -83,8 +82,7 @@
         "6-3",
         "6-6",
         "7-1",
-        "7-2",
-        "7-3"
+        "7-2"
       ],
       "D": [
         "6-1",
@@ -92,8 +90,7 @@
         "6-3",
         "6-6",
         "7-1",
-        "7-2",
-        "7-3"
+        "7-2"
       ],
       "G": [
         "6-1",
@@ -101,8 +98,7 @@
         "6-3",
         "6-6",
         "7-1",
-        "7-2",
-        "7-3"
+        "7-2"
       ]
     }
   },
@@ -230,7 +226,7 @@
     {
       "key": "2-6",
       "topic": 2,
-      "title": "Quadratic Formula",
+      "title": "The Quadratic Formula",
       "precalc": "YES",
       "sat": "YES",
       "plan": "keep",
@@ -274,7 +270,7 @@
     {
       "key": "3-3",
       "topic": 3,
-      "title": "Polynomial Identities / Binomial Theorem",
+      "title": "Polynomial Identities",
       "precalc": "MAYBE",
       "sat": "MAYBE",
       "plan": "brief",
@@ -499,15 +495,6 @@
     {
       "key": "7-1",
       "topic": 7,
-      "title": "Trigonometric Functions and Acute Angles",
-      "precalc": "YES",
-      "sat": "YES",
-      "plan": "bridge",
-      "core": false
-    },
-    {
-      "key": "7-2",
-      "topic": 7,
       "title": "Angles and the Unit Circle",
       "precalc": "YES",
       "sat": "MAYBE",
@@ -515,16 +502,16 @@
       "core": false
     },
     {
-      "key": "7-3",
+      "key": "7-2",
       "topic": 7,
-      "title": "Trigonometric Functions and Real Numbers",
+      "title": "Evaluating Trigonometric Functions",
       "precalc": "YES",
-      "sat": "MAYBE",
+      "sat": "YES",
       "plan": "bridge",
       "core": false
     },
     {
-      "key": "7-4",
+      "key": "7-3",
       "topic": 7,
       "title": "Graphing Sine and Cosine Functions",
       "precalc": "YES",
@@ -533,18 +520,18 @@
       "core": false
     },
     {
-      "key": "7-5",
+      "key": "7-4",
       "topic": 7,
-      "title": "Graphing Other Trigonometric Functions",
+      "title": "Translating Trigonometric Functions",
       "precalc": "YES",
       "sat": "NO",
       "plan": "later",
       "core": false
     },
     {
-      "key": "7-6",
+      "key": "7-5",
       "topic": 7,
-      "title": "Translating Trigonometric Functions",
+      "title": "Graphing Other Trigonometric Functions",
       "precalc": "YES",
       "sat": "NO",
       "plan": "later",
@@ -765,6 +752,26 @@
       "sat": "MAYBE",
       "plan": "later",
       "core": false
+    },
+    {
+      "key": "12-5",
+      "topic": 12,
+      "title": "Expected Value",
+      "precalc": "NO/MAYBE",
+      "sat": "MAYBE",
+      "plan": "later",
+      "core": false,
+      "unratedByPlc": true
+    },
+    {
+      "key": "12-6",
+      "topic": 12,
+      "title": "Probability and Decision Making",
+      "precalc": "NO/MAYBE",
+      "sat": "MAYBE",
+      "plan": "later",
+      "core": false,
+      "unratedByPlc": true
     }
   ]
 }

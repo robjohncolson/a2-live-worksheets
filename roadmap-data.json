@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T16:26:08.079Z",
+  "generatedAt": "2026-10-01T22:49:59.561Z",
   "registryVersion": "a2-1",
   "lessons": {
     "1.1": {
@@ -273,7 +273,7 @@
     },
     "2.6": {
       "topic": "Lesson 2-6",
-      "title": "Quadratic Formula",
+      "title": "The Quadratic Formula",
       "unit": 2,
       "plan": "keep",
       "published": false,
@@ -282,7 +282,7 @@
         "status": "core",
         "newUnit": 2,
         "newTopic": "2.6",
-        "newLabel": "Quadratic Formula",
+        "newLabel": "The Quadratic Formula",
         "bonusUnit": null
       },
       "urls": {},
@@ -381,7 +381,7 @@
     },
     "3.3": {
       "topic": "Lesson 3-3",
-      "title": "Polynomial Identities / Binomial Theorem",
+      "title": "Polynomial Identities",
       "unit": 3,
       "plan": "brief",
       "published": false,
@@ -390,7 +390,7 @@
         "status": "core",
         "newUnit": 3,
         "newTopic": "3.3",
-        "newLabel": "Polynomial Identities / Binomial Theorem",
+        "newLabel": "Polynomial Identities",
         "bonusUnit": null
       },
       "urls": {},
@@ -862,23 +862,6 @@
     },
     "7.1": {
       "topic": "Lesson 7-1",
-      "title": "Trigonometric Functions and Acute Angles",
-      "unit": 7,
-      "plan": "bridge",
-      "published": false,
-      "planned": false,
-      "ced2026": {
-        "status": "core",
-        "newUnit": 7,
-        "newTopic": "7.1",
-        "newLabel": "Trigonometric Functions and Acute Angles",
-        "bonusUnit": null
-      },
-      "urls": {},
-      "periods": {}
-    },
-    "7.2": {
-      "topic": "Lesson 7-2",
       "title": "Angles and the Unit Circle",
       "unit": 7,
       "plan": "bridge",
@@ -887,16 +870,16 @@
       "ced2026": {
         "status": "core",
         "newUnit": 7,
-        "newTopic": "7.2",
+        "newTopic": "7.1",
         "newLabel": "Angles and the Unit Circle",
         "bonusUnit": null
       },
       "urls": {},
       "periods": {}
     },
-    "7.3": {
-      "topic": "Lesson 7-3",
-      "title": "Trigonometric Functions and Real Numbers",
+    "7.2": {
+      "topic": "Lesson 7-2",
+      "title": "Evaluating Trigonometric Functions",
       "unit": 7,
       "plan": "bridge",
       "published": false,
@@ -904,15 +887,15 @@
       "ced2026": {
         "status": "core",
         "newUnit": 7,
-        "newTopic": "7.3",
-        "newLabel": "Trigonometric Functions and Real Numbers",
+        "newTopic": "7.2",
+        "newLabel": "Evaluating Trigonometric Functions",
         "bonusUnit": null
       },
       "urls": {},
       "periods": {}
     },
-    "7.4": {
-      "topic": "Lesson 7-4",
+    "7.3": {
+      "topic": "Lesson 7-3",
       "title": "Graphing Sine and Cosine Functions",
       "unit": 7,
       "plan": "later",
@@ -921,8 +904,25 @@
       "ced2026": {
         "status": "core",
         "newUnit": 7,
-        "newTopic": "7.4",
+        "newTopic": "7.3",
         "newLabel": "Graphing Sine and Cosine Functions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "7.4": {
+      "topic": "Lesson 7-4",
+      "title": "Translating Trigonometric Functions",
+      "unit": 7,
+      "plan": "later",
+      "published": false,
+      "planned": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 7,
+        "newTopic": "7.4",
+        "newLabel": "Translating Trigonometric Functions",
         "bonusUnit": null
       },
       "urls": {},
@@ -940,23 +940,6 @@
         "newUnit": 7,
         "newTopic": "7.5",
         "newLabel": "Graphing Other Trigonometric Functions",
-        "bonusUnit": null
-      },
-      "urls": {},
-      "periods": {}
-    },
-    "7.6": {
-      "topic": "Lesson 7-6",
-      "title": "Translating Trigonometric Functions",
-      "unit": 7,
-      "plan": "later",
-      "published": false,
-      "planned": false,
-      "ced2026": {
-        "status": "core",
-        "newUnit": 7,
-        "newTopic": "7.6",
-        "newLabel": "Translating Trigonometric Functions",
         "bonusUnit": null
       },
       "urls": {},
@@ -1365,6 +1348,40 @@
         "newUnit": 12,
         "newTopic": "12.4",
         "newLabel": "Probability Distributions",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "12.5": {
+      "topic": "Lesson 12-5",
+      "title": "Expected Value",
+      "unit": 12,
+      "plan": "later",
+      "published": false,
+      "planned": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 12,
+        "newTopic": "12.5",
+        "newLabel": "Expected Value",
+        "bonusUnit": null
+      },
+      "urls": {},
+      "periods": {}
+    },
+    "12.6": {
+      "topic": "Lesson 12-6",
+      "title": "Probability and Decision Making",
+      "unit": 12,
+      "plan": "later",
+      "published": false,
+      "planned": false,
+      "ced2026": {
+        "status": "core",
+        "newUnit": 12,
+        "newTopic": "12.6",
+        "newLabel": "Probability and Decision Making",
         "bonusUnit": null
       },
       "urls": {},

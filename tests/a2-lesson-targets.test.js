@@ -8,7 +8,7 @@ const doc = readFileSync('docs/a2-lesson-targets.md', 'utf8');
 it('rates every Savvas lesson once with known ratings and plans', () => {
   const keys = targets.lessons.map(lesson => lesson.key);
   expect(new Set(keys).size).toBe(keys.length);
-  expect(keys).toHaveLength(68);
+  expect(keys).toHaveLength(69);
   const ratings = Object.keys(targets.ratings), plans = Object.keys(targets.plans);
   for (const lesson of targets.lessons) {
     expect(lesson.key).toMatch(/^\d{1,2}-\d$/);

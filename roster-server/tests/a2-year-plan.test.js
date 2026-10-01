@@ -8,7 +8,7 @@ const targets = loadA2Targets();
 
 describe('year-plan pacing', () => {
   it('bundles the year plan next to the lesson model', () => {
-    expect(targets.lessons.length).toBe(68);
+    expect(targets.lessons.length).toBe(69);
     expect(readFileSync(new URL('../data/a2-lesson-targets.json', import.meta.url), 'utf8'))
       .toBe(readFileSync(new URL('../../data/a2-lesson-targets.json', import.meta.url), 'utf8'));
   });
@@ -17,7 +17,7 @@ describe('year-plan pacing', () => {
     const keys = pacingKeys(lessons, targets);
     expect(keys.has('1-1')).toBe(true);
     expect(keys.has('2-1')).toBe(true);     // keep, unpublished
-    expect(keys.has('7-3')).toBe(true);     // bridge
+    expect(keys.has('7-2')).toBe(true);     // bridge
     expect(keys.has('1-3')).toBe(true);     // brief: datable once published
     expect(keys.has('5-2')).toBe(false);    // later
     const overlay = validatePacing(lessons, [{ key: '2-1', sections: { C: '2026-11-17', D: null, G: '' } }], targets);
