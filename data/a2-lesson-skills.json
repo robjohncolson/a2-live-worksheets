@@ -137,11 +137,20 @@
       },
       {
         "code": "WRZ",
-        "level": "core"
+        "level": "prereq",
+        "note": "PLC Oct 6 2026: demoted from core; the lesson is taught toward quiz item 1 (Example 3)"
       },
       {
         "code": "RVD",
-        "level": "core"
+        "level": "core",
+        "example": 2,
+        "note": "Graph a piecewise function; warm-up for reading the quiz graph"
+      },
+      {
+        "code": "W67",
+        "level": "core",
+        "example": 3,
+        "note": "Slope of each piece from two points; quiz item 1 and DOK 3 item 27"
       }
     ],
     "1-4": [

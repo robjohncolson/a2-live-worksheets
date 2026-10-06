@@ -1,0 +1,351 @@
+{
+  "about": "Teacher prep per lesson: what the PLC decided to keep and cut, the quiz item the lesson is taught toward, which IXL skill backs which example, the DOK 3 task, and the Teacher Edition's Model & Discuss questions. Teacher-only; the Desk shows it in the lesson panel's 'Teacher prep' fold. TE references are to the 2024 Teacher Edition transcription in Lesson_planning/a2_<lesson>_TE.tex.",
+  "lessons": {
+    "1-3": {
+      "title": "Piecewise-Defined Functions",
+      "status": "PLC draft, Tue Oct 6 2026 (packet not yet re-cut)",
+      "objectives": {
+        "learning": "I can graph a piecewise-defined function and write its rule from a graph.",
+        "language": "I can explain, in writing, which rule applies on each part of the domain, using the words piece, interval, open circle and closed circle.",
+        "essentialQuestion": "How do you model a situation where different rules apply to different parts of the domain?"
+      },
+      "quizFocus": {
+        "item": 1,
+        "source": "aga_24_a2_na_0103_lq.pdf",
+        "what": "Which rule defines the function in the graph? Two linear pieces; the four choices differ by the slope of the right piece (-3x+9 vs x-3) and by the endpoint inequalities (< vs <=).",
+        "answer": "B: x-1 if -3 <= x < 1; -3x+9 if 2 <= x <= 4 (read from the graph; verify against the TE key)",
+        "needs": [
+          "slope of each piece from two points (IXL W67)",
+          "open circle = strict inequality, closed dot = inclusive (no IXL skill; whiteboard drill)"
+        ]
+      },
+      "examples": [
+        {
+          "n": 1,
+          "title": "Model with a piecewise-defined function",
+          "keep": false,
+          "dok": "2",
+          "practice": "15, 22, 23",
+          "why": "Modeling intro; nothing on quiz item 1."
+        },
+        {
+          "n": 2,
+          "title": "Graph a piecewise-defined function",
+          "keep": true,
+          "dok": "1-2",
+          "practice": "11, 12, 13, 16, 25",
+          "ixl": [
+            "RVD"
+          ],
+          "why": "Warm-up: students must read a piecewise graph before matching one to a rule."
+        },
+        {
+          "n": 3,
+          "title": "Write a piecewise-defined rule from a graph",
+          "keep": true,
+          "dok": "1, 3",
+          "practice": "17, 27",
+          "ixl": [
+            "W67"
+          ],
+          "why": "The lesson. Try It 3 is the matching packet work; quiz item 1 and the DOK 3 (item 27) both live here."
+        },
+        {
+          "n": 4,
+          "title": "Rewrite an absolute value function as piecewise",
+          "keep": false,
+          "dok": "1-2",
+          "practice": "18, 19, 26",
+          "why": "Feeds quiz item 3, which was dropped. Optional one-sentence bridge: |x| is itself piecewise, split at the vertex."
+        },
+        {
+          "n": 5,
+          "title": "Graph a step function",
+          "keep": false,
+          "dok": "1-2",
+          "practice": "10, 14, 20, 21, 24",
+          "why": "Replaced by the DOK 3 task (item 27)."
+        }
+      ],
+      "dok3": {
+        "item": 27,
+        "label": "Practice & Problem Solving 27, Performance Task (the lesson's only DOK 3)",
+        "task": "Yama's monthly earnings vs. hours worked, plotted as points (10,200), (20,400), ... (100,2900) joined by segments from (0,0). Write the piecewise function for earnings as a function of hours.",
+        "key": "y = 20x on [0,40]; 30x - 400 on [40,70]; 40x - 1100 on [70,100]",
+        "why": "Students must decide where the slope changes (40 h and 70 h) before finding any slope; IXL items are DOK 1-2 and cannot stand in for this."
+      },
+      "ixl": [
+        {
+          "code": "RVD",
+          "name": "Graph piecewise-defined functions",
+          "directoryId": "I.2",
+          "example": 2,
+          "role": "core"
+        },
+        {
+          "code": "W67",
+          "name": "Find the slope of a linear function",
+          "directoryId": "D.1",
+          "example": 3,
+          "role": "core"
+        },
+        {
+          "code": "WRZ",
+          "name": "Evaluate piecewise-defined functions",
+          "directoryId": "I.1",
+          "role": "prereq"
+        },
+        {
+          "code": "LSG",
+          "name": "Graph a linear function",
+          "directoryId": "D.2",
+          "role": "prereq"
+        }
+      ],
+      "modelDiscuss": {
+        "source": "2024 TE page 23B (Step 1, Explore)",
+        "situation": "A music teacher buys guitar strings. Store A sells a single pack for $6; Store B sells a bundle of 4 packs for $20.",
+        "studentPrompts": [
+          "A. Make graphs that show the income each store receives if the teacher needs 1-20 packs.",
+          "B. Describe the shape of each store's graph. Why are the graphs different?",
+          "C. Communicate Precisely: for what numbers of strings is it cheaper to buy from Store B? Explain how you know. (4, 7, 8, 11, 12, 14-20)"
+        ],
+        "teQuestions": [
+          {
+            "when": "Before, whole class",
+            "q": "How do stores A and B compare?",
+            "a": "Store A sells strings individually; Store B sells them in packages of 4."
+          },
+          {
+            "when": "During, small group",
+            "q": "How do the stores' graphs represent the cost of the guitar strings?",
+            "a": "Store A rises steadily, $6 more per string. Store B is constant at $20 for 1-4 strings, then jumps $20 and is constant again."
+          },
+          {
+            "when": "Early finishers",
+            "q": "How can you represent the stores' prices as equations?",
+            "a": "Store A: y = 6x. Store B: y = 20 for 0 < x <= 4, 40 for 4 < x <= 8, 60 for 8 < x <= 12, 80 for 12 < x <= 16, 100 for 16 < x <= 20."
+          },
+          {
+            "when": "After, whole class",
+            "q": "What is different about the shapes of the two graphs?",
+            "a": "Graph A is linear; graph B is a set of horizontal segments (a step function)."
+          },
+          {
+            "when": "Habits of Mind, Communicate Precisely",
+            "q": "Why do you use dots rather than line segments to graph these two functions?",
+            "a": "Dots show whole numbers of strings only; you cannot buy a fraction of a string."
+          }
+        ],
+        "caution": "The opener is a step-function situation (Example 5 content, cut). It still works as the hook; only the early-finishers equations question leads toward Example 3."
+      }
+    },
+    "1-2": {
+      "title": "Transformations of Functions",
+      "status": "Draft, Tue Oct 6 2026, from the Sep 27 packet plan (Examples 1-5, focus Ex 5, Try It 5 graded, Ex 6 dropped); PLC has not re-cut this packet yet",
+      "objectives": {
+        "learning": "I can tell which transformations (left/right, up/down, stretch, reflection) turn a parent graph into a new graph.",
+        "language": "I can describe a transformation in writing using the words left, right, up, down, stretch, compress and reflect.",
+        "essentialQuestion": "How do the values a, b, h and k in a·f(b(x − h)) + k move or reshape the graph of f?"
+      },
+      "quizFocus": {
+        "item": 1,
+        "source": "aga_24_a2_na_0102_lq.pdf; the only 1-2 item carried into the Topic 1 assessment (end of October)",
+        "what": "Select all the transformations of f(x) = x^2 that produce the graph of g (downward parabola, vertex (-1, -2)). Choices: A 1 left, B 1 right, C 2 down, D horizontal stretch by 2, E vertical stretch by 2, F reflection across the x-axis.",
+        "answer": "A, C, D, F (TE key): 1 left, 2 down, horizontal stretch by 2, reflect across the x-axis. g(x) = -(1/2 (x+1))^2 - 2.",
+        "needs": [
+          "read the vertex and use the sign rule: (x + 1) is 1 LEFT, -2 is 2 down (Example 1, IXL F6J)",
+          "opens down = reflection across the x-axis (Example 2, IXL PHV)",
+          "wider than x^2 = horizontal stretch, not vertical stretch; check a point one unit from the vertex (Example 3, IXL NNY)",
+          "put it together from the graph with no equation given (Example 5, IXL KT8 / R7X)"
+        ]
+      },
+      "examples": [
+        {
+          "n": 1,
+          "title": "Translate a function",
+          "keep": true,
+          "dok": "1, 3",
+          "practice": "18-21, 13",
+          "ixl": [
+            "F6J"
+          ],
+          "why": "Left/right and up/down; the sign trap in (x + 1) is half of quiz item 1."
+        },
+        {
+          "n": 2,
+          "title": "Reflect a function across the x- or y-axis",
+          "keep": true,
+          "dok": "1-2",
+          "practice": "16, 22, 23, 14",
+          "ixl": [
+            "PHV"
+          ],
+          "why": "Opens-down = reflection across the x-axis (choice F)."
+        },
+        {
+          "n": 3,
+          "title": "Understand stretches and compressions",
+          "keep": true,
+          "dok": "1, 3",
+          "practice": "24-27, 15",
+          "ixl": [
+            "NNY"
+          ],
+          "why": "Horizontal vs vertical stretch (choice D vs E); the hardest distinction on the item."
+        },
+        {
+          "n": 4,
+          "title": "Graph a combination of transformations",
+          "keep": false,
+          "dok": "1",
+          "practice": "28",
+          "ixl": [
+            "RSN"
+          ],
+          "why": "Graphing from a rule is quiz item 3, which is not on the topic assessment. Optional if time allows."
+        },
+        {
+          "n": 5,
+          "title": "Identify transformations from an equation",
+          "keep": true,
+          "dok": "2, 3",
+          "practice": "29-32, 36, 17, 37",
+          "ixl": [
+            "KT8",
+            "R7X",
+            "KQL",
+            "FYJ"
+          ],
+          "why": "The lesson. Try It 5 is the graded Try It; quiz item 1 is Example 5 read from a graph instead of an equation."
+        },
+        {
+          "n": 6,
+          "title": "Write an equation from a graph",
+          "keep": false,
+          "dok": "3",
+          "practice": "33-35, 38",
+          "ixl": [
+            "A73",
+            "FYJ"
+          ],
+          "why": "Dropped from the packet (Sep 27). Its DOK 3 items are not needed; Example 5 carries items 17 and 37."
+        }
+      ],
+      "dok3": {
+        "item": 17,
+        "label": "Practice & Problem Solving 17, Error Analysis (Example 5 DOK 3; item 37 is the SAT/ACT alternative)",
+        "task": "Monisha compares f(x) = |x| and g(x) = |2x - 4|. She says g is f translated 4 right and compressed horizontally by 2. What is her error?",
+        "key": "|2x - 4| = 2|x - 2|, so g is f translated 2 right and stretched vertically by 2 (or, read as f(2(x - 2)), compressed horizontally by 1/2 and shifted 2 right).",
+        "why": "Students must factor inside the absolute value before reading the transformations; the same inside-vs-outside reasoning as quiz item 1's choice D vs E."
+      },
+      "ixl": [
+        {
+          "code": "F6J",
+          "name": "Translations of functions",
+          "directoryId": "W.2",
+          "example": 1,
+          "role": "core"
+        },
+        {
+          "code": "PHV",
+          "name": "Reflections of functions",
+          "directoryId": "W.3",
+          "example": 2,
+          "role": "core"
+        },
+        {
+          "code": "NNY",
+          "name": "Dilations of functions",
+          "directoryId": "W.4",
+          "example": 3,
+          "role": "core"
+        },
+        {
+          "code": "KT8",
+          "name": "Describe function transformations",
+          "directoryId": "W.6",
+          "example": 5,
+          "role": "core"
+        },
+        {
+          "code": "R7X",
+          "name": "Function transformation rules",
+          "directoryId": "W.1",
+          "example": 5,
+          "role": "core"
+        },
+        {
+          "code": "KQL",
+          "name": "Transformations of quadratic functions",
+          "directoryId": "N.4",
+          "example": 5,
+          "role": "core, closest to quiz item 1 (parabola)"
+        },
+        {
+          "code": "23W",
+          "name": "Graph an absolute value function",
+          "directoryId": "H.3",
+          "role": "prereq"
+        },
+        {
+          "code": "FS8",
+          "name": "Find values using function graphs",
+          "directoryId": "A.4",
+          "role": "prereq"
+        }
+      ],
+      "modelDiscuss": {
+        "source": "2024 TE, Step 1 Explore (this lesson's opener is Explore & Reason, powered by Desmos)",
+        "situation": "The graph of f(x) = |x| is shown. Students graph g(x) = |x + c| for several values of c from -5 to 5.",
+        "studentPrompts": [
+          "A. Graph g(x) = |x + c| several times with different values of c (any value from -5 to 5).",
+          "B. Look for Relationships: predict what happens to the graph if c is greater than 100. What if c is between 0 and 1/2? (Very large shift left; very small shift left.)"
+        ],
+        "teQuestions": [
+          {
+            "when": "Before, whole class",
+            "q": "What does the graph tell you about the range of f(x) = |x|?",
+            "a": "The range is greater than or equal to zero."
+          },
+          {
+            "when": "Before, whole class",
+            "q": "What can you predict about the range of g(x) = |x + c| for different values of c?",
+            "a": "Whatever c is, the range is still greater than or equal to zero."
+          },
+          {
+            "when": "During, small group",
+            "q": "How can you find points to graph for each function?",
+            "a": "Make a table of values for x from -5 to 5 and compute y."
+          },
+          {
+            "when": "During, small group",
+            "q": "What do you notice about the vertex of each function?",
+            "a": "The vertices all lie on the x-axis."
+          },
+          {
+            "when": "Early finishers",
+            "q": "How does the graph change if the coefficient of f(x + c) is negative? Graph -f(x + c) for three of your functions.",
+            "a": "The graphs of -f(x + c) are reflections of f(x + c) across the x-axis."
+          },
+          {
+            "when": "After, whole class",
+            "q": "If f(x) has a horizontal shift, what part of the function has been changed?",
+            "a": "x stands for the domain, so the operation is applied to x inside the parentheses."
+          },
+          {
+            "when": "After, whole class",
+            "q": "If f(x) has a vertical shift, what part of the function has been changed?",
+            "a": "f(x) stands for the range, so the operation is applied to f(x)."
+          },
+          {
+            "when": "Habits of Mind, Reason",
+            "q": "What happens to the graph if c is a negative number?",
+            "a": "The graph shifts to the right when c is negative."
+          }
+        ],
+        "caution": "The After questions are the moment to introduce a·f(b(x - h)) + k. The Mon/Tue whiteboard table activity (a2_1-2_plan_oct5-7) already does part A on paper; the TE's 'table of values' answer matches it."
+      }
+    }
+  }
+}

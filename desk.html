@@ -7113,6 +7113,59 @@ function applyA2LessonSkills(map) {
   return true;
 }
 function a2LessonSkills(topic) { return A2_LESSON_SKILLS[String(topic).replace('.', '-')] || []; }
+// Teacher prep per lesson (content/a2/lesson-prep.json): PLC keep/cut decisions, the quiz
+// item the lesson is taught toward, IXL skill per example, the DOK 3 task and the TE's
+// Model & Discuss questions. Teacher-only: only the teacher day panel reads it.
+let A2_LESSON_PREP = {};
+function applyA2LessonPrep(map) {
+  if (!map || typeof map.lessons !== 'object') return false;
+  A2_LESSON_PREP = map.lessons;
+  return true;
+}
+function _appendA2TeacherPrep(fold, prep) {
+    var p = function (host, strong, text, cls) {
+        var el = document.createElement('p'); if (cls) el.className = cls;
+        if (strong) { var b = document.createElement('strong'); b.textContent = strong + ' '; el.appendChild(b); }
+        el.appendChild(document.createTextNode(text || '')); host.appendChild(el); return el;
+    };
+    var sub = function (label, open) {
+        var d = document.createElement('details'); d.className = 'a2-day-fold'; d.open = !!open;
+        var s = document.createElement('summary'); s.textContent = label; d.appendChild(s);
+        fold.appendChild(d); return d;
+    };
+    if (prep.status) p(fold, null, prep.status, 'a2-week-muted');
+    if (prep.objectives) {
+        var o = sub('Objectives (PLC draft)', true);
+        p(o, 'Learning', prep.objectives.learning);
+        p(o, 'Language', prep.objectives.language);
+        if (prep.objectives.essentialQuestion) p(o, 'Essential question', prep.objectives.essentialQuestion);
+    }
+    if (prep.quizFocus) {
+        var q = sub('Quiz focus: item ' + prep.quizFocus.item, true);
+        p(q, null, prep.quizFocus.what);
+        if (prep.quizFocus.answer) p(q, 'Key', prep.quizFocus.answer);
+        (prep.quizFocus.needs || []).forEach(function (n) { p(q, 'Needs', n); });
+    }
+    if (Array.isArray(prep.examples)) {
+        var ex = sub('Examples: keep ' + prep.examples.filter(function (e) { return e.keep; }).map(function (e) { return e.n; }).join(', ') + ', cut ' + prep.examples.filter(function (e) { return !e.keep; }).map(function (e) { return e.n; }).join(', '), true);
+        prep.examples.forEach(function (e) {
+            var line = p(ex, 'Ex ' + e.n + (e.keep ? ' KEEP' : ' cut'), e.title + ' (DOK ' + e.dok + (e.ixl && e.ixl.length ? ', IXL ' + e.ixl.join(', ') : '') + ')' + (e.why ? ' - ' + e.why : ''));
+            if (!e.keep) line.className = 'a2-day-past';
+        });
+    }
+    if (prep.dok3) {
+        var d3 = sub('DOK 3: ' + prep.dok3.label, false);
+        p(d3, null, prep.dok3.task); if (prep.dok3.key) p(d3, 'Key', prep.dok3.key); if (prep.dok3.why) p(d3, 'Why', prep.dok3.why);
+    }
+    if (prep.modelDiscuss) {
+        var md = prep.modelDiscuss, m = sub('Model & Discuss: TE questions', false);
+        if (md.source) p(m, null, md.source, 'a2-week-muted');
+        if (md.situation) p(m, null, md.situation);
+        (md.studentPrompts || []).forEach(function (s) { p(m, null, s); });
+        (md.teQuestions || []).forEach(function (t) { p(m, t.when + ':', t.q + ' - ' + t.a); });
+        if (md.caution) p(m, 'Caution', md.caution);
+    }
+}
 function _appendIxlLinks(body, skills) {
   (skills || []).filter(function (skill) { return skill && skill.url && skill.name; }).forEach(function (skill) {
     var row = document.createElement('p');
@@ -7984,6 +8037,12 @@ function _showA2TeacherDayPanel(inf, dateStr, entry, key, header, body) {
         var ps = document.createElement('summary'); ps.textContent = 'Prerequisites (' + prereq.length + ')'; pre.appendChild(ps);
         prereq.forEach(function (sk) { skillLine(pre, sk); });
         res.appendChild(pre);
+    }
+    var prep = typeof A2_LESSON_PREP === 'object' && A2_LESSON_PREP[key];
+    if (prep) {
+        var pf = fold('Teacher prep (' + key + ')');
+        pf.open = true;
+        _appendA2TeacherPrep(pf, prep);
     }
     var other = fold('Other resources');
     var deckRow = document.createElement('p');
@@ -15277,7 +15336,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-10-01-2mzq';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-10-06-ymcr';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

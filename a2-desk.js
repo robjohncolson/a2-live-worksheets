@@ -16,6 +16,12 @@
       const map = await (await fetch('content/a2/lesson-skills.json')).json();
       if (typeof applyA2LessonSkills === 'function') applyA2LessonSkills(map);
     } catch (_) { /* optional */ }
+    try {
+      // Teacher prep notes (content/a2/lesson-prep.json): keep/cut examples, quiz focus,
+      // the TE's Model & Discuss questions. Teacher-only; rendered in the lesson panel.
+      const prep = await (await fetch('content/a2/lesson-prep.json', { cache: 'no-store' })).json();
+      if (typeof applyA2LessonPrep === 'function') applyA2LessonPrep(prep);
+    } catch (_) { /* optional */ }
   }
   async function loadDayLog() {
     if (dayLogLoaded) return;

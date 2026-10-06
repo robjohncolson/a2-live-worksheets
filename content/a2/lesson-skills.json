@@ -223,14 +223,27 @@
         "directoryId": "I.1",
         "name": "Evaluate piecewise-defined functions",
         "url": "https://www.ixl.com/math/algebra-2/evaluate-piecewise-defined-functions",
-        "level": "core"
+        "level": "prereq"
       },
       {
         "code": "RVD",
         "directoryId": "I.2",
         "name": "Graph piecewise-defined functions",
         "url": "https://www.ixl.com/math/algebra-2/graph-piecewise-defined-functions",
-        "level": "core"
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "W67",
+        "directoryId": "D.1",
+        "name": "Find the slope of a linear function",
+        "url": "https://www.ixl.com/math/algebra-2/find-the-slope-of-a-linear-function",
+        "level": "core",
+        "example": [
+          3
+        ]
       }
     ],
     "1-4": [
