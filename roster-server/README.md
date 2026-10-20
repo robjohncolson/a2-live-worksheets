@@ -104,6 +104,39 @@ The session JSON the phone publishes (`sessions/<date>/<section>.json` in the
 data repo) now carries `observerCard.id` (the `observer_cards` row id), not a
 `cards/...` file path.
 
+## Class Log summaries
+
+After the phone publishes a lesson summary (`school/class-log/POLISH2_SPEC.md`,
+WP-C) it posts it here so the Desk can read what landed, what students asked,
+what was promised and what to prep next.
+
+1. Migration: in the Supabase SQL editor run
+   `migrations/0043_class_summaries.sql` (table `a2.class_summaries`, primary key
+   (date, course, section), RLS on, service role only; every name is
+   schema-qualified, so no `SET search_path` is needed), then
+   `NOTIFY pgrst, 'reload schema';`. Until it runs, both routes answer 503 and
+   the phone retries. `deploy/supabase_a2_bootstrap.sql` includes it.
+2. Env: none new. The phone uses the same `CLASS_LOG_TOKEN` as the observer
+   cards (its Cards URL and token settings).
+
+| Route | Auth | Does |
+|---|---|---|
+| `POST /class-log/summaries` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | Body `{date, course, section, model, markdown, landed, studentQuestions, promises, nextPrep, transcriptPath, summaryPath}`; upserts on (date, course, section), replacing the whole row and stamping `recorded_at`; `{ok: true}`. 400 bad body. |
+| `GET /teacher/summaries?from=YYYY-MM-DD&to=YYYY-MM-DD` | teacher (`x-teacher-secret` or teacher token) | `{from, to, summaries}`: rows with `from <= date <= to` (both required, at most 62 days inclusive), ordered by date, section, course, in the POST body's camelCase shape plus `recordedAt`. |
+
+Wrong or missing bearer token: 401 with no body; `CLASS_LOG_TOKEN` unset: 503.
+The phone route is mounted before the app-wide JSON parser with a 1 MB route
+parser (enough for every field at its limit in 4-byte characters), so bad JSON
+gives `400 {ok:false,error:"bad_json"}` and an oversize body
+`413 {ok:false,error:"too_large"}`. Storage errors, including the missing table,
+give 503 with no details.
+
+Limits (characters, not bytes): course `algebra2`/`apstats`; section 1-16
+(trimmed); model up to 64 (optional); markdown required, up to 40 000; each of
+`landed`, `studentQuestions`, `promises`, `nextPrep` an array of up to 40
+strings of up to 400 (trimmed, blank items dropped, missing means `[]`);
+`transcriptPath`/`summaryPath` up to 200 (optional).
+
 ## Verification
 
 Run `npx vitest run` from this directory. Tests use injected databases; PostgreSQL
