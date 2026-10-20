@@ -68,7 +68,7 @@ The Class Log phone app (`school/class-log`, contract in its
 
 | Route | Auth | Does |
 |---|---|---|
-| `GET /class-log/cards?date=YYYY-MM-DD` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | `{date, cards}` with every row for the day. Strong `ETag`: `"empty"` for no cards, otherwise `"<count>-<16 hex>"`, a sha256 of every column of every row (sorted by id), so any edit, including a hand edit in the SQL editor, an insert or a delete changes it. Only an exact `If-None-Match` gives 304 (`*`, weak and list forms get the 200). `Cache-Control: no-cache`. |
+| `GET /class-log/cards?date=YYYY-MM-DD` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | `{date, cards}` with every row for the day. Strong `ETag`: `"empty"` for no cards, otherwise `"<count>-<16 hex>"`, a sha256 of every column of every row (sorted by id), so any edit, including a hand edit in the SQL editor, an insert or a delete changes it. Only an exact `If-None-Match` gives 304; a `W/` prefix is ignored because the compression layer weakens the tag on the wire (`*` and list forms get the 200). `Cache-Control: no-cache`. |
 | `POST /class-log/cards/:id/outcome` | same bearer | Body `{section, ran, at, device}` (`at` null or `HH:MM`, `device` defaults to `s24`); upserts on (card, section, device); `{ok: true}`. 400 bad body, 404 unknown card. |
 | `PUT /teacher/cards` | teacher (`x-teacher-secret` or teacher token) | Array of cards without `id`; upserts by (date, course, section), writing only rows whose content changed, so unchanged pushes keep `updated_at` and the ETag. `{ok, written, unchanged}`. |
 

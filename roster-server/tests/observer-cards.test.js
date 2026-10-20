@@ -184,7 +184,9 @@ describe('GET /class-log/cards and ETag', () => {
     const etag = response.etag;
     expect(etag).toMatch(/^"2-[0-9a-f]{16}"$/);
     expect((await getCards('2026-10-21', { ...auth, 'If-None-Match': etag })).status).toBe(304);
-    for (const value of ['*', 'W/' + etag, `"other", ${etag}`, `${etag}, "other"`, '"stale"']) {
+    // The proxy/compression layer weakens the tag on the wire; the phone sends W/"..." back.
+    expect((await getCards('2026-10-21', { ...auth, 'If-None-Match': 'W/' + etag })).status).toBe(304);
+    for (const value of ['*', `"other", ${etag}`, `${etag}, "other"`, '"stale"', 'W/"stale"']) {
       const fresh = await getCards('2026-10-21', { ...auth, 'If-None-Match': value });
       expect(fresh.status, value).toBe(200);
       expect(fresh.body.cards, value).toHaveLength(2);

@@ -120,9 +120,11 @@ export function mountObserverCards(app, { store, env = process.env, now = () => 
     try { cards = await storage().listByDate(date); } catch { return unavailable(res); }
     const etag = cardsEtag(cards);
     const headers = { ETag: etag, 'Cache-Control': 'no-cache' };
-    // Exact match only. The 200 goes out through res.end so Express's own
-    // freshness check (which honours *, weak and list forms) cannot turn it into a 304.
-    if (req.get('if-none-match') === etag) return res.status(304).set(headers).end();
+    // Exact match only, ignoring a weak prefix: the compression layer in front of the
+    // app turns our strong ETag into W/"..." on the wire, and the phone echoes that back.
+    // The 200 goes out through res.end so Express's own freshness check (*, lists) cannot turn it into a 304.
+    const sent = String(req.get('if-none-match') || '').trim().replace(/^W\//, '');
+    if (sent === etag) return res.status(304).set(headers).end();
     res.status(200).set({ ...headers, 'Content-Type': 'application/json; charset=utf-8' }).end(JSON.stringify({ date, cards }));
   }, parserErrors);
 
