@@ -18,6 +18,7 @@ import { generateUsername } from './username.js';
 import { mountLedger } from './ledger.js';
 import { mountA2 } from './a2-routes.js';
 import { mountAnnouncements } from './announcements.js';
+import { mountObserverCards, mountTeacherCards } from './observer-cards.js';
 import { createA2Store } from './a2-lessons.js';
 import { mountLedgerImport } from './ledger-import.js';
 import { mountAdminSnapshot } from './admin-snapshot.js';
@@ -174,10 +175,15 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
   if (origins === undefined) console.warn('CORS_ORIGINS is unset; allowing all origins. Set the deployment allowlist.');
   app.use(cors({ origin: origins === undefined ? '*' : origins.split(',').map(value => value.trim()).filter(Boolean) }));
   
+  // Class Log observer card phone routes (migrations 0041/0042; CLASS_LOG_TOKEN
+  // unset => 503). Mounted before the app-wide JSON parser: auth runs first, then
+  // a bounded route-local parser, so unauthenticated junk bodies get 401/503.
+  mountObserverCards(app, {});
   app.use(express.json({ limit: '8mb' }));
   mountPasswordGate(app, db);
   mountPasswordReset(app, db, bcryptCost());
   mountAnnouncements(app, { db, config: gradeConfig });
+  mountTeacherCards(app, { db }); // PUT /teacher/cards, behind the password gate
   // Railway runs behind a SINGLE edge proxy — trust exactly ONE hop so req.ip is
   // the proxy-appended client address. `true` (trust the whole chain) would let a
   // client forge X-Forwarded-For and rotate it to defeat the limiter; a bounded

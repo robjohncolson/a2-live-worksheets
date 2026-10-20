@@ -51,6 +51,59 @@ CORS is currently broad through `app.use(cors())`. Protected endpoints still
 require authentication. See [the CORS deployment note](docs/cors.md) before
 restricting origins; verify every retained browser client after a change.
 
+## Class Log observer cards
+
+The Class Log phone app (`school/class-log`, contract in its
+`OBSERVER_CARD_DB_SPEC.md`) reads each block's observer card from this server.
+
+1. Migrations: in the Supabase SQL editor run `SET search_path TO a2;`, then
+   `migrations/0041_observer_cards.sql` (tables `observer_cards` and
+   `observer_card_outcomes`) and `migrations/0042_observer_cards_unique.sql`
+   (one card per day/course/section even when section is null, and an
+   `updated_at` bump trigger), then `NOTIFY pgrst, 'reload schema';`.
+   `deploy/supabase_a2_bootstrap.sql` includes both for fresh projects.
+2. Env: set `CLASS_LOG_TOKEN` on Railway (`openssl rand -hex 32`) and paste the
+   same value into the phone's Settings as the Cards token. Unset, the phone
+   routes answer 503.
+
+| Route | Auth | Does |
+|---|---|---|
+| `GET /class-log/cards?date=YYYY-MM-DD` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | `{date, cards}` with every row for the day. Strong `ETag`: `"empty"` for no cards, otherwise `"<count>-<16 hex>"`, a sha256 of every column of every row (sorted by id), so any edit, including a hand edit in the SQL editor, an insert or a delete changes it. Only an exact `If-None-Match` gives 304 (`*`, weak and list forms get the 200). `Cache-Control: no-cache`. |
+| `POST /class-log/cards/:id/outcome` | same bearer | Body `{section, ran, at, device}` (`at` null or `HH:MM`, `device` defaults to `s24`); upserts on (card, section, device); `{ok: true}`. 400 bad body, 404 unknown card. |
+| `PUT /teacher/cards` | teacher (`x-teacher-secret` or teacher token) | Array of cards without `id`; upserts by (date, course, section), writing only rows whose content changed, so unchanged pushes keep `updated_at` and the ETag. `{ok, written, unchanged}`. |
+
+Wrong or missing bearer token: 401 with no body. The phone routes are mounted
+before the app-wide JSON parser: auth runs first, then a 64 KB route parser, so
+bad JSON gives `400 {ok:false,error:"bad_json"}` and an oversize body
+`413 {ok:false,error:"too_large"}` (no stack). `PUT /teacher/cards` sits behind
+the password gate like the other teacher routes, so the app-wide parser applies there.
+
+Limits (characters, not bytes; 400 before storage): section 16, device 32,
+title 200, lesson 32, frame 500, body 4000; minutes an integer 1-180; course
+`algebra2`/`apstats`; at most 500 cards per PUT. The rules live in
+`observer-card-rules.js`, shared with the push script.
+
+Authoring: a `content/a2/day-log.json` entry may carry an `observerCard`
+(date, section and lesson come from the entry; section `all` or none means every
+section that day):
+
+```json
+{ "date": "2026-10-21", "section": "G", "lesson": "1-3", "plan": "...",
+  "observerCard": { "title": "Which graph matches the table?", "mode": "whiteboards",
+    "minutes": 8, "frame": "I chose ___ because ___.",
+    "body": "## Prompt\n\nShow the table; boards up on 3." } }
+```
+
+Modes: `whiteboards`, `ipad`, `poster`, `pairs`, `jam`, `other`. Then run
+`node scripts/push-observer-cards.mjs [--from YYYY-MM-DD] [--dry-run] [--server URL] [--secret S]`
+from the repo root (teacher secret resolved like the other Desk scripts; server
+error text is redacted and truncated before printing). It is idempotent and safe
+in a cron.
+
+The session JSON the phone publishes (`sessions/<date>/<section>.json` in the
+data repo) now carries `observerCard.id` (the `observer_cards` row id), not a
+`cards/...` file path.
+
 ## Verification
 
 Run `npx vitest run` from this directory. Tests use injected databases; PostgreSQL
