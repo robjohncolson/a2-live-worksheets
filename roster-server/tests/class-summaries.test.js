@@ -282,11 +282,18 @@ describe('storage failures', () => {
   });
 
   it('pages through a range larger than one page without truncation', async () => {
-    for (let i = 0; i < 1203; i++) expect((await post({ ...summary(), section: 'S' + String(i).padStart(4, '0') })).status).toBe(200);
-    const res = await list('?from=2026-01-01&to=2026-12-31'.replace('2026-01-01', '2026-10-01').replace('2026-12-31', '2026-11-30'));
-    expect(res.status).toBe(200);
-    expect(res.body.summaries).toHaveLength(1203);
-    expect(res.body.summaries[0].section).toBe('S0000');
-    expect(res.body.summaries[1202].section).toBe('S1202');
+    // A 5-row page here stands in for PostgREST's 1000-row cap in production.
+    const paged = createClassSummaryStore(fakeSupabase(pg), { page: 5 });
+    const app = express();
+    mountTeacherSummaries(app, { store: paged, db: { getRoleByStudentId: async () => 'student' } });
+    const { listener, url } = await listen(app);
+    try {
+      for (let i = 0; i < 13; i++) expect((await post({ ...summary(), section: 'S' + String(i).padStart(2, '0') })).status).toBe(200);
+      const res = await list('?from=2026-10-01&to=2026-11-30', teacher, url);
+      expect(res.status).toBe(200);
+      expect(res.body.summaries).toHaveLength(13);
+      expect(res.body.summaries[0].section).toBe('S00');
+      expect(res.body.summaries[12].section).toBe('S12');
+    } finally { await close(listener); }
   });
 });

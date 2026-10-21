@@ -91,7 +91,7 @@ export function summaryFromRow(row) {
 // missing table before 0043 runs).
 const PAGE = 500;
 
-export function createClassSummaryStore(client = createServiceClient()) {
+export function createClassSummaryStore(client = createServiceClient(), { page = PAGE } = {}) {
   const check = ({ data, error }) => { if (error) throw error; return data; };
   return {
     async upsertSummary(row) {
@@ -101,11 +101,11 @@ export function createClassSummaryStore(client = createServiceClient()) {
     // (1000 on Supabase by default) can never truncate a range silently.
     async listRange(from, to) {
       const rows = [];
-      for (let start = 0; ; start += PAGE) {
-        const page = check(await client.from('class_summaries').select('*').gte('date', from).lte('date', to)
-          .order('date').order('section').order('course').range(start, start + PAGE - 1)) || [];
-        rows.push(...page);
-        if (page.length < PAGE) return rows;
+      for (let start = 0; ; start += page) {
+        const chunk = check(await client.from('class_summaries').select('*').gte('date', from).lte('date', to)
+          .order('date').order('section').order('course').range(start, start + page - 1)) || [];
+        rows.push(...chunk);
+        if (chunk.length < page) return rows;
       }
     },
   };
