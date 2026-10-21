@@ -33,6 +33,10 @@ describe('push-observer-cards', () => {
       { date: '2026-10-21', section: 'all', observerCard: { title: 't', body: 'x' } },
       { date: '2026-10-21', observerCard: { title: 'u', body: 'y' } },
     ] })).toThrow(/more than one/);
+    expect(buildCards(log, { date: '2026-10-21' }).map(card => card.date)).toEqual(['2026-10-21']);
+    expect(parseArgs(['--date', '2026-10-21'])).toEqual({ dryRun: false, date: '2026-10-21' });
+    expect(() => parseArgs(['--date', '2026-02-30'])).toThrow(/real/);
+    expect(() => parseArgs(['--date', '2026-10-21', '--from', '2026-10-20'])).toThrow(/combined/);
     expect(() => parseArgs(['--from', '10/21'])).toThrow(/YYYY-MM-DD/);
     expect(() => parseArgs(['--from', '2026-02-30'])).toThrow(/real/);
     expect(parseArgs(['--dry-run', '--server', 'http://x'])).toEqual({ dryRun: true, server: 'http://x' });

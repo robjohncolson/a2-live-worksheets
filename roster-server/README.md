@@ -95,8 +95,8 @@ section that day):
 ```
 
 Modes: `whiteboards`, `ipad`, `poster`, `pairs`, `jam`, `other`. Then run
-`node scripts/push-observer-cards.mjs [--from YYYY-MM-DD] [--dry-run] [--server URL] [--secret S]`
-from the repo root (teacher secret resolved like the other Desk scripts; server
+`node scripts/push-observer-cards.mjs [--from YYYY-MM-DD | --date YYYY-MM-DD] [--dry-run] [--server URL] [--secret S]`
+(`--from`: that date and later; `--date`: exactly that date) from the repo root (teacher secret resolved like the other Desk scripts; server
 error text is redacted and truncated before printing). It is idempotent and safe
 in a cron.
 
@@ -136,6 +136,129 @@ Limits (characters, not bytes): course `algebra2`/`apstats`; section 1-16
 `landed`, `studentQuestions`, `promises`, `nextPrep` an array of up to 40
 strings of up to 400 (trimmed, blank items dropped, missing means `[]`);
 `transcriptPath`/`summaryPath` up to 200 (optional).
+
+## Class Log schedule overrides
+
+The Desk tells the phone about one-off bell changes (`school/class-log/POLISH3_SPEC.md`,
+WP-S): a section cancelled for a day, different bell times, or a day off.
+
+1. Migration: in the Supabase SQL editor run
+   `migrations/0044_schedule_overrides.sql` (tables `a2.schedule_overrides`,
+   primary key (date, section), and `a2.schedule_days_off`, primary key date; RLS
+   on, service role only, `updated_at` bump triggers; every name schema-qualified),
+   then `NOTIFY pgrst, 'reload schema';`. Until it runs, every route answers 503
+   and the phone keeps its local schedule. `deploy/supabase_a2_bootstrap.sql`
+   includes it.
+2. Env: none new (the phone's `CLASS_LOG_TOKEN`).
+
+| Route | Auth | Does |
+|---|---|---|
+| `GET /class-log/schedule?from=YYYY-MM-DD&to=YYYY-MM-DD` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | `{from, to, overrides: [{date, section, start, end, cancelled, note}], daysOff: [date]}` for `from <= date <= to` (both required, at most 31 days inclusive). `start`/`end` are `HH:MM`, null on a cancelled row. Strong `ETag` over `from`, `to` and every column of every row in the range (`"empty-<hash>"` when there are none), so a different window never matches another window's tag, even with identical or no rows; `If-None-Match` gives 304 on an exact match, ignoring a `W/` prefix. `Cache-Control: no-cache`. |
+| `GET /teacher/schedule-overrides?from=&to=` | teacher (`x-teacher-secret` or teacher token) | The same payload, for the Desk health strip. |
+| `PUT /teacher/schedule-overrides` | teacher | Body `{overrides: [...], daysOff: ["YYYY-MM-DD" or {date, note}]}`; upserts by (date, section) and by date, writing only rows whose content changed (so unchanged pushes keep `updated_at` and the ETag). `{ok, written, unchanged}`. |
+| `DELETE /teacher/schedule-overrides?date=YYYY-MM-DD[&section=S]` | teacher | Removes that override, or the day off when `section` is omitted. `{ok, deleted}` (0 or 1). |
+
+Rules (400 before storage, shared with the seed script in `schedule-rules.js`):
+real dates; section 1-16 characters (trimmed); a row that is not `cancelled`
+needs `start` and `end` as `HH:MM` with start before end, a cancelled row has
+neither; note up to 200; source `desk`/`manual`; at most 200 rows (overrides
+plus days off) per PUT, no duplicate keys; DELETE's `section` 1-16 characters
+without U+0000. A day-off row cancels every section that day. Storage errors give
+503 without details.
+
+Body parsing: like `PUT /teacher/cards`, the teacher routes are mounted after the
+app-wide 8 MB JSON parser because the password gate needs the parsed body, so in
+`createApp` that parser (not the 256 KB route parser) bounds the body and runs
+before `requireTeacher`. A malformed or oversize body on any route behind it gets
+the app-level sanitized error, `400 {ok:false,error:"bad_json"}` or
+`413 {ok:false,error:"too_large"}`, never Express's HTML page or a stack.
+
+Seeding: from the repo root,
+`node scripts/push-schedule.mjs [--dry-run] [--from YYYY-MM-DD] [--to YYYY-MM-DD] [--days-off YYYY-MM-DD,...]`
+sends the built-in seed (the 2026-10-21 SAT day: D 11:20-12:00, B/C/E/G
+cancelled), day-log entries carrying `bell: {start, end}` (optional `bellNote`)
+or `cancelled: true`, and the days off from `data/a2-school-year.json` (the Desk
+calendar's closures), the Class Log schedule file
+(`../class-log/schedule.lehs-sy2627.json`, or `--schedule PATH`) and
+`--days-off`, from today (New York) on. It warns about early-release days that
+have no bell times (one line per section that meets that weekday in the Class
+Log weekly table and has no override) and about days off that the day log still
+plans a class on.
+Teacher secret, server and redaction work like `push-observer-cards.mjs`; it is
+idempotent.
+
+## Class Log health
+
+The phone posts a health ping (`school/class-log/POLISH3_SPEC.md`, WP-H) at arm,
+disarm and after each published block; the Desk shows it as one line under the
+menu bar.
+
+1. Migration: run `migrations/0045_device_health.sql` (tables
+   `a2.device_health`, one current row per device, and `a2.device_health_log`;
+   RLS on, service role only), then `NOTIFY pgrst, 'reload schema';`. Until it
+   runs both routes answer 503. `deploy/supabase_a2_bootstrap.sql` includes it.
+2. Env: none new.
+
+| Route | Auth | Does |
+|---|---|---|
+| `POST /class-log/health` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | Body up to 8 KB: `{device, at, appVersion, battery, mode, nextBlock, alarmAt, serviceForeground, queues, lastRecording, lastFetch, failures24h}`. Only `device` (default `s24`, up to 32 characters) and `at` (ISO 8601 or null) are checked; the whole body is stored as `payload`. Upserts the current row, appends a log row, and deletes log rows received more than 30 days ago. `{ok: true}`. |
+| `GET /teacher/health` | teacher | `{devices: [{device, at, receivedAt, ageMinutes, payload}]}`; `ageMinutes` counts from the server's receive time. |
+
+Same middleware order as the cards: the phone route is mounted before the
+app-wide parser with an 8 KB route parser (`413 too_large`, `400 bad_json`).
+
+The Desk strip (`lib/class-log-health.js`, `#class-log-health` in `desk.html`)
+appears only for a signed-in teacher, refreshes every 5 minutes, and hides
+itself on any error (including the 503 before the migration). It turns red when
+the last ping is more than 90 minutes old between an hour before today's first
+block and 30 minutes after the last, when `failures24h > 0`, or when the latest
+block that ended (15-minute grace) has no `lastRecording` from today for that
+same section ending after the block started, judged only from a ping sent after
+that block ended. Today's blocks are the weekly bell table in the module (copied
+from the phone's schedule file) adjusted by `GET /teacher/schedule-overrides`; if
+that GET fails the strip hides rather than falling back to the weekly table.
+
+## Drafting cards from summaries
+
+`scripts/draft-observer-cards.mjs` closes the loop (`POLISH3_SPEC.md`, WP-L):
+for each Algebra 2 section meeting on the target date it reads the latest
+summary before that date (`GET /teacher/summaries`), the day-log entry (plan,
+lesson) and the previous card (`GET /teacher/cards?date=<summary date>`, a
+teacher route returning the same `{date, cards}` rows as the phone GET; falling
+back to the section's latest earlier day-log `observerCard`), builds one prompt,
+and asks an OpenAI-compatible chat endpoint for `{title, mode, minutes, frame,
+body, rationale}`. Drafts must pass `observer-card-rules.js` and have
+`## Preparing`, `## Interacting` and `## Extending` sections.
+
+Env (read from `roster-server/.env`, then the environment): `DRAFT_API_KEY`
+(required to call the model), `DRAFT_API_BASE` (default
+`https://api.deepseek.com`), `DRAFT_MODEL` (default `deepseek-chat`). The key is
+never printed; error text is redacted.
+
+Daily, after the afternoon summaries have posted:
+
+```
+node scripts/draft-observer-cards.mjs --dry-run            # next class day: prompts and drafts, writes nothing
+node scripts/draft-observer-cards.mjs                      # writes content/a2/card-drafts/<date>.json
+node scripts/draft-observer-cards.mjs --apply              # drafts sections without a card, inserts them, pushes that date
+```
+
+`--date YYYY-MM-DD` and `--section C|D|G` narrow it; `--summaries FILE` uses a
+saved `/teacher/summaries` response instead of the server. Without a key the
+prompt bundle is written to the drafts file with `"needsModel": true` (with
+`--dry-run`, only printed) and the exit code is 2, so the Desk agent can finish
+the drafts by hand. A rejected draft exits 1; `--apply` never overwrites a card.
+
+`--apply` is two steps. Local insertion: only sections whose day-log entry has
+no card are drafted; before writing, the day log is re-read and the run aborts
+(exit 1, nothing applied) if it changed since the run started; only the missing
+`observerCard` fields are inserted, and the file is written through a
+same-directory temp file and an atomic rename in its existing indentation, line
+endings and key order (a file not in plain `JSON.stringify` layout is refused).
+Remote sync: `push-observer-cards.mjs --date <date>` runs every time, even when
+nothing new was inserted, and the exit code stays non-zero until it succeeds, so
+a failed push is retried by rerunning (no new model calls). The drafts file is
+written atomically too.
 
 ## Verification
 

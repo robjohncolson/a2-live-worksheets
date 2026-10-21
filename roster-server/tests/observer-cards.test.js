@@ -408,3 +408,38 @@ describe('PUT /teacher/cards', () => {
     });
   });
 });
+
+describe('GET /teacher/cards (the Desk draft script)', () => {
+  async function teacherCards(query, headers = teacher, url = base) {
+    const response = await fetch(url + '/teacher/cards' + query, { headers });
+    const text = await response.text();
+    return { status: response.status, cache: response.headers.get('cache-control'), etag: response.headers.get('etag'), text, body: text ? JSON.parse(text) : null };
+  }
+  it('returns the same {date, cards} rows as the phone GET', async () => {
+    await putCards([card({ section: 'C' }), card({ section: null, title: 'All' }), card({ date: '2026-10-22', section: 'G' })]);
+    const desk = await teacherCards('?date=2026-10-21');
+    expect(desk.status).toBe(200);
+    expect(desk.cache).toBe('no-store');
+    expect(desk.body).toEqual((await getCards('2026-10-21')).body);
+    expect(desk.body.cards.map(row => row.section)).toEqual(['C', null]);
+    expect((await teacherCards('?date=2026-10-23')).body).toEqual({ date: '2026-10-23', cards: [] });
+  });
+  it('refuses the class-log bearer and a wrong secret; 400 on a bad date', async () => {
+    expect((await teacherCards('?date=2026-10-21', auth)).status).toBe(403);
+    expect((await teacherCards('?date=2026-10-21', {})).status).toBe(403);
+    expect((await teacherCards('?date=2026-10-21', { 'x-teacher-secret': 'nope' })).status).toBe(403);
+    expect((await teacherCards('?date=2026-02-30')).status).toBe(400);
+    expect((await teacherCards('')).status).toBe(400);
+  });
+  it('503 without details on a storage failure', async () => {
+    const failing = { listByDate: vi.fn().mockRejectedValue(new Error('private database detail')) };
+    const app = express();
+    mountTeacherCards(app, { store: failing, db: {} });
+    const other = await listen(app);
+    try {
+      const response = await teacherCards('?date=2026-10-21', teacher, other.url);
+      expect(response.status).toBe(503);
+      expect(response.text).not.toMatch(/private/);
+    } finally { await close(other.listener); }
+  });
+});

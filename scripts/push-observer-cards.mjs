@@ -1,6 +1,6 @@
 // Push Class Log observer cards from the day log to roster-server.
 //
-//   node scripts/push-observer-cards.mjs [--from YYYY-MM-DD] [--dry-run] [--server URL] [--file PATH] [--secret S]
+//   node scripts/push-observer-cards.mjs [--from YYYY-MM-DD | --date YYYY-MM-DD] [--dry-run] [--server URL] [--file PATH] [--secret S]
 //
 // Reads content/a2/day-log.json (or --file), collects every entry carrying an
 // `observerCard` object {title, mode, minutes, frame, body}, and PUTs the rows to
@@ -25,17 +25,19 @@ export function parseArgs(argv) {
   for (let i = 0; i < argv.length; i++) {
     const key = argv[i];
     if (key === '--dry-run') { args.dryRun = true; continue; }
-    if (!['--from', '--server', '--file', '--secret'].includes(key)) throw new Error(`unknown argument ${key}`);
+    if (!['--from', '--date', '--server', '--file', '--secret'].includes(key)) throw new Error(`unknown argument ${key}`);
     const value = argv[++i];
     if (!value || value.startsWith('--')) throw new Error(`${key} needs a value`);
     args[key.slice(2)] = value;
   }
   if (args.from !== undefined && !isIsoDate(args.from)) throw new Error('--from must be a real YYYY-MM-DD date');
+  if (args.date !== undefined && !isIsoDate(args.date)) throw new Error('--date must be a real YYYY-MM-DD date');
+  if (args.from !== undefined && args.date !== undefined) throw new Error('--from and --date cannot be combined');
   return args;
 }
 
 // Day log -> card rows for PUT /teacher/cards. Throws on a malformed card.
-export function buildCards(dayLog, { from } = {}) {
+export function buildCards(dayLog, { from, date } = {}) {
   const cards = [];
   const seen = new Set();
   for (const entry of dayLog?.entries || []) {
@@ -44,6 +46,7 @@ export function buildCards(dayLog, { from } = {}) {
     const where = `${entry.date} ${typeof entry.section === 'string' ? entry.section : 'all'}`;
     if (!isIsoDate(entry.date)) throw new Error(`${where}: entry date must be a real YYYY-MM-DD date`);
     if (from && entry.date < from) continue;
+    if (date && entry.date !== date) continue;
     if (typeof card !== 'object' || Array.isArray(card)) throw new Error(`${where}: observerCard must be an object`);
     // Missing or `all` means every section; anything else goes to the shared rules,
     // so a non-string section (e.g. 123) is an error, not a course-wide card.
@@ -81,7 +84,7 @@ export function formatTable(cards) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const file = args.file ? resolve(args.file) : resolve(REPO_ROOT, 'content/a2/day-log.json');
-  const cards = buildCards(JSON.parse(readFileSync(file, 'utf8')), { from: args.from });
+  const cards = buildCards(JSON.parse(readFileSync(file, 'utf8')), { from: args.from, date: args.date });
   if (args.dryRun) {
     console.log(cards.length ? formatTable(cards) : '(no observer cards)');
     console.log(`\n${cards.length} card(s); dry run, nothing sent.`);

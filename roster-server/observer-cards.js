@@ -3,6 +3,7 @@
 //   GET  /class-log/cards?date=YYYY-MM-DD   phone, Bearer CLASS_LOG_TOKEN, ETag/304
 //   POST /class-log/cards/:id/outcome       phone, Bearer CLASS_LOG_TOKEN
 //   PUT  /teacher/cards                     Desk script, requireTeacher
+//   GET  /teacher/cards?date=YYYY-MM-DD     Desk (draft script), requireTeacher
 //
 // Tables come from migrations 0041/0042 (schema a2 via the service client).
 // CLASS_LOG_TOKEN unset => the phone routes answer 503. mountObserverCards (phone)
@@ -159,6 +160,16 @@ export function mountTeacherCards(app, { db, store, now = () => new Date() }) {
     next();
   };
   const teacherJson = express.json({ limit: '2mb' });
+
+  // The Desk's own read of a day's cards (scripts/draft-observer-cards.mjs): the
+  // same {date, cards} rows as the phone GET, without the ETag.
+  app.get('/teacher/cards', teacherAuth, async (req, res) => {
+    const date = req.query.date;
+    if (!isIsoDate(date)) return res.status(400).json({ error: 'date must be YYYY-MM-DD' });
+    let cards;
+    try { cards = await storage().listByDate(date); } catch { return unavailable(res); }
+    res.json({ date, cards });
+  });
 
   app.put('/teacher/cards', teacherAuth, teacherJson, async (req, res) => {
     if (!Array.isArray(req.body) || req.body.length === 0) return res.status(400).json({ error: 'body must be a non-empty array of cards' });

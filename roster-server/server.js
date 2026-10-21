@@ -20,6 +20,8 @@ import { mountA2 } from './a2-routes.js';
 import { mountAnnouncements } from './announcements.js';
 import { mountObserverCards, mountTeacherCards } from './observer-cards.js';
 import { mountClassSummaries, mountTeacherSummaries } from './class-summaries.js';
+import { mountScheduleOverrides, mountTeacherSchedule } from './schedule-overrides.js';
+import { mountDeviceHealth, mountTeacherHealth } from './device-health.js';
 import { createA2Store } from './a2-lessons.js';
 import { mountLedgerImport } from './ledger-import.js';
 import { mountAdminSnapshot } from './admin-snapshot.js';
@@ -181,12 +183,25 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
   // a bounded route-local parser, so unauthenticated junk bodies get 401/503.
   mountObserverCards(app, {});
   mountClassSummaries(app, {}); // POST /class-log/summaries (migration 0043), same bearer and order
+  mountScheduleOverrides(app, {}); // GET /class-log/schedule (migration 0044), same bearer and order
+  mountDeviceHealth(app, {}); // POST /class-log/health (migration 0045), same bearer, 8 KB route parser
   app.use(express.json({ limit: '8mb' }));
+  // The app-wide parser runs before any auth (the password gate reads req.body.token),
+  // so a malformed or oversize body on any later route, teacher routes included,
+  // gets a short JSON error here instead of Express's default HTML page and stack.
+  // The teacher routes' own route-local limits only bound apps without this parser.
+  app.use((error, _req, res, next) => {
+    if (!error || !error.type) return next(error);
+    if (error.type === 'entity.too.large') return res.status(413).json({ ok: false, error: 'too_large' });
+    return res.status(400).json({ ok: false, error: 'bad_json' });
+  });
   mountPasswordGate(app, db);
   mountPasswordReset(app, db, bcryptCost());
   mountAnnouncements(app, { db, config: gradeConfig });
   mountTeacherCards(app, { db }); // PUT /teacher/cards, behind the password gate
   mountTeacherSummaries(app, { db }); // GET /teacher/summaries, behind the password gate
+  mountTeacherSchedule(app, { db }); // PUT/DELETE /teacher/schedule-overrides, behind the password gate
+  mountTeacherHealth(app, { db }); // GET /teacher/health, behind the password gate
   // Railway runs behind a SINGLE edge proxy — trust exactly ONE hop so req.ip is
   // the proxy-appended client address. `true` (trust the whole chain) would let a
   // client forge X-Forwarded-For and rotate it to defeat the limiter; a bounded
