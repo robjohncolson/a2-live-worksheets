@@ -33,3 +33,4 @@ tsconfig*.json
 
 # Local dotfiles may contain agent prompts or credentials.
 .*
+roster-local

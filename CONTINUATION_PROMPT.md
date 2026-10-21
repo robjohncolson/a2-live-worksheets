@@ -57,37 +57,30 @@ Grading (district formula 50/40/10):
 | Piece | Category | Points | Rule |
 | --- | --- | --- | --- |
 | Daily Engagement | Engagement | 10 per class day | Best source + half the second best across paper Do Now, Blooket and flashcards, capped. Absent day = blank, never a zero. |
-| Try-It | Assignments | 10 each | Teacher grades the **physical packet on quiz day**: 10 / 8 / 1–7 / 0. Off the student Desk. |
-| Quiz | Assessments | 20 | ~1 per lesson in Q1. Notes and packet allowed. |
+| Try-It | bonus on the lesson quiz (Sep 28 rule) | up to 5 each | Graded from the physical packet on quiz day; never an Assignments column. Off the student Desk. |
+| Quiz | Assessments | 20 | ~1 per lesson in Q1. Q3 + Q4 (10 each), Q1 +5 bonus, capped at 20. IXL 80+ on each assigned skill replaces it with 20/20. |
 | Topic assessment | Assessments | 100 | latest score counts. |
+| Group Jam / IXL homework | Assignments | 10 each | Jams scored as participation; IXL at SmartScore 80+ = full. |
 | Bonus | Assignments, extra credit | 0 possible, ≤10 earned/quarter | weeks 1–2 opener (≤3), Web Jam accuracy (≤1 per jam), IXL homework at SmartScore **80+** (+1). |
 
-## Where lesson 1-1 stands (week of Sep 21)
+## Where the lessons stand (week of Oct 5)
 
-| Section | Ex 4 and 5 | Next meeting | 1-1 Quiz |
-| --- | --- | --- | --- |
-| C | done Tue 9/22 | Thu 9/24: poster work on Try Its 4 and 5 (worked); no W42/WMS jam, no WMS homework | **Mon 9/28** (deferred; the Schoology assignment still says Thu 9/24 — teacher to move it) |
-| D | done Wed 9/23 (WMS jam + Ex 4) | Fri 9/25: Try Its 4 and 5 in class, no poster, Nintendo when done; no quiz | **Mon 9/28** (moved from Fri 9/25; Schoology assignment to move) |
-| G | done Tue 9/22 | Thu 9/24: poster work (worked). Fri 9/25: Try Its 4 and 5 took the period, heavy teacher help; no quiz | **Tue 9/29** (moved from Fri 9/25; Schoology assignment to move) |
-
-After each section's quiz, 1-2 (Transformations of Functions) starts; the year plan still dates
-1-2 at Oct 8/9, so no reflow is needed.
-
-**Decision (9/25):** C and G never really did the average rate of change IXL work (W42 / PHD) and
-1-1 goes on without it. Do not plan a make-up jam or homework for it; the skill stays listed on
-the lesson for reference only.
-
-Course Updates posted 9/23 in C and G with Thursday's plan. G's PS2 IXL homework was awarded
-9/22 evening (5 of 16 at 80+; late finishers by hand). Samuel Betancourt Ruiz (C) mastered W42.
-IXL skills for 1-1: PHD A.9 and Algebra 1 W42 (Ex 5), WMS N.1 (Ex 4 — loosely: it labels max,
-min, intercepts; IXL has no non-calculus skill for increasing/decreasing intervals), 78A A.1,
-prereqs A.2–A.5 and number-line inequalities. Everything is in `content/a2/day-log.json`.
+1-1 is closed: quizzes taken Sep 28 (D) and Sep 29 (C, G), packets collected, Try Its graded as
+quiz bonus, IXL replacement window open through Oct 7. 1-2 Day 1 done in C and D (Oct 5) and G
+(Oct 6); Day 2 next meeting; Examples 2-5 and the 1-2 quiz Thu/Fri Oct 8-9 per
+`../Lesson_planning/a2_1-2_plan_oct5-7.pdf`. 1-3 packet is being re-cut by the PLC (see item 2
+above); do not publish 1-3 content until that packet exists. Everything landed is in
+`content/a2/day-log.json`.
 
 ## Daily operating procedure (teacher-local data lives in gitignored `roster-local/`)
 
-1. Day log: after each class the teacher tells us what landed; write `note` + short `student`
-   line per section-day in `content/a2/day-log.json`, `node scripts/bump-build.mjs`, commit, push
-   (the teacher OK'd pushes during the day this week). A logged note clears the ants.
+1. Day log: run `node scripts/pull-class-summaries.mjs` and read that day's
+   `roster-local/class-summaries/<date>-<section>.md`; write `note` + short `student` line per
+   section-day in `content/a2/day-log.json` from the summary and what the teacher says,
+   `node scripts/bump-build.mjs`, commit, push (the teacher OK'd pushes during the day this week).
+   The teacher's words win on conflicts and the summary fills in what they did not mention; copy
+   each `promises` item not already done into "Open items, in order". Read `studentQuestions` before
+   drafting the next card (`scripts/draft-observer-cards.mjs` already reads the server).
 2. Engagement: paper tally → `roster-local/paper/<date>-<Period>.json`
    (`{"outOf": n, "students": [{"name": "<roster name or alias>", "score": k}]}`); Blooket file
    optional at `roster-local/blooket/<date>-<Period>.json`; then
