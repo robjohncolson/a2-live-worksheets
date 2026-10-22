@@ -1,0 +1,72 @@
+{
+  "about": "Synthetic lesson prep.",
+  "lessons": {
+    "9-1": {
+      "title": "Fixture Lesson One",
+      "status": "fixture",
+      "quizFocus": {
+        "item": 2,
+        "what": "Fixture quiz item: match the graph to its rule."
+      },
+      "examples": [
+        {
+          "n": 1,
+          "title": "First kept example",
+          "keep": true,
+          "dok": "1",
+          "practice": "1, 2",
+          "ixl": [
+            "AA1"
+          ]
+        },
+        {
+          "n": 2,
+          "title": "Second kept example",
+          "keep": true,
+          "dok": "2",
+          "practice": "3, 4",
+          "ixl": [
+            "BB2"
+          ]
+        },
+        {
+          "n": 3,
+          "title": "Third kept example",
+          "keep": true,
+          "dok": "1, 3",
+          "practice": "5, 9",
+          "ixl": [
+            "CC3",
+            "ZZ9"
+          ]
+        },
+        {
+          "n": 4,
+          "title": "Cut example",
+          "keep": false,
+          "dok": "1",
+          "practice": "6"
+        }
+      ],
+      "dok3": {
+        "item": 9,
+        "label": "Practice 9, Performance Task",
+        "task": "Fixture DOK 3 task."
+      },
+      "ixl": [
+        {
+          "code": "AA1",
+          "name": "Fixture skill one",
+          "example": 1,
+          "role": "core"
+        },
+        {
+          "code": "ZZ9",
+          "name": "Proposed, not assigned",
+          "example": 3,
+          "role": "core, proposed"
+        }
+      ]
+    }
+  }
+}

@@ -8068,6 +8068,14 @@ function _showA2TeacherDayPanel(inf, dateStr, entry, key, header, body) {
         body.appendChild(reh);
         window.ClassLogDeck.fill(window, reh, isoDate, section);
     }
+    // Tomorrow: the nightly draft's note for this section-day (lib/a2-tomorrow.js), computed
+    // from the same sources the Desk already holds (day log, lesson prep, lesson skills) plus
+    // the latest recording; identical to roster-local/tomorrow/<date>-<section>.md.
+    if (isoDate && window.A2Tomorrow) {
+        var tmr = fold('Tomorrow (draft)');
+        window.A2Tomorrow.fill(window, tmr, { date: isoDate, section: section, lesson: key, title: entry.title || inf.n || '',
+            dayLog: _log, prep: prep || null, lessonSkills: clientSkills });
+    }
     var other = fold('Other resources');
     var deckRow = document.createElement('p');
     var deck = document.createElement('button'); deck.type = 'button'; deck.className = 's7btn'; deck.textContent = 'Open Flashcards';
@@ -15360,7 +15368,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-10-22-doau';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-10-22-jkac';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
@@ -15728,7 +15736,7 @@ function renderA2WeekObjectives() {
 })();
 </script>
 
-<script src="lib/a2-year-plan.js"></script><script src="a2-client.js"></script><script src="a2-desk.js"></script><script src="lib/class-log-health.js"></script><script src="lib/class-log-summary.js"></script><script src="lib/class-log-deck.js"></script>
+<script src="lib/a2-year-plan.js"></script><script src="a2-client.js"></script><script src="a2-desk.js"></script><script src="lib/class-log-health.js"></script><script src="lib/class-log-summary.js"></script><script src="lib/class-log-deck.js"></script><script src="lib/a2-tomorrow.js"></script>
 <link rel="stylesheet" href="a2-announcement.css"><script src="a2-announcement.js"></script>
 </body>
 </html>

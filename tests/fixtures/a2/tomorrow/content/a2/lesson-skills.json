@@ -1,0 +1,56 @@
+{
+  "about": "Synthetic lesson skills.",
+  "lessons": {
+    "9-1": [
+      {
+        "code": "PP0",
+        "directoryId": "Z.0",
+        "name": "Fixture prerequisite",
+        "url": "https://www.ixl.com/math/algebra-2/fixture-prerequisite",
+        "level": "prereq"
+      },
+      {
+        "code": "BB2",
+        "directoryId": "Z.2",
+        "name": "Fixture skill two",
+        "url": null,
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "AA1",
+        "directoryId": "Z.1",
+        "name": "Fixture skill one",
+        "url": "https://www.ixl.com/math/algebra-2/fixture-skill-one",
+        "level": "core",
+        "example": [
+          1
+        ]
+      },
+      {
+        "code": "CC3",
+        "directoryId": "Z.3",
+        "name": "Fixture skill three",
+        "url": "https://www.ixl.com/math/algebra-2/fixture-skill-three",
+        "level": "core",
+        "example": [
+          3
+        ]
+      }
+    ],
+    "9-2": [
+      {
+        "code": "CC3",
+        "directoryId": "Z.3",
+        "name": "Fixture skill three",
+        "url": "https://www.ixl.com/math/algebra-2/fixture-skill-three",
+        "level": "core",
+        "example": [
+          1
+        ]
+      }
+    ]
+  }
+}

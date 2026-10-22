@@ -1,0 +1,33 @@
+{
+  "about": "Synthetic IXL skill map.",
+  "skills": [
+    {
+      "code": "AA1",
+      "directoryId": "Z.1",
+      "skill": "Fixture skill one",
+      "url": "https://www.ixl.com/math/algebra-2/fixture-skill-one",
+      "search": "https://www.ixl.com/search?q=AA1"
+    },
+    {
+      "code": "BB2",
+      "directoryId": "Z.2",
+      "skill": "Fixture skill two",
+      "url": null,
+      "search": "https://www.ixl.com/search?q=BB2"
+    },
+    {
+      "code": "CC3",
+      "directoryId": "Z.3",
+      "skill": "Fixture skill three",
+      "url": "https://www.ixl.com/math/algebra-2/fixture-skill-three",
+      "search": "https://www.ixl.com/search?q=CC3"
+    },
+    {
+      "code": "PP0",
+      "directoryId": "Z.0",
+      "skill": "Fixture prerequisite",
+      "url": "https://www.ixl.com/math/algebra-2/fixture-prerequisite",
+      "search": "https://www.ixl.com/search?q=PP0"
+    }
+  ]
+}
