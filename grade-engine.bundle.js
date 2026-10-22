@@ -7,7 +7,7 @@
  *
  * Regenerate after any engine edit:  node scripts/build-grade-engine.mjs
  * Parity is pinned by tests/grade-engine-bundle-parity.test.js.
- * engine-version: aa5b06e481b7
+ * engine-version: 693134d475ba
  */
 ;(function (root) {
   'use strict';
@@ -1139,7 +1139,8 @@
         if (exitItem != null) {
           const withoutExit = blendLessonFeeders(Cws, reflectionMean(acc.frqItems), Q, weights);
           acc.exitCounted = B != null && (withoutExit == null || B > withoutExit);
-          const base = withoutExit == null ? B : Math.max(B, withoutExit);
+          // Cast: a non-null withoutExit means a scored reflection exists, so W (and B) are non-null.
+          const base = withoutExit == null ? B : Math.max(/** @type {number} */ (B), withoutExit);
           acc.lessonGrade = base == null ? null : Math.round(Math.min(105, base + acc.exitBonus) * 10) / 10;
           const noQuiz = lessonGradeNoQuiz(acc, weights);
           acc.lessonGradeNoQuiz = noQuiz == null ? null : Math.round(noQuiz * 10) / 10;
@@ -1213,7 +1214,8 @@
           year: 'numeric', month: '2-digit', day: '2-digit',
           hour: '2-digit', minute: '2-digit', second: '2-digit',
         }).formatToParts(new Date(guess));
-        const g = (k) => Number(parts.find((p) => p.type === k).value);
+        // Cast: every requested part is present for the fixed format above; a miss throws into the catch.
+        const g = (k) => Number(/** @type {Intl.DateTimeFormatPart} */ (parts.find((p) => p.type === k)).value);
         const asIfUtc = Date.UTC(g('year'), g('month') - 1, g('day'), g('hour'), g('minute'), g('second'));
         return guess - (asIfUtc - guess);
       } catch (_) {
@@ -1568,7 +1570,8 @@
       // Match the existing rounded W sibling used by this no-quiz track.
       const W = reflections == null ? null : Math.round(reflections * 10) / 10;
       let withoutExit = blendLessonFeeders(result.Cws, W, null, weights);
-      if (fixCwsReveal && W != null) withoutExit = Math.max(withoutExit, W);
+      // Cast: with W present the blend has a positive denominator, so withoutExit is a number.
+      if (fixCwsReveal && W != null) withoutExit = Math.max(/** @type {number} */ (withoutExit), W);
       const base = withoutExit == null ? withExit : Math.max(withExit, withoutExit);
       return Math.min(105, base + result.exitBonus);
     }
@@ -2721,7 +2724,7 @@
     isCorrect: __reg["scoring"].isCorrect,
     normalizeResponse: __reg["scoring"].normalizeResponse,
     scoreAgainstKey: __reg["scoring"].scoreAgainstKey,
-    _engineVersion: "aa5b06e481b7",
+    _engineVersion: "693134d475ba",
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = __api;

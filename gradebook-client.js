@@ -18,6 +18,58 @@
 // Decision L-D: fire-and-forget, no-ops without identity, NEVER throws/blocks the caller.
 // Decision L-C: No proctor header is ever sent — proctored evidence tier is server-gated only.
 
+// ── Local type views (checker only; nothing here runs) ────────────────────────
+// types/globals.d.ts deliberately declares only the minimal window.* shapes. The
+// extra members this client reads are typed here and are still probed with
+// typeof at runtime, so an older offline-queue.js / roster-client.js build or a
+// page without hydratePriorAnswers behaves exactly as before.
+/**
+ * window.OfflineQueue as this client uses it (beyond enqueue/isOffline/drain).
+ * @typedef {NonNullable<Window['OfflineQueue']> & {
+ *   keyOf: (row: any) => string,
+ *   supersede: (opts: any) => unknown,
+ *   all: () => Promise<any[]>,
+ *   parked: () => Promise<any[]>
+ * }} GbOfflineQueue
+ */
+/**
+ * window.rosterClient with the members read unguarded after an earlier guard.
+ * @typedef {NonNullable<Window['rosterClient']> & {
+ *   token: () => string | null,
+ *   studentId: () => string | null,
+ *   handleAuthResponse: (status: number, data: any) => void
+ * }} GbRosterClient
+ */
+/**
+ * The worksheet page's own hook (re-reads saved answers after a failed load).
+ * @typedef {Window & { hydratePriorAnswers?: () => unknown }} GbPageWindow
+ */
+/**
+ * The window.gradebookClient surface this module calls back into.
+ * @typedef {{ record: (opts: GbRecordOpts) => Promise<RecordResult>, syncOfflineQueue: () => Promise<{ sent: number, failed: number }> }} GbClient
+ */
+/**
+ * RecordOpts plus the transport-private fields this client stamps or forwards
+ * (never part of the frozen caller contract).
+ * @typedef {RecordOpts & {
+ *   studentId?: string,
+ *   requestGrade?: boolean,
+ *   keepalive?: boolean,
+ *   transportSequence?: number
+ * }} GbRecordOpts
+ */
+/**
+ * The raw POST result: RecordResult plus drain-internal metadata. record()
+ * strips `status` before returning (the public shape stays RecordResult).
+ * @typedef {RecordResult & {
+ *   status?: number,
+ *   retryable?: boolean,
+ *   superseded?: boolean,
+ *   clientScoreIgnored?: unknown,
+ *   responseVersion?: unknown
+ * }} GbPostResult
+ */
+
 (function () {
   'use strict';
 
@@ -28,7 +80,7 @@
   var _priorRecovering = false;
 
   function _priorNotice(message) {
-    if (typeof window.hydratePriorAnswers !== 'function' || !document.body) return;
+    if (typeof /** @type {GbPageWindow} */ (window).hydratePriorAnswers !== 'function' || !document.body) return;
     var box = document.getElementById('gb-answer-recovery');
     if (!message) { if (box) box.remove(); return; }
     if (!box) {
@@ -46,11 +98,12 @@
       box.appendChild(retry);
       document.body.insertBefore(box, document.body.firstChild);
     }
-    box.firstChild.textContent = message;
+    // The label span is always the first child (appended above on creation).
+    /** @type {ChildNode} */ (box.firstChild).textContent = message;
   }
 
   function _unavailablePrior(outcome, status) {
-    var result = new Map();
+    var result = /** @type {Map<any, any> & { loadFailed?: boolean, loadOutcome?: string, httpStatus?: number | null }} */ (new Map());
     result.loadFailed = true;
     result.loadOutcome = outcome || 'network';
     result.httpStatus = status || null;
@@ -62,7 +115,7 @@
     _priorNotice(auth
       ? 'Sign in again from the Desk, then retry loading your saved answers. Your saved work has not been cleared.'
       : 'Saved answers could not be loaded. Blank boxes do not mean your work is missing. You can keep working or retry.');
-    if (!auth && !_priorRetryTimer && _priorRetries < 3 && typeof window.hydratePriorAnswers === 'function') {
+    if (!auth && !_priorRetryTimer && _priorRetries < 3 && typeof /** @type {GbPageWindow} */ (window).hydratePriorAnswers === 'function') {
       var delay = [2000, 5000, 15000][_priorRetries++];
       _priorRetryTimer = setTimeout(function () { _priorRetryTimer = null; _recoverPrior(); }, delay);
     }
@@ -70,15 +123,16 @@
   }
 
   async function _recoverPrior() {
-    if (!_priorFailed || _priorRecovering || typeof window.hydratePriorAnswers !== 'function') return;
+    if (!_priorFailed || _priorRecovering || typeof /** @type {GbPageWindow} */ (window).hydratePriorAnswers !== 'function') return;
     _priorRecovering = true;
     if (_priorRetryTimer) { clearTimeout(_priorRetryTimer); _priorRetryTimer = null; }
-    try { await window.hydratePriorAnswers(); } finally { _priorRecovering = false; }
+    // Cast: the typeof guard above holds; tsc cannot carry a narrowing through a cast.
+    try { await /** @type {() => unknown} */ (/** @type {GbPageWindow} */ (window).hydratePriorAnswers)(); } finally { _priorRecovering = false; }
   }
 
   // A deliberately cleared answer is an edit too, not a target for restoration.
   if (typeof document !== 'undefined') document.addEventListener('input', function (event) {
-    var target = event.target;
+    var target = /** @type {HTMLElement | null} */ (event.target);
     if (target && target.matches && target.matches('.blank, textarea')) target.dataset.gbEdited = '1';
   }, true);
   if (typeof window.addEventListener === 'function') {
@@ -101,7 +155,8 @@
   function _showParkedNudge(rows) {
     try {
       if (!rows.length || _parkedNudgeShown) return;
-      console.warn('gradebook-client: parked answers', rows.map(function (row) { return window.OfflineQueue.keyOf(row); }));
+      // Cast: rows came out of the queue, so it exists; a missing keyOf throws into the catch below.
+      console.warn('gradebook-client: parked answers', rows.map(function (row) { return /** @type {GbOfflineQueue} */ (window.OfflineQueue).keyOf(row); }));
       if (typeof document === 'undefined' || !document.body) return;
       _parkedNudgeShown = true;
       if (document.getElementById('gb-parked-nudge')) return;
@@ -231,8 +286,9 @@
     var attempt = opts && opts.attempt != null ? opts.attempt : 1;
     return String(opts && opts.source) + '|' + String(opts && opts.itemId) + '|' + String(attempt);
   }
+  /** @param {GbRecordOpts} opts @returns {GbRecordOpts} */
   function _stampRecord(opts) {
-    var stamped = {};
+    var stamped = /** @type {GbRecordOpts} */ ({});
     for (var key in opts) {
       if (Object.prototype.hasOwnProperty.call(opts, key)) stamped[key] = opts[key];
     }
@@ -271,7 +327,7 @@
   }
 
   function _supersedeOffline(opts) {
-    var queue = window.OfflineQueue;
+    var queue = /** @type {GbOfflineQueue | undefined} */ (window.OfflineQueue);
     if (!queue || typeof queue.supersede !== 'function') return Promise.resolve(false);
     try { return Promise.resolve(queue.supersede(opts)).catch(function () { return false; }); }
     catch (_) { return Promise.resolve(false); }
@@ -279,7 +335,7 @@
 
   // Raw POST to /ledger/record. NEVER throws; NEVER enqueues (so it is safe to
   // call from a drain without re-queuing). Returns { ok, reason?, ledgerId? }.
-  /** @param {RecordOpts} opts @returns {Promise<RecordResult>} */
+  /** @param {GbRecordOpts} opts @returns {Promise<GbPostResult>} */
   async function _postRecord(opts) {
     if (opts.kind === 'flashcard-run') return _postFlashcardRun(opts.response, opts.studentId);
     try {
@@ -319,8 +375,8 @@
       var data = null;
       try { data = await res.json(); } catch (_) { data = null; }
 
-      if (token === _token() && window.rosterClient && typeof window.rosterClient.handleAuthResponse === 'function') {
-        window.rosterClient.handleAuthResponse(res.status, data);
+      if (token === _token() && window.rosterClient && typeof /** @type {GbRosterClient} */ (window.rosterClient).handleAuthResponse === 'function') {
+        /** @type {GbRosterClient} */ (window.rosterClient).handleAuthResponse(res.status, data);
       }
 
       if (data && data.ok) {
@@ -346,13 +402,15 @@
     }
   }
 
+  /** @returns {Promise<GbPostResult>} */
   async function _postFlashcardRun(run, ownerId) {
     try {
       if (window.__WS_READ_ONLY__) return { ok: false, reason: 'read-only' };
       var token = _token();
       if (!token) return { ok: false, reason: 'no-identity' };
       if (!ownerId || ownerId !== _studentId()) return { ok: false, reason: 'no-identity' };
-      var response = await fetch(window.ROSTER_SERVICE_URL.replace(/\/$/, '') + '/flashcards/daily', {
+      // Cast: an unconfigured URL throws here and lands in the catch below ('network'), as before.
+      var response = await fetch(/** @type {string} */ (window.ROSTER_SERVICE_URL).replace(/\/$/, '') + '/flashcards/daily', {
         method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
         body: JSON.stringify(Object.assign({}, run, { studentId: ownerId }))
       });
@@ -406,10 +464,11 @@
         // not only on the page where the 12th failure landed — these early returns skip
         // syncOfflineQueue (where the banner normally fires), so raise it here too.
         var isParked = function (row) { return row.serverFailures >= 12; };
-        var rows = await window.OfflineQueue.all();
+        // Casts: _hasQueue() held when this drain was scheduled; a vanished queue throws into the catch below.
+        var rows = await /** @type {GbOfflineQueue} */ (window.OfflineQueue).all();
         if (!rows || !rows.some(function (row) { return !isParked(row); })) { _showParkedNudge((rows || []).filter(isParked)); _offlineDrainBackoffMs = 30000; return; }
-        await window.gradebookClient.syncOfflineQueue();
-        rows = await window.OfflineQueue.all();
+        await /** @type {GbClient} */ (window.gradebookClient).syncOfflineQueue();
+        rows = await /** @type {GbOfflineQueue} */ (window.OfflineQueue).all();
         if (!rows || !rows.some(function (row) { return !isParked(row); })) { _showParkedNudge((rows || []).filter(isParked)); _offlineDrainBackoffMs = 30000; return; }
         _offlineDrainBackoffMs = Math.min(3600000, Math.max(30000, _offlineDrainBackoffMs * 2));
         retryDelay = _offlineDrainBackoffMs;
@@ -444,7 +503,8 @@
           timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit'
         }).formatToParts(finishedAt);
         var date = ['year', 'month', 'day'].map(function (type) {
-          return parts.find(function (part) { return part.type === type; }).value;
+          // Cast: every requested part is present for the fixed en-CA format above.
+          return /** @type {Intl.DateTimeFormatPart} */ (parts.find(function (part) { return part.type === type; })).value;
         }).join('-');
         // Each run has its own queue key: a later lower score must not erase it.
         var opts = _stampRecord({ source: 'flashcard-run', kind: 'flashcard-run', studentId: ownerId,
@@ -468,7 +528,7 @@
     // Fire-and-forget ledger write.
     // NEVER throws. NEVER rejects. NEVER blocks the caller.
     // Returns a Promise that always resolves to { ok, ... }.
-    /** @param {RecordOpts} opts @returns {Promise<RecordResult>} */
+    /** @param {GbRecordOpts} opts @returns {Promise<RecordResult>} */
     record: async function (opts) {
       try {
         // --- Validate required args BEFORE touching anything ---
@@ -527,7 +587,8 @@
         var r = await _sendRecord(opts);
         if (r.ok) {
           var key = _recordKey(opts);
-          _successfulSequence[key] = Math.max(_successfulSequence[key] || 0, opts.transportSequence);
+          // Cast: _stampRecord() above always sets transportSequence.
+          _successfulSequence[key] = Math.max(_successfulSequence[key] || 0, /** @type {number} */ (opts.transportSequence));
           await _supersedeOffline(opts);
           _scheduleOfflineDrain(0);
           return r;
@@ -565,7 +626,7 @@
     // so identity checks, OfflineQueue capture/replay, and latest-wins dedup all
     // remain on the single established transport path.
     requestFrqGrade: async function (opts) {
-      return window.gradebookClient.record({
+      return /** @type {GbClient} */ (window.gradebookClient).record({
         source: 'frq',
         itemId: opts && opts.itemId,
         response: opts && opts.response,
@@ -589,7 +650,7 @@
           // device (and the queue would then delete it as sent). Refusing with
           // ok:false leaves it queued for the owner's next session, or the
           // teacher export/import path which attributes explicitly.
-          var r = /** @type {RecordOpts & {studentId?: string}} */ (rec);
+          var r = /** @type {GbRecordOpts} */ (rec);
           var sid = _studentId();
           if (!r || !r.studentId || !sid || String(r.studentId) !== String(sid)) {
             return { ok: false, reason: 'no-identity' };
@@ -606,7 +667,7 @@
             return result;
           });
         });
-        if (typeof window.OfflineQueue.parked === 'function') _showParkedNudge(await window.OfflineQueue.parked());
+        if (typeof /** @type {GbOfflineQueue} */ (window.OfflineQueue).parked === 'function') _showParkedNudge(await /** @type {GbOfflineQueue} */ (window.OfflineQueue).parked());
         return result;
       } catch (_) {
         return { sent: 0, failed: 0 };
@@ -682,8 +743,10 @@
           ]);
         } finally { clearTimeout(timeout); }
         // An old session's response must never populate a new student's page.
-        var currentSid = window.__VIEW_AS_STUDENT_ID__ || window.rosterClient.studentId();
-        if (sid !== currentSid || token !== window.rosterClient.token()) {
+        // Casts: sid/token were read through the guarded client above; a client that
+        // vanished mid-read throws into the catch below (unavailable, never empty).
+        var currentSid = window.__VIEW_AS_STUDENT_ID__ || /** @type {GbRosterClient} */ (window.rosterClient).studentId();
+        if (sid !== currentSid || token !== /** @type {GbRosterClient} */ (window.rosterClient).token()) {
           _priorReadFailed(false);
           return _unavailablePrior('stale-session');
         }
