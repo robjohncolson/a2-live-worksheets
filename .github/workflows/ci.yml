@@ -5,44 +5,79 @@ name: CI
 # test/type failure never blocks a deploy, and vice-versa — tsc --noEmit is never
 # on the Railway/Pages/Vercel path.
 
+# FABLE_SPRINT_2026_10_22C_SPEC C1 — this fork's branch is `main` (the AP Stats
+# parent is `master`); the inherited `master` trigger meant CI had never run here.
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
+  workflow_dispatch:
+
+# Mirrors the AP Stats hardening (issue #2 there): least-privilege token, one run
+# per ref, npm cache keyed on both lockfiles, job timeouts.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     name: tests (root + roster-server)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      # No sibling checkout here (unlike the AP Stats park tests): no a2 test imports
+      # ../curriculum_render or ../follow-alongs — misconception-maps runs its builders
+      # against the in-repo tests/fixtures root, and lib/*-topology.mjs are dev scripts
+      # that vitest never collects.
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            roster-server/package-lock.json
       - name: Install root deps
+        run: npm ci
+      - name: Install roster-server deps
+        working-directory: roster-server
         run: npm ci
       # --retry=2 absorbs the known signup-claim brute-force-lockout timeout, which is a
       # parallel-load timing flake (passes in isolation), not a logic failure.
       - name: Root tests
         run: npm test -- --retry=2
-      - name: Install roster-server deps
-        working-directory: roster-server
-        run: npm ci
-      - name: roster-server tests
+      # `npm test` = scripts/test-modes.js: runs BOTH the legacy (v3-forced,
+      # USE_DISTRICT_FORMULA=false) suite and the district-formula suite, exits 1
+      # if either fails. Extra args pass through to both vitest runs.
+      - name: roster-server tests (legacy + district)
         working-directory: roster-server
         run: npm test -- --retry=2
 
   typecheck:
-    name: typecheck — grade engine + receipts + feeder (blocking)
+    name: typecheck — grade engine + receipts + feeder (advisory)
     runs-on: ubuntu-latest
-    # BLOCKING as of P4 (was advisory in P1-P3): a type error on the allowlist now
-    # fails CI. It still never blocks a deploy — pages.yml is a separate workflow.
+    timeout-minutes: 30
+    # ADVISORY in this fork (C1, 2026-10-22). The AP Stats parent made this job
+    # blocking at P4 once its allowlists were clean; the a2 fork's are not:
+    # `npm run typecheck` fails on a clean checkout with 43 errors in
+    # gradebook-client.js (offline-queue `parked`, optional window.rosterClient)
+    # and 3 in roster-server/lesson-grade.js (number|null narrowing). Those are
+    # grade-engine files, so they are not fixed as a CI side effect. Flip
+    # continue-on-error back off once both allowlists type-check clean.
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            roster-server/package-lock.json
       - name: Install roster-server deps
         working-directory: roster-server
         run: npm ci

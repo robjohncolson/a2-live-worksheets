@@ -131,6 +131,10 @@ describe('six-item A2 lesson check to real A2Client', () => {
     submitCheck(win);
     await vi.waitFor(() => expect(posts).toHaveLength(3));
     expect(posts[2].body.requestId).toBe('request-2');
+    // posts fills when fetch is CALLED; the handler's `finally { signInWall() }` runs after the
+    // response resolves and re-enables submit. Wait for it, or afterEach closes the window first
+    // and signInWall's document.getElementById throws as an unhandled rejection (vitest exit 1).
+    await vi.waitFor(() => expect(win.document.getElementById('submit').disabled).toBe(false));
   });
 
   it('does not submit after roster sign-out', async () => {
