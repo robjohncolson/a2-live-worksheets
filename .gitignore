@@ -150,3 +150,6 @@ syllabus/*.pdf
 # Blooket/IXL screenshots carry student names: keep them under roster-local/, never in the site root
 /unnamed*.png
 /image*.png
+
+# Test fixtures may contain a synthetic roster-local tree (draft-tomorrow); the real one above stays ignored.
+!tests/fixtures/**/roster-local/

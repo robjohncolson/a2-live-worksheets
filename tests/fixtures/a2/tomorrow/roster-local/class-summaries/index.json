@@ -1,0 +1,47 @@
+[
+  {
+    "date": "2026-10-19",
+    "section": "C",
+    "course": "algebra2",
+    "file": "2026-10-19-C.md",
+    "landed": [
+      "Fixture landed"
+    ],
+    "studentQuestions": [
+      "Older question"
+    ],
+    "promises": [
+      "Older promise"
+    ],
+    "nextPrep": []
+  },
+  {
+    "date": "2026-10-22",
+    "section": "C",
+    "course": "algebra2",
+    "file": "2026-10-22-C.md",
+    "landed": [
+      "Fixture landed"
+    ],
+    "studentQuestions": [
+      "Why is the circle open?"
+    ],
+    "promises": [
+      "Quiz on Tuesday",
+      "70 on the IXL skills earns the quiz grade"
+    ],
+    "nextPrep": [
+      "Prepare the rule example"
+    ]
+  },
+  {
+    "date": "2026-10-21",
+    "section": "D",
+    "course": "algebra2",
+    "file": "2026-10-21-D.md",
+    "landed": [],
+    "studentQuestions": [],
+    "promises": [],
+    "nextPrep": []
+  }
+]
