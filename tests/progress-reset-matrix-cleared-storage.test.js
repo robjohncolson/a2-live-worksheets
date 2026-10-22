@@ -98,7 +98,7 @@ describe('matrix row: cleared storage — rProg honest-unknown', () => {
 });
 
 describe('matrix row: cleared storage recovers — CONTROL (a subsequent live success)', () => {
-  it('(7) flips to available, writes the latch, and the strict gate resumes', async () => {
+  it('(7) flips to available, writes the latch, and the completion oracle resumes (the a2 gate stays open)', async () => {
     let calls = 0;
     const h = composeRenderHarness({
       username: 'student-a', studentId: 'sid-a', origin: 'https://roster.test',
@@ -123,19 +123,19 @@ describe('matrix row: cleared storage recovers — CONTROL (a subsequent live su
     expect(latch).not.toBeNull();
     expect(latch.topics['1.2']).toEqual({ ws: true, bl: true });
 
-    // Strict gate resumes: reading the REAL localStorage the render harness
-    // just wrote (shared, not re-seeded) through the real gate functions —
-    // with genuine evidence now present but a DIFFERENT, never-confirmed
-    // predecessor lesson, the gate goes back to LOCKED. This proves recovery
-    // doesn't leave the fail-open behavior stuck on: fail-open was specific
-    // to the "no evidence exists anywhere" cleared-storage state, not a
-    // permanent relaxation once any evidence shows up.
+    // Completion resumes: reading the REAL localStorage the render harness
+    // just wrote (shared, not re-seeded) through the real oracle functions —
+    // with genuine evidence now present, a DIFFERENT, never-confirmed
+    // predecessor lesson stays incomplete. In AP Stats this row went on to
+    // pin the strict gate going back to LOCKED; the Algebra 2 fork has no
+    // lesson gating (desk.html's _isLessonUnlocked returns true for every
+    // lesson, a2 initial import 804cac2), so the gate stays open here.
     const gate = composeLatchHarness({
       username: 'student-a', studentId: 'sid-a', origin: 'https://roster.test',
       sharedStorage: h.win.localStorage,
     });
     expect(gate.serverEvidencePresent()).toBe(true); // real evidence now exists
     expect(gate.isLessonComplete('1.3', {})).toBe(false); // 1.3 was never confirmed
-    expect(gate.isLessonUnlocked('1.4', PAST, '1.3', TODAY, {}, true)).toBe(false); // strict again
+    expect(gate.isLessonUnlocked('1.4', PAST, '1.3', TODAY, {}, true)).toBe(true); // Algebra 2: never locked
   });
 });

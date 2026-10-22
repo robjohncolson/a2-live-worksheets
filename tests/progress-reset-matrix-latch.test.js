@@ -132,15 +132,19 @@ describe('matrix row: refresh idempotency / monotonic latch', () => {
   });
 });
 
-describe('matrix row: strict-gate-still-strict — evidence present + genuinely incomplete predecessor stays LOCKED', () => {
-  it('D4 fail-open never leaks into the affirmative-server case', () => {
+describe('matrix row: evidence present + genuinely incomplete predecessor — the Algebra 2 gate stays OPEN', () => {
+  // Inherited from AP Stats, where this row pinned the strict gate (LOCKED). The
+  // Algebra 2 fork has no lesson gating: desk.html's _isLessonUnlocked returns
+  // true for every lesson (a2 initial import 804cac2), so the row now pins the
+  // fork's open gate while the latch and completion oracles stay exact.
+  it('D4 fail-open never leaks into the affirmative-server case; the a2 gate is open regardless', () => {
     const o = composeLatchHarness({ username: 'student-a', studentId: 'sid-a' });
     // Evidence IS present (the server has spoken for 1.1), but the immediate
     // predecessor of the target lesson (1.3) has NO evidence at all.
     o.latchServerComplete([{ lessonKey: '1.1', Cws: 90, blooket: 95 }]);
     expect(o.serverEvidencePresent()).toBe(true);
     expect(o.isLessonComplete('1.3', {})).toBe(false); // genuinely incomplete
-    expect(o.isLessonUnlocked('1.4', PAST, '1.3', TODAY, {}, true)).toBe(false); // strict gate holds
+    expect(o.isLessonUnlocked('1.4', PAST, '1.3', TODAY, {}, true)).toBe(true); // Algebra 2: never locked
   });
 });
 

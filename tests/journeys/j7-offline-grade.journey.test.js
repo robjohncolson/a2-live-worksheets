@@ -155,7 +155,18 @@ async function expectIncidentInvariants(harness, marksBefore) {
   await expectIncidentCalendar(harness);
 }
 
-describe('Desk journey J7', () => {
+// Skipped on every platform, not a Windows gate: this journey is the AP Stats
+// incident pin (2026-07-20) and its fixture is AP Stats shaped. On the Algebra 2
+// Desk the same boot renders 'Q1:86.5↑94.0Assessment 82.0%Work 86.5%Schoology
+// today —', '2 ahead — 2 of 4 lessons done' and 'Next class Thursday: 1-1 · Key
+// Features of Functions' (district categories, four published lessons, the a2
+// Do Now sentence), and topics 1.3/1.4 are not on the a2 calendar, so every
+// EXPECTED_* pin and expectIncidentCalendar fail by design (a2 initial import
+// 804cac2). Re-enable only with an a2 rewrite: fixture lessons 1.1/1.2/1.5/1.6,
+// the a2 strip, progress and Do Now copy, and a2 calendar tiles. The cold-reboot
+// mechanics it exercised are covered per matrix row by
+// tests/progress-reset-matrix-*.test.js, which run on the real a2 Desk code.
+describe.skip('Desk journey J7 (inherited AP Stats incident journey; needs an Algebra 2 rewrite)', () => {
   it.each(FAILURE_CASES)(
     'J7 cold reboot preserves the incident invariants after a real visible-tab $label /grade failure (supersedes incident-progress-reset-cache-relock, incident-progress-reset-donow-hydration, and incident-progress-reset-warm-control)',
     async ({ value, status }) => {

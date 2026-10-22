@@ -224,6 +224,11 @@ export function composeRenderHarness(opts) {
     "var _gradeRetryCount = " + (opts.initialRetryCount || 0) + ";",
     "var _gradeRetryTimer = null;",
     "var _gradeLastRenderedState = " + (opts.priorState ? JSON.stringify(opts.priorState) : 'null') + ";",
+    // The a2 Desk's expired-sign-in modal flag (desk.html, next to _gradeLoadError).
+    // Without it the auth branch of renderDoNowGrades throws a ReferenceError that
+    // its outer catch swallows before _renderGradeStatus runs, so the 401/403
+    // banner never appeared in this harness.
+    "var _expiredSignInShown = false;",
     "var DESK_WORKSHEET_DONE_THRESHOLD = 60;",
     extractFn(DESK, '_gradeCacheKey'),
     extractFn(DESK, '_persistGradeCache'),

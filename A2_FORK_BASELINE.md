@@ -2634,3 +2634,33 @@ tests/progress-reset-matrix-*.test.js files. Server suite 82/82, Python 194 pass
 ## Inherited limitation: alternative v3 date comparisons (H12)
 
 The frozen alternative v3 engine still compares UTC date prefixes. Production uses the district formula, which converts timestamps to America/New_York school dates. H9?H12 deliberately leave v3 unchanged.
+
+## 2026-10-22 — the inherited root failures are gone (second unattended sprint, tracks A and B)
+
+The five inherited root files (nine tests) were not Windows-environmental; each pinned AP Stats
+behaviour the Algebra 2 fork changed at its initial import (804cac2). Cause and treatment per file:
+
+- tests/phase4b-structure.test.js: the a2 teacher dashboard writes localStorage through
+  _inboxSeenKey() (the newest inbox timestamp, no secret); the setItem allowlist now names it, as
+  tests/phase4-structure.test.js already did since 2026-09-16. Passes.
+- tests/progress-reset-matrix-latch.test.js and tests/progress-reset-matrix-cleared-storage.test.js:
+  desk.html _isLessonUnlocked returns true for every lesson (Algebra 2 has no lesson gating), so the
+  "strict gate goes back to LOCKED" assertions now pin the open gate; the latch and completion
+  oracles are unchanged. Passes.
+- tests/progress-reset-matrix-loadstate.test.js (401 and 403 rows): the matrix harness lacked the
+  a2 Desk variable _expiredSignInShown, so the auth branch of renderDoNowGrades threw a
+  ReferenceError that its outer catch swallowed before _renderGradeStatus ran. The harness declares
+  it now; the banner assertions are unchanged. Passes.
+- tests/journeys/j7-offline-grade.journey.test.js: skipped on every platform (describe.skip with the
+  reason in the file), not gated on win32. The a2 Desk renders district categories, four published
+  lessons and its own Do Now sentence, and topics 1.3/1.4 are not on the a2 calendar, so every
+  EXPECTED_* pin and the calendar check fail by design. Re-enable only with an a2 rewrite of the
+  fixture and pins; the cold-reboot mechanics are covered per row by the matrix tests.
+
+Flakes under parallel load on the Windows box (track A): tests/a2-score-import.test.js has an
+explicit 20 s per-test budget and retries the temp-dir rm (EBUSY after a child exits);
+roster-server/tests/golden-master.test.js gives every app boot 45 s (3x the 15 s hook timeout it
+hit). Both files pass 3x alone; see the sprint report for the full-suite run.
+
+Result: "npx vitest run" reports 0 failed on this box; j7 (4 tests) is listed as skipped, not failed.
+

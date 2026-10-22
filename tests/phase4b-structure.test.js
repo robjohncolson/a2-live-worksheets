@@ -170,9 +170,11 @@ describe('Phase 4b — teacher-dashboard.html remediation panel', () => {
     expect(DASH).not.toMatch(/sessionStorage\.setItem/);
     expect(DASH).not.toMatch(/document\.cookie\s*=/);
     // Any localStorage.setItem call must use one of the three known constants
-    // (URL_KEY, SECRET_KEY, GLOBAL_OVERRIDE_KEY).
-    const setItemCalls = [...DASH.matchAll(/localStorage\.setItem\s*\(\s*([A-Z_][A-Z0-9_]*|['"][^'"]+['"])/g)];
-    const ALLOWED = new Set(['URL_KEY', 'SECRET_KEY', 'GLOBAL_OVERRIDE_KEY']);
+    // (URL_KEY, SECRET_KEY, GLOBAL_OVERRIDE_KEY) or the a2 dashboard's inbox
+    // "seen" marker, _inboxSeenKey() (the newest inbox timestamp, no secret;
+    // an a2 addition the inherited AP Stats pin did not know).
+    const setItemCalls = [...DASH.matchAll(/localStorage\.setItem\s*\(\s*([A-Za-z_$][\w$]*(?:\(\))?|['"][^'"]+['"])/g)];
+    const ALLOWED = new Set(['URL_KEY', 'SECRET_KEY', 'GLOBAL_OVERRIDE_KEY', '_inboxSeenKey()']);
     for (const m of setItemCalls) {
       expect(ALLOWED.has(m[1]), `unexpected setItem key: ${m[1]}`).toBe(true);
     }
