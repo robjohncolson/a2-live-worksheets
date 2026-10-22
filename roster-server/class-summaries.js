@@ -1,7 +1,9 @@
 // Class Log lesson summaries (school/class-log/POLISH2_SPEC.md, WP-C).
 //
 //   POST /class-log/summaries                          phone, Bearer CLASS_LOG_TOKEN
-//   GET  /teacher/summaries?from=YYYY-MM-DD&to=...     Desk, requireTeacher
+//   GET  /teacher/summaries?from=YYYY-MM-DD&to=...[&course=]   Desk, requireTeacher
+//     course (optional) is one of CARD_COURSES and keeps only that course's rows;
+//     the AP Stats Desk reads the shared table with course=apstats.
 //
 // Table from migration 0043 (a2.class_summaries via the service client). Until
 // it exists, both routes answer 503 and the phone retries. Same middleware
@@ -98,12 +100,14 @@ export function createClassSummaryStore(client = createServiceClient(), { page =
       check(await client.from('class_summaries').upsert(row, { onConflict: 'date,course,section' }));
     },
     // Pages of PAGE rows in the stable (date, section, course) order, so PostgREST's row cap
-    // (1000 on Supabase by default) can never truncate a range silently.
-    async listRange(from, to) {
+    // (1000 on Supabase by default) can never truncate a range silently. A course
+    // narrows the query to that course's rows; null means every course.
+    async listRange(from, to, course = null) {
       const rows = [];
       for (let start = 0; ; start += page) {
-        const chunk = check(await client.from('class_summaries').select('*').gte('date', from).lte('date', to)
-          .order('date').order('section').order('course').range(start, start + page - 1)) || [];
+        let query = client.from('class_summaries').select('*').gte('date', from).lte('date', to);
+        if (course) query = query.eq('course', course);
+        const chunk = check(await query.order('date').order('section').order('course').range(start, start + page - 1)) || [];
         rows.push(...chunk);
         if (chunk.length < page) return rows;
       }
@@ -168,12 +172,14 @@ export function mountTeacherSummaries(app, { db, store }) {
 
   app.get('/teacher/summaries', teacherAuth, async (req, res) => {
     const { from, to } = req.query;
+    const course = req.query.course === undefined ? null : req.query.course;
     if (!isIsoDate(from) || !isIsoDate(to)) return res.status(400).json({ error: 'from and to must be YYYY-MM-DD' });
+    if (course !== null && !CARD_COURSES.includes(course)) return res.status(400).json({ error: `course must be one of ${CARD_COURSES.join(', ')}` });
     const days = rangeDays(from, to);
     if (days === null) return res.status(400).json({ error: 'to must not be before from' });
     if (days > SUMMARY_LIMITS.rangeDays) return res.status(400).json({ error: `range must be at most ${SUMMARY_LIMITS.rangeDays} days` });
     let rows;
-    try { rows = await storage().listRange(from, to); } catch { return unavailable(res); }
-    res.json({ from, to, summaries: rows.map(summaryFromRow) });
+    try { rows = await storage().listRange(from, to, course); } catch { return unavailable(res); }
+    res.json({ from, to, ...(course ? { course } : {}), summaries: rows.map(summaryFromRow) });
   });
 }

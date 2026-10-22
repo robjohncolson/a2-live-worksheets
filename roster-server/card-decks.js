@@ -157,10 +157,18 @@ export function mountCardDecks(app, { store, env = process.env, now = () => new 
     try {
       const card = await storage().getCard(body.cardId);
       if (!card) return res.status(404).json({ error: 'Card not found' });
+      // The row's section is the card's own section (review 2026-10-22: the phone's
+      // value was stored unchecked). A body that names another section is refused
+      // with both values; a course-wide card (section null) keeps the body's section,
+      // which then says where the deck was rehearsed.
+      if (card.section && body.section !== card.section) {
+        return res.status(409).json({ error: 'section_mismatch', cardSection: card.section, section: body.section });
+      }
+      const section = card.section || body.section;
       const received = now().toISOString();
       // The row's date is the card's own date (the body's date is checked for shape only).
       const rows = body.results.map(row => ({
-        card_id: card.id, device: body.device, section: body.section, date: card.date, session: row.session,
+        card_id: card.id, device: body.device, section, date: card.date, session: row.session,
         item_id: row.itemId, grade: row.grade, at: row.at, latency_ms: row.latencyMs, received_at: received,
       }));
       const inserted = await storage().insertResults(rows);

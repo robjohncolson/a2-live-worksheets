@@ -7,7 +7,7 @@ import {
 } from '../class-summaries.js';
 
 // Minimal Supabase query-builder fake over PGlite, covering exactly the calls
-// class-summaries.js makes (select/gte/lte/order, upsert with onConflict).
+// class-summaries.js makes (select/gte/lte/eq/order, upsert with onConflict).
 // jsonb values go over the wire as JSON text, the way PostgREST receives them.
 function fakeSupabase(pg) {
   return { from(table) {
@@ -16,7 +16,7 @@ function fakeSupabase(pg) {
     const cmp = sign => (col, value) => { params.push(value); where.push(`${col} ${sign} $${params.length}`); return builder; };
     const builder = {
       select(cols = '*') { columns = cols; return builder; },
-      gte: cmp('>='), lte: cmp('<='),
+      gte: cmp('>='), lte: cmp('<='), eq: cmp('='),
       order(col) { orders.push(col); return builder; },
       range(start, end) { limit = ` offset ${start} limit ${end - start + 1}`; return builder; },
       upsert(row, options) { op = 'upsert'; payload = row; conflict = options.onConflict; return builder; },
@@ -229,6 +229,25 @@ describe('GET /teacher/summaries', () => {
     expect(rest).toEqual(summary());
     expect((await list('?from=2026-10-24&to=2026-10-31')).body.summaries).toEqual([]);
     expect((await list('?from=2026-10-21&to=2026-10-21')).body.summaries).toHaveLength(2);
+  });
+  it('course= keeps only that course (the AP Stats Desk reads course=apstats); no course returns every course', async () => {
+    const apstats = await list('?from=2026-10-21&to=2026-10-23&course=apstats');
+    expect(apstats.status).toBe(200);
+    expect(apstats.body.course).toBe('apstats');
+    expect(apstats.body.summaries.map(s => [s.date, s.course, s.section])).toEqual([['2026-10-23', 'apstats', 'B']]);
+    const algebra2 = await list('?from=2026-10-21&to=2026-10-23&course=algebra2');
+    expect(algebra2.body.course).toBe('algebra2');
+    expect(algebra2.body.summaries.map(s => s.course)).toEqual(['algebra2', 'algebra2', 'algebra2']);
+    const all = await list('?from=2026-10-21&to=2026-10-23');
+    expect(all.body).not.toHaveProperty('course');
+    expect(all.body.summaries).toHaveLength(4);
+    expect((await list('?from=2026-10-21&to=2026-10-23&course=apstats&course=algebra2')).status).toBe(400);
+  });
+  it('course= filters inside the store paging, not after it', async () => {
+    const paged = createClassSummaryStore(fakeSupabase(pg), { page: 2 });
+    expect((await paged.listRange('2026-09-01', '2026-11-30', 'algebra2')).map(r => r.date)).toEqual(['2026-09-30', '2026-10-21', '2026-10-21', '2026-10-22', '2026-11-02']);
+    expect((await paged.listRange('2026-09-01', '2026-11-30', 'apstats')).map(r => r.date)).toEqual(['2026-10-23']);
+    expect(await paged.listRange('2026-09-01', '2026-11-30')).toHaveLength(6);
   });
   it('allows exactly 62 days and rejects 63', async () => {
     expect(rangeDays('2026-09-01', '2026-11-01')).toBe(62);

@@ -407,6 +407,17 @@ describe('POST /class-log/deck-results', () => {
     expect(rows).toHaveLength(4);
     expect(rows[0]).toMatchObject({ card_id: CARD_C, device: 's24', section: 'C', date: '2026-10-22', session: 1, item_id: 'item-0001', grade: 'again', at: '2026-10-22 13:00:00+00', latency_ms: 1200 });
   });
+  it('the section comes from the card: a body naming another section is 409 with both values', async () => {
+    const wrong = await postResults(results([grade(1, 1, 'again')], { section: 'G' }));
+    expect(wrong).toMatchObject({ status: 409, body: { error: 'section_mismatch', cardSection: 'C', section: 'G' }, cache: 'no-store' });
+    expect((await pg.query('select count(*)::int as n from a2.deck_results')).rows[0].n).toBe(0);
+    expect((await postResults(results([grade(1, 1, 'again')], { section: 'C' }))).body).toEqual({ ok: true, inserted: 1 });
+    expect((await pg.query('select section from a2.deck_results')).rows).toEqual([{ section: 'C' }]);
+  });
+  it('a course-wide card (section null) keeps the body section, which says where it was rehearsed', async () => {
+    expect((await postResults(results([grade(1, 1, 'got_it')], { cardId: CARD_ALL, section: 'D' }))).body).toEqual({ ok: true, inserted: 1 });
+    expect((await pg.query('select card_id, section, date from a2.deck_results')).rows).toEqual([{ card_id: CARD_ALL, section: 'D', date: '2026-10-23' }]);
+  });
   it('404 for an unknown card, 400 on shape', async () => {
     expect(await postResults(results([grade(1, 1, 'again')], { cardId: MISSING }))).toMatchObject({ status: 404, body: { error: 'Card not found' } });
     expect(await postResults(results([{ ...grade(1, 1, 'again'), grade: 'meh' }]))).toMatchObject({ status: 400, body: { error: 'results[0].grade must be again or got_it' } });
@@ -414,7 +425,8 @@ describe('POST /class-log/deck-results', () => {
   });
   it('accepts 200 results in one POST; parser errors are short JSON after auth', async () => {
     const many = Array.from({ length: 200 }, (_, i) => ({ ...grade(1, (i % 14) + 1, i % 3 ? 'got_it' : 'again', new Date(Date.UTC(2026, 9, 22, 13, 0, i)).toISOString()), latencyMs: 3600000 }));
-    expect((await postResults(results(many, { device: 'd'.repeat(32), section: 'é'.repeat(16) }))).body).toEqual({ ok: true, inserted: 200 });
+    // The course-wide card keeps the body's section, so the 16-character limit is exercised here.
+    expect((await postResults(results(many, { cardId: CARD_ALL, device: 'd'.repeat(32), section: 'é'.repeat(16) }))).body).toEqual({ ok: true, inserted: 200 });
     expect(await call('POST', '/class-log/deck-results', { text: '{not json', headers: auth })).toMatchObject({ status: 400, body: { ok: false, error: 'bad_json' } });
     const big = JSON.stringify({ ...results([]), pad: 'x'.repeat(130 * 1024) });
     expect(await call('POST', '/class-log/deck-results', { text: big, headers: auth })).toMatchObject({ status: 413, body: { ok: false, error: 'too_large' } });
