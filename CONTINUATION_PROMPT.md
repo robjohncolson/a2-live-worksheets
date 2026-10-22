@@ -1,10 +1,91 @@
 # Continuation Prompt — Algebra 2 Desk, SY26-27
 
-Updated 2026-10-06 (Tuesday of week 5). Paste into the next Claude Code / Codex session after
+Updated 2026-10-22 (Thursday of week 7). Paste into the next Claude Code / Codex session after
 `git pull`. Read `CLAUDE.md`, `A2_FORK_PLAN.md`, `A2_FORK_BASELINE.md` and the specs under
 `docs/a2-*-spec.md` first. Everything below is deployed unless marked otherwise.
 
-## What changed on 2026-10-05/06 (read this first)
+## What changed 2026-10-07 to 10-22 (read this first)
+
+1. **The Class Log phone talks to roster-server** (`school/class-log`, a sibling folder of this
+   repo; the Kotlin app records each block). Every phone route is `Bearer CLASS_LOG_TOKEN`
+   (timing-safe compare; unset => 503), mounted before the app-wide JSON parser so auth runs
+   before any body is read; every `/teacher/*` route sits behind `requireTeacher` (the
+   `x-teacher-secret` key or a teacher-role token). Each table came in its own migration, run
+   by hand in the Supabase SQL editor (schema `a2`, then `NOTIFY pgrst, 'reload schema'`); a
+   503 from a route means its migration has not run. In order:
+   - **Observer cards** (1f9b140, d23ad73; migrations 0041/0042): `GET /class-log/cards?date=`
+     (content-hash ETag, 304 on a weak match too), `POST /class-log/cards/:id/outcome`,
+     `PUT /teacher/cards`, `GET /teacher/cards`. `scripts/push-observer-cards.mjs` pushes the
+     `observerCard` blocks of `content/a2/day-log.json`; `scripts/draft-observer-cards.mjs`
+     drafts them (DeepSeek, `DRAFT_API_*` env) and `--apply` writes the day log atomically.
+     Rules in `roster-server/observer-card-rules.js`.
+   - **Lesson summaries** (0b0d520, fb5babc; migration 0043): `POST /class-log/summaries`
+     (upsert by date/course/section), `GET /teacher/summaries?from=&to=` (<= 62 days, paged).
+   - **Class Log pass 3** (0551caa; migrations 0044/0045): schedule overrides
+     (`GET /class-log/schedule?from=&to=`, `PUT/DELETE/GET /teacher/schedule-overrides`,
+     `scripts/push-schedule.mjs` seeds the bell schedule and days off) and device health
+     (`POST /class-log/health`, `GET /teacher/health`, 30-day log). The Desk teacher view has a
+     health strip (`lib/class-log-health.js`) that compares today's blocks with the phone's last
+     ping and hides itself on a schedule error.
+   - **Class Log pass 4** (7a95796): `node scripts/pull-class-summaries.mjs` pulls the last 30
+     days of summaries into gitignored `roster-local/class-summaries/` (`<date>-<section>.md` +
+     `index.json`); the teacher day panel has a "Recording" fold; daily procedure step 1 below
+     reads the summary first. `roster-local/` is also excluded from the Vercel upload.
+   - **Rehearsal decks** (4a67c9e; migration 0046): `a2.card_decks` (one deck per observer card,
+     8-14 items of type frame/anchor/trap/step/cue) and `a2.deck_results` (one row per grade the
+     phone records). `GET /class-log/decks?date=` (ETag/304), `POST /class-log/deck-results`
+     (<= 200, exact repeats dropped, unique key ignores duplicates), `PUT /teacher/decks`
+     (<= 20 decks, ONE transaction through the `a2.put_card_decks` RPC: a missing card is 404 and
+     nothing is written; unchanged content is not rewritten), `GET /teacher/decks` (per-deck
+     sessions/asked/again and the three most-missed items; the Desk "Rehearsal" line),
+     `DELETE /teacher/decks?cardId=`. Rules in `roster-server/deck-rules.js`;
+     `scripts/draft-card-decks.mjs` drafts a deck per card (DeepSeek) or validates a hand-written
+     file with `--from-file`, writes `content/a2/card-decks/<date>.json` (tracked; decks hold no
+     student data and the script refuses roster first names) and `--apply` PUTs it. Hand-written
+     decks for Thu 10/22 C and G are in `content/a2/card-decks/2026-10-22.json`.
+   - Deck results, summaries, outcomes, schedule overrides and health pings are **never read by
+     the grade engine** (checked 2026-10-22: no grade or ledger module touches those tables).
+2. **Railway incident 2026-10-21:** the deploy of 4a67c9e never built; b8c16df (10/22) is an
+   empty re-trigger. Check `/health` on the roster server after any push that day-ish and
+   compare the commit it reports with `git log -1`.
+3. **Review of 2026-10-22** (`docs/review-2026-10-22.md`): one fix — a hand-edited
+   `card_decks.items` entry that is not an object (the 0046 check only pins the jsonb type)
+   crashed the process on `GET /teacher/decks` (an uncaught throw in an Express 4 async handler
+   is an unhandled rejection); `deckFromRow` now drops such entries, with a test. The rest of the
+   list is plausible-only; the teacher key compare in `requireTeacher` is `===`, not
+   timing-safe (accepted, noted).
+4. **Lesson 1-2, as taught (Oct 8-20):** Examples 1-3 with the IXL skills as Web/Group Jams —
+   23W (graph an absolute value function, prerequisite; homework column "IXL 23W ... (1-2
+   homework)", SmartScore/70 x 10, capped at 10, due Thu 10/15 C / Fri 10/16 D and G; dropped
+   for D and repurposed as a Web Jam column), FS8 (find values using function graphs), F6J
+   (translations, Example 1), PHV (reflections, Example 2), NNY (dilations) and RSN (combined
+   transformations) as the pre-quiz Jams. Jam columns are 10 pts Assignments, everyone present
+   10 plus a 0.5 x fraction bonus for the Jam score; Try It columns are 5 pts (correct = 6).
+   The 1-2 quiz is the short form `../Lesson_planning/a2_1-2_quiz_fast.pdf` (Savvas items 1, 3,
+   5; items 2 and 3 count 10 each, item 1 is +5 bonus, 20-pt Assessments). C and G took it
+   Tue 10/20; **D has not** (SAT day 10/21 cut D to ~25 minutes, no Jams, no quiz; D's quiz is
+   Fri 10/23 after the NNY/RSN Jams). G had no block on 10/21, so every later G day shifts one
+   meeting and the U5D/FT6 Jams merge into the Nov 3 quiz day. The 10/21 D recording is unusable
+   (phone in a bag). Teacher observation Mon 10/19 in C (Ms. Bonnevie and Mr. Serino).
+5. **Lesson 1-3 starts Thu 10/22** (C and G) with the fast packet `../Lesson_planning/a2_1-3_fast.pdf`:
+   Examples 3 and 5 only, Web Jams RVD and W67, observer card "Write the rule for a three-piece
+   graph"; no iPad (pen broken), the PDF goes on the SMART board with freeze + tray pen. 1-3 quiz
+   (4 items) G Fri 10/23, C and D Mon 10/26. Then 1-5 (10/27-10/30, Examples 1-2, Web Jams
+   M69/FM2/ZBH), 1-6 (10/30-11/4, Examples 1-2, Web Jams BW5/2CN/U5D/FT6), Topic 1 review, and the
+   **Topic 1 Assessment Thu 11/5 (C, G) / Fri 11/6 (D)**; Q1 closes Fri 11/6 (Mr. Serino: inside
+   Q1, the date is not hard). All of it is planned in `content/a2/day-log.json` with observer
+   cards; `docs/a2-lesson-targets.md` now lists the Topic 1 assessment items by lesson (1-4
+   carries four including a DOK 3; 1-3 one; 1-5 only item 11).
+6. **1-5 lesson prep** is drafted in `content/a2/lesson-prep.json` (PLC proposal of Oct 13:
+   keep Examples 1-3, cut 4; taught toward Topic 1 assessment item 11; DOK 3 = practice item 7;
+   IXL M69, T86 proposed, FM2, ZBH). `tools/ixl/skill-ids.json` gained 23W, FS8, F6J, PHV.
+7. **Roster changes:** a new student joined G on 10/14 (first name Ronaldo; laptop from 10/16)
+   and one G student left the gradebook. The day log tells the two Wendys in G apart by a
+   surname fragment ("Cha." / "Chv."), never the full surname; keep it at first names.
+8. `docs/a2-tryit-capture-plan.md` (Oct 2, **on hold**): focused days + captured Try Its with
+   AI partial credit; nothing built; three decisions listed at its end.
+
+## What changed on 2026-10-05/06 (still true unless superseded above)
 
 1. **Teacher prep per lesson lives in `content/a2/lesson-prep.json`** (commit 32bcba7, deployed).
    Per lesson: PLC keep/cut decision per example with DOK and practice items, the quiz item the
@@ -137,14 +218,17 @@ Grading (district formula 50/40/10):
 | Group Jam / IXL homework | Assignments | 10 each | Jams scored as participation; IXL at SmartScore 80+ = full. |
 | Bonus | Assignments, extra credit | 0 possible, ≤10 earned/quarter | weeks 1–2 opener (≤3), Web Jam accuracy (≤1 per jam), IXL homework at SmartScore **80+** (+1). |
 
-## Where the lessons stand (week of Oct 5)
+## Where the lessons stand (Thu Oct 22)
 
-1-1 is closed: quizzes taken Sep 28 (D) and Sep 29 (C, G), packets collected, Try Its graded as
-quiz bonus, IXL replacement window open through Oct 7. 1-2 Day 1 done in C and D (Oct 5) and G
-(Oct 6); Day 2 next meeting; Examples 2-5 and the 1-2 quiz Thu/Fri Oct 8-9 per
-`../Lesson_planning/a2_1-2_plan_oct5-7.pdf`. 1-3 packet is being re-cut by the PLC (see item 2
-above); do not publish 1-3 content until that packet exists. Everything landed is in
-`content/a2/day-log.json`.
+1-1 closed (quizzes Sep 28/29, IXL replacement window closed Oct 7, partial-credit adds entered
+Oct 6). 1-2 taught Oct 5-20 in all sections; the short 1-2 quiz is taken in C and G (Oct 20) and
+**still owed by D (Fri Oct 23, after the NNY/RSN Jams)**. 1-3 opens Thu Oct 22 in C and G with the
+fast packet (Examples 3 and 5), Mon Oct 26 in D; 1-3 quiz G Oct 23, C and D Oct 26. Then 1-5
+(Oct 27-30), 1-6 (Oct 30-Nov 4), Topic 1 review, Topic 1 Assessment Nov 5 (C, G) / Nov 6 (D); Q1
+closes Nov 6. 1-3 content is still unpublished on the Desk (the PLC packet is the fast packet,
+not the Savvas one; objectives verbatim from the packet are still owed to
+`content/a2/lesson-objectives.json`). Everything landed and planned is in
+`content/a2/day-log.json`; the observer cards and rehearsal decks for a day come from it.
 
 ## Daily operating procedure (teacher-local data lives in gitignored `roster-local/`)
 
@@ -179,24 +263,25 @@ Wed 9/23 that the teacher made but never assigned; harmless, leave it. Advisory 
 
 ## Open items, in order
 
-1. Group Jam columns are done (item 5 above) except G's Sep 23, which needs the teacher to say
-   what happened. Then the Oct 5 worksheet as an Assignments column once graded.
-2. **IXL quiz replacement, pulled Oct 6 evening** (`roster-local/ixl-{W42,BNH,PHD}-2026-10-06.json`,
-   qualifiers in `roster-local/quiz/2026-10-06-Period{C,D,G}-ixl-replace.json`): C Nicole lifted
-   15 -> 20; every other qualifier already had 20. Still under 20 and not qualified (W42/BNH/PHD):
-   C Carelys 38/87/-, Diego 80/76/0, Rovyr -, Anyi -, Luis 25/-/-; D Anderson 77/73/-, Dylan
-   13/100/100, Sandra 100/55/-, Amavany -/-/52; G Alejandra 82/55/-, Shirley 84/81/20, Gary -.
-   **Oct 6 evening, teacher's partial-credit adds on the 1-1 Quiz (entered, verified):** C Carelys
-   15->18, Diego 13->18; D Anderson 18->20, Dylan 0->18, Sandra 16->19, Amavany 0->15; G Alejandra
-   10->15, Shirley 13->19. Untouched: C Rovyr 10, Anyi 10, Luis 10; G Gary 4. Re-pull Wed Oct 7
-   morning before progress reports if the teacher wants a last look. The IXL teacher id is readable from the skill-score-chart page's own
-   `run` request (`performance.getEntriesByType('resource')`); ClassLink's domain is blocked for the
-   Chrome extension, but the Windows SSO click still went through and IXL signed in.
-3. 1-2: log Day 2 per section; grade Try It 5 on quiz day; 1-2 quiz Thu/Fri.
-4. 1-3: when the PLC packet is final, copy its verbatim objectives into
-   `content/a2/lesson-objectives.json`, update `lesson-prep.json` status, and build the Desk
-   content (`docs/a2-lesson-targets.md` order).
-5. **Relay / note box** in the teacher day panel (teacher wants it); two decisions pending (notes
-   on the roster server? may scheduled runs commit day-log edits?).
-6. First paper Do Now tally through the Engagement script; R4/R5 parked while students are off the
-   Desk; rotate the teacher key (`TEACHER_KEY` in Railway, then `roster-server/.env`).
+1. **D's 1-2 quiz Fri Oct 23** (Web Jams NNY then RSN, then `a2_1-2_quiz_fast.pdf`); enter it as
+   the 20-pt Assessments column like C and G; grade Try It 2 (5 pts, correct = 6) from the packets.
+2. **1-3:** G quiz Fri Oct 23, C and D Mon Oct 26 (4 items). Copy the fast packet's objectives
+   verbatim into `content/a2/lesson-objectives.json`, update `lesson-prep.json` status, and build
+   the Desk content (`docs/a2-lesson-targets.md` order). Draft the Oct 23/26 observer cards and
+   decks (`draft-observer-cards.mjs`, `draft-card-decks.mjs --apply`) the evening before.
+3. **1-5 PLC proposal** (`lesson-prep.json` 1-5, Oct 13 draft): keep/cut and the DOK 3 are still
+   the PLC's call; T86 proposed for `data/a2-lesson-skills.json` (then run
+   `build-a2-lesson-skills.mjs` **and** `sync-server-shared.mjs`); verify 39B in IXL before keeping.
+4. Group Jam columns are done (Oct 6) except G's Sep 23, which needs the teacher to say what
+   happened; the Oct 5 worksheet as an Assignments column once graded.
+5. Topic 1 Assessment inside Q1 (Nov 5/6); plan the review from the lowest Jam skills per
+   section (`GET /teacher/decks` and the day log carry the Jam scores).
+6. **Relay / note box** in the teacher day panel (teacher wants it); two decisions pending (notes
+   on the roster server? may scheduled runs commit day-log edits?). The Class Log summaries now
+   cover the "what happened" half; the note box is the "what I want" half.
+7. First paper Do Now tally through the Engagement script; R4/R5 parked while students are off the
+   Desk; rotate the teacher key (`TEACHER_KEY` in Railway, then `roster-server/.env`);
+   `docs/a2-tryit-capture-plan.md` stays on hold until its three decisions are answered.
+8. Review follow-ups that are plausible, not confirmed, are listed in `docs/review-2026-10-22.md`
+   (phone-supplied `section` on a deck result is not checked against the card; the roster-name
+   check in `draft-card-decks.mjs` is silent when `roster-local/roster-view-*.csv` is absent).
