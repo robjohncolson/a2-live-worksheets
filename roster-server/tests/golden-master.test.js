@@ -36,6 +36,12 @@ function expectGoldenEqual(actual, expected, label) {
 
 const fixture = loadFixture(SYNTHETIC_DIR);
 
+// Booting the in-process app takes about a second alone, but the hook hit the
+// 15 s config timeout under the full suite on the Windows box (2026-10-22), so
+// every boot gets 3x that. The fixture above is read-only module state; each
+// describe boots and closes its own app, and the perturbation tests boot their own.
+const BOOT_TIMEOUT = 45_000;
+
 // Compare the stable public grade contract, with readable paths on failure.
 // Six decimals ignore floating-point representation without hiding point changes.
 function rounded(value) {
@@ -73,11 +79,11 @@ function defineOracleTests(mode) {
         configOverrides: fixture.inputs.modes[mode],
         inProcess: true,
       });
-    });
+    }, BOOT_TIMEOUT);
 
     afterAll(async () => {
       if (app) await app.close();
-    });
+    }, BOOT_TIMEOUT);
 
     it('uses the current volatile-field contract and covers every fixture identity', () => {
       expect(fixture.expected.volatileVersion).toBe(VOLATILE_VERSION);
@@ -145,7 +151,7 @@ describe('A2 golden master has teeth', () => {
     const oracle = fixture.expected.perturbations[name];
     const difference = await firstPerturbedDifference({ mode: 'v3', studentId: oracle.studentId, configOverrides });
     expectReadableDifference(difference, oracle.quarterGrade);
-  });
+  }, BOOT_TIMEOUT);
 
   it('retired flashcard changes cannot alter district grades', async () => {
     const studentsDoc = structuredClone(fixture.studentsDoc);
@@ -154,7 +160,7 @@ describe('A2 golden master has teeth', () => {
     student.records.find(row => row.source === 'flashcard').score = 79;
     const difference = await firstPerturbedDifference({ mode: 'district', studentId: student.id, studentsDoc });
     expect(difference.path).toBeNull();
-  });
+  }, BOOT_TIMEOUT);
 
   it('counts missing work only after its section lesson day, including Wednesday', async () => {
     const studentsDoc = structuredClone(fixture.studentsDoc);
@@ -174,5 +180,5 @@ describe('A2 golden master has teeth', () => {
         await app.close();
       }
     }
-  });
+  }, BOOT_TIMEOUT);
 });

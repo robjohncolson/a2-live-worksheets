@@ -9,6 +9,10 @@ import { createServer } from 'node:http';
 import { resolveTeacherSecret } from '../scripts/a2-daily-engagement.mjs';
 
 const repo = fileURLToPath(new URL('..', import.meta.url));
+// Each test spawns node up to four times. Alone a test takes about 0.6 s; under
+// the full suite on the Windows box (2026-10-22) two timed out at vitest's 5 s
+// default, so the budget is 3x the roughly 6 s seen under that load.
+const TEST_TIMEOUT = 20_000;
 const roots = [];
 const servers = [];
 afterEach(async () => {
@@ -16,8 +20,9 @@ afterEach(async () => {
     server.closeAllConnections();
     await new Promise(resolve => server.close(resolve));
   }
-  for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true });
-});
+  // Windows can still hold a just-exited child's cwd for a moment (EBUSY); retry.
+  for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true, maxRetries: 10, retryDelay: 100 });
+}, TEST_TIMEOUT);
 
 function workspace() {
   const root = mkdtempSync(resolve(tmpdir(), 'a2-import-'));
@@ -83,7 +88,7 @@ it('engagement defaults to dry-run; repeated commits send identical point snapsh
     scores: [{ studentId: 'a', score: 9 }, { studentId: 'b', score: null }],
   } });
   expect(server.authorized()).toBe(true);
-});
+}, TEST_TIMEOUT);
 
 it('bonus dry-runs print counts only and commits overwrite capped quarter snapshots for all sections', async () => {
   const root = workspace();
@@ -98,7 +103,7 @@ it('bonus dry-runs print counts only and commits overwrite capped quarter snapsh
   expect(server.requests[0].body).toMatchObject({ source: 'bonus', quarter: 'Q1', section: 'C', scores: [{ student: 'Private Fixture', score: 10 }] });
   expect(server.requests[1].body.scores).toEqual([]);
   expect(server.authorized()).toBe(true);
-});
+}, TEST_TIMEOUT);
 
 it('rejects conflicting flags and malformed bonus input without leaking private data', async () => {
   const root = workspace();
@@ -107,7 +112,7 @@ it('rejects conflicting flags and malformed bonus input without leaking private 
   const result = await run(root, 'a2-bonus-totals.mjs', []);
   expect(result.code).toBe(1);
   expect(result.stdout + result.stderr).not.toMatch(/Private Fixture|fixture-ambient-key/);
-});
+}, TEST_TIMEOUT);
 
 it.each(['a2-bonus-totals.mjs', 'a2-daily-engagement.mjs'])('%s reports rejected writes and exits nonzero', async script => {
   const root = workspace();
@@ -116,4 +121,4 @@ it.each(['a2-bonus-totals.mjs', 'a2-daily-engagement.mjs'])('%s reports rejected
   const result = await run(root, script, [...args, '--commit', '--url', server.url]);
   expect(result.code).toBe(1);
   expect(result.stdout).toContain('rejected: 2');
-});
+}, TEST_TIMEOUT);
