@@ -58,17 +58,13 @@ jobs:
         run: npm test -- --retry=2
 
   typecheck:
-    name: typecheck — grade engine + receipts + feeder (advisory)
+    name: typecheck — grade engine + receipts + feeder (blocking)
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    # ADVISORY in this fork (C1, 2026-10-22). The AP Stats parent made this job
-    # blocking at P4 once its allowlists were clean; the a2 fork's are not:
-    # `npm run typecheck` fails on a clean checkout with 43 errors in
-    # gradebook-client.js (offline-queue `parked`, optional window.rosterClient)
-    # and 3 in roster-server/lesson-grade.js (number|null narrowing). Those are
-    # grade-engine files, so they are not fixed as a CI side effect. Flip
-    # continue-on-error back off once both allowlists type-check clean.
-    continue-on-error: true
+    # BLOCKING since D3 (2026-10-22, 94b083e): the fork's 46 pre-existing errors
+    # (43 in gradebook-client.js, 3 in roster-server/lesson-grade.js) were typed
+    # away with JSDoc only; engine outputs verified identical. It was advisory for
+    # the few hours between C1 and D3.
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
