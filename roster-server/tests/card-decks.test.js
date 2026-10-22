@@ -445,6 +445,19 @@ describe('GET /teacher/decks', () => {
     expect(g).toMatchObject({ cardId: CARD_G, results: { sessions: 0, asked: 0, again: 0 }, missed: [] });
     expect(c.items).toHaveLength(10);
   });
+  it('a hand-edited items array with a non-object entry is served without that entry, not a crash', async () => {
+    // 0046 only checks jsonb_typeof(items) = 'array'; a SQL-editor edit can leave null or a string in it.
+    await putDecks([{ cardId: CARD_C, items: items() }]);
+    await pg.query("update a2.card_decks set items = items || '[null, \"stray\"]'::jsonb where card_id = $1", [CARD_C]);
+    await postResults(results([grade(1, 2, 'again')]));
+    const response = await call('GET', '/teacher/decks?date=2026-10-22');
+    expect(response.status).toBe(200);
+    expect(response.body.decks[0].items).toHaveLength(10);
+    expect(response.body.decks[0].missed).toEqual([{ itemId: 'item-0002', type: 'anchor', front: 'Front 2', again: 1 }]);
+    const phone = await getDecks();
+    expect(phone.status).toBe(200);
+    expect(phone.body.decks[0].items).toHaveLength(10);
+  });
   it('400 on a bad date; 503 without details on a storage failure', async () => {
     expect((await call('GET', '/teacher/decks?date=nope')).status).toBe(400);
     const app = express();

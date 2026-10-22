@@ -20,10 +20,15 @@ import { DECK_LIMITS, isIsoDate, isUuid, validateDeckPut, validateResults } from
 
 export { validateDeckPut, validateResults, validateItems, deckContentHash, itemId } from './deck-rules.js';
 
-// Database row -> the phone's deck shape.
+// Database row -> the phone's deck shape. items is validated on every write, but
+// the 0046 check only pins the jsonb type (array), so a hand edit in the SQL
+// editor can leave a non-object entry; those are dropped here instead of
+// crashing deckStats (an uncaught throw in an Express 4 async handler is an
+// unhandled rejection, which exits the process).
+const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 export function deckFromRow(row) {
   return {
-    cardId: row.card_id, course: row.course, section: row.section ?? null, items: Array.isArray(row.items) ? row.items : [],
+    cardId: row.card_id, course: row.course, section: row.section ?? null, items: Array.isArray(row.items) ? row.items.filter(isObject) : [],
     model: row.model ?? null, generatedAt: row.generated_at ?? null, updatedAt: row.updated_at,
   };
 }
