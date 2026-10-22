@@ -2,7 +2,9 @@ import { beforeAll, afterAll, beforeEach, afterEach, describe, it, expect, vi } 
 import express from 'express';
 import { readFileSync } from 'node:fs';
 import { PGlite } from '@electric-sql/pglite';
-import { mountDeviceHealth, mountTeacherHealth, createDeviceHealthStore, validateHealth, healthFromRow } from '../device-health.js';
+import {
+  mountDeviceHealth, mountTeacherHealth, createDeviceHealthStore, validateHealth, healthFromRow, recordingWarnings, recordingWarnings24h,
+} from '../device-health.js';
 
 // Minimal Supabase query-builder fake over PGlite, covering exactly the calls
 // device-health.js makes (select/order, upsert with onConflict, insert, delete+lt).
@@ -166,8 +168,18 @@ describe('GET /teacher/health', () => {
     expect(response.status).toBe(200);
     expect(response.cache).toBe('no-store');
     expect(response.body).toEqual({ devices: [{
-      device: 's24', at: '2026-10-21 13:58:00+00', receivedAt: '2026-10-21 14:00:00+00', ageMinutes: 12, payload: ping(),
+      device: 's24', at: '2026-10-21 13:58:00+00', receivedAt: '2026-10-21 14:00:00+00', ageMinutes: 12, payload: { ...ping(), recordingWarnings24h: 0 },
     }] });
+  });
+  it('serves recordingWarnings24h counted from the ping events24h lines, apart from failures24h', async () => {
+    const events24h = ['10:12:00 D: transcript poor (12% usable, prompt echo in 7 of 9 parts)', '11:30:00 Mic: possibly covered (clipping for 45 s)', '11:31:00 Mic: ok'];
+    expect((await post(ping({ events24h, failures24h: 0 }))).status).toBe(200);
+    const { payload } = (await health()).body.devices[0];
+    expect(payload.recordingWarnings24h).toBe(2);
+    expect(payload.failures24h).toBe(0);
+    expect(payload.events24h).toEqual(events24h);
+    expect((await post(ping({ recordingWarnings24h: 1 }))).status).toBe(200);
+    expect((await health()).body.devices[0].payload.recordingWarnings24h).toBe(1);
   });
   it('an empty list before the first ping', async () => {
     expect((await health()).body).toEqual({ devices: [] });
@@ -194,7 +206,24 @@ describe('storage failures', () => {
 describe('pure helpers', () => {
   it('validateHealth keeps the whole body and normalizes at', () => {
     expect(validateHealth({ device: ' s24 ', at: '2026-10-21T09:58:00-04:00', x: 1 }))
-      .toEqual({ device: 's24', at: '2026-10-21T13:58:00.000Z', payload: { device: 's24', at: '2026-10-21T09:58:00-04:00', x: 1 } });
+      .toEqual({ device: 's24', at: '2026-10-21T13:58:00.000Z', payload: { device: 's24', at: '2026-10-21T09:58:00-04:00', x: 1, recordingWarnings24h: 0 } });
+  });
+  it('recordingWarnings counts transcript-poor and bad-mic lines; Mic: ok and failures are not warnings', () => {
+    expect(recordingWarnings([
+      '10:12:00 D: transcript poor (12% usable, prompt echo in 7 of 9 parts)',
+      '10:13:00 Mic: possibly covered (clipping for 45 s)', '10:14:00 Mic: silent for 2 min',
+      '10:15:00 Mic: ok', '10:16:00 Health: failed (no connection)', 'G: transcript poor (90% usable, 49 words)', 7, null,
+    ])).toBe(4);
+    expect(recordingWarnings(undefined)).toBe(0);
+    expect(recordingWarnings('Mic: silent for 2 min')).toBe(0);
+  });
+  it('recordingWarnings24h: the phone count wins, else the events24h lines are counted, else 0', () => {
+    expect(recordingWarnings24h({ recordingWarnings24h: 3, events24h: ['Mic: silent for 2 min'] })).toBe(3);
+    expect(recordingWarnings24h({ recordingWarnings24h: -1, events24h: ['Mic: silent for 2 min'] })).toBe(1);
+    expect(recordingWarnings24h({ recordingWarnings24h: '2' })).toBe(0);
+    expect(recordingWarnings24h({})).toBe(0);
+    expect(validateHealth({ events24h: ['11:05:00 C: transcript poor (30% usable)'] }).payload.recordingWarnings24h).toBe(1);
+    expect(validateHealth({ x: 1 }).payload.recordingWarnings24h).toBe(0);
   });
   it('healthFromRow never reports a negative age', () => {
     expect(healthFromRow({ device: 'a', at: null, received_at: '2026-10-21T14:05:00Z', payload: {} }, new Date('2026-10-21T14:00:00Z')).ageMinutes).toBe(0);

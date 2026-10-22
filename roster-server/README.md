@@ -201,7 +201,7 @@ menu bar.
 
 | Route | Auth | Does |
 |---|---|---|
-| `POST /class-log/health` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | Body up to 8 KB: `{device, at, appVersion, battery, mode, nextBlock, alarmAt, serviceForeground, queues, lastRecording, lastFetch, failures24h}`. Only `device` (default `s24`, up to 32 characters) and `at` (ISO 8601 or null) are checked; the whole body is stored as `payload`. Upserts the current row, appends a log row, and deletes log rows received more than 30 days ago. `{ok: true}`. |
+| `POST /class-log/health` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | Body up to 8 KB: `{device, at, appVersion, battery, mode, nextBlock, alarmAt, serviceForeground, queues, lastRecording, lastFetch, failures24h, events24h?, recordingWarnings24h?}`. Only `device` (default `s24`, up to 32 characters) and `at` (ISO 8601 or null) are checked; the whole body is stored as `payload`, plus `recordingWarnings24h`: the phone's own count when it sends a non-negative integer, else the number of `events24h` lines (event-log lines from the last 24 hours, `HH:MM:SS text`) that say `transcript poor` or `Mic:` anything but `ok` (the lines `failures24h` never counts, since they do not contain "failed"), else 0. Upserts the current row, appends a log row, and deletes log rows received more than 30 days ago. `{ok: true}`. |
 | `GET /teacher/health` | teacher | `{devices: [{device, at, receivedAt, ageMinutes, payload}]}`; `ageMinutes` counts from the server's receive time. |
 
 Same middleware order as the cards: the phone route is mounted before the
@@ -209,7 +209,9 @@ app-wide parser with an 8 KB route parser (`413 too_large`, `400 bad_json`).
 
 The Desk strip (`lib/class-log-health.js`, `#class-log-health` in `desk.html`)
 appears only for a signed-in teacher, refreshes every 5 minutes, and hides
-itself on any error (including the 503 before the migration). It turns red when
+itself on any error (including the 503 before the migration). It turns amber
+when `recordingWarnings24h > 0` (a poor transcript or a covered/silent mic;
+red always wins over amber) and red when
 the last ping is more than 90 minutes old between an hour before today's first
 block and 30 minutes after the last, when `failures24h > 0`, or when the latest
 block that ended (15-minute grace) has no `lastRecording` from today for that

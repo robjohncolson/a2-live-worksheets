@@ -16,6 +16,28 @@ import { charLength } from './observer-card-rules.js';
 
 export const HEALTH_LIMITS = { device: 32, bodyBytes: '8kb', keepDays: 30 };
 
+// Recording warnings: event-log lines the phone writes when a recording is
+// probably bad but nothing "failed" (so failures24h, which counts lines
+// containing "failed", never sees them): `D: transcript poor (12% usable, ...)`
+// and the mic check's `Mic: possibly covered (...)` / `Mic: silent for 2 min`
+// (`Mic: ok` is the all-clear, not a warning). The Desk strip paints amber for
+// warnings and red for failures.
+const RECORDING_WARNING = /transcript poor|\bMic:\s*(?!ok\b)\S/i;
+
+// Number of recording-warning lines among event-log lines (`HH:MM:SS text` or bare text).
+export function recordingWarnings(lines) {
+  if (!Array.isArray(lines)) return 0;
+  return lines.filter(line => typeof line === 'string' && RECORDING_WARNING.test(line)).length;
+}
+
+// recordingWarnings24h for a ping: the phone's own count when it sends one, else
+// counted from the event-log lines it sends as events24h, else 0.
+export function recordingWarnings24h(body) {
+  const sent = body.recordingWarnings24h;
+  if (Number.isInteger(sent) && sent >= 0) return sent;
+  return recordingWarnings(body.events24h);
+}
+
 // Body of POST /class-log/health. Returns {device, at, payload}; throws on any
 // problem. The whole body is kept as the payload; only device and at are read.
 export function validateHealth(body) {
@@ -33,7 +55,7 @@ export function validateHealth(body) {
   }
   // Postgres jsonb cannot hold U+0000; refuse it up front (400) instead of a retryable 503.
   if (JSON.stringify(body).includes('\\u0000')) throw new Error('body must not contain U+0000');
-  return { device, at, payload: { ...body, device } };
+  return { device, at, payload: { ...body, device, recordingWarnings24h: recordingWarnings24h(body) } };
 }
 
 // Database row -> the Desk's shape. ageMinutes is minutes since the server received it.

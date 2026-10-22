@@ -71,7 +71,27 @@ describe('class-log-health: the red rule', () => {
     expect(H.verdict(device({}, after), at('2026-10-21', '12:10'), blocks).red).toBe(false);
   });
   it('no device: not red', () => {
-    expect(H.verdict(null, at('2026-10-21', '12:25'), blocks)).toEqual({ red: false, reasons: [] });
+    expect(H.verdict(null, at('2026-10-21', '12:25'), blocks)).toEqual({ red: false, amber: false, reasons: [], warnings: [] });
+  });
+});
+
+describe('class-log-health: the amber rule', () => {
+  const blocks = H.blocksForDate('2026-10-21', SAT);
+  it('amber, not red, when recordingWarnings24h > 0 (a poor transcript or a bad mic)', () => {
+    const v = H.verdict(device({}, { recordingWarnings24h: 2 }), at('2026-10-21', '10:12'), blocks);
+    expect(v).toEqual({ red: false, amber: true, reasons: [], warnings: ['2 recording warning(s) in 24 h'] });
+  });
+  it('red wins over amber: a failure plus a warning is red, with both in the hover text', () => {
+    const v = H.verdict(device({}, { failures24h: 1, recordingWarnings24h: 1 }), at('2026-10-21', '10:12'), blocks);
+    expect(v.red).toBe(true);
+    expect(v.amber).toBe(false);
+    expect(v.reasons).toEqual(['1 failure(s) in 24 h']);
+    expect(v.warnings).toEqual(['1 recording warning(s) in 24 h']);
+  });
+  it('green with no warnings, including a ping from before the server counted them', () => {
+    expect(H.verdict(device({}, { recordingWarnings24h: 0 }), at('2026-10-21', '10:12'), blocks).amber).toBe(false);
+    const old = device(); delete old.payload.recordingWarnings24h;
+    expect(H.verdict(old, at('2026-10-21', '10:12'), blocks).amber).toBe(false);
   });
 });
 
@@ -84,12 +104,19 @@ describe('class-log-health: text', () => {
       .toBe('Class Log · seen 12 min ago · 84 % · Waiting for C Thu 11:05 · 0 queued · 1 failed (24 h)');
     expect(H.text(null, at('2026-10-21', '10:00'))).toBe('Class Log · no health ping yet');
   });
+  it('names recording warnings after failures', () => {
+    expect(H.text(device({}, { recordingWarnings24h: 1 }), at('2026-10-21', '10:12')))
+      .toBe('Class Log · seen 12 min ago · 84 % · Waiting for D 11:20 · 0 queued · 1 recording warning (24 h)');
+    expect(H.text(device({}, { failures24h: 1, recordingWarnings24h: 2 }), at('2026-10-21', '10:12')))
+      .toBe('Class Log · seen 12 min ago · 84 % · Waiting for D 11:20 · 0 queued · 1 failed (24 h) · 2 recording warnings (24 h)');
+  });
 });
 
 describe('class-log-health: Desk wiring', () => {
   it('desk.html has the hidden strip div, its styles and the script; sw.js caches it', () => {
     expect(DESK).toMatch(/<div id="class-log-health" role="status" aria-live="polite" hidden><\/div>/);
     expect(DESK).toMatch(/#class-log-health\.is-red \{/);
+    expect(DESK).toMatch(/#class-log-health\.is-amber \{/);
     expect(DESK).toContain('<script src="lib/class-log-health.js"></script>');
     expect(SW).toContain("'lib/class-log-health.js',");
   });
@@ -122,7 +149,7 @@ describe('class-log-health: Desk wiring', () => {
     expect(el.textContent).toBe('');
   });
   it('mount renders for a teacher with the bearer token', async () => {
-    const el = { hidden: true, textContent: '', title: '', red: null, classList: { toggle(_, on) { el.red = on; } } };
+    const el = { hidden: true, textContent: '', title: '', red: null, amber: null, classList: { toggle(cls, on) { el[cls === 'is-red' ? 'red' : 'amber'] = on; } } };
     const calls = [];
     const win = {
       document: { getElementById: () => el },
@@ -140,5 +167,22 @@ describe('class-log-health: Desk wiring', () => {
     expect(el.hidden).toBe(false);
     expect(el.textContent).toMatch(/^Class Log · seen 12 min ago · 84 % /);
     expect(el.red).toBe(true);
+    expect(el.amber).toBe(false);
+  });
+  it('mount paints amber for a recording warning and puts it in the hover text', async () => {
+    const el = { hidden: true, textContent: '', title: '', red: null, amber: null, classList: { toggle(cls, on) { el[cls === 'is-red' ? 'red' : 'amber'] = on; } } };
+    const win = {
+      document: { getElementById: () => el },
+      rosterClient: { current: () => ({ role: 'teacher' }), token: () => 'teacher-token' }, ROSTER_SERVICE_URL: 'http://x',
+      fetch: async url => ({ ok: true, json: async () => (url.includes('/teacher/health') ? { devices: [device({}, { recordingWarnings24h: 1 })] } : { overrides: [], daysOff: [] }) }),
+      setInterval() {},
+    };
+    H.mount(win);
+    await new Promise(r => setTimeout(r, 10));
+    expect(el.hidden).toBe(false);
+    expect(el.red).toBe(false);
+    expect(el.amber).toBe(true);
+    expect(el.title).toBe('1 recording warning(s) in 24 h');
+    expect(el.textContent).toMatch(/ · 1 recording warning \(24 h\)$/);
   });
 });
