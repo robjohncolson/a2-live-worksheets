@@ -3,7 +3,7 @@
   "lessons": {
     "1-3": {
       "title": "Piecewise-Defined Functions",
-      "status": "PLC draft, Tue Oct 6 2026 (packet not yet re-cut)",
+      "status": "Aligned to the fast packet (Lesson_planning/a2_1-3_fast.pdf), Thu Oct 22 2026: Examples 3 and 5 only. Supersedes the Oct 6 PLC draft (keep 2+3).",
       "objectives": {
         "learning": "I can graph a piecewise-defined function and write its rule from a graph.",
         "language": "I can explain, in writing, which rule applies on each part of the domain, using the words piece, interval, open circle and closed circle.",
@@ -16,8 +16,15 @@
         "answer": "B: x-1 if -3 <= x < 1; -3x+9 if 2 <= x <= 4 (read from the graph; verify against the TE key)",
         "needs": [
           "slope of each piece from two points (IXL W67)",
-          "open circle = strict inequality, closed dot = inclusive (no IXL skill; whiteboard drill)"
-        ]
+          "open circle = strict inequality, closed dot = inclusive (whiteboard drill)"
+        ],
+        "items": {
+          "1": "Rule from a two-piece graph: Example 3 + W67.",
+          "2": "Scuba diver: read the DOMAIN off a piecewise rule with no graph and say what the variable means (time, not depth). No packet example covers it: one whiteboard round before Example 5.",
+          "3": "Write the function for a V graph (vertex (6,0), slopes -5 and 5) as two linear pieces in the form a(x+b): Example 3 skill; Example 4 (absolute value as piecewise) is an optional shortcut, not needed.",
+          "4": "Graph the admission-price step function from a table: Example 5.",
+          "5": "Domain and range of the step function in item 4: Example 5 (the fast packet already asks for domain and range)."
+        }
       },
       "examples": [
         {
@@ -31,13 +38,13 @@
         {
           "n": 2,
           "title": "Graph a piecewise-defined function",
-          "keep": true,
+          "keep": false,
           "dok": "1-2",
           "practice": "11, 12, 13, 16, 25",
           "ixl": [
             "RVD"
           ],
-          "why": "Warm-up: students must read a piecewise graph before matching one to a rule."
+          "why": "Cut in the fast packet (Example 3 reads the graph directly). RVD stays a core Jam: it practises quiz items 1, 3 and 4."
         },
         {
           "n": 3,
@@ -48,7 +55,7 @@
           "ixl": [
             "W67"
           ],
-          "why": "The lesson. Try It 3 is the matching packet work; quiz item 1 and the DOK 3 (item 27) both live here."
+          "why": "The lesson. Quiz items 1 and 3 (the V graph is two linear pieces); Try It 3 is the matching packet work; add one whiteboard round for item 2 (domain from a rule, no graph)."
         },
         {
           "n": 4,
@@ -56,15 +63,15 @@
           "keep": false,
           "dok": "1-2",
           "practice": "18, 19, 26",
-          "why": "Feeds quiz item 3, which was dropped. Optional one-sentence bridge: |x| is itself piecewise, split at the vertex."
+          "why": "Quiz item 3 is a V graph, but writing two linear pieces (Example 3) answers it; |x| as piecewise is an optional one-sentence bridge."
         },
         {
           "n": 5,
           "title": "Graph a step function",
-          "keep": false,
+          "keep": true,
           "dok": "1-2",
           "practice": "10, 14, 20, 21, 24",
-          "why": "Replaced by the DOK 3 task (item 27)."
+          "why": "Quiz items 4 and 5: the fast packet keeps the shipping-cost step function and asks for domain and range."
         }
       ],
       "dok3": {
@@ -72,14 +79,14 @@
         "label": "Practice & Problem Solving 27, Performance Task (the lesson's only DOK 3)",
         "task": "Yama's monthly earnings vs. hours worked, plotted as points (10,200), (20,400), ... (100,2900) joined by segments from (0,0). Write the piecewise function for earnings as a function of hours.",
         "key": "y = 20x on [0,40]; 30x - 400 on [40,70]; 40x - 1100 on [70,100]",
-        "why": "Students must decide where the slope changes (40 h and 70 h) before finding any slope; IXL items are DOK 1-2 and cannot stand in for this."
+        "why": "Students must decide where the slope changes (40 h and 70 h) before finding any slope; IXL items are DOK 1-2 and cannot stand in for this. Not in the fast packet: offer it as the self-paced extension after Try It 5."
       },
       "ixl": [
         {
           "code": "RVD",
           "name": "Graph piecewise-defined functions",
           "directoryId": "I.2",
-          "example": 2,
+          "example": 3,
           "role": "core"
         },
         {
