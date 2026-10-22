@@ -8073,8 +8073,13 @@ function _showA2TeacherDayPanel(inf, dateStr, entry, key, header, body) {
     // the latest recording; identical to roster-local/tomorrow/<date>-<section>.md.
     if (isoDate && window.A2Tomorrow) {
         var tmr = fold('Tomorrow (draft)');
-        window.A2Tomorrow.fill(window, tmr, { date: isoDate, section: section, lesson: key, title: entry.title || inf.n || '',
-            dayLog: _log, prep: prep || null, lessonSkills: clientSkills });
+        // The day log can lag the calendar window; use its lesson just as the nightly draft does.
+        var draftDay = _log.entries.find(function (e) { return e && e.section === section && e.date === isoDate && e.lesson; });
+        var draftKey = draftDay ? draftDay.lesson : key;
+        var draftPrep = typeof A2_LESSON_PREP === 'object' && A2_LESSON_PREP[draftKey];
+        var draftSkills = typeof a2LessonSkills === 'function' ? a2LessonSkills(draftKey) : [];
+        window.A2Tomorrow.fill(window, tmr, { date: isoDate, section: section, lesson: draftKey, title: draftKey === key ? entry.title || inf.n || '' : '',
+            dayLog: _log, prep: draftPrep || null, lessonSkills: draftSkills });
     }
     var other = fold('Other resources');
     var deckRow = document.createElement('p');

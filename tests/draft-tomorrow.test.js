@@ -222,7 +222,7 @@ describe('draft-tomorrow: the CLI', () => {
     const desk = readFileSync('desk.html', 'utf8');
     expect(desk).toContain('<script src="lib/class-log-deck.js"></script><script src="lib/a2-tomorrow.js"></script>');
     expect(desk).toContain("fold('Tomorrow (draft)')");
-    expect(desk).toMatch(/window\.A2Tomorrow\.fill\(window, tmr, \{ date: isoDate, section: section, lesson: key/);
+    expect(desk).toMatch(/window\.A2Tomorrow\.fill\(window, tmr, \{ date: isoDate, section: section, lesson: draftKey/);
     expect(readFileSync('sw.js', 'utf8')).toContain("'lib/a2-tomorrow.js',");
     const batch = readFileSync('tools/nightly_tomorrow.ps1', 'utf8');
     expect(batch).toMatch(/npm\.cmd run pull-summaries[\s\S]*scripts\\draft-tomorrow\.mjs/);
