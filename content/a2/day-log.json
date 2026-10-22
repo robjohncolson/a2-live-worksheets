@@ -343,8 +343,8 @@
       "date": "2026-10-22",
       "section": "C",
       "lesson": "1-3",
-      "plan": "Lesson 1-3 (piecewise), new packet handed out; no iPad (pen broken), PDF on the SMART board, freeze + tray pen for writing, whiteboards for the rounds. Fast: Example 3 (write a rule from a graph; quiz Q1, Q3) and Example 5 (step function from a table; quiz Q4, Q5), skipping Examples 1, 2, 4. Then Web Jam RVD and W67.",
-      "student": "1-3 Examples 3, 5 · Web Jams RVD, W67",
+      "plan": "Lesson 1-3 (piecewise), new packet handed out; no iPad (pen broken), PDF on the SMART board, freeze + tray pen for writing, whiteboards for the rounds. Example 3 (write a rule from a graph) ran as the observer card and was hard; Try It 3a worked on the board, 3b by students until lunch. After lunch: Web Jam WRZ (evaluate piecewise) only; W67 not reached. Example 5 and RVD move to Mon Oct 26; quiz moves to Tue Oct 27. Recorder was left paused for the last chunk (the Jam is not in the transcript). WRZ Jam: Jamaal 4/4, Cristofer 4/4, Rovyr 3/4, Nicole 3/4, Carelys 1/3, Samuel no score; Diego worked it on a whiteboard. Not on the report: Ma'Kaya (out at guidance; reminded that NNY, RSN, KQL are assigned to her), Anyi, Luis. New Schoology column \"Web Jam WRZ: Evaluate piecewise functions (1-3), Oct 22\" (nid 8620612137, 3 pts, Assignments, due Oct 22): Jamaal, Cristofer 3.5; Carelys, Samuel, Rovyr, Diego, Nicole 3; Ma'Kaya, Anyi, Luis blank.",
+      "student": "1-3 Example 3 · Try It 3 · Web Jams WRZ, W67",
       "observerCard": {
         "title": "Write the rule for a three-piece graph (packet + whiteboards)",
         "mode": "whiteboards",
@@ -356,15 +356,15 @@
     {
       "date": "2026-10-22",
       "section": "G",
-      "lesson": "1-3",
-      "plan": "Lesson 1-3 (piecewise), new packet handed out; no iPad (pen broken), PDF on the SMART board, freeze + tray pen for writing, whiteboards for the rounds. Fast: Example 3 (write a rule from a graph; quiz Q1, Q3) and Example 5 (graph a step function from a table; quiz Q4, Q5), skipping Examples 1, 2, 4. Then Web Jam RVD (graph piecewise) and W67 (slope of each piece) to lift quiz scores.",
-      "student": "1-3 Examples 3, 5 · Web Jams RVD, W67",
+      "lesson": "1-2",
+      "plan": "1-2 Lesson Quiz, short form (a2_1-2_quiz_fast.pdf; items 2 and 3 count 10 each, item 1 bonus 5; 20-pt Assessments column), first 20 minutes. Then Web Jam WRZ (evaluate piecewise) to introduce 1-3. Tuesday Oct 20 outcome not yet reported. Quiz taken; new Schoology column \"1-2 Lesson Quiz: Transformations of Functions (short form)\" (nid 8620709989, 20 pts, Assessments 97612536, due Oct 22). Scores so far: Darius 21, Dayton 23, Wendy Chavez Mendez 12, Shirley 13 (same answers as Wendy, more explanation), Wendy Chacha 23. Rest pending. WRZ Jam (5 questions): Ronaldo, Wendy Chavez Mendez, Shailin, Jose 5/5; Nestor, Dayton, Alejandra, Darius 4/5; Shirley 3/4; Santiago, Immanuel 3/5; Wendy Chacha 1/2; Jaylen 2/5; Madelynn, Gary no score. New Schoology column \"Web Jam WRZ: Evaluate piecewise functions (1-3), Oct 22\" (nid 8620775741, 3 pts, Assignments, due Oct 22): the four 5/5 students 3.5, everyone else on the report 3, Madelynn and Gary blank pending attendance.",
+      "student": "1-2 quiz · Web Jam WRZ",
       "observerCard": {
-        "title": "Write the rule for a three-piece graph (packet + whiteboards)",
-        "mode": "whiteboards",
-        "minutes": 12,
-        "frame": "Piece ___ is the line with slope ___ on the interval ___, so its rule is ___.",
-        "body": "## Preparing (3 min)\nHand out the 1-3 packet (a2_1-3_fast.pdf). Example 3 page of the PDF shown on the SMART board (no iPad pen today): freeze the board and write on the frozen page with the board's tray pen; unfreeze to turn the page, freeze again. Pairs: how many pieces, and where does each start and stop? Name the open point at (1, -1) and the closed point at (1, 4). Students mark both points on their packet copy.\n\n## Interacting (7 min)\nWhiteboards, one step per round, boards up each round, one board explains with the frame while the teacher writes that step on the frozen board. Round 1: the interval for piece A (-2 <= x < 1). Round 2: slope from two points (3). Round 3: use (-2, -10) to find b (-4), so 3x - 4. Pairs then do piece B the same way (x + 3 on 1 <= x <= 5), then piece C (slope 0, so 8), writing each rule into the packet as it is confirmed.\n\n## Extending (2 min)\nOne student comes to the SMART board and assembles the three rules into case notation under the graph; the class copies it into the packet. Ask: why x < 1 for A and 1 <= x for B? Each x gets exactly one piece.\n\n## Fallback\nBoard not cooperating: draw the three pieces by hand on the whiteboard side of the room; everything else stays the same. Short on time: piece A only on whiteboards, then everyone says the frame."
+        "title": "After the quiz: evaluate a piecewise function (WRZ Jam on whiteboards)",
+        "mode": "jam",
+        "minutes": 10,
+        "frame": "x = ___ is in the interval ___, so I use the piece ___ and get f(x) = ___.",
+        "body": "## When\nAfter the 1-2 quiz papers are collected. The Web Jam WRZ (evaluate piecewise-defined functions) is the activity; this card adds the talk.\n\n## Preparing (2 min)\nPut one WRZ item on the board. Pairs: which interval is x in? Point to the open or closed end that decides it.\n\n## Interacting (6 min)\nRun the Jam. Between items, whiteboards: everyone writes the piece they picked before the answer is revealed, boards up, one student says the frame.\n\n## Extending (2 min)\nAsk: what changes if the endpoint were open instead of closed? Tomorrow: write the rule from the graph (Example 3)."
       }
     },
     {
@@ -385,7 +385,42 @@
       "date": "2026-10-23",
       "section": "G",
       "lesson": "1-3",
-      "plan": "1-3 Lesson Quiz (4 items: rule from graph, scuba context, write the function, step function from a table). Observer card: Q4 table-to-graph on whiteboards.",
+      "plan": "Lesson 1-3 (piecewise), fast: Example 3 (write a rule from a graph; quiz Q1, Q3) on whiteboards, one step per round; Try It 3a on the board, 3b in pairs. Web Jam W67 (slope) if time.",
+      "student": "1-3 Example 3 · Try It 3 · Web Jam W67",
+      "observerCard": {
+        "title": "Write the rule for a three-piece graph (packet + whiteboards)",
+        "mode": "whiteboards",
+        "minutes": 12,
+        "frame": "Piece ___ is the line with slope ___ on the interval ___, so its rule is ___.",
+        "body": "## Preparing (3 min)\nHand out the 1-3 packet (a2_1-3_fast.pdf). Example 3 page of the PDF shown on the SMART board (no iPad pen today): freeze the board and write on the frozen page with the board's tray pen; unfreeze to turn the page, freeze again. Pairs: how many pieces, and where does each start and stop? Name the open point at (1, -1) and the closed point at (1, 4). Students mark both points on their packet copy.\n\n## Interacting (7 min)\nWhiteboards, one step per round, boards up each round, one board explains with the frame while the teacher writes that step on the frozen board. Round 1: the interval for piece A (-2 <= x < 1). Round 2: slope from two points (3). Round 3: use (-2, -10) to find b (-4), so 3x - 4. Pairs then do piece B the same way (x + 3 on 1 <= x <= 5), then piece C (slope 0, so 8), writing each rule into the packet as it is confirmed.\n\n## Extending (2 min)\nOne student comes to the SMART board and assembles the three rules into case notation under the graph; the class copies it into the packet. Ask: why x < 1 for A and 1 <= x for B? Each x gets exactly one piece.\n\n## Fallback\nBoard not cooperating: draw the three pieces by hand on the whiteboard side of the room; everything else stays the same. Short on time: piece A only on whiteboards, then everyone says the frame."
+      }
+    },
+    {
+      "date": "2026-10-26",
+      "section": "C",
+      "lesson": "1-3",
+      "plan": "Example 5 (graph a step function from the shipping table; quiz Q4, Q5) and Try It 5 (parking lot), then Web Jam RVD (graph piecewise). Observer card: the shipping table on whiteboards, one step per round.",
+      "student": "1-3 Example 5 · Web Jam RVD",
+      "observerCard": {
+        "title": "Three Reads + think-pair-share: the shipping step function",
+        "mode": "whiteboards",
+        "minutes": 11,
+        "frame": "On the interval ___ the cost is ___, so the piece is a horizontal segment, open at ___ and closed at ___.",
+        "body": "## Three Reads of the table (3 min, no pens)\nShipping table on the board (Example 5, a2_1-3_fast.pdf): 0 < x <= 2 costs 5, 2 < x <= 4 costs 8, 4 < x <= 6 costs 11, 6 < x <= 8 costs 14. Read 1: what is the situation? Read 2: what are x and y, and what does one row say in words (more than 2 lb, up to and including 4, costs 8)? Read 3: what are we asked to do?\n\n## Think-pair-share on whiteboards (6 min)\nAxes first (weight 0 to 8, cost 0 to 16). Then one row per round. Think: plot the one step alone. Pair: compare boards, agree which end is open (left open, right closed: exactly 2 lb costs 5, not 8). Share: boards up, one student says the frame for that step. Give round 2 the most time.\n\n## Extend (2 min)\nName the shape: a step function, all horizontal pieces. Boards: domain {x | 0 < x <= 8}, range {5, 8, 11, 14}, minimum 5, maximum 14. Ask: why is 0 not in the domain?\n\n## Then\nTry It 5 (parking lot table) in pairs on the packet, then Web Jam RVD."
+      }
+    },
+    {
+      "date": "2026-10-26",
+      "section": "D",
+      "lesson": "1-3",
+      "plan": "1-3 Lesson Quiz (4 items). Observer card: Q4 table-to-graph on whiteboards.",
+      "student": "1-3 quiz"
+    },
+    {
+      "date": "2026-10-27",
+      "section": "C",
+      "lesson": "1-3",
+      "plan": "1-3 Lesson Quiz (4 items: rule from graph, scuba context, write the function, step function from a table). IXL replacement: SmartScore 70 on RVD and W67 (WRZ optional) = 20/20. Observer card, only if a walkthrough happens: parking-lot step function on whiteboards after papers are collected.",
       "student": "1-3 quiz",
       "observerCard": {
         "title": "Exit: graph a step function from a table",
@@ -396,32 +431,18 @@
       }
     },
     {
-      "date": "2026-10-26",
-      "section": "C",
-      "lesson": "1-3",
-      "plan": "1-3 Lesson Quiz (4 items). Observer card: Q4 table-to-graph on whiteboards.",
-      "student": "1-3 quiz"
-    },
-    {
-      "date": "2026-10-26",
-      "section": "D",
-      "lesson": "1-3",
-      "plan": "1-3 Lesson Quiz (4 items). Observer card: Q4 table-to-graph on whiteboards.",
-      "student": "1-3 quiz"
-    },
-    {
-      "date": "2026-10-27",
-      "section": "C",
-      "lesson": "1-5",
-      "plan": "Lesson 1-5, fast: Example 1 (use a graph to solve an equation; quiz Q1-Q3) and Example 2 (inequality by graphing; quiz Q4), skipping Examples 3, 4. Then Web Jam M69 and FM2 (table item, quiz Q5); museum membership (quiz Q3-Q4) on whiteboards.",
-      "student": "1-5 Examples 1, 2 · Web Jams M69, FM2"
-    },
-    {
       "date": "2026-10-27",
       "section": "G",
-      "lesson": "1-5",
-      "plan": "Lesson 1-5 (solve by graphing), fast: Example 1 (use a graph to solve an equation; quiz Q1-Q3) and Example 2 (solve a one-variable inequality by graphing; quiz Q4), skipping Examples 3, 4 (quiz Q5, the table item, goes to IXL FM2). Then Web Jam M69.",
-      "student": "1-5 Examples 1, 2 · Web Jam M69"
+      "lesson": "1-3",
+      "plan": "Example 5 (step function from the shipping table; quiz Q4, Q5) and Try It 5 (parking lot), then Web Jam RVD (graph piecewise). Observer card: Three Reads + think-pair-share on the shipping table.",
+      "student": "1-3 Example 5 · Web Jam RVD",
+      "observerCard": {
+        "title": "Three Reads + think-pair-share: the shipping step function",
+        "mode": "whiteboards",
+        "minutes": 11,
+        "frame": "On the interval ___ the cost is ___, so the piece is a horizontal segment, open at ___ and closed at ___.",
+        "body": "## Three Reads of the table (3 min, no pens)\nShipping table on the board (Example 5, a2_1-3_fast.pdf): 0 < x <= 2 costs 5, 2 < x <= 4 costs 8, 4 < x <= 6 costs 11, 6 < x <= 8 costs 14. Read 1: what is the situation? Read 2: what are x and y, and what does one row say in words (more than 2 lb, up to and including 4, costs 8)? Read 3: what are we asked to do?\n\n## Think-pair-share on whiteboards (6 min)\nAxes first (weight 0 to 8, cost 0 to 16). Then one row per round. Think: plot the one step alone. Pair: compare boards, agree which end is open (left open, right closed: exactly 2 lb costs 5, not 8). Share: boards up, one student says the frame for that step. Give round 2 the most time.\n\n## Extend (2 min)\nName the shape: a step function, all horizontal pieces. Boards: domain {x | 0 < x <= 8}, range {5, 8, 11, 14}, minimum 5, maximum 14. Ask: why is 0 not in the domain?\n\n## Then\nTry It 5 (parking lot table) in pairs on the packet, then Web Jam RVD."
+      }
     },
     {
       "date": "2026-10-28",
@@ -433,23 +454,30 @@
     {
       "date": "2026-10-28",
       "section": "G",
-      "lesson": "1-5",
-      "plan": "Web Jam FM2 (approximate solutions using a table, quiz Q5) and ZBH; museum-membership problem (quiz Q3-Q4) on whiteboards.",
-      "student": "Web Jams FM2, ZBH (1-5)"
+      "lesson": "1-3",
+      "plan": "1-3 Lesson Quiz (4 items). IXL replacement: SmartScore 70 on RVD and W67 (WRZ optional) = 20/20. Observer card, only if a walkthrough happens: parking-lot step function on whiteboards after papers are collected.",
+      "student": "1-3 quiz",
+      "observerCard": {
+        "title": "Exit: graph a step function from a table",
+        "mode": "whiteboards",
+        "minutes": 8,
+        "frame": "On the interval ___ the cost is ___, so the piece is a horizontal segment, open at ___ and closed at ___.",
+        "body": "## When\nOnly if an observer is in the room: after the quiz papers are collected.\n\n## Setup (1 min)\nTable on the board (parking lot, Try It 5 in a2_1-3_fast.pdf): 0 < t <= 3 costs 10, 3 < t <= 6 costs 15, 6 < t <= 9 costs 20, 9 < t <= 12 costs 25.\n\n## Interacting (5 min)\nWhiteboards: draw axes, then one piece per round. Each round pairs agree on the interval, the cost, and which end is open. Boards up; one student says the frame for the piece.\n\n## Extending (2 min)\nDomain {t | 0 < t <= 12}, range {10, 15, 20, 25}. Ask: why is the left end of each piece open? Minimum 10, maximum 25."
+      }
     },
     {
       "date": "2026-10-29",
       "section": "C",
       "lesson": "1-5",
-      "plan": "1-5 Lesson Quiz (5 items).",
-      "student": "1-5 quiz"
+      "plan": "Lesson 1-5, fast: Example 1 (use a graph to solve an equation; quiz Q1-Q3) and Example 2 (inequality by graphing; quiz Q4), skipping Examples 3, 4. Then Web Jam M69 and FM2 (table item, quiz Q5); museum membership (quiz Q3-Q4) on whiteboards.",
+      "student": "1-5 Examples 1, 2 · Web Jams M69, FM2"
     },
     {
       "date": "2026-10-29",
       "section": "G",
       "lesson": "1-5",
-      "plan": "1-5 Lesson Quiz (5 items; Q1-Q2 graph and read a solution, Q3-Q4 museum membership, Q5 table).",
-      "student": "1-5 quiz"
+      "plan": "Lesson 1-5 (solve by graphing), fast: Example 1 (use a graph to solve an equation; quiz Q1-Q3) and Example 2 (inequality by graphing; quiz Q4), skipping Examples 3, 4. Then Web Jam M69 and FM2 (table item, quiz Q5); museum membership (quiz Q3-Q4) on whiteboards.",
+      "student": "1-5 Examples 1, 2 · Web Jams M69, FM2"
     },
     {
       "date": "2026-10-30",
@@ -461,16 +489,16 @@
     {
       "date": "2026-10-30",
       "section": "G",
-      "lesson": "1-6",
-      "plan": "Lesson 1-6 (linear systems), fast: Example 1 (solve a system; quiz Q1, Q3) and Example 2 (system of linear inequalities; quiz Q2, Q4), skipping Example 3 (three variables). Then Web Jam BW5 (substitution) and 2CN (elimination).",
-      "student": "1-6 Examples 1, 2 · Web Jams BW5, 2CN"
+      "lesson": "1-5",
+      "plan": "1-5 Lesson Quiz (5 items; Q1-Q2 graph and read a solution, Q3-Q4 museum membership, Q5 table). IXL replacement: SmartScore 70 on M69 and FM2.",
+      "student": "1-5 quiz"
     },
     {
       "date": "2026-11-02",
       "section": "C",
-      "lesson": "1-6",
-      "plan": "Lesson 1-6, fast: Example 1 (solve a system; quiz Q1, Q3) and Example 2 (system of inequalities; quiz Q2, Q4), skipping Example 3. Then Web Jam BW5 or 2CN and U5D; quiz contexts on whiteboards.",
-      "student": "1-6 Examples 1, 2 · Web Jams BW5, U5D"
+      "lesson": "1-5",
+      "plan": "1-5 Lesson Quiz (5 items). IXL replacement: SmartScore 70 on M69 and FM2.",
+      "student": "1-5 quiz"
     },
     {
       "date": "2026-11-02",
@@ -483,15 +511,15 @@
       "date": "2026-11-03",
       "section": "C",
       "lesson": "1-6",
-      "plan": "1-6 Lesson Quiz (4 items), then Topic 1 review from the lowest Jam skills.",
-      "student": "1-6 quiz · Topic 1 review"
+      "plan": "Lesson 1-6, fast: Example 1 (solve a system; quiz Q1, Q3) and Example 2 (system of inequalities; quiz Q2, Q4), skipping Example 3. Then Web Jam BW5 or 2CN and U5D; quiz contexts on whiteboards.",
+      "student": "1-6 Examples 1, 2 · Web Jams BW5, U5D"
     },
     {
       "date": "2026-11-03",
       "section": "G",
       "lesson": "1-6",
-      "plan": "Web Jam U5D (systems of inequalities by graphing) and FT6 (any method), short; then the 1-6 Lesson Quiz (4 items). Merged after the Oct 21 SAT day took one G meeting.",
-      "student": "Web Jams U5D, FT6 · 1-6 quiz"
+      "plan": "Lesson 1-6 (linear systems), fast: Example 1 (solve a system; quiz Q1, Q3) and Example 2 (system of linear inequalities; quiz Q2, Q4), skipping Example 3. Then Web Jam BW5 or 2CN and U5D; quiz contexts on whiteboards.",
+      "student": "1-6 Examples 1, 2 · Web Jams BW5, U5D"
     },
     {
       "date": "2026-11-04",
@@ -504,15 +532,15 @@
       "date": "2026-11-04",
       "section": "G",
       "lesson": "1-6",
-      "plan": "Topic 1 review: IXL re-runs of the lowest Jam skills; retake window for 1-2, 1-3, 1-5 quizzes via SmartScore 70.",
-      "student": "Topic 1 review"
+      "plan": "1-6 Lesson Quiz (4 items), then Topic 1 review from the lowest Jam skills; retake window for 1-2, 1-3, 1-5 quizzes via SmartScore 70.",
+      "student": "1-6 quiz · Topic 1 review"
     },
     {
       "date": "2026-11-05",
       "section": "C",
       "lesson": "1-6",
-      "plan": "Topic 1 Assessment (Mr. Serino: aim for inside Q1, which closes Fri Nov 6; the date is not hard).",
-      "student": "Topic 1 Assessment"
+      "plan": "Topic 1 Assessment, with the 1-6 quiz items folded in (C has no separate 1-6 quiz day after the Oct 27 shift). Mr. Serino: aim for inside Q1, which closes Fri Nov 6; the date is not hard.",
+      "student": "Topic 1 Assessment (incl. 1-6)"
     },
     {
       "date": "2026-11-05",
