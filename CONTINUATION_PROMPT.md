@@ -20,13 +20,17 @@ Updated 2026-10-22 (Thursday of week 7). Paste into the next Claude Code / Codex
      drafts them (DeepSeek, `DRAFT_API_*` env) and `--apply` writes the day log atomically.
      Rules in `roster-server/observer-card-rules.js`.
    - **Lesson summaries** (0b0d520, fb5babc; migration 0043): `POST /class-log/summaries`
-     (upsert by date/course/section), `GET /teacher/summaries?from=&to=` (<= 62 days, paged).
+     (upsert by date/course/section), `GET /teacher/summaries?from=&to=[&course=]` (<= 62 days,
+     paged; `course=apstats` is how the AP Stats Desk reads the shared table, added 10/22).
    - **Class Log pass 3** (0551caa; migrations 0044/0045): schedule overrides
      (`GET /class-log/schedule?from=&to=`, `PUT/DELETE/GET /teacher/schedule-overrides`,
      `scripts/push-schedule.mjs` seeds the bell schedule and days off) and device health
      (`POST /class-log/health`, `GET /teacher/health`, 30-day log). The Desk teacher view has a
      health strip (`lib/class-log-health.js`) that compares today's blocks with the phone's last
-     ping and hides itself on a schedule error.
+     ping and hides itself on a schedule error. Since 10/22 the server adds `recordingWarnings24h`
+     to each ping (the phone's count, else its `events24h` lines saying `transcript poor` or
+     `Mic:` not `ok`) and the strip paints amber for warnings, red for failures; the phone does
+     not send either field yet (school/class-log change owed).
    - **Class Log pass 4** (7a95796): `node scripts/pull-class-summaries.mjs` pulls the last 30
      days of summaries into gitignored `roster-local/class-summaries/` (`<date>-<section>.md` +
      `index.json`); the teacher day panel has a "Recording" fold; daily procedure step 1 below
@@ -34,7 +38,8 @@ Updated 2026-10-22 (Thursday of week 7). Paste into the next Claude Code / Codex
    - **Rehearsal decks** (4a67c9e; migration 0046): `a2.card_decks` (one deck per observer card,
      8-14 items of type frame/anchor/trap/step/cue) and `a2.deck_results` (one row per grade the
      phone records). `GET /class-log/decks?date=` (ETag/304), `POST /class-log/deck-results`
-     (<= 200, exact repeats dropped, unique key ignores duplicates), `PUT /teacher/decks`
+     (<= 200, exact repeats dropped, unique key ignores duplicates; since 10/22 the row's section
+     is the card's own, a body naming another section is 409 `section_mismatch`), `PUT /teacher/decks`
      (<= 20 decks, ONE transaction through the `a2.put_card_decks` RPC: a missing card is 404 and
      nothing is written; unchanged content is not rewritten), `GET /teacher/decks` (per-deck
      sessions/asked/again and the three most-missed items; the Desk "Rehearsal" line),
