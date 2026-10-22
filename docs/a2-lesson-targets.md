@@ -292,6 +292,18 @@ viable arguments) and MP.7 (make use of structure).
 | 3 Strategic reasoning | none | 0 |
 | 4 Extended thinking | none | 0 |
 
+Items by lesson (read from the TE, printed pages 57A-57B, Form A; Form B is item-for-item parallel):
+
+| Lesson | Items | What they ask |
+|---|---|---|
+| 1-1 | 1, 2, 3, 4 | range, domain in context, average rate of change over an interval, interval where y = -|x - 2| increases (items 1-3 share one distance-time graph) |
+| 1-2 | 5 | identify the translations from f(x) = x^2 to g(x) = (x - 5)^2 - 4 |
+| 1-3 | 6 | graph a three-piece function |
+| 1-4 | 7, 8, 9, 10 | recursive formula from a context (DOK 3), explicit from recursive, arithmetic-sequence sum in context, reasonable domain |
+| 1-5 | 11 | use the given graph to solve |x + 3| - 1 = (x + 2)^2 (x = -2, x = -1); Form B: (1/2)|x + 1| + 1 = |x| (printed key x = -1, x = -3; the graph and algebra give x = -1, x = 3) |
+| 1-6 | 12, 13, 14 | two-variable system, three-variable system, write and solve a system in context (DOK 3) |
+
+Item 11 is the only 1-5 item: reading the crossings of two given graphs. Nothing asks for an inequality by graphing or a table. 1-4 (rated brief or skip) carries four items including a DOK 3; 1-3 (brief) carries one.
 Findings worth carrying into lesson checks and topic assessments:
 
 - Content coverage is good, but the assessment is roughly 29% DOK 1 and 71% DOK 2 with no DOK 3

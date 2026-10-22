@@ -24,6 +24,30 @@
       "course": "algebra-2",
       "name": "Evaluate functions",
       "url": "https://www.ixl.com/math/algebra-2/evaluate-functions"
+    },
+    "23W": {
+      "skillId": 2020036127,
+      "course": "algebra-2",
+      "name": "Graph an absolute value function",
+      "url": "https://www.ixl.com/math/algebra-2/graph-an-absolute-value-function"
+    },
+    "FS8": {
+      "skillId": 2020008475,
+      "course": "algebra-2",
+      "name": "Find values using function graphs",
+      "url": "https://www.ixl.com/math/algebra-2/find-values-using-function-graphs"
+    },
+    "F6J": {
+      "skillId": 2005003661,
+      "course": "algebra-2",
+      "name": "Translations of functions",
+      "url": "https://www.ixl.com/math/algebra-2/translations-of-functions"
+    },
+    "PHV": {
+      "skillId": 2005003672,
+      "course": "algebra-2",
+      "name": "Reflections of functions",
+      "url": "https://www.ixl.com/math/algebra-2/reflections-of-functions"
     }
   }
 }

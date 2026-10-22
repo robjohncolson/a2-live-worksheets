@@ -346,6 +346,187 @@
         ],
         "caution": "The After questions are the moment to introduce a·f(b(x - h)) + k. The Mon/Tue whiteboard table activity (a2_1-2_plan_oct5-7) already does part A on paper; the TE's 'table of values' answer matches it."
       }
+    },
+    "1-5": {
+      "title": "Solving Equations and Inequalities by Graphing",
+      "status": "PLC draft, Tue Oct 13 2026 (proposal for the meeting; taught toward Topic 1 assessment item 11; keep/cut and DOK 3 still the PLC's call)",
+      "objectives": {
+        "learning": "I can solve an equation or inequality by graphing each side as y = ... and reading the x-values where the graphs meet, or where one graph is above the other.",
+        "language": "I can explain in writing why the x-coordinate of an intersection point, not the y-coordinate, is the solution, using the words intersection, x-coordinate, above and below.",
+        "essentialQuestion": "How can you solve an equation or inequality by graphing?"
+      },
+      "quizFocus": {
+        "item": 1,
+        "source": "aga_24_a2_na_0105_lq.pdf, items 1-2 (sketch the graph, then pick the solution). Topic 1 assessment item 11 (TE printed page 57A-57B, Topic_01_Teacher_Edition.pdf PDF pages 91-92; DOK 2, skill A56) is the ONLY 1-5 item on the Nov 9-10 assessment, and it is this same task with the graph already drawn: Form A 'Use the graph to solve |x+3| - 1 = (x+2)^2' (x = -2, x = -1); Form B '(1/2)|x+1| + 1 = |x|' (key reads x = -1, x = -3, but the graph and the algebra give x = -1 and x = 3; check before using Form B). Inequalities by graphing (items 3-4) and tables (item 5) are not on the topic assessment. Proposal: for this quiz count items 1 and 2 as the graded 20 (sketch 10, solution 10) and make item 4 the +5 bonus; the Sep 28 'Q3 + Q4' rule was written for 1-1 and 1-2, not for every quiz.",
+        "what": "Item 1: sketch a graph you could use to solve -2|x-1| + 3 = (2/5)x - 11/5 (grid -4..4). Item 2: the solution, choices A x = 1; B x = -2; C x = -2, x = 3; D x = -2, x = 1, x = 3. Topic assessment item 11 is the same skill with the two graphs given: read the x-coordinates of both crossings.",
+        "answer": "Item 1: downward V with vertex (1, 3) and the line through (0, -11/5) with slope 2/5; crossings at (-2, -3) and (3, -1). Item 2: C (checked algebraically: x >= 1 gives -2.4x = -7.2, x = 3; x < 1 gives 1.6x = -3.2, x = -2). Distractor A is the vertex's x; distractor D adds the vertex to the crossings. Verify against the TE key on quiz day.",
+        "needs": [
+          "graph y = a|x - h| + k from vertex form, opening down when a < 0 (Example 1B; 1-2 Example 2 and IXL 23W)",
+          "graph a line from its y-intercept and a fractional slope (prereq; IXL LSG)",
+          "read the x-coordinate, not the y-coordinate, of each crossing and report every crossing (Example 1; practice 6 is the 'Victor read y' error; IXL M69)",
+          "on the topic assessment the graphs are given, so the day-of skill is only 'find all the crossings and write their x-values' (Topic 1 assessment item 11; parabola vs V, so include one parabola-and-V pair in practice, e.g. Reteach item 3: |x+2| - 3 = x^2 - 6x + 5, x = 1 and 6)",
+          "for the bonus (item 4): two linear models and 'first whole number past the crossing' (Example 2B; practice 21)"
+        ]
+      },
+      "examples": [
+        {
+          "n": 1,
+          "title": "Use a graph to solve an equation (A: two lines; B: absolute value and a line)",
+          "keep": true,
+          "dok": "1, 2, 3",
+          "practice": "9-14, 5, 34, 7",
+          "ixl": [
+            "M69"
+          ],
+          "why": "The lesson, and the only 1-5 content on the Topic 1 assessment (item 11: read the crossings of a V and a parabola). Quiz items 1-2 are Part B with a downward V. The DOK 3 (practice 7) lives here; add a V-vs-parabola pair (Reteach 3, Additional Practice 10-12) so the topic-assessment picture is familiar."
+        },
+        {
+          "n": 2,
+          "title": "Solve a one-variable inequality by graphing (A: x^2 - 4 > 0; B: car catches the motorcycle)",
+          "keep": true,
+          "dok": "1, 2, 3",
+          "practice": "15-20, 21, 30, 32, 35",
+          "ixl": [
+            "T86"
+          ],
+          "why": "Quiz items 3-4 are Part B (two linear models, an inequality, the first whole-number solution), but nothing on the Topic 1 assessment asks this. Keep Part B as one worked example and the quiz bonus; Part A is the 'above or below' idea the Critique & Explain opener sets up. Practice 21 (longboarding) is the rehearsal if items 3-4 stay graded."
+        },
+        {
+          "n": 3,
+          "title": "Use a table to solve an equation",
+          "keep": true,
+          "dok": "1, 2",
+          "practice": "22-25, 8",
+          "ixl": [
+            "FM2",
+            "ZBH"
+          ],
+          "why": "Quiz item 5 only (not on the topic assessment). One Desmos table showing where f - g changes sign, five minutes; practice 8 is the same format. Try It 3 in lessons.json already says Desmos or a spreadsheet. Cut entirely if the PLC drops item 5 from the graded quiz."
+        },
+        {
+          "n": 4,
+          "title": "Use graphing technology to solve equations (INTERSECT)",
+          "keep": false,
+          "dok": "1, 2",
+          "practice": "26-29, 6, 31",
+          "why": "No quiz item. Fold it into Examples 1 and 3 as 'check on Desmos'. Practice 6 (Victor reads the y-coordinate instead of x) is worth two minutes anywhere: it is quiz item 2's distractor A."
+        }
+      ],
+      "dok3": {
+        "item": 7,
+        "label": "Practice & Problem Solving 7, Higher Order Thinking (Example 1 DOK 3; items 32 and 35 are the Example 2 DOK 3 alternatives)",
+        "task": "Sadie used a graph to solve an equation. The graph shows the line y = 2x + 3 and the downward V y = -|x+1| - 1 crossing at (-3, -3). What equation did Sadie solve? Explain how to verify your equation is correct.",
+        "key": "2x + 3 = -|x+1| - 1; the solution is x = -3. Verify by substituting: 2(-3) + 3 = -|-3+1| - 1 gives -3 = -3.",
+        "why": "Reverses quiz items 1-2 and Topic 1 assessment item 11 (graph to equation instead of equation to graph) with no technology, and the verification step is the MP.3 argument the Topic 1 assessment never asks for (its two DOK 3 items, 7 and 14, are arithmetic sequences and a system). Item 32 (profit inequality, needs graphing technology) fits the modeling thread of quiz items 3-4; item 35 (garden) has a sign misprint in the TE and is really two-variable inequalities, so skip it."
+      },
+      "ixl": [
+        {
+          "code": "M69",
+          "name": "Solve a system of equations by graphing",
+          "directoryId": "E.2",
+          "example": 1,
+          "role": "core"
+        },
+        {
+          "code": "T86",
+          "name": "Solve a system of equations by graphing: word problems",
+          "directoryId": "E.3",
+          "example": 2,
+          "role": "core, proposed add to data/a2-lesson-skills.json (closest to quiz items 3-4)"
+        },
+        {
+          "code": "FM2",
+          "name": "Approximate solutions using a table",
+          "directoryId": "A.8",
+          "example": 3,
+          "role": "core"
+        },
+        {
+          "code": "ZBH",
+          "name": "Find solutions using a table",
+          "directoryId": "A.7",
+          "example": 3,
+          "role": "core"
+        },
+        {
+          "code": "LSG",
+          "name": "Graph a linear function",
+          "directoryId": "D.2",
+          "role": "prereq (the line in quiz item 1 has slope 2/5 and y-intercept -11/5)"
+        },
+        {
+          "code": "2JZ",
+          "name": "Solve absolute value equations",
+          "directoryId": "G.1",
+          "role": "proposed demote to prereq: algebraic, not graphing; use it to check Example 1B answers"
+        },
+        {
+          "code": "39B",
+          "name": "Graph solutions to absolute value equations",
+          "directoryId": "G.2",
+          "role": "verify in IXL before keeping: the name suggests a number-line plot of solutions, not solving by graphing"
+        },
+        {
+          "code": "23W",
+          "name": "Graph an absolute value function",
+          "directoryId": "H.3",
+          "role": "prereq (assigned in 1-2; Example 1B and quiz item 1 need it)"
+        },
+        {
+          "code": "SNN",
+          "name": "Solve linear equations",
+          "directoryId": "B.1",
+          "role": "prereq"
+        },
+        {
+          "code": "98Z",
+          "name": "Solve linear inequalities",
+          "directoryId": "C.3",
+          "role": "prereq"
+        }
+      ],
+      "modelDiscuss": {
+        "source": "2024 TE page 40B (Step 1; this lesson's opener is Critique & Explain, powered by Desmos)",
+        "situation": "A homeowner has 32 feet of fencing to build three sides of a rectangular chicken run (the house is the fourth side).",
+        "studentPrompts": [
+          "A. Make a table of values for the length, width, and area of different rectangular runs that use 32 feet of fencing. Then write a function for the area in terms of the width. (A(x) = x(32 - x)/2)",
+          "B. Graph your function. (Downward parabola through (0,0), (16,128), (32,0).)",
+          "C. Reason: explain what happens where the graph intersects the x-axis. (One dimension is 0, so the area is 0.)"
+        ],
+        "teQuestions": [
+          {
+            "when": "Before, whole class",
+            "q": "What are the formulas for the perimeter and area of a rectangle?",
+            "a": "Perimeter = 2w + 2l; Area = lw."
+          },
+          {
+            "when": "During, small group",
+            "q": "How does the perimeter of the chicken run help you discover the area?",
+            "a": "Fencing covers three sides, so w + 2l = 32 and l = (32 - w)/2. The area is w(32 - w)/2."
+          },
+          {
+            "when": "Early finishers",
+            "q": "Write and graph a function for the area if the perimeter is 44 ft. List three possible values for the length, width and area.",
+            "a": "f(x) = x(44 - x)/2 (the TE prints (44 - x)/2 and drops the width factor). Check students' graphs and values."
+          },
+          {
+            "when": "After, whole class",
+            "q": "How can the graph help you solve A(x) = 0?",
+            "a": "The x-intercepts are where A(x) = 0, so they are the solutions."
+          },
+          {
+            "when": "After, whole class",
+            "q": "How can you use the graph to calculate the length?",
+            "a": "The x-coordinate is the width; the length is 16 minus half the width."
+          },
+          {
+            "when": "Habits of Mind, Make Sense and Persevere",
+            "q": "For what widths will the area be at least 110 square feet?",
+            "a": "10 <= x <= 22 (read where the parabola is at or above y = 110)."
+          }
+        ],
+        "caution": "The opener is a quadratic area model, not a linear one; use the Habits of Mind question (area at least 110) as the bridge, because it is Example 2A in disguise: draw y = 110 and read where the parabola is above it. Do not let the table-building in part A eat the period; two or three rows and the function are enough."
+      }
     }
   }
 }

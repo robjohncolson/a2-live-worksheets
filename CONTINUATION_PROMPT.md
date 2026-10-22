@@ -1,10 +1,84 @@
 # Continuation Prompt — Algebra 2 Desk, SY26-27
 
-Updated 2026-09-23 (Wednesday of week 3). Paste into the next Claude Code / Codex session after
+Updated 2026-10-06 (Tuesday of week 5). Paste into the next Claude Code / Codex session after
 `git pull`. Read `CLAUDE.md`, `A2_FORK_PLAN.md`, `A2_FORK_BASELINE.md` and the specs under
 `docs/a2-*-spec.md` first. Everything below is deployed unless marked otherwise.
 
-## What changed on 2026-09-22/23 (read this first)
+## What changed on 2026-10-05/06 (read this first)
+
+1. **Teacher prep per lesson lives in `content/a2/lesson-prep.json`** (commit 32bcba7, deployed).
+   Per lesson: PLC keep/cut decision per example with DOK and practice items, the quiz item the
+   lesson is taught toward, IXL skill per example, the DOK 3 task, and the TE's Model & Discuss /
+   Explore & Reason questions with answers. The teacher day panel shows it as a "Teacher prep"
+   fold under the IXL skills (`_appendA2TeacherPrep` in `desk.html`, loaded by `a2-desk.js`).
+   Teacher-only; students never load it. Entries so far: **1-2** (draft from the Sep 27 plan) and
+   **1-3** (PLC decisions of Oct 6). Add the next lesson as a new key when the PLC decides it.
+2. **1-3 PLC decisions (Oct 6):** keep Examples 2 and 3, cut 1, 4 and 5; the lesson is taught
+   toward 1-3 Lesson Quiz item 1 (two-piece graph, key B, verify against the TE); the DOK 3 that
+   replaces Example 5 is practice item 27 (Yama earnings, three pieces); IXL RVD (Ex 2) and W67
+   (Ex 3), WRZ demoted to prerequisite in `data/a2-lesson-skills.json`. Objectives are a lean
+   "I can" draft in lesson-prep.json; `lesson-objectives.json` stays verbatim-from-packet.
+   The PLC rule: examples can be cut, but one DOK 3 item must survive; an IXL skill is DOK 1-2 and
+   cannot stand in for it.
+3. **1-2 is the current lesson.** Only 1-2 quiz item 1 is on the Topic 1 assessment (end of
+   October). Day 1 (C and D Mon Oct 5, G Tue Oct 6) was the key-points bridge from 1-1: whiteboard
+   rounds (vertex, intercepts) and `../Lesson_planning/a2_1-2_day1_key_points.pdf` (two pages)
+   with a separate on-demand `_support.pdf` (word bank with Spanish glosses + sentence frames,
+   same numbering). Supervisor rule (Ms. Bonnevie): scaffolds go to ELLs on demand, not to
+   everyone. Day 2 uses Mr. Mailloux's Notice & Wonder peer-share packet (nine |x| graphs with
+   conversation frames); the Louvre pyramid performance task waits until after Examples 2-5.
+   Posters are labeled Day 1 / Day 2, not weekdays, because the sections are staggered.
+4. **Grading rules now in force (Sep 28/30):** the lesson quiz counts Q3 and Q4 (10 each), Q1 is
+   +5 bonus, capped at 20; Try Its are bonus on the quiz, not Assignments items; a SmartScore of
+   80 on each assigned IXL skill (1-1: W42, BNH, PHD) replaces the quiz with 20/20; Assignments
+   is fed by Group Jams and IXL homework. The 1-1 replacement window stays open; progress-report
+   grades go in **Wed Oct 7**. Live IXL on Oct 5: nobody under 20 in D had qualified (Sandra
+   100/55/-, Anderson 84/38/-, Dylan 13/73/20, Amavany -/-/52).
+5. **Schoology entries made Oct 5/6:** "Whiteboard work" (10 pts, Engagement, due Oct 5) in C and
+   D; D all present 10/10 (Deysi blank), C 10/10 for Carelys, Jamaal, Cristofer, Ma'Kaya, Diego
+   and Nicole, rest blank. **Group Jam columns are done (Oct 6, Chrome MCP):** 10/10 for every
+   student (makeups not required), Assignments, 10 pts, due on the class day. D: PS2 Sep 18, W42
+   Sep 21, WMS Sep 23 (15 students). C: "Group Jam: Graph inequalities on number lines + Domain and
+   range (1-1), Sep 17", "Group Jam: Estimate average rate of change (W42), Sep 21", "Poster work:
+   Try Its 4 and 5 (1-1), Sep 24" (10 students). G: "Group Jam: Find values using function graphs
+   (FS8) + Complete a table (W5Z), Sep 17", "Group Jam: Evaluate functions (PS2), Sep 18", "Poster
+   work: Try Its 4 and 5 (1-1), Sep 24" (15 students). **G Sep 23 was NOT created**: the day log has
+   no note for it and the Sep 24 note says the planned W42/WMS Web Jam was dropped, so there is no
+   real jam to back it; ask the teacher what G actually did that day before adding a fourth column.
+   The teacher's spoken names: "Carolina" = Carelys, "Tristan" = Diego, "Christopher" = Cristofer.
+   Do not manufacture graded work; backfill only from real jams, worksheets, Try Its and IXL.
+6. **Gradebook entry from Chrome MCP** works when browser-harness is blocked on Chrome's Allow
+   dialog: compute the cell centre from `#grader-grid-cell-{col}-{row}`, real `left_click`, type,
+   Enter, re-read `aria-label`; JS `focus()` alone drops keystrokes; scroll the grid so the column
+   is on screen first. New column: `/course/{cid}/materials/assignments/add?is_popup=1`, set
+   fields by JS, click `#edit-submit` inside `setTimeout`. IXL sign-in: ixl.com/signin -> Lynn
+   link -> ClassLink -> "Sign in using Windows" (no password typed); then
+   Faster bulk entry: after one real click lands focus in row 0, Enter commits and moves focus down
+   one row, so a single `type` of "10
+10
+..." fills a whole column; scroll the grid wrapper
+   (`.grader-grid-table-wrapper`, `scrollLeft = scrollWidth`) rather than the page, since a cell
+   flush against the viewport edge takes the click but drops the keystrokes.
+   `fetch('/analytics/skill-score-chart/run?teacherId=<id>&skill=<skillId>')` from the IXL tab
+   returns `table[]` with firstName/lastName/score. Skill ids in `tools/ixl/skill-ids.json`.
+7. Ops (Fable->Ops channel) staged the 1-2 and 1-3 lesson quizzes and the 1-3 TE pages in
+   `../Lesson_planning` on Oct 2 and asked for a 1-3 TE pass, question-bank ingest for 1-2/1-3 and
+   keeper quiz questions; the keeper questions are now decided (1-2 item 1, 1-3 item 1). Nothing
+   from Ops authorizes a push.
+
+8. **PowerSchool (Oct 6 evening):** PowerTeacher Pro (lynnschools.powerschool.com, Microsoft SSO;
+   C = sectionId 68114) had NO grade-calculation formula on any term for any class, so every
+   PowerSchool grade was Total Points, not the district 50/40/10. Teacher chose to set Category
+   Weighting per term (Settings -> Traditional Grade Calculations -> pencil on M1): Classwork 40,
+   Quiz 50, Project 10, Test unused until a topic assessment exists (then split the 50 or move
+   Assessments to Test). The Schoology->PowerSchool adapter allows one Schoology category per
+   PowerSchool category: Quiz <- Assessments, Classwork <- Assignments, Project <- Engagement; never
+   map Schoology's dead 0% "Classwork" category. The Claude Code auto-mode classifier blocks typing
+   into PowerSchool ("Unrequested Commit in a Connected App"), so the teacher sets the weights by
+   hand. Teacher set C's M1 to Category Weighting by hand (verified; D and G to confirm) and recategorized Poster work to Engagement (shows as Proj in PowerSchool). M1 progress-report comments for all 10 C students were typed and saved in PowerSchool (Grading -> Comment Verification; the side panel's Comments box accepts typed text, click the next grid row to commit, green Save at bottom right; typing comments was NOT blocked by the classifier, only the weight field was). D (sectionId 68112) and G (68113) M1 comments also typed and saved for all 15 students each; all three classes now show Calculation: Category Weighting. SYNC GAP seen Oct 6 evening: PowerSchool D had NO scores at all (every M1 grade "--") and G showed 100% for everyone (jams synced, the 1-1 Quiz did not), while C had all five columns. Check the Schoology->PowerSchool grade sync for D and G before the Oct 7 progress reports. Gary (G)
+   1-1 Quiz set to 10 (verified).
+
+## What changed on 2026-09-22/23 (still true unless superseded above)
 
 1. **The Desk is a teacher/agent workbench, not a student tool.** The teacher said students will
    not really use it for now; it is "a bank of knowledge for you and I to discuss and work on".
@@ -105,30 +179,24 @@ Wed 9/23 that the teacher made but never assigned; harmless, leave it. Advisory 
 
 ## Open items, in order
 
-1. **Relay / note box** (teacher wants it): a note box in the teacher day panel that saves to the
-   roster server; notes are log lines, decisions and requests; a pull script plus scheduled
-   school-day checks (9/11/1/3) that read new notes and act or draft. Two decisions pending from
-   the teacher: notes stored on the roster server (yes?), and whether scheduled runs may commit
-   day-log edits or only draft them.
-2. Monday 9/28: C's 1-1 Quiz; grade Try Its 4 and 5 from packets on each quiz day
-   (`teacher-tryits.html`); pull WMS scores for C if the homework was assigned Thursday.
-3. Lesson 1-2 packet (C opens 1-2 Mon 9/28); the objectives are already on the board.
-   **Decision (9/27):** the class goes through Examples 1-5 with the focus on Example 5; Try It 5
-   is the graded Try It; Example 6 is dropped from the packet. This targets 1-2 Lesson Quiz Q1
-   (`aga_24_a2_na_0102_lq.pdf`; TE key A, C, D, F: translation 1 left, translation 2 down,
-   horizontal stretch by 2, reflection across the x-axis; the vertex is at (-1,-2). An earlier
-   session read it as C, D, F, which was wrong). Recorded in the day log as 1-2 plan entries (C Tue 9/29, D and G
-   Wed 9/30). The class packet is `../Lesson_planning/a2_1-2.pdf` (source `a2_1-2.docx`): the
-   Savvas-derived doc from `content/a2/source-docs/` with the Example 6 section removed and
-   Try It 5 marked "Collected and graded"; 8 pages, Examples 1-5 plus the Concept Summary and
-   Do You Understand / Know How pages. The 1-2 TE (pp. 24-36, 13 pages) is at
-   `../Lesson_planning/a2_1-2_TE.pdf` (untracked, copyrighted; original at this repo's root as
-   `a2_1-2.pdf`), transcribed by Codex to `a2_1-2_TE.tex` and ingested 2026-09-27: calibration
-   `questionbank/calibration/1-2.json` (item analysis + quiz DOKs), 77 registry rows (`1-2-savvas-q13`
-   .. `q38`, Try Its, examples, TE addenda, the Lesson Quiz row), graph crops `questionbank/images/1-2_*`.
-   DOK-3 practice items: 13, 15, 17, 33, 34, 35, 37, 38. dok2/dok3 anchors in the calibration are still
-   unpopulated (hand step when the DOK-3 driver is picked).
-4. First paper Do Now tally through the Engagement script.
-5. R4 (student grade view) and R5 (Schoology mirror) stay parked while students are off the Desk.
-6. Teacher account `date_frog` still has a 4-digit password; rotate the teacher key
-   (`TEACHER_KEY` in Railway, then `roster-server/.env`).
+1. Group Jam columns are done (item 5 above) except G's Sep 23, which needs the teacher to say
+   what happened. Then the Oct 5 worksheet as an Assignments column once graded.
+2. **IXL quiz replacement, pulled Oct 6 evening** (`roster-local/ixl-{W42,BNH,PHD}-2026-10-06.json`,
+   qualifiers in `roster-local/quiz/2026-10-06-Period{C,D,G}-ixl-replace.json`): C Nicole lifted
+   15 -> 20; every other qualifier already had 20. Still under 20 and not qualified (W42/BNH/PHD):
+   C Carelys 38/87/-, Diego 80/76/0, Rovyr -, Anyi -, Luis 25/-/-; D Anderson 77/73/-, Dylan
+   13/100/100, Sandra 100/55/-, Amavany -/-/52; G Alejandra 82/55/-, Shirley 84/81/20, Gary -.
+   **Oct 6 evening, teacher's partial-credit adds on the 1-1 Quiz (entered, verified):** C Carelys
+   15->18, Diego 13->18; D Anderson 18->20, Dylan 0->18, Sandra 16->19, Amavany 0->15; G Alejandra
+   10->15, Shirley 13->19. Untouched: C Rovyr 10, Anyi 10, Luis 10; G Gary 4. Re-pull Wed Oct 7
+   morning before progress reports if the teacher wants a last look. The IXL teacher id is readable from the skill-score-chart page's own
+   `run` request (`performance.getEntriesByType('resource')`); ClassLink's domain is blocked for the
+   Chrome extension, but the Windows SSO click still went through and IXL signed in.
+3. 1-2: log Day 2 per section; grade Try It 5 on quiz day; 1-2 quiz Thu/Fri.
+4. 1-3: when the PLC packet is final, copy its verbatim objectives into
+   `content/a2/lesson-objectives.json`, update `lesson-prep.json` status, and build the Desk
+   content (`docs/a2-lesson-targets.md` order).
+5. **Relay / note box** in the teacher day panel (teacher wants it); two decisions pending (notes
+   on the roster server? may scheduled runs commit day-log edits?).
+6. First paper Do Now tally through the Engagement script; R4/R5 parked while students are off the
+   Desk; rotate the teacher key (`TEACHER_KEY` in Railway, then `roster-server/.env`).

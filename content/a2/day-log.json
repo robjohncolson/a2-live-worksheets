@@ -84,20 +84,6 @@
       "student": "Web Jam WMS · Ex 4 shown (Ex 4 and 5 done)"
     },
     {
-      "date": "2026-09-24",
-      "section": "C",
-      "lesson": "1-1",
-      "student": "Poster work on Try Its 4 and 5 · packet and Try Its due Mon",
-      "note": "Poster work on Try Its 4 and 5; it worked. The planned W42 + WMS Web Jam did not happen and no WMS homework was set. Decision: C never really did the average rate of change IXL work (W42 / PHD) and 1-1 goes on without it. Try Its 4 and 5 are still turned in with the packet Mon Sep 28."
-    },
-    {
-      "date": "2026-09-25",
-      "section": "D",
-      "lesson": "1-1",
-      "student": "Try Its 4 and 5 (Nintendo when done) · quiz moved to Mon",
-      "note": "Try Its 4 and 5 in class (no poster work for D), Nintendo for finishing; everyone worked through it. No quiz today; the 1-1 Quiz moves to Mon Sep 28."
-    },
-    {
       "date": "2026-09-23",
       "section": "G",
       "lesson": "1-1",
@@ -106,10 +92,24 @@
     },
     {
       "date": "2026-09-24",
+      "section": "C",
+      "lesson": "1-1",
+      "student": "Poster work on Try Its 4 and 5 · packet and Try Its due Mon",
+      "note": "Poster work on Try Its 4 and 5; it worked. The planned W42 + WMS Web Jam did not happen and no WMS homework was set. Decision: C never really did the average rate of change IXL work (W42 / PHD) and 1-1 goes on without it. Try Its 4 and 5 are still turned in with the packet Mon Sep 28."
+    },
+    {
+      "date": "2026-09-24",
       "section": "G",
       "lesson": "1-1",
       "student": "Poster work on Try Its 4 and 5",
       "note": "Poster work on Try Its 4 and 5; it worked. Decision: G never really did the average rate of change IXL work (W42 / PHD) and 1-1 goes on without it; the Web Jam from the Wed plan is dropped, not deferred."
+    },
+    {
+      "date": "2026-09-25",
+      "section": "D",
+      "lesson": "1-1",
+      "student": "Try Its 4 and 5 (Nintendo when done) · quiz moved to Mon",
+      "note": "Try Its 4 and 5 in class (no poster work for D), Nintendo for finishing; everyone worked through it. No quiz today; the 1-1 Quiz moves to Mon Sep 28."
     },
     {
       "date": "2026-09-25",
@@ -134,17 +134,17 @@
     },
     {
       "date": "2026-09-29",
-      "section": "G",
-      "lesson": "1-1",
-      "student": "1-1 Quiz · packets and Try Its turned in · IXL: rate of change (W42, BNH, PHD)",
-      "note": "1-1 Quiz taken (moved from Fri). Packets collected; Try Its graded as quiz bonus under the Sep 28 rule; same IXL replacement rule as C and D (SmartScore 80 on each of W42, BNH, PHD = 20/20). 11 scored: four students had correct Try Its and a zero quiz (Santiago, Shailin, Alejandra; Jose partial), which suggests they did not use the open packet on Q3/Q4. Nestor and Jaylen's papers left at school; Madelynn and Darius absent. Tally in roster-local/quiz/2026-09-29-PeriodG-1-1-quiz.json."
-    },
-    {
-      "date": "2026-09-29",
       "section": "C",
       "lesson": "1-1",
       "student": "1-1 Quiz · packets and Try Its turned in · IXL: rate of change (W42, BNH, PHD)",
       "note": "1-1 Quiz taken (moved from Mon). Packets collected; Try Its 4 and 5 graded as quiz bonus under the Sep 28 rule (Q3 and Q4 10 each, Q1 +5, Try Its up to 5 each, capped at 20). Same IXL rule as D: a SmartScore of 80 on each of W42, BNH and PHD replaces the quiz score with 20/20. Then 1-2 starts Thu Oct 1."
+    },
+    {
+      "date": "2026-09-29",
+      "section": "G",
+      "lesson": "1-1",
+      "student": "1-1 Quiz · packets and Try Its turned in · IXL: rate of change (W42, BNH, PHD)",
+      "note": "1-1 Quiz taken (moved from Fri). Packets collected; Try Its graded as quiz bonus under the Sep 28 rule; same IXL replacement rule as C and D (SmartScore 80 on each of W42, BNH, PHD = 20/20). 11 scored: four students had correct Try Its and a zero quiz (Santiago, Shailin, Alejandra; Jose partial), which suggests they did not use the open packet on Q3/Q4. Nestor and Jaylen's papers left at school; Madelynn and Darius absent. Tally in roster-local/quiz/2026-09-29-PeriodG-1-1-quiz.json."
     },
     {
       "date": "2026-09-30",
@@ -166,6 +166,374 @@
       "lesson": "1-2",
       "plan": "1-2 packet plan (decided Sun Sep 27): the class goes through Examples 1-5 with the focus on Example 5 (identify the transformations that produce g). Try It 5 is the graded Try It. Example 6 is dropped from the packet. Targets 1-2 Quiz Q1 (TE key: A, C, D, F; the vertex is at (-1,-2), so 1 left, 2 down, horizontal stretch 2, reflect over the x-axis).",
       "student": "1-2: Examples 1-5, focus on Example 5 · Try It 5 is graded"
+    },
+    {
+      "date": "2026-10-08",
+      "section": "C",
+      "lesson": "1-2",
+      "student": "Example 1 (translations) · Group Jam on FS8 and 23W",
+      "note": "Group Jam on the Example 1 prerequisite skills FS8 (find values using function graphs) and 23W (graph an absolute value function). Results: Ma'Kaya 8/9, Nicole 8/9, Jamaal 7/9, Cristofer 7/9, Rovyr 7/9, Diego 7/9, Carelys 6/8, Anyi 2/9. Follow-up IXL assignments: 23W to Rovyr, Cristofer, Jamaal, Anyi and Nicole; FS8 to Anyi only."
+    },
+    {
+      "date": "2026-10-08",
+      "section": "G",
+      "lesson": "1-2",
+      "student": "Example 1 (translations) · Try It 1a and 1b",
+      "note": "Example 1 done; everyone then worked Try It 1a and 1b with 7 minutes. Did not get to the FS8/23W Group Jam."
+    },
+    {
+      "date": "2026-10-09",
+      "section": "D",
+      "lesson": "1-2",
+      "student": "IXL 23W assigned (70+ SmartScore = 100%) · packet 1-2 Explore & Reason",
+      "note": "IXL 23W (graph an absolute value function) assigned to everyone, 70+ SmartScore earns 100% on the assignment. Started the period on 23W before opening the 1-2 packet; the class got frustrated, so switched to the packet. Got through the opener (Explore & Reason) only; everyone was tired by then and the period ended with Nintendo. No Group Jam in D today; Example 1 (translations) has not been started. Same Group Jam bonus rule on 23W as G and C."
+    },
+    {
+      "date": "2026-10-09",
+      "section": "G",
+      "lesson": "1-2",
+      "plan": "Start with the FS8/23W Group Jam that did not run Thu Oct 8, then Example 2 (reflections; IXL PHV).",
+      "student": "Group Jam on FS8 and 23W · IXL 23W homework (70+ = 100%, Group Jam bonus)",
+      "note": "Group Jam on FS8 (find values using function graphs) and 23W (graph an absolute value function). Results: Shailin 7/8, Santiago 7/8, Nestor 7/8, Alejandra 7/8, Shirley 7/8, Jaylen 6/7, Darius 6/8, Madelynn 5/7, Wendy Cha. 5/8, Immanuel 5/8, Jose 5/8; no score (absent or not joined): Wendy Chv., Dayton, Othdam, Gary. Homework: IXL 23W only, assigned to everyone; a SmartScore of 70 or above earns 100% on the assignment. Rule decided today: Group Jam scores supplement the IXL homework score, so anyone who was in class for the Jam gets a bonus on their 23W score. Did not get to Example 2 (reflections)."
+    },
+    {
+      "date": "2026-10-13",
+      "section": "C",
+      "lesson": "1-2",
+      "note": "Schoology column 'IXL 23W: Graph an absolute value function (1-2 homework)' created (10 pts, Assignments, due Thu Oct 15 for C / Fri Oct 16 for D and G). Rule: SmartScore / 70 x 10, capped at 10. Entered only the 10s today (nobody at 70+ yet); partial scores for everyone else to be entered Fri Oct 16 after a fresh IXL pull. Group Jam bonus amount still undecided."
+    },
+    {
+      "date": "2026-10-13",
+      "section": "C",
+      "lesson": "1-2",
+      "note": "Two unpublished Schoology homework items created, 10 pts each in Assignments, no due date: IXL F6J (Translations of functions, Example 1) and IXL PHV (Reflections of functions, Example 2). Plan: Web Jam the skill next class; publish the item only if the class does poorly on the Jam, otherwise no homework."
+    },
+    {
+      "date": "2026-10-13",
+      "section": "C",
+      "lesson": "1-2",
+      "student": "Whiteboard round",
+      "note": "Whiteboard round (1-2); everyone participated well. No IXL work in class."
+    },
+    {
+      "date": "2026-10-13",
+      "section": "D",
+      "lesson": "1-2",
+      "note": "Schoology column 'IXL 23W: Graph an absolute value function (1-2 homework)' created (10 pts, Assignments, due Thu Oct 15 for C / Fri Oct 16 for D and G). Rule: SmartScore / 70 x 10, capped at 10. Entered only the 10s today (Fatima 10); partial scores for everyone else to be entered Fri Oct 16 after a fresh IXL pull. Group Jam bonus amount still undecided."
+    },
+    {
+      "date": "2026-10-13",
+      "section": "G",
+      "lesson": "1-2",
+      "note": "Schoology column 'IXL 23W: Graph an absolute value function (1-2 homework)' created (10 pts, Assignments, due Thu Oct 15 for C / Fri Oct 16 for D and G). Rule: SmartScore / 70 x 10, capped at 10. Entered only the 10s today (Alejandra, Shailin, Jose, Nestor, Immanuel 10); partial scores for everyone else to be entered Fri Oct 16 after a fresh IXL pull. Group Jam bonus amount still undecided."
+    },
+    {
+      "date": "2026-10-13",
+      "section": "G",
+      "lesson": "1-2",
+      "note": "Two unpublished Schoology homework items created, 10 pts each in Assignments, no due date: IXL F6J (Translations of functions, Example 1) and IXL PHV (Reflections of functions, Example 2). Plan: Web Jam the skill next class; publish the item only if the class does poorly on the Jam, otherwise no homework."
+    },
+    {
+      "date": "2026-10-14",
+      "section": "D",
+      "lesson": "1-2",
+      "plan": "Example 1 (translations), then the FS8/23W Group Jam that D has not run yet (Group Jam score becomes bonus on the 23W homework).",
+      "student": "Whiteboard round",
+      "note": "Whiteboard round (1-2); everyone did well. Did not reach the packet and no IXL (the FS8/23W Group Jam did not happen; D has still not run it). Idriss present but headphones on, hardly participated. Graded Fri Oct 16 as Schoology column \"Whiteboard round (1-2), Oct 14\" (nid 8612525009, 10 pts, Assignments, due Oct 14): everyone 10, Idriss 9. Teacher first said one student (\"Shirley\") was absent, but D has no Shirley; all 15 entered pending the absent name."
+    },
+    {
+      "date": "2026-10-14",
+      "section": "G",
+      "lesson": "1-2",
+      "student": "Web Jam on F6J (translations) · no homework",
+      "note": "Everyone present; new student Ronaldo (no laptop yet, worked the Jam on paper and got everything right). Web Jam on IXL F6J (Translations of functions, Example 1): Jaylen 5/5, Nestor 5/5, Madelynn, Immanuel, Dayton, Darius 4/5, Jose 2/4, Wendy Cha. 1/2, Alejandra 2/5, Shailin 1/5, Wendy Chv. 0/5; Santiago, Shirley, Gary no score. Deal was 9 of 11 = no homework, met. The unpublished F6J Schoology item was published and graded: everyone 10/10, plus a Web Jam bonus of 0.5 x (correct/attempted) on top (Ronaldo 10.5 for the paper work; 5/5 = 10.5, 4/5 = 10.4, 2/4 = 10.25, 2/5 = 10.2, 1/5 = 10.1, no score = 10). Othdam is no longer in the G gradebook. PHV item stays unpublished."
+    },
+    {
+      "date": "2026-10-15",
+      "section": "C",
+      "lesson": "1-2",
+      "plan": "Web Jam F6J (Translations, Example 1) and PHV (Reflections, Example 2). Deal: if everyone gets it right, no homework; the unpublished F6J/PHV items get published and graded like G (everyone 10/10 plus Jam bonus) or published as real homework if the class misses. 23W homework dropped for C (nobody picked it up).",
+      "student": "Try It 1 · Web Jam: translations (F6J) · no homework",
+      "note": "All 10 students worked the Example 1 Try It (translations); Jamaal and Cristofer got it right. Schoology column \"1-2 Try It (translations), Oct 15\" (nid 8611371734, 5 pts, Assignments, due Oct 15): everyone 5, correct answer = 6 (Jamaal, Cristofer). Then Web Jam F6J and PHV. Web Jam F6J: Samuel 3/3, Nicole 3/3, Anyi 2/2, Carelys 2/3, Jamaal 2/3, Cristofer 2/3, Rovyr 1/2, Ma'Kaya 1/3, Diego and Luis no score; the class got it perfect at the end, so no homework. The unpublished F6J item was renamed \"Web Jam F6J: Translations of functions (1-2), Oct 15\", set to 3 pts and published (due Oct 15): everyone present 3/3, perfect Jam scorers 3.5 (Samuel, Nicole, Anyi). PHV Web Jam next class (Mon Oct 19); its item stays unpublished. Try It 2 (reflections) graded from the packets Sat Oct 17 as \"1-2 Try It 2 (reflections), Oct 15\" (nid 8613054154, 5 pts, Assignments): correct = 6 (Carelys both parts, Samuel, Cristofer, Jamaal); effort but incorrect = 5 (Anyi, Diego, Ma'Kaya, Rovyr, Nicole who wrote only question marks); Luis blank (not in class lately, has no 1-2 packet)."
+    },
+    {
+      "date": "2026-10-15",
+      "section": "G",
+      "lesson": "1-2",
+      "plan": "Warm-up: F6J Web Jam again (yesterday's F6J item is already graded 10/10 plus bonus; leave it). Then finish Example 2 (reflections), ending on either the Example 2 Try It (5 pts, correct = 6, as in C) or the PHV Web Jam (G PHV item 8608995398 still unpublished).",
+      "student": "Web Jam F6J warm-up · Example 2 (reflections) · Try It 2a and 2b",
+      "note": "F6J Web Jam re-run as warm-up, better than Wed: Wendy Chv. 5/5 (was 0/5), Jaylen 5/5, Nestor 5/5, Dayton 5/5, Immanuel 4/5, Alejandra 4/5, Jose 4/5, Darius 4/5, Madelynn 3/5, Shailin 3/5, Wendy Cha. 2/5, Santiago 2/5, Shirley 1/4, Ronaldo and Gary no score. F6J column re-scored to each student's best of the two runs (only up, same 0.5 x fraction bonus): Wendy Chv. 10 -> 10.5, Dayton 10.4 -> 10.5, Alejandra 10.2 -> 10.4, Jose 10.25 -> 10.4, Shailin 10.1 -> 10.3, Santiago 10 -> 10.2, Shirley 10 -> 10.13; everyone else unchanged. Then Example 2 (reflections) and ended on Try It 2a and 2b (assigned at the end of the period; little or no work time. As of Sat Oct 17: Darius, Madelynn, Dayton, Wendy Cha. have not done it, Nestor did 2a only. No column yet; G needs class time for Try It 2 on Tue Oct 20 before it is graded)."
+    },
+    {
+      "date": "2026-10-16",
+      "section": "D",
+      "lesson": "1-2",
+      "plan": "Group Jam 23W (graph an absolute value function, the Example 1 prerequisite; same order C and G used), then Example 1 and its Try It (5 pts, correct = 6), then F6J Jam if time, otherwise Mon Oct 19. 23W homework dropped for D; the 23W column can be repurposed as the Web Jam column (3 pts, Fatima keeps credit at 3.5).",
+      "student": "Group Jam 23W · Example 1 · Try It 1a and 1b",
+      "note": "Group Jam 23W went well: Martina, Dylan, Breilyn, Amarilis 6/6; Fatima, Hugo, Anderson, Sandra 5/6; Erin 4/5; Rihanna, Mariyah 3/6; Deysi, Idriss, Tasfia, Amavany no score. The dropped 23W homework column was repurposed as \"Web Jam 23W: Graph an absolute value function (1-2), Oct 16\" (nid 8608951956, 3 pts): everyone 3, perfect Jam 3.5 (Martina, Dylan, Breilyn, Amarilis, plus Fatima for her 74 SmartScore). All 15 entered; no absences reported. Then the 1-2 packet: Example 1 (translations) on the iPad, Try It 1a and 1b assigned to finish before the end of class (checked the packets that evening: nobody did it; teacher decision: skip Try It 1 for D, not graded). F6J Jam not reached; next class Mon Oct 19."
+    },
+    {
+      "date": "2026-10-16",
+      "section": "G",
+      "lesson": "1-2",
+      "student": "Web Jam: reflections (PHV) · done early, Nintendo",
+      "note": "PHV Web Jam, very strong, so class ended early (Nintendo). Santiago, Jaylen, Alejandra, Jose 3/3; Gary 2/2; Shirley 1/1; Wendy Cha., Shailin, Nestor 2/3; Immanuel, Darius 1/3. Ronaldo got his laptop only after the Jam but worked it on paper with every answer right. Absent: Madelynn, Dayton, Wendy Chv.. PHV item (already published, teacher) renamed \"Web Jam PHV: Reflections of functions (1-2), Oct 16\", 3 pts, due Oct 16: everyone present 3, perfect Jam 3.5 (Santiago, Jaylen, Alejandra, Jose, Gary, Shirley, Ronaldo), absent blank. Try It 2a/2b from Thu still ungraded. 23W homework closed tonight from a fresh IXL pull (SmartScore/70 x 10): Santiago 7.7, Jaylen 2.7, Wendy Chv. 1.3; 0 for Madelynn, Wendy Cha., Dayton, Shirley, Gary, Darius (never opened); Ronaldo blank (not in IXL yet); the five 10s stand."
+    },
+    {
+      "date": "2026-10-19",
+      "section": "C",
+      "lesson": "1-2",
+      "plan": "Web Jam PHV (Reflections, Example 2); same deal as F6J: everyone present 3/3 on the PHV item, perfect Jam scorers get bonus, no homework if the class gets it.",
+      "student": "Web Jam: reflections (PHV) · Example 3 (stretches and compressions) · Try It 3 · no homework",
+      "note": "Teacher observation (Ms. Bonnevie and Mr. Serino dropped in). Absent: Carelys, Ma'Kaya, Anyi. PHV Web Jam: Samuel 4/4, Nicole 4/4, Jamaal 3/4, Cristofer 3/4, Luis 3/4, Rovyr 2/4, Diego no score (worked it on a whiteboard); everyone did well, so no homework. The unpublished PHV item was renamed \"Web Jam PHV: Reflections of functions (1-2), Oct 19\" (nid 8608995808, 3 pts, Assignments, due Oct 19) and published: everyone present 3, perfect Jam 3.5 (Samuel, Nicole), absent blank. Then Example 3 (stretches and compressions; IXL NNY) worked through as a class, and 7 minutes for Try It 3, which the teacher largely worked out on the board (not graded unless the teacher says so)."
+    },
+    {
+      "date": "2026-10-19",
+      "section": "D",
+      "lesson": "1-2",
+      "plan": "Web Jam F6J (translations) to open, then Example 2 (reflections) and Try It 2; PHV Jam if time. Grade F6J as a 3-pt Web Jam column on request.",
+      "student": "Web Jam: translations (F6J) · Examples 2 and 3 · Try It 2a and 2b (finish Wed)",
+      "note": "Web Jam F6J: Fatima 8/8, Dylan 7/8, Amarilis 7/8, Martina, Mariyah, Sandra, Amavany 6/8, Erin 5/7, Deysi 5/8, Hugo 3/8, Rihanna 2/8 (Tasfia worked with her), Breilyn 2/8; Idriss, Anderson no score. No absences reported. New Schoology column \"Web Jam F6J: Translations of functions (1-2), Oct 19\" (nid 8615580123, 3 pts, Assignments, due Oct 19): everyone 3, Fatima 3.5. Then Example 2 (reflections) and Example 3 (stretches and compressions; Ms. Bonnevie observed it); the Apple Pencil Pro broke mid-class (second one), so the rest of the notes went on the SMART Board instead of the synced iPad (Logitech Crayon ordered). Try It 2a and 2b assigned at the end; a short block of class time Wed Oct 21 to finish before grading (5 pts, correct = 6). PHV Jam not reached."
+    },
+    {
+      "date": "2026-10-20",
+      "section": "C",
+      "lesson": "1-2",
+      "plan": "IXL Web Jam NNY (dilations) then RSN (combined transformations) on whiteboards, drawing a 2f(x-1)-style graph by hand. Then the 1-2 Lesson Quiz, short form (Lesson_planning/a2_1-2_quiz_fast.pdf: Savvas items 1, 3, 5; items 2 and 3 count 10 each, item 1 bonus 5; 20-pt Assessments column). Observer card, only if a walkthrough happens: Three Reads tank problem (a2_1-2_three_reads.pdf).",
+      "student": "Web Jams NNY, RSN · 1-2 quiz",
+      "note": "Web Jam \"PreQuizIXL\" (11 questions): Samuel 11/11, Jamaal, Cristofer, Anyi 10/11, Nicole 9/11, Carelys 8/11, Rovyr 1/11; Diego no score (present). Absent: Luis, Ma'Kaya. New Schoology column \"Web Jam PreQuizIXL: 1-2 transformations, Oct 20\" (nid 8617189885, 3 pts, Assignments, due Oct 20): everyone present 3, Samuel 3.5, Luis and Ma'Kaya blank. 1-2 Lesson Quiz, short form, taken; new Schoology column \"1-2 Lesson Quiz: Transformations of Functions (short form)\" (nid 8617361686, 20 pts, Assessments 97612524, due Oct 20). Scores so far: Jamaal 20 (Q2, Q3 correct; Q1 bonus missed), Diego 24 (bonus above 20 kept), Anyi 20 (Q3 correct; Q2 picked a point not on f but translated and explained it correctly; Q1 bonus 4), Cristofer 19, Nicole 17, Carelys 13, Samuel 20 (Q1 3/5, Q2 10/10, Q3 7/10 with [0,70] marked but a good explanation; 20 total). Rovyr present but did not do the quiz (cell left blank). Make-up: Rovyr, Luis and Ma'Kaya must do the IXL replacement (SmartScore 70 on NNY, RSN, KQL = 20/20); anyone under 20 (Cristofer, Nicole, Carelys) may do the same to replace their score. Oct 21: Ma'Kaya messaged asking for the Jam links; told the Jams cannot be redone and the IXL make-up is the route; NNY, RSN, KQL starred to her in IXL (teacher assigned them from the skill star)."
+    },
+    {
+      "date": "2026-10-20",
+      "section": "G",
+      "lesson": "1-2",
+      "plan": "Short block to finish Try It 2a and 2b (then grade: 5 pts, correct = 6). IXL Web Jam NNY then RSN, no whiteboards for G. Then the 1-2 Lesson Quiz, short form (a2_1-2_quiz_fast.pdf; items 2 and 3 count 10 each, item 1 bonus 5; 20-pt Assessments column). Observer card, only if a walkthrough happens: Three Reads tank problem (a2_1-2_three_reads.pdf).",
+      "student": "Web Jams NNY, RSN · 1-2 quiz",
+      "observerCard": {
+        "title": "Three Reads: which tank is |x+2|?",
+        "mode": "whiteboards",
+        "minutes": 10,
+        "frame": "The second tank is g(x) = ___ because the ___ (input / output) changed by ___, which moves the graph ___.",
+        "body": "## Setup\nTank 1 drains for 5 h, is empty at x = 0, refills for 4 h: f(x) = |x| on [-5, 4]. Tank 2 started 2 hours earlier. Which translation? A |x|+2, B |x+2|, C |x|-2, D |x-2|. Sheet: a2_1-2_three_reads.pdf.\n\n## Read 1 (2 min)\nRead aloud. Pairs: what is the situation, no numbers. One pair reports.\n\n## Read 2 (3 min)\nWhat do x, y and x = 0 mean? Whiteboards: write what x = 0 means for tank 1.\n\n## Read 3 (2 min)\nWhat is the question asking? Pairs restate it in their own words.\n\n## Decide (3 min)\nWhiteboards: when is tank 2 empty? Input or output? Which way does the graph move? Answer B, |x+2|. Watch for D (sign trap: earlier feels like minus) and A or C (gallons instead of time).\n\n## Exit\nSay the frame aloud with a partner, then write it."
+      }
+    },
+    {
+      "date": "2026-10-21",
+      "section": "D",
+      "lesson": "1-2",
+      "plan": "SAT schedule: 40-minute block, 11:20-12:00. Same as C and G: IXL Web Jam NNY (dilations) then RSN (combined transformations). Then the 1-2 Lesson Quiz, short form (a2_1-2_quiz_fast.pdf; items 2 and 3 count 10 each, item 1 bonus 5; 20-pt Assessments column). Try It 2a and 2b not collected today. No Three Reads.",
+      "student": "Short SAT-day block · no Web Jams",
+      "observerCard": {
+        "title": "Web Jam NNY then RSN, then the 1-2 quiz (40-min block)",
+        "mode": "whiteboards",
+        "minutes": 15,
+        "frame": "2f(x - 1) means the output is ___ (doubled) and the graph moves ___ by ___, so the point (a, b) lands at ___.",
+        "body": "## Setup\nSAT day, 40 minutes. Two IXL Web Jams, same as the other sections, then the short 1-2 quiz (Savvas items 1, 3, 5).\n\n## Web Jam NNY (7 min)\nDilations. Students answer on their own devices; the class score shows on the board. After each item: whiteboards, is it the input or the output that was stretched? Watch for 2f(x) read as a horizontal stretch.\n\n## Web Jam RSN (8 min)\nCombined transformations. Whiteboards: draw a 2f(x - 1)-style graph by hand from a given f before checking the Jam answer. Say the frame aloud with a partner.\n\n## Quiz (remaining time)\n1-2 Lesson Quiz, short form. Items 2 and 3 count 10 each, item 1 is a 5-point bonus. Quiet, individual.\n\n## Exit\nQuiz collected. Under 20 may replace the score with IXL SmartScore 70 on NNY, RSN, KQL."
+      },
+      "note": "Class ran about 25 minutes, not 40. Neither the Web Jams NNY/RSN nor the 1-2 quiz happened; D is now the only section that has not taken the 1-2 quiz. The Class Log recording for this block is unusable (phone was inside a bag; clipped rumble, no speech) and its summary on the server/roster-local is WRONG: Whisper echoed the observer-card prompt and the summary reported the Web Jams as done. Ignore that summary. Teacher (Oct 21 evening): Fri Oct 23 D = group Jam + 1-2 quiz; C and G start the 1-3 packet Thu Oct 22."
+    },
+    {
+      "date": "2026-10-21",
+      "section": "G",
+      "lesson": "1-2",
+      "plan": "No G block: SAT schedule, only D meets (11:20-12:00). Lesson 1-3 moves to Thu Oct 22 and every later G day shifts one meeting; the U5D/FT6 Jams merge into the Nov 3 quiz day.",
+      "student": "No class (SAT day)"
+    },
+    {
+      "date": "2026-10-22",
+      "section": "C",
+      "lesson": "1-3",
+      "plan": "Lesson 1-3 (piecewise), new packet handed out; no iPad (pen broken), PDF on the SMART board, freeze + tray pen for writing, whiteboards for the rounds. Fast: Example 3 (write a rule from a graph; quiz Q1, Q3) and Example 5 (step function from a table; quiz Q4, Q5), skipping Examples 1, 2, 4. Then Web Jam RVD and W67.",
+      "student": "1-3 Examples 3, 5 · Web Jams RVD, W67",
+      "observerCard": {
+        "title": "Write the rule for a three-piece graph (packet + whiteboards)",
+        "mode": "whiteboards",
+        "minutes": 12,
+        "frame": "Piece ___ is the line with slope ___ on the interval ___, so its rule is ___.",
+        "body": "## Preparing (3 min)\nHand out the 1-3 packet (a2_1-3_fast.pdf). Example 3 page of the PDF shown on the SMART board (no iPad pen today): freeze the board and write on the frozen page with the board's tray pen; unfreeze to turn the page, freeze again. Pairs: how many pieces, and where does each start and stop? Name the open point at (1, -1) and the closed point at (1, 4). Students mark both points on their packet copy.\n\n## Interacting (7 min)\nWhiteboards, one step per round, boards up each round, one board explains with the frame while the teacher writes that step on the frozen board. Round 1: the interval for piece A (-2 <= x < 1). Round 2: slope from two points (3). Round 3: use (-2, -10) to find b (-4), so 3x - 4. Pairs then do piece B the same way (x + 3 on 1 <= x <= 5), then piece C (slope 0, so 8), writing each rule into the packet as it is confirmed.\n\n## Extending (2 min)\nOne student comes to the SMART board and assembles the three rules into case notation under the graph; the class copies it into the packet. Ask: why x < 1 for A and 1 <= x for B? Each x gets exactly one piece.\n\n## Fallback\nBoard not cooperating: draw the three pieces by hand on the whiteboard side of the room; everything else stays the same. Short on time: piece A only on whiteboards, then everyone says the frame."
+      }
+    },
+    {
+      "date": "2026-10-22",
+      "section": "G",
+      "lesson": "1-3",
+      "plan": "Lesson 1-3 (piecewise), new packet handed out; no iPad (pen broken), PDF on the SMART board, freeze + tray pen for writing, whiteboards for the rounds. Fast: Example 3 (write a rule from a graph; quiz Q1, Q3) and Example 5 (graph a step function from a table; quiz Q4, Q5), skipping Examples 1, 2, 4. Then Web Jam RVD (graph piecewise) and W67 (slope of each piece) to lift quiz scores.",
+      "student": "1-3 Examples 3, 5 · Web Jams RVD, W67",
+      "observerCard": {
+        "title": "Write the rule for a three-piece graph (packet + whiteboards)",
+        "mode": "whiteboards",
+        "minutes": 12,
+        "frame": "Piece ___ is the line with slope ___ on the interval ___, so its rule is ___.",
+        "body": "## Preparing (3 min)\nHand out the 1-3 packet (a2_1-3_fast.pdf). Example 3 page of the PDF shown on the SMART board (no iPad pen today): freeze the board and write on the frozen page with the board's tray pen; unfreeze to turn the page, freeze again. Pairs: how many pieces, and where does each start and stop? Name the open point at (1, -1) and the closed point at (1, 4). Students mark both points on their packet copy.\n\n## Interacting (7 min)\nWhiteboards, one step per round, boards up each round, one board explains with the frame while the teacher writes that step on the frozen board. Round 1: the interval for piece A (-2 <= x < 1). Round 2: slope from two points (3). Round 3: use (-2, -10) to find b (-4), so 3x - 4. Pairs then do piece B the same way (x + 3 on 1 <= x <= 5), then piece C (slope 0, so 8), writing each rule into the packet as it is confirmed.\n\n## Extending (2 min)\nOne student comes to the SMART board and assembles the three rules into case notation under the graph; the class copies it into the packet. Ask: why x < 1 for A and 1 <= x for B? Each x gets exactly one piece.\n\n## Fallback\nBoard not cooperating: draw the three pieces by hand on the whiteboard side of the room; everything else stays the same. Short on time: piece A only on whiteboards, then everyone says the frame."
+      }
+    },
+    {
+      "date": "2026-10-23",
+      "section": "D",
+      "lesson": "1-2",
+      "plan": "Teacher's call (Oct 21): D is the only section still to take the 1-2 quiz. Group Jam first: IXL Web Jams NNY (dilations) then RSN (combined transformations), same as C and G did Oct 20. Then the 1-2 Lesson Quiz, short form (a2_1-2_quiz_fast.pdf; items 2 and 3 count 10 each, item 1 bonus 5; 20-pt Assessments column). Under 20 may replace the score with IXL SmartScore 70 on NNY, RSN, KQL. Lesson 1-3 for D moves to Mon Oct 26.",
+      "student": "Web Jams NNY, RSN · 1-2 quiz",
+      "observerCard": {
+        "title": "Web Jam NNY then RSN, then the 1-2 quiz",
+        "mode": "whiteboards",
+        "minutes": 15,
+        "frame": "2f(x - 1) means the output is ___ (doubled) and the graph moves ___ by ___, so the point (a, b) lands at ___.",
+        "body": "## Setup\nD takes the 1-2 quiz today; the other sections took it Oct 20. Two IXL Web Jams first, then the short quiz (Savvas items 1, 3, 5).\n\n## Web Jam NNY (7 min)\nDilations. Students answer on their own devices; the class score shows on the board. After each item: whiteboards, is it the input or the output that was stretched? Watch for 2f(x) read as a horizontal stretch.\n\n## Web Jam RSN (8 min)\nCombined transformations. Whiteboards: draw a 2f(x - 1)-style graph by hand from a given f before checking the Jam answer. Say the frame aloud with a partner.\n\n## Quiz (remaining time)\n1-2 Lesson Quiz, short form. Items 2 and 3 count 10 each, item 1 is a 5-point bonus. Quiet, individual.\n\n## Exit\nQuiz collected. Under 20 may replace the score with IXL SmartScore 70 on NNY, RSN, KQL."
+      }
+    },
+    {
+      "date": "2026-10-23",
+      "section": "G",
+      "lesson": "1-3",
+      "plan": "1-3 Lesson Quiz (4 items: rule from graph, scuba context, write the function, step function from a table). Observer card: Q4 table-to-graph on whiteboards.",
+      "student": "1-3 quiz",
+      "observerCard": {
+        "title": "Exit: graph a step function from a table",
+        "mode": "whiteboards",
+        "minutes": 8,
+        "frame": "On the interval ___ the cost is ___, so the piece is a horizontal segment, open at ___ and closed at ___.",
+        "body": "## When\nOnly if an observer is in the room: after the quiz papers are collected.\n\n## Setup (1 min)\nTable on the board (parking lot, Try It 5 in a2_1-3_fast.pdf): 0 < t <= 3 costs 10, 3 < t <= 6 costs 15, 6 < t <= 9 costs 20, 9 < t <= 12 costs 25.\n\n## Interacting (5 min)\nWhiteboards: draw axes, then one piece per round. Each round pairs agree on the interval, the cost, and which end is open. Boards up; one student says the frame for the piece.\n\n## Extending (2 min)\nDomain {t | 0 < t <= 12}, range {10, 15, 20, 25}. Ask: why is the left end of each piece open? Minimum 10, maximum 25."
+      }
+    },
+    {
+      "date": "2026-10-26",
+      "section": "C",
+      "lesson": "1-3",
+      "plan": "1-3 Lesson Quiz (4 items). Observer card: Q4 table-to-graph on whiteboards.",
+      "student": "1-3 quiz"
+    },
+    {
+      "date": "2026-10-26",
+      "section": "D",
+      "lesson": "1-3",
+      "plan": "1-3 Lesson Quiz (4 items). Observer card: Q4 table-to-graph on whiteboards.",
+      "student": "1-3 quiz"
+    },
+    {
+      "date": "2026-10-27",
+      "section": "C",
+      "lesson": "1-5",
+      "plan": "Lesson 1-5, fast: Example 1 (use a graph to solve an equation; quiz Q1-Q3) and Example 2 (inequality by graphing; quiz Q4), skipping Examples 3, 4. Then Web Jam M69 and FM2 (table item, quiz Q5); museum membership (quiz Q3-Q4) on whiteboards.",
+      "student": "1-5 Examples 1, 2 · Web Jams M69, FM2"
+    },
+    {
+      "date": "2026-10-27",
+      "section": "G",
+      "lesson": "1-5",
+      "plan": "Lesson 1-5 (solve by graphing), fast: Example 1 (use a graph to solve an equation; quiz Q1-Q3) and Example 2 (solve a one-variable inequality by graphing; quiz Q4), skipping Examples 3, 4 (quiz Q5, the table item, goes to IXL FM2). Then Web Jam M69.",
+      "student": "1-5 Examples 1, 2 · Web Jam M69"
+    },
+    {
+      "date": "2026-10-28",
+      "section": "D",
+      "lesson": "1-5",
+      "plan": "Lesson 1-5, fast: Example 1 (use a graph to solve an equation; quiz Q1-Q3) and Example 2 (inequality by graphing; quiz Q4), skipping Examples 3, 4. Then Web Jam M69 and FM2 (table item, quiz Q5); museum membership (quiz Q3-Q4) on whiteboards.",
+      "student": "1-5 Examples 1, 2 · Web Jams M69, FM2"
+    },
+    {
+      "date": "2026-10-28",
+      "section": "G",
+      "lesson": "1-5",
+      "plan": "Web Jam FM2 (approximate solutions using a table, quiz Q5) and ZBH; museum-membership problem (quiz Q3-Q4) on whiteboards.",
+      "student": "Web Jams FM2, ZBH (1-5)"
+    },
+    {
+      "date": "2026-10-29",
+      "section": "C",
+      "lesson": "1-5",
+      "plan": "1-5 Lesson Quiz (5 items).",
+      "student": "1-5 quiz"
+    },
+    {
+      "date": "2026-10-29",
+      "section": "G",
+      "lesson": "1-5",
+      "plan": "1-5 Lesson Quiz (5 items; Q1-Q2 graph and read a solution, Q3-Q4 museum membership, Q5 table).",
+      "student": "1-5 quiz"
+    },
+    {
+      "date": "2026-10-30",
+      "section": "D",
+      "lesson": "1-5",
+      "plan": "1-5 Lesson Quiz (5 items).",
+      "student": "1-5 quiz"
+    },
+    {
+      "date": "2026-10-30",
+      "section": "G",
+      "lesson": "1-6",
+      "plan": "Lesson 1-6 (linear systems), fast: Example 1 (solve a system; quiz Q1, Q3) and Example 2 (system of linear inequalities; quiz Q2, Q4), skipping Example 3 (three variables). Then Web Jam BW5 (substitution) and 2CN (elimination).",
+      "student": "1-6 Examples 1, 2 · Web Jams BW5, 2CN"
+    },
+    {
+      "date": "2026-11-02",
+      "section": "C",
+      "lesson": "1-6",
+      "plan": "Lesson 1-6, fast: Example 1 (solve a system; quiz Q1, Q3) and Example 2 (system of inequalities; quiz Q2, Q4), skipping Example 3. Then Web Jam BW5 or 2CN and U5D; quiz contexts on whiteboards.",
+      "student": "1-6 Examples 1, 2 · Web Jams BW5, U5D"
+    },
+    {
+      "date": "2026-11-02",
+      "section": "D",
+      "lesson": "1-6",
+      "plan": "Lesson 1-6, fast: Example 1 (solve a system; quiz Q1, Q3) and Example 2 (system of inequalities; quiz Q2, Q4), skipping Example 3. Then Web Jam BW5 or 2CN and U5D; quiz contexts on whiteboards.",
+      "student": "1-6 Examples 1, 2 · Web Jams BW5, U5D"
+    },
+    {
+      "date": "2026-11-03",
+      "section": "C",
+      "lesson": "1-6",
+      "plan": "1-6 Lesson Quiz (4 items), then Topic 1 review from the lowest Jam skills.",
+      "student": "1-6 quiz · Topic 1 review"
+    },
+    {
+      "date": "2026-11-03",
+      "section": "G",
+      "lesson": "1-6",
+      "plan": "Web Jam U5D (systems of inequalities by graphing) and FT6 (any method), short; then the 1-6 Lesson Quiz (4 items). Merged after the Oct 21 SAT day took one G meeting.",
+      "student": "Web Jams U5D, FT6 · 1-6 quiz"
+    },
+    {
+      "date": "2026-11-04",
+      "section": "D",
+      "lesson": "1-6",
+      "plan": "1-6 Lesson Quiz (4 items), then Topic 1 review from the lowest Jam skills.",
+      "student": "1-6 quiz · Topic 1 review"
+    },
+    {
+      "date": "2026-11-04",
+      "section": "G",
+      "lesson": "1-6",
+      "plan": "Topic 1 review: IXL re-runs of the lowest Jam skills; retake window for 1-2, 1-3, 1-5 quizzes via SmartScore 70.",
+      "student": "Topic 1 review"
+    },
+    {
+      "date": "2026-11-05",
+      "section": "C",
+      "lesson": "1-6",
+      "plan": "Topic 1 Assessment (Mr. Serino: aim for inside Q1, which closes Fri Nov 6; the date is not hard).",
+      "student": "Topic 1 Assessment"
+    },
+    {
+      "date": "2026-11-05",
+      "section": "G",
+      "lesson": "1-6",
+      "plan": "Topic 1 Assessment (Mr. Serino: inside Q1, which closes Fri Nov 6).",
+      "student": "Topic 1 Assessment"
+    },
+    {
+      "date": "2026-11-06",
+      "section": "D",
+      "lesson": "1-6",
+      "plan": "Topic 1 Assessment (Mr. Serino: inside Q1, which closes today).",
+      "student": "Topic 1 Assessment"
+    },
+    {
+      "date": "2026-11-06",
+      "section": "G",
+      "lesson": "1-6",
+      "plan": "Make-ups and IXL replacement for anyone absent or under 70; Q1 closes today.",
+      "student": "Make-ups · Q1 closes"
     }
   ]
 }
