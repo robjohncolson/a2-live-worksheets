@@ -244,6 +244,16 @@ not the Savvas one; objectives verbatim from the packet are still owed to
    The teacher's words win on conflicts and the summary fills in what they did not mention; copy
    each `promises` item not already done into "Open items, in order". Read `studentQuestions` before
    drafting the next card (`scripts/draft-observer-cards.mjs` already reads the server).
+   Tomorrow's note: the Windows task `A2 Tomorrow Draft` runs `tools/nightly_tomorrow.ps1` at
+   20:30 (pull, then `node scripts/draft-tomorrow.mjs`), writing `roster-local/tomorrow/<date>-<section>.md`
+   per section for its next class day and logging to `roster-local/tomorrow/log.txt`; the Desk's
+   teacher day panel shows the same note in its "Tomorrow (draft)" fold. Read it before planning
+   the next C, D or G class. It is deterministic (day log + lesson prep + lesson skills + the latest
+   recording): the Do Now is the Jam the day's plan names, else the next kept example's assigned
+   IXL skill, else the first skill not yet jammed, else a kept packet item not yet in the day log,
+   never a new task (teacher, 2026-10-22); the format stays IXL skills, packet, quiz. A wrong note
+   means the day log is behind: fix the day log, never the note. Run it by hand for another day
+   with `--date YYYY-MM-DD [--section G]`.
 2. Engagement: paper tally → `roster-local/paper/<date>-<Period>.json`
    (`{"outOf": n, "students": [{"name": "<roster name or alias>", "score": k}]}`); Blooket file
    optional at `roster-local/blooket/<date>-<Period>.json`; then
