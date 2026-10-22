@@ -22,6 +22,7 @@ import { mountObserverCards, mountTeacherCards } from './observer-cards.js';
 import { mountClassSummaries, mountTeacherSummaries } from './class-summaries.js';
 import { mountScheduleOverrides, mountTeacherSchedule } from './schedule-overrides.js';
 import { mountDeviceHealth, mountTeacherHealth } from './device-health.js';
+import { mountCardDecks, mountTeacherDecks } from './card-decks.js';
 import { createA2Store } from './a2-lessons.js';
 import { mountLedgerImport } from './ledger-import.js';
 import { mountAdminSnapshot } from './admin-snapshot.js';
@@ -185,6 +186,7 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
   mountClassSummaries(app, {}); // POST /class-log/summaries (migration 0043), same bearer and order
   mountScheduleOverrides(app, {}); // GET /class-log/schedule (migration 0044), same bearer and order
   mountDeviceHealth(app, {}); // POST /class-log/health (migration 0045), same bearer, 8 KB route parser
+  mountCardDecks(app, {}); // GET /class-log/decks, POST /class-log/deck-results (migration 0046), same bearer and order
   app.use(express.json({ limit: '8mb' }));
   // The app-wide parser runs before any auth (the password gate reads req.body.token),
   // so a malformed or oversize body on any later route, teacher routes included,
@@ -202,6 +204,7 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
   mountTeacherSummaries(app, { db }); // GET /teacher/summaries, behind the password gate
   mountTeacherSchedule(app, { db }); // PUT/DELETE /teacher/schedule-overrides, behind the password gate
   mountTeacherHealth(app, { db }); // GET /teacher/health, behind the password gate
+  mountTeacherDecks(app, { db }); // PUT/GET/DELETE /teacher/decks, behind the password gate
   // Railway runs behind a SINGLE edge proxy — trust exactly ONE hop so req.ip is
   // the proxy-appended client address. `true` (trust the whole chain) would let a
   // client forge X-Forwarded-For and rotate it to defeat the limiter; a bounded

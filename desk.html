@@ -704,6 +704,7 @@
         .a2-day-fold p { margin: 4px 0; }
         .a2-rec-label { font-variant: small-caps; letter-spacing: 0.04em; margin: 8px 0 2px !important; }
         .a2-rec-list { margin: 0 0 4px; padding-left: 18px; }
+        .a2-rehearsal { padding: 0 2px; }
         .desk-day-log li { margin: 3px 0; }
         .teacher-pacing select, .teacher-pacing input { font: inherit; min-height: 32px; }
         /* Today: a crisp 2px inset frame (thinner than the 3px state rings — a deliberate
@@ -8060,6 +8061,12 @@ function _showA2TeacherDayPanel(inf, dateStr, entry, key, header, body) {
         rec.open = true;
         window.ClassLogSummary.fill(window, rec, isoDate, section);
     }
+    // Rehearsal: the card's deck and the teacher's misses, under the Recording fold (lib/class-log-deck.js).
+    if (isoDate && window.ClassLogDeck) {
+        var reh = document.createElement('div'); reh.className = 'a2-rehearsal';
+        body.appendChild(reh);
+        window.ClassLogDeck.fill(window, reh, isoDate, section);
+    }
     var other = fold('Other resources');
     var deckRow = document.createElement('p');
     var deck = document.createElement('button'); deck.type = 'button'; deck.className = 's7btn'; deck.textContent = 'Open Flashcards';
@@ -15352,7 +15359,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-10-21-25fg';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-10-22-wvm0';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.
@@ -15720,7 +15727,7 @@ function renderA2WeekObjectives() {
 })();
 </script>
 
-<script src="lib/a2-year-plan.js"></script><script src="a2-client.js"></script><script src="a2-desk.js"></script><script src="lib/class-log-health.js"></script><script src="lib/class-log-summary.js"></script>
+<script src="lib/a2-year-plan.js"></script><script src="a2-client.js"></script><script src="a2-desk.js"></script><script src="lib/class-log-health.js"></script><script src="lib/class-log-summary.js"></script><script src="lib/class-log-deck.js"></script>
 <link rel="stylesheet" href="a2-announcement.css"><script src="a2-announcement.js"></script>
 </body>
 </html>

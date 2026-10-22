@@ -1,0 +1,284 @@
+{
+  "date": "2026-10-22",
+  "generatedAt": "2026-10-22T02:30:00.000Z",
+  "model": null,
+  "needsModel": false,
+  "decks": [
+    {
+      "cardId": "47284578-56e2-4699-ba26-3d9f5551adc5",
+      "sections": [
+        "C"
+      ],
+      "lesson": "1-3",
+      "title": "Write the rule for a three-piece graph (packet + whiteboards)",
+      "source": "hand",
+      "items": [
+        {
+          "id": "a43ab049b374",
+          "type": "frame",
+          "front": "Say the frame: Piece ___ is the line with slope ___ on the interval ___, so its rule is ___.",
+          "back": "Piece A is the line with slope 3 on the interval −2 ≤ x < 1, so its rule is 3x − 4.",
+          "order": 1,
+          "after": [],
+          "minute": null
+        },
+        {
+          "id": "bdacc0b7dd44",
+          "type": "anchor",
+          "front": "Example 3, piece A: points, slope, b, rule?",
+          "back": "(−2, −10) closed, (1, −1) open. Slope = 9/3 = 3. −10 = 3(−2) + b, so b = −4. Rule: 3x − 4 on −2 ≤ x < 1.",
+          "order": 2,
+          "after": [],
+          "minute": null
+        },
+        {
+          "id": "482f5a6d3c72",
+          "type": "anchor",
+          "front": "Piece B: interval, slope, b, rule?",
+          "back": "1 ≤ x ≤ 5, through (1, 4) and (5, 8): slope 1. 4 = 1(1) + b, so b = 3. Rule: x + 3.",
+          "order": 3,
+          "after": [],
+          "minute": null
+        },
+        {
+          "id": "81aa63c59597",
+          "type": "anchor",
+          "front": "Piece C: interval and rule?",
+          "back": "5 < x ≤ 8, flat at y = 8: slope 0, so f(x) = 8.",
+          "order": 4,
+          "after": [],
+          "minute": null
+        },
+        {
+          "id": "b1973ec5e902",
+          "type": "anchor",
+          "front": "Which quiz items does Example 3 feed, and what do they test?",
+          "back": "Q1 and Q3: match a graph to its rule. The choices differ by the slope of a piece and by < vs ≤ at the endpoints. Check each slope, then each circle.",
+          "order": 5,
+          "after": [],
+          "minute": null
+        },
+        {
+          "id": "be6c4879c9e8",
+          "type": "trap",
+          "front": "A board says: \"Piece A is −2 ≤ x ≤ 1.\"",
+          "back": "The point at (1, −1) is open, so x = 1 is not on A: −2 ≤ x < 1. x = 1 belongs to B, where (1, 4) is closed. Each x gets exactly one piece.",
+          "order": 6,
+          "after": [
+            "bdacc0b7dd44",
+            "482f5a6d3c72"
+          ],
+          "minute": null
+        },
+        {
+          "id": "0888486ec0a9",
+          "type": "trap",
+          "front": "A board says: \"Piece C has slope 0, so its rule is 0\" (or \"x = 8\").",
+          "back": "Slope 0 means flat at the height of the piece: f(x) = 8. x = 8 would be a vertical line.",
+          "order": 7,
+          "after": [
+            "81aa63c59597"
+          ],
+          "minute": null
+        },
+        {
+          "id": "6d3db1349e7e",
+          "type": "step",
+          "front": "Interacting, round 1: ?",
+          "back": "Boards: the interval for piece A, −2 ≤ x < 1. Boards up, one board explains with the frame while you write it on the frozen page (minute 3).",
+          "order": 8,
+          "after": [
+            "a43ab049b374"
+          ],
+          "minute": 3
+        },
+        {
+          "id": "4b3c5103d21a",
+          "type": "step",
+          "front": "Interacting, round 2: ?",
+          "back": "Slope of piece A from two points: 3 (minute 5).",
+          "order": 9,
+          "after": [
+            "a43ab049b374",
+            "6d3db1349e7e"
+          ],
+          "minute": 5
+        },
+        {
+          "id": "1275fc727a73",
+          "type": "step",
+          "front": "Interacting, round 3, then pairs: ?",
+          "back": "Use (−2, −10) to find b = −4, so 3x − 4. Then pairs do B (x + 3 on 1 ≤ x ≤ 5) and C (8), each rule into the packet as it is confirmed (minute 6 to 10).",
+          "order": 10,
+          "after": [
+            "a43ab049b374",
+            "4b3c5103d21a"
+          ],
+          "minute": 6
+        },
+        {
+          "id": "e2d3c5bd9a5e",
+          "type": "cue",
+          "front": "Boards go up: what do you say?",
+          "back": "\"Boards up, hold them still.\" Choose one board to explain with the frame; write that step on the frozen board; unfreeze only to turn the page.",
+          "order": 11,
+          "after": [
+            "6d3db1349e7e"
+          ],
+          "minute": null
+        },
+        {
+          "id": "278462bc722b",
+          "type": "cue",
+          "front": "Extending (minute 10): the exit move?",
+          "back": "One student assembles the three rules in case notation at the SMART board; the class copies it. Ask: why x < 1 for A and 1 ≤ x for B? Each x gets exactly one piece.",
+          "order": 12,
+          "after": [
+            "1275fc727a73"
+          ],
+          "minute": null
+        }
+      ],
+      "model": null,
+      "generatedAt": "2026-10-22T02:30:00.000Z"
+    },
+    {
+      "cardId": "5c2dfa05-fac1-4a67-9f34-d2b813572a64",
+      "sections": [
+        "G"
+      ],
+      "lesson": "1-3",
+      "title": "Write the rule for a three-piece graph (packet + whiteboards)",
+      "source": "hand",
+      "items": [
+        {
+          "id": "a43ab049b374",
+          "type": "frame",
+          "front": "Say the frame: Piece ___ is the line with slope ___ on the interval ___, so its rule is ___.",
+          "back": "Piece A is the line with slope 3 on the interval −2 ≤ x < 1, so its rule is 3x − 4.",
+          "order": 1,
+          "after": [],
+          "minute": null
+        },
+        {
+          "id": "bdacc0b7dd44",
+          "type": "anchor",
+          "front": "Example 3, piece A: points, slope, b, rule?",
+          "back": "(−2, −10) closed, (1, −1) open. Slope = 9/3 = 3. −10 = 3(−2) + b, so b = −4. Rule: 3x − 4 on −2 ≤ x < 1.",
+          "order": 2,
+          "after": [],
+          "minute": null
+        },
+        {
+          "id": "482f5a6d3c72",
+          "type": "anchor",
+          "front": "Piece B: interval, slope, b, rule?",
+          "back": "1 ≤ x ≤ 5, through (1, 4) and (5, 8): slope 1. 4 = 1(1) + b, so b = 3. Rule: x + 3.",
+          "order": 3,
+          "after": [],
+          "minute": null
+        },
+        {
+          "id": "81aa63c59597",
+          "type": "anchor",
+          "front": "Piece C: interval and rule?",
+          "back": "5 < x ≤ 8, flat at y = 8: slope 0, so f(x) = 8.",
+          "order": 4,
+          "after": [],
+          "minute": null
+        },
+        {
+          "id": "b1973ec5e902",
+          "type": "anchor",
+          "front": "Which quiz items does Example 3 feed, and what do they test?",
+          "back": "Q1 and Q3: match a graph to its rule. The choices differ by the slope of a piece and by < vs ≤ at the endpoints. Check each slope, then each circle.",
+          "order": 5,
+          "after": [],
+          "minute": null
+        },
+        {
+          "id": "be6c4879c9e8",
+          "type": "trap",
+          "front": "A board says: \"Piece A is −2 ≤ x ≤ 1.\"",
+          "back": "The point at (1, −1) is open, so x = 1 is not on A: −2 ≤ x < 1. x = 1 belongs to B, where (1, 4) is closed. Each x gets exactly one piece.",
+          "order": 6,
+          "after": [
+            "bdacc0b7dd44",
+            "482f5a6d3c72"
+          ],
+          "minute": null
+        },
+        {
+          "id": "0888486ec0a9",
+          "type": "trap",
+          "front": "A board says: \"Piece C has slope 0, so its rule is 0\" (or \"x = 8\").",
+          "back": "Slope 0 means flat at the height of the piece: f(x) = 8. x = 8 would be a vertical line.",
+          "order": 7,
+          "after": [
+            "81aa63c59597"
+          ],
+          "minute": null
+        },
+        {
+          "id": "6d3db1349e7e",
+          "type": "step",
+          "front": "Interacting, round 1: ?",
+          "back": "Boards: the interval for piece A, −2 ≤ x < 1. Boards up, one board explains with the frame while you write it on the frozen page (minute 3).",
+          "order": 8,
+          "after": [
+            "a43ab049b374"
+          ],
+          "minute": 3
+        },
+        {
+          "id": "4b3c5103d21a",
+          "type": "step",
+          "front": "Interacting, round 2: ?",
+          "back": "Slope of piece A from two points: 3 (minute 5).",
+          "order": 9,
+          "after": [
+            "a43ab049b374",
+            "6d3db1349e7e"
+          ],
+          "minute": 5
+        },
+        {
+          "id": "1275fc727a73",
+          "type": "step",
+          "front": "Interacting, round 3, then pairs: ?",
+          "back": "Use (−2, −10) to find b = −4, so 3x − 4. Then pairs do B (x + 3 on 1 ≤ x ≤ 5) and C (8), each rule into the packet as it is confirmed (minute 6 to 10).",
+          "order": 10,
+          "after": [
+            "a43ab049b374",
+            "4b3c5103d21a"
+          ],
+          "minute": 6
+        },
+        {
+          "id": "e2d3c5bd9a5e",
+          "type": "cue",
+          "front": "Boards go up: what do you say?",
+          "back": "\"Boards up, hold them still.\" Choose one board to explain with the frame; write that step on the frozen board; unfreeze only to turn the page.",
+          "order": 11,
+          "after": [
+            "6d3db1349e7e"
+          ],
+          "minute": null
+        },
+        {
+          "id": "278462bc722b",
+          "type": "cue",
+          "front": "Extending (minute 10): the exit move?",
+          "back": "One student assembles the three rules in case notation at the SMART board; the class copies it. Ask: why x < 1 for A and 1 ≤ x for B? Each x gets exactly one piece.",
+          "order": 12,
+          "after": [
+            "1275fc727a73"
+          ],
+          "minute": null
+        }
+      ],
+      "model": null,
+      "generatedAt": "2026-10-22T02:30:00.000Z"
+    }
+  ]
+}

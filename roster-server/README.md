@@ -260,6 +260,80 @@ nothing new was inserted, and the exit code stays non-zero until it succeeds, so
 a failed push is retried by rerunning (no new model calls). The drafts file is
 written atomically too.
 
+## Card decks
+
+Each observer card gets a rehearsal deck of 8 to 14 flashcards
+(`school/class-log/REHEARSAL_SPEC.md`, WP-1). The Desk drafts it, pushes it
+beside the card, and the phone spaces short rehearsal sessions down to the bell,
+posting every grade back.
+
+1. Migration: run `migrations/0046_card_decks.sql` (tables `a2.card_decks`, one
+   deck per card, `card_id` references `a2.observer_cards(id) on delete cascade`,
+   and `a2.deck_results`, one row per grade, unique on `(card_id, device,
+   session, item_id, at)`; RLS on, service role only; `updated_at` touch
+   trigger; function `a2.put_card_decks(jsonb)`, service role only), then `NOTIFY pgrst, 'reload schema';`. Until it runs every route
+   answers 503 and the phone logs `Decks: fetch failed (HTTP 503)` at most
+   hourly. `deploy/supabase_a2_bootstrap.sql` includes it.
+2. Env: none new (`CLASS_LOG_TOKEN` for the phone, the teacher secret for the Desk).
+
+An item (validated by `deck-rules.js`, shared with the script and mirrored on the
+phone): `{id, type, front, back, order, after, minute}`. `id` is 8 to 40
+characters of `A-Z a-z 0-9 _ -` (the script uses the first 12 hex of SHA-256 of
+`type + front`), `type` is `frame | anchor | trap | step | cue`, `front` at most
+240 characters, `back` at most 320, `order` an integer 0-999, `after` the ids of
+prerequisite items in the same deck (no cycles), `minute` an integer for a step
+and null otherwise. Ids are unique within a deck.
+
+| Route | Auth | Does |
+|---|---|---|
+| `GET /class-log/decks?date=YYYY-MM-DD` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | `{date, decks: [{cardId, course, section, items, model, generatedAt, updatedAt}]}` for every deck whose card is on that date (section cards and the course-wide card; the phone resolves like cards). Strong `ETag` over the date and every column of every deck row (content hash and `updated_at` included; `"empty-<hash>"` with no decks); `If-None-Match` gives 304 on an exact match, ignoring a `W/` prefix. `Cache-Control: no-cache`. |
+| `POST /class-log/deck-results` | same bearer | Body `{device, cardId, section, date, results: [{session, itemId, grade, at, latencyMs}]}`, at most 200 results, `grade` `again` or `got_it`, `at` ISO 8601, `device` defaults to `s24`. Inserts ignoring duplicates on the unique key; `{ok: true, inserted}`. The row's `date` is the card's own date. 400 bad body, 404 unknown card. 128 KB route parser. |
+| `PUT /teacher/decks` | teacher | Body `{decks: [{cardId, items, model?, generatedAt?}]}`, at most 20 decks, one per card. Validates every deck with `deck-rules.js`, then calls `a2.put_card_decks` once: in one transaction it checks every card exists (a missing card is a 404 and nothing is written), copies `date`, `course` and `section` from the card, and writes a deck only when its content hash (items and model; `generatedAt` is left out) or those copied fields differ. Any failure leaves every deck as it was (503, no details). `{ok: true, written, unchanged}`. |
+| `GET /teacher/decks?date=YYYY-MM-DD` | teacher | The same decks plus, per deck, `results: {sessions, asked, again}` (sessions counted per device) and `missed`: the three items with the most `again` grades, `[{itemId, type, front, again}]`. |
+| `DELETE /teacher/decks?cardId=UUID` | teacher | Deletes the deck (results stay); `{ok: true, deleted}`. |
+
+Same middleware order as the cards: the phone routes are mounted before the
+app-wide parser (auth first, then the bounded parser: `413 too_large`,
+`400 bad_json`); storage errors are a 503 without details.
+
+The Desk shows one Rehearsal line under the Recording fold of the teacher day
+panel (`lib/class-log-deck.js`): `Deck: 11 items · 3 sessions · 4 again (trap:
+"2f(x) is horizontal")`, `No deck`, or `Deck unavailable` (including the 503
+before the migration).
+
+### Drafting decks
+
+`scripts/draft-card-decks.mjs` writes one deck per card of the target date. The
+cards come from the day log (`observerCard`), falling back to
+`GET /teacher/cards?date=`; the card ids always come from that GET, and every
+other Algebra 2 card the server has for the date gets its own deck (with
+`--section`, only the card that section resolves to). Each prompt
+holds the card, the lesson-prep entry (`content/a2/lesson-prep.json`) and the
+deck rules from the spec, and the chat endpoint (same `DRAFT_API_*` env as the
+card drafter) answers 10 to 12 items. Ids are assigned from `type + front`,
+`after` is remapped to them, and the deck must pass `deck-rules.js` and a roster
+first-name check (`roster-local/roster-view-*.csv`, when present). The result goes
+to `content/a2/card-decks/<date>.json` (tracked: no student data), written
+atomically.
+
+Daily, after the cards are pushed:
+
+```
+node scripts/draft-card-decks.mjs --date 2026-10-22 --dry-run   # prompts and decks, writes and sends nothing
+node scripts/draft-card-decks.mjs --date 2026-10-22 --apply     # drafts, writes the file, PUTs /teacher/decks
+node scripts/draft-card-decks.mjs --from-file content/a2/card-decks/2026-10-22.json --apply   # hand-written or edited decks
+```
+
+`--section C|D|G` narrows it. Without a key (and without `--from-file`) the
+prompt bundle is written with `"needsModel": true` and the exit code is 2; write
+the items into that file by hand and push it with `--from-file --apply`.
+`--from-file` recomputes the ids (an edited front is a new item for the phone),
+checks the whole file with the server's own `validateDeckPut` (card ids, one deck
+per card, at most 20 decks, `model`, `generatedAt`), writes the normalized file and, with `--apply`, sends it; re-sending the same file
+changes nothing on the server. A rejected deck (bad shape, a cycle, a roster name)
+exits 1 and nothing is sent. The key and the teacher secret are never printed;
+server and model errors are redacted.
+
 ## Verification
 
 Run `npx vitest run` from this directory. Tests use injected databases; PostgreSQL
