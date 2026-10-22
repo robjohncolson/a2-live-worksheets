@@ -38,3 +38,35 @@ describe('Tomorrow quiz dates distinguish a scheduled quiz from a mention', () =
     expect(draftSection({ ...inputs, dayLog }, 'C', '2026-10-26').quizDate).toBe('2026-10-26');
   });
 });
+
+it('never promotes an unassigned plan/prep skill or a day-log-only packet number into a Do Now', () => {
+  const prep = structuredClone(inputs.prep.lessons['9-1']);
+  prep.examples.forEach(example => { example.ixl = ['ZZ9']; }); // Proposed only, never assigned.
+  const plans = ['Group Jam ZZ9.', 'Packet: Example 999 and practice item 777.', 'Group Jam AA1, then ZZ9.'];
+  const past = ['', 'Group Jams AA1, BB2, CC3 and PP0 done.', 'Group Jams AA1, BB2, CC3 and PP0 done. Examples 1-3 done.'];
+  for (const plan of plans) {
+    for (const note of past) {
+      for (const lessonSkills of [inputs.lessonSkills.lessons['9-1'], []]) {
+        const draft = globalThis.A2Tomorrow.draft({
+          date: '2026-10-26', section: 'C', lesson: '9-1', prep, lessonSkills,
+          skillLookup: inputs.skillLookup,
+          dayLog: { entries: [
+            { date: '2026-10-22', section: 'C', lesson: '9-1', note },
+            { date: '2026-10-26', section: 'C', lesson: '9-1', plan },
+          ] },
+        });
+        const pick = draft.doNow;
+        expect(pick).not.toBeNull();
+        expect(pick.text).not.toMatch(/ZZ9|999|777/);
+        if (pick.kind === 'jam') {
+          expect(lessonSkills.map(skill => skill.code)).toContain(pick.code);
+          expect(inputs.skillLookup(pick.code)).not.toBeNull();
+        } else if (pick.example) {
+          expect(prep.examples.filter(example => example.keep).map(example => example.n)).toContain(pick.example);
+        } else {
+          expect(pick.item).toBe(prep.dok3.item);
+        }
+      }
+    }
+  }
+});
