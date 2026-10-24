@@ -23,6 +23,7 @@ import { mountClassSummaries, mountTeacherSummaries } from './class-summaries.js
 import { mountScheduleOverrides, mountTeacherSchedule } from './schedule-overrides.js';
 import { mountDeviceHealth, mountTeacherHealth } from './device-health.js';
 import { mountCardDecks, mountTeacherDecks } from './card-decks.js';
+import { mountClassLogMastery, mountTeacherMastery } from './node-mastery.js';
 import { createA2Store } from './a2-lessons.js';
 import { mountLedgerImport } from './ledger-import.js';
 import { mountAdminSnapshot } from './admin-snapshot.js';
@@ -187,6 +188,7 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
   mountScheduleOverrides(app, {}); // GET /class-log/schedule (migration 0044), same bearer and order
   mountDeviceHealth(app, {}); // POST /class-log/health (migration 0045), same bearer, 8 KB route parser
   mountCardDecks(app, {}); // GET /class-log/decks, POST /class-log/deck-results (migration 0046), same bearer and order
+  mountClassLogMastery(app, {}); // PUT /class-log/mastery (migration 0047), same bearer and order, 64 KB route parser
   app.use(express.json({ limit: '8mb' }));
   // The app-wide parser runs before any auth (the password gate reads req.body.token),
   // so a malformed or oversize body on any later route, teacher routes included,
@@ -205,6 +207,7 @@ export function createApp(db, ledgerDb, loadManifest, loadAnswerKey, loadSkillMa
   mountTeacherSchedule(app, { db }); // PUT/DELETE /teacher/schedule-overrides, behind the password gate
   mountTeacherHealth(app, { db }); // GET /teacher/health, behind the password gate
   mountTeacherDecks(app, { db }); // PUT/GET/DELETE /teacher/decks, behind the password gate
+  mountTeacherMastery(app, { db }); // GET /teacher/mastery (migration 0047), behind the password gate
   // Railway runs behind a SINGLE edge proxy — trust exactly ONE hop so req.ip is
   // the proxy-appended client address. `true` (trust the whole chain) would let a
   // client forge X-Forwarded-For and rotate it to defeat the limiter; a bounded

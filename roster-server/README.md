@@ -284,14 +284,19 @@ characters of `A-Z a-z 0-9 _ -` (the script uses the first 12 hex of SHA-256 of
 `type + front`), `type` is `frame | anchor | trap | step | cue`, `front` at most
 240 characters, `back` at most 320, `order` an integer 0-999, `after` the ids of
 prerequisite items in the same deck (no cycles), `minute` an integer for a step
-and null otherwise. Ids are unique within a deck.
+and null otherwise. Ids are unique within a deck. A deck built from a lesson
+tree (below) adds `node` (the tree node id, 12 lowercase hex; the item id is the
+same value) and `lesson` (at most 16 characters) to every item: a deck is all or
+none on `node`. A nodeless item drops any `lesson`, and the content hash covers
+`node` and `lesson` only on an item with a node, so every nodeless deck keeps its
+old hash.
 
 | Route | Auth | Does |
 |---|---|---|
 | `GET /class-log/decks?date=YYYY-MM-DD` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | `{date, decks: [{cardId, course, section, items, model, generatedAt, updatedAt}]}` for every deck whose card is on that date (section cards and the course-wide card; the phone resolves like cards). Strong `ETag` over the date and every column of every deck row (content hash and `updated_at` included; `"empty-<hash>"` with no decks); `If-None-Match` gives 304 on an exact match, ignoring a `W/` prefix. `Cache-Control: no-cache`. |
 | `POST /class-log/deck-results` | same bearer | Body `{device, cardId, section, date, results: [{session, itemId, grade, at, latencyMs}]}`, at most 200 results, `grade` `again` or `got_it`, `at` ISO 8601, `device` defaults to `s24`. Inserts ignoring duplicates on the unique key; `{ok: true, inserted}`. The row's `date` and `section` are the card's own: a body whose `section` differs from a section card's is refused with `409 {error: 'section_mismatch', cardSection, section}` and nothing is written; a course-wide card (section null) keeps the body's `section`, which then says where the deck was rehearsed. 400 bad body, 404 unknown card. 128 KB route parser. |
 | `PUT /teacher/decks` | teacher | Body `{decks: [{cardId, items, model?, generatedAt?}]}`, at most 20 decks, one per card. Validates every deck with `deck-rules.js`, then calls `a2.put_card_decks` once: in one transaction it checks every card exists (a missing card is a 404 and nothing is written), copies `date`, `course` and `section` from the card, and writes a deck only when its content hash (items and model; `generatedAt` is left out) or those copied fields differ. Any failure leaves every deck as it was (503, no details). `{ok: true, written, unchanged}`. |
-| `GET /teacher/decks?date=YYYY-MM-DD` | teacher | The same decks plus, per deck, `results: {sessions, asked, again}` (sessions counted per device) and `missed`: the three items with the most `again` grades, `[{itemId, type, front, again}]`. |
+| `GET /teacher/decks?date=YYYY-MM-DD[&device=s24]` | teacher | The same decks plus, per deck, `results: {sessions, asked, again}` (sessions counted per device), `missed`: the three items with the most `again` grades, `[{itemId, type, front, again}]`, and `ready`: how many items have a node known (p >= 0.90) on `device` (default `s24`) in `a2.node_mastery`; 0 for a deck without nodes, `null` when the mastery table is missing or failing (the decks still load). The body also echoes `device`. |
 | `DELETE /teacher/decks?cardId=UUID` | teacher | Deletes the deck (results stay); `{ok: true, deleted}`. |
 
 Same middleware order as the cards: the phone routes are mounted before the
@@ -335,6 +340,103 @@ per card, at most 20 decks, `model`, `generatedAt`), writes the normalized file 
 changes nothing on the server. A rejected deck (bad shape, a cycle, a roster name)
 exits 1 and nothing is sent. The key and the teacher secret are never printed;
 server and model errors are redacted.
+
+## Lesson trees
+
+`school/class-log/KNOWLEDGE_TREE_SPEC.md`, WP-1. Every rehearsable thing the
+Teacher's Edition says for one lesson, as nodes with stable ids and `after` edges,
+built without a model from `content/a2/lesson-prep.json` (plus the day log's cards
+for traps and minutes) into `content/a2/lesson-trees/<lesson>.json` (tracked: no
+student data).
+
+```
+node scripts/build-lesson-tree.mjs --all --check     # every lesson; then validate every tree file in the folder
+node scripts/build-lesson-tree.mjs --lesson 1-3       # one lesson
+```
+
+A node is `{id, type, front, back, order, after, minute, source}` (traps from a card
+add `card: {date, section}`). `id` is the first 12 hex of SHA-256 of
+`lesson + '|' + source`, where `source` names the prep field by key
+(`quizFocus.needs[0]`, `examples[n=3]`, `ixl.W67`), so a wording edit keeps the id.
+Fronts and backs are clipped to 240 / 320 at a sentence boundary with ` …`; an
+empty field makes no node; a repeated front gets ` (2)`. A tree must have 6 to 60
+nodes, unique ids, and an acyclic in-tree `after`; a failing tree is never written
+(exit 1), and a file is rewritten only when it changed. Mapping, in order (the
+order also sets `order`):
+
+| prep field | type | front | back | after |
+|---|---|---|---|---|
+| `objectives.essentialQuestion` | frame | Essential question? | the question | none |
+| each word after "using the words" in `objectives.language` | anchor | Define: piece | the first `quizFocus.needs` entry naming the word, else the language objective | frame |
+| `quizFocus.what`, `quizFocus.answer` | anchor | Quiz item N asks? / answer? | the text | the vocabulary anchors |
+| `quizFocus.needs[i]` | anchor | Before quiz item N students need? | the need | the asks anchor |
+| `quizFocus.items[k]` | anchor | Quiz item k is covered by? | the text | the asks anchor |
+| `examples[i]` with `keep: true` | step | Example n: ? | title · DOK · practice · why | the previous kept example; the first after the quiz anchors |
+| `dok3` | anchor | DOK 3 task? / DOK 3 key? | task / key + why | the last step |
+| `modelDiscuss.situation` | cue | Opener situation? | the situation | frame |
+| `modelDiscuss.studentPrompts[i]` | cue | Opener prompt i? | the prompt | the situation |
+| `modelDiscuss.teQuestions[i]` | cue | `when`: ask? | q → a | the previous TE question; the first after the situation |
+| `modelDiscuss.caution` | trap | Opener caution? | the caution | the situation |
+| `ixl[i]` with `role` starting `core` and an `example` | anchor | IXL for example n? | code + name | that example's step (the frame when it is not kept) |
+| card lines `Trap: <words> -> <response>` or lines under `## Traps` | trap | the student's words | the response | the vocabulary anchors whose words appear, else the frame |
+
+Step minutes split the first card's minutes for the lesson evenly over the kept
+examples, cumulative (null without a card); a deck recomputes them from its own
+card's minutes.
+
+`scripts/draft-card-decks.mjs` uses a card's tree by default (the model path stays
+for cards without one); `--from-tree` uses trees only and skips, with a message, a
+card whose lesson has none. Selection, capped at 14: the newest lesson's frame; the
+card's own traps; the quiz anchors (what, answer, needs), newest lesson first; TE
+questions whose `when` starts with the card's phase (Before for an opener, After
+for an exit card, During otherwise); steps for the examples the card body names,
+else all kept; vocabulary anchors not yet known on `--device` (from
+`GET /teacher/mastery`; all of them without the server). Only when that gives fewer
+than 8 items is the deck padded from DOK 3, IXL and then the rest of the tree in
+order. A card that names another lesson ("Lesson 1-3") uses that tree too. Kept
+`after` edges stay; an edge to an unchosen node is lifted to its nearest chosen
+ancestors. Items carry `node` and `lesson`, the deck's model is `lesson-tree`, and
+the same trees and card give the same hash, so an unchanged PUT writes nothing.
+
+Nightly (`tools/nightly_tomorrow.ps1`, after the Tomorrow draft): step 3
+`node scripts/push-observer-cards.mjs`, step 4
+`node scripts/build-lesson-tree.mjs --all --check` then
+`node scripts/draft-card-decks.mjs --from-tree --per-section --apply`: each section
+(or `-Section`) drafts for its own next class day from the school calendar
+(`data/a2-school-year.json`), resolved exactly as step 2 does (the first meeting day
+on or after `-Date`, default tomorrow), one run per (date, section); runs for the
+same date share that date's deck file and keep the other sections' decks in it.
+Both are logged to `roster-local/tomorrow/log.txt`; their failures are logged only
+(the exit code stays step 2's), and the Desk Rehearsal line then says `No deck`.
+
+## Mastery
+
+Per device, per course, per tree node, the phone's BKT probability `p` that the
+teacher has the node ready (the phone owns it; this mirror is for the Desk).
+
+1. Migration: run `migrations/0047_node_mastery.sql` (table `a2.node_mastery
+   (device, course, node_id, lesson, p real, asked, again, known_at, updated_at)`,
+   primary key `(device, course, node_id)`, RLS on, service role only; function
+   `a2.put_node_mastery(text, text, jsonb)`, service role only), then
+   `NOTIFY pgrst, 'reload schema';`. Until it runs both routes answer 503 and
+   `GET /teacher/decks` reports `ready: null`. `deploy/supabase_a2_bootstrap.sql`
+   includes it.
+2. Env: none new.
+
+| Route | Auth | Does |
+|---|---|---|
+| `PUT /class-log/mastery` | `Authorization: Bearer <CLASS_LOG_TOKEN>` | Body `{device, course, nodes: [{nodeId, lesson, p, asked, again, knownAt, updatedAt}]}`, at most 200 nodes; `device` defaults to `s24`, `course` `algebra2` or `apstats`, `nodeId` 12 lowercase hex, `lesson` a string of at most 16 characters (`''` allowed), `p` 0-1, `asked`/`again` non-negative integers, `knownAt` null or ISO 8601, `updatedAt` ISO 8601 (the phone's clock). A node repeated in one body keeps its newest entry. Upserts in one statement, replacing a row only when the incoming `updatedAt` is newer, so a late retry never rolls `p` back. `{ok: true, written}`. 64 KB route parser, mounted before the app-wide one like the decks. |
+| `GET /teacher/mastery?course=algebra2[&lesson=1-3]` | teacher | `{course, lesson, rows: [{device, course, nodeId, lesson, p, asked, again, knownAt, updatedAt}], lessons: {"1-3": {nodes, known, weakest: [{nodeId, device, p}]}}}`: per lesson the rows counted, how many are known (p >= 0.90, allowing for float4 rounding) and the three lowest `p`. Lesson keys are the phone's, so `lessons` is built without a prototype (`__proto__` is just a key) and any failure building the body is a 503. |
+
+The Desk Rehearsal line for a tree deck (`lib/class-log-tree.js`) reads
+`Deck: 12 items · 9 ready · 2 sessions · weakest: "After, whole class: ask?"`
+(`ready` and the weakest asked-but-not-known node are scoped to the deck's items and
+counted from `GET /teacher/mastery`, fetched on every panel open; the deck's
+server `ready` is the fallback), with one line per node of the lesson under it
+(every node of `content/a2/lesson-trees/<lesson>.json`, fetched live; the service
+worker passes those files through and never precaches them), least ready first,
+each with a thin bar for `p` (`new` for a node never asked). A deck without nodes
+keeps the old line.
 
 ## Verification
 

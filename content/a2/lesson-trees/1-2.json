@@ -1,0 +1,473 @@
+{
+  "lesson": "1-2",
+  "title": "Transformations of Functions",
+  "nodes": [
+    {
+      "id": "493bbfa9864b",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How do the values a, b, h and k in a·f(b(x − h)) + k move or reshape the graph of f?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "17ae607475cc",
+      "type": "anchor",
+      "front": "Define: left",
+      "back": "read the vertex and use the sign rule: (x + 1) is 1 LEFT, -2 is 2 down (Example 1, IXL F6J)",
+      "order": 2,
+      "after": [
+        "493bbfa9864b"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.left"
+    },
+    {
+      "id": "6a52af5bca04",
+      "type": "anchor",
+      "front": "Define: right",
+      "back": "I can describe a transformation in writing using the words left, right, up, down, stretch, compress and reflect.",
+      "order": 3,
+      "after": [
+        "493bbfa9864b"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.right"
+    },
+    {
+      "id": "1e4dbf1b0670",
+      "type": "anchor",
+      "front": "Define: up",
+      "back": "I can describe a transformation in writing using the words left, right, up, down, stretch, compress and reflect.",
+      "order": 4,
+      "after": [
+        "493bbfa9864b"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.up"
+    },
+    {
+      "id": "22b4277a3f0e",
+      "type": "anchor",
+      "front": "Define: down",
+      "back": "read the vertex and use the sign rule: (x + 1) is 1 LEFT, -2 is 2 down (Example 1, IXL F6J)",
+      "order": 5,
+      "after": [
+        "493bbfa9864b"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.down"
+    },
+    {
+      "id": "dd82f3e314d7",
+      "type": "anchor",
+      "front": "Define: stretch",
+      "back": "wider than x^2 = horizontal stretch, not vertical stretch; check a point one unit from the vertex (Example 3, IXL NNY)",
+      "order": 6,
+      "after": [
+        "493bbfa9864b"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.stretch"
+    },
+    {
+      "id": "119d43db40e0",
+      "type": "anchor",
+      "front": "Define: compress",
+      "back": "I can describe a transformation in writing using the words left, right, up, down, stretch, compress and reflect.",
+      "order": 7,
+      "after": [
+        "493bbfa9864b"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.compress"
+    },
+    {
+      "id": "0547db2ae500",
+      "type": "anchor",
+      "front": "Define: reflect",
+      "back": "I can describe a transformation in writing using the words left, right, up, down, stretch, compress and reflect.",
+      "order": 8,
+      "after": [
+        "493bbfa9864b"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.reflect"
+    },
+    {
+      "id": "9a6611e8e556",
+      "type": "anchor",
+      "front": "Quiz item 1 asks?",
+      "back": "Select all the transformations of f(x) = x^2 that produce the graph of g (downward parabola, vertex (-1, -2)). Choices: A 1 left, B 1 right, C 2 down, D horizontal stretch by 2, E vertical stretch by 2, F reflection across the x-axis.",
+      "order": 9,
+      "after": [
+        "17ae607475cc",
+        "6a52af5bca04",
+        "1e4dbf1b0670",
+        "22b4277a3f0e",
+        "dd82f3e314d7",
+        "119d43db40e0",
+        "0547db2ae500"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "1993fcf120d0",
+      "type": "anchor",
+      "front": "Quiz item 1 answer?",
+      "back": "A, C, D, F (TE key): 1 left, 2 down, horizontal stretch by 2, reflect across the x-axis. g(x) = -(1/2 (x+1))^2 - 2.",
+      "order": 10,
+      "after": [
+        "17ae607475cc",
+        "6a52af5bca04",
+        "1e4dbf1b0670",
+        "22b4277a3f0e",
+        "dd82f3e314d7",
+        "119d43db40e0",
+        "0547db2ae500"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "8d37c665db4e",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need?",
+      "back": "read the vertex and use the sign rule: (x + 1) is 1 LEFT, -2 is 2 down (Example 1, IXL F6J)",
+      "order": 11,
+      "after": [
+        "9a6611e8e556"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "cee1c91dd9e8",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (2)",
+      "back": "opens down = reflection across the x-axis (Example 2, IXL PHV)",
+      "order": 12,
+      "after": [
+        "9a6611e8e556"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "7cc1c02c1982",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (3)",
+      "back": "wider than x^2 = horizontal stretch, not vertical stretch; check a point one unit from the vertex (Example 3, IXL NNY)",
+      "order": 13,
+      "after": [
+        "9a6611e8e556"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "770558a3762c",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (4)",
+      "back": "put it together from the graph with no equation given (Example 5, IXL KT8 / R7X)",
+      "order": 14,
+      "after": [
+        "9a6611e8e556"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "b0bc8b3f3de4",
+      "type": "step",
+      "front": "Example 1: ?",
+      "back": "Translate a function · DOK 1, 3 · practice 18-21, 13 · Left/right and up/down; the sign trap in (x + 1) is half of quiz item 1.",
+      "order": 15,
+      "after": [
+        "9a6611e8e556",
+        "1993fcf120d0"
+      ],
+      "minute": 3,
+      "source": "examples[n=1]"
+    },
+    {
+      "id": "5330680ba5df",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Reflect a function across the x- or y-axis · DOK 1-2 · practice 16, 22, 23, 14 · Opens-down = reflection across the x-axis (choice F).",
+      "order": 16,
+      "after": [
+        "b0bc8b3f3de4"
+      ],
+      "minute": 5,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "655e53b3a6ec",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Understand stretches and compressions · DOK 1, 3 · practice 24-27, 15 · Horizontal vs vertical stretch (choice D vs E); the hardest distinction on the item.",
+      "order": 17,
+      "after": [
+        "5330680ba5df"
+      ],
+      "minute": 8,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "9531ac9db980",
+      "type": "step",
+      "front": "Example 5: ?",
+      "back": "Identify transformations from an equation · DOK 2, 3 · practice 29-32, 36, 17, 37 · The lesson. Try It 5 is the graded Try It; quiz item 1 is Example 5 read from a graph instead of an equation.",
+      "order": 18,
+      "after": [
+        "655e53b3a6ec"
+      ],
+      "minute": 10,
+      "source": "examples[n=5]"
+    },
+    {
+      "id": "f57f4de34bd0",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Monisha compares f(x) = |x| and g(x) = |2x - 4|. She says g is f translated 4 right and compressed horizontally by 2. What is her error?",
+      "order": 19,
+      "after": [
+        "9531ac9db980"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "afe90f93e4e0",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "|2x - 4| = 2|x - 2|, so g is f translated 2 right and stretched vertically by 2 (or, read as f(2(x - 2)), compressed horizontally by 1/2 and shifted 2 right). Students must factor inside the absolute value before reading the transformations; the same inside-vs-outside reasoning as quiz item 1's choice D vs E.",
+      "order": 20,
+      "after": [
+        "9531ac9db980"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "d4c131bb1bd3",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "The graph of f(x) = |x| is shown. Students graph g(x) = |x + c| for several values of c from -5 to 5.",
+      "order": 21,
+      "after": [
+        "493bbfa9864b"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "121cd4b330fa",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Graph g(x) = |x + c| several times with different values of c (any value from -5 to 5).",
+      "order": 22,
+      "after": [
+        "d4c131bb1bd3"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "b4415354e938",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Look for Relationships: predict what happens to the graph if c is greater than 100. What if c is between 0 and 1/2? (Very large shift left; very small shift left.)",
+      "order": 23,
+      "after": [
+        "d4c131bb1bd3"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "1f2cece9b15c",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What does the graph tell you about the range of f(x) = |x|? → The range is greater than or equal to zero.",
+      "order": 24,
+      "after": [
+        "d4c131bb1bd3"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "0c2cf531bce7",
+      "type": "cue",
+      "front": "Before, whole class: ask? (2)",
+      "back": "What can you predict about the range of g(x) = |x + c| for different values of c? → Whatever c is, the range is still greater than or equal to zero.",
+      "order": 25,
+      "after": [
+        "1f2cece9b15c"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "04588bac3cd5",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "How can you find points to graph for each function? → Make a table of values for x from -5 to 5 and compute y.",
+      "order": 26,
+      "after": [
+        "0c2cf531bce7"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "883a70d87c79",
+      "type": "cue",
+      "front": "During, small group: ask? (2)",
+      "back": "What do you notice about the vertex of each function? → The vertices all lie on the x-axis.",
+      "order": 27,
+      "after": [
+        "04588bac3cd5"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "91fcd7b4d188",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "How does the graph change if the coefficient of f(x + c) is negative? Graph -f(x + c) for three of your functions. → The graphs of -f(x + c) are reflections of f(x + c) across the x-axis.",
+      "order": 28,
+      "after": [
+        "883a70d87c79"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "ca05b804ae81",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "If f(x) has a horizontal shift, what part of the function has been changed? → x stands for the domain, so the operation is applied to x inside the parentheses.",
+      "order": 29,
+      "after": [
+        "91fcd7b4d188"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "a65e923180c5",
+      "type": "cue",
+      "front": "After, whole class: ask? (2)",
+      "back": "If f(x) has a vertical shift, what part of the function has been changed? → f(x) stands for the range, so the operation is applied to f(x).",
+      "order": 30,
+      "after": [
+        "ca05b804ae81"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[6]"
+    },
+    {
+      "id": "49d1799e37b2",
+      "type": "cue",
+      "front": "Habits of Mind, Reason: ask?",
+      "back": "What happens to the graph if c is a negative number? → The graph shifts to the right when c is negative.",
+      "order": 31,
+      "after": [
+        "a65e923180c5"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[7]"
+    },
+    {
+      "id": "14346250c200",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The After questions are the moment to introduce a·f(b(x - h)) + k. The Mon/Tue whiteboard table activity (a2_1-2_plan_oct5-7) already does part A on paper; the TE's 'table of values' answer matches it.",
+      "order": 32,
+      "after": [
+        "d4c131bb1bd3"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "72d5a7d23d1f",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "F6J Translations of functions",
+      "order": 33,
+      "after": [
+        "b0bc8b3f3de4"
+      ],
+      "minute": null,
+      "source": "ixl.F6J"
+    },
+    {
+      "id": "f59e4bb425dc",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "PHV Reflections of functions",
+      "order": 34,
+      "after": [
+        "5330680ba5df"
+      ],
+      "minute": null,
+      "source": "ixl.PHV"
+    },
+    {
+      "id": "c4a6e0d1768a",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "NNY Dilations of functions",
+      "order": 35,
+      "after": [
+        "655e53b3a6ec"
+      ],
+      "minute": null,
+      "source": "ixl.NNY"
+    },
+    {
+      "id": "094010b1883e",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "KT8 Describe function transformations",
+      "order": 36,
+      "after": [
+        "9531ac9db980"
+      ],
+      "minute": null,
+      "source": "ixl.KT8"
+    },
+    {
+      "id": "a3056a6e82d7",
+      "type": "anchor",
+      "front": "IXL for example 5? (2)",
+      "back": "R7X Function transformation rules",
+      "order": 37,
+      "after": [
+        "9531ac9db980"
+      ],
+      "minute": null,
+      "source": "ixl.R7X"
+    },
+    {
+      "id": "ba259d234db9",
+      "type": "anchor",
+      "front": "IXL for example 5? (3)",
+      "back": "KQL Transformations of quadratic functions",
+      "order": 38,
+      "after": [
+        "9531ac9db980"
+      ],
+      "minute": null,
+      "source": "ixl.KQL"
+    }
+  ]
+}

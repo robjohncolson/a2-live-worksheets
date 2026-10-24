@@ -61,6 +61,10 @@ describe('sw.js cacheStrategyFor', () => {
   it('version.json → passthrough (must not break the stale-tab update nudge)', () => {
     expect(cacheStrategyFor(req({ url: ORIGIN + '/a2-live-worksheets/version.json' }), ORIGIN)).toBe('passthrough');
   });
+  it('lesson trees → passthrough (rebuilt nightly; the Desk tree list reads them live)', () => {
+    expect(cacheStrategyFor(req({ url: ORIGIN + '/a2-live-worksheets/content/a2/lesson-trees/1-3.json' }), ORIGIN)).toBe('passthrough');
+    expect(cacheStrategyFor(req({ url: ORIGIN + '/a2-live-worksheets/content/a2/lesson-prep.json' }), ORIGIN)).toBe('asset');
+  });
 });
 
 describe('sw.js contracts', () => {

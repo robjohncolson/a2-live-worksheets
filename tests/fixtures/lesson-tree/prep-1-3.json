@@ -1,0 +1,154 @@
+{
+  "lesson": "1-3",
+  "prep": {
+    "title": "Piecewise-Defined Functions",
+    "objectives": {
+      "learning": "I can graph a piecewise-defined function and write its rule from a graph.",
+      "language": "I can explain, in writing, which rule applies on each part of the domain, using the words piece, interval, open circle and closed circle.",
+      "essentialQuestion": "How do you model a situation where different rules apply to different parts of the domain?"
+    },
+    "quizFocus": {
+      "item": 1,
+      "what": "Which rule defines the function in the graph? Two linear pieces; the four choices differ by the slope of the right piece (-3x+9 vs x-3) and by the endpoint inequalities (< vs <=).",
+      "answer": "B: x-1 if -3 <= x < 1; -3x+9 if 2 <= x <= 4 (read from the graph; verify against the TE key)",
+      "needs": [
+        "slope of each piece from two points (IXL W67)",
+        "open circle = strict inequality, closed dot = inclusive (whiteboard drill)"
+      ],
+      "items": {
+        "2": "Scuba diver: read the DOMAIN off a piecewise rule with no graph and say what the variable means (time, not depth). No packet example covers it: one whiteboard round before Example 5."
+      }
+    },
+    "examples": [
+      {
+        "n": 1,
+        "title": "Model with a piecewise-defined function",
+        "keep": false,
+        "dok": "2",
+        "practice": "15, 22, 23",
+        "why": "Modeling intro; nothing on quiz item 1."
+      },
+      {
+        "n": 2,
+        "title": "Graph a piecewise-defined function",
+        "keep": false,
+        "dok": "1-2",
+        "practice": "11, 12, 13, 16, 25",
+        "ixl": [
+          "RVD"
+        ],
+        "why": "Cut in the fast packet (Example 3 reads the graph directly). RVD stays a core Jam: it practises quiz items 1, 3 and 4."
+      },
+      {
+        "n": 3,
+        "title": "Write a piecewise-defined rule from a graph",
+        "keep": true,
+        "dok": "1, 3",
+        "practice": "17, 27",
+        "ixl": [
+          "W67"
+        ],
+        "why": "The lesson. Quiz items 1 and 3 (the V graph is two linear pieces); Try It 3 is the matching packet work; add one whiteboard round for item 2 (domain from a rule, no graph)."
+      },
+      {
+        "n": 4,
+        "title": "Rewrite an absolute value function as piecewise",
+        "keep": false,
+        "dok": "1-2",
+        "practice": "18, 19, 26",
+        "why": "Quiz item 3 is a V graph, but writing two linear pieces (Example 3) answers it; |x| as piecewise is an optional one-sentence bridge."
+      },
+      {
+        "n": 5,
+        "title": "Graph a step function",
+        "keep": true,
+        "dok": "1-2",
+        "practice": "10, 14, 20, 21, 24",
+        "why": "Quiz items 4 and 5: the fast packet keeps the shipping-cost step function and asks for domain and range."
+      }
+    ],
+    "dok3": {
+      "task": "Yama's monthly earnings vs. hours worked, plotted as points (10,200), (20,400), ... (100,2900) joined by segments from (0,0). Write the piecewise function for earnings as a function of hours.",
+      "key": "y = 20x on [0,40]; 30x - 400 on [40,70]; 40x - 1100 on [70,100]",
+      "why": "Students must decide where the slope changes."
+    },
+    "ixl": [
+      {
+        "code": "RVD",
+        "name": "Graph piecewise-defined functions",
+        "directoryId": "I.2",
+        "example": 3,
+        "role": "core"
+      },
+      {
+        "code": "W67",
+        "name": "Find the slope of a linear function",
+        "directoryId": "D.1",
+        "example": 3,
+        "role": "core"
+      },
+      {
+        "code": "WRZ",
+        "name": "Evaluate piecewise-defined functions",
+        "directoryId": "I.1",
+        "role": "prereq"
+      },
+      {
+        "code": "LSG",
+        "name": "Graph a linear function",
+        "directoryId": "D.2",
+        "role": "prereq"
+      }
+    ],
+    "modelDiscuss": {
+      "situation": "A music teacher buys guitar strings. Store A sells a single pack for $6; Store B sells a bundle of 4 packs for $20.",
+      "studentPrompts": [
+        "A. Make graphs that show the income each store receives if the teacher needs 1-20 packs."
+      ],
+      "teQuestions": [
+        {
+          "when": "Before, whole class",
+          "q": "How do stores A and B compare?",
+          "a": "Store A sells strings individually; Store B sells them in packages of 4."
+        },
+        {
+          "when": "During, small group",
+          "q": "How do the stores' graphs represent the cost of the guitar strings?",
+          "a": "Store A rises steadily, $6 more per string. Store B is constant at $20 for 1-4 strings, then jumps $20 and is constant again."
+        },
+        {
+          "when": "Before, whole class",
+          "q": "What is a step?",
+          "a": "A horizontal piece."
+        }
+      ],
+      "caution": "The opener is a step-function situation (Example 5 content, cut). It still works as the hook; only the early-finishers equations question leads toward Example 3."
+    }
+  },
+  "dayLog": {
+    "entries": [
+      {
+        "date": "2026-10-26",
+        "section": "C",
+        "lesson": "1-3",
+        "observerCard": {
+          "title": "Steps",
+          "mode": "whiteboards",
+          "minutes": 12,
+          "frame": "f",
+          "body": "## Setup\nExample 5 only.\nTrap: \"x <= 2 costs 8\" -> At exactly 2 the closed end is the 5 piece, so 2 costs 5.\n\n## Traps\n- the open circle is included -> An open circle means the endpoint is not in the piece.\n- no arrow here"
+        }
+      },
+      {
+        "date": "2026-10-27",
+        "section": "G",
+        "lesson": "1-2",
+        "observerCard": {
+          "title": "Other",
+          "minutes": 8,
+          "body": "Trap: a -> b"
+        }
+      }
+    ]
+  }
+}

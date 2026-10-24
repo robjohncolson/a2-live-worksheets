@@ -12,7 +12,10 @@ export const DECK_GRADES = ['again', 'got_it'];
 export const DECK_LIMITS = {
   minItems: 8, maxItems: 14, idMin: 8, idMax: 40, front: 240, back: 320, maxOrder: 999, maxMinute: 180,
   decksPerPut: 20, resultsPerPost: 200, device: 32, section: 16, model: 64, maxSession: 1000, maxLatencyMs: 3600000,
+  lesson: 16,
 };
+// A lesson-tree node id (KNOWLEDGE_TREE_SPEC.md 1.1): the first 12 hex of SHA-256.
+export const NODE_ID = /^[0-9a-f]{12}$/;
 const ID = /^[A-Za-z0-9_-]+$/;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export const isUuid = value => typeof value === 'string' && UUID.test(value);
@@ -52,7 +55,14 @@ export function validateItem(item, index = 0) {
   } else if (minute !== null) {
     throw new Error(`${where}: minute is for steps only (null otherwise)`);
   }
-  return { id: item.id, type: item.type, front, back, order: item.order, after: [...after], minute };
+  const out = { id: item.id, type: item.type, front, back, order: item.order, after: [...after], minute };
+  // Tree decks (KNOWLEDGE_TREE_SPEC.md 1.3): optional node, and lesson beside it. A
+  // nodeless item drops any lesson, so it normalizes (and hashes) exactly as before.
+  if (item.node === undefined || item.node === null) return out;
+  if (typeof item.node !== 'string' || !NODE_ID.test(item.node)) throw new Error(`${where}: node must be 12 lowercase hex characters`);
+  out.node = item.node;
+  if (item.lesson !== undefined && item.lesson !== null) out.lesson = requiredText(item.lesson, `${where}: lesson`, DECK_LIMITS.lesson);
+  return out;
 }
 
 // A deck's items: 8 to 14, ids unique, `after` only naming ids in the deck and acyclic.
@@ -67,6 +77,9 @@ export function validateItems(items) {
     if (byId.has(item.id)) throw new Error(`duplicate item id ${item.id}`);
     byId.set(item.id, item);
   }
+  // All or none on node: the phone treats a deck as a tree deck or a streak deck, never both.
+  const withNode = out.filter(item => item.node !== undefined).length;
+  if (withNode && withNode !== out.length) throw new Error(`node must be on every item or on none (${withNode} of ${out.length} have one)`);
   for (const item of out) {
     for (const id of item.after) if (!byId.has(id)) throw new Error(`item ${item.id}: after names unknown id ${id}`);
   }
@@ -85,7 +98,12 @@ export function validateItems(items) {
 // Hash of what a deck says: its normalized items and the model. generatedAt is
 // left out so re-pushing the same file never rewrites the row.
 export function deckContentHash(items, model = null) {
-  const canon = items.map(item => [item.id, item.type, item.front, item.back, item.order, item.after, item.minute]);
+  // node and lesson join the canon only on a tree item (one with a node), so every
+  // nodeless item keeps the original seven-element tuple and its old hash.
+  const canon = items.map(item => {
+    const base = [item.id, item.type, item.front, item.back, item.order, item.after, item.minute];
+    return item.node === undefined || item.node === null ? base : [...base, item.node, item.lesson ?? null];
+  });
   return createHash('sha256').update(JSON.stringify([canon, model ?? null])).digest('hex').slice(0, 32);
 }
 

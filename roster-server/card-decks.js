@@ -17,6 +17,7 @@ import { createServiceClient } from './ledger-db.js';
 import { requireTeacher } from './teacher-auth.js';
 import { checkClassLogToken } from './observer-cards.js';
 import { DECK_LIMITS, isIsoDate, isUuid, validateDeckPut, validateResults } from './deck-rules.js';
+import { isKnown, masteryStorageFor } from './node-mastery.js';
 
 export { validateDeckPut, validateResults, validateItems, deckContentHash, itemId } from './deck-rules.js';
 
@@ -59,6 +60,16 @@ export function deckStats(items, results) {
     results: { sessions: sessions.size, asked: results.length, again: results.filter(row => row.grade === 'again').length },
     missed,
   };
+}
+
+// How many of a deck's items are known on the device (KNOWLEDGE_TREE_SPEC.md 1.3):
+// items whose node has p >= 0.90 in that device's mastery rows. A deck without
+// nodes has none ready; null mastery (table missing, storage down) gives null so the
+// Desk can leave the number out instead of showing a false 0.
+export function deckReady(items, masteryRows) {
+  if (masteryRows === null) return null;
+  const known = new Set(masteryRows.filter(row => isKnown(Number(row.p))).map(row => row.node_id));
+  return items.filter(item => typeof item.node === 'string' && known.has(item.node)).length;
 }
 
 // Supabase-backed store. Every method throws on a database error (including a
@@ -179,8 +190,9 @@ export function mountCardDecks(app, { store, env = process.env, now = () => new 
 
 // Desk routes. Mounted after the password gate like the other teacher routes; the
 // route parser bounds the body when mounted on an app without the global one.
-export function mountTeacherDecks(app, { db, store }) {
+export function mountTeacherDecks(app, { db, store, mastery }) {
   const storage = storageFor(app, store);
+  const masteryStorage = masteryStorageFor(app, mastery);
   const teacherAuth = async (req, res, next) => {
     res.set('Cache-Control', 'no-store');
     let ok = false;
@@ -222,9 +234,18 @@ export function mountTeacherDecks(app, { db, store }) {
       if (!byCard.has(row.card_id)) byCard.set(row.card_id, []);
       byCard.get(row.card_id).push(row);
     }
-    res.json({ date, decks: rows.map(row => {
+    // ready is counted on one device (the phone that rehearses; ?device=, default s24).
+    // Mastery is optional here: before 0047 runs, or on a mastery failure, the decks
+    // still load and ready is null.
+    const device = typeof req.query.device === 'string' && req.query.device.trim() ? req.query.device.trim() : 's24';
+    const masteryByCourse = new Map();
+    for (const course of new Set(rows.map(row => row.course))) {
+      try { masteryByCourse.set(course, await masteryStorage().list({ course, device })); }
+      catch { masteryByCourse.set(course, null); }
+    }
+    res.json({ date, device, decks: rows.map(row => {
       const deck = deckFromRow(row);
-      return { ...deck, ...deckStats(deck.items, byCard.get(row.card_id) || []) };
+      return { ...deck, ...deckStats(deck.items, byCard.get(row.card_id) || []), ready: deckReady(deck.items, masteryByCourse.get(row.course)) };
     }) });
   });
 

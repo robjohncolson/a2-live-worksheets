@@ -4,6 +4,24 @@
 //   node scripts/draft-card-decks.mjs [--date YYYY-MM-DD] [--section S] [--dry-run] [--apply]
 //        [--from-file PATH] [--file DAY_LOG] [--prep LESSON_PREP] [--server URL] [--secret S]
 //        [--timeout MS] [--out FILE] [--env-file PATH] [--roster-dir DIR]
+//        [--from-tree] [--trees DIR] [--device D] [--per-section] [--year SCHOOL_YEAR]
+//
+// --per-section (the nightly): instead of one date for every section, each section
+// (or --section) drafts for its own next class day from the school calendar
+// (data/a2-school-year.json, or --year), exactly as draft-tomorrow.mjs resolves it:
+// the first meeting day on or after --date (default tomorrow, New York). Each
+// (date, section) is its own run; runs for the same date share that date's file and
+// keep the other sections' decks in it.
+//
+// Tree mode (school/class-log/KNOWLEDGE_TREE_SPEC.md, WP-1 1.2): a card whose lesson
+// has a tree (content/a2/lesson-trees/<lesson>.json, built by build-lesson-tree.mjs;
+// --trees, default: lesson-trees/ beside the lesson prep) gets its deck from the tree,
+// deterministically and without a model (scripts/lib/tree-deck.mjs): every item
+// carries `node` and `lesson` and its id is the node id. That is the default; the
+// model path below stays for cards without a tree. --from-tree uses trees only: a
+// card without one gets no deck (reported), and no model is called. The vocabulary
+// tier skips nodes already known on --device (default s24) per GET /teacher/mastery;
+// without the server every vocabulary node is a candidate.
 //
 // For each observer card on the target date (default: the next class day in the
 // day log after today, New York time):
@@ -38,17 +56,23 @@ import { redact } from './push-observer-cards.mjs';
 import { todayInNewYork } from './push-schedule.mjs';
 import { SECTIONS, callModel, cardForSection, meetings, nextSchoolDay, normalizeSection, resolveDraftConfig, writeFileAtomic } from './draft-observer-cards.mjs';
 import { DECK_LIMITS, DECK_TYPES, charLength, isIsoDate, isUuid, itemId, rosterNameHits, validateDeckPut, validateItems } from '../roster-server/deck-rules.js';
+import { isKnown } from '../roster-server/node-mastery.js';
+import { treeProblem } from './lib/lesson-tree.mjs';
+import { cardLessons, selectDeck } from './lib/tree-deck.mjs';
+import { addDays, nextClassDay } from './draft-tomorrow.mjs';
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 export const DRAFT_COUNT = { min: 10, max: 12 };
 const PREP_LIMIT = 6000;
 
 export function parseArgs(argv) {
-  const args = { dryRun: false, apply: false };
-  const valued = ['--date', '--section', '--from-file', '--file', '--prep', '--server', '--secret', '--timeout', '--out', '--env-file', '--roster-dir'];
+  const args = { dryRun: false, apply: false, fromTree: false, perSection: false };
+  const valued = ['--date', '--section', '--from-file', '--file', '--prep', '--server', '--secret', '--timeout', '--out', '--env-file', '--roster-dir', '--trees', '--device', '--year'];
   for (let i = 0; i < argv.length; i++) {
     const key = argv[i];
     if (key === '--dry-run') { args.dryRun = true; continue; }
+    if (key === '--from-tree') { args.fromTree = true; continue; }
+    if (key === '--per-section') { args.perSection = true; continue; }
     if (key === '--apply') { args.apply = true; continue; }
     if (!valued.includes(key)) throw new Error(`unknown argument ${key}`);
     const value = argv[++i];
@@ -56,6 +80,8 @@ export function parseArgs(argv) {
     args[key.slice(2).replace(/-(\w)/g, (_, c) => c.toUpperCase())] = value;
   }
   if (args.dryRun && args.apply) throw new Error('--dry-run and --apply cannot be combined');
+  if (args.fromTree && args.fromFile) throw new Error('--from-tree and --from-file cannot be combined');
+  if (args.perSection && args.fromFile) throw new Error('--per-section and --from-file cannot be combined');
   if (args.date !== undefined && !isIsoDate(args.date)) throw new Error('--date must be a real YYYY-MM-DD date');
   if (args.section !== undefined) args.section = normalizeSection(args.section);
   if (args.section !== undefined && !SECTIONS.includes(args.section)) throw new Error(`--section must be one of ${SECTIONS.join(', ')}`);
@@ -116,7 +142,8 @@ export function buildPrompt({ date, sections, lesson, card, prep }) {
 }
 
 // Raw items (model reply or a hand-written file) -> validated deck items: ids are
-// the hash of type + front, `after` (keys or old ids) remapped to the new ids,
+// the hash of type + front (a tree item's id is its node id, so an edited front
+// stays the same item for the phone's mastery), `after` (keys or old ids) remapped to the new ids,
 // order from the item when it is an integer, else its position. Throws on any problem.
 export function normalizeItems(rawItems, { count } = {}) {
   if (!Array.isArray(rawItems)) throw new Error('items must be an array');
@@ -127,7 +154,7 @@ export function normalizeItems(rawItems, { count } = {}) {
   const staged = rawItems.map((raw, i) => {
     if (!raw || typeof raw !== 'object' || Array.isArray(raw)) throw new Error(`item ${i}: must be an object`);
     const front = typeof raw.front === 'string' ? raw.front.trim() : raw.front;
-    const id = itemId(raw.type, front);
+    const id = typeof raw.node === 'string' && raw.node ? raw.node : itemId(raw.type, front);
     for (const label of [raw.key, raw.id]) {
       if (typeof label !== 'string' || !label) continue;
       if (rename.has(label) && rename.get(label) !== id) throw new Error(`item ${i}: key ${label} is used twice`);
@@ -140,6 +167,8 @@ export function normalizeItems(rawItems, { count } = {}) {
     order: Number.isInteger(raw.order) ? raw.order : i + 1,
     after: Array.isArray(raw.after) ? raw.after.map(ref => (rename.has(ref) ? rename.get(ref) : ref)) : raw.after,
     minute: raw.minute ?? null,
+    ...(raw.node !== undefined ? { node: raw.node } : {}),
+    ...(raw.lesson !== undefined ? { lesson: raw.lesson } : {}),
   }));
   return validateItems(items);
 }
@@ -269,6 +298,70 @@ export function formatDeck(deck) {
 
 const warn = message => console.error('draft-card-decks: ' + message);
 
+// The model name a tree deck carries (it is part of the deck hash, like a real model's).
+export const TREE_MODEL = 'lesson-tree';
+
+// Every valid tree file in the folder, keyed by lesson. A missing folder is no
+// trees; a tree that fails validation is left out (with a warning), so its cards
+// take the model path or, with --from-tree, get no deck.
+export function loadTrees(dir) {
+  let names;
+  try { names = readdirSync(dir).filter(name => name.endsWith('.json')).sort(); } catch { return {}; }
+  const trees = {};
+  for (const name of names) {
+    let tree;
+    try { tree = JSON.parse(readFileSync(resolve(dir, name), 'utf8')); } catch { console.error(`draft-card-decks: lesson tree ${name} is not valid JSON; ignored`); continue; }
+    const problem = treeProblem(tree);
+    if (problem || typeof tree.lesson !== 'string') { console.error(`draft-card-decks: lesson tree ${name} ignored (${problem || 'no lesson'})`); continue; }
+    trees[tree.lesson] = tree;
+  }
+  return trees;
+}
+
+// Each section's next class day, as the nightly Tomorrow draft resolves it: the first
+// meeting day on or after `date` (default the day after `today`), null past the year's end.
+export function sectionClassDays({ year, date, today, sections = SECTIONS }) {
+  const from = date || addDays(today, 1);
+  return sections.map(section => ({ section, date: nextClassDay(year, section, from) }));
+}
+
+// The date's deck file after a one-section run: the run's decks replace the same cards
+// and that section's old decks; every other section's decks stay.
+export function mergeDeckFiles(existing, next, section) {
+  if (!existing || existing.date !== next.date || !Array.isArray(existing.decks)) return next;
+  const replaced = new Set(next.decks.map(deck => deck.cardId).filter(Boolean));
+  const kept = existing.decks.filter(deck => !(deck.cardId && replaced.has(deck.cardId)) && !(deck.sections || []).includes(section));
+  const decks = [...kept, ...next.decks].sort((a, b) => String(a.sections?.[0] ?? '').localeCompare(String(b.sections?.[0] ?? '')));
+  return { ...next, decks };
+}
+
+function readDeckFile(path) {
+  try { return JSON.parse(readFileSync(path, 'utf8')); } catch { return null; }
+}
+
+export const tierLine = tiers => Object.entries(tiers).map(([name, count]) => `${name} ${count}`).join(', ');
+
+// Node ids known on the device for these lessons (GET /teacher/mastery, one call per
+// lesson, cached), or null when there is no secret or the server does not answer:
+// then the vocabulary tier offers every word.
+async function knownNodes({ lessons, cache, server, secret, timeout, device }) {
+  if (!secret) return null;
+  const known = new Set();
+  for (const lesson of lessons) {
+    if (!cache.has(lesson)) {
+      let rows = null;
+      try { rows = (await teacherGet(`${server}/teacher/mastery?course=algebra2&lesson=${encodeURIComponent(lesson)}`, secret, timeout)).rows || []; }
+      catch (error) { warn(`GET /teacher/mastery failed for ${lesson} (${redact(error.message, secret)}); every vocabulary node is a candidate`); }
+      cache.set(lesson, rows);
+    }
+    const rows = cache.get(lesson);
+    if (rows === null) return null;
+    for (const row of rows) if (row && row.device === device && isKnown(Number(row.p))) known.add(row.nodeId);
+  }
+  return known;
+}
+
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const timeout = args.timeout || 10000;
@@ -280,89 +373,162 @@ async function main() {
     if (hits.length) throw new Error(`roster first name in item ${hits[0].id} (${hits.length} hit${hits.length > 1 ? 's' : ''}); rewrite without names`);
   };
   const shown = path => { const rel = relative(REPO_ROOT, path).replace(/\\/g, '/'); return rel.startsWith('..') ? path : rel; };
+  const ctx = { args, timeout, secret, server, checkNames, shown };
+  if (args.fromFile) return fromFileRun(ctx);
 
-  let date, file, outPath;
-  if (args.fromFile) {
-    const source = JSON.parse(readFileSync(resolve(args.fromFile), 'utf8'));
-    date = args.date || source.date;
-    if (!isIsoDate(date)) throw new Error('the deck file has no valid "date" (or pass --date)');
-    if (source.date && source.date !== date) throw new Error(`the deck file is for ${source.date}, not ${date}`);
-    outPath = args.out ? resolve(args.out) : resolve(REPO_ROOT, 'content/a2/card-decks', `${date}.json`);
-    let failed = 0;
-    const decks = (source.decks || []).filter(deck => !args.section || (deck.sections || []).includes(args.section) || (deck.sections || []).includes('all'))
-      .map(deck => {
-        const out = { ...deck };
-        delete out.error;
-        try {
-          out.items = normalizeItems(deck.items);
-          checkNames(out.items);
-        } catch (error) { out.error = error.message; failed++; }
-        return out;
-      });
-    file = { ...source, date, needsModel: false, decks };
-    for (const deck of decks) console.log(formatDeck({ date, ...deck }) + '\n');
-    if (failed) { console.log(`${failed} deck(s) rejected; nothing written or sent.`); process.exitCode = 1; return; }
-    if (!decks.length) throw new Error('the deck file has no decks');
-    // The whole envelope as the server will see it, before anything is written or sent.
-    try { putBodyFrom(file); }
-    catch (error) { console.log(`Deck file rejected: ${error.message}; nothing written or sent.`); process.exitCode = 1; return; }
-    if (args.dryRun) { console.log(`${decks.length} deck(s) valid; dry run, nothing written or sent.`); return; }
-    writeFileAtomic(outPath, JSON.stringify(file, null, 2) + '\n');
-    console.log(`Wrote ${decks.length} deck(s) to ${shown(outPath)}.`);
-  } else {
-    const dayLog = JSON.parse(readFileSync(args.file ? resolve(args.file) : resolve(REPO_ROOT, 'content/a2/day-log.json'), 'utf8'));
-    date = args.date || nextSchoolDay(dayLog, todayInNewYork());
+  const dayLog = JSON.parse(readFileSync(args.file ? resolve(args.file) : resolve(REPO_ROOT, 'content/a2/day-log.json'), 'utf8'));
+  if (!args.perSection) {
+    const date = args.date || nextSchoolDay(dayLog, todayInNewYork());
     if (!date) throw new Error('no upcoming class day in the day log; pass --date');
-    outPath = args.out ? resolve(args.out) : resolve(REPO_ROOT, 'content/a2/card-decks', `${date}.json`);
-    let serverCards = null;
-    if (secret) {
-      try { serverCards = (await teacherGet(`${server}/teacher/cards?date=${date}`, secret, timeout)).cards || []; }
-      catch (error) { warn(`GET /teacher/cards failed (${redact(error.message, secret)}); decks will have no card id`); }
-    } else warn('no teacher secret; decks will have no card id');
-    const targets = buildTargets({ dayLog, date, only: args.section, serverCards });
-    if (!targets.length) throw new Error(`no observer card on ${date}${args.section ? ` for section ${args.section}` : ''}`);
-    let prepAll = {};
-    try { prepAll = JSON.parse(readFileSync(args.prep ? resolve(args.prep) : resolve(REPO_ROOT, 'content/a2/lesson-prep.json'), 'utf8')); } catch { /* optional */ }
-    const config = resolveDraftConfig(args.envFile ? resolve(args.envFile) : undefined);
-    const decks = targets.map(target => ({
-      cardId: target.cardId, sections: target.sections, lesson: target.lesson, title: target.card.title, source: target.source,
-      messages: buildPrompt({ date, sections: target.sections, lesson: target.lesson, card: target.card, prep: target.lesson ? prepAll[target.lesson] ?? null : null }),
-      items: null, model: null, generatedAt: null, error: null,
-    }));
-    const printPrompts = () => {
-      for (const deck of decks) {
-        console.log(`=== prompt ${date} ${deck.sections.join(', ')} (card ${deck.cardId ?? 'no id yet'}; from the ${deck.source}) ===`);
-        for (const message of deck.messages) console.log(`--- ${message.role} ---\n${message.content}`);
-        if (deck.items || deck.error) console.log(formatDeck({ date, ...deck }));
-        console.log('');
-      }
-    };
-    if (!config.key) {
-      file = { date, generatedAt: new Date().toISOString(), model: null, needsModel: true, decks };
-      if (args.dryRun) { printPrompts(); console.log(`No DRAFT_API_KEY: the prompt bundle would be written to ${shown(outPath)} with "needsModel": true; dry run, nothing written.`); }
-      else {
-        writeFileAtomic(outPath, JSON.stringify(file, null, 2) + '\n');
-        console.log(`No DRAFT_API_KEY: wrote the prompt bundle to ${shown(outPath)} ("needsModel": true). Write the items by hand, then rerun with --from-file ${shown(outPath)} --apply.`);
-      }
-      process.exitCode = 2;
-      return;
-    }
-    for (const deck of decks) {
+    return draftDate(ctx, { dayLog, date, section: args.section });
+  }
+  // --per-section: each section's own next class day from the school calendar, as the
+  // nightly Tomorrow draft resolves it (draft-tomorrow.mjs), one run per (date, section).
+  const year = JSON.parse(readFileSync(args.year ? resolve(args.year) : resolve(REPO_ROOT, 'data/a2-school-year.json'), 'utf8'));
+  const plan = sectionClassDays({ year, date: args.date, today: todayInNewYork(), sections: args.section ? [args.section] : SECTIONS });
+  for (const { section, date } of plan) {
+    if (!date) { console.log(`Section ${section}: no class day left in the school year; no deck.`); continue; }
+    console.log(`--- section ${section}: next class day ${date} ---`);
+    await draftDate(ctx, { dayLog, date, section, perSection: true });
+  }
+}
+
+// --from-file: validate a hand-written or edited deck file, write it, and send it with --apply.
+async function fromFileRun(ctx) {
+  const { args, checkNames, shown } = ctx;
+  let date, file, outPath;
+  const source = JSON.parse(readFileSync(resolve(args.fromFile), 'utf8'));
+  date = args.date || source.date;
+  if (!isIsoDate(date)) throw new Error('the deck file has no valid "date" (or pass --date)');
+  if (source.date && source.date !== date) throw new Error(`the deck file is for ${source.date}, not ${date}`);
+  outPath = args.out ? resolve(args.out) : resolve(REPO_ROOT, 'content/a2/card-decks', `${date}.json`);
+  let failed = 0;
+  const decks = (source.decks || []).filter(deck => !args.section || (deck.sections || []).includes(args.section) || (deck.sections || []).includes('all'))
+    .map(deck => {
+      const out = { ...deck };
+      delete out.error;
+      // A card the tree run skipped (no lesson tree) has no items; it rides along
+      // unsent, as putBodyFrom leaves out every deck without items.
+      if (deck.skipped && deck.items == null) return out;
       try {
-        const text = await callModel({ ...config, messages: deck.messages, timeout: Math.max(timeout, 60000) });
-        const items = parseDeckReply(text);
-        checkNames(items);
-        Object.assign(deck, { items, model: config.model, generatedAt: new Date().toISOString() });
-      } catch (error) { deck.error = redact(error.message, config.key); }
-    }
-    file = { date, generatedAt: new Date().toISOString(), model: config.model, needsModel: false, decks };
-    if (args.dryRun) { printPrompts(); console.log('Dry run, nothing written or sent.'); if (decks.some(d => d.error)) process.exitCode = 1; return; }
-    writeFileAtomic(outPath, JSON.stringify(file, null, 2) + '\n');
-    console.log(`Wrote ${decks.filter(d => d.items).length}/${decks.length} deck(s) to ${shown(outPath)}.`);
-    for (const deck of decks.filter(d => d.error)) console.log(`  ${deck.sections.join(', ')}: rejected (${deck.error})`);
-    if (decks.some(d => d.error)) { process.exitCode = 1; if (args.apply) console.log('Not sending: fix or redraft the rejected deck(s), then rerun (or --from-file --apply).'); return; }
+        out.items = normalizeItems(deck.items);
+        checkNames(out.items);
+      } catch (error) { out.error = error.message; failed++; }
+      return out;
+    });
+  file = { ...source, date, needsModel: false, decks };
+  for (const deck of decks) console.log(formatDeck({ date, ...deck }) + '\n');
+  if (failed) { console.log(`${failed} deck(s) rejected; nothing written or sent.`); process.exitCode = 1; return; }
+  if (!decks.length) throw new Error('the deck file has no decks');
+  // The whole envelope as the server will see it, before anything is written or sent.
+  try { putBodyFrom(file); }
+  catch (error) { console.log(`Deck file rejected: ${error.message}; nothing written or sent.`); process.exitCode = 1; return; }
+  if (args.dryRun) { console.log(`${decks.length} deck(s) valid; dry run, nothing written or sent.`); return; }
+  writeFileAtomic(outPath, JSON.stringify(file, null, 2) + '\n');
+  console.log(`Wrote ${decks.length} deck(s) to ${shown(outPath)}.`);
+
+  await sendIfApply(ctx, file);
+}
+
+// One date: tree decks (and model decks for cards without a tree), written to
+// content/a2/card-decks/<date>.json and sent with --apply. With perSection the run
+// covers one section and keeps the other sections' decks already in the date's file.
+async function draftDate(ctx, { dayLog, date, section, perSection = false }) {
+  const { args, timeout, secret, server, checkNames, shown } = ctx;
+  const outPath = args.out ? resolve(args.out) : resolve(REPO_ROOT, 'content/a2/card-decks', `${date}.json`);
+  let file;
+  let serverCards = null;
+  if (secret) {
+    try { serverCards = (await teacherGet(`${server}/teacher/cards?date=${date}`, secret, timeout)).cards || []; }
+    catch (error) { warn(`GET /teacher/cards failed (${redact(error.message, secret)}); decks will have no card id`); }
+  } else warn('no teacher secret; decks will have no card id');
+  const targets = buildTargets({ dayLog, date, only: section, serverCards });
+  if (!targets.length && perSection) { console.log(`Section ${section}: no observer card on ${date}; no deck.`); return; }
+  if (!targets.length) throw new Error(`no observer card on ${date}${section ? ` for section ${section}` : ''}`);
+  const prepPath = args.prep ? resolve(args.prep) : resolve(REPO_ROOT, 'content/a2/lesson-prep.json');
+  let prepAll = {};
+  try { prepAll = JSON.parse(readFileSync(prepPath, 'utf8')); } catch { /* optional */ }
+  if (prepAll && prepAll.lessons && typeof prepAll.lessons === 'object') prepAll = prepAll.lessons;
+  const trees = loadTrees(args.trees ? resolve(args.trees) : resolve(dirname(prepPath), 'lesson-trees'));
+  const config = resolveDraftConfig(args.envFile ? resolve(args.envFile) : undefined);
+  const decks = targets.map(target => {
+    const lessons = target.lesson ? cardLessons(target.lesson, target.card, trees) : [];
+    const deck = {
+      cardId: target.cardId, sections: target.sections, lesson: target.lesson, title: target.card.title, source: target.source,
+      items: null, model: null, generatedAt: null, error: null,
+    };
+    if (lessons.length) return { ...deck, mode: 'tree', lessons, card: target.card };
+    if (args.fromTree) return { ...deck, mode: 'none', skipped: `no lesson tree for ${target.lesson ?? 'a card without a lesson'}` };
+    return { ...deck, mode: 'model', messages: buildPrompt({ date, sections: target.sections, lesson: target.lesson, card: target.card, prep: target.lesson ? prepAll[target.lesson] ?? null : null }) };
+  });
+
+  // Tree decks first: deterministic, no model.
+  const knownCache = new Map();
+  for (const deck of decks.filter(d => d.mode === 'tree')) {
+    try {
+      const known = await knownNodes({ lessons: deck.lessons, cache: knownCache, server, secret, timeout, device: args.device || 's24' });
+      const chosen = selectDeck({ trees, lessons: deck.lessons, card: deck.card, date, sections: deck.sections, known });
+      const items = normalizeItems(chosen.items);
+      checkNames(items);
+      Object.assign(deck, { items, model: TREE_MODEL, generatedAt: new Date().toISOString(), tiers: chosen.tiers, padded: chosen.padded });
+    } catch (error) { deck.error = redact(error.message, secret); }
+    delete deck.card;
   }
 
+  const modelDecks = decks.filter(d => d.mode === 'model');
+  const printPrompts = () => {
+    for (const deck of decks) {
+      if (deck.mode === 'model') {
+        console.log(`=== prompt ${date} ${deck.sections.join(', ')} (card ${deck.cardId ?? 'no id yet'}; from the ${deck.source}) ===`);
+        for (const message of deck.messages) console.log(`--- ${message.role} ---\n${message.content}`);
+      }
+      if (deck.items || deck.error) console.log(formatDeck({ date, ...deck }));
+      if (deck.tiers) console.log(`  tiers: ${tierLine(deck.tiers)}${deck.padded ? ` (padded ${deck.padded})` : ''}`);
+      if (deck.skipped) console.log(`=== ${date} ${deck.sections.join(', ')} · card ${deck.cardId ?? '(no id yet)'} · skipped: ${deck.skipped} ===`);
+      console.log('');
+    }
+  };
+  if (modelDecks.length && !config.key) {
+    file = { date, generatedAt: new Date().toISOString(), model: null, needsModel: true, decks };
+    if (args.dryRun) { printPrompts(); console.log(`No DRAFT_API_KEY: the prompt bundle would be written to ${shown(outPath)} with "needsModel": true; dry run, nothing written.`); }
+    else {
+      writeFileAtomic(outPath, JSON.stringify(perSection ? mergeDeckFiles(readDeckFile(outPath), file, section) : file, null, 2) + '\n');
+      console.log(`No DRAFT_API_KEY: wrote the prompt bundle to ${shown(outPath)} ("needsModel": true). Write the items by hand, then rerun with --from-file ${shown(outPath)} --apply.`);
+    }
+    process.exitCode = 2;
+    return;
+  }
+  for (const deck of modelDecks) {
+    try {
+      const text = await callModel({ ...config, messages: deck.messages, timeout: Math.max(timeout, 60000) });
+      const items = parseDeckReply(text);
+      checkNames(items);
+      Object.assign(deck, { items, model: config.model, generatedAt: new Date().toISOString() });
+    } catch (error) { deck.error = redact(error.message, config.key); }
+  }
+  file = { date, generatedAt: new Date().toISOString(), model: modelDecks.length ? config.model : TREE_MODEL, needsModel: false, decks };
+  const skipped = decks.filter(d => d.skipped);
+  if (args.dryRun) {
+    printPrompts();
+    console.log(`Dry run, nothing written or sent. ${decks.filter(d => d.items).length} deck(s) built, ${skipped.length} skipped, ${decks.filter(d => d.error).length} rejected.`);
+    if (decks.some(d => d.error)) process.exitCode = 1;
+    return;
+  }
+  // Every card skipped (no tree, --from-tree): nothing to write, and the Desk's "No deck" is the signal.
+  if (!decks.some(d => d.items || d.error)) {
+    console.log(`No deck built for ${date} (${skipped.map(d => `${d.sections.join(', ')}: ${d.skipped}`).join('; ')}); nothing written or sent.`);
+    process.exitCode = 1;
+    return;
+  }
+  writeFileAtomic(outPath, JSON.stringify(perSection ? mergeDeckFiles(readDeckFile(outPath), file, section) : file, null, 2) + '\n');
+  console.log(`Wrote ${decks.filter(d => d.items).length}/${decks.length} deck(s) to ${shown(outPath)}.`);
+  for (const deck of skipped) console.log(`  ${deck.sections.join(', ')}: skipped (${deck.skipped})`);
+  for (const deck of decks.filter(d => d.error)) console.log(`  ${deck.sections.join(', ')}: rejected (${deck.error})`);
+  if (decks.some(d => d.error)) { process.exitCode = 1; if (args.apply) console.log('Not sending: fix or redraft the rejected deck(s), then rerun (or --from-file --apply).'); return; }
+  await sendIfApply(ctx, file);
+}
+
+async function sendIfApply({ args, secret, server, timeout }, file) {
   if (!args.apply) return;
   if (!secret) throw new Error('teacher secret not found (roster-server/.env ROSTER_TEACHER_SECRET, or env ROSTER_TEACHER_SECRET / TEACHER_KEY)');
   const body = putBodyFrom(file);

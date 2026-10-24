@@ -13,7 +13,7 @@
 // is just `self.addEventListener('install',()=>self.skipWaiting()); self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x)))).then(()=>self.clients.claim())));`
 // to unregister-by-emptying (clears caches; pages fall back to plain network).
 
-const BUILD = '2026-10-23-lbgz'; // scripts/bump-build.mjs replaces this stamp
+const BUILD = '2026-10-24-fgzr'; // scripts/bump-build.mjs replaces this stamp
 const CACHE = 'apstats-pwa-' + BUILD;
 
 const CORE = [
@@ -29,6 +29,7 @@ const CORE = [
   'lib/class-log-health.js',
   'lib/class-log-summary.js',
   'lib/class-log-deck.js',
+  'lib/class-log-tree.js',
   'lib/a2-tomorrow.js',
   'js/a2-student-focus.js',
   'content/a2/day-log.json',
@@ -79,6 +80,7 @@ function cacheStrategyFor(request, selfOrigin) {
   try { url = new URL(request.url); } catch (_) { return 'passthrough'; }
   if (url.origin !== selfOrigin) return 'passthrough';          // roster/cr/supabase APIs → network only
   if (url.pathname.endsWith('/version.json') || url.pathname.endsWith('version.json')) return 'passthrough'; // never cache the update-nudge check
+  if (url.pathname.includes('/content/a2/lesson-trees/')) return 'passthrough'; // lesson trees are rebuilt nightly; the Desk reads them live
   const isNav = request.mode === 'navigate' || (request.headers.get('accept') || '').includes('text/html');
   return isNav ? 'navigate' : 'asset';
 }
