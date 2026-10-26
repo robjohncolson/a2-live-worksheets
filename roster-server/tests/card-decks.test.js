@@ -266,6 +266,26 @@ describe('auth', () => {
 });
 
 describe('PUT /teacher/decks', () => {
+  it('stores mixed lesson nodes and daily cues unchanged, with an idempotent phone readback', async () => {
+    const mixed = items(8).map((entry, index) => index < 6
+      ? { ...entry, node: String(index + 1).padStart(12, '0'), lesson: '1-3' }
+      : { ...entry, type: 'cue', front: `C / Oct 21 follow-up ${index - 5}?`, back: 'Check the recorded promise before class.' });
+    const body = { cardId: CARD_C, items: mixed, model: 'lesson-tree+continuity', generatedAt: '2026-10-21T20:00:00Z' };
+    expect(await putDecks([body])).toMatchObject({ status: 200, body: { ok: true, written: 1, unchanged: 0 } });
+    const first = await getDecks();
+    expect(first.status).toBe(200);
+    expect(first.body.decks[0].items).toEqual(mixed);
+    expect(first.body.decks[0].items[6]).not.toHaveProperty('node');
+    expect(first.body.decks[0].items[6]).not.toHaveProperty('lesson');
+    const stored = (await pg.query(`select items, content_hash, updated_at from a2.card_decks where card_id = '${CARD_C}'`)).rows[0];
+    expect(stored.items).toEqual(mixed);
+    expect(stored.content_hash).toBe(deckContentHash(mixed, body.model));
+    expect((await putDecks([{ ...body, generatedAt: '2026-10-21T21:00:00Z' }])).body)
+      .toEqual({ ok: true, written: 0, unchanged: 1 });
+    expect((await getDecks()).etag).toBe(first.etag);
+    expect((await pg.query(`select updated_at from a2.card_decks where card_id = '${CARD_C}'`)).rows[0].updated_at)
+      .toBe(stored.updated_at);
+  });
   it('writes, copies date/course/section from the card, then leaves an identical push alone', async () => {
     const first = await putDecks([{ cardId: CARD_C, items: items(), model: 'deepseek-chat', generatedAt: '2026-10-21T20:00:00-04:00' },
       { cardId: CARD_ALL, items: items(12) }]);

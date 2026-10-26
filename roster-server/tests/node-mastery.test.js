@@ -105,12 +105,15 @@ describe('deck-rules: node and lesson', () => {
     const old = validateItems(Array.from({ length: 8 }, (_, i) => plain(i + 1)));
     expect(Object.keys(old[0])).toEqual(['id', 'type', 'front', 'back', 'order', 'after', 'minute']);
   });
-  it('refuses a bad node, a long lesson, and a deck with node on only some items', () => {
+  it('refuses a bad node or long lesson, while allowing daily reminders beside lesson nodes', () => {
     const list = Array.from({ length: 8 }, (_, i) => treeItem(i + 1));
     expect(() => validateItems(list.map((it, i) => (i === 0 ? { ...it, node: 'ABCDEF123456' } : it)))).toThrow(/node must be 12 lowercase hex/);
     expect(() => validateItems(list.map((it, i) => (i === 0 ? { ...it, node: hex(1) + '0' } : it)))).toThrow(/node must be 12/);
     expect(() => validateItems(list.map((it, i) => (i === 0 ? { ...it, lesson: 'x'.repeat(17) } : it)))).toThrow(/lesson must be at most 16/);
-    expect(() => validateItems(list.map((it, i) => (i === 0 ? { ...it, node: undefined } : it)))).toThrow(/node must be on every item or on none \(7 of 8/);
+    const mixed = validateItems(list.map((it, i) => (i === 0 ? { ...it, node: undefined } : it)));
+    expect(mixed[0]).not.toHaveProperty('node');
+    expect(mixed[0]).not.toHaveProperty('lesson');
+    expect(mixed.slice(1)).toEqual(list.slice(1));
   });
   it('hash: a nodeless deck keeps its pre-tree hash, even with lesson on its items; node and lesson change it', () => {
     const items = validateItems(Array.from({ length: 8 }, (_, i) => plain(i + 1)));

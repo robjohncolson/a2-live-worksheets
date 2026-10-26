@@ -23,6 +23,18 @@ const tree = { lesson: '1-3', nodes: [...items.map(item => ({ id: item.node, typ
 const lessonRows = [...rows, row(10, 0.25)];
 
 describe('class-log-tree: pure', () => {
+  it('keeps the tree view for mixed decks and excludes daily cues from mastery', () => {
+    const daily = { id: 'daily-promise', type: 'cue', front: 'What did I promise C?', order: 6 };
+    const mixed = { ...deck, items: [...items, daily] };
+    expect(T.isTreeDeck(mixed)).toBe(true);
+    expect(T.nodes(mixed, rows)).toEqual(T.nodes(deck, rows));
+    expect(T.lessonNodes([], mixed, rows)).toEqual(T.nodes(deck, rows));
+    expect(T.readyCount(mixed, rows)).toBe(T.readyCount(deck, rows));
+    expect(T.isTreeDeck({ items: [daily] })).toBe(false);
+    expect(T.nodes({ items: [daily] }, rows)).toEqual([]);
+    expect(T.line(mixed, T.nodes(mixed, rows), T.readyCount(mixed, rows)))
+      .toBe('Deck: 6 items · 2 ready · 2 sessions · weakest: "Front 2"');
+  });
   it('a tree deck has a node on every item', () => {
     expect(T.isTreeDeck(deck)).toBe(true);
     expect(T.isTreeDeck({ items: [{ id: 'a' }] })).toBe(false);
@@ -68,6 +80,26 @@ const teacherWin = (doc, fetch) => ({ document: doc, ROSTER_SERVICE_URL: 'https:
   rosterClient: { current: () => ({ role: 'teacher' }), token: () => 'tok' }, fetch });
 
 describe('class-log-tree: fill through the deck line', () => {
+  it('opens lesson mastery for a mixed deck without fetching or displaying a daily reminder as a node', async () => {
+    D._reset(); T._reset();
+    const doc = fakeDoc();
+    const urls = [];
+    const mixed = { ...deck, items: [...items,
+      { id: 'daily-promise', type: 'cue', front: 'Check the promised worked example.', lesson: 'daily' }] };
+    const win = teacherWin(doc, async url => {
+      urls.push(url);
+      if (url.includes('/teacher/decks')) return { ok: true, json: async () => ({ decks: [mixed] }) };
+      if (url.includes('/teacher/mastery')) return { ok: true, json: async () => ({ rows }) };
+      return { ok: false, status: 404 };
+    });
+    const host = doc.createElement('div');
+    await D.fill(win, host, '2026-10-26', 'C');
+    expect(host.children[1].textContent).toBe('Deck: 6 items · 2 ready · 2 sessions · weakest: "Front 2"');
+    expect(host.children[2].children).toHaveLength(5);
+    expect(host.children[2].children.some(li => li.children[1].textContent.includes('promised worked example'))).toBe(false);
+    expect(urls).toEqual(['https://srv/teacher/decks?date=2026-10-26',
+      'https://srv/teacher/mastery?course=algebra2&lesson=1-3', 'content/a2/lesson-trees/1-3.json']);
+  });
   it('shows the tree line and one bar per lesson node; mastery and the tree file are fetched again on every panel open', async () => {
     D._reset(); T._reset();
     const doc = fakeDoc();

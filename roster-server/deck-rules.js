@@ -77,9 +77,8 @@ export function validateItems(items) {
     if (byId.has(item.id)) throw new Error(`duplicate item id ${item.id}`);
     byId.set(item.id, item);
   }
-  // All or none on node: the phone treats a deck as a tree deck or a streak deck, never both.
-  const withNode = out.filter(item => item.node !== undefined).length;
-  if (withNode && withNode !== out.length) throw new Error(`node must be on every item or on none (${withNode} of ${out.length} have one)`);
+  // A daily reminder may sit beside lesson nodes. The phone grades it by its
+  // session streak and keeps it out of persistent lesson mastery.
   for (const item of out) {
     for (const id of item.after) if (!byId.has(id)) throw new Error(`item ${item.id}: after names unknown id ${id}`);
   }
