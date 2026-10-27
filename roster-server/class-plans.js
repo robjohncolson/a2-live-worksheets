@@ -7,7 +7,7 @@ import { requireTeacher } from './teacher-auth.js';
 import { checkClassLogToken } from './observer-cards.js';
 import { CARD_COURSES, isIsoDate, validateCard } from './observer-card-rules.js';
 import { validateItems, deckContentHash } from './deck-rules.js';
-import { compileSectionPlan, planHash, sanitizePlanInput, adoptReviewedContinuity, bindDecisionSources } from './section-plan.js';
+import { compileSectionPlan, planHash, sanitizePlanInput, adoptReviewedContinuity, bindDecisionSources, mergePrivateDecisionJournal } from './section-plan.js';
 
 export const COMMITMENT_STATUSES = ['open', 'done', 'deferred', 'cancelled'];
 const PAGE = 500;
@@ -87,11 +87,15 @@ export function createClassPlanStore(client = createServiceClient()) {
       try { return check(await client.rpc('apply_class_plan_changes', { p_changes: changes })); }
       catch (error) { throw databaseError(error); }
     },
-    async privacyNames() {
+    async privacyNames({ includeTeacherAccounts = false } = {}) {
       const names = [];
       for (let start = 0; ; start += PAGE) {
-        const rows = check(await client.from('roster').select('real_name').order('student_id').range(start, start + PAGE - 1)) || [];
-        for (const row of rows) if (text(row.real_name)) names.push(row.real_name);
+        const rows = check(await client.from('roster').select('real_name,role').order('student_id').range(start, start + PAGE - 1)) || [];
+        for (const row of rows) {
+          if (!text(row.real_name)) continue;
+          const teacherAccount = row.role === 'teacher';
+          if (includeTeacherAccounts || !teacherAccount) names.push(row.real_name);
+        }
         if (rows.length < PAGE) return names;
       }
     },
@@ -160,7 +164,10 @@ function phonePlan(plan) {
 }
 
 function compileStored(compiler, inputs, commitments, summary, names, expectedRevision) {
-  const rawInputs = { ...copy(inputs), commitments: copy(commitments) };
+  // Audit clocks appear only after an inserted row is read back. They are not
+  // compiler inputs and must not change a head on an unchanged publication.
+  const canonicalCommitments = commitments.map(({ updatedAt, reviewDecisionId, ...item }) => item);
+  const rawInputs = { ...copy(inputs), commitments: copy(canonicalCommitments) };
   delete rawInputs.privacyNames;
   rawInputs.decisions = bindDecisionSources(rawInputs.decisions || [], rawInputs.source || summarySource(summary, inputs.date));
   // Keep the last usable, explicitly dated evidence when a later recording is
@@ -241,6 +248,7 @@ export function createClassPlanCoordinator({ store = createClassPlanStore(), com
 
     async publish(requests) {
       const names = await store.privacyNames();
+      const legacyNames = await store.privacyNames({ includeTeacherAccounts: true });
       const groups = new Map();
       for (const request of requests) {
         const scope = planScope(request.inputs), key = `${scope.course}|${scope.section}`;
@@ -264,7 +272,9 @@ export function createClassPlanCoordinator({ store = createClassPlanStore(), com
         }
         let commitments = snapshot.commitments;
         const reviewed = scoped.map(request => {
-          const adopted = adoptReviewedContinuity(request.inputs, commitments, snapshot.latestSummary);
+          const current = snapshot.plans.find(plan => plan.date === request.inputs.date);
+          const decisions = mergePrivateDecisionJournal(current?.inputs?.decisions || [], request.inputs.decisions || [], names, legacyNames);
+          const adopted = adoptReviewedContinuity({ ...request.inputs, decisions }, commitments, snapshot.latestSummary, names);
           commitments = adopted.commitments;
           return { ...request, inputs: adopted.inputs };
         });

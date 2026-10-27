@@ -9,7 +9,7 @@
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { adoptReviewedContinuity, compileSectionPlan, mergeDecisionJournal, reviewedHandoffDecisions, sanitizePlanInput } from '../roster-server/section-plan.js';
+import { adoptReviewedContinuity, bindDecisionSources, compileSectionPlan, mergeDecisionJournal, mergePrivateDecisionJournal, reviewedHandoffDecisions, sanitizePlanInput } from '../roster-server/section-plan.js';
 import { cardLessons } from '../roster-server/lesson-deck.js';
 import { isIsoDate } from '../roster-server/observer-card-rules.js';
 import { rosterNameHits } from '../roster-server/deck-rules.js';
@@ -96,14 +96,20 @@ export function legacyReviewDecisions(entry, source) {
   return reviewedHandoffDecisions(entry, source);
 }
 
-export function combinePlanInputs({ target, entry, trees, source, saved, remote, commitments, knownNodeIds = [] }) {
+export function combinePlanInputs({ target, entry, trees, source, saved, remote, commitments, knownNodeIds = [], privacyNames = [] }) {
   const remoteInputs = remote?.inputs;
   const savedInputs = saved?.inputs;
   const authored = entry || remoteInputs?.lessonInputs?.entry || savedInputs?.lessonInputs?.entry;
   if (!authored) throw new Error(`${target.date} ${target.section}: no authored class entry`);
-  const journal = mergeDecisionJournal(remoteInputs?.decisions || [], savedInputs?.decisions || []);
-  const decisions = mergeDecisionJournal(legacyReviewDecisions(authored, source), journal);
+  // The ignored artifact retains canonical authoring inputs; remote reads are
+  // privacy projections. Validate that exact projection, retain the canonical
+  // text, and preserve remote ordering before any still-local decisions.
+  const reconciled = mergePrivateDecisionJournal(savedInputs?.decisions || [], remoteInputs?.decisions || [], privacyNames);
+  const byId = new Map(reconciled.map(decision => [decision.id, decision]));
   const remoteIds = new Set((remoteInputs?.decisions || []).map(decision => decision.id));
+  const journal = [...(remoteInputs?.decisions || []).map(decision => byId.get(decision.id)),
+    ...reconciled.filter(decision => !remoteIds.has(decision.id))];
+  const decisions = mergePrivateDecisionJournal(legacyReviewDecisions(authored, source), journal, privacyNames);
   const pending = (savedInputs?.decisions || []).filter(decision => !remoteIds.has(decision.id));
   const conflict = Boolean(remote && pending.length && saved?.expectedRevision !== remote.revision);
   const assets = Object.keys(trees).length ? trees : remoteInputs?.lessonInputs?.trees || savedInputs?.lessonInputs?.trees || {};
@@ -148,9 +154,10 @@ export async function loadPlanContext({ root, target, offline = false, server, s
       `/teacher/mastery?${new URLSearchParams({ course: target.course, lesson, device })}`, secret, { fetchImpl })));
     knownNodeIds = rows.flatMap(result => (result.rows || result.nodes || []).filter(row => isKnown(row.p)).map(row => row.nodeId ?? row.node_id));
   }
+  const privacyNames = loadRosterFirstNames(resolve(root, 'roster-local'));
   const combined = combinePlanInputs({ target, entry, trees, source, saved, remote,
-    commitments: scope.commitments || [], knownNodeIds });
-  const reviewed = adoptReviewedContinuity(combined.inputs, combined.inputs.commitments, combined.inputs.source);
+    commitments: scope.commitments || [], knownNodeIds, privacyNames });
+  const reviewed = adoptReviewedContinuity(combined.inputs, combined.inputs.commitments, combined.inputs.source, privacyNames);
   combined.inputs = { ...reviewed.inputs, commitments: reviewed.commitments };
   return {
     schemaVersion: 1, ...target, ...combined,
@@ -195,13 +202,15 @@ export async function runPlanCommand(args, { fetchImpl = fetch } = {}) {
     return result;
   }
   const addition = args.command === 'decide' ? readJson(resolve(args.decision)) : null;
+  const privacyNames = loadRosterFirstNames(resolve(root, 'roster-local'));
   const artifacts = contexts.map(context => {
     if (context.conflict && !args.rebase) throw new Error(`${context.date} ${context.section}: saved decisions are based on an older plan; review context and use --rebase`);
-    const inputs = { ...context.inputs, decisions: mergeDecisionJournal(context.inputs.decisions, addition ? [addition] : []) };
-    const plan = compileSectionPlan({ ...inputs, privacyNames: loadRosterFirstNames(resolve(root, 'roster-local')) });
+    const inputs = { ...context.inputs, decisions: bindDecisionSources(
+      mergeDecisionJournal(context.inputs.decisions, addition ? [addition] : []), context.inputs.source) };
+    const plan = compileSectionPlan({ ...inputs, privacyNames });
     guardNames(root, plan);
     return { schemaVersion: 1, expectedRevision: context.expectedRevision,
-      expectedScopeVersion: context.expectedScopeVersion, inputs: plan.inputs, plan };
+      expectedScopeVersion: context.expectedScopeVersion, inputs, plan };
   });
   // Every target must compile before any publication. The server transaction then
   // checks all revisions/scopes and changes each card/deck pair together.
@@ -211,7 +220,7 @@ export async function runPlanCommand(args, { fetchImpl = fetch } = {}) {
       body: { plans: artifacts.map(({ inputs, expectedRevision, expectedScopeVersion }) => ({ inputs, expectedRevision, expectedScopeVersion })) } });
     for (const artifact of artifacts) {
       const published = publication.plans?.find(plan => plan.date === artifact.plan.date && plan.section === artifact.plan.section && plan.course === artifact.plan.course);
-      if (published) { artifact.plan = published; artifact.inputs = published.inputs || artifact.inputs; artifact.expectedRevision = published.revision; }
+      if (published) { artifact.plan = published; artifact.expectedRevision = published.revision; }
       const scope = publication.scopes?.find(row => row.course === artifact.plan.course && row.section === artifact.plan.section);
       if (scope) artifact.expectedScopeVersion = scope.version;
     }

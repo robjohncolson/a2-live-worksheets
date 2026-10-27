@@ -41,6 +41,7 @@ export function sanitizePlanInput(input, rosterNames = []) {
   cleanObject(result.source);
   cleanObject(result.lessonInputs?.entry?.observerCard);
   cleanObject(result.lessonInputs?.entry?.teacherBrief);
+  cleanObject(result.lessonInputs?.entry?.continuity);
   result.commitments = (result.commitments || []).map(item => ({ ...item, text: cleanText(item.text) })).filter(item => item.text);
   for (const tree of Object.values(result.lessonInputs?.trees || {})) {
     for (const node of tree.nodes || []) {

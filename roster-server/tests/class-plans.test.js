@@ -1,12 +1,15 @@
 import { beforeAll, afterAll, beforeEach, afterEach, describe, it, expect, vi } from 'vitest';
 import express from 'express';
-import { readFileSync } from 'node:fs';
+import { readFileSync, mkdirSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { PGlite } from '@electric-sql/pglite';
 import { createClassPlanStore, createClassPlanCoordinator, mountClassPlans, mountTeacherPlans, commitmentsFromSummary } from '../class-plans.js';
 import { mountClassSummaries } from '../class-summaries.js';
 import { mountTeacherCards } from '../observer-cards.js';
 import { mountTeacherDecks } from '../card-decks.js';
-import { compileSectionPlan } from '../section-plan.js';
+import { compileSectionPlan, mergePrivateDecisionJournal, reviewedHandoffDecisions, sanitizePlanInput } from '../section-plan.js';
+import { runPlanCommand } from '../../scripts/plan-next-class.mjs';
 
 const token = 'plan-phone-token-0123456789abcdef';
 const phone = { Authorization: `Bearer ${token}` };
@@ -81,13 +84,13 @@ beforeAll(async () => {
     await pg.exec(migration(file));
   }
   await pg.exec(migration('0048_class_plans.sql'));
-  await pg.exec('create table a2.roster(student_id text primary key,real_name text);');
+  await pg.exec("create table a2.roster(student_id text primary key,real_name text,role text not null default 'student');");
 });
 afterAll(async () => { await pg.close(); });
 beforeEach(async () => {
   vi.stubEnv('TEACHER_KEY', 'plan-teacher');
   await pg.exec('truncate a2.class_plan_scopes cascade; truncate a2.observer_cards cascade; truncate a2.class_summaries; truncate a2.roster;');
-  await pg.query('insert into a2.roster values($1,$2)', ['student-one', 'Student, Jordan']);
+  await pg.query('insert into a2.roster(student_id,real_name) values($1,$2)', ['student-one', 'Student, Jordan']);
   privacyFailure = false; compilerFailure = false;
   store = createClassPlanStore(client());
   coordinator = createClassPlanCoordinator({ store, now: () => new Date('2026-10-26T22:00:00Z'),
@@ -274,6 +277,120 @@ describe('plan route boundaries', () => {
 });
 
 describe('durable evidence and legacy isolation', () => {
+  it('screens students and unknown roles while excluding only teacher accounts', async () => {
+    await pg.exec("insert into a2.roster(student_id,real_name,role) values('teacher-account','Teacher','teacher'),('unknown-role','Alex','unknown')");
+    expect(await store.privacyNames()).toEqual(['Student, Jordan', 'Alex']);
+    expect(await store.privacyNames({ includeTeacherAccounts: true })).toContain('Teacher');
+    const value = inputs(); value.lessonInputs.entry.teacherBrief.next = "Teacher's plan: finish the packet.";
+    expect((await publish([request(value)])).body.plans[0].card.body).toContain("Teacher's plan");
+    await pg.exec("insert into a2.roster(student_id,real_name,role) values('student-teacher','Teacher','student')");
+    expect(await store.privacyNames()).toContain('Teacher');
+  });
+
+  it('accepts exact historical privacy projections while rejecting actual same-ID edits', () => {
+    const original = [{ id: 'teacher-note', set: { 'teacherBrief.next': "Teacher's plan: finish the packet." } }];
+    const legacy = sanitizePlanInput({ decisions: original }, ['Teacher']).decisions;
+    expect(mergePrivateDecisionJournal(original, legacy, [], ['Teacher'])).toEqual(original);
+    expect(() => mergePrivateDecisionJournal(original, [{ id: 'teacher-note', set: { 'teacherBrief.next': 'Do a different task.' } }], [], ['Teacher']))
+      .toThrow(/different edits/);
+    const privateNote = [{ id: 'student-note', set: { 'source.nextPrep': ['Jordan needs the graph.'] } }];
+    const changedStudent = [{ id: 'student-note', set: { 'source.nextPrep': ['Alex needs the graph.'] } }];
+    expect(() => mergePrivateDecisionJournal(privateNote, changedStudent, ['Jordan', 'Alex'], ['Jordan', 'Alex', 'Teacher']))
+      .toThrow(/different edits/);
+    expect(mergePrivateDecisionJournal(privateNote, sanitizePlanInput({ decisions: privateNote }, ['Jordan']).decisions, ['Jordan']))
+      .toEqual(privateNote);
+  });
+
+  it('replays adopted commitments without changing the head, scope, audit metadata, or private journal', async () => {
+    await pg.exec("insert into a2.roster(student_id,real_name,role) values('teacher-account','Teacher','teacher')");
+    await call('POST', '/class-log/summaries', summary(), phone);
+    const initial = await store.snapshot('algebra2', 'C');
+    const value = inputs(); value.lessonInputs.entry.continuity = {
+      sourceDate: initial.latestSummary.date, sourceRecordedAt: initial.latestSummary.recordedAt,
+      landed: ['Reviewed stopping point.'], promises: ['Bring the reviewed graph.'],
+      nextPrep: ["Teacher's Oct27 plan: finish the packet."],
+    };
+    const first = await publish([request(value, null, initial.version)]);
+    expect(first.status).toBe(200);
+    const before = await store.snapshot('algebra2', 'C');
+    const originalPlan = before.plans[0];
+    const cancelled = before.commitments.find(row => row.text === 'Bring the worked example.');
+    expect(cancelled).toMatchObject({ status: 'cancelled', version: 2 });
+    expect(cancelled.source.reviewDecisionId).toMatch(/^reviewed-handoff-/);
+    expect(originalPlan.inputs.commitments.every(row => !('updatedAt' in row) && !('reviewDecisionId' in row))).toBe(true);
+    const oldClient = sanitizePlanInput(originalPlan.inputs, ['Teacher', 'Jordan']);
+    oldClient.lessonInputs.entry.continuity = value.lessonInputs.entry.continuity;
+    oldClient.privacyNames = []; // The caller cannot disable the authoritative policy.
+    const replay = await publish([request(oldClient, originalPlan.revision, before.version)]);
+    expect(replay).toMatchObject({ status: 200, body: { written: 0, unchanged: 1 } });
+    const after = await store.snapshot('algebra2', 'C');
+    expect(after).toEqual(before);
+    expect(JSON.stringify(after.plans[0].inputs.decisions)).toContain("Teacher's Oct27 plan");
+    expect(JSON.stringify(after.plans[0].inputs.decisions)).not.toContain("a student's Oct27 plan");
+    const changed = structuredClone(oldClient);
+    changed.decisions[0].set['source.nextPrep'] = ['A different reviewed instruction.'];
+    expect((await publish([request(changed, originalPlan.revision, before.version)])).status).not.toBe(200);
+    expect(await store.snapshot('algebra2', 'C')).toEqual(before);
+  });
+
+  it('adopts an initial raw review when the CLI already projected the same generated journal', async () => {
+    await pg.exec("insert into a2.roster(student_id,real_name,role) values('another-student','Quinton','student')");
+    await call('POST', '/class-log/summaries', summary(), phone);
+    const snapshot = await store.snapshot('algebra2', 'C');
+    const value = inputs(); value.lessonInputs.entry.continuity = {
+      sourceDate: snapshot.latestSummary.date, sourceRecordedAt: snapshot.latestSummary.recordedAt,
+      landed: ['Quinton completed the last piece.'], promises: ['Bring Quinton the reviewed graph.'], nextPrep: [],
+    };
+    const generated = reviewedHandoffDecisions(value.lessonInputs.entry, snapshot.latestSummary);
+    // Accept older clients that retained the raw authoring review alongside a
+    // previously projected journal. New clients send canonical authoring inputs.
+    value.decisions = sanitizePlanInput({ decisions: generated }, ['Quinton']).decisions;
+    value.source = { sourceDate: snapshot.latestSummary.date, recordedAt: snapshot.latestSummary.recordedAt,
+      landed: [], questions: [], nextPrep: [] };
+    const result = await publish([request(value, null, snapshot.version)]);
+    expect(result.status).toBe(200);
+    expect(JSON.stringify(result.body)).not.toContain('Quinton');
+    expect((await store.snapshot('algebra2', 'C')).plans[0].inputs.decisions).toEqual(generated);
+  });
+
+  it('publishes and replays the real CLI wire without changing review identity or the stored snapshot', async () => {
+    await pg.exec("insert into a2.roster(student_id,real_name,role) values('another-student','Quinton','student')");
+    await call('POST', '/class-log/summaries', summary(), phone);
+    const snapshot = await store.snapshot('algebra2', 'C');
+    const value = inputs(); value.source = { sourceDate: snapshot.latestSummary.date,
+      recordedAt: snapshot.latestSummary.recordedAt, landed: [], promises: [], questions: [], nextPrep: [] };
+    value.lessonInputs.entry.continuity = { sourceDate: value.source.sourceDate, sourceRecordedAt: value.source.recordedAt,
+      landed: ['Quinton completed the final piece.'], promises: ['Bring Quinton the reviewed graph.'], nextPrep: [] };
+    const root = mkdtempSync(fileURLToPath(new URL('../../roster-local/plan-wire-', import.meta.url)));
+    const write = (file, content) => writeFileSync(resolve(root, file), typeof content === 'string' ? content : JSON.stringify(content));
+    try {
+      for (const directory of ['data', 'content/a2/lesson-trees', 'roster-local/class-plans', 'roster-local/class-summaries']) {
+        mkdirSync(resolve(root, directory), { recursive: true });
+      }
+      write('data/a2-school-year.json', readFileSync(new URL('../../data/a2-school-year.json', import.meta.url), 'utf8'));
+      write('content/a2/day-log.json', { entries: [value.lessonInputs.entry] });
+      write('roster-local/roster-view-test.csv', 'realName\nQuinton\n');
+      write('roster-local/class-summaries/index.json', [{ ...snapshot.latestSummary, file: 'source.md' }]);
+      write(`roster-local/class-plans/${date}-C.json`, { schemaVersion: 1, inputs: value,
+        expectedRevision: null, expectedScopeVersion: snapshot.version });
+      const args = { command: 'publish', root, section: 'C', date, server: base, secret: 'plan-teacher' };
+      const first = await runPlanCommand(args);
+      expect(first.written).toBe(1);
+      const before = await store.snapshot('algebra2', 'C');
+      const reviews = before.plans[0].inputs.decisions.filter(decision => decision.id.startsWith('reviewed-handoff-'));
+      expect(reviews).toHaveLength(1);
+      expect(JSON.stringify(reviews)).toContain('Quinton');
+      const displayed = await call('GET', `/teacher/plans?date=${date}`);
+      expect(JSON.stringify(displayed.body)).not.toContain('Quinton');
+      const replay = await runPlanCommand(args);
+      expect(replay).toMatchObject({ written: 0, unchanged: 1 });
+      expect(await store.snapshot('algebra2', 'C')).toEqual(before);
+    } finally {
+      // root is the exact directory created above inside the ignored workspace.
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it('retains immutable raw summary revisions even without any plan', async () => {
     await call('POST', '/class-log/summaries', summary(), phone);
     await call('POST', '/class-log/summaries', summary({ markdown: 'Corrected raw evidence.', landed: ['Corrected stopping point.'] }), phone);

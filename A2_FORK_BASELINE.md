@@ -2785,3 +2785,55 @@ from older summary text. Source patch/archive, test logs and install-preservatio
 evidence are retained under state/cross-agent/class-log-release and the ignored
 roster-local directories. The APK is at the sibling Android project's
 app/build/outputs/apk/debug/app-debug.apk.
+
+## Class Log database activation and teaching corrections - 2026-10-27
+
+The teacher applied migration 0048. Live plan and commitment endpoints now
+return 200, and the initial atomic packages for C/G Oct 27 and D/G Oct 28 are
+published. No additional SQL migration is required for the activation fixes.
+
+C and G now start with RVD, then group Try It 2a/2b (the equation and interval
+for every piece), followed by Example 5 and its Try It. W67 is already covered
+by earlier slope-intercept graphing work. C's Schoology IXL assignment is posted;
+G's copy is a pending teacher action. These statements are dated conversation
+decisions, not claims from an earlier recording. G's next-class brief checks
+what Tuesday actually finished before assigning more work or a quiz. D's
+separate existing sequence and the earlier makeup terms are retained.
+
+Main cards now show at most three selected follow-ups while retaining every
+commitment in the full package. The nightly publisher logs and skips unauthored
+placeholders; invalid authored plans still fail atomically. Deployment 8bfc822
+passed Railway and Vercel checks. Its focused compiler/compatibility tests
+passed 48/48; server plan/card/deck integration passed 59/59.
+
+The Oct 28 nightly run completed with exit 0, publishing G and preserving D;
+C Oct 29 remains unpublished because its curriculum placeholder is unauthored.
+The existing A2 Tomorrow Draft task remains enabled at 20:30. Eight reminders
+derived solely from D's explicitly rejected Oct 21 recording were cancelled
+as invalid-source reminders, with their history preserved.
+
+The installed Android APK is unchanged. USB was disconnected during activation,
+so the final on-phone screen review remains pending. Server readback confirms
+stable card IDs, matching card/deck pairs, 14 items per deck, three daily cues,
+six Teacher's Edition guidance items, and no roster-name hits in those views.
+
+Schoology cleanup is a separate pending automation: use Syllabus as the
+top-level cutoff and the existing Not Today folder as destination. Timing is
+awaiting the teacher's preference. The read-only materials probe redirected
+to Microsoft sign-in, so live cutoff/destination IDs remain unverified; no
+cleanup task or Schoology move was performed. The existing managed Assignments
+folder and grade-sync lookup need to be considered when implementing all-item
+cleanup. Investigation artifacts are ignored under roster-local/schoology-cleanup-*.
+
+Activation replay testing exposed teacher accounts being screened as student
+names and database audit clocks entering stored compiler inputs. The fix uses
+student-role privacy, preserves private canonical authoring and journal text,
+accepts only exact trusted projections of existing decision IDs, screens nested
+continuity in shared inputs, and excludes audit clocks from compilation.
+Cancellation provenance now lives in the persisted commitment source object.
+Real CLI-to-HTTP-to-PGlite replay preserves the original review ID and the full
+database snapshot, including scope version, head timestamps and reminder state.
+Validation: all 99 server files / 1,817 tests passed; 51 focused compiler,
+selector, continuity and teacher-brief tests passed. GitNexus staged detection
+identified the expected shared plan/privacy paths as CRITICAL; the blast radius
+was reported before the affected edits and those paths were regression-tested.

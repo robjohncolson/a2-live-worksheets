@@ -84,6 +84,30 @@ export function mergeDecisionJournal(existing = [], additions = []) {
   return [...byId.values()];
 }
 
+// Teacher reads contain a privacy projection of the saved journal. Compare that
+// projection with the same trusted roster policy, then retain the original
+// private entry for an equivalent retry. Different edits still need a new ID.
+export function mergePrivateDecisionJournal(existing = [], additions = [], privacyNames = [], legacyPrivacyNames = null) {
+  const saved = mergeDecisionJournal(existing);
+  const incoming = mergeDecisionJournal(additions);
+  const project = (decisions, names) => sanitizePlanInput({ decisions }, names).decisions;
+  const savedById = new Map(saved.map(decision => [decision.id, decision]));
+  for (const decision of incoming) {
+    const original = savedById.get(decision.id);
+    if (!original) continue;
+    const versions = [original, ...project([original], privacyNames),
+      ...(legacyPrivacyNames ? project([original], legacyPrivacyNames) : [])];
+    let conflict;
+    const matches = versions.some(version => {
+      try { mergeDecisionJournal([version], [decision]); return true; }
+      catch (error) { conflict = error; return false; }
+    });
+    if (!matches) throw conflict;
+  }
+  const savedIds = new Set(saved.map(decision => decision.id));
+  return [...saved, ...incoming.filter(decision => !savedIds.has(decision.id))];
+}
+
 // Factual corrections belong to the class recording being corrected. They
 // survive a new automatic summary of that same class, but are never relabelled
 // as observations from a different class day. Plan directives remain persistent.
@@ -112,10 +136,13 @@ export function reviewedHandoffDecisions(entry, source) {
 // One-time adoption of an existing teacher-reviewed handoff. Only commitments
 // proven to originate from that exact recording revision may be superseded.
 // Other source dates and every already-resolved status survive unchanged.
-export function adoptReviewedContinuity(inputs, commitments, summary = inputs.source) {
+export function adoptReviewedContinuity(inputs, commitments, summary = inputs.source, privacyNames = []) {
   const entry = inputs.lessonInputs?.entry;
   const decisions = reviewedHandoffDecisions(entry, summary);
   if (!decisions.length) return { inputs, commitments };
+  // This generated ID hashes the complete raw review; it is the canonical
+  // source against which an older projected copy may be recognized.
+  const journal = mergePrivateDecisionJournal(decisions, inputs.decisions || [], privacyNames);
   const review = entry.continuity;
   const normalizedText = value => value.replace(/\s+/g, ' ').trim();
   const resolved = new Set(lines(review.resolved, 'continuity.resolved').map(normalizedText));
@@ -135,7 +162,7 @@ export function adoptReviewedContinuity(inputs, commitments, summary = inputs.so
       if (status !== item.status) {
         item.status = status;
         item.version = (item.version || 0) + 1;
-        item.reviewDecisionId = decisions[0].id;
+        item.source = { ...item.source, reviewDecisionId: decisions[0].id };
       }
     }
     for (const [id, value] of incoming) {
@@ -149,7 +176,7 @@ export function adoptReviewedContinuity(inputs, commitments, summary = inputs.so
     }
   }
   return {
-    inputs: { ...inputs, decisions: mergeDecisionJournal(decisions, inputs.decisions || []) },
+    inputs: { ...inputs, decisions: journal },
     commitments: next.sort((a, b) => (a.sourceDate || '').localeCompare(b.sourceDate || '') || a.id.localeCompare(b.id)),
   };
 }

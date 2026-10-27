@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
-import { adoptReviewedContinuity, compileSectionPlan, mergeDecisionJournal } from '../roster-server/section-plan.js';
+import { adoptReviewedContinuity, compileSectionPlan, mergeDecisionJournal, sanitizePlanInput } from '../roster-server/section-plan.js';
 import { combinePlanInputs, legacyReviewDecisions, parsePlanArgs, runPlanCommand } from '../scripts/plan-next-class.mjs';
 
 const id = number => String(number).padStart(12, '0');
@@ -196,6 +196,8 @@ describe('one deterministic section plan', () => {
   it('sanitizes rendered and saved projection text without retaining the trusted roster', () => {
     const raw = input();
     raw.privacyNames = ['Doe, Quinton'];
+    raw.lessonInputs = { ...raw.lessonInputs, entry: { ...entry, continuity: { sourceDate: source.sourceDate,
+      sourceRecordedAt: source.recordedAt, nextPrep: ['Review the question raised by Quinton.'] } } };
     raw.source = { ...source, landed: ['Quinton asked about the endpoint.', 'Quinton scored 60 on the quiz.',
       'Quinton: 60% on the quiz.', "Quinton's IXL result was 60%.", 'Whole-class IXL recovery requires 80%.'] };
     raw.commitments = [{ ...commitments[0], text: 'Show Quinton the domain boundary.' }];
@@ -207,6 +209,7 @@ describe('one deterministic section plan', () => {
     expect(JSON.stringify(plan)).not.toContain('60%');
     expect(plan.source.landed).toEqual(['a student asked about the endpoint.', 'Whole-class IXL recovery requires 80%.']);
     expect(raw.source.landed[0]).toContain('Quinton');
+    expect(raw.lessonInputs.entry.continuity.nextPrep[0]).toContain('Quinton');
   });
 });
 
@@ -224,7 +227,7 @@ function fixture() {
   return root;
 }
 
-function fakeService({ failPublish = false } = {}) {
+function fakeService({ failPublish = false, privacyNames = [] } = {}) {
   const plans = new Map();
   const calls = [];
   const fetchImpl = async (url, options = {}) => {
@@ -235,7 +238,7 @@ function fakeService({ failPublish = false } = {}) {
     if (parsed.pathname === '/teacher/mastery') return response(200, { rows: [{ nodeId: id(6), p: 0.95 }] });
     if (options.method === 'PUT') {
       if (failPublish) return response(409, { error: 'private error should not be copied' });
-      const compiled = JSON.parse(options.body).plans.map(row => compileSectionPlan(row.inputs));
+      const compiled = JSON.parse(options.body).plans.map(row => compileSectionPlan({ ...row.inputs, privacyNames }));
       for (const plan of compiled) plans.set(`${plan.date}|${plan.section}`, plan);
       return response(200, { written: compiled.length, unchanged: 0, plans: compiled, scopes: compiled.map(plan => ({ course: plan.course, section: plan.section, version: 2 })) });
     }
@@ -245,6 +248,23 @@ function fakeService({ failPublish = false } = {}) {
 }
 
 describe('durable conversation and atomic publication CLI', () => {
+  it('compares a saved privacy projection without duplicating reviews or permitting different teacher edits', () => {
+    const authored = { ...entry, continuity: { sourceDate: source.sourceDate, sourceRecordedAt: source.recordedAt,
+      landed: ['Reviewed account.'], nextPrep: ['Review the endpoint question raised by Quinton.'], promises: [], questions: [] } };
+    const review = legacyReviewDecisions(authored, source)[0];
+    const privateInputs = { ...input(), decisions: [review, { id: 'quiz-choice', set: { 'teacherBrief.today': ['Quiz next class.'] } }] };
+    const projected = sanitizePlanInput(privateInputs, ['Quinton']);
+    const args = { target: { date, course: 'algebra2', section: 'C' }, entry: authored, trees: { '1-3': tree() }, source,
+      remote: { revision: 'same', inputs: projected }, saved: { expectedRevision: 'same', inputs: projected }, commitments: [], privacyNames: ['Quinton'] };
+    const combined = combinePlanInputs(args);
+    expect(combined.inputs.decisions.map(decision => decision.id)).toEqual([review.id, 'quiz-choice']);
+    expect(compileSectionPlan({ ...combined.inputs, privacyNames: ['Quinton'] }).inputs.decisions[0].set['source.nextPrep'])
+      .toEqual(['Review the endpoint question raised by a student.']);
+    const different = structuredClone(projected);
+    different.decisions[1].set['teacherBrief.today'] = ['Quiz today.'];
+    expect(() => combinePlanInputs({ ...args, saved: { expectedRevision: 'same', inputs: different } })).toThrow(/already recorded with different edits/);
+  });
+
   it('adopts only a matching reviewed handoff and keeps later explicit decisions last', () => {
     const authored = { ...entry, continuity: { sourceDate: source.sourceDate, sourceRecordedAt: source.recordedAt,
       landed: ['Teacher reviewed: final piece still pending.'], promises: ['Review the final piece.'], nextPrep: [], questions: [] } };
@@ -316,6 +336,48 @@ describe('durable conversation and atomic publication CLI', () => {
     expect(puts[1].body.plans.map(row => row.expectedRevision)).toEqual(first.plans.map(plan => plan.revision));
     expect(puts[1].body.plans.map(row => compileSectionPlan(row.inputs).revision)).toEqual(first.plans.map(plan => plan.revision));
     expect(service.calls.some(call => ['/teacher/cards', '/teacher/decks'].includes(call.path))).toBe(false);
+  });
+
+  it('publishes and replays a roster-sanitized reviewed handoff with identical revision and journal IDs', async () => {
+    const root = fixture();
+    const service = fakeService({ privacyNames: ['Quinton'] });
+    writeFileSync(resolve(root, 'roster-local/roster-view-PeriodC.csv'), 'realName,section\n"Doe, Quinton",PeriodC\n');
+    const path = resolve(root, 'content/a2/day-log.json');
+    const log = JSON.parse(readFileSync(path, 'utf8'));
+    log.entries[0].continuity = { sourceDate: source.sourceDate, sourceRecordedAt: source.recordedAt,
+      landed: ['Reviewed account.'], nextPrep: ['Review the endpoint question raised by Quinton.'], promises: [], questions: [] };
+    writeFileSync(path, JSON.stringify(log));
+    const args = parsePlanArgs(['publish', '--root', root, '--date', date, '--section', 'C', '--server', 'http://fixture', '--secret', 'fixture']);
+    const first = await runPlanCommand(args, service);
+    const again = await runPlanCommand(args, service);
+    expect(again.plans[0].revision).toBe(first.plans[0].revision);
+    expect(again.plans[0].inputs.decisions.map(decision => decision.id)).toEqual(first.plans[0].inputs.decisions.map(decision => decision.id));
+    expect(again.plans[0].inputs.decisions).toHaveLength(1);
+    const { inputs: authoringInputs, ...phoneProjection } = again.plans[0];
+    expect(JSON.stringify(phoneProjection)).not.toContain('Quinton');
+    expect(JSON.stringify(authoringInputs)).not.toContain('Quinton');
+    const requests = service.calls.filter(call => call.method === 'PUT');
+    expect(requests).toHaveLength(2);
+    expect(requests[0].body.plans[0].inputs.lessonInputs.entry.continuity.nextPrep[0]).toContain('Quinton');
+    expect(requests[1].body.plans[0].inputs).toEqual(requests[0].body.plans[0].inputs);
+    const artifact = JSON.parse(readFileSync(resolve(root, 'roster-local/class-plans/2026-10-27-C.json'), 'utf8'));
+    expect(artifact.inputs.lessonInputs.entry.continuity.nextPrep[0]).toContain('Quinton');
+    expect(artifact.plan.inputs.lessonInputs.entry.continuity.nextPrep[0]).not.toContain('Quinton');
+  });
+
+  it('rejects an explicit same-ID edit even when two different names would share one privacy projection', async () => {
+    const root = fixture();
+    const service = fakeService();
+    writeFileSync(resolve(root, 'roster-local/roster-view-PeriodC.csv'), 'realName,section\n"Doe, Quinton",PeriodC\n"Doe, Alex",PeriodC\n');
+    const decision = resolve(root, 'decision.json');
+    const edit = { id: 'explicit-no-reuse', set: { 'teacherBrief.today': ['Review the question raised by Quinton.'] } };
+    writeFileSync(decision, JSON.stringify(edit));
+    const args = parsePlanArgs(['decide', '--root', root, '--date', date, '--section', 'C', '--decision', decision, '--server', 'http://fixture', '--secret', 'fixture']);
+    await runPlanCommand(args, service);
+    edit.set['teacherBrief.today'] = ['Review the question raised by Alex.'];
+    writeFileSync(decision, JSON.stringify(edit));
+    await expect(runPlanCommand(args, service)).rejects.toThrow(/already recorded with different edits/);
+    expect(service.calls.some(call => call.method === 'PUT')).toBe(false);
   });
 
   it('sends nothing when one section cannot compile, and leaves saved output intact after a server conflict', async () => {
