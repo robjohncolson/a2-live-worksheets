@@ -2749,7 +2749,7 @@ corrections keep source-date provenance. The nightly task uses the same compiler
 and atomic publisher; see docs/CLASS_PLAN_WORKFLOW.md.
 
 Validation at implementation handoff:
-- Android: 522 JVM tests passed; debug APK built and installed on the SM_S921U1.
+- Android: 528 JVM tests passed; final debug APK built and installed on the SM_S921U1.
   All 20 session records and both settings/encrypted-credential files were
   verified unchanged across the update. The final screen review awaits phone
   unlock; no PIN was requested or entered.
@@ -2767,9 +2767,21 @@ Validation at implementation handoff:
   above. Final PWA/deployment/tree checks: 44 passed.
 - Python: 194 passed, with the two existing datetime.utcnow deprecation warnings.
 
-At this checkpoint the phone is updated and server code is ready for deployment.
-Supabase authentication is not connected, so migration 0048 and initial atomic
-package publication have not been applied to production. Existing legacy reads
-and summary writes remain supported until the migration is installed. The APK,
-source patch/archive, test logs and install-preservation evidence are retained
-under state/cross-agent/class-log-release and the ignored roster-local directories.
+Deployment commit 82d29ff is live on Railway and Vercel; both reported success.
+Production health, existing cards/decks and summary reads returned 200. C/G Oct 27
+and D Oct 28 retain their existing card IDs and 14-item decks. The new plan route
+returns 503 while migration 0048 is absent, as designed. Supabase authentication
+is not connected, so the migration and initial atomic package publication remain
+pending. The 20:30 nightly run stopped at the new endpoint (not yet deployed at
+that instant) with exit 1; existing published data stayed intact. After database
+activation, rerun the atomic publisher/nightly task and verify the phone receives
+complete packages before considering deployment finished.
+
+The final Android APK hash is
+7125fe0003e21f73b385a67f2215ad30b8e775dd034e9173671728e63da9ff6c.
+It also preserves follow-up deferral dates, scope versions and explicitly pending
+offline status in the planning handoff; completed commitments do not reappear
+from older summary text. Source patch/archive, test logs and install-preservation
+evidence are retained under state/cross-agent/class-log-release and the ignored
+roster-local directories. The APK is at the sibling Android project's
+app/build/outputs/apk/debug/app-debug.apk.
