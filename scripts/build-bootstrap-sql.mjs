@@ -46,6 +46,8 @@ REVOKE ALL ON ALL SEQUENCES IN SCHEMA a2 FROM anon, authenticated;
 REVOKE ALL ON ALL FUNCTIONS IN SCHEMA a2 FROM PUBLIC, anon, authenticated;
 GRANT USAGE ON SCHEMA a2 TO anon, authenticated, service_role;
 GRANT ALL ON ALL TABLES IN SCHEMA a2 TO service_role;
+-- Evidence and published revisions are insert-only even for the server role.
+REVOKE UPDATE, DELETE, TRUNCATE ON a2.class_plan_packages, a2.class_summary_revisions FROM service_role;
 GRANT ALL ON ALL SEQUENCES IN SCHEMA a2 TO service_role;
 GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA a2 TO service_role;
 ALTER DEFAULT PRIVILEGES IN SCHEMA a2 GRANT ALL ON TABLES TO service_role;

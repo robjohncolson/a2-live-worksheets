@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { spawn, spawnSync } from 'node:child_process';
 import { createServer } from 'node:http';
 import { buildCards, formatTable, parseArgs, redact } from '../scripts/push-observer-cards.mjs';
+import { buildTargets } from '../scripts/draft-card-decks.mjs';
 
 const script = fileURLToPath(new URL('../scripts/push-observer-cards.mjs', import.meta.url));
 const observerCard = { title: 'Which graph?', mode: 'pairs', minutes: 6, frame: 'It is ___ because ___.', body: '## Prompt\n\nPick one.' };
@@ -18,6 +19,30 @@ const log = { entries: [
 ] };
 
 describe('push-observer-cards', () => {
+  it('publishes the concise teacher brief while rehearsal still uses the detailed activity', () => {
+    const detailed = { ...observerCard, body: '## Interacting\nExample 5 on whiteboards.' };
+    const entry = { date: '2026-10-26', section: 'C', lesson: '1-3', observerCard: detailed,
+      teacherBrief: { title: 'LSG, then step functions', mode: 'jam', minutes: 60,
+        ixl: ['LSG - Graph a linear function.', 'RVD if time.'],
+        lastClass: 'Example 3 was difficult. WRZ ran; W67 was not reached.',
+        today: ['LSG Jam.', 'Example 5 and Try It 5.'], next: 'Quiz tomorrow.' } };
+    const before = JSON.stringify(entry);
+    const [card] = buildCards({ entries: [entry] });
+    expect(card).toMatchObject({ title: entry.teacherBrief.title, minutes: 60, mode: 'jam', frame: null });
+    expect(card.body).toContain('## IXL drills');
+    expect(card.body).toContain('W67 was not reached.');
+    expect(card.body).not.toContain('## Interacting');
+    const id = '11111111-1111-4111-8111-111111111111';
+    const [target] = buildTargets({ dayLog: { entries: [entry] }, date: entry.date, serverCards: [{ id, ...card }] });
+    expect(target.cardId).toBe(id);
+    expect(target.card).toEqual(detailed);
+    expect(JSON.stringify(entry)).toBe(before);
+  });
+  it('does not validate an unrelated day’s brief during a targeted push', () => {
+    const entries = [...log.entries, { date: '2026-10-27', section: 'C', observerCard, teacherBrief: {} }];
+    expect(buildCards({ entries }, { date: '2026-10-21' })).toHaveLength(1);
+    expect(() => buildCards({ entries }, { date: '2026-10-27' })).toThrow();
+  });
   it('builds sorted rows from entries with an observerCard; all/missing section => null', () => {
     expect(buildCards(log)).toEqual([
       { date: '2026-10-20', course: 'algebra2', section: null, lesson: '1-2', title: 'Warm-up', mode: 'whiteboards', minutes: 10, frame: null, body: 'Go.', source: 'desk' },

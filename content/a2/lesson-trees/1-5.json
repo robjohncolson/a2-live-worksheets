@@ -188,11 +188,475 @@
       "source": "examples[n=3]"
     },
     {
+      "id": "6583041cfc0f",
+      "type": "cue",
+      "front": "Example 1 · Purposeful question: Why does the solution to the equation correspond to finding the (x)-coordinate of the intersection of the graphs?",
+      "back": "Listen for: The intersection of the two graphs is where the outputs of (-3x+20) and (0.2x+4) are equal for the same (x)-value. For (x)-coordinates where the graphs do not intersect, the outputs of (-3x+20) and (0.2x+4) are not equal.",
+      "order": 16,
+      "after": [
+        "76f5fd3c9c15"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 1,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "65: 40 Example 1",
+          "item": 0,
+          "line": 168
+        },
+        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "2d8ee86f22ed",
+      "type": "cue",
+      "front": "Example 1 · Check student thinking: In Try It 1b, in which direction does (y=-|x-2|) open?",
+      "back": "Listen for: The graph opens downward due to the negative sign on the outside of the absolute value symbols.",
+      "order": 17,
+      "after": [
+        "6583041cfc0f"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 1,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "66: 41 Example 1 continued; Example 2",
+          "item": 0,
+          "line": 232
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c13e038ee7d5",
+      "type": "cue",
+      "front": "Example 1 · Extend thinking: Write an equation for the graph. Solve for (x).",
+      "back": "Listen for: The equation is (|x+3|=-3x-9), and (x=-3).",
+      "order": 18,
+      "after": [
+        "2d8ee86f22ed"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.RtIExtend[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 1,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "66: 41 Example 1 continued; Example 2",
+          "item": 0,
+          "line": 240
+        },
+        "promptKey": "examples[n=1].teacherPrompts.RtIExtend[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e27938fe1145",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Why are you looking for values that make (y>0) and not (x>0)?",
+      "back": "Listen for: The value of (y) represents the value of the whole expression, which is the value that is greater than 0. Negative values for (x) can still result in a positive value for the function.",
+      "order": 19,
+      "after": [
+        "6ec4be0b2fcb"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "66: 41 Example 1 continued; Example 2",
+          "item": 0,
+          "line": 246
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "2075da0d5601",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Why is (60x) greater than (40x+40)?",
+      "back": "Listen for: Since you are trying to discover when the car will pass the motorcycle, the distance the car travels needs to be greater than the distance traveled by the motorcycle.",
+      "order": 20,
+      "after": [
+        "e27938fe1145"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "66: 41 Example 1 continued; Example 2",
+          "item": 1,
+          "line": 249
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "5c85862b9d28",
+      "type": "cue",
+      "front": "Example 2 · Support: Where on the graph of (y=-|x-5|) are the (y)-coordinates less than or equal to (-4)?",
+      "back": "Listen for: Over the intervals ((-∞,1]) and ([9,∞))",
+      "order": 21,
+      "after": [
+        "2075da0d5601"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.RtISupport[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 2,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "66: 41 Example 1 continued; Example 2",
+          "item": 0,
+          "line": 257
+        },
+        "promptKey": "examples[n=2].teacherPrompts.RtISupport[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e739e384a8a8",
+      "type": "cue",
+      "front": "Example 2 · Reasoning: Use Structure How does a graph show the solution of an equation?",
+      "back": "Listen for: If you graph the left side of the equation as one function and the right side as another, the (x)-value(s) of the intersection point(s) of the two graphs are solution(s) of the equation.",
+      "order": 22,
+      "after": [
+        "5c85862b9d28"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 2,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "67: 42 Example 2 continued; Example 3",
+          "item": 0,
+          "line": 296
+        },
+        "promptKey": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "0712d238413a",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: What is the purpose of creating a graph when you also need to create a table to find the solution?",
+      "back": "Listen for: The graph helps to narrow down the possible solutions, so you can create a table that includes the solution.",
+      "order": 23,
+      "after": [
+        "a292e2047e62"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "67: 42 Example 2 continued; Example 3",
+          "item": 0,
+          "line": 302
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "cca9b3865308",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: When looking at a table, how do you know when graphs will cross?",
+      "back": "Listen for: when both expressions equal the same value",
+      "order": 24,
+      "after": [
+        "0712d238413a"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "67: 42 Example 2 continued; Example 3",
+          "item": 1,
+          "line": 304
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "80f2061f76b0",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: How do you use the word table in everyday conversation?",
+      "back": "Listen for: We sit down at a table to eat our meals.",
+      "order": 25,
+      "after": [
+        "cca9b3865308"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "67: 42 Example 2 continued; Example 3",
+          "item": 0,
+          "line": 310
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "71faedad0592",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: What does the word table mean in math?",
+      "back": "Listen for: A rectangular arrangement of numbers and equations used to create graphs and solve problems.",
+      "order": 26,
+      "after": [
+        "80f2061f76b0"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "67: 42 Example 2 continued; Example 3",
+          "item": 1,
+          "line": 312
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "ae101cc8857b",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Does zoom mean to drive fast or to speed up in this example?",
+      "back": "Listen for: No; zoom in means to get closer to a more precise answer, or to magnify the picture as if using a zoom lens on a camera or microscope.",
+      "order": 27,
+      "after": [
+        "71faedad0592"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "67: 42 Example 2 continued; Example 3",
+          "item": 2,
+          "line": 315
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "121e1714e785",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: How does zooming in on the table help you get a better approximation?",
+      "back": "Listen for: It narrows down the center of attention. Instead of comparing numbers that are 1 unit apart, you can compare numbers that are one tenth of a unit apart.",
+      "order": 28,
+      "after": [
+        "ae101cc8857b"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "67: 42 Example 2 continued; Example 3",
+          "item": 3,
+          "line": 317
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "159598464e14",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Use context clues to explain what the word initial means.",
+      "back": "Listen for: first; first letter in each name",
+      "order": 29,
+      "after": [
+        "121e1714e785"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "67: 42 Example 2 continued; Example 3",
+          "item": 4,
+          "line": 320
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "afdd0af936e2",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Read the paragraph after the bold problem statement. What does initial estimate mean?",
+      "back": "Listen for: the first approximation of the answer",
+      "order": 30,
+      "after": [
+        "159598464e14"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "67: 42 Example 2 continued; Example 3",
+          "item": 5,
+          "line": 322
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "f1715936450e",
+      "type": "cue",
+      "front": "Example 3 · Check student thinking: Why do you not want to start searching for the solution using the thousandths interval?",
+      "back": "Listen for: It is much more efficient to narrow down your focus before you look at the thousandths place, so you are not looking through the spreadsheet for a long period of time.",
+      "order": 31,
+      "after": [
+        "afdd0af936e2"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_1-5_TE.tex",
+          "anchor": 3,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "68: 43 Example 3 continued; Example 4",
+          "item": 0,
+          "line": 376
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
       "id": "29c96eb46497",
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Sadie used a graph to solve an equation. The graph shows the line y = 2x + 3 and the downward V y = -|x+1| - 1 crossing at (-3, -3). What equation did Sadie solve? Explain how to verify your equation is correct.",
-      "order": 16,
+      "order": 32,
       "after": [
         "a292e2047e62"
       ],
@@ -204,7 +668,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "2x + 3 = -|x+1| - 1; the solution is x = -3. Verify by substituting: 2(-3) + 3 = -|-3+1| - 1 gives -3 = -3. …",
-      "order": 17,
+      "order": 33,
       "after": [
         "a292e2047e62"
       ],
@@ -216,7 +680,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "A homeowner has 32 feet of fencing to build three sides of a rectangular chicken run (the house is the fourth side).",
-      "order": 18,
+      "order": 34,
       "after": [
         "13c0ea170bae"
       ],
@@ -228,7 +692,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Make a table of values for the length, width, and area of different rectangular runs that use 32 feet of fencing. Then write a function for the area in terms of the width. (A(x) = x(32 - x)/2)",
-      "order": 19,
+      "order": 35,
       "after": [
         "85cf2c08a2ed"
       ],
@@ -240,7 +704,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Graph your function. (Downward parabola through (0,0), (16,128), (32,0).)",
-      "order": 20,
+      "order": 36,
       "after": [
         "85cf2c08a2ed"
       ],
@@ -252,7 +716,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Reason: explain what happens where the graph intersects the x-axis. (One dimension is 0, so the area is 0.)",
-      "order": 21,
+      "order": 37,
       "after": [
         "85cf2c08a2ed"
       ],
@@ -264,7 +728,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What are the formulas for the perimeter and area of a rectangle? → Perimeter = 2w + 2l; Area = lw.",
-      "order": 22,
+      "order": 38,
       "after": [
         "85cf2c08a2ed"
       ],
@@ -276,7 +740,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "How does the perimeter of the chicken run help you discover the area? → Fencing covers three sides, so w + 2l = 32 and l = (32 - w)/2. The area is w(32 - w)/2.",
-      "order": 23,
+      "order": 39,
       "after": [
         "f63a9eb621b9"
       ],
@@ -288,7 +752,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Write and graph a function for the area if the perimeter is 44 ft. List three possible values for the length, width and area. → f(x) = x(44 - x)/2 (the TE prints (44 - x)/2 and drops the width factor). Check students' graphs and values.",
-      "order": 24,
+      "order": 40,
       "after": [
         "2d9ae006c651"
       ],
@@ -300,7 +764,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "How can the graph help you solve A(x) = 0? → The x-intercepts are where A(x) = 0, so they are the solutions.",
-      "order": 25,
+      "order": 41,
       "after": [
         "59e5e4450414"
       ],
@@ -312,7 +776,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "How can you use the graph to calculate the length? → The x-coordinate is the width; the length is 16 minus half the width.",
-      "order": 26,
+      "order": 42,
       "after": [
         "d196b02725a8"
       ],
@@ -324,7 +788,7 @@
       "type": "cue",
       "front": "Habits of Mind, Make Sense and Persevere: ask?",
       "back": "For what widths will the area be at least 110 square feet? → 10 <= x <= 22 (read where the parabola is at or above y = 110).",
-      "order": 27,
+      "order": 43,
       "after": [
         "59d49853619f"
       ],
@@ -336,7 +800,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The opener is a quadratic area model, not a linear one; use the Habits of Mind question (area at least 110) as the bridge, because it is Example 2A in disguise: draw y = 110 and read where the parabola is above it. Do not let the table-building in part A eat the period; two or three rows and the function are enough.",
-      "order": 28,
+      "order": 44,
       "after": [
         "85cf2c08a2ed"
       ],
@@ -348,7 +812,7 @@
       "type": "anchor",
       "front": "IXL for example 1?",
       "back": "M69 Solve a system of equations by graphing",
-      "order": 29,
+      "order": 45,
       "after": [
         "76f5fd3c9c15"
       ],
@@ -360,7 +824,7 @@
       "type": "anchor",
       "front": "IXL for example 2?",
       "back": "T86 Solve a system of equations by graphing: word problems",
-      "order": 30,
+      "order": 46,
       "after": [
         "6ec4be0b2fcb"
       ],
@@ -372,7 +836,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "FM2 Approximate solutions using a table",
-      "order": 31,
+      "order": 47,
       "after": [
         "a292e2047e62"
       ],
@@ -384,7 +848,7 @@
       "type": "anchor",
       "front": "IXL for example 3? (2)",
       "back": "ZBH Find solutions using a table",
-      "order": 32,
+      "order": 48,
       "after": [
         "a292e2047e62"
       ],

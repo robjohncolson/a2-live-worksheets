@@ -1,0 +1,757 @@
+{
+  "lesson": "1-3",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why can a function have more than one rule?",
+      "answer": "Pieces of a graph can have more than one rule for different parts of the domain. In this example, there are two different rules—one when Alani has worked 40 hours or less, and one for more than 40 hours.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 1 Model With a Piecewise-Defined Function Build Procedural Fluency From Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "40: 23 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 171
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What does the equation (P(x)=480+18(x-40)) represent in this situation?",
+      "answer": "In this equation, (x) represents the number of hours worked. Alani makes $12/h for the first 40 hours, which equals $480, and (18(x-40)) represents the additional hours Alani works after 40 hours at $18/h. The total represents Alani's weekly earnings.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 1 Model With a Piecewise-Defined Function Build Procedural Fluency From Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "40: 23 STEP 2 Understand & Apply",
+        "item": 1,
+        "line": 173
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Is there more than one way to represent the function?",
+      "answer": "Yes, when (x>3), the function can also be represented as ((35x-105)+120).",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples—ADDITIONAL EXAMPLE 1 The table shows how much a car rental costs per day. Use the table to write and graph the function for the car rental cost based on the number of days rented. Explain. # of Rental Days | Cost; 1 | 40; 2 | 80; 3 | 120; 4 | 155; 5 | 190; 6 | 225; 7 | 260 For the first 3 days, the car rental costs $40 per day. After renting for 3 days, the rental cost is decreased to $35 per day. The equation for each piece of the graph is: (f(x)={ 40x, if 0≤ x≤3; 35(x-3)+120, if x>3 }) Example 1 Help students use information given in a table to write and graph a piecewise-defined function.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Additional Example 1 discrete rental graph: orange filled points (1,40),(2,80),(3,120) with orange label f(x)=40x; blue filled (4,155),(5,190),(6,225),(7,260), blue label f(x)=35(x-3)+120. x-axis Number of Rental Days labels 0,2,4,6,8,10, unit grid; y-axis Cost labels 0,50,100,150,200,250,300, grid 25. Arrowed axes, no connecting lines."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 23 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 221
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine if two pieces of a function's graph will be connected?",
+      "answer": "At the x-coordinate where two intervals of the function pieces come together, if the two functions have the same y-value, then the two pieces will connect.",
+      "variant": "additional",
+      "notes": [
+        "Additional Examples are available at SavvasRealize.com. Screenshots show Go back, ESSENTIAL QUESTION, SOLUTION; Example 2 also shows TRY ANOTHER ONE."
+      ],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 2 Graph the piecewise function. (f(x)={ x^2-6, -4≤ x<0; 8, 0≤ x<5; -1/3x, 5≤ x<10 }) See graph. Example 2 Help students determine when function pieces are connected.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Additional Example 2 orange graph: parabola x^2-6 from filled (-4,10) to open (0,-6); horizontal y=8 from filled (0,8) to open (5,8); line y=-x/3 from filled (5,-5/3) to open (10,-10/3). Labels f(x)=x^2-6, f(x)=8, f(x)=-x/3. x/y arrowed axes, origin O, labels -8,-4,4,8 on x and -8,-4,4,8 on y, grid spacing 2, visible [-10,10] by [-10,10]."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 23 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 232
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why can x-values only be included in one interval?",
+      "answer": "In order to be a function, x-values cannot repeat.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 2 Graph a Piecewise-Defined Function Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "41: 24 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 247
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How do you know the function is decreasing when (-2<x<0)?",
+      "answer": "Looking at the graph of the parabola, you can see that it is going down to a minimum when (-2<x<0).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 2 Graph a Piecewise-Defined Function Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "41: 24 STEP 2 Understand & Apply",
+        "item": 1,
+        "line": 249
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Are there any gaps in the piecewise-defined functions?",
+      "answer": "Yes; in Try It 2b, there is a gap in the domain from (-1) to 0.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "41: 24 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 288
+      }
+    },
+    {
+      "example": 2,
+      "category": "CommonError",
+      "key": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Some students may state that the domain is (-4≤ x≤4) and the range is (-2≤ y≤3). They may not realize the gaps should not be included in the domain or range. Have students run their finger over the graph to check that every number in the domain and range is included.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 2,
+        "category": "CommonError",
+        "block": 0,
+        "page": "41: 24 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 291
+      }
+    },
+    {
+      "example": 2,
+      "category": "HabitsOfMind",
+      "key": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Reason Why is the interval for the domain of the second piece of the function in Try It! 2a defined using the (<) symbol rather than the (≤) symbol?",
+      "answer": "The (<) symbol is used since each input can only be matched with one rule and the endpoints ((-2) and 1) are included in the first and third rules.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use with EXAMPLES 1 & 2",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 2,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "41: 24 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 297
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the graph?",
+      "answer": "The graph is composed of three separate linear pieces.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 3 Write a Piecewise-Defined Rule From a Graph Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 306
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What does a horizontal line in a graph mean?",
+      "answer": "The slope is 0, and there are multiple x-values with the same y-value.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 3 Write a Piecewise-Defined Rule From a Graph Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 1,
+        "line": 308
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "kind": "question",
+      "question": "Given the slope, how do you determine what points to use to find the value of (b) in the slope-intercept form of a linear function (f(x)=mx+b)?",
+      "answer": "The x-values can be any values that are located in the domain, and the y-values are the corresponding values in the range.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 3 Write a Piecewise-Defined Rule From a Graph Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 2,
+        "line": 310
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "Explain how the word separate is used in this example.",
+      "answer": "as an adjective in the phrase separate linear pieces",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners—Use with EXAMPLE 3 LISTENING—BEGINNING Ask students to listen as you pronounce the word separate as a verb (sep-uh-rate) and then as an adjective (sep-er-it). Then have students listen to the following phrases and identify whether separate is used as a verb or an adjective: \"two separate questions\"; \"to separate the fighting boys\"; \"to separate the field by a fence\"; \"three separate classrooms.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 347
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "When in math might the word separate be used differently than in the example?",
+      "answer": "Separate the variable terms from the constants.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners—Use with EXAMPLE 3 LISTENING—BEGINNING Ask students to listen as you pronounce the word separate as a verb (sep-uh-rate) and then as an adjective (sep-er-it). Then have students listen to the following phrases and identify whether separate is used as a verb or an adjective: \"two separate questions\"; \"to separate the fighting boys\"; \"to separate the field by a fence\"; \"three separate classrooms.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 1,
+        "line": 349
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "In the situations you discussed, what happens when a rule is broken?",
+      "answer": "A person gets in trouble.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners—Use with EXAMPLE 3 LISTENING—BEGINNING Ask students to listen as you pronounce the word separate as a verb (sep-uh-rate) and then as an adjective (sep-er-it). Then have students listen to the following phrases and identify whether separate is used as a verb or an adjective: \"two separate questions\"; \"to separate the fighting boys\"; \"to separate the field by a fence\"; \"three separate classrooms.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 2,
+        "line": 352
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "How are rules used in this example?",
+      "answer": "A rule is a way to describe the output for each input in a function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners—Use with EXAMPLE 3 LISTENING—BEGINNING Ask students to listen as you pronounce the word separate as a verb (sep-uh-rate) and then as an adjective (sep-er-it). Then have students listen to the following phrases and identify whether separate is used as a verb or an adjective: \"two separate questions\"; \"to separate the fighting boys\"; \"to separate the field by a fence\"; \"three separate classrooms.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 3,
+        "line": 354
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Can a mathematical rule be broken?",
+      "answer": "No, someone may apply a rule incorrectly, but that would result in a wrong answer, not the rule being broken.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners—Use with EXAMPLE 3 LISTENING—BEGINNING Ask students to listen as you pronounce the word separate as a verb (sep-uh-rate) and then as an adjective (sep-er-it). Then have students listen to the following phrases and identify whether separate is used as a verb or an adjective: \"two separate questions\"; \"to separate the fighting boys\"; \"to separate the field by a fence\"; \"three separate classrooms.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 4,
+        "line": 356
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "What does the suffix -wise seem to indicate?",
+      "answer": "a way of doing or being, or in a particular direction",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners—Use with EXAMPLE 3 LISTENING—BEGINNING Ask students to listen as you pronounce the word separate as a verb (sep-uh-rate) and then as an adjective (sep-er-it). Then have students listen to the following phrases and identify whether separate is used as a verb or an adjective: \"two separate questions\"; \"to separate the fighting boys\"; \"to separate the field by a fence\"; \"three separate classrooms.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 5,
+        "line": 359
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "What does the word piece mean?",
+      "answer": "part of a whole",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners—Use with EXAMPLE 3 LISTENING—BEGINNING Ask students to listen as you pronounce the word separate as a verb (sep-uh-rate) and then as an adjective (sep-er-it). Then have students listen to the following phrases and identify whether separate is used as a verb or an adjective: \"two separate questions\"; \"to separate the fighting boys\"; \"to separate the field by a fence\"; \"three separate classrooms.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 6,
+        "line": 361
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[7]",
+      "kind": "question",
+      "question": "How can those ideas be combined to give you a better understanding of the term piecewise-defined function?",
+      "answer": "a function that is broken up into pieces",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners—Use with EXAMPLE 3 LISTENING—BEGINNING Ask students to listen as you pronounce the word separate as a verb (sep-uh-rate) and then as an adjective (sep-er-it). Then have students listen to the following phrases and identify whether separate is used as a verb or an adjective: \"two separate questions\"; \"to separate the fighting boys\"; \"to separate the field by a fence\"; \"three separate classrooms.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 25 STEP 2 Understand & Apply",
+        "item": 7,
+        "line": 363
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What does ((h,k)) represent in the graph of (f)?",
+      "answer": "The point ((h,k)) is the vertex of the graph, where the function has its minimum and where the slope changes sign as (x) increases.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 4 Rewrite an Absolute Value Function As a Piecewise-Defined Function Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "43: 26 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 371
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Why do you choose x-values to determine the slope and equation?",
+      "answer": "Choosing x-values on each side of the vertex helps you to determine the slope of each piece. You can then use the points to determine the equation of each line.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 4 Rewrite an Absolute Value Function As a Piecewise-Defined Function Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "43: 26 STEP 2 Understand & Apply",
+        "item": 1,
+        "line": 373
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How do the piecewise equations compare to the original equation?",
+      "answer": "For one piece of the function the absolute value signs are removed, and for the other the addition or subtraction sign is changed.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "43: 26 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 405
+      }
+    },
+    {
+      "example": 4,
+      "category": "HabitsOfMind",
+      "key": "examples[n=4].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Use Structure Why can the graph of an absolute value function also be defined as a piecewise-defined function?",
+      "answer": "Absolute value graphs consist of pieces of two lines with opposite slopes.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use with EXAMPLES 3, & 4",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 4,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "43: 26 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 410
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "How do you determine the absolute value function from the graph provided? State the function.",
+      "answer": "The vertex of the absolute value function is ((8,0)) and the slope is 1, so the function is (f(x)=|x-8|).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 4 Some students may struggle with writing a rule for an absolute value function. Have students practice using a graph to write a rule for an absolute value function.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Blue V with vertex (8,0), left branch through (0,8) and right branch drawn toward (12,3.2), arrowheads both upper ends; source answer identifies f(x)=|x-8| though drawn right branch is shallower than slope 1. Unit square grid, arrowed x/y axes, origin O, labels 2,4,6,8,10 on each positive axis; window approximately [-1,12] by [-1,12]. No marked points."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "43: 26 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 418
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "How do you determine a piecewise-defined function from the graph provided? State the function.",
+      "answer": "Since this is an absolute value function, the vertex is where the slope changes from negative to positive. The two pieces of the function can be represented as (f(x)={-x+8, if x<8; x-8, if x≥8}).",
+      "variant": "example",
+      "notes": [
+        "Printed right branch appears shallower than the slope 1 stated in the answer; likely a drawing inconsistency."
+      ],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 4 Some students may struggle with writing a rule for an absolute value function. Have students practice using a graph to write a rule for an absolute value function.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Blue V with vertex (8,0), left branch through (0,8) and right branch drawn toward (12,3.2), arrowheads both upper ends; source answer identifies f(x)=|x-8| though drawn right branch is shallower than slope 1. Unit square grid, arrowed x/y axes, origin O, labels 2,4,6,8,10 on each positive axis; window approximately [-1,12] by [-1,12]. No marked points."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "43: 26 STEP 2 Understand & Apply",
+        "item": 1,
+        "line": 420
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the graph?",
+      "answer": "An open circle on the graph means the point is not included in that piece of the graph, and a closed circle means the point is included. The graph looks like a staircase.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 5 Graph a Step Function Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "44: 27 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 429
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How does a step function compare to a piecewise-defined function?",
+      "answer": "A step function is a piecewise-defined function containing all constant pieces.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 5 Graph a Step Function Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "44: 27 STEP 2 Understand & Apply",
+        "item": 1,
+        "line": 431
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "kind": "question",
+      "question": "Are step functions continuous functions? Explain.",
+      "answer": "No, step functions are not continuous. You need to remove your pencil from the paper when sketching the graph of a step function, showing that there are gaps.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 5 Graph a Step Function Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "44: 27 STEP 2 Understand & Apply",
+        "item": 2,
+        "line": 433
+      }
+    },
+    {
+      "example": 5,
+      "category": "InlineCommonError",
+      "key": "examples[n=5].teacherPrompts.inlineCommonError[0]",
+      "kind": "trap",
+      "question": "What misconception should I watch for?",
+      "answer": "You might think that the range of this function would be the interval [5,14], but only the values 5,8,11, and 14 are possible outputs.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 5,
+        "category": "InlineCommonError",
+        "block": 0,
+        "item": 0,
+        "line": 454,
+        "page": "44: 27 STEP 2 Understand & Apply"
+      }
+    },
+    {
+      "example": 5,
+      "category": "HabitsOfMind",
+      "key": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Make Sense and Persevere How would a piecewise-defined rule for the function in the Try It! show that the graph is a step function?",
+      "answer": "The rule for each interval would simply be a constant.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use with EXAMPLE 5",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 5,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "44: 27 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 469
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtIExtend",
+      "key": "examples[n=5].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "State the minimum and maximum and create a table to represent the following information: Domain: ({x | -3<x≤12}) Range: ({y | -5,4,13,21,30})",
+      "answer": "Answers may vary. Sample: Minimum (= -5); Maximum (=30). (x) | (-3<x≤0) | (0<x≤3) | (3<x≤6) | (6<x≤9) | (9<x≤12); (y) | (-5) | 4 | 13 | 21 | 30",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 5 Have students explore creating a table when given the domain and range of the function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-3_TE.tex",
+        "anchor": 5,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "44: 27 STEP 2 Understand & Apply",
+        "item": 0,
+        "line": 475
+      }
+    }
+  ]
+}

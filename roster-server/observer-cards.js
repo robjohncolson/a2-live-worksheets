@@ -205,7 +205,12 @@ export function mountTeacherCards(app, { db, store, now = () => new Date() }) {
           await update(winner, card);
         }
       }
-    } catch { return res.status(503).json({ error: 'Observer card service unavailable', written, unchanged }); }
+    } catch (error) {
+      if (error?.code === 'P0001' && error.message === 'atomic_plan_required') {
+        return res.status(409).json({ error: 'atomic_plan_required', written, unchanged });
+      }
+      return res.status(503).json({ error: 'Observer card service unavailable', written, unchanged });
+    }
     res.json({ ok: true, written, unchanged });
   }, parserErrors);
 }

@@ -2664,3 +2664,112 @@ hit). Both files pass 3x alone; see the sprint report for the full-suite run.
 
 Result: "npx vitest run" reports 0 failed on this box; j7 (4 tests) is listed as skipped, not failed.
 
+## 2026-10-26 — Class Log textbook guidance in practice
+
+The lesson-tree build imports example-specific TE questions, expected responses, and
+misconception/support prompts, retaining portable source extractions. Daily Android decks
+reserve space for the examples' guidance, keep multipart responses together, and retain
+the existing 14-card limit. Production tree builds require guidance for every kept example.
+
+- Final focused verification: 63 tests passed across teacher-prompts, lesson-teacher-source,
+  teacher-guidance-flow, lesson-tree, tree-deck, and draft-card-decks.
+- Full root Vitest run: 3,438 passed, 2 failed. Both failures are in
+  `tests/a2-objectives-display.test.js`: "shows authored text, follows section pills and live
+  pacing, and expands accessibly" and "lists the whole week for all three sections when the
+  teacher expands the strip". These fixtures assume Lesson 1-3 has no authored objectives;
+  the pre-existing working-tree objectives changes add them. This task leaves those files alone.
+- Full roster-server Vitest run: 1,792 passed.
+- Pytest: 194 passed with two existing datetime deprecation warnings, using
+  `--basetemp=roster-local/teacher-guidance-pytest-temp`. The default host temp directory
+  was inaccessible; the workspace-temp rerun passed.
+- All three rebuilt lesson trees and the October 26–28 deck files pass validation.
+  Existing server card IDs were preserved. After network access was enabled, published
+  October 26 C/D, October 27 C/G, and October 28 D. Read-back from `/teacher/decks`
+  matched every prepared item exactly: 14 cards per deck, including six or seven
+  example-specific teacher-guidance cards. No phone-side confirmation was performed.
+
+The installed `A2 Tomorrow Draft` task was verified Ready with its enabled 20:30
+trigger and an action targeting this repository's `tools/nightly_tomorrow.ps1`.
+It rebuilds and publishes through the updated generators. No Android APK change
+is required. Open the class's Card screen to fetch the new deck, then return to
+Rehearse/Tree; reopening Rehearse alone reads the existing cache.
+
+### C main Card: concise teacher brief
+
+Added a `teacherBrief` view for the phone's main Card: IXL drill codes/names,
+last confirmed stopping point, today's sequence/destination, and next class.
+The publisher uses it when present; the detailed `observerCard` continues to
+drive practice. The brief is capped at Android's 2,000 UTF-16-unit limit and
+omits the student sentence-frame box.
+
+Published C's October 26 brief (894 units), using the October 22 outcome rather
+than its stale student label: WRZ ran; W67 did not. Server read-back confirmed
+the brief fields, the original card ID, and all 14 practice cards unchanged.
+Focused verification: 66 passed across teacher-brief, push-observer-cards,
+draft-observer-cards, draft-card-decks, and tree-deck. No server or Android
+implementation changed; the full-suite results above remain the broader baseline.
+
+
+
+## Class Log summary continuity ? 2026-10-26
+
+Implemented and published next-class continuity for C/G on Oct 27 and D on Oct 28. A shared projection reads the latest same-course/section recording strictly before the target date (maximum 14 days), checks companion Markdown for unusable recordings, anonymizes known roster names, and supports reviewed arrays bound to the exact source date/recordedAt revision. Plans and ?not heard? activities never become completed-work evidence; promises are reminders to check and recorded questions are not automatically unresolved. Raw summaries remain ignored local data.
+
+The main card receives dated recording/follow-up sections within Android's 2,000 UTF-16-unit limit. Daily decks reserve up to three nodeless continuity cues while preserving Teacher's Edition guidance and multipart groups. Their daily_ IDs hash both prompt and answer, so corrected reminders reset rehearsal streaks while unchanged replays retain them. These reminders never enter permanent lesson mastery. Main-card/deck custom-file runs require explicit --summaries opt-in.
+
+The nightly workflow now publishes only each section's next meeting and returns nonzero on draft/card/tree/deck failure. Verified the existing A2 Tomorrow Draft task is enabled/Ready at20:30 and points to this workspace. A complete live run of tools/nightly_tomorrow.ps1 -Date 2026-10-27 succeeded. Live readback matched authored cards and generated decks: each C/G/D deck has14 items,3 continuity reminders,6 TE prompts, and Android-safe text lengths.
+
+Deployment: narrow compatibility commit bb0817e (mixed node/nodeless server validation, Desk tree filtering, tests and PWA build stamp) pushed to main; Railway and Vercel reported success. No Android rebuild is needed; the installed app already supports mixed decks. Other existing workspace changes remain uncommitted.
+
+Validation:
+- Server:98 files,1,793 tests passed.
+- Python:194 tests passed on isolated rerun. The initial concurrent run hit one30-second Node/JSDOM subprocess timeout in test_schoology_best_wins.py; it did not recur without the competing full Vitest run.
+- Focused final card/selector tests:27 passed; final deck correction/CLI tests:23 passed; source projection tests:13 passed; tree selector tests:11 passed; Desk/PWA deployment checks:40 passed.
+- Full root Vitest:3,454 passed,3 failed,16 skipped; one additional suite could not collect. The two a2-objectives-display failures are the previously recorded authored1-3 objective expectations. a2-secrets and a2-fork-freeze could not scan ignored roster-local/teacher-guidance-pytest-temp because Windows denied directory access; moving that old test artifact was also denied. No unrelated tests or access controls were changed. Final regression fixes were verified with focused tests after the full run.
+- GitNexus impacts before implementation were LOW for existing edited symbols; new helpers not yet indexed were reviewed within their direct card/deck callers. Staged deployment detect-changes reported8 files/8 symbols and only the expected tree/deck flows (MEDIUM overall).
+
+Evidence: roster-local/continuity-live-verification.json, continuity-nightly-live.log, continuity-server-test.log, continuity-root-tests.log, continuity-card-final-tests.log, and continuity-pytest-rerun.log.
+
+## Class Log atomic plans and simplified Android UI - 2026-10-26
+
+The Android home now opens dated Today/Tomorrow class lists with Plan, Practice,
+and Last class actions for all scheduled courses. Recording status stays visible;
+active Pause/Stop controls remain available, and processing/recovery moves to
+Tools. Plans prioritize IXL, last-class evidence, today's sequence and reminders,
+with expandable source and observer details. Summary sharing includes a next-class
+planning handoff. Durable follow-up status is separate from practice grades.
+
+One deterministic server-side compiler now produces the card, deck, source and
+routine. Migration 0048 publishes them in one transaction with scope/head version
+checks, immutable summary/package history, persistent commitment statuses,
+idempotent operation IDs and database guards against legacy split writes. Summary
+ingestion and commitment changes rebuild saved future packages; a failed rebuild
+retains the prior complete package and records pending work. Explicit factual
+corrections keep source-date provenance. The nightly task uses the same compiler
+and atomic publisher; see docs/CLASS_PLAN_WORKFLOW.md.
+
+Validation at implementation handoff:
+- Android: 522 JVM tests passed; debug APK built and installed on the SM_S921U1.
+  All 20 session records and both settings/encrypted-credential files were
+  verified unchanged across the update. The final screen review awaits phone
+  unlock; no PIN was requested or entered.
+- Server: 99 files, 1,811 tests passed. Final focused plan/bootstrap verification:
+  20 tests passed, including migration replay on populated data, rollback,
+  immutable history, blocked legacy writes, quality/privacy filtering, durable
+  reviews, idempotent actions and missing-schema summary fallback.
+- Compiler/authoring: 67 focused tests passed. Reviewed C/G Oct 27 and D Oct 28
+  packages compile to 14 items each: three separate continuity cues, eleven
+  lesson nodes, and six Teacher's Edition guidance items. IXL appears first;
+  card bodies are below Android's 2,000 UTF-16-unit limit.
+- Root full suite: 3,469 passed, 3 failed, 16 skipped; one additional suite could
+  not collect. The failures are the same two authored-objective expectations and
+  the inaccessible ignored teacher-guidance-pytest-temp directory documented
+  above. Final PWA/deployment/tree checks: 44 passed.
+- Python: 194 passed, with the two existing datetime.utcnow deprecation warnings.
+
+At this checkpoint the phone is updated and server code is ready for deployment.
+Supabase authentication is not connected, so migration 0048 and initial atomic
+package publication have not been applied to production. Existing legacy reads
+and summary writes remain supported until the migration is installed. The APK,
+source patch/archive, test logs and install-preservation evidence are retained
+under state/cross-agent/class-log-release and the ignored roster-local directories.

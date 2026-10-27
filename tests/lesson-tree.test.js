@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { buildTree, cardTraps, clip, languageWords, nodeId, treeProblem } from '../scripts/lib/lesson-tree.mjs';
+import { buildTree, cardTraps, clip, languageWords, nodeId, treeProblem, TREE_LIMITS } from '../scripts/lib/lesson-tree.mjs';
 
 const fixture = JSON.parse(readFileSync(new URL('./fixtures/lesson-tree/prep-1-3.json', import.meta.url), 'utf8'));
 const golden = JSON.parse(readFileSync(new URL('./fixtures/lesson-tree/golden-1-3.json', import.meta.url), 'utf8'));
@@ -88,8 +88,11 @@ describe('treeProblem', () => {
     const dup = clone(golden);
     dup.nodes[3].id = dup.nodes[2].id;
     expect(treeProblem(dup)).toMatch(/duplicate node id/);
-    expect(treeProblem({ nodes: golden.nodes.slice(0, 5) })).toMatch(/6 to 60 nodes \(got 5\)/);
-    expect(treeProblem({ nodes: Array.from({ length: 61 }, (_, i) => ({ ...golden.nodes[0], id: i.toString(16).padStart(12, '0'), after: [] })) })).toMatch(/got 61/);
+    expect(treeProblem({ nodes: golden.nodes.slice(0, 5) })).toContain('(got 5)');
+    const large = { nodes: Array.from({ length: TREE_LIMITS.maxNodes }, (_, i) => ({ ...golden.nodes[0], id: i.toString(16).padStart(12, '0'), after: [] })) };
+    expect(treeProblem(large)).toBeNull();
+    large.nodes.push({ ...golden.nodes[0], id: 'ffffffffffff', after: [] });
+    expect(treeProblem(large)).toContain(`(got ${TREE_LIMITS.maxNodes + 1})`);
     const self = clone(golden);
     self.nodes[4].after = [self.nodes[4].id];
     expect(treeProblem(self)).toMatch(/after names itself/);

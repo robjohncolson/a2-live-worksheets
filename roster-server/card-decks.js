@@ -214,6 +214,7 @@ export function mountTeacherDecks(app, { db, store, mastery }) {
         card_id: deck.cardId, items: deck.items, model: deck.model, generated_at: deck.generatedAt, content_hash: deck.contentHash,
       })));
     } catch (error) {
+      if (error?.code === 'P0001' && error.message === 'atomic_plan_required') return res.status(409).json({ error: 'atomic_plan_required' });
       const missing = error?.code === 'P0002' && /^card_not_found:([0-9a-f-]{36})$/i.exec(String(error.message || ''));
       if (missing) return res.status(404).json({ error: `Card not found: ${missing[1].toLowerCase()}` });
       return unavailable(res);
@@ -253,7 +254,11 @@ export function mountTeacherDecks(app, { db, store, mastery }) {
     const cardId = req.query.cardId;
     if (!isUuid(cardId)) return res.status(400).json({ error: 'cardId must be a card uuid' });
     let deleted;
-    try { deleted = await storage().deleteDeck(cardId.toLowerCase()); } catch { return unavailable(res); }
+    try { deleted = await storage().deleteDeck(cardId.toLowerCase()); }
+    catch (error) {
+      if (error?.code === 'P0001' && error.message === 'atomic_plan_required') return res.status(409).json({ error: 'atomic_plan_required' });
+      return unavailable(res);
+    }
     res.json({ ok: true, deleted });
   });
 }

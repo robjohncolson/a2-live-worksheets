@@ -1,0 +1,584 @@
+{
+  "lesson": "1-5",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why does the solution to the equation correspond to finding the (x)-coordinate of the intersection of the graphs?",
+      "answer": "The intersection of the two graphs is where the outputs of (-3x+20) and (0.2x+4) are equal for the same (x)-value. For (x)-coordinates where the graphs do not intersect, the outputs of (-3x+20) and (0.2x+4) are not equal.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use a Graph to Solve an Equation Pose Purposeful Questions. PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "65: 40 Example 1",
+        "item": 0,
+        "line": 168
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How does using the graph to solve the inequality compare to solving the equation algebraically?",
+      "answer": "The graph shows the solution where the graph of (y=x^2-6x-7) has larger (y)-coordinates than the graph of (y=-2x-7). An algebraic solution shows the values of (x) that make the expression (x^2-6x-7) greater than (-2x-7).",
+      "variant": "additional",
+      "notes": [
+        "Printed teacher answer says (-2x-7); digital prompt and plotted ascending line use (2x-7). Digital controls: Go back, ESSENTIAL QUESTION, SOLUTION."
+      ],
+      "context": {
+        "text": "Additional Examples: ADDITIONAL EXAMPLE 2 Use the graph to solve the inequality (x^2-6x-7>2x-7). See back of book. The digital screenshot shows a SOLUTION button but no textual solution. Example 2 Students use a graph to solve an inequality.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Gray unit grid, x-axis labels -10,-5,0,5,10 and y-axis labels -15,-10,-5,0,5,10,15; window approximately [-11,13] by [-19,20]. Red upward parabola y=x^2-6x-7 with vertex (3,-16), intercepts (-1,0),(7,0),(0,-7); blue ascending line y=2x-7. Black filled intersection dots labeled (0,-7) and (8,9). Curves leave the frame without visible arrowheads; axes have no letter labels."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "65: 40 Example 1",
+        "item": 0,
+        "line": 179
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you check your solution using your graphing calculator?",
+      "answer": "Create a table including the approximate intersection points. When the (y)-values are approaching the same number, the approximate solution is (x).",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples are available at SavvasRealize.com. ADDITIONAL EXAMPLE 4 Using the INTERSECT feature on your graphing calculator, approximate the solution of the equation to the nearest thousandth. (-|x-6|+1=-5|x+3|+2) The graphs of (y=-|x-6|+1) and (y=-5|x+3|+2) intersect at approximately the points ((-1.333,-6.333)) and ((-5.5,-10.5)). Therefore, the solutions of the equation are (x=-1.333) and (x=-5.5). Example 4 Students approximate the solution of an inequality involving a negative absolute value expression and a negative quadratic expression. Printed teacher description says inequality and negative quadratic; digital example is an equation between two absolute value expressions. Controls: Go back, ESSENTIAL QUESTION, TRY ANOTHER ONE, SOLUTION.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Gray square grid, axes x,y; unit grid with labeled x values -8,4,8 and labeled y values -4,4,8, zero unlabeled. Window [-12,12] by [-12,12]. Orange inverted V y=-|x-6|+1 has vertex (6,1), x-intercepts 5,7, y-intercept -5, arrows at lower left and right. Blue inverted V y=-5|x+3|+2 has vertex (-3,2), y-intercept -13 below the frame; arrows at lower branches. No dots at intersections."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "65: 40 Example 1",
+        "item": 0,
+        "line": 194
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "In Part B, how is it beneficial to use the graph from the two new equations to solve for (y)?",
+      "answer": "In this case, solving the equation algebraically would be more difficult than using the graph. The intersection point of the two equations gives the (x)-value that is the solution of the equation. Check your solutions for (x) by substituting them back into the original equation.",
+      "variant": "example",
+      "notes": [
+        "Printed solve for y; likely solve for x."
+      ],
+      "context": {
+        "text": "",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "66: 41 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 220
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "In Try It 1b, in which direction does (y=-|x-2|) open?",
+      "answer": "The graph opens downward due to the negative sign on the outside of the absolute value symbols.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "66: 41 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 232
+      }
+    },
+    {
+      "example": 1,
+      "category": "RtIExtend",
+      "key": "examples[n=1].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Write an equation for the graph. Solve for (x).",
+      "answer": "The equation is (|x+3|=-3x-9), and (x=-3).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 1 Students discover the equation from the graph in order to solve for (x).",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Blue V y=|x+3| vertex (-3,0), y-intercept (0,3); red line y=-3x-9 intersects at vertex (-3,0) and runs through (-6,9). Arrowheads on both ends of each curve. Axes x,y arrowed both ends, unit grid, x labels -8,-6,-4,-2,O; y labels 2,4,6,8. Window [-10,2] by [-2,10]. No intersection dot."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 1,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "66: 41 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 240
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "Why are you looking for values that make (y>0) and not (x>0)?",
+      "answer": "The value of (y) represents the value of the whole expression, which is the value that is greater than 0. Negative values for (x) can still result in a positive value for the function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a One-Variable Inequality by Graphing Pose Purposeful Questions. PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "66: 41 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 246
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Why is (60x) greater than (40x+40)?",
+      "answer": "Since you are trying to discover when the car will pass the motorcycle, the distance the car travels needs to be greater than the distance traveled by the motorcycle.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a One-Variable Inequality by Graphing Pose Purposeful Questions. PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "66: 41 Example 1 continued; Example 2",
+        "item": 1,
+        "line": 249
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtISupport",
+      "key": "examples[n=2].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "Where on the graph of (y=-|x-5|) are the (y)-coordinates less than or equal to (-4)?",
+      "answer": "Over the intervals ((-∞,1]) and ([9,∞))",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 2 Work with students to help them recognize and use the graph of an absolute value function to find the solutions of an inequality.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Blue inverted V labeled y=-|x-5| with vertex (5,0), y-intercept (0,-5); red horizontal line labeled y=-4. Intersections (1,-4),(9,-4) unmarked. All curve ends have arrows. Axes x,y arrowed both ends, O at origin; unit grid; x labels -2,2,4,6,8,10; y labels -6,-4,-2,2,4,6. Window [-4,12] by [-8,8]."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 2,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "66: 41 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 257
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtISupport",
+      "key": "examples[n=2].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "What are the solutions to (-|x-5|≤-4)?",
+      "answer": "Since the graph of the function (y=-|x-4|) is below (-4) over the intervals ((-∞,1]) and ([9,∞)), (-|x-5|≤-4) when (1≥ x) or (x≥9).",
+      "variant": "example",
+      "notes": [
+        "Printed function in explanation uses x-4; likely x-5, as in the graph and question. Printed below includes equality endpoints."
+      ],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 2 Work with students to help them recognize and use the graph of an absolute value function to find the solutions of an inequality.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Blue inverted V labeled y=-|x-5| with vertex (5,0), y-intercept (0,-5); red horizontal line labeled y=-4. Intersections (1,-4),(9,-4) unmarked. All curve ends have arrows. Axes x,y arrowed both ends, O at origin; unit grid; x labels -2,2,4,6,8,10; y labels -6,-4,-2,2,4,6. Window [-4,12] by [-8,8]."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 2,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "66: 41 Example 1 continued; Example 2",
+        "item": 1,
+        "line": 259
+      }
+    },
+    {
+      "example": 2,
+      "category": "HabitsOfMind",
+      "key": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Use Structure How does a graph show the solution of an equation?",
+      "answer": "If you graph the left side of the equation as one function and the right side as another, the (x)-value(s) of the intersection point(s) of the two graphs are solution(s) of the equation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use with EXAMPLES 1 & 2",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 2,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "67: 42 Example 2 continued; Example 3",
+        "item": 0,
+        "line": 296
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What is the purpose of creating a graph when you also need to create a table to find the solution?",
+      "answer": "The graph helps to narrow down the possible solutions, so you can create a table that includes the solution.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use a Table to Solve an Equation Use and Connect Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "67: 42 Example 2 continued; Example 3",
+        "item": 0,
+        "line": 302
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "When looking at a table, how do you know when graphs will cross?",
+      "answer": "when both expressions equal the same value",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use a Table to Solve an Equation Use and Connect Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "67: 42 Example 2 continued; Example 3",
+        "item": 1,
+        "line": 304
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "How do you use the word table in everyday conversation?",
+      "answer": "We sit down at a table to eat our meals.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Discuss the different meanings of the word table. It can be a piece of furniture with a flat top that you put things on. A table is also a written set of facts and figures arranged in columns and rows.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "67: 42 Example 2 continued; Example 3",
+        "item": 0,
+        "line": 310
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What does the word table mean in math?",
+      "answer": "A rectangular arrangement of numbers and equations used to create graphs and solve problems.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Discuss the different meanings of the word table. It can be a piece of furniture with a flat top that you put things on. A table is also a written set of facts and figures arranged in columns and rows.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "67: 42 Example 2 continued; Example 3",
+        "item": 1,
+        "line": 312
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Does zoom mean to drive fast or to speed up in this example?",
+      "answer": "No; zoom in means to get closer to a more precise answer, or to magnify the picture as if using a zoom lens on a camera or microscope.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Discuss the different meanings of the word table. It can be a piece of furniture with a flat top that you put things on. A table is also a written set of facts and figures arranged in columns and rows.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "67: 42 Example 2 continued; Example 3",
+        "item": 2,
+        "line": 315
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "How does zooming in on the table help you get a better approximation?",
+      "answer": "It narrows down the center of attention. Instead of comparing numbers that are 1 unit apart, you can compare numbers that are one tenth of a unit apart.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Discuss the different meanings of the word table. It can be a piece of furniture with a flat top that you put things on. A table is also a written set of facts and figures arranged in columns and rows.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "67: 42 Example 2 continued; Example 3",
+        "item": 3,
+        "line": 317
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Use context clues to explain what the word initial means.",
+      "answer": "first; first letter in each name",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Discuss the different meanings of the word table. It can be a piece of furniture with a flat top that you put things on. A table is also a written set of facts and figures arranged in columns and rows.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "67: 42 Example 2 continued; Example 3",
+        "item": 4,
+        "line": 320
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "Read the paragraph after the bold problem statement. What does initial estimate mean?",
+      "answer": "the first approximation of the answer",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Discuss the different meanings of the word table. It can be a piece of furniture with a flat top that you put things on. A table is also a written set of facts and figures arranged in columns and rows.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "67: 42 Example 2 continued; Example 3",
+        "item": 5,
+        "line": 322
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why do you not want to start searching for the solution using the thousandths interval?",
+      "answer": "It is much more efficient to narrow down your focus before you look at the thousandths place, so you are not looking through the spreadsheet for a long period of time.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "68: 43 Example 3 continued; Example 4",
+        "item": 0,
+        "line": 376
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What is the purpose of the INTERSECT feature when using graphing technology?",
+      "answer": "The INTERSECT feature provides you with the values of (x) where the graphs intersect.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Graphing Technology to Solve Equations Use and Connect Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "68: 43 Example 3 continued; Example 4",
+        "item": 0,
+        "line": 382
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why do you use technology to find approximate solutions to an equation?",
+      "answer": "It is more efficient in solving for the missing values.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "68: 43 Example 3 continued; Example 4",
+        "item": 0,
+        "line": 403
+      }
+    },
+    {
+      "example": 4,
+      "category": "CommonError",
+      "key": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Students may forget to include the absolute value bars around (x+2). If they forget the absolute value bars, they will graph (y=x+4) instead of (y=|x+2|+2). Have students substitute their solutions back into the original equation to check their accuracy.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 4,
+        "category": "CommonError",
+        "block": 0,
+        "page": "68: 43 Example 3 continued; Example 4",
+        "item": 0,
+        "line": 406
+      }
+    },
+    {
+      "example": 4,
+      "category": "HabitsOfMind",
+      "key": "examples[n=4].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Use Appropriate Tools What are the advantages and disadvantages of using spreadsheets and graphing technology?",
+      "answer": "Both methods are fast and give you several decimal places of accuracy in your estimate, but if an exact solution is required, you need to use algebraic methods. Many fractions and radical expressions do not have exact decimal equivalents.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use with EXAMPLES 3 & 4",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-5_TE.tex",
+        "anchor": 4,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "68: 43 Example 3 continued; Example 4",
+        "item": 0,
+        "line": 412
+      }
+    }
+  ]
+}

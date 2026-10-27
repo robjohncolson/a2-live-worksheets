@@ -8,7 +8,9 @@
 import { createHash } from 'node:crypto';
 import { DECK_LIMITS, DECK_TYPES, charLength } from '../../roster-server/deck-rules.js';
 
-export const TREE_LIMITS = { minNodes: 6, maxNodes: 60 };
+// A full TE lesson can have many prompts; only the selected daily deck goes to
+// Android, where the separate 14-item limit still applies.
+export const TREE_LIMITS = { minNodes: 6, maxNodes: 256 };
 const NODE_ID = /^[0-9a-f]{12}$/;
 
 export const nodeId = (lesson, sourcePath) => createHash('sha256').update(`${lesson}|${sourcePath}`).digest('hex').slice(0, 12);
@@ -71,6 +73,30 @@ function lessonCards(dayLog, lesson) {
 
 const quizFront = (n, rest) => (n === '' ? `Quiz item ${rest}` : `Quiz item ${n} ${rest}`);
 
+const PROMPT_LABELS = {
+  PurposefulQuestions: 'Purposeful question', GeneralizeETP: 'Connect representations',
+  ElicitEvidence: 'Check student thinking', HabitsOfMind: 'Reasoning',
+  CommonError: 'Common error', RtISupport: 'Support', RtIExtend: 'Extend thinking',
+};
+
+// Keep the complete teacher response, including a correction after a long
+// misconception. Each part fits the phone, and the selector keeps parts together.
+function guidanceParts(value, max) {
+  const parts = [];
+  let rest = text(value);
+  while (charLength(rest) > max) {
+    const room = [...rest].slice(0, max).join('');
+    const ends = [...room.matchAll(/[.!?](?=\s)/g)];
+    const sentenceEnd = ends.length ? ends[ends.length - 1].index + 1 : -1;
+    const wordEnd = room.lastIndexOf(' ');
+    const cut = sentenceEnd > room.length / 3 ? sentenceEnd : wordEnd > 0 ? wordEnd : room.length;
+    parts.push(rest.slice(0, cut).trim());
+    rest = rest.slice(cut).trim();
+  }
+  if (rest) parts.push(rest);
+  return parts;
+}
+
 // One lesson-prep entry (plus the day log for the cards' traps and minutes) -> the tree.
 export function buildTree(lesson, prep, dayLog = null) {
   const nodes = [];
@@ -88,6 +114,7 @@ export function buildTree(lesson, prep, dayLog = null) {
       id, type, front: clip(shownFront, DECK_LIMITS.front), back: clip(back, DECK_LIMITS.back),
       order: nodes.length + 1, after: [...new Set(after.filter(Boolean))], minute: extra.minute ?? null, source: sourcePath,
       ...(extra.card ? { card: extra.card } : {}),
+      ...(extra.teaching ? { teaching: extra.teaching } : {}),
     });
     return id;
   };
@@ -136,6 +163,37 @@ export function buildTree(lesson, prep, dayLog = null) {
   });
   const lastStep = stepOf.size ? [...stepOf.values()].pop() : null;
 
+  // Rehearse the TE's questions alongside the example they guide. The question
+  // stays visible on the front; the back names the thinking to listen for.
+  // Source keys keep mastery stable when an editor improves the wording.
+  for (const example of kept) {
+    let parents = stepOf.has(example.n) ? [stepOf.get(example.n)] : rootOf();
+    (example.teacherPrompts || []).forEach((prompt, i) => {
+      const question = text(prompt.question || prompt.q);
+      const answer = text(prompt.answer || prompt.a);
+      if (!question || !answer) return;
+      const label = PROMPT_LABELS[prompt.category] || 'Teacher prompt';
+      const kind = prompt.kind || 'question';
+      const type = kind === 'trap' ? 'trap' : 'cue';
+      let back = kind === 'question' ? `Listen for: ${answer}` : answer;
+      let front = `Example ${example.n} · ${label}: ${question}`;
+      if (charLength(front) > DECK_LIMITS.front - 12) {
+        front = `Example ${example.n} · ${label}: what should I ask?`;
+        back = `Ask: ${question}\n${back}`;
+      }
+      const source = prompt.key || `examples[n=${example.n}].teacherPrompts[${i}]`;
+      const parts = guidanceParts(back, DECK_LIMITS.back);
+      parts.forEach((part, index) => {
+        const partSource = index === 0 ? source : `${source}.part[${index}]`;
+        const partFront = parts.length === 1 ? front : `${front} (${index + 1}/${parts.length})`;
+        const id = add(type, partSource, partFront, part, parents,
+          { teaching: { example: example.n, kind, category: prompt.category || '', source: prompt.source || null,
+            promptKey: source, part: index + 1, parts: parts.length } });
+        if (id) parents = [id];
+      });
+    });
+  }
+
   // DOK 3: the task and its key, after the routine.
   const dok = prep?.dok3 || {};
   const afterSteps = lastStep ? [lastStep] : quizRoot;
@@ -175,7 +233,7 @@ export function buildTree(lesson, prep, dayLog = null) {
   return { lesson, title: text(prep?.title), nodes };
 }
 
-// The first problem with a tree, or null: 6 to 60 nodes, ids unique 12 hex, types,
+// The first problem with a tree, or null: 6 to 256 nodes, ids unique 12 hex, types,
 // text present and within the deck limits, `after` in-tree and acyclic.
 export function treeProblem(tree) {
   const nodes = tree?.nodes;

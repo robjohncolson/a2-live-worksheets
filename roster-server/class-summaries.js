@@ -15,6 +15,7 @@ import { createServiceClient } from './ledger-db.js';
 import { requireTeacher } from './teacher-auth.js';
 import { checkClassLogToken } from './observer-cards.js';
 import { CARD_COURSES, charLength, isIsoDate } from './observer-card-rules.js';
+import { classPlanCoordinatorFor, schemaUnavailable } from './class-plans.js';
 
 export const SUMMARY_LIMITS = {
   section: 16, model: 64, markdown: 40000, path: 200, items: 40, item: 400, rangeDays: 62,
@@ -135,7 +136,7 @@ const unavailable = res => res.status(503).json({ error: 'Class summary service 
 
 // Phone route. Mount BEFORE the app-wide express.json: the bearer check runs
 // first, then a bounded route-local parser.
-export function mountClassSummaries(app, { store, env = process.env, now = () => new Date() }) {
+export function mountClassSummaries(app, { store, coordinator, env = process.env, now = () => new Date() }) {
   const storage = storageFor(app, store);
 
   const phoneAuth = (req, res, next) => {
@@ -153,7 +154,17 @@ export function mountClassSummaries(app, { store, env = process.env, now = () =>
     try { row = validateSummary(req.body); }
     catch (error) { return res.status(400).json({ error: error.message }); }
     try {
-      await storage().upsertSummary({ ...row, recorded_at: now().toISOString() });
+      const saved = { ...row, recorded_at: now().toISOString() };
+      // Injected summary-only stores keep their existing contract. In production,
+      // summary evidence and the next plan revisions move together. Before 0048
+      // is installed, the original summary route remains fully functional.
+      if (!store || coordinator) {
+        try {
+          const result = await classPlanCoordinatorFor(app, { coordinator, now }).ingestSummary(saved);
+          return res.json(result);
+        } catch (error) { if (!schemaUnavailable(error)) throw error; }
+      }
+      await storage().upsertSummary(saved);
       res.json({ ok: true });
     } catch { unavailable(res); }
   }, parserErrors);

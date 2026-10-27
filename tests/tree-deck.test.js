@@ -178,13 +178,15 @@ describe('draft-card-decks --from-tree', () => {
 });
 
 describe('nightly steps 3 and 4', () => {
-  it('push the cards, rebuild and check the trees, draft the tree decks; the exit code stays step 2', () => {
+  it('validates the trees then publishes atomic plans and propagates any failed step', () => {
     const batch = readFileSync(new URL('../tools/nightly_tomorrow.ps1', import.meta.url), 'utf8');
-    expect(batch).toMatch(/STEP 2[\s\S]*STEP 3: node scripts\/push-observer-cards\.mjs[\s\S]*STEP 4: node scripts\/build-lesson-tree\.mjs --all --check[\s\S]*'--from-tree', '--per-section', '--apply'/);
-    expect(batch).toMatch(/if \(\$Date\) \{ \$deckArgs \+= @\('--date', \$Date\) \}\s*\r?\n\s*if \(\$Section\) \{ \$deckArgs \+= @\('--section', \$Section\) \}/);
-    expect(batch).toContain("'scripts\\push-observer-cards.mjs'");
+    expect(batch).toMatch(/STEP 2[\s\S]*STEP 3: node scripts\/build-lesson-tree\.mjs --all --check[\s\S]*'publish', '--per-section'/);
+    expect(batch).toMatch(/if \(\$Date\) \{ \$planArgs \+= @\('--date', \$Date\) \}\s*\r?\n\s*if \(\$Section\) \{ \$planArgs \+= @\('--section', \$Section\) \}/);
+    expect(batch).not.toContain('push-observer-cards.mjs');
+    expect(batch).not.toContain('draft-card-decks.mjs');
     expect(batch).toContain("'scripts\\build-lesson-tree.mjs'), '--all', '--check'");
-    expect(batch).toMatch(/if \(\$draftCode -ne 0\) \{ exit \$draftCode \}\s*\r?\nWrite-Log "=== nightly_tomorrow done/);
+    expect(batch).toContain('foreach ($stepCode in @($draftCode, $treeCode, $planCode))');
+    expect(batch).toContain('if ($stepCode -ne 0) { exit $stepCode }');
   });
 });
 

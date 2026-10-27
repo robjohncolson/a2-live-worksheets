@@ -230,11 +230,649 @@
       "source": "examples[n=5]"
     },
     {
+      "id": "a43217480d78",
+      "type": "cue",
+      "front": "Example 1 · Connect representations: What do you notice about the two new graphs compared to their parent functions?",
+      "back": "Listen for: One graph is the parent function translated down; the other graph is the parent function translated to the right.",
+      "order": 19,
+      "after": [
+        "b0bc8b3f3de4"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 1,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "26: 13 STEP 2 Understand & Apply",
+          "item": 0,
+          "line": 171
+        },
+        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e6314e612b78",
+      "type": "cue",
+      "front": "Example 1 · Connect representations: Will the transformation of either graph cause the parabola to change shape?",
+      "back": "Listen for: No; a translation is a slide to a new position. The shape will not change.",
+      "order": 20,
+      "after": [
+        "a43217480d78"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 1,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "26: 13 STEP 2 Understand & Apply",
+          "item": 1,
+          "line": 173
+        },
+        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "aaf7c0c633aa",
+      "type": "cue",
+      "front": "Example 1 · Check student thinking: Will a horizontal translation always result in the translated function not having a y-intercept?",
+      "back": "Listen for: No; if the domain of (f) were not restricted, then any horizontal translation of (f) would still have a y-intercept.",
+      "order": 21,
+      "after": [
+        "e6314e612b78"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 1,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "27: 14 Example 1 continued",
+          "item": 0,
+          "line": 242
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "df3a8aeacebe",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: How can you describe what the reflection across the x-axis does to the coordinates and the equation?",
+      "back": "Listen for: The y-values of the original function are multiplied by (-1).",
+      "order": 22,
+      "after": [
+        "5330680ba5df"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "27: 14 Example 1 continued",
+          "item": 0,
+          "line": 248
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "878d468f5b4d",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: How do the points of a graph change when reflected across the x-axis? The y-axis?",
+      "back": "Listen for: The y-coordinates change to the opposite sign when reflected across the x-axis. The x-coordinates change to the opposite sign when reflected across the y-axis.",
+      "order": 23,
+      "after": [
+        "df3a8aeacebe"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 14 Example 1 continued",
+          "item": 0,
+          "line": 254
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "60cd904b6af5",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: How are reflections related to symmetry?",
+      "back": "Listen for: Symmetrical shapes can be divided by a line down the middle, with one side a reflection of the other side.",
+      "order": 24,
+      "after": [
+        "878d468f5b4d"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 14 Example 1 continued",
+          "item": 1,
+          "line": 256
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "927022fb3196",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: When you move from a positive y-value to a negative y-value, in which direction do you move?",
+      "back": "Listen for: down",
+      "order": 25,
+      "after": [
+        "60cd904b6af5"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 14 Example 1 continued",
+          "item": 2,
+          "line": 259
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "9f35570c6c01",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: When you move from a negative x-value to a positive x-value, in which direction do you move?",
+      "back": "Listen for: right",
+      "order": 26,
+      "after": [
+        "927022fb3196"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 14 Example 1 continued",
+          "item": 3,
+          "line": 261
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "8f7eb7a2e5c5",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What topic could you write about if you used the word produce pronounced with the stress on the first syllable?",
+      "back": "Listen for: fruits and vegetables; grocery store",
+      "order": 27,
+      "after": [
+        "9f35570c6c01"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 14 Example 1 continued",
+          "item": 4,
+          "line": 264
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "2b4ee445eb8a",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What is a synonym for produce as it is used in the example?",
+      "back": "Listen for: make, create, form",
+      "order": 28,
+      "after": [
+        "8f7eb7a2e5c5"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[5]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 14 Example 1 continued",
+          "item": 5,
+          "line": 266
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[5]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "f005b8a07548",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: How can you describe what the reflection across the y-axis does to the coordinates and the equation?",
+      "back": "Listen for: The x-values of the original function are multiplied by (-1).",
+      "order": 29,
+      "after": [
+        "2b4ee445eb8a"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "28: 15 Example 2 continued",
+          "item": 0,
+          "line": 305
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "148b61db9da3",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: What is the difference between (g(x)=-f(x)) and (g(x)=f(-x))?",
+      "back": "Listen for: When (f(x)) has a coefficient of (-1), the y-values change sign, causing a reflection across the x-axis. When (x) has a coefficient of (-1), the x-values change sign, causing a reflection across the y-axis.",
+      "order": 30,
+      "after": [
+        "f005b8a07548"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "28: 15 Example 2 continued",
+          "item": 1,
+          "line": 307
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "cf7adc4e60b8",
+      "type": "trap",
+      "front": "Example 2 · Common error: What error should I watch for, and how does the TE respond? (1/2)",
+      "back": "Some students may incorrectly interpret a reflection across the y-axis as the result of changing the coefficient of (x) to (-1).",
+      "order": 31,
+      "after": [
+        "148b61db9da3"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "teaching": {
+        "example": 2,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "CommonError",
+          "block": 0,
+          "page": "28: 15 Example 2 continued",
+          "item": 0,
+          "line": 310
+        },
+        "promptKey": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+        "part": 1,
+        "parts": 2
+      }
+    },
+    {
+      "id": "8f2ef9cc76b8",
+      "type": "trap",
+      "front": "Example 2 · Common error: What error should I watch for, and how does the TE respond? (2/2)",
+      "back": "Show students that the (x) in the function is not changed to a negative; the actual values that are substituted into the function will be opposites of those from the original function but will produce the same range.",
+      "order": 32,
+      "after": [
+        "cf7adc4e60b8"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.CommonError[0].guidance.part[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "CommonError",
+          "block": 0,
+          "page": "28: 15 Example 2 continued",
+          "item": 0,
+          "line": 310
+        },
+        "promptKey": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+        "part": 2,
+        "parts": 2
+      }
+    },
+    {
+      "id": "6e0f020f6b58",
+      "type": "cue",
+      "front": "Example 2 · Reasoning: Look for Relationships How are the intercepts of a graph affected by reflection across the x-axis? Explain.",
+      "back": "Listen for: The x-intercept stays the same because the points on the axis you are reflecting about do not change. The y-intercept of the reflected graph is the opposite of the y-intercept of the original graph because the two points are equidistant from the x-axis.",
+      "order": 33,
+      "after": [
+        "8f2ef9cc76b8"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 2,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "28: 15 Example 2 continued",
+          "item": 0,
+          "line": 316
+        },
+        "promptKey": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "602e56a163b5",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: What is the relationship between the coefficient of (f(x)=a|x|) and its effects on the graph?",
+      "back": "Listen for: The coefficient of (f(x)) is the factor by which the graph is either stretched or compressed vertically with regard to each point’s distance from the x-axis.",
+      "order": 34,
+      "after": [
+        "655e53b3a6ec"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "28: 15 Example 2 continued",
+          "item": 0,
+          "line": 322
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "d1bfcc08731c",
+      "type": "trap",
+      "front": "Example 3 · Teacher prompt: What misconception should I watch for?",
+      "back": "Be careful not to assume that the domain of a transformed function is the same as the domain of the original function. Notice that (h(-4)) would equal (f(-8)), which is outside the domain of (f), ([-4,4]).",
+      "order": 35,
+      "after": [
+        "602e56a163b5"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.inlineCommonError[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "trap",
+        "category": "InlineCommonError",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 3,
+          "category": "InlineCommonError",
+          "block": 0,
+          "item": 0,
+          "line": 355,
+          "page": "29: 16 Example 3 continued"
+        },
+        "promptKey": "examples[n=3].teacherPrompts.inlineCommonError[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "af7b508d7d43",
+      "type": "cue",
+      "front": "Example 3 · Support: Describe the domain and range of (h).",
+      "back": "Listen for: The domain of (h) is the same as that of (f), and the range is (1/2) the range of (f).",
+      "order": 36,
+      "after": [
+        "d1bfcc08731c"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 3,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "29: 16 Example 3 continued",
+          "item": 0,
+          "line": 383
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "205cc749878d",
+      "type": "cue",
+      "front": "Example 3 · Support: How will the transformation affect the points on the graph of (h) when compared to the graph of (f)?",
+      "back": "Listen for: Each corresponding point on the graph of (h) is half the distance from the x-axis as the points on the graph of (f).",
+      "order": 37,
+      "after": [
+        "af7b508d7d43"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 3,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "29: 16 Example 3 continued",
+          "item": 1,
+          "line": 385
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "0842c52e19e5",
+      "type": "cue",
+      "front": "Example 5 · Connect representations: How are vertical transformations expressed differently in function notation than horizontal transformations?",
+      "back": "Listen for: When (f(x)) is written as (af(x)+k), (a) signals a vertical stretch or compression and (k) signals a vertical shift. When (f(x)) is written as (f[b(x-h)]), (b) signals a horizontal stretch or compression and (h) signals a horizontal shift.",
+      "order": 38,
+      "after": [
+        "9531ac9db980"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 5,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "31: 18 STEP 2 Understand & Apply",
+          "item": 0,
+          "line": 445
+        },
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "058da9e37a7a",
+      "type": "cue",
+      "front": "Example 5 · Connect representations: What can you tell about the shape of the graph of (g) compared to the shape of the graph of (f), just by looking at the equation for (g)? Explain.",
+      "back": "Listen for: The shape of the graphs will be the same because the equation for (g) shows only a horizontal and a vertical translation, with no stretch or compression.",
+      "order": 39,
+      "after": [
+        "0842c52e19e5"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 5,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "31: 18 STEP 2 Understand & Apply",
+          "item": 1,
+          "line": 448
+        },
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "49b2dbbfea36",
+      "type": "cue",
+      "front": "Example 5 · Check student thinking: What determines whether the function is transformed vertically or horizontally?",
+      "back": "Listen for: Vertical transformations are indicated by operations performed on the output of the function; horizontal transformations are indicated by operations performed on the input of the function.",
+      "order": 40,
+      "after": [
+        "058da9e37a7a"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_1-2_TE.tex",
+          "anchor": 5,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "31: 18 STEP 2 Understand & Apply",
+          "item": 0,
+          "line": 477
+        },
+        "promptKey": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
       "id": "f57f4de34bd0",
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Monisha compares f(x) = |x| and g(x) = |2x - 4|. She says g is f translated 4 right and compressed horizontally by 2. What is her error?",
-      "order": 19,
+      "order": 41,
       "after": [
         "9531ac9db980"
       ],
@@ -246,7 +884,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "|2x - 4| = 2|x - 2|, so g is f translated 2 right and stretched vertically by 2 (or, read as f(2(x - 2)), compressed horizontally by 1/2 and shifted 2 right). Students must factor inside the absolute value before reading the transformations; the same inside-vs-outside reasoning as quiz item 1's choice D vs E.",
-      "order": 20,
+      "order": 42,
       "after": [
         "9531ac9db980"
       ],
@@ -258,7 +896,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "The graph of f(x) = |x| is shown. Students graph g(x) = |x + c| for several values of c from -5 to 5.",
-      "order": 21,
+      "order": 43,
       "after": [
         "493bbfa9864b"
       ],
@@ -270,7 +908,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Graph g(x) = |x + c| several times with different values of c (any value from -5 to 5).",
-      "order": 22,
+      "order": 44,
       "after": [
         "d4c131bb1bd3"
       ],
@@ -282,7 +920,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Look for Relationships: predict what happens to the graph if c is greater than 100. What if c is between 0 and 1/2? (Very large shift left; very small shift left.)",
-      "order": 23,
+      "order": 45,
       "after": [
         "d4c131bb1bd3"
       ],
@@ -294,7 +932,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What does the graph tell you about the range of f(x) = |x|? → The range is greater than or equal to zero.",
-      "order": 24,
+      "order": 46,
       "after": [
         "d4c131bb1bd3"
       ],
@@ -306,7 +944,7 @@
       "type": "cue",
       "front": "Before, whole class: ask? (2)",
       "back": "What can you predict about the range of g(x) = |x + c| for different values of c? → Whatever c is, the range is still greater than or equal to zero.",
-      "order": 25,
+      "order": 47,
       "after": [
         "1f2cece9b15c"
       ],
@@ -318,7 +956,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "How can you find points to graph for each function? → Make a table of values for x from -5 to 5 and compute y.",
-      "order": 26,
+      "order": 48,
       "after": [
         "0c2cf531bce7"
       ],
@@ -330,7 +968,7 @@
       "type": "cue",
       "front": "During, small group: ask? (2)",
       "back": "What do you notice about the vertex of each function? → The vertices all lie on the x-axis.",
-      "order": 27,
+      "order": 49,
       "after": [
         "04588bac3cd5"
       ],
@@ -342,7 +980,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "How does the graph change if the coefficient of f(x + c) is negative? Graph -f(x + c) for three of your functions. → The graphs of -f(x + c) are reflections of f(x + c) across the x-axis.",
-      "order": 28,
+      "order": 50,
       "after": [
         "883a70d87c79"
       ],
@@ -354,7 +992,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "If f(x) has a horizontal shift, what part of the function has been changed? → x stands for the domain, so the operation is applied to x inside the parentheses.",
-      "order": 29,
+      "order": 51,
       "after": [
         "91fcd7b4d188"
       ],
@@ -366,7 +1004,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "If f(x) has a vertical shift, what part of the function has been changed? → f(x) stands for the range, so the operation is applied to f(x).",
-      "order": 30,
+      "order": 52,
       "after": [
         "ca05b804ae81"
       ],
@@ -378,7 +1016,7 @@
       "type": "cue",
       "front": "Habits of Mind, Reason: ask?",
       "back": "What happens to the graph if c is a negative number? → The graph shifts to the right when c is negative.",
-      "order": 31,
+      "order": 53,
       "after": [
         "a65e923180c5"
       ],
@@ -390,7 +1028,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The After questions are the moment to introduce a·f(b(x - h)) + k. The Mon/Tue whiteboard table activity (a2_1-2_plan_oct5-7) already does part A on paper; the TE's 'table of values' answer matches it.",
-      "order": 32,
+      "order": 54,
       "after": [
         "d4c131bb1bd3"
       ],
@@ -402,7 +1040,7 @@
       "type": "anchor",
       "front": "IXL for example 1?",
       "back": "F6J Translations of functions",
-      "order": 33,
+      "order": 55,
       "after": [
         "b0bc8b3f3de4"
       ],
@@ -414,7 +1052,7 @@
       "type": "anchor",
       "front": "IXL for example 2?",
       "back": "PHV Reflections of functions",
-      "order": 34,
+      "order": 56,
       "after": [
         "5330680ba5df"
       ],
@@ -426,7 +1064,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "NNY Dilations of functions",
-      "order": 35,
+      "order": 57,
       "after": [
         "655e53b3a6ec"
       ],
@@ -438,7 +1076,7 @@
       "type": "anchor",
       "front": "IXL for example 5?",
       "back": "KT8 Describe function transformations",
-      "order": 36,
+      "order": 58,
       "after": [
         "9531ac9db980"
       ],
@@ -450,7 +1088,7 @@
       "type": "anchor",
       "front": "IXL for example 5? (2)",
       "back": "R7X Function transformation rules",
-      "order": 37,
+      "order": 59,
       "after": [
         "9531ac9db980"
       ],
@@ -462,7 +1100,7 @@
       "type": "anchor",
       "front": "IXL for example 5? (3)",
       "back": "KQL Transformations of quadratic functions",
-      "order": 38,
+      "order": 60,
       "after": [
         "9531ac9db980"
       ],

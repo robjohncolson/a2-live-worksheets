@@ -1,10 +1,14 @@
 // Draft the rehearsal deck for each Class Log observer card of a day
 // (school/class-log/REHEARSAL_SPEC.md, WP-1 1.3).
+// Latest usable class summaries add up to three dated continuity cues. These
+// have no mastery node; tree selection reserves their space while retaining
+// Teacher's Edition prompt groups. Custom day logs opt in with --summaries.
 //
 //   node scripts/draft-card-decks.mjs [--date YYYY-MM-DD] [--section S] [--dry-run] [--apply]
 //        [--from-file PATH] [--file DAY_LOG] [--prep LESSON_PREP] [--server URL] [--secret S]
 //        [--timeout MS] [--out FILE] [--env-file PATH] [--roster-dir DIR]
 //        [--from-tree] [--trees DIR] [--device D] [--per-section] [--year SCHOOL_YEAR]
+//        [--summaries FILE]
 //
 // --per-section (the nightly): instead of one date for every section, each section
 // (or --section) drafts for its own next class day from the school calendar
@@ -16,12 +20,16 @@
 // Tree mode (school/class-log/KNOWLEDGE_TREE_SPEC.md, WP-1 1.2): a card whose lesson
 // has a tree (content/a2/lesson-trees/<lesson>.json, built by build-lesson-tree.mjs;
 // --trees, default: lesson-trees/ beside the lesson prep) gets its deck from the tree,
-// deterministically and without a model (scripts/lib/tree-deck.mjs): every item
-// carries `node` and `lesson` and its id is the node id. That is the default; the
+// deterministically and without a model (scripts/lib/tree-deck.mjs): lesson items
+// carry `node` and `lesson` and their id is the node id. That is the default; the
 // model path below stays for cards without a tree. --from-tree uses trees only: a
 // card without one gets no deck (reported), and no model is called. The vocabulary
 // tier skips nodes already known on --device (default s24) per GET /teacher/mastery;
 // without the server every vocabulary node is a candidate.
+// Up to three daily recording cues are added for a section's own card. They have
+// no mastery node; the existing TE guidance reservation stays intact. Canonical
+// day-log runs read the pulled summaries once; custom --file runs opt in with
+// --summaries FILE. --from-file validates the saved deck without adding cues again.
 //
 // For each observer card on the target date (default: the next class day in the
 // day log after today, New York time):
@@ -60,6 +68,8 @@ import { isKnown } from '../roster-server/node-mastery.js';
 import { treeProblem } from './lib/lesson-tree.mjs';
 import { cardLessons, selectDeck } from './lib/tree-deck.mjs';
 import { addDays, nextClassDay } from './draft-tomorrow.mjs';
+import { loadContinuitySources } from './lib/class-continuity.mjs';
+import { appendContinuityCues, continuityCueId, continuityCues, continuityForTarget } from './lib/continuity-deck.mjs';
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 export const DRAFT_COUNT = { min: 10, max: 12 };
@@ -67,7 +77,7 @@ const PREP_LIMIT = 6000;
 
 export function parseArgs(argv) {
   const args = { dryRun: false, apply: false, fromTree: false, perSection: false };
-  const valued = ['--date', '--section', '--from-file', '--file', '--prep', '--server', '--secret', '--timeout', '--out', '--env-file', '--roster-dir', '--trees', '--device', '--year'];
+  const valued = ['--date', '--section', '--from-file', '--file', '--prep', '--server', '--secret', '--timeout', '--out', '--env-file', '--roster-dir', '--trees', '--device', '--year', '--summaries'];
   for (let i = 0; i < argv.length; i++) {
     const key = argv[i];
     if (key === '--dry-run') { args.dryRun = true; continue; }
@@ -142,8 +152,8 @@ export function buildPrompt({ date, sections, lesson, card, prep }) {
 }
 
 // Raw items (model reply or a hand-written file) -> validated deck items: ids are
-// the hash of type + front (a tree item's id is its node id, so an edited front
-// stays the same item for the phone's mastery), `after` (keys or old ids) remapped to the new ids,
+// the hash of type + front (daily cues also hash the answer so corrections reset
+// their streak; tree ids stay the node id for mastery), `after` remapped to new ids,
 // order from the item when it is an integer, else its position. Throws on any problem.
 export function normalizeItems(rawItems, { count } = {}) {
   if (!Array.isArray(rawItems)) throw new Error('items must be an array');
@@ -154,7 +164,16 @@ export function normalizeItems(rawItems, { count } = {}) {
   const staged = rawItems.map((raw, i) => {
     if (!raw || typeof raw !== 'object' || Array.isArray(raw)) throw new Error(`item ${i}: must be an object`);
     const front = typeof raw.front === 'string' ? raw.front.trim() : raw.front;
-    const id = typeof raw.node === 'string' && raw.node ? raw.node : itemId(raw.type, front);
+    const daily = raw.node == null && raw.type === 'cue' && /^daily_[a-f0-9]{12}$/.test(raw.id);
+    if (daily) {
+      for (const field of ['front', 'back']) {
+        if (typeof raw[field] === 'string' && raw[field].trim().length > DECK_LIMITS[field]) {
+          throw new Error(`item ${i}: daily cue ${field} exceeds the phone's ${DECK_LIMITS[field]} UTF-16 units`);
+        }
+      }
+    }
+    const id = typeof raw.node === 'string' && raw.node ? raw.node
+      : daily ? continuityCueId(front, raw.back) : itemId(raw.type, front);
     for (const label of [raw.key, raw.id]) {
       if (typeof label !== 'string' || !label) continue;
       if (rename.has(label) && rename.get(label) !== id) throw new Error(`item ${i}: key ${label} is used twice`);
@@ -376,7 +395,11 @@ async function main() {
   const ctx = { args, timeout, secret, server, checkNames, shown };
   if (args.fromFile) return fromFileRun(ctx);
 
-  const dayLog = JSON.parse(readFileSync(args.file ? resolve(args.file) : resolve(REPO_ROOT, 'content/a2/day-log.json'), 'utf8'));
+  const canonicalDayLog = resolve(REPO_ROOT, 'content/a2/day-log.json');
+  const dayLogPath = args.file ? resolve(args.file) : canonicalDayLog;
+  const dayLog = JSON.parse(readFileSync(dayLogPath, 'utf8'));
+  ctx.summaries = args.summaries || dayLogPath === canonicalDayLog
+    ? loadContinuitySources(REPO_ROOT, args.summaries ? resolve(args.summaries) : undefined) : [];
   if (!args.perSection) {
     const date = args.date || nextSchoolDay(dayLog, todayInNewYork());
     if (!date) throw new Error('no upcoming class day in the day log; pass --date');
@@ -451,15 +474,18 @@ async function draftDate(ctx, { dayLog, date, section, perSection = false }) {
   if (prepAll && prepAll.lessons && typeof prepAll.lessons === 'object') prepAll = prepAll.lessons;
   const trees = loadTrees(args.trees ? resolve(args.trees) : resolve(dirname(prepPath), 'lesson-trees'));
   const config = resolveDraftConfig(args.envFile ? resolve(args.envFile) : undefined);
+  const dailyCues = new WeakMap();
   const decks = targets.map(target => {
     const lessons = target.lesson ? cardLessons(target.lesson, target.card, trees) : [];
+    const continuity = continuityForTarget({ target, serverCards, entries: dayLog.entries, summaries: ctx.summaries || [], date });
     const deck = {
       cardId: target.cardId, sections: target.sections, lesson: target.lesson, title: target.card.title, source: target.source,
       items: null, model: null, generatedAt: null, error: null,
     };
-    if (lessons.length) return { ...deck, mode: 'tree', lessons, card: target.card };
-    if (args.fromTree) return { ...deck, mode: 'none', skipped: `no lesson tree for ${target.lesson ?? 'a card without a lesson'}` };
-    return { ...deck, mode: 'model', messages: buildPrompt({ date, sections: target.sections, lesson: target.lesson, card: target.card, prep: target.lesson ? prepAll[target.lesson] ?? null : null }) };
+    dailyCues.set(deck, continuityCues({ continuity, section: target.sections[0], date }));
+    if (lessons.length) return Object.assign(deck, { mode: 'tree', lessons, card: target.card });
+    if (args.fromTree) return Object.assign(deck, { mode: 'none', skipped: `no lesson tree for ${target.lesson ?? 'a card without a lesson'}` });
+    return Object.assign(deck, { mode: 'model', messages: buildPrompt({ date, sections: target.sections, lesson: target.lesson, card: target.card, prep: target.lesson ? prepAll[target.lesson] ?? null : null }) });
   });
 
   // Tree decks first: deterministic, no model.
@@ -467,8 +493,9 @@ async function draftDate(ctx, { dayLog, date, section, perSection = false }) {
   for (const deck of decks.filter(d => d.mode === 'tree')) {
     try {
       const known = await knownNodes({ lessons: deck.lessons, cache: knownCache, server, secret, timeout, device: args.device || 's24' });
-      const chosen = selectDeck({ trees, lessons: deck.lessons, card: deck.card, date, sections: deck.sections, known });
-      const items = normalizeItems(chosen.items);
+      const cues = dailyCues.get(deck);
+      const chosen = selectDeck({ trees, lessons: deck.lessons, card: deck.card, date, sections: deck.sections, known, maxItems: DECK_LIMITS.maxItems - cues.length });
+      const items = normalizeItems(appendContinuityCues(chosen.items, cues));
       checkNames(items);
       Object.assign(deck, { items, model: TREE_MODEL, generatedAt: new Date().toISOString(), tiers: chosen.tiers, padded: chosen.padded });
     } catch (error) { deck.error = redact(error.message, secret); }
@@ -501,7 +528,7 @@ async function draftDate(ctx, { dayLog, date, section, perSection = false }) {
   for (const deck of modelDecks) {
     try {
       const text = await callModel({ ...config, messages: deck.messages, timeout: Math.max(timeout, 60000) });
-      const items = parseDeckReply(text);
+      const items = normalizeItems(appendContinuityCues(parseDeckReply(text), dailyCues.get(deck)));
       checkNames(items);
       Object.assign(deck, { items, model: config.model, generatedAt: new Date().toISOString() });
     } catch (error) { deck.error = redact(error.message, config.key); }

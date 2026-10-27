@@ -398,16 +398,51 @@ order. A card that names another lesson ("Lesson 1-3") uses that tree too. Kept
 ancestors. Items carry `node` and `lesson`, the deck's model is `lesson-tree`, and
 the same trees and card give the same hash, so an unchanged PUT writes nothing.
 
-Nightly (`tools/nightly_tomorrow.ps1`, after the Tomorrow draft): step 3
-`node scripts/push-observer-cards.mjs`, step 4
-`node scripts/build-lesson-tree.mjs --all --check` then
-`node scripts/draft-card-decks.mjs --from-tree --per-section --apply`: each section
-(or `-Section`) drafts for its own next class day from the school calendar
-(`data/a2-school-year.json`), resolved exactly as step 2 does (the first meeting day
-on or after `-Date`, default tomorrow), one run per (date, section); runs for the
-same date share that date's deck file and keep the other sections' decks in it.
-Both are logged to `roster-local/tomorrow/log.txt`; their failures are logged only
-(the exit code stays step 2's), and the Desk Rehearsal line then says `No deck`.
+Nightly (`tools/nightly_tomorrow.ps1`, after the Tomorrow draft) validates the
+lesson trees, then runs `scripts/plan-next-class.mjs publish --per-section` to compile and publish
+each section's next class through one atomic plan request. The school calendar
+(`data/a2-school-year.json`) determines each section's target day. Card, practice
+deck, and commitment snapshot share a revision. A failed publication preserves
+the previous complete package and makes the nightly command fail; details go to
+`roster-local/tomorrow/log.txt`. The separate card/deck commands above remain for
+dates that have not adopted atomic plans. See [Class plan workflow](../docs/CLASS_PLAN_WORKFLOW.md).
+
+## Atomic class plans and commitments
+
+Apply `migrations/0048_class_plans.sql` after the existing migrations. The generated
+`deploy/supabase_a2_bootstrap.sql` includes it for a fresh database. Migration 0048
+imports existing summaries and unresolved promises/preparation into durable
+commitments without resetting reviewed statuses on rerun. Raw summary revisions
+and published plan revisions are immutable; current pointers and private
+authoring inputs are stored separately. No new environment variables are needed.
+
+| Route | Auth | Contract |
+|---|---|---|
+| `GET /class-log/plans?date=YYYY-MM-DD` | phone bearer | `{date,plans}`; every plan includes `revision`, `scopeVersion`, matching `card` and `deck`, detailed `routine`, dated `source`, and commitments. |
+| `GET /teacher/plans?date=YYYY-MM-DD[&course=algebra2&section=C]` | teacher | Same packages plus authoring `inputs`, screened with the server's current roster. Raw authoring evidence stays private in storage. |
+| `PUT /teacher/plans` | teacher | `{plans:[{inputs,expectedRevision,expectedScopeVersion}]}`; first publication uses `expectedRevision:null`. Server compiles authoritative source/commitments and writes every requested scope in one transaction. Stale versions return 409. Exact retries are idempotent. |
+| `GET /class-log/commitments?course=algebra2&section=C` | phone bearer | `{course,section,version,commitments,refreshPending}`; `version` is the scope version. Teacher counterpart is `GET /teacher/commitments`. |
+| `POST /class-log/commitments/status` | phone bearer | `{course,section,id,status,operationId,expectedVersion,deferredUntil?}`. `expectedVersion` is the individual commitment version. Status is `open`, `done`, `deferred`, or `cancelled`; `deferred` requires an ISO date. Teacher counterpart is `POST /teacher/commitments/status`. |
+
+Status operations rebuild current/future plans atomically and preserve stable card
+IDs and recorded outcomes. Reused operation IDs with different payloads or stale
+item versions return 409. A newer summary cannot resurrect a resolved promise.
+Summary evidence updates only later class dates; older plans remain teaching
+records. Source corrections remain tied to their original class date. Unusable
+recordings are retained as evidence but do not replace the last usable recap.
+
+If roster screening or compilation is unavailable, a summary is still saved
+durably and marked for rebuild. Subsequent plan/commitment reads retry the rebuild
+while the prior complete package remains available. Existing summary submissions
+have no client revision token, so distinct same-day submissions use server arrival
+order; their raw revisions remain available for audit.
+
+Code can deploy before SQL: new routes answer 503, while existing summary writes
+fall back to their original store and legacy card/deck routes continue working.
+After a date adopts an atomic plan, database guards reject independent legacy
+card/deck mutations with 409 `atomic_plan_required`; other dates remain writable.
+Run the atomic publisher only after applying 0048. The publisher reads both the
+current head revision and commitment scope version before sending its request.
 
 ## Mastery
 

@@ -200,11 +200,504 @@
       "source": "examples[n=5]"
     },
     {
+      "id": "7b9ec35ca887",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: What do you notice about the graph?",
+      "back": "Listen for: The graph is composed of three separate linear pieces.",
+      "order": 17,
+      "after": [
+        "01e1c2f7a89f"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 0,
+          "line": 306
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "b0ed74cd9c45",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: What does a horizontal line in a graph mean?",
+      "back": "Listen for: The slope is 0, and there are multiple x-values with the same y-value.",
+      "order": 18,
+      "after": [
+        "7b9ec35ca887"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 1,
+          "line": 308
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "94b01d42d02c",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: Given the slope, how do you determine what points to use to find the value of (b) in the slope-intercept form of a linear function (f(x)=mx+b)?",
+      "back": "Listen for: The x-values can be any values that are located in the domain, and the y-values are the corresponding values in the range.",
+      "order": 19,
+      "after": [
+        "b0ed74cd9c45"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 2,
+          "line": 310
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "5212a157d270",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Explain how the word separate is used in this example.",
+      "back": "Listen for: as an adjective in the phrase separate linear pieces",
+      "order": 20,
+      "after": [
+        "94b01d42d02c"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 0,
+          "line": 347
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e55d89c5b6df",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: When in math might the word separate be used differently than in the example?",
+      "back": "Listen for: Separate the variable terms from the constants.",
+      "order": 21,
+      "after": [
+        "5212a157d270"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 1,
+          "line": 349
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "8d2734dfeba2",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: In the situations you discussed, what happens when a rule is broken?",
+      "back": "Listen for: A person gets in trouble.",
+      "order": 22,
+      "after": [
+        "e55d89c5b6df"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 2,
+          "line": 352
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a4fb2a15b5de",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: How are rules used in this example?",
+      "back": "Listen for: A rule is a way to describe the output for each input in a function.",
+      "order": 23,
+      "after": [
+        "8d2734dfeba2"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 3,
+          "line": 354
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "061f95c8d34a",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Can a mathematical rule be broken?",
+      "back": "Listen for: No, someone may apply a rule incorrectly, but that would result in a wrong answer, not the rule being broken.",
+      "order": 24,
+      "after": [
+        "a4fb2a15b5de"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 4,
+          "line": 356
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "4ddba36bfe02",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: What does the suffix -wise seem to indicate?",
+      "back": "Listen for: a way of doing or being, or in a particular direction",
+      "order": 25,
+      "after": [
+        "061f95c8d34a"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 5,
+          "line": 359
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "61962bd120d6",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: What does the word piece mean?",
+      "back": "Listen for: part of a whole",
+      "order": 26,
+      "after": [
+        "4ddba36bfe02"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[6]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 6,
+          "line": 361
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[6]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "bce7ec05e6d1",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: How can those ideas be combined to give you a better understanding of the term piecewise-defined function?",
+      "back": "Listen for: a function that is broken up into pieces",
+      "order": 27,
+      "after": [
+        "61962bd120d6"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[7]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "42: 25 STEP 2 Understand & Apply",
+          "item": 7,
+          "line": 363
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[7]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "dfc71313abb8",
+      "type": "cue",
+      "front": "Example 5 · Connect representations: What do you notice about the graph?",
+      "back": "Listen for: An open circle on the graph means the point is not included in that piece of the graph, and a closed circle means the point is included. The graph looks like a staircase.",
+      "order": 28,
+      "after": [
+        "dd625dc62c51"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 5,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "44: 27 STEP 2 Understand & Apply",
+          "item": 0,
+          "line": 429
+        },
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "af0ecad33f7d",
+      "type": "cue",
+      "front": "Example 5 · Connect representations: How does a step function compare to a piecewise-defined function?",
+      "back": "Listen for: A step function is a piecewise-defined function containing all constant pieces.",
+      "order": 29,
+      "after": [
+        "dfc71313abb8"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 5,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "44: 27 STEP 2 Understand & Apply",
+          "item": 1,
+          "line": 431
+        },
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "ba3fbcfb89ea",
+      "type": "cue",
+      "front": "Example 5 · Connect representations: Are step functions continuous functions? Explain.",
+      "back": "Listen for: No, step functions are not continuous. You need to remove your pencil from the paper when sketching the graph of a step function, showing that there are gaps.",
+      "order": 30,
+      "after": [
+        "af0ecad33f7d"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 5,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "44: 27 STEP 2 Understand & Apply",
+          "item": 2,
+          "line": 433
+        },
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "97bd2f5649c0",
+      "type": "trap",
+      "front": "Example 5 · Teacher prompt: What misconception should I watch for?",
+      "back": "You might think that the range of this function would be the interval [5,14], but only the values 5,8,11, and 14 are possible outputs.",
+      "order": 31,
+      "after": [
+        "ba3fbcfb89ea"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.inlineCommonError[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "trap",
+        "category": "InlineCommonError",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 5,
+          "category": "InlineCommonError",
+          "block": 0,
+          "item": 0,
+          "line": 454,
+          "page": "44: 27 STEP 2 Understand & Apply"
+        },
+        "promptKey": "examples[n=5].teacherPrompts.inlineCommonError[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "020adfa09568",
+      "type": "cue",
+      "front": "Example 5 · Reasoning: Make Sense and Persevere How would a piecewise-defined rule for the function in the Try It! show that the graph is a step function?",
+      "back": "Listen for: The rule for each interval would simply be a constant.",
+      "order": 32,
+      "after": [
+        "97bd2f5649c0"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 5,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "44: 27 STEP 2 Understand & Apply",
+          "item": 0,
+          "line": 469
+        },
+        "promptKey": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "89502725c77d",
+      "type": "cue",
+      "front": "Example 5 · Extend thinking: State the minimum and maximum and create a table to represent the following information: Domain: ({x | -3<x≤12}) Range: ({y | -5,4,13,21,30})",
+      "back": "Listen for: Answers may vary. Sample: Minimum (= -5); Maximum (=30). (x) | (-3<x≤0) | (0<x≤3) | (3<x≤6) | (6<x≤9) | (9<x≤12); (y) | (-5) | 4 | 13 | 21 | 30",
+      "order": 33,
+      "after": [
+        "020adfa09568"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtIExtend[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_1-3_TE.tex",
+          "anchor": 5,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "44: 27 STEP 2 Understand & Apply",
+          "item": 0,
+          "line": 475
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtIExtend[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
       "id": "7a343befa3a9",
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Yama's monthly earnings vs. hours worked, plotted as points (10,200), (20,400), ... (100,2900) joined by segments from (0,0). Write the piecewise function for earnings as a function of hours.",
-      "order": 17,
+      "order": 34,
       "after": [
         "dd625dc62c51"
       ],
@@ -216,7 +709,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "y = 20x on [0,40]; 30x - 400 on [40,70]; 40x - 1100 on [70,100] Students must decide where the slope changes (40 h and 70 h) before finding any slope; IXL items are DOK 1-2 and cannot stand in for this. Not in the fast packet: offer it as the self-paced extension after Try It 5.",
-      "order": 18,
+      "order": 35,
       "after": [
         "dd625dc62c51"
       ],
@@ -228,7 +721,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "A music teacher buys guitar strings. Store A sells a single pack for $6; Store B sells a bundle of 4 packs for $20.",
-      "order": 19,
+      "order": 36,
       "after": [
         "591b64e9375c"
       ],
@@ -240,7 +733,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Make graphs that show the income each store receives if the teacher needs 1-20 packs.",
-      "order": 20,
+      "order": 37,
       "after": [
         "b4b0acd30e21"
       ],
@@ -252,7 +745,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Describe the shape of each store's graph. Why are the graphs different?",
-      "order": 21,
+      "order": 38,
       "after": [
         "b4b0acd30e21"
       ],
@@ -264,7 +757,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Communicate Precisely: for what numbers of strings is it cheaper to buy from Store B? Explain how you know. (4, 7, 8, 11, 12, 14-20)",
-      "order": 22,
+      "order": 39,
       "after": [
         "b4b0acd30e21"
       ],
@@ -276,7 +769,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "How do stores A and B compare? → Store A sells strings individually; Store B sells them in packages of 4.",
-      "order": 23,
+      "order": 40,
       "after": [
         "b4b0acd30e21"
       ],
@@ -288,7 +781,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "How do the stores' graphs represent the cost of the guitar strings? → Store A rises steadily, $6 more per string. Store B is constant at $20 for 1-4 strings, then jumps $20 and is constant again.",
-      "order": 24,
+      "order": 41,
       "after": [
         "fe6d7cf108ba"
       ],
@@ -300,7 +793,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "How can you represent the stores' prices as equations? → Store A: y = 6x. Store B: y = 20 for 0 < x <= 4, 40 for 4 < x <= 8, 60 for 8 < x <= 12, 80 for 12 < x <= 16, 100 for 16 < x <= 20.",
-      "order": 25,
+      "order": 42,
       "after": [
         "335eb98875a3"
       ],
@@ -312,7 +805,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "What is different about the shapes of the two graphs? → Graph A is linear; graph B is a set of horizontal segments (a step function).",
-      "order": 26,
+      "order": 43,
       "after": [
         "7555acb50ddd"
       ],
@@ -324,7 +817,7 @@
       "type": "cue",
       "front": "Habits of Mind, Communicate Precisely: ask?",
       "back": "Why do you use dots rather than line segments to graph these two functions? → Dots show whole numbers of strings only; you cannot buy a fraction of a string.",
-      "order": 27,
+      "order": 44,
       "after": [
         "a52175033882"
       ],
@@ -336,7 +829,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The opener is a step-function situation (Example 5 content, cut). It still works as the hook; only the early-finishers equations question leads toward Example 3.",
-      "order": 28,
+      "order": 45,
       "after": [
         "b4b0acd30e21"
       ],
@@ -348,7 +841,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "RVD Graph piecewise-defined functions",
-      "order": 29,
+      "order": 46,
       "after": [
         "01e1c2f7a89f"
       ],
@@ -360,7 +853,7 @@
       "type": "anchor",
       "front": "IXL for example 3? (2)",
       "back": "W67 Find the slope of a linear function",
-      "order": 30,
+      "order": 47,
       "after": [
         "01e1c2f7a89f"
       ],
