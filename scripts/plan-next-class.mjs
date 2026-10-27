@@ -2,7 +2,7 @@
 // Durable conversation handoff and atomic class-plan publication.
 //   node scripts/plan-next-class.mjs context --section C --date 2026-10-27
 //   node scripts/plan-next-class.mjs decide --section C --date 2026-10-27 --decision edits.json
-//   node scripts/plan-next-class.mjs publish --per-section [--date YYYY-MM-DD]
+//   node scripts/plan-next-class.mjs publish --per-section [--date YYYY-MM-DD] [--ready-only]
 // An edit file is {id,at?,set:{"teacherBrief.today":["..."],...}}. IDs are
 // idempotency keys. A new correction gets a new ID. Explicit overrides survive
 // later summary revisions. No model is called, and no day-log fields are edited.
@@ -29,10 +29,10 @@ export function parsePlanArgs(argv) {
   const remaining = [...argv];
   const command = remaining[0] && !remaining[0].startsWith('--') ? remaining.shift() : 'context';
   if (!['context', 'compile', 'decide', 'publish'].includes(command)) throw new Error('command must be context, compile, decide or publish');
-  const args = { command, offline: false, perSection: false, rebase: false };
+  const args = { command, offline: false, perSection: false, rebase: false, readyOnly: false };
   for (let i = 0; i < remaining.length; i++) {
     const key = remaining[i];
-    if (['--offline', '--per-section', '--rebase'].includes(key)) {
+    if (['--offline', '--per-section', '--rebase', '--ready-only'].includes(key)) {
       args[key.slice(2).replace(/-(\w)/g, (_, c) => c.toUpperCase())] = true;
       continue;
     }
@@ -48,6 +48,7 @@ export function parsePlanArgs(argv) {
   if (command === 'decide' && (!args.decision || !args.section)) throw new Error('decide needs --section and --decision FILE');
   if (args.decision && command !== 'decide') throw new Error('--decision is only for decide');
   if (args.offline && command === 'publish') throw new Error('publish requires the server');
+  if (args.readyOnly && !['compile', 'publish'].includes(command)) throw new Error('--ready-only is only for compile or publish');
   return args;
 }
 
@@ -118,7 +119,7 @@ export function combinePlanInputs({ target, entry, trees, source, saved, remote,
   return { inputs, conflict };
 }
 
-export async function loadPlanContext({ root, target, offline = false, server, secret, device = 's24', fetchImpl = fetch }) {
+export async function loadPlanContext({ root, target, offline = false, server, secret, device = 's24', allowUnauthored = false, fetchImpl = fetch }) {
   const dayLog = readJson(resolve(root, 'content/a2/day-log.json'));
   const entry = (dayLog.entries || []).find(row => row.date === target.date && row.section === target.section && !row.cancelled);
   const saved = optionalJson(artifactPath(root, target));
@@ -137,6 +138,9 @@ export async function loadPlanContext({ root, target, offline = false, server, s
   const source = continuityFor({ summaries, entry: entry || { ...target }, entries: dayLog.entries });
   const trees = loadTrees(resolve(root, 'content/a2/lesson-trees'));
   const author = entry || remote?.inputs?.lessonInputs?.entry || saved?.inputs?.lessonInputs?.entry;
+  if (allowUnauthored && (!author || author.observerCard == null && author.teacherBrief == null)) {
+    return { ...target, skipped: 'no authored observerCard or teacherBrief; curriculum placeholder left unpublished' };
+  }
   const lessons = author ? cardLessons(author.lesson, author.observerCard, trees) : [];
   let knownNodeIds = remote?.inputs?.lessonInputs?.knownNodeIds || saved?.inputs?.lessonInputs?.knownNodeIds || [];
   if (!offline && lessons.length) {
@@ -173,7 +177,13 @@ export async function runPlanCommand(args, { fetchImpl = fetch } = {}) {
   const secret = args.secret || resolveTeacherSecret(root) || process.env.TEACHER_KEY;
   if (!args.offline && !secret) throw new Error('teacher secret is required; use --offline for saved context');
   const contexts = [];
-  for (const target of targets) contexts.push(await loadPlanContext({ root, target, offline: args.offline, server, secret, device: args.device, fetchImpl }));
+  const skipped = [];
+  for (const target of targets) {
+    const context = await loadPlanContext({ root, target, offline: args.offline, server, secret, device: args.device,
+      allowUnauthored: args.readyOnly, fetchImpl });
+    if (context.skipped) skipped.push({ date: target.date, section: target.section, reason: context.skipped });
+    else contexts.push(context);
+  }
   if (args.command === 'context') {
     const names = loadRosterFirstNames(resolve(root, 'roster-local'));
     const result = { schemaVersion: 1, contexts: contexts.map(context => ({ ...context,
@@ -207,7 +217,8 @@ export async function runPlanCommand(args, { fetchImpl = fetch } = {}) {
     }
   }
   for (const artifact of artifacts) atomicJson(artifactPath(root, artifact.plan), artifact);
-  const result = { schemaVersion: 1, plans: artifacts.map(artifact => artifact.plan), ...(publication ? { written: publication.written, unchanged: publication.unchanged } : {}) };
+  const result = { schemaVersion: 1, plans: artifacts.map(artifact => artifact.plan), skipped,
+    ...(publication ? { written: publication.written, unchanged: publication.unchanged } : {}) };
   if (args.out) atomicJson(resolve(args.out), result);
   return result;
 }
@@ -215,8 +226,9 @@ export async function runPlanCommand(args, { fetchImpl = fetch } = {}) {
 async function main() {
   const args = parsePlanArgs(process.argv.slice(2));
   const result = await runPlanCommand(args);
+  for (const skipped of result.skipped || []) console.error(`Skipped ${skipped.date} ${skipped.section}: ${skipped.reason}.`);
   if (args.command === 'context') console.log(JSON.stringify(result, null, 2));
-  else console.log(JSON.stringify({ plans: result.plans.map(plan => ({ date: plan.date, section: plan.section, revision: plan.revision, items: plan.deck.items.length })),
+  else console.log(JSON.stringify({ plans: result.plans.map(plan => ({ date: plan.date, section: plan.section, revision: plan.revision, items: plan.deck.items.length })), skipped: result.skipped,
     ...(result.written != null ? { written: result.written, unchanged: result.unchanged } : {}) }, null, 2));
 }
 

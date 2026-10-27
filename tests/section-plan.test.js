@@ -153,7 +153,25 @@ describe('one deterministic section plan', () => {
       'Check the makeup deadline today.', 'Continue the last piece from yesterday.', commitments[2].text,
     ]);
     expect(plan.commitments.find(item => item.id === 'promise-a').status).toBe('open');
-    expect(plan.card.body).toContain(commitments[0].text);
+    expect(plan.card.body).not.toContain(commitments[0].text);
+    expect(plan.card.body).toContain('More context and open commitments are saved');
+  });
+
+  it('keeps a large historical backlog out of the concise card while preserving every commitment', () => {
+    const raw = input();
+    const historical = Array.from({ length: 24 }, (_, index) => ({ id: `history-${index}`,
+      text: `Older follow-up ${index}: check the previously promised review material.`, status: 'open', sourceDate: '2026-09-01', kind: 'promise' }));
+    raw.commitments = [...historical, ...commitments];
+    const plan = compileSectionPlan(raw);
+    const daily = plan.deck.items.filter(item => !item.node).map(item => item.back);
+    expect((plan.card.body.match(/## Follow-up/g) || []).length).toBe(3);
+    expect(daily.every(line => plan.card.body.includes(line))).toBe(true);
+    expect(plan.card.body).not.toContain('Older follow-up');
+    expect(plan.commitments).toHaveLength(27);
+    expect(plan.commitments.filter(item => item.id.startsWith('history-')).every(item => item.status === 'open')).toBe(true);
+    expect(plan.card.body.startsWith('## IXL drills')).toBe(true);
+    expect(plan.card.body).toContain('## Today\n1. Finish the assigned examples, then quiz.');
+    expect(plan.card.body.length).toBeLessThan(1000);
   });
 
   it('rejects mixed scope and invalid assets without generating half a package', () => {
@@ -316,6 +334,27 @@ describe('durable conversation and atomic publication CLI', () => {
     const before = readFileSync(artifact, 'utf8');
     await expect(runPlanCommand({ ...args, section: 'C' }, fakeService({ failPublish: true }))).rejects.toThrow(/HTTP 409/);
     expect(readFileSync(artifact, 'utf8')).toBe(before);
+  });
+
+  it('ready-only skips unauthored placeholders explicitly but still rejects malformed authored input atomically', async () => {
+    const root = fixture();
+    const service = fakeService();
+    const args = parsePlanArgs(['publish', '--root', root, '--date', date, '--per-section', '--ready-only', '--server', 'http://fixture', '--secret', 'fixture']);
+    const path = resolve(root, 'content/a2/day-log.json');
+    const log = JSON.parse(readFileSync(path, 'utf8'));
+    log.entries[0] = { date, section: 'C', lesson: '1-5' };
+    writeFileSync(path, JSON.stringify(log));
+    const result = await runPlanCommand(args, service);
+    expect(result.plans.map(plan => plan.section)).toEqual(['D', 'G']);
+    expect(result.skipped).toEqual([{ date, section: 'C', reason: expect.stringContaining('curriculum placeholder left unpublished') }]);
+    expect(service.calls.filter(call => call.method === 'PUT')).toHaveLength(1);
+    await expect(runPlanCommand({ ...args, readyOnly: false }, service)).rejects.toThrow(/authored observerCard/);
+    const before = service.calls.filter(call => call.method === 'PUT').length;
+    log.entries[0].observerCard = {};
+    writeFileSync(path, JSON.stringify(log));
+    await expect(runPlanCommand(args, service)).rejects.toThrow(/required/);
+    expect(service.calls.filter(call => call.method === 'PUT')).toHaveLength(before);
+    expect(() => parsePlanArgs(['context', '--section', 'C', '--ready-only'])).toThrow(/only for compile or publish/);
   });
 
   it('flags pending local edits against a changed remote revision and preserves command scope', () => {

@@ -3,14 +3,15 @@
 #   1. npm run pull-summaries        -- the latest Class Log summaries into roster-local/class-summaries/
 #   2. node scripts/draft-tomorrow.mjs -- one note per section for its next class day, into roster-local/tomorrow/
 #   3. node scripts/build-lesson-tree.mjs --all --check
-#   4. node scripts/plan-next-class.mjs publish --per-section -- one transaction
+#   4. node scripts/plan-next-class.mjs publish --per-section --ready-only -- one transaction
 #      for each section's matching card/deck package, with durable commitments,
 #      explicit teacher decisions, current mastery and textbook guidance.
 #
 # Deterministic, no LLM. Steps 1-2 and plan artifacts write only gitignored
 # roster-local/; step 3 rebuilds tracked lesson trees when they change. Step 2
 # runs even when step 1 fails. Step 4 reads authoritative server state and publishes
-# only after every target compiles; a conflict or error leaves the old paired
+# only after every authored target compiles; unauthored placeholders are logged
+# and skipped. Malformed authored input, a conflict or an error leaves the old paired
 # plan intact. Any failed draft, tree build or plan publication returns a nonzero exit
 # code for Task Scheduler. Everything is appended to roster-local/tomorrow/log.txt.
 #
@@ -76,10 +77,10 @@ $planCode = 0
 if ($treeCode -ne 0) {
   Write-Log "STEP 3 FAILED (lesson trees, exit $treeCode) -- no plans published."
 } else {
-  $planArgs = @((Join-Path $repo 'scripts\plan-next-class.mjs'), 'publish', '--per-section')
+  $planArgs = @((Join-Path $repo 'scripts\plan-next-class.mjs'), 'publish', '--per-section', '--ready-only')
   if ($Date) { $planArgs += @('--date', $Date) }
   if ($Section) { $planArgs += @('--section', $Section) }
-  Write-Log "STEP 4: node scripts/plan-next-class.mjs publish --per-section $(if ($Date) { "--date $Date " })$(if ($Section) { "--section $Section" })"
+  Write-Log "STEP 4: node scripts/plan-next-class.mjs publish --per-section --ready-only $(if ($Date) { "--date $Date " })$(if ($Section) { "--section $Section" })"
   $planCode = Invoke-Logged $planArgs
   if ($planCode -ne 0) { Write-Log "STEP 4 FAILED (atomic plans, exit $planCode)." }
 }

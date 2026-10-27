@@ -51,7 +51,9 @@ node scripts/plan-next-class.mjs publish --section C --date 2026-10-27
 
 The CLI sends only compiler inputs plus expected plan and commitment-scope revisions. The server recompiles with authoritative commitment status and trusted roster privacy rules, then updates the saved package and compatibility card/deck rows in one transaction. The card ID remains stable. No separate card/deck publish is needed. Do not run the legacy publishers for a packaged class.
 
-To prepare every section's next meeting, use `publish --per-section`. All selected targets compile before one batch is sent. Any missing authored entry, invalid lesson input, compilation error or revision conflict stops publication. The existing package stays intact.
+To prepare every section's next meeting, use `publish --per-section`. All selected targets compile before one batch is sent. By default, any missing authored entry, invalid lesson input, compilation error or revision conflict stops publication. The existing package stays intact.
+
+The nightly job adds `--ready-only`: a calendar/lesson placeholder with neither a detailed routine nor a concise brief is explicitly logged and left unpublished. The remaining ready sections still publish together atomically. A malformed authored card, incomplete authored brief, missing required lesson asset or conflict remains an error; this flag never invents a curriculum plan or silently ignores a broken authored plan. It can also be used with `compile` to inspect readiness without publishing.
 
 If the server returns a conflict, reload `context` and reconcile the teacher decisions against the newer plan. When local pending edits are explicitly reviewed against that newer context, rerun `decide` or `compile` with `--rebase`, then publish. This flag acknowledges the local journal's base revision; it does not bypass the server's transaction checks. It is not an automatic retry option.
 
@@ -61,13 +63,13 @@ Promise and preparation statements keep stable IDs and explicit open/done/deferr
 
 Existing reviewed `continuity` handoffs are adopted when their source date and recorded instant match. Equivalent UTC timestamp spellings match. The adoption records persistent source decisions and reconciles reviewed promise/preparation statements only against commitments proven to come from that recording revision. It preserves unrelated older promises and already-resolved statuses; replay does not create new commitments or increment versions again.
 
-The deck reserves up to three daily cues, each holding one complete action or source statement. Daily cues have no textbook mastery node and change identity when their answer changes. Long statements remain in plan evidence instead of being clipped into misleading claims. Existing textbook node IDs, mastery behavior, Teacher's Edition prompt reservations and complete multipart prompts remain intact. Text is checked against Android's UTF-16 limits.
+The deck reserves up to three daily cues, each holding one complete action or source statement. Explicitly due work takes priority, then recent promises; older open work remains in the package's Follow-ups list. The concise Card shows only the same selected actions, so a historical backlog cannot crowd out IXL and today's sequence. Daily cues have no textbook mastery node and change identity when their answer changes. Long statements remain in plan evidence instead of being clipped into misleading claims. Existing textbook node IDs, mastery behavior, Teacher's Edition prompt reservations and complete multipart prompts remain intact. Text is checked against Android's UTF-16 limits.
 
 The package also retains the detailed routine and complete source metadata for the app's expandable evidence. Shared projections omit roster names and individual scores; raw canonical source stays private on the server.
 
 ## Nightly and recovery
 
-`tools/nightly_tomorrow.ps1` pulls summaries, writes Tomorrow notes, validates/rebuilds lesson trees, then runs the atomic package publisher. It no longer performs separate card and deck writes. Teacher decisions in saved and server plans survive the nightly run. A failed tree check or package publication returns a nonzero exit code and leaves the published pair unchanged.
+`tools/nightly_tomorrow.ps1` pulls summaries, writes Tomorrow notes, validates/rebuilds lesson trees, then runs the atomic package publisher with `--ready-only`. It no longer performs separate card and deck writes. Teacher decisions in saved and server plans survive the nightly run. Skipped unauthored placeholders are reported in the log. A failed tree check, malformed authored plan or package publication returns a nonzero exit code and leaves the published pair unchanged.
 
 The teacher secret is read from the existing local environment configuration. Do not include it in handoff files or command logs. Local artifacts can be recreated from the server's saved inputs; they are a working copy, not a replacement for durable server commitments or package history.
 

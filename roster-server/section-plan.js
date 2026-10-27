@@ -222,7 +222,7 @@ function applyDecisions(entry, source, journal) {
   return effective;
 }
 
-function renderCard(entry, source, open, preserveLastClass = false) {
+function renderCard(entry, source, open, preserveLastClass = false, moreFollowUps = false) {
   const base = teacherCardFor(entry);
   if (!base) throw new Error('plan needs an authored observerCard');
   let blocks = String(base.body || '').split(/\n\n(?=## )/);
@@ -237,7 +237,7 @@ function renderCard(entry, source, open, preserveLastClass = false) {
   ];
   const notice = 'More context and open commitments are saved with this class plan.';
   const render = more => [ixl, ...selected, fixed, ...(more ? [notice] : [])].filter(Boolean).join('\n\n');
-  let omitted = false;
+  let omitted = moreFollowUps;
   for (const candidate of candidates) {
     selected.push(candidate);
     if (render(true).length > MAX_CARD_BODY) { selected.pop(); omitted = true; }
@@ -308,13 +308,17 @@ export function compileSectionPlan(raw) {
   inputs.lessonInputs.knownNodeIds = [...new Set(inputs.lessonInputs.knownNodeIds || [])].sort();
   const { entry, source } = applyDecisions(authored, inputs.source, inputs.decisions);
   const open = activeCommitments(inputs.commitments, scope.date);
-  const display = renderCard(entry, source, open, inputs.decisions.some(decision => sourceMatches(decision, source) && Object.hasOwn(decision.set, 'teacherBrief.lastClass')));
+  const cues = dailyItems(scope, source, open);
+  const visibleTexts = new Set(cues.map(cue => cue.back));
+  const visible = [...new Map(open.filter(item => visibleTexts.has(item.text)).map(item => [item.text, item])).values()].slice(0, MAX_DAILY_CUES);
+  const display = renderCard(entry, source, visible,
+    inputs.decisions.some(decision => sourceMatches(decision, source) && Object.hasOwn(decision.set, 'teacherBrief.lastClass')),
+    open.length > visible.length);
   const card = validateCard({ ...scope, lesson: entry.lesson ?? null, title: display.title,
     body: display.body, mode: display.mode, minutes: display.minutes, frame: display.frame, source: 'desk' });
   if (card.title.length > 200 || card.body.length > MAX_CARD_BODY || (card.frame?.length || 0) > 500) {
     throw new Error('card exceeds Android text limits');
   }
-  const cues = dailyItems(scope, source, open);
   const trees = inputs.lessonInputs.trees;
   const lessons = cardLessons(entry.lesson, entry.observerCard, trees);
   let lessonItems;
