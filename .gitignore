@@ -153,3 +153,8 @@ syllabus/*.pdf
 
 # Test fixtures may contain a synthetic roster-local tree (draft-tomorrow); the real one above stays ignored.
 !tests/fixtures/**/roster-local/
+
+# --- local scratch and student data, never commit (2026-10-28) ---
+state/fork-diff/
+__pycache__/
+*.pyc
