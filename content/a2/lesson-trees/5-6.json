@@ -1,0 +1,904 @@
+{
+  "lesson": "5-6",
+  "title": "Inverse Relations and Functions",
+  "nodes": [
+    {
+      "id": "e9d11a2f5ccd",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How can you find the inverse of a function and verify the two functions are inverses?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "fdb32ae84eb2",
+      "type": "anchor",
+      "front": "Define: inverse",
+      "back": "the inverse is the reflection across y = x, so (x, y) on f becomes (y, x) on the inverse; sketch a line and its reflection from two swapped points (Example 2B; Try It 2b; IXL K2W; prereq LSG)",
+      "order": 2,
+      "after": [
+        "e9d11a2f5ccd"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.inverse"
+    },
+    {
+      "id": "56c045a42b5f",
+      "type": "anchor",
+      "front": "Define: reflection",
+      "back": "the inverse is the reflection across y = x, so (x, y) on f becomes (y, x) on the inverse; sketch a line and its reflection from two swapped points (Example 2B; Try It 2b; IXL K2W; prereq LSG)",
+      "order": 3,
+      "after": [
+        "e9d11a2f5ccd"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.reflection"
+    },
+    {
+      "id": "8ba16f2e6692",
+      "type": "anchor",
+      "front": "Define: domain",
+      "back": "rewrite a perfect-square trinomial as (x - h)^2, restrict the domain to one side of the vertex (x >= h), then switch and solve with the + root (Example 3; Try It 3a is the same shape as item 3; IXL ZRQ)",
+      "order": 4,
+      "after": [
+        "e9d11a2f5ccd"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.domain"
+    },
+    {
+      "id": "6f8cf2da8888",
+      "type": "anchor",
+      "front": "Define: range",
+      "back": "the range of the restricted f is the domain of f^-1 (Example 2B, Example 3 step 4)",
+      "order": 5,
+      "after": [
+        "e9d11a2f5ccd"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.range"
+    },
+    {
+      "id": "66c2d08b3e43",
+      "type": "anchor",
+      "front": "Define: restrict",
+      "back": "rewrite a perfect-square trinomial as (x - h)^2, restrict the domain to one side of the vertex (x >= h), then switch and solve with the + root (Example 3; Try It 3a is the same shape as item 3; IXL ZRQ)",
+      "order": 6,
+      "after": [
+        "e9d11a2f5ccd"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.restrict"
+    },
+    {
+      "id": "8910dfd973db",
+      "type": "anchor",
+      "front": "Quiz item 2 asks?",
+      "back": "Item 2 (graded): sketch the graph of f(x) = (1/2)x + 3 and of its inverse. Item 3 (also graded): f(x) = x^2 - 2x + 1; choose the inverse with the right domain restriction (A sqrt(x+1), x >= -1; B sqrt(x) + 1, x >= 1; C sqrt(x) - 1, x >= 0; D no inverse). …",
+      "order": 7,
+      "after": [
+        "fdb32ae84eb2",
+        "56c045a42b5f",
+        "8ba16f2e6692",
+        "6f8cf2da8888",
+        "66c2d08b3e43"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "6dbe28a6f83a",
+      "type": "anchor",
+      "front": "Quiz item 2 answer?",
+      "back": "Item 2: f is the line through (0, 3) with slope 1/2; f^-1(x) = 2x - 6, the line through (3, 0) with slope 2 (the two lines are reflections across y = x and meet at (6, 6); TE key: graph shown). Item 3: B (f = (x - 1)^2, vertex (1, 0); restrict to x >= 1; x = (y - 1)^2 gives y = sqrt(x) + 1, domain x >= 0). …",
+      "order": 8,
+      "after": [
+        "fdb32ae84eb2",
+        "56c045a42b5f",
+        "8ba16f2e6692",
+        "6f8cf2da8888",
+        "66c2d08b3e43"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "ca8b2808b278",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need?",
+      "back": "switch x and y, then solve for y (Example 2A; Try It 2a; IXL ZRQ)",
+      "order": 9,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "0a05340e8796",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (2)",
+      "back": "the inverse is the reflection across y = x, so (x, y) on f becomes (y, x) on the inverse; sketch a line and its reflection from two swapped points (Example 2B; Try It 2b; IXL K2W; prereq LSG)",
+      "order": 10,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "c77f95048186",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (3)",
+      "back": "rewrite a perfect-square trinomial as (x - h)^2, restrict the domain to one side of the vertex (x >= h), then switch and solve with the + root (Example 3; Try It 3a is the same shape as item 3; IXL ZRQ)",
+      "order": 11,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "7e0a4a0e662c",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (4)",
+      "back": "the range of the restricted f is the domain of f^-1 (Example 2B, Example 3 step 4)",
+      "order": 12,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "e1601ceb7a7b",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (5)",
+      "back": "for the bonus (item 5): find the inverse of 2x + 4 by switch-and-solve and compare (Example 2 method; IXL ZRQ and 9KT)",
+      "order": 13,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "e7475a24e16e",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (6)",
+      "back": "item 1 (table with letters, DOK 1): one whiteboard round on 'switch the columns' with the packet's concept-summary table before the quiz if the teacher counts it (full Savvas quiz only)",
+      "order": 14,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
+      "id": "2fe34553867a",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Missing values in the table of the inverse (a = -1, b = 1, c = 3, d = -2): Example 1 content (cut). The packet's 'The idea' table (TE concept summary) and the (x, y) -> (y, x) line cover it; IXL YLX warm-up. Not on the short form (full Savvas quiz only); listed in the key for a retake or Form B.",
+      "order": 15,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "eaac8b9d2cc1",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Sketch f(x) = (1/2)x + 3 and its inverse: Example 2B + Try It 2 (the grid in Try It 2b) + K2W. On the short form, graded, 10 points (4 for f, 4 for the inverse, 2 for the work shown: the equation f^-1(x) = 2x - 6 or two swapped points). …",
+      "order": 16,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "2497783f7913",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Inverse of x^2 - 2x + 1 by restricting the domain (answer B): Example 3 + Try It 3a (x^2 + 8x + 16 is the same shape) + ZRQ. On the short form, graded, 10 points (6 for B, 4 for the work shown).",
+      "order": 17,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "94aa10b6ada0",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Inverse of (1/2) cube root (x - 3) + 5 in the form _ + _(x - _)^3 (answer 3; 8; 5): Example 4 (cut; the TE says Examples 3-5 are not necessarily expected on high-stakes assessments). The switch-and-solve steps of Example 2 carry over. …",
+      "order": 18,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "db12a2f403e6",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "g(x) = (1/2)x - 2 is the inverse of f(x) = 2x + 4: Example 2 method (Try It 2a is the same move) or Example 5 composition (cut). On the short form, +5 bonus. ZRQ and 9KT.",
+      "order": 19,
+      "after": [
+        "8910dfd973db"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "f6ab327f4573",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Find an equation of an inverse relation (f(x) = x^2: A switch and solve, y = +/- sqrt x; B the graphs reflect across y = x) · DOK 1 · practice 18-21, 36 · Quiz items 2 and 5 (and the method behind 1 and 4): switch and solve, and the inverse's graph is the reflection across y = x. …",
+      "order": 20,
+      "after": [
+        "8910dfd973db",
+        "6dbe28a6f83a"
+      ],
+      "minute": null,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "8f4e3109c7c5",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Restrict a domain to produce an inverse function (f(x) = x^2 restricted to x >= 0; f^-1(x) = sqrt x) · DOK 1, 2, 3 · practice 22-25, 9, 38 · Quiz item 3 (restrict at the vertex, then the + root); Try It 3a (x^2 + 8x + 16) is item 3's shape with different numbers, so no Practice block is needed. …",
+      "order": 21,
+      "after": [
+        "f6ab327f4573"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "d8d0fa3c4758",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Why is the inverse of (f(x)=x^2) written with (±)?",
+      "back": "Listen for: The domain of f contains both positive and negative values of x. If the (±) were missing, then only the positive values would appear in the inverse.",
+      "order": 22,
+      "after": [
+        "f6ab327f4573"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "79: 270 Example 1 continued",
+          "item": 0,
+          "line": 246
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "487175d0ebcd",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: How can you tell that the inverse of f is not a function from the graph?",
+      "back": "Listen for: The graph shows that in the inverse, there are multiple values of y for a single value of x. Therefore, it is not a function.",
+      "order": 23,
+      "after": [
+        "d8d0fa3c4758"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "79: 270 Example 1 continued",
+          "item": 1,
+          "line": 248
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "db573d6d1e25",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: If a point ((x,y)) is on the graph of the function, what do you know about the graph of the inverse?",
+      "back": "Listen for: The point ((y,x)) is on the graph of the inverse.",
+      "order": 24,
+      "after": [
+        "487175d0ebcd"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "79: 270 Example 1 continued",
+          "item": 2,
+          "line": 250
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "d8afdb88a8a6",
+      "type": "cue",
+      "front": "Example 2 · Check student thinking: How is the graph of (f(x)=2x+1) related to the graph of the inverse of f, (y=(x-1)/2)?",
+      "back": "Listen for: The graph of the inverse is a reflection of the graph of f about the line (y=x).",
+      "order": 25,
+      "after": [
+        "db573d6d1e25"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 2,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "79: 270 Example 1 continued",
+          "item": 0,
+          "line": 279
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "b9c6db3ebb3b",
+      "type": "cue",
+      "front": "Example 2 · Reasoning: Communicate Precisely Think of (f(x)=2x+1) as a number path: start with x, multiply by 2, and add 1. How would you describe the path from the result back to x?",
+      "back": "Listen for: Start with (f(x)), subtract 1, and divide by 2.",
+      "order": 26,
+      "after": [
+        "d8afdb88a8a6"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 2,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "79: 270 Example 1 continued",
+          "item": 0,
+          "line": 284
+        },
+        "promptKey": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "77f3cf569191",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: Do you have to restrict the domain of every function to find an inverse function?",
+      "back": "Listen for: No; you only have to restrict the domain if the function has more than one x-value for the same y-value.",
+      "order": 27,
+      "after": [
+        "8f4e3109c7c5"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "80: 271 Restrict a Domain",
+          "item": 0,
+          "line": 298
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "7b1871d9c4ec",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: How could you restrict the domain of (f(x)=x^2) to produce a different inverse function?",
+      "back": "Listen for: By restricting the domain to (x≤0), the inverse function becomes (f^(-1)(x)=-√(x)).",
+      "order": 28,
+      "after": [
+        "77f3cf569191"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "80: 271 Restrict a Domain",
+          "item": 1,
+          "line": 300
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "03e6aa63f059",
+      "type": "cue",
+      "front": "Example 3 · Check student thinking: What value of x can you use to restrict the domain of any quadratic function to find an inverse function?",
+      "back": "Listen for: You can use the value of x at the vertex or at the axis of symmetry.",
+      "order": 29,
+      "after": [
+        "7b1871d9c4ec"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 3,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "80: 271 Restrict a Domain",
+          "item": 0,
+          "line": 332
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "0a6e975f22f2",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: What happens to each (x/y) pair in the two tables?",
+      "back": "Listen for: Their positions are reversed.",
+      "order": 30,
+      "after": [
+        "03e6aa63f059"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "80: 271 Restrict a Domain",
+          "item": 0,
+          "line": 338
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "3e55b5101cfe",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: The two tables are inverses of each other. What does it mean for one relation to be the inverse of another?",
+      "back": "Listen for: The x- and y-values are reversed.",
+      "order": 31,
+      "after": [
+        "0a6e975f22f2"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "80: 271 Restrict a Domain",
+          "item": 1,
+          "line": 340
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c2f1669b52da",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: What does duplicate mean?",
+      "back": "Listen for: the same as",
+      "order": 32,
+      "after": [
+        "3e55b5101cfe"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "80: 271 Restrict a Domain",
+          "item": 2,
+          "line": 343
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "09aed1ccb44f",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: What does eliminate mean?",
+      "back": "Listen for: to get rid of",
+      "order": 33,
+      "after": [
+        "c2f1669b52da"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "80: 271 Restrict a Domain",
+          "item": 3,
+          "line": 345
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "4f9376277592",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Why do duplicate y-values need to be eliminated?",
+      "back": "Listen for: so that the inverse of the given function still meets the definition of a function",
+      "order": 34,
+      "after": [
+        "09aed1ccb44f"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "80: 271 Restrict a Domain",
+          "item": 4,
+          "line": 347
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "884139bcfcbb",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: How does the sentence help you understand the meaning of restrict?",
+      "back": "Listen for: The university wants to restrict, or set limits on, the number of students on campus.",
+      "order": 35,
+      "after": [
+        "4f9376277592"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "80: 271 Restrict a Domain",
+          "item": 5,
+          "line": 350
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "9a205b8feec2",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: How is the term restrict similarly used in reference to the domain of an inverse function?",
+      "back": "Listen for: Limits are needed on the domain values of a function so that its inverse still meets the requirements of being a function.",
+      "order": 36,
+      "after": [
+        "884139bcfcbb"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[6]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-6_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "80: 271 Restrict a Domain",
+          "item": 6,
+          "line": 352
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[6]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e79e016a8c8a",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "A table lists f(x) = x, g(x) = x^2, h(x) = x^3 with their inverses and whether each inverse is a function. Part A: find the inverses of k(x) = x^4, m(x) = x^5, n(x) = x^6. Part B: decide whether each inverse is a function. Part C: make a conjecture about the power of a function whose inverse is a function.",
+      "order": 37,
+      "after": [
+        "8f4e3109c7c5"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "707dd60b0a7d",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "Part A: k^-1(x) = +/- fourth root of x; m^-1(x) = fifth root of x; n^-1(x) = +/- sixth root of x. Part B: k^-1 is not a function; m^-1 is a function; n^-1 is not a function. Part C (sample): odd powers have inverses that are functions; even powers do not (unless the domain is restricted). …",
+      "order": 38,
+      "after": [
+        "8f4e3109c7c5"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "8174d32ab172",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Two number paths take a number x from the domain (all real numbers) to the range. Path f: start with x, subtract 3, multiply by -2, add 5. Path g: start with x, add 1, square the value, subtract 2.",
+      "order": 39,
+      "after": [
+        "e9d11a2f5ccd"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "2eda57de4d27",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Follow the number paths to find f(1) and g(1). (f(1) = 9; g(1) = 2)",
+      "order": 40,
+      "after": [
+        "8174d32ab172"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "ca9fe2cc6e7a",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Identify all possible values of x that lead to f(x) = 7 and all values that lead to g(x) = 7. (f: x = 2; g: x = -4 or x = 2)",
+      "order": 41,
+      "after": [
+        "8174d32ab172"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "bdcc6a8b064c",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Communicate Precisely: based on the two number paths, under what conditions can you follow a path back to a unique value in the domain? (each domain value must map to a unique range value; if two domain values reach the same range value, the path back is not unique)",
+      "order": 42,
+      "after": [
+        "8174d32ab172"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "97c7a9eebf30",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "How are the domain and range related to the number path? → You apply the operations listed in the number path on the values in the domain, which then result in the values in the range.",
+      "order": 43,
+      "after": [
+        "8174d32ab172"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "9be032ec9dfa",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "What differences do you notice between the number paths for f and g? → In g, a value is squared. In f, all values are basic operations on a given number.",
+      "order": 44,
+      "after": [
+        "97c7a9eebf30"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "60297a92b975",
+      "type": "cue",
+      "front": "During, small group: ask? (2)",
+      "back": "Why is it possible for two values of x to result in g(x) = 7? → When you square a value, both the value and its opposite have the same result.",
+      "order": 45,
+      "after": [
+        "9be032ec9dfa"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "e81c6b28ffb5",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Create a new number path h, using the number path g, but replace 'square the value' with 'cube the value'. Find h(1). Can you follow the path back to a unique value in the domain? → h(1) = 6; yes, any value that you cube has a unique result.",
+      "order": 46,
+      "after": [
+        "60297a92b975"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "83505d8f6b88",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "Suppose that after the first step in each number path you have a value of -2. How is multiplying the value by -2 in f different than squaring the value in g? → In f, -2 times -2 is 4, and only -2 produces 4. In g, two values, -2 and 2, produce 4.",
+      "order": 47,
+      "after": [
+        "e81c6b28ffb5"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "2f410810596d",
+      "type": "cue",
+      "front": "Habits of Mind, Model with Mathematics: ask?",
+      "back": "Write a rule for number path f. Write a rule for following the number path backward. How do the two rules compare? → f(x) = -2(x - 3) + 5; n(x) = (x - 5)/(-2) + 3. The paths use inverse operations in reverse order, so each is the inverse of the other.",
+      "order": 48,
+      "after": [
+        "83505d8f6b88"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "48d57f02f2f7",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The TE's digital note calls this 'Critique & Explain', but the printed activity is Explore & Reason. The squaring path g is the hook for Example 3 (two x-values, one output, so restrict the domain); path f backward is Example 2's switch-and-solve. …",
+      "order": 49,
+      "after": [
+        "8174d32ab172"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "8dced02310fa",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "ZRQ Find inverse functions and relations",
+      "order": 50,
+      "after": [
+        "8f4e3109c7c5"
+      ],
+      "minute": null,
+      "source": "ixl.ZRQ"
+    },
+    {
+      "id": "c7efccfc36b3",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "K2W Graphs of inverse functions",
+      "order": 51,
+      "after": [
+        "f6ab327f4573"
+      ],
+      "minute": null,
+      "source": "ixl.K2W"
+    },
+    {
+      "id": "297a9aa23ef9",
+      "type": "anchor",
+      "front": "IXL for example 2? (2)",
+      "back": "9KT Identify inverse functions",
+      "order": 52,
+      "after": [
+        "f6ab327f4573"
+      ],
+      "minute": null,
+      "source": "ixl.9KT"
+    },
+    {
+      "id": "c9a153331c90",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "YLX Find values of inverse functions from tables",
+      "order": 53,
+      "after": [
+        "e9d11a2f5ccd"
+      ],
+      "minute": null,
+      "source": "ixl.YLX"
+    }
+  ]
+}

@@ -1,0 +1,530 @@
+{
+  "lesson": "1-4",
+  "title": "Arithmetic Sequences and Series",
+  "nodes": [
+    {
+      "id": "2155bce2bcdf",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "What is an arithmetic sequence, and how do you represent and find its terms and their sums?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "31b4812ba541",
+      "type": "anchor",
+      "front": "Define: first term",
+      "back": "I can explain how a recursive definition and an explicit definition describe the same sequence, using the words first term, common difference, previous term, and term number.",
+      "order": 2,
+      "after": [
+        "2155bce2bcdf"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.first term"
+    },
+    {
+      "id": "c78801a8d3a0",
+      "type": "anchor",
+      "front": "Define: common difference",
+      "back": "common difference: the constant difference between consecutive terms of an arithmetic sequence (vocabulary box)",
+      "order": 3,
+      "after": [
+        "2155bce2bcdf"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.common difference"
+    },
+    {
+      "id": "9c5fbcba0abc",
+      "type": "anchor",
+      "front": "Define: previous term",
+      "back": "I can explain how a recursive definition and an explicit definition describe the same sequence, using the words first term, common difference, previous term, and term number.",
+      "order": 4,
+      "after": [
+        "2155bce2bcdf"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.previous term"
+    },
+    {
+      "id": "1e8f8b27ccf1",
+      "type": "anchor",
+      "front": "Define: term number",
+      "back": "for the Topic 1 Assessment: a reasonable domain is the term numbers that make sense, integers 1 through the last term (packet Practice a, last line)",
+      "order": 5,
+      "after": [
+        "2155bce2bcdf"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.term number"
+    },
+    {
+      "id": "8c84fac132a8",
+      "type": "anchor",
+      "front": "Quiz item 3 asks?",
+      "back": "Item 3: a bucket holds 100 potatoes; Hal removes and cleans 4 per minute. Choose the explicit definition for the potatoes left after n minutes: A a_n = 4 - 100(n - 1); B a_n = 100 - 4(n - 1); C a_n = 96 + 4(n - 1); D a_n = 96 - 4(n - 1). …",
+      "order": 6,
+      "after": [
+        "31b4812ba541",
+        "c78801a8d3a0",
+        "9c5fbcba0abc",
+        "1e8f8b27ccf1"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "13717c5ef9a6",
+      "type": "anchor",
+      "front": "Quiz item 3 answer?",
+      "back": "Item 3: D, a_n = 96 - 4(n - 1) (after 1 minute 96 are left, so a1 = 96, d = -4; distractor B counts from 0 minutes). Item 4: 50; 25. Verify against the TE key on quiz day.",
+      "order": 7,
+      "after": [
+        "31b4812ba541",
+        "c78801a8d3a0",
+        "9c5fbcba0abc",
+        "1e8f8b27ccf1"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "f1c2b289d07b",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need?",
+      "back": "common difference: the constant difference between consecutive terms of an arithmetic sequence (vocabulary box)",
+      "order": 8,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "94bdc0860068",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (2)",
+      "back": "the explicit form a_n = a1 + d(n - 1): the number multiplying (n - 1) is d (Example 3A; IXL H82)",
+      "order": 9,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "96fc34a97673",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (3)",
+      "back": "the recursive form: a1, then a_n = a_(n-1) + d for n > 1 (Example 3B; IXL ZAH)",
+      "order": 10,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "8ace791be44f",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (4)",
+      "back": "read a1 and d from a word problem, and notice when term 1 is 'after 1 minute' rather than the starting amount (packet Practice a, the structural parallel of item 3)",
+      "order": 11,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "e133e4e5da9d",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (5)",
+      "back": "d is negative when the amount goes down by the same amount each time (item 1 bonus; IXL C8R)",
+      "order": 12,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "0ad807eca796",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (6)",
+      "back": "for the Topic 1 Assessment: a reasonable domain is the term numbers that make sense, integers 1 through the last term (packet Practice a, last line)",
+      "order": 13,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
+      "id": "41ea23896e11",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "On the short form as item 1, the proposed +5 bonus. Daily low temperature falls 2 degrees F a day: pick the arithmetic sequence (C, 8, 6, 4, 2, 0, ...). Common difference only: Example 1 content (cut), carried by the packet's vocabulary box and the starred C8R. DOK 3 per the TE quiz item analysis.",
+      "order": 14,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "93ae628b87a3",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Not on the short form (full Savvas quiz only). Rayna's tapered staircase: total length of stair tops from 3 1/2 ft to 2 1/6 ft, each 4 in. shorter (85/6 ft; 5 stairs). Needs n from the explicit formula (Example 6B step 1) and the sum formula (Examples 5, 7), both cut.",
+      "order": 15,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "295168951a87",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "On the short form as item 3, proposed graded, 10 points. Potatoes: explicit definition from a context (D). Example 3A (explicit form) plus packet Practice a (same structure). The form adds a show-your-thinking line (a1 = , d = ) worth 2 + 2 of the 10.",
+      "order": 16,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "37f08d61eec5",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "On the short form as item 4, proposed graded, 10 points. Gabriela's deposits: complete the recursive definition (50; 25). Example 3B (recursive form) plus packet Practice b (same structure). The form adds an explain prompt (what the 25 means) worth 2 of the 10.",
+      "order": 17,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "3a70a09362f4",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Not on the short form (full Savvas quiz only). Total of Gabriela's deposits by her 18th birthday ($4725: a18 = 475, S18 = 18(50 + 475)/2). Example 7 (finite arithmetic series), cut. Same skill as Topic 1 Assessment item 9.",
+      "order": 18,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "1e4c6c2c1522",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Translate Between Recursive and Explicit Forms · DOK 1, 2, 3 · practice 22, 25, 12, 15 · The lesson. Part A (recursive to explicit) is Topic 1 Assessment item 8 exactly and the form of quiz item 3; Part B (explicit to recursive) is the form of quiz item 4 and Topic 1 Assessment item 7 (DOK 3). …",
+      "order": 19,
+      "after": [
+        "8c84fac132a8",
+        "13717c5ef9a6"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "562a0b8f6670",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: How does the explicit definition compare to the recursive definition?",
+      "back": "Listen for: Each definition shows the common difference and the first term of the sequence. You can use the explicit definition to find any value of the sequence, without having to calculate all previous values.",
+      "order": 20,
+      "after": [
+        "1e4c6c2c1522"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_1-4_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "54: 33 Examples 3 and 4",
+          "item": 0,
+          "line": 311
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "b616b8a5d4ad",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: When might you want to use the recursive definition of the sequence rather than the explicit definition?",
+      "back": "Listen for: The recursive definition may be the better option when you want to write all of the terms in a sequence up to a certain term.",
+      "order": 21,
+      "after": [
+        "562a0b8f6670"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_1-4_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "54: 33 Examples 3 and 4",
+          "item": 1,
+          "line": 313
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "56fe467defcb",
+      "type": "cue",
+      "front": "Example 3 · Check student thinking: When translating between a recursive definition and an explicit one, what should you do first?",
+      "back": "Listen for: You should identify the common difference and the first term of the sequence.",
+      "order": 22,
+      "after": [
+        "b616b8a5d4ad"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_1-4_TE.tex",
+          "anchor": 3,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "54: 33 Examples 3 and 4",
+          "item": 0,
+          "line": 339
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e6b276cbc567",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Felipe and Gregory are given the arithmetic sequence -1, 6, 13, .... Gregory wrote the explicit definition a_n = -1 + 7(n - 1) for the sequence. Felipe wrote the definition as a_n = 7n - 8. Which one of them is correct? Explain.",
+      "order": 23,
+      "after": [
+        "1e4c6c2c1522"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "6170420bb5ed",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "Both; Gregory's formula simplifies to Felipe's: -1 + 7(n - 1) = -1 + 7n - 7 = 7n - 8. Check n = 3: -1 + 14 = 13 and 21 - 8 = 13. Students must argue that two different-looking definitions name the same sequence, the MP.3 move the quiz never asks for; IXL items are DOK 1-2 and cannot stand in for it. …",
+      "order": 24,
+      "after": [
+        "1e4c6c2c1522"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "d6a65bd91f05",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Yumiko and Hugo look at a table of the number of families attending a party (0, 1, 2, 3, 4) and the items needed to fill pinatas (1, 5, 9, 13, 17). Yumiko writes f(1) = 1 + 4 = 5, f(2) = f(1) + 4 = 9, f(3) = f(2) + 4 = 13, f(4) = f(3) + 4 = 17. Hugo writes g(x) = 1 + 4x.",
+      "order": 25,
+      "after": [
+        "2155bce2bcdf"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "b9c0dce628ca",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Describe the pattern Yumiko found for finding items needed for the pinatas. (Each number is 4 more than the previous number.)",
+      "order": 26,
+      "after": [
+        "d6a65bd91f05"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "ea29f996637e",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Describe the pattern Hugo found for finding items needed for the pinatas. (He used a formula to calculate the number of items.)",
+      "order": 27,
+      "after": [
+        "d6a65bd91f05"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "95c96c02f0b3",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Use Structure: compare the two methods. Which method would be more useful in finding the items needed when 100 family members attend? Why? (Hugo's: g(100) directly; Yumiko's needs f(1) through f(99) first.)",
+      "order": 28,
+      "after": [
+        "d6a65bd91f05"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "16189ce1e720",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What do you notice about the values in the table? → The input values increase by 1. The output values increase by 4.",
+      "order": 29,
+      "after": [
+        "d6a65bd91f05"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "8a4c9e92abec",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "How else could you represent the data in the table? → You could plot the ordered pairs of inputs and outputs on a coordinate plane.",
+      "order": 30,
+      "after": [
+        "16189ce1e720"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "d622a08b42a8",
+      "type": "cue",
+      "front": "During, small group: ask? (2)",
+      "back": "Plot the ordered pairs on a coordinate plane. Draw a line to connect all the points. What do you notice? → All the points lie on a line. The equation of the line is the same as the equation Hugo found.",
+      "order": 31,
+      "after": [
+        "8a4c9e92abec"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "49680de1722c",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Consider the ordered pairs (0,3), (1,5), (2,7), (3,9), (4,11). Describe two different methods for finding the outputs. Compare your methods. → Use a graph: as x increases by 1, y increases by 2. Or find an equation, for example f(x) = 2x + 3.",
+      "order": 32,
+      "after": [
+        "d622a08b42a8"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "ef019be4a5b2",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "What differences do you notice between Yumiko's and Hugo's methods? → In Yumiko's method you need the previous value to calculate the current value. In Hugo's method you can calculate the current value directly.",
+      "order": 33,
+      "after": [
+        "49680de1722c"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "5bafc7b77448",
+      "type": "cue",
+      "front": "Habits of Mind, Use Structure: ask?",
+      "back": "Find the average rate of change between a few pairs of points. What can you conclude about the function represented in the table? → The average rate of change is always 4, so these values are probably from a linear function.",
+      "order": 34,
+      "after": [
+        "ef019be4a5b2"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "de6708afced0",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The opener is Example 3 in disguise: Yumiko's rule is recursive (previous term), Hugo's is explicit (term number); name them that way in the After question. …",
+      "order": 35,
+      "after": [
+        "d6a65bd91f05"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "ebb4c0a964e9",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "C8R Find terms of an arithmetic sequence",
+      "order": 36,
+      "after": [
+        "2155bce2bcdf"
+      ],
+      "minute": null,
+      "source": "ixl.C8R"
+    },
+    {
+      "id": "18a9c3213436",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "H82 Write a formula for an arithmetic sequence",
+      "order": 37,
+      "after": [
+        "1e4c6c2c1522"
+      ],
+      "minute": null,
+      "source": "ixl.H82"
+    },
+    {
+      "id": "b26622f3a77e",
+      "type": "anchor",
+      "front": "IXL for example 3? (2)",
+      "back": "ZAH Write a recursive formula for a sequence",
+      "order": 38,
+      "after": [
+        "1e4c6c2c1522"
+      ],
+      "minute": null,
+      "source": "ixl.ZAH"
+    },
+    {
+      "id": "986b48d8b724",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "W6A Find the sum of an arithmetic series",
+      "order": 39,
+      "after": [
+        "2155bce2bcdf"
+      ],
+      "minute": null,
+      "source": "ixl.W6A"
+    }
+  ]
+}

@@ -1,0 +1,748 @@
+{
+  "lesson": "3-7",
+  "prompts": [
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the two graphs that is similar?",
+      "answer": "They are even functions. They have an axis of symmetry. They are quadratic functions. They are parabolas. They both open upward.",
+      "variant": "additional",
+      "notes": [
+        "Printed even/quadratic/parabola claims are inconsistent with the quartic equations and the horizontal translation of h."
+      ],
+      "context": {
+        "text": "Additional Examples Additional Examples are available at SavvasRealize.com. ADDITIONAL EXAMPLE 3 Describe the transformation from (g(x)) to (h(x)). (g(x)=x^4) (h(x)=2(x-1)^4+7) The graph of (h) is the graph of the parent function (g), stretched vertically by a factor of 2 and translated 1 unit right and 7 units up. Display labels: Go back; ESSENTIAL QUESTION; SOLUTION. Example 3 Help students understand the effect of transformations on the graph of a polynomial.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Red g=x to fourth, vertex O; blue h=2(x-1) to fourth+7, vertex (1,7). Window x -4 to 4 with unit grid, y -2 to 18 with grid 2; x labels -2,2; y4,8,12,16. Both ends of both curves point upward."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "88: 167 Understand & Apply",
+        "item": 0,
+        "line": 196
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How is the graph of (h(x)) transformed from the graph of (g(x))?",
+      "answer": "(h(x)) is stretched by a factor of 2, shifted right 1 unit and up 7 units.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples Additional Examples are available at SavvasRealize.com. ADDITIONAL EXAMPLE 3 Describe the transformation from (g(x)) to (h(x)). (g(x)=x^4) (h(x)=2(x-1)^4+7) The graph of (h) is the graph of the parent function (g), stretched vertically by a factor of 2 and translated 1 unit right and 7 units up. Display labels: Go back; ESSENTIAL QUESTION; SOLUTION. Example 3 Help students understand the effect of transformations on the graph of a polynomial.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Red g=x to fourth, vertex O; blue h=2(x-1) to fourth+7, vertex (1,7). Window x -4 to 4 with unit grid, y -2 to 18 with grid 2; x labels -2,2; y4,8,12,16. Both ends of both curves point upward."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "88: 167 Understand & Apply",
+        "item": 1,
+        "line": 199
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the graph of (f(x)=x^3)?",
+      "answer": "It is an odd function, its point of symmetry is at the origin, and its end behaviors are in opposite directions.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4 Determine the equation of the graph as it relates to the parent cubic function or parent quartic function. The graph has the shape of a cubic graph. The graph is a translation of the parent function (-2) horizontally and 1 vertically. The end behavior indicates that the leading coefficient is negative. So (g(x)=-(x+2)^3+1). Display labels: Go back; ESSENTIAL QUESTION; TRY ANOTHER ONE; SOLUTION. Example 4 Help students recognize transformations of polynomials.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Orange descending cubic g=-(x+2) cubed+1; labeled solid points (-2,1),(0,-7). x window -7 to 3,y -8 to 2; unit grid, x labels -6,-4,-2,2, y -2,-4,-6. Arrowheads at upper left and lower right."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "88: 167 Understand & Apply",
+        "item": 0,
+        "line": 213
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How can you use the graph of (f(x)=(x-h)^3) to determine the value of (h)?",
+      "answer": "Subtracting a number from (x) before cubing shifts the graph along the (x)-axis. By noting the direction that the graph of the function shifts, you can determine whether (h) is positive or negative. The magnitude of the shift will tell you the value of (h).",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4 Determine the equation of the graph as it relates to the parent cubic function or parent quartic function. The graph has the shape of a cubic graph. The graph is a translation of the parent function (-2) horizontally and 1 vertically. The end behavior indicates that the leading coefficient is negative. So (g(x)=-(x+2)^3+1). Display labels: Go back; ESSENTIAL QUESTION; TRY ANOTHER ONE; SOLUTION. Example 4 Help students recognize transformations of polynomials.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Orange descending cubic g=-(x+2) cubed+1; labeled solid points (-2,1),(0,-7). x window -7 to 3,y -8 to 2; unit grid, x labels -6,-4,-2,2, y -2,-4,-6. Arrowheads at upper left and lower right."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "88: 167 Understand & Apply",
+        "item": 1,
+        "line": 215
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the graphs that can help you identify whether the function is even or odd?",
+      "answer": "If the (y)-axis is an axis of symmetry of the graph, the function is even. If the origin is a point of symmetry of the graph, the function is odd.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "89: 168",
+        "item": 0,
+        "line": 221
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "When is it helpful to test points to determine whether a function is odd or even?",
+      "answer": "Testing points is helpful if you cannot easily visually determine the symmetry of a graph.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "89: 168",
+        "item": 1,
+        "line": 223
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What features of the graph help you to classify the polynomial function?",
+      "answer": "the symmetry of the graph; Evaluate (f(x)) and (f(-x)). If they are equal, then the function is even. Evaluate (f(-x)) and (-f(x)). If they are equal, then the function is odd.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "89: 168",
+        "item": 0,
+        "line": 269
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "How does changing the values for (a), (h), and (k) transform the graph?",
+      "answer": "(a) stretches and compresses the graph, (h) shifts the graph horizontally, and (k) shifts the graph vertically.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 In part (b), students may have trouble recognizing transformations of cubic functions. Have students use technology to graph the following functions. Suggest different values for (a), (h), and (k), but only change one variable each time, so students can see the transformation of the graph. 1. (f(x)=x^3) 2. (g(x)=a(x-h)^3+k)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "89: 168",
+        "item": 0,
+        "line": 278
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "If the highest degree of a function is even, why isn't that enough to say that it is an even function?",
+      "answer": "By definition, an even function must have an axis of symmetry. Not all functions with an even degree have an axis of symmetry.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "90: 169",
+        "item": 0,
+        "line": 285
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "If the highest degree of a function is odd, why isn't that enough to say that it is an odd function?",
+      "answer": "By definition, an odd function must have symmetry about the origin. Not all functions with an odd degree are symmetrical about the origin.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "90: 169",
+        "item": 1,
+        "line": 288
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Compare and contrast the two functions shown in the graph.",
+      "answer": "The graph of the parent function is wider. The graph of the transformed function is shifted below the (x)-axis. Both graphs are even, open upward, and are symmetrical across the (y)-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "90: 169",
+        "item": 0,
+        "line": 323
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Is the order in which you apply the transformations important?",
+      "answer": "It doesn't matter in which order you apply the translations, but the vertical stretch should be applied before the vertical translation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "90: 169",
+        "item": 1,
+        "line": 326
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "kind": "question",
+      "question": "Why is knowing the graph of the parent function a valuable tool?",
+      "answer": "Knowing the parent graph gives you a starting place. You do not have to make a table of points to graph the function; instead, you can compare the function to the parent function to determine the transformation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "90: 169",
+        "item": 2,
+        "line": 328
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How does the graph of a function (g(x)=a(x-h)^n+k) compare to the graph of the parent function (f(x)=x^n)?",
+      "answer": "The (a)-value stretches or compresses the graph vertically, the (h)-value shifts the graph horizontally, and the (k)-value shifts the graph vertically.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "90: 169",
+        "item": 0,
+        "line": 357
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What key features of a graph can you use to determine the transformation of a parent function?",
+      "answer": "end behavior, axis of symmetry, vertical or horizontal shift of a point or vertex, stretch or compression",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "91: 170",
+        "item": 0,
+        "line": 364
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What is the end behavior of the graph?",
+      "answer": "Both ends extend in the same direction. As (x) approaches (∞) or (-∞), (y) approaches (-∞).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "91: 170",
+        "item": 1,
+        "line": 367
+      }
+    },
+    {
+      "example": 4,
+      "category": "CommonError",
+      "key": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 4 Students may account for the vertical and horizontal translations of the graph and forget to look for a reflection. Have students make a checklist to verify all four transformations: horizontal translation, vertical translation, stretch or compression, and reflection.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 4,
+        "category": "CommonError",
+        "block": 0,
+        "page": "91: 170",
+        "item": 0,
+        "line": 402
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtIExtend",
+      "key": "examples[n=4].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "What is the equation for this function?",
+      "answer": "(f(x)=-(x-6)^2+4)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 4 Have students work through another example. Display this graph.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Orange downward parabola with solid labeled A=(6,4),B=(4,0),C=(8,0), arrowheads at lower ends. x window -1 to9,y -3 to7, unit grid, x labels2,4,6,8,y -2,2,4,6, O; axes x,y."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 4,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "91: 170",
+        "item": 0,
+        "line": 417
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtIExtend",
+      "key": "examples[n=4].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "If the graph were reflected across the (y)-axis, how would that change the equation of the function? What if it were reflected across the (x)-axis? Write the equations for both of these functions.",
+      "answer": "If the graph were reflected across the (y)-axis, the equation would be (f(x)=-(x+6)^2+4). If the graph were reflected across the (x)-axis, the equation would be (f(x)=(x-6)^2-4).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 4 Have students work through another example. Display this graph.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Orange downward parabola with solid labeled A=(6,4),B=(4,0),C=(8,0), arrowheads at lower ends. x window -1 to9,y -3 to7, unit grid, x labels2,4,6,8,y -2,2,4,6, O; axes x,y."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 4,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "91: 170",
+        "item": 1,
+        "line": 419
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What does it mean to scale the dimensions to any size?",
+      "answer": "Each dimension will be multiplied by the same factor.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "92: 171",
+        "item": 0,
+        "line": 425
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "When finding the equation for a storage container that is 1 ft longer in every dimension, does it matter whether you replace (x) with (x+1) in the expression ((x)(x)(x-1)) or in the expression (x^3-x^2)?",
+      "answer": "No, the two expressions are equivalent, so you will end up with the same answer no matter which expression you use. The calculations will be easier, though, if you use the first expression.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "92: 171",
+        "item": 0,
+        "line": 455
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What are yards and feet used to measure?",
+      "answer": "length",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) SPEAKING BEGINNING The customary system of measurement is rarely used outside of the U.S. Ensure that students understand the relationship between yards and feet.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "92: 171",
+        "item": 0,
+        "line": 465
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "Discuss some objects that you would measure using yards or feet.",
+      "answer": "yards: fencing; feet: dimensions of a room",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) SPEAKING BEGINNING The customary system of measurement is rarely used outside of the U.S. Ensure that students understand the relationship between yards and feet.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "92: 171",
+        "item": 1,
+        "line": 466
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Which unit in the metric system is similar to yards?",
+      "answer": "meters",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) SPEAKING BEGINNING The customary system of measurement is rarely used outside of the U.S. Ensure that students understand the relationship between yards and feet.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "92: 171",
+        "item": 2,
+        "line": 467
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "Discuss which measurement is larger---yards or feet---and by how much.",
+      "answer": "yards; 3 times as large",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) SPEAKING BEGINNING The customary system of measurement is rarely used outside of the U.S. Ensure that students understand the relationship between yards and feet.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "92: 171",
+        "item": 3,
+        "line": 468
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "How are these words related?",
+      "answer": "They share the same base, sculpt.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) SPEAKING BEGINNING The customary system of measurement is rarely used outside of the U.S. Ensure that students understand the relationship between yards and feet.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "92: 171",
+        "item": 4,
+        "line": 470
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "A sculptor is a person who makes sculptures. What other words ending in -or refer to a person with a specific job?",
+      "answer": "doctor, conductor",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) SPEAKING BEGINNING The customary system of measurement is rarely used outside of the U.S. Ensure that students understand the relationship between yards and feet.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "92: 171",
+        "item": 5,
+        "line": 471
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "What context clue can help you understand what a sculpture is?",
+      "answer": "clay model; The sculptor is building a shape out of clay.",
+      "variant": "example",
+      "notes": [
+        "Printed sculptor/sculpture guidance does not match the terrarium in Example 5B."
+      ],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) SPEAKING BEGINNING The customary system of measurement is rarely used outside of the U.S. Ensure that students understand the relationship between yards and feet.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "92: 171",
+        "item": 6,
+        "line": 472
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[7]",
+      "kind": "question",
+      "question": "What does volume measure?",
+      "answer": "the number of cubic units of space an object takes up",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) SPEAKING BEGINNING The customary system of measurement is rarely used outside of the U.S. Ensure that students understand the relationship between yards and feet.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "92: 171",
+        "item": 7,
+        "line": 475
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[8]",
+      "kind": "question",
+      "question": "Do you know a word that sounds similar to permissible?",
+      "answer": "Yes; permission and permit are similar to permissible.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) SPEAKING BEGINNING The customary system of measurement is rarely used outside of the U.S. Ensure that students understand the relationship between yards and feet.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "92: 171",
+        "item": 8,
+        "line": 476
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[9]",
+      "kind": "question",
+      "question": "What does permissible mean in this example?",
+      "answer": "allowable; Only boxes that have certain volumes are allowed to be shipped through the post office.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) SPEAKING BEGINNING The customary system of measurement is rarely used outside of the U.S. Ensure that students understand the relationship between yards and feet.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-7_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "92: 171",
+        "item": 9,
+        "line": 477
+      }
+    }
+  ]
+}

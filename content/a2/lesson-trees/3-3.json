@@ -1,0 +1,547 @@
+{
+  "lesson": "3-3",
+  "title": "Polynomial Identities",
+  "nodes": [
+    {
+      "id": "c52db137b757",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How can you use polynomial identities to rewrite expressions efficiently?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "db345ac85088",
+      "type": "anchor",
+      "front": "Define: row",
+      "back": "build Pascal's Triangle through Row 8 (Explore & Reason part A gives Rows 6-8; IXL G7Y)",
+      "order": 2,
+      "after": [
+        "c52db137b757"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.row"
+    },
+    {
+      "id": "a16f31a993cd",
+      "type": "anchor",
+      "front": "Define: coefficient",
+      "back": "write (a+b)^n with the Row n coefficients, powers of a down and b up (Example 5 step 2; IXL A7M)",
+      "order": 3,
+      "after": [
+        "c52db137b757"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.coefficient"
+    },
+    {
+      "id": "cb2923773cb1",
+      "type": "anchor",
+      "front": "Define: exponent",
+      "back": "I can explain how I expanded a binomial using the words row, coefficient, exponent, and term.",
+      "order": 4,
+      "after": [
+        "c52db137b757"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.exponent"
+    },
+    {
+      "id": "14e88485a012",
+      "type": "anchor",
+      "front": "Define: term",
+      "back": "I can explain how I expanded a binomial using the words row, coefficient, exponent, and term.",
+      "order": 5,
+      "after": [
+        "c52db137b757"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.term"
+    },
+    {
+      "id": "f81f44201d07",
+      "type": "anchor",
+      "front": "Quiz item 4 asks?",
+      "back": "Item 4: use Pascal's Triangle to expand (x+2)^8 (multiple choice). Item 5: fill in the coefficients of (a+4)^5. Both are Example 5: pick Row n, write the pattern in a and b, substitute a = x (or a) and b = 2 (or 4), simplify the powers of b. …",
+      "order": 6,
+      "after": [
+        "db345ac85088",
+        "a16f31a993cd",
+        "cb2923773cb1",
+        "14e88485a012"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "bf99ba0cab96",
+      "type": "anchor",
+      "front": "Quiz item 4 answer?",
+      "back": "Item 4: C, x^8+16x^7+112x^6+448x^5+1120x^4+1792x^3+1792x^2+1024x+256. Item 5: 20, 160, 640, 1280, 1024. Bonus item 2: Part A D (25-16x^6), Part B A (difference of squares). (Verify against the TE key on quiz day.)",
+      "order": 7,
+      "after": [
+        "db345ac85088",
+        "a16f31a993cd",
+        "cb2923773cb1",
+        "14e88485a012"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "6f26dad6010d",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need?",
+      "back": "build Pascal's Triangle through Row 8 (Explore & Reason part A gives Rows 6-8; IXL G7Y)",
+      "order": 8,
+      "after": [
+        "f81f44201d07"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "bc4f97c0e0c9",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (2)",
+      "back": "write (a+b)^n with the Row n coefficients, powers of a down and b up (Example 5 step 2; IXL A7M)",
+      "order": 9,
+      "after": [
+        "f81f44201d07"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "7e07fa09d840",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (3)",
+      "back": "substitute b as a signed number and simplify its powers: (-3)^2 = 9, 2^7 = 128, 4^4 = 256 (Example 5A, 5B; IXL NEU)",
+      "order": 10,
+      "after": [
+        "f81f44201d07"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "d46f351ca1f9",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (4)",
+      "back": "for the bonus: square the coefficient as well as the variable, (4x^3)^2 = 16x^6 (TE Try It 2 common error; Lesson 3-2 multiplying, IXL 8GN)",
+      "order": 11,
+      "after": [
+        "f81f44201d07"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "7df503960e93",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Prove x^3 - y^6 = (x - y^2)(x^2 + xy^2 + y^4) by filling the four step reasons from a word bank (Distributive; Multiply; -1; like terms). Example 1 (cut). Not on the short form (full Savvas quiz only).",
+      "order": 12,
+      "after": [
+        "f81f44201d07"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "1db76db693db",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Multiply (5 - 4x^3)(5 + 4x^3) and name the identity (D, 25 - 16x^6; A, difference of squares). Example 2 (cut); plain distribution from 3-2 also works and the packet's reference box names the identity. On the short form as the proposed +5 bonus (3 for Part A, 2 for Part B).",
+      "order": 13,
+      "after": [
+        "f81f44201d07"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "976d277ad180",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Factor 1 - 125n^3, select all factors, name the identity (A and E; B, difference of cubes). Example 3 (cut). Same skill as Topic 3 assessment item 7 (64 + 27a^3). …",
+      "order": 14,
+      "after": [
+        "f81f44201d07"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "37dbf2c13e51",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Expand (x+2)^8 with Pascal's Triangle (C). Example 5A pattern with Row 8 and b = 2; Try It 5a. On the short form, graded 10 (6 for C, 4 for a shown Row 8 or substitution).",
+      "order": 15,
+      "after": [
+        "f81f44201d07"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "631c39177d7b",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Fill in the coefficients of (a+4)^5 (20, 160, 640, 1280, 1024). Example 5B (Row 5 times powers of b); Try It 5b. On the short form, graded 10 (2 per blank).",
+      "order": 16,
+      "after": [
+        "f81f44201d07"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "a0281d30a7af",
+      "type": "step",
+      "front": "Example 5: ?",
+      "back": "Apply the Binomial Theorem · DOK 1, 2, 3 · practice 20, 60-65, 23, 24, 22, 71 · R2: the only Example that teaches two quiz items (4 and 5); it also teaches Topic 3 assessment item 3 ((x-2)^6, the same shape as Part A's (x-3)^4). It has the lesson's DOK 3 items tied to a kept Example (22, 71). …",
+      "order": 17,
+      "after": [
+        "f81f44201d07",
+        "bf99ba0cab96"
+      ],
+      "minute": null,
+      "source": "examples[n=5]"
+    },
+    {
+      "id": "a3579705972d",
+      "type": "cue",
+      "front": "Example 5 · Purposeful question: Why is it important to use Pascal's Triangle when applying the Binomial Theorem?",
+      "back": "Listen for: Pascal's Triangle determines the coefficients of each term.",
+      "order": 18,
+      "after": [
+        "a0281d30a7af"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_3-3_TE.tex",
+          "anchor": 5,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "41: 138 Understand & Apply",
+          "item": 0,
+          "line": 458
+        },
+        "promptKey": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "f2160dca6fbd",
+      "type": "cue",
+      "front": "Example 5 · Purposeful question: What do you think is a common mistake when using the Binomial Theorem to expand an expression with exponents inside the parentheses?",
+      "back": "Listen for: forgetting to multiply the original exponents by the exponents from the expansion",
+      "order": 19,
+      "after": [
+        "a3579705972d"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_3-3_TE.tex",
+          "anchor": 5,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "41: 138 Understand & Apply",
+          "item": 1,
+          "line": 461
+        },
+        "promptKey": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "00cd839ccf38",
+      "type": "cue",
+      "front": "Example 5 · Support: Write the powers of the expanded expression ((x+12)^5) using the Binomial Theorem.",
+      "back": "Listen for: (C_0a^5+C_1a^4b+C_2a^3b^2+C_3a^2b^3+C_4ab^4+C_5b^5)",
+      "order": 20,
+      "after": [
+        "f2160dca6fbd"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_3-3_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "41: 138 Understand & Apply",
+          "item": 0,
+          "line": 512
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "37c85a0b0976",
+      "type": "cue",
+      "front": "Example 5 · Support: Use Pascal's Triangle to list the coefficients for the above expression.",
+      "back": "Listen for: (C_0=1,C_1=5,C_2=10,C_3=10,C_4=5,C_5=1)",
+      "order": 21,
+      "after": [
+        "00cd839ccf38"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_3-3_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "41: 138 Understand & Apply",
+          "item": 1,
+          "line": 514
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "7c81aaf516f0",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Use Pascal's Triangle and the Binomial Theorem to expand (x+i)^4. Justify your work.",
+      "order": 22,
+      "after": [
+        "a0281d30a7af"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "bcbaf5b56ee5",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "Row 4: 1, 4, 6, 4, 1; a = x, b = i; i^2 = -1, i^3 = -i, i^4 = 1; (x+i)^4 = x^4 + 4ix^3 - 6x^2 - 4ix + 1. The TE key has two misprints: an intermediate '4ab^4' (should be 4ab^3) and a final left side '(x-i)^4' (should be (x+i)^4). …",
+      "order": 23,
+      "after": [
+        "a0281d30a7af"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "d3faaa48f1ec",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Pascal's Triangle, rows 1; 1 1; 1 2 1; 1 3 3 1; 1 4 6 4 1; 1 5 10 10 5 1. Each number is the sum of the two numbers diagonally above; if there is no second number, think of it as 0.",
+      "order": 24,
+      "after": [
+        "c52db137b757"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "304ef91ab209",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Write the numbers in the next three rows. (1 6 15 20 15 6 1; 1 7 21 35 35 21 7 1; 1 8 28 56 70 56 28 8 1)",
+      "order": 25,
+      "after": [
+        "d3faaa48f1ec"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "274c31030c22",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Look for Relationships: What other patterns do you see? (The numbers one from the left move up by 1 in each row.)",
+      "order": 26,
+      "after": [
+        "d3faaa48f1ec"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "28beaf88cd17",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Find the sum of the numbers in each row of the triangle. Write a formula for the sum of the numbers in the nth row. (1, 2, 4, 8, ..., 256; 2^n)",
+      "order": 27,
+      "after": [
+        "d3faaa48f1ec"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "be3d2b777360",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What do you notice about the triangle? → There's one more number in each row than in the row above it.",
+      "order": 28,
+      "after": [
+        "d3faaa48f1ec"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "38ceb90d1ce3",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "Compare the rows of the triangle. What similarities and differences can you find? → The first and last number of a row is always 1; in every other row the center number is repeated.",
+      "order": 29,
+      "after": [
+        "be3d2b777360"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "2849a67792b6",
+      "type": "cue",
+      "front": "During, small group: ask? (2)",
+      "back": "How does the sum of the numbers in one row in the triangle compare to that of the row above it? → The sum of a row is double the sum of the row above it.",
+      "order": 30,
+      "after": [
+        "38ceb90d1ce3"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "d1459dc68d75",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Look at the sums of the numbers in the diagonals of rows 0 through 8. Then write out the numbers for row 9. What do you notice? Do you think this will always be true? → The sums of the diagonals are the same numbers as the next row with an additional 1 at the end. This is always true.",
+      "order": 31,
+      "after": [
+        "2849a67792b6"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "194ed718f819",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "How could you determine the first two numbers of a row using your patterns? → Call the first row row 0. The first number is 1 and the second is the row number.",
+      "order": 32,
+      "after": [
+        "d1459dc68d75"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "561aa61e47e8",
+      "type": "cue",
+      "front": "After, whole class: ask? (2)",
+      "back": "How do you know the last two numbers of a row? → The rows are symmetric, so the last two numbers are the first two in reverse order.",
+      "order": 33,
+      "after": [
+        "194ed718f819"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "817738f58183",
+      "type": "cue",
+      "front": "Habits of Mind, Look for Relationships: ask?",
+      "back": "Create a triangle that starts with 2 instead of 1. How does this new triangle relate to the original triangle? → Each value is twice the corresponding value of the triangle that starts with 1.",
+      "order": 34,
+      "after": [
+        "561aa61e47e8"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[6]"
+    },
+    {
+      "id": "687fec389d77",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "A good fit for the fast packet: part A is exactly the Rows 6-8 the packet's triangle asks for, and Row 7 and Row 8 are what Try It 5a and quiz item 4 need, so let part A be the opener and skip part C (2^n) if time is short. The TE prompt does not number the rows (its digital controls count 1 Row ... …",
+      "order": 35,
+      "after": [
+        "d3faaa48f1ec"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "495f2c759314",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "A7M Pascal's triangle and the Binomial Theorem",
+      "order": 36,
+      "after": [
+        "a0281d30a7af"
+      ],
+      "minute": null,
+      "source": "ixl.A7M"
+    },
+    {
+      "id": "eba8fba54eb3",
+      "type": "anchor",
+      "front": "IXL for example 5? (2)",
+      "back": "NEU Binomial Theorem II",
+      "order": 37,
+      "after": [
+        "a0281d30a7af"
+      ],
+      "minute": null,
+      "source": "ixl.NEU"
+    },
+    {
+      "id": "4862833d4a06",
+      "type": "anchor",
+      "front": "IXL for example 5? (3)",
+      "back": "G7Y Pascal's triangle",
+      "order": 38,
+      "after": [
+        "a0281d30a7af"
+      ],
+      "minute": null,
+      "source": "ixl.G7Y"
+    },
+    {
+      "id": "905d78d7c4a8",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "NJV Factor sums and differences of cubes",
+      "order": 39,
+      "after": [
+        "c52db137b757"
+      ],
+      "minute": null,
+      "source": "ixl.NJV"
+    }
+  ]
+}

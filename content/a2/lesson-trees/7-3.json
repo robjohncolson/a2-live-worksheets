@@ -1,0 +1,639 @@
+{
+  "lesson": "7-3",
+  "title": "Graphing Sine and Cosine Functions",
+  "nodes": [
+    {
+      "id": "26694b596bf3",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "What are the key features of sine and cosine functions?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "206964cd4970",
+      "type": "anchor",
+      "front": "Define: amplitude",
+      "back": "amplitude = |a| from the equation, distance from the midline to a maximum on the graph",
+      "order": 2,
+      "after": [
+        "26694b596bf3"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.amplitude"
+    },
+    {
+      "id": "116d5b274a34",
+      "type": "anchor",
+      "front": "Define: period",
+      "back": "period = 2pi/|b|, dividing by a fraction (Try It 3; IXL 9S8)",
+      "order": 3,
+      "after": [
+        "26694b596bf3"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.period"
+    },
+    {
+      "id": "f61bb41be981",
+      "type": "anchor",
+      "front": "Define: midline",
+      "back": "amplitude = |a| from the equation, distance from the midline to a maximum on the graph",
+      "order": 4,
+      "after": [
+        "26694b596bf3"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.midline"
+    },
+    {
+      "id": "d1a944d2980f",
+      "type": "anchor",
+      "front": "Define: frequency",
+      "back": "I can explain how two periodic functions compare using the words amplitude, period, midline, and frequency.",
+      "order": 5,
+      "after": [
+        "26694b596bf3"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.frequency"
+    },
+    {
+      "id": "9f2f99e0e7b6",
+      "type": "anchor",
+      "front": "Quiz item 3 asks?",
+      "back": "Item 3: the equation f(x) = 2cos((pi/2)x) and the graph of g (a sine curve through the origin, maxima at (1/2, 2) and (5/2, 2)). How do the period and amplitude compare? It needs both kept Examples: amplitude |a| and period 2pi/|b| from the equation (Example 3), and amplitude and period read off a graph (Example 6). …",
+      "order": 6,
+      "after": [
+        "206964cd4970",
+        "116d5b274a34",
+        "f61bb41be981",
+        "d1a944d2980f"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "e081924cea46",
+      "type": "anchor",
+      "front": "Quiz item 3 answer?",
+      "back": "B: the amplitudes are both 2, and the period of f (2pi / (pi/2) = 4) is twice the period of g (5/2 - 1/2 = 2) (verify against the TE key on quiz day)",
+      "order": 7,
+      "after": [
+        "206964cd4970",
+        "116d5b274a34",
+        "f61bb41be981",
+        "d1a944d2980f"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "88ebc8b97519",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need?",
+      "back": "period = 2pi/|b|, dividing by a fraction (Try It 3; IXL 9S8)",
+      "order": 8,
+      "after": [
+        "9f2f99e0e7b6"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "98f47150265f",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (2)",
+      "back": "period from a graph: subtract the x-values of two neighbouring maxima (Example 6; IXL 5XN)",
+      "order": 9,
+      "after": [
+        "9f2f99e0e7b6"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "5da6625d0e66",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (3)",
+      "back": "amplitude = |a| from the equation, distance from the midline to a maximum on the graph",
+      "order": 10,
+      "after": [
+        "9f2f99e0e7b6"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "037affab6890",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Select all: amplitude and period of four functions (answer C, D, E, F; DOK 1, F90). Example 3 + Try It 3: amplitude |a|, period 2pi/|b|; A and B are the swap-a-for-b and multiply-instead-of-divide errors. Graded 10 on the short form.",
+      "order": 11,
+      "after": [
+        "9f2f99e0e7b6"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "46aa6784c6f1",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Average rate of change of y = 3sin(2x) on [0, pi/4] (answer D, 12/pi; DOK 1, F31). Needs the quarter-period maximum (pi/4, 3) from the cut Example 4 plus the Topic 1 rate-of-change skill. Left off the short form.",
+      "order": 12,
+      "after": [
+        "9f2f99e0e7b6"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "aae9e960478e",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Compare f(x) = 2cos((pi/2)x) with the graph of g (answer B; DOK 2, F90). Example 6, same task with different numbers; the f half is Example 3. Graded 10 on the short form.",
+      "order": 13,
+      "after": [
+        "9f2f99e0e7b6"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "35d6d460d516",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Tiles: f(x) = 5cos(2x) is the reflection over the x-axis of g(x) = -5 cos (2x) (TE key -5; cos; (2x); DOK 1, F90). Also full credit: -5; cos; (-2x), since cosine is even and -5cos(-2x) = -5cos(2x); the tiles 5; cos; (-2x) give f itself. …",
+      "order": 14,
+      "after": [
+        "9f2f99e0e7b6"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "b18d4390cef5",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Tide: high 5 ft, low 1 ft, amplitude of the cosine model (answer 2 ft; DOK 2, F90). The cut Example 5 (midline and amplitude from a maximum and a minimum); Practice 20 is its DOK 3 version. Left off the short form; one whiteboard round, amplitude = (max - min)/2, if the teacher puts it back.",
+      "order": 15,
+      "after": [
+        "9f2f99e0e7b6"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "db1e5c1f5ff6",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Identify Amplitude and Period · DOK 1-2 · practice 10, 14, 15, 21 · Quiz item 1 is this Example (amplitude |a|, period 2pi/|b|, with a and b as fractions and multiples of pi, Try It 3), it is the f half of item 3, and Part B (y = -sin 2x: the negative reflects over the x-axis and leaves the amplitude 1) is the bonus …",
+      "order": 16,
+      "after": [
+        "9f2f99e0e7b6",
+        "e081924cea46"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "def4d3d72bbf",
+      "type": "step",
+      "front": "Example 6: ?",
+      "back": "Compare Key Features of Two Periodic Functions · DOK 2-3 · practice 12, 18, 23 · Quiz item 3 is this Example with different numbers (equation f against graph g). Try It 6 adds frequency (the reciprocal of the period). …",
+      "order": 17,
+      "after": [
+        "db1e5c1f5ff6"
+      ],
+      "minute": null,
+      "source": "examples[n=6]"
+    },
+    {
+      "id": "d821719af7e5",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: How is the amplitude related to other transformations of functions you have previously studied?",
+      "back": "Listen for: In the equation, the output of the function is multiplied by the value of the amplitude. In the graph, multiplying by the amplitude value results in a vertical stretch ((|a|>1)).",
+      "order": 18,
+      "after": [
+        "db1e5c1f5ff6"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-3_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "42: 365 Understand & Apply",
+          "item": 0,
+          "line": 280
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c59225a5bd22",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: Why does the negative sign in the function (y=-sin2x) not affect the amplitude of the function?",
+      "back": "Listen for: The negative sign is the same as multiplying the function by -1. Because the absolute value of -1 is 1, the amplitude of the function is 1.",
+      "order": 19,
+      "after": [
+        "d821719af7e5"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-3_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "42: 365 Understand & Apply",
+          "item": 1,
+          "line": 283
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "d5e6c008a969",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: Under what conditions would the coefficient of (x) make the period longer?",
+      "back": "Listen for: If the coefficient of x were between 0 and 1, the period would be longer because only a fraction of the graph would occur between 0 and (2π).",
+      "order": 20,
+      "after": [
+        "c59225a5bd22"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[2]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-3_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "42: 365 Understand & Apply",
+          "item": 2,
+          "line": 285
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "04b1d091fa01",
+      "type": "cue",
+      "front": "Example 3 · Check student thinking: What process do you use to determine the period of each function?",
+      "back": "Listen for: Determine the factor by which the function is stretched or compressed, and then multiply (2π) by this factor.",
+      "order": 21,
+      "after": [
+        "d5e6c008a969"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_7-3_TE.tex",
+          "anchor": 3,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "42: 365 Understand & Apply",
+          "item": 0,
+          "line": 320
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "ae1fadc52217",
+      "type": "trap",
+      "front": "Example 3 · Common error: What error should I watch for, and how does the TE respond?",
+      "back": "Some students may incorrectly calculate the period by multiplying (2π) by the coefficient of (x) rather than dividing (2π) by the coefficient of (x). Have students graph the function and indicate on the graph the period of the function.",
+      "order": 22,
+      "after": [
+        "04b1d091fa01"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+      "teaching": {
+        "example": 3,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_7-3_TE.tex",
+          "anchor": 3,
+          "category": "CommonError",
+          "block": 0,
+          "page": "42: 365 Understand & Apply",
+          "item": 0,
+          "line": 323
+        },
+        "promptKey": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "cd527f0b54e5",
+      "type": "cue",
+      "front": "Example 6 · Connect representations: How can the period of a trigonometric function be determined by its graph?",
+      "back": "Listen for: The period of a trigonometric function can be determined by its graph by subtracting the x-values of consecutive maximum points.",
+      "order": 23,
+      "after": [
+        "def4d3d72bbf"
+      ],
+      "minute": null,
+      "source": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 6,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_7-3_TE.tex",
+          "anchor": 6,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "45: 368 Example 5 continued",
+          "item": 0,
+          "line": 459
+        },
+        "promptKey": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "0abf27f97368",
+      "type": "cue",
+      "front": "Example 6 · Connect representations: How would the graph of (f) compare to the graph of (g)?",
+      "back": "Listen for: The distance between consecutive maximums would be longer in the graph of f.",
+      "order": 24,
+      "after": [
+        "cd527f0b54e5"
+      ],
+      "minute": null,
+      "source": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 6,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_7-3_TE.tex",
+          "anchor": 6,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "45: 368 Example 5 continued",
+          "item": 1,
+          "line": 461
+        },
+        "promptKey": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e9242bd20085",
+      "type": "cue",
+      "front": "Example 6 · Check student thinking: What do you know about the relationship between the period and the frequency of a function?",
+      "back": "Listen for: The period and the frequency are reciprocals.",
+      "order": 25,
+      "after": [
+        "0abf27f97368"
+      ],
+      "minute": null,
+      "source": "examples[n=6].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 6,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_7-3_TE.tex",
+          "anchor": 6,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "45: 368 Example 5 continued",
+          "item": 0,
+          "line": 497
+        },
+        "promptKey": "examples[n=6].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "fedde75ac3d9",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Dominga is investigating how the signs of the parameters a and b create transformations of the sine function. A: graph f(x) = sin 2x and g(x) = -sin(2x) on the same plane. B: how are they related? C: graph f(x) = sin(2x) and h(x) = sin(-2x). D: how are they related? …",
+      "order": 26,
+      "after": [
+        "def4d3d72bbf"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "3cf36f3cda4f",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "A and C: both amplitude 1, period pi, zeros at x = k(pi/2); f rises through the origin, g and h fall through it. B: reflections of each other over the x-axis. D: reflections of each other over the x-axis (h is the same graph as g, since sin(-2x) = -sin(2x); it is also the reflection over the y-axis). …",
+      "order": 27,
+      "after": [
+        "def4d3d72bbf"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "b01ddb480b93",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "The graph shows a rider's height above the platform when riding a Ferris wheel t minutes after entering the wheel car: a smooth periodic curve starting at (0, 2), maxima 22 ft at t = 1, 3, 5, 7, minima 2 ft at t = 2, 4, 6.",
+      "order": 28,
+      "after": [
+        "26694b596bf3"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "5b8612eeacfc",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Sketch a graph of a rider's height if the Ferris wheel is twice as high. How does the graph represent the change in height? (The maximum points are twice as high.)",
+      "order": 29,
+      "after": [
+        "b01ddb480b93"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "f0902facff71",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Sketch a graph of a rider's height if the Ferris wheel is the same height as the first but goes twice as fast. How does the graph represent the change in speed? (The maximum points are half as far apart.)",
+      "order": 30,
+      "after": [
+        "b01ddb480b93"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "a1fda27f4ed2",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Communicate Precisely: How are the three graphs similar? How are they different? (Same curved shape; the second is taller; the third is compressed horizontally.)",
+      "order": 31,
+      "after": [
+        "b01ddb480b93"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "5aeea5c9f245",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What do you notice about the graph of the rider's height above the platform? → The graph shows a pattern that repeats. The maximum value is 22 ft. The minimum value is 2 ft. The graph reaches its maximum value every 2 minutes.",
+      "order": 32,
+      "after": [
+        "b01ddb480b93"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "b749cf9ace5d",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "Does doubling the height of the Ferris wheel change the amount of time it takes the Ferris wheel to go around 1 time? Use your graph to explain. → No, the distance between consecutive maximum values in the new graph is the same as in the original graph. …",
+      "order": 33,
+      "after": [
+        "5aeea5c9f245"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "eb470824f564",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Sketch a graph of a rider's height when the Ferris wheel goes half as high. How does the graph represent the change in height? → Check students' graphs. The maximum value of the new graph is 11. The minimum value remains 2.",
+      "order": 34,
+      "after": [
+        "b749cf9ace5d"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "72cdc04f4c11",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "How can you determine the length of time it takes the Ferris wheel to go around 1 time? → You subtract the x-values of consecutive maximum or minimum values.",
+      "order": 35,
+      "after": [
+        "eb470824f564"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "921c1f168713",
+      "type": "cue",
+      "front": "After, whole class: ask? (2)",
+      "back": "Why does increasing the speed cause the time between consecutive maximum values to decrease? → When the speed increases, the amount of time it takes to travel a distance decreases, so the time between maximum values is less.",
+      "order": 36,
+      "after": [
+        "72cdc04f4c11"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "1bc7abd495d0",
+      "type": "cue",
+      "front": "Habits of Mind, Reason: ask?",
+      "back": "In the section of the graph shown, how many revolutions did the Ferris wheel make? Explain. → Three, the graph starts at the bottom and goes all the way around to the bottom again three more times.",
+      "order": 37,
+      "after": [
+        "921c1f168713"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "f57dc352791d",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The opener fits the kept Examples well: part A is the amplitude (Example 3A, 3cos x) and part B is the period (Example 3B and Example 6), and the After question 'subtract the x-values of consecutive maxima' is exactly how Example 6 reads the period of g. …",
+      "order": 38,
+      "after": [
+        "b01ddb480b93"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "367f3887d96d",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "9S8 Find properties of sine and cosine functions",
+      "order": 39,
+      "after": [
+        "db1e5c1f5ff6"
+      ],
+      "minute": null,
+      "source": "ixl.9S8"
+    },
+    {
+      "id": "ab4908565b4d",
+      "type": "anchor",
+      "front": "IXL for example 6?",
+      "back": "5XN Write equations of sine and cosine functions from graphs",
+      "order": 40,
+      "after": [
+        "def4d3d72bbf"
+      ],
+      "minute": null,
+      "source": "ixl.5XN"
+    },
+    {
+      "id": "df4096347ace",
+      "type": "anchor",
+      "front": "IXL for example 6? (2)",
+      "back": "A7V Graph sine and cosine functions",
+      "order": 41,
+      "after": [
+        "def4d3d72bbf"
+      ],
+      "minute": null,
+      "source": "ixl.A7V"
+    }
+  ]
+}

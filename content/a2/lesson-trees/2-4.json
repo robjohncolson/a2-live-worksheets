@@ -1,0 +1,600 @@
+{
+  "lesson": "2-4",
+  "title": "Complex Numbers and Operations",
+  "nodes": [
+    {
+      "id": "25b8a4728878",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How can you represent and operate on numbers that are not on the real number line?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "dfbddce38d00",
+      "type": "anchor",
+      "front": "Define: imaginary unit",
+      "back": "I can explain each step of a product using the words imaginary unit, real part, imaginary part, and complex conjugates.",
+      "order": 2,
+      "after": [
+        "25b8a4728878"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.imaginary unit"
+    },
+    {
+      "id": "206298b3b2ad",
+      "type": "anchor",
+      "front": "Define: real part",
+      "back": "I can explain each step of a product using the words imaginary unit, real part, imaginary part, and complex conjugates.",
+      "order": 3,
+      "after": [
+        "25b8a4728878"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.real part"
+    },
+    {
+      "id": "83003eb72df3",
+      "type": "anchor",
+      "front": "Define: imaginary part",
+      "back": "I can explain each step of a product using the words imaginary unit, real part, imaginary part, and complex conjugates.",
+      "order": 4,
+      "after": [
+        "25b8a4728878"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.imaginary part"
+    },
+    {
+      "id": "a10c64a01d53",
+      "type": "anchor",
+      "front": "Define: complex conjugates",
+      "back": "I can explain each step of a product using the words imaginary unit, real part, imaginary part, and complex conjugates.",
+      "order": 5,
+      "after": [
+        "25b8a4728878"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.complex conjugates"
+    },
+    {
+      "id": "5df2f6b84642",
+      "type": "anchor",
+      "front": "Quiz item 4 asks?",
+      "back": "Item 4: write 3i(2-5i)(4+i) in the form a+bi (two blanks). Item 3, the other graded item: write (2+7i)(2-7i) in the form a+bi, choices A 4-49i; B 53; C 4-14i^2; D 53+14i. Both are Example 3: distribute, replace i^2 with -1, real part first.",
+      "order": 6,
+      "after": [
+        "dfbddce38d00",
+        "206298b3b2ad",
+        "83003eb72df3",
+        "a10c64a01d53"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "55aa77318c6b",
+      "type": "anchor",
+      "front": "Quiz item 4 answer?",
+      "back": "Item 4: 54 + 39i (blanks 54; 39). Item 3: B, 53. Bonus item 2: C, 3 - 6i. (Verify against the TE key on quiz day.)",
+      "order": 7,
+      "after": [
+        "dfbddce38d00",
+        "206298b3b2ad",
+        "83003eb72df3",
+        "a10c64a01d53"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "befb3b1e94a3",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need?",
+      "back": "i^2 = -1 and the form a + bi (TE concept box before Example 2, printed in the packet; IXL 5VV warm-up)",
+      "order": 8,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "1ae068275ee9",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (2)",
+      "back": "distribute a monomial over a binomial with i, then replace i^2 with -1 (Example 3A; IXL VZ8)",
+      "order": 9,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "93168810a908",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (3)",
+      "back": "multiply two binomials with i, including a number times its complex conjugate (Example 3B, Try It 3b; IXL VZ8, 7U5)",
+      "order": 10,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "c0a8ab0537cf",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (4)",
+      "back": "item 4 chains both: (2-5i)(4+i) = 13 - 18i, then 3i(13 - 18i) = 54 + 39i; no Try It rehearses three factors, so the packet's Practice a is the parallel 2i(3-4i)(1+i) = 2 + 14i",
+      "order": 11,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "f529e0e18625",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (5)",
+      "back": "for the bonus (item 2): distribute the subtraction to both parts, (5+3i) + (-2-9i) (Example 2, cut; Practice b is the parallel (4+2i) - (1+7i) = 3 - 5i; IXL JVF, starred)",
+      "order": 12,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "b05c82a168eb",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Solve x^2 = -64 over the complex numbers, select all (A 8i, D -8i). Example 1 (and Example 6), cut. Not on the short form (full Savvas quiz only); the packet's concept box defines i, so one whiteboard round (x^2 = -9 from Example 1B) covers it if the teacher uses the Realize PDF.",
+      "order": 13,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "978a953ed3f5",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Difference of (5+3i) and (2+9i) (C, 3 - 6i). Example 2, cut. On the short form as the scored +5 bonus; the packet's Practice b is the parallel; IXL JVF (starred).",
+      "order": 14,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "b9bcf67226db",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Product (2+7i)(2-7i) in the form a+bi (B, 53). Example 3B and Try It 3b. On the short form, graded, 10 points.",
+      "order": 15,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "3c79428a536b",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "3i(2-5i)(4+i) in the form a+bi (54 + 39i). Example 3A then 3B; Practice a is the parallel. On the short form, graded, 10 points.",
+      "order": 16,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "a31371f3b51d",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Match 9x^2+1, 18x^2+2, 3x^2+12, 36x^2+25 with their complex factors. Example 5 (factor a sum of squares), cut; the TE says Examples 4 and 5 are not necessarily expected on high-stakes assessments. Not on the short form (full Savvas quiz only).",
+      "order": 17,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "14aedb928529",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Multiply Complex Numbers · DOK 1, 3 · practice 24-29, 47 · The lesson. Quiz items 3 (conjugate product, Part B) and 4 (three factors, Parts A and B chained) are the two graded items; it uses i, i^2 = -1 and a + bi, which is the arithmetic the 3-5 hard gate needs; the concept summary's four operations are built on …",
+      "order": 18,
+      "after": [
+        "5df2f6b84642",
+        "55aa77318c6b"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "8f8bd466acdf",
+      "type": "cue",
+      "front": "Example 3 · Support: How are these equations alike? How are they different?",
+      "back": "Listen for: They all have a single isolated variable on the left side and a number on the right. Some numbers are imaginary and some are real.",
+      "order": 19,
+      "after": [
+        "14aedb928529"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_2-4_TE.tex",
+          "anchor": 3,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "49: 84, Step 2 Understand & Apply",
+          "item": 0,
+          "line": 294
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "468f360cee4b",
+      "type": "cue",
+      "front": "Example 3 · Support: What is the product of each expression?",
+      "back": "Listen for: (6i+4); (-4i+8); (6x-4x^2); (-4x-8x^2)",
+      "order": 20,
+      "after": [
+        "8f8bd466acdf"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[2]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_2-4_TE.tex",
+          "anchor": 3,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "49: 84, Step 2 Understand & Apply",
+          "item": 2,
+          "line": 304
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "b1a9f7843c0a",
+      "type": "cue",
+      "front": "Example 3 · Support: How are the expressions for 1 and 3 alike? How are they different?",
+      "back": "Listen for: They are each a monomial multiplied by a binomial. They use the same coefficients. One uses a variable, while the other uses (i).",
+      "order": 21,
+      "after": [
+        "468f360cee4b"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[3]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_2-4_TE.tex",
+          "anchor": 3,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "49: 84, Step 2 Understand & Apply",
+          "item": 3,
+          "line": 306
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "afcb42958cb2",
+      "type": "cue",
+      "front": "Example 3 · Support: How are the results different?",
+      "back": "Listen for: The products of the expressions with (i) have a constant term, but the products of expressions with (x) do not because (i^2) simplifies to (-1).",
+      "order": 22,
+      "after": [
+        "b1a9f7843c0a"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[4]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_2-4_TE.tex",
+          "anchor": 3,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "49: 84, Step 2 Understand & Apply",
+          "item": 4,
+          "line": 308
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "9315bc763248",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: How is the problem in Part B like multiplying binomials?",
+      "back": "Listen for: Each of the two terms in the first expression must be multiplied by each of the two terms in the second expression.",
+      "order": 23,
+      "after": [
+        "afcb42958cb2"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-4_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "50: 85, Step 2 Understand & Apply",
+          "item": 0,
+          "line": 314
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "3ba8ff1c527a",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "The complex number a + bi can be represented as the point (a, b). The graph shows the point (3, 2). a. Write the point as x + yi. b. Multiply the complex number by i and interpret the new value as a point. c. Repeat for two other points. How does multiplication by i rotate a point?",
+      "order": 24,
+      "after": [
+        "14aedb928529"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "83d75f264c2f",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "a. 3 + 2i. b. i(3 + 2i) = 3i + 2i^2 = -2 + 3i, the point (-2, 3). c. (a, b) always becomes (-b, a): a 90 degree counterclockwise rotation about the origin. The only DOK 3 tied to the kept Example: it is Example 3A's product (a monomial times a binomial, i^2 = -1) used to find a pattern and argue it generalizes. …",
+      "order": 25,
+      "after": [
+        "14aedb928529"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "2b4f696b6b08",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "A class plays \"Solve It, You're Out.\" Each student holds a card with an integer from -5 to 5; when an equation is shown, any student whose card is a solution is eliminated. Five students remain: Mercedes -3, Steve 0, Aubrey 1, Fatima 3, Elijah -2.",
+      "order": 26,
+      "after": [
+        "25b8a4728878"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "8366c5f3ac93",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. The next equation presented was x^2 = 9. Which student(s) was eliminated? Explain. (Mercedes and Fatima: (-3)^2 = 9 and 3^2 = 9.)",
+      "order": 27,
+      "after": [
+        "2b4f696b6b08"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "752ec294dca5",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Construct Arguments: in the next round, the equation presented was x^2 = -4. Is Elijah eliminated? Why or why not? (No: (-2)^2 = 4, not -4.)",
+      "order": 28,
+      "after": [
+        "2b4f696b6b08"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "1c3a14eea211",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. What is true about solutions to x^2 = a when a is a positive number? When a is a negative number? What about when a = 0? (a > 0: two solutions, the square root of a and its opposite; a = 0: one solution, 0; a < 0: no real-number solutions.)",
+      "order": 29,
+      "after": [
+        "2b4f696b6b08"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "743bd34bc875",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "How can you tell whether someone should be eliminated from the game? → His or her card will contain a solution to the equation.",
+      "order": 30,
+      "after": [
+        "2b4f696b6b08"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "a36e1198f351",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "Explain how you can identify the number of solutions to the equation x^2 = a when a > 0 without calculating. → For any positive nonzero number there are two square roots, a positive and a negative one, so the equation has 2 solutions.",
+      "order": 31,
+      "after": [
+        "743bd34bc875"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "215413e6aebf",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "What equations of the form x^2 = a are needed to eliminate Steve, Aubrey, and Elijah? → x^2 = 0 eliminates Steve, x^2 = 1 eliminates Aubrey, and x^2 = 4 eliminates Elijah.",
+      "order": 32,
+      "after": [
+        "a36e1198f351"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "5fd29ebabd1a",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "Are there any values for a for which nobody would be eliminated from the game? → Yes; when a is not equal to 0, 1, 4, 9, 16, or 25.",
+      "order": 33,
+      "after": [
+        "215413e6aebf"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "5db467bb359f",
+      "type": "cue",
+      "front": "After, whole class: ask? (2)",
+      "back": "What values of a will eliminate only one person? → Considering the entire deck of Solve It! cards, only a = 0.",
+      "order": 34,
+      "after": [
+        "5fd29ebabd1a"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "5858e1667484",
+      "type": "cue",
+      "front": "Habits of Mind, Reason: ask?",
+      "back": "Steve thought that he was a sure winner because he could not be eliminated. Is he correct? Explain. If not, write an equation of the form x^2 = a that would eliminate Steve. → No; the equation x^2 = 0 would eliminate him.",
+      "order": 35,
+      "after": [
+        "5db467bb359f"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "3edac2738c64",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The opener leads to Example 1 (x^2 = a negative number), which is cut. Use part B and part C only, as the bridge to the packet's concept box (i is the square root of -1, i^2 = -1), five minutes at most, then go straight to Example 3. The Do Now stays the assigned IXL skill (5VV or VZ8), never this game.",
+      "order": 36,
+      "after": [
+        "2b4f696b6b08"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "b8b2ae6f6a21",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "VZ8 Multiply complex numbers",
+      "order": 37,
+      "after": [
+        "14aedb928529"
+      ],
+      "minute": null,
+      "source": "ixl.VZ8"
+    },
+    {
+      "id": "ecc68f6be0db",
+      "type": "anchor",
+      "front": "IXL for example 3? (2)",
+      "back": "7U5 Complex conjugates",
+      "order": 38,
+      "after": [
+        "14aedb928529"
+      ],
+      "minute": null,
+      "source": "ixl.7U5"
+    },
+    {
+      "id": "2cdd96b4e224",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "JVF Add and subtract complex numbers",
+      "order": 39,
+      "after": [
+        "25b8a4728878"
+      ],
+      "minute": null,
+      "source": "ixl.JVF"
+    },
+    {
+      "id": "a05b1f3990c0",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "5VV Introduction to complex numbers",
+      "order": 40,
+      "after": [
+        "25b8a4728878"
+      ],
+      "minute": null,
+      "source": "ixl.5VV"
+    },
+    {
+      "id": "1ee311fee51a",
+      "type": "anchor",
+      "front": "IXL for example 1? (2)",
+      "back": "EUT Powers of i",
+      "order": 41,
+      "after": [
+        "25b8a4728878"
+      ],
+      "minute": null,
+      "source": "ixl.EUT"
+    },
+    {
+      "id": "1c0b3388228f",
+      "type": "anchor",
+      "front": "IXL for example 4?",
+      "back": "MBM Divide complex numbers",
+      "order": 42,
+      "after": [
+        "25b8a4728878"
+      ],
+      "minute": null,
+      "source": "ixl.MBM"
+    }
+  ]
+}

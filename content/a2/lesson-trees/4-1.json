@@ -1,0 +1,639 @@
+{
+  "lesson": "4-1",
+  "title": "Inverse Variation and the Reciprocal Function",
+  "nodes": [
+    {
+      "id": "487e047e88f7",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How are inverse variations related to the reciprocal function?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "3c82583e90b5",
+      "type": "anchor",
+      "front": "Define: varies inversely",
+      "back": "I can explain how I found a missing value using the words varies inversely, product, constant of variation, and inverse variation.",
+      "order": 2,
+      "after": [
+        "487e047e88f7"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.varies inversely"
+    },
+    {
+      "id": "ac084c86b5fc",
+      "type": "anchor",
+      "front": "Define: product",
+      "back": "a table is an inverse variation when every product xy is the same; k can be negative (packet Practice block; item 2's distractors A and B are direct variations, C has the wrong sign)",
+      "order": 3,
+      "after": [
+        "487e047e88f7"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.product"
+    },
+    {
+      "id": "a4b52b2e26fc",
+      "type": "anchor",
+      "front": "Define: constant of variation",
+      "back": "I can explain how I found a missing value using the words varies inversely, product, constant of variation, and inverse variation.",
+      "order": 4,
+      "after": [
+        "487e047e88f7"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.constant of variation"
+    },
+    {
+      "id": "851f2ccc29d7",
+      "type": "anchor",
+      "front": "Define: inverse variation",
+      "back": "a table is an inverse variation when every product xy is the same; k can be negative (packet Practice block; item 2's distractors A and B are direct variations, C has the wrong sign)",
+      "order": 5,
+      "after": [
+        "487e047e88f7"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.inverse variation"
+    },
+    {
+      "id": "5848560130f7",
+      "type": "anchor",
+      "front": "Quiz item 3 asks?",
+      "back": "Item 3: three students can wash a car in 16 minutes; time varies inversely with the number of students; how many minutes for two students? Choices A 20, B 22, C 24, D 26. Item 1 (also graded) is the same two steps in a table: x 3, 10, 15, 30; y 5, p, 1, 0.5; find p.",
+      "order": 6,
+      "after": [
+        "3c82583e90b5",
+        "ac084c86b5fc",
+        "a4b52b2e26fc",
+        "851f2ccc29d7"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "9b89a3c2df0d",
+      "type": "anchor",
+      "front": "Quiz item 3 answer?",
+      "back": "Item 3: C, 24 (k = 3(16) = 48; 48/2 = 24). Item 1: p = 1.5 (k = 15; 15/10). Item 2 bonus: D, y = -12/x. (verify against the TE key on quiz day)",
+      "order": 7,
+      "after": [
+        "3c82583e90b5",
+        "ac084c86b5fc",
+        "a4b52b2e26fc",
+        "851f2ccc29d7"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "2a7d512b07d2",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need?",
+      "back": "write y = k/x and find k from one known pair: k = xy (Example 3 Step 1; IXL PXE)",
+      "order": 8,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "3573fe0a142f",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (2)",
+      "back": "substitute k and the new value, then solve for the unknown (Example 3 Step 2; IXL PNY)",
+      "order": 9,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "71470e8035b7",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (3)",
+      "back": "a table is an inverse variation when every product xy is the same; k can be negative (packet Practice block; item 2's distractors A and B are direct variations, C has the wrong sign)",
+      "order": 10,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "f920d7a7768b",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (4)",
+      "back": "not taught by the kept Example: the horizontal asymptote of a translated reciprocal function (item 4) and the equation of a translation of y = 1/x (item 5); both are Example 5, cut",
+      "order": 11,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "7acdd75d87bf",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Missing value p in an inverse-variation table (x 3, 10, 15, 30; y 5, p, 1, 0.5). Answer p = 1.5. DOK 1, F74. Examples 1-2 (cut) teach tables and k; Example 3's two steps answer it and the packet's Practice block is a structural parallel (x -5, -2, 4, 10; y 4, 10, q, -2). On the short form; proposed graded 10.",
+      "order": 12,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "efc8bc2d4f77",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Equation for the table x -3, -1, 1/2, 2/3; y 4, 12, -24, -18. Answer D, y = -12/x. DOK 2, F74. Example 2 (cut) writes the equation from one pair; Example 3 Step 1 does the same, and the Practice block has a negative k. On the short form; proposed +5 bonus.",
+      "order": 13,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "3bf1fe7af7d5",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Car wash: 3 students take 16 minutes; time varies inversely with the number of students; 2 students? Answer C, 24. DOK 1, F74. Example 3 (inverse variation model in a context) and Try It 3 (ice cube). On the short form; proposed graded 10.",
+      "order": 14,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "43ee3ce0ce1e",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Horizontal asymptote of y = 1/(x+5) - 4. Answer y = -4. DOK 2, F74. Example 5 (cut). Left off the short form (full Savvas quiz only); one whiteboard round (asymptotes x = h, y = k of 1/(x-h) + k) if the Realize quiz is used. Lesson 4-2's kept Example 4 finds asymptotes again.",
+      "order": 15,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "d851f61f2465",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "y = 1/x translated 3 units up and 2 units to the left. Answer A, y = 1/(x+2) + 3. DOK 2, F74. Example 5 (cut). Left off the short form (full Savvas quiz only); same whiteboard round as item 4.",
+      "order": 16,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "3ce32550c1a5",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Use an Inverse Variation Model · DOK 2, 3 · practice 12, 17, 20, 22, 23, 25, 26 · The lesson for the quiz: its two steps (find k from one known pair, then use k) answer quiz items 1, 2 and 3 (items 1 and 3 supply all 20 base points, and item 2 supplies up to 5 bonus points), and item 3 is this Example in a new …",
+      "order": 17,
+      "after": [
+        "5848560130f7",
+        "9b89a3c2df0d"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "a5058563e23d",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: What information about the inverse variation model is given that will be used to set up an equation?",
+      "back": "Listen for: The model explains that a certain length of bouzouki string, (s), will produce a certain frequency, (f), from which you can find the constant of variation, their product.",
+      "order": 18,
+      "after": [
+        "3ce32550c1a5"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_4-1_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "16: 183 Understand & Apply",
+          "item": 0,
+          "line": 317
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "f9cb16782a50",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: Using the inverse variation model, can you find the frequency for any string length?",
+      "back": "Listen for: Yes; if you know the values of (k) and (s), then any frequency can be found using the equation (f=k/s).",
+      "order": 19,
+      "after": [
+        "a5058563e23d"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_4-1_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "16: 183 Understand & Apply",
+          "item": 1,
+          "line": 319
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "4bb51f2f5aaa",
+      "type": "cue",
+      "front": "Example 3 · Check student thinking: How can you write an inverse variation model to represent the situation being described?",
+      "back": "Listen for: Since the temperature determines the time, ((degrees)(time)=k), creating the inverse variation model (t=k/d).",
+      "order": 20,
+      "after": [
+        "f9cb16782a50"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_4-1_TE.tex",
+          "anchor": 3,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "16: 183 Understand & Apply",
+          "item": 0,
+          "line": 347
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "8211c5082471",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: On each spoke, write something that occurs in cycles.",
+      "back": "Listen for: Samples: the Olympics, full moon, seasons, school year, cell phone bills, life cycle of a butterfly",
+      "order": 21,
+      "after": [
+        "4bb51f2f5aaa"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_4-1_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 183 Understand & Apply",
+          "item": 0,
+          "line": 357
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "11254a3f17f3",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: What is a cycle in regards to a guitar string?",
+      "back": "Listen for: the number of times it vibrates back and forth",
+      "order": 22,
+      "after": [
+        "8211c5082471"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_4-1_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 183 Understand & Apply",
+          "item": 1,
+          "line": 359
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "87d6fa35094b",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Although the definitions are similar, which one best describes the way frequency is used in the example?",
+      "back": "Listen for: 2",
+      "order": 23,
+      "after": [
+        "11254a3f17f3"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_4-1_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 183 Understand & Apply",
+          "item": 2,
+          "line": 362
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "dddda07aac2d",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: What affects the frequency of sounds from a guitar?",
+      "back": "Listen for: Samples: the string length; the tension of the string",
+      "order": 24,
+      "after": [
+        "87d6fa35094b"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_4-1_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 183 Understand & Apply",
+          "item": 3,
+          "line": 364
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "b939d9494149",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Why is this situation an example of an inverse variation?",
+      "back": "Listen for: As one variable increases, the other decreases proportionally.",
+      "order": 25,
+      "after": [
+        "dddda07aac2d"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_4-1_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 183 Understand & Apply",
+          "item": 4,
+          "line": 367
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "9cadac2eccf0",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "The time t required to empty a water tank varies inversely as the rate of pumping p. A pump can empty a water tank in 40 min at the rate of 120 gal/min. Write the equation of the inverse variation. How long will it take the pump to empty the water tank at the rate of 200 gal/min?",
+      "order": 26,
+      "after": [
+        "3ce32550c1a5"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "4cbbd0e4fb3e",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "t = 4,800/p (k = 40(120) = 4,800); 4,800/200 = 24 min Same structure as quiz item 3 (a time that varies inversely with a rate) but students must decide which quantities multiply to k and write the equation themselves before answering; IXL items are DOK 1-2 and cannot stand in for it. …",
+      "order": 27,
+      "after": [
+        "3ce32550c1a5"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "2c91543cd77c",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Two rectangles both have an area of 144 square units: 72 by 2 and 24 by 6.",
+      "order": 28,
+      "after": [
+        "487e047e88f7"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "f9034596025d",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Sketch as many other rectangles as you can that have the same area. Organize and record your data for the lengths and widths of the rectangles. (1 by 144, 3 by 48, 4 by 36, 8 by 18, 9 by 16, and 12 by 12)",
+      "order": 29,
+      "after": [
+        "2c91543cd77c"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "f3bbdfe07249",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Use Structure: considering rectangles with an area of 144 square units, what happens to the width of the rectangle as the length increases? (As the width increases, the length decreases.)",
+      "order": 30,
+      "after": [
+        "2c91543cd77c"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "a732cb8ca4d4",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Examine at least five other pairs of rectangles, each pair sharing the same area. How would you describe the relationship between the lengths and widths? (In each pair, the lengths and widths are different by reciprocal factors.)",
+      "order": 31,
+      "after": [
+        "2c91543cd77c"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "f718e926343e",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "How many length-width combinations for a rectangle can be created from a given pair of factors? → Two; given the factors 2 and 3, a rectangle can have length 2 and width 3, or length 3 and width 2.",
+      "order": 32,
+      "after": [
+        "2c91543cd77c"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "d93f5bcd324e",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "Do the lengths and widths always have to be integers? → No; a rectangle with a length of 5 units and a width of 28.8 units has an area of 144 square units.",
+      "order": 33,
+      "after": [
+        "f718e926343e"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "2f2824ab0a5e",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Sketch as many rectangles as you can that have an area of 25 square units. Is the relationship between the lengths and widths the same as or different from the one for an area of 144 square units? → The same.",
+      "order": 34,
+      "after": [
+        "d93f5bcd324e"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "ad91465f0570",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "Can you write a general equation that models this situation? → xy = k",
+      "order": 35,
+      "after": [
+        "2f2824ab0a5e"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "7448f0fc837f",
+      "type": "cue",
+      "front": "After, whole class: ask? (2)",
+      "back": "What would the equation look like solved for the dependent variable y? → y = k/x",
+      "order": 36,
+      "after": [
+        "ad91465f0570"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "7615eb64d253",
+      "type": "cue",
+      "front": "Habits of Mind, Use Structure: ask?",
+      "back": "How does the formula for the area of a rectangle make sense with the relationships you found? → Area is length times width, so any two factors could be the length and width and give the same product, the area.",
+      "order": 37,
+      "after": [
+        "7448f0fc837f"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "da8c11f5b03e",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The opener is the constant product k = xy, which is Example 3 Step 1, so it bridges straight into the kept Example; keep it to the 'After' questions (xy = k, then y = k/x) and skip the sketching marathon in part A. …",
+      "order": 38,
+      "after": [
+        "2c91543cd77c"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "15305144c912",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "PNY Write and solve inverse variation equations",
+      "order": 39,
+      "after": [
+        "3ce32550c1a5"
+      ],
+      "minute": null,
+      "source": "ixl.PNY"
+    },
+    {
+      "id": "d11300f2190c",
+      "type": "anchor",
+      "front": "IXL for example 3? (2)",
+      "back": "PXE Find the constant of variation",
+      "order": 40,
+      "after": [
+        "3ce32550c1a5"
+      ],
+      "minute": null,
+      "source": "ixl.PXE"
+    },
+    {
+      "id": "c301636fdf9b",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "ULD Domain and range of reciprocal functions",
+      "order": 41,
+      "after": [
+        "487e047e88f7"
+      ],
+      "minute": null,
+      "source": "ixl.ULD"
+    }
+  ]
+}

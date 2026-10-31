@@ -1,0 +1,605 @@
+{
+  "lesson": "6-3",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How is solving (2^x=8) similar to solving (2x=8)? different?",
+      "answer": "Similar: both use inverse operations; different: inverse operation used to solve (2x=8) is division and inverse operation used to solve (2^x=8) is a logarithm.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Establish Mathematics Goals to Focus Learning",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "41: 302 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 176
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "You can calculate the value of (x) in (2^x=8) without rewriting the function as (log_2 8=x). When might it be necessary to use this notation?",
+      "answer": "It will be necessary to use the inverse form of an exponential function to solve more difficult problems.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Establish Mathematics Goals to Focus Learning",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "41: 302 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 178
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Does the fact that the base is a fraction change how you write the equation in logarithmic form?",
+      "answer": "No; The base of the logarithmic form will be a fraction instead of a whole number, but the structure remains the same.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 2A Additional Examples are available at SavvasRealize.com. Go back. ESSENTIAL QUESTION. SOLUTION. What is the logarithmic form of ((1/3)^(-3)=27)? The base is (1/3). The exponent is (-3). The result is 27. (log_(1/3)27=-3) In this additional example, students write the logarithmic form of an equation in which the base is a fraction.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "41: 302 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 188
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How would the solution be different if the 3 were a coefficient of (e) rather than a coefficient of (x)?",
+      "answer": "The first step would be to divide both sides of the equation by 3 before converting to logarithmic form.",
+      "variant": "additional",
+      "notes": [
+        "Printed teacher question refers to 3 and e; the displayed additional example instead has base 4 and exponent 6x."
+      ],
+      "context": {
+        "text": "Additional Example 5 Go back. ESSENTIAL QUESTION. SOLUTION. Solve (4^(6x)=18). Round to the nearest thousandth. (6x=log_4 18) (6x≈2.085) (x≈0.347) (x≈0.347) In this additional example, students solve an equation in which the exponent has a coefficient.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "41: 302 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 200
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why might you find it necessary to convert from one representation of the relationship in an exponential or logarithmic equation to the other?",
+      "answer": "Both representations include the same information. One form may be preferred when a problem asks you to solve for a variable.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "42: 303 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 246
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What are the exponential and logarithmic equations that show how 2, 5, and 25 are related?",
+      "answer": "Use 5 as the base, 2 as the exponent and 25 as the result; (5^2=25); (log_5 25=2).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "42: 303 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 248
+      }
+    },
+    {
+      "example": 3,
+      "category": "CommonError",
+      "key": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Some students confuse the placement of the various numbers when converting to another form of the equation. Instead of writing (2^5=32) as (log_2 32=5), students may write the logarithmic form as (log_2 5=32). Show different parts of the expression using color or a diagram.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 3,
+        "category": "CommonError",
+        "block": 0,
+        "page": "42: 303 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 251
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtIExtend",
+      "key": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Rewrite (y=x^5) in logarithmic form.",
+      "answer": "(log_x y=5)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 2. Give advanced students an extra challenge by asking them to rewrite exponential and logarithmic equations that contain variables.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 2,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "42: 303 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 264
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtIExtend",
+      "key": "examples[n=2].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "Rewrite (log_3(n+2)=n-5).",
+      "answer": "(3^(n-5)=n+2)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 2. Give advanced students an extra challenge by asking them to rewrite exponential and logarithmic equations that contain variables.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 2,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "42: 303 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 266
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtIExtend",
+      "key": "examples[n=2].teacherPrompts.RtIExtend[0].questions[2]",
+      "kind": "question",
+      "question": "What value of (n) makes the equation (log_3(n+2)=n-5) true?",
+      "answer": "7",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 2. Give advanced students an extra challenge by asking them to rewrite exponential and logarithmic equations that contain variables.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 2,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "42: 303 Step 2 Understand & Apply",
+        "item": 2,
+        "line": 268
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Must all parts of a logarithmic expression be positive?",
+      "answer": "No; The base must be positive by definition. The input value must be positive because any positive number raised to an exponent yields a positive number. But the properties of exponents state that (a^(-b)=1/(a^b)), so the value of the expression as a whole can be negative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Productive Struggle in Learning Mathematics",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "43: 304 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 302
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How is Part a in the Try It different from Part B of the example?",
+      "answer": "In the Try It, the argument is a fraction, but in the example, the base is a fraction.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "43: 304 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 307
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why can the exponential form of the expression be used to check your answers?",
+      "answer": "The exponential form of the expression is the inverse of the logarithmic form. The exponential form can be used to check logarithmic form in the same way that multiplication can be used to check division.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "43: 304 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 342
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "What does evaluate mean?",
+      "answer": "find the value of",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3. Some students may have difficulty understanding how thinking of a logarithmic expression in terms of an exponential equation can help them evaluate logarithms.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "43: 304 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 352
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "Must an expression include a variable in order to be evaluated?",
+      "answer": "No, numerical expressions can be evaluated.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3. Some students may have difficulty understanding how thinking of a logarithmic expression in terms of an exponential equation can help them evaluate logarithms.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "43: 304 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 354
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[2]",
+      "kind": "question",
+      "question": "If you were asked to evaluate three times four, would it be okay to write ``(3×4=?)''?",
+      "answer": "yes",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3. Some students may have difficulty understanding how thinking of a logarithmic expression in terms of an exponential equation can help them evaluate logarithms.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "43: 304 Step 2 Understand & Apply",
+        "item": 2,
+        "line": 356
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[3]",
+      "kind": "question",
+      "question": "Can you combine the same logic, along with your knowledge of how to convert between exponential and logarithmic forms, to evaluate (log_4 64)? Explain.",
+      "answer": "yes; (log_4 64=?) means (4^?=64); (4^3=64), so (log_4 64=3).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3. Some students may have difficulty understanding how thinking of a logarithmic expression in terms of an exponential equation can help them evaluate logarithms.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "43: 304 Step 2 Understand & Apply",
+        "item": 3,
+        "line": 358
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How is solving exponential and logarithmic equations similar to solving linear equations? How is it different?",
+      "answer": "Solving any type of equation requires the use of inverse operations. To solve linear equations, you use the inverse operations of addition/subtraction and multiplication/division. To solve exponential equations, you use logarithms, and vice versa.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Facilitate Meaningful Mathematical Discourse",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "44: 305 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 389
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How does converting the form of the equation help to find the magnitude of the earthquake?",
+      "answer": "The equation can be converted from exponential form to a linear equation containing a logarithm. The logarithm can be evaluated and the linear equation can be solved in two more steps to reveal the magnitude.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "44: 305 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 415
+      }
+    },
+    {
+      "example": 6,
+      "category": "ElicitEvidence",
+      "key": "examples[n=6].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Do you think the magnitude of the earthquake in the Try It will be greater than or less than the magnitude of the earthquake in the example?",
+      "answer": "It will be greater because (1.8×10^23>4.2×10^20).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 6,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "44: 305 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 420
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "There are 20 in the king's crown.",
+      "answer": "jewels",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 6. READING: BEGINNING. Explain to students that the word joules is a homophone. Homophones are words that have the same pronunciation but different meanings and spellings. Write the words joules and jewels, along with their respective definitions, on the board. Provide sentences in which students fill in the blank either with joules or jewels.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 305 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 430
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "A heavy-duty surge protector will protect all of your electronic devices from surges up to 5,500 .",
+      "answer": "joules",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 6. READING: BEGINNING. Explain to students that the word joules is a homophone. Homophones are words that have the same pronunciation but different meanings and spellings. Write the words joules and jewels, along with their respective definitions, on the board. Provide sentences in which students fill in the blank either with joules or jewels.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 305 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 432
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "What is a magnifying glass used for?",
+      "answer": "to make small objects look larger",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 6. READING: BEGINNING. Explain to students that the word joules is a homophone. Homophones are words that have the same pronunciation but different meanings and spellings. Write the words joules and jewels, along with their respective definitions, on the board. Provide sentences in which students fill in the blank either with joules or jewels.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 305 Step 2 Understand & Apply",
+        "item": 2,
+        "line": 435
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What do the words magnify, magnificent, and magnitude and have in common?",
+      "answer": "the prefix magni--",
+      "variant": "example",
+      "notes": [
+        "Printed question includes an extra ``and'' after magnitude."
+      ],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 6. READING: BEGINNING. Explain to students that the word joules is a homophone. Homophones are words that have the same pronunciation but different meanings and spellings. Write the words joules and jewels, along with their respective definitions, on the board. Provide sentences in which students fill in the blank either with joules or jewels.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 305 Step 2 Understand & Apply",
+        "item": 3,
+        "line": 437
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "What do you think the prefix magni-- means and how does it help you to understand the meaning of the word magnitude?",
+      "answer": "large; The magnitude of an earthquake is a measure of how large it",
+      "variant": "example",
+      "notes": [
+        "Printed answer ends ``how large it''; likely missing ``is.''"
+      ],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 6. READING: BEGINNING. Explain to students that the word joules is a homophone. Homophones are words that have the same pronunciation but different meanings and spellings. Write the words joules and jewels, along with their respective definitions, on the board. Provide sentences in which students fill in the blank either with joules or jewels.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 305 Step 2 Understand & Apply",
+        "item": 4,
+        "line": 440
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "Explain how seismic energy is related to joules and to magnitude.",
+      "answer": "Seismic energy is measured in joules. There is a strong positive correlation between seismic energy and the magnitude of an earthquake.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 6. READING: BEGINNING. Explain to students that the word joules is a homophone. Homophones are words that have the same pronunciation but different meanings and spellings. Write the words joules and jewels, along with their respective definitions, on the board. Provide sentences in which students fill in the blank either with joules or jewels.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 305 Step 2 Understand & Apply",
+        "item": 5,
+        "line": 444
+      }
+    }
+  ]
+}

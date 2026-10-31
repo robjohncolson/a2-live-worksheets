@@ -1,0 +1,907 @@
+{
+  "lesson": "7-2",
+  "title": "Evaluating Trigonometric Functions",
+  "nodes": [
+    {
+      "id": "1f69267c1801",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How can you use the unit circle to find values of trigonometric functions?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "fde8e37f6ac1",
+      "type": "anchor",
+      "front": "Define: reference angle",
+      "back": "reference angle of an angle in Quadrants II, III, IV (pi - theta, theta - pi, 2pi - theta; Example 1, cut; folded into Example 4 step 2; IXL BRP)",
+      "order": 2,
+      "after": [
+        "1f69267c1801"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.reference angle"
+    },
+    {
+      "id": "6d8288071440",
+      "type": "anchor",
+      "front": "Define: quadrant",
+      "back": "reference angle of an angle in Quadrants II, III, IV (pi - theta, theta - pi, 2pi - theta; Example 1, cut; folded into Example 4 step 2; IXL BRP)",
+      "order": 3,
+      "after": [
+        "1f69267c1801"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.quadrant"
+    },
+    {
+      "id": "618d954b9fc8",
+      "type": "anchor",
+      "front": "Define: terminal point",
+      "back": "I can explain how I found a trigonometric value using the words reference angle, quadrant, terminal point, and reciprocal.",
+      "order": 4,
+      "after": [
+        "1f69267c1801"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.terminal point"
+    },
+    {
+      "id": "300306c38d4a",
+      "type": "anchor",
+      "front": "Define: reciprocal",
+      "back": "I can explain how I found a trigonometric value using the words reference angle, quadrant, terminal point, and reciprocal.",
+      "order": 5,
+      "after": [
+        "1f69267c1801"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.reciprocal"
+    },
+    {
+      "id": "a9062fd721ba",
+      "type": "anchor",
+      "front": "Quiz item 4 asks?",
+      "back": "Item 4: Which of the following are true? Select all that apply. A csc 225 = -sqrt2; B cot 225 = sqrt2; C cot 225 = 1; D sec 225 = 1; E sec 225 = -sqrt2; F csc 225 = sqrt2. Item 1 (graded with it): sine and cosine of 2pi/3 from choice tiles sqrt3/2, -1/2, 1/2, -sqrt3/2, sqrt3, 4.",
+      "order": 6,
+      "after": [
+        "fde8e37f6ac1",
+        "6d8288071440",
+        "618d954b9fc8",
+        "300306c38d4a"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "2c81e27f5d18",
+      "type": "anchor",
+      "front": "Quiz item 4 answer?",
+      "back": "Item 4: A, C, E (verify against the TE key on quiz day). 225 degrees is in Quadrant III, reference angle 45 degrees, terminal point (-sqrt2/2, -sqrt2/2): csc = 1/(-sqrt2/2) = -sqrt2, sec = -sqrt2, cot = x/y = 1. Item 1: sin 2pi/3 = sqrt3/2, cos 2pi/3 = -1/2. Bonus item 3: A, D, E.",
+      "order": 7,
+      "after": [
+        "fde8e37f6ac1",
+        "6d8288071440",
+        "618d954b9fc8",
+        "300306c38d4a"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "39a53078b764",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need?",
+      "back": "the two special triangles with hypotenuse 1: legs sqrt2/2 and sqrt2/2; 1/2 and sqrt3/2 (Example 3, printed as a reminder box beside Example 4; IXL NUF)",
+      "order": 8,
+      "after": [
+        "a9062fd721ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "4e959c2cd3f6",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (2)",
+      "back": "reference angle of an angle in Quadrants II, III, IV (pi - theta, theta - pi, 2pi - theta; Example 1, cut; folded into Example 4 step 2; IXL BRP)",
+      "order": 9,
+      "after": [
+        "a9062fd721ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "149761c02da6",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (3)",
+      "back": "the quadrant gives the signs of x = cos and y = sin (Example 4; IXL 6H8)",
+      "order": 10,
+      "after": [
+        "a9062fd721ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "1ec46ec678e6",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (4)",
+      "back": "csc = 1/y, sec = 1/x, cot = x/y, with the same sign as sin, cos, tan (Example 5; IXL PAE; the packet Practice at 135 degrees)",
+      "order": 11,
+      "after": [
+        "a9062fd721ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "e8148cce2f4e",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (5)",
+      "back": "for the bonus: coterminal angles (add or subtract 2pi) for -4pi/3, -7pi/4, -11pi/3, 13pi/6 (Lesson 7-1; Try It 4b, -210 degrees, is the packet's only negative angle)",
+      "order": 12,
+      "after": [
+        "a9062fd721ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "6c8334e8693e",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Sine and cosine of 2pi/3 from choice tiles: Example 4C works this exact angle, so the item is a recall check of the packet. On the short form, graded, 10 points. DOK 1, F84.",
+      "order": 13,
+      "after": [
+        "a9062fd721ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "3673ce04a84f",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "sin(theta) if cos(theta) = 12/13 and theta is in Quadrant IV (answer B, -5/13): the Pythagorean Identity, Example 6, cut. Left off the short form (full Savvas quiz only); Practice 33 and 38 are its parallels if the PLC puts it back. DOK 1, F84 and F92.",
+      "order": 14,
+      "after": [
+        "a9062fd721ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "3a10473047ee",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Select all the correct statements about tan(-4pi/3), cos(-7pi/4), cot(-11pi/3), sec(7pi/6), sin(13pi/6) (answer A, D, E): Examples 4 and 5 plus the coterminal step from 7-1. On the short form as the proposed +5 bonus. DOK 1, F84.",
+      "order": 15,
+      "after": [
+        "a9062fd721ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "ecb5d3164e11",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "csc, cot and sec of 225 degrees, select all (answer A, C, E): Example 5 with Example 4's Quadrant III signs; rehearsed by the packet Practice (TE Practice 14 and Do You Know How 11 at 135 degrees). On the short form, graded, 10 points. DOK 1, F84.",
+      "order": 16,
+      "after": [
+        "a9062fd721ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "1b0b5f15ff92",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Melissa's two-way radio, 8-mile radius, Oscar 30 degrees west of south (answer (-4, -4sqrt3)): any circle centered at the origin, Example 7, cut. Left off the short form (full Savvas quiz only); the figure could be redrawn, it is left off because no kept Example teaches it. The quiz's only DOK 2, F84.",
+      "order": 17,
+      "after": [
+        "a9062fd721ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "ab8515a2619e",
+      "type": "step",
+      "front": "Example 4: ?",
+      "back": "Evaluate Trigonometric Functions with Special Angles as Reference Angles · DOK 2 · practice 19, 35 · Quiz item 1 is Part C's angle (2pi/3) and item 3 is this skill at negative and past-2pi angles; item 4 needs its Quadrant III signs. …",
+      "order": 18,
+      "after": [
+        "a9062fd721ba",
+        "2c81e27f5d18"
+      ],
+      "minute": null,
+      "source": "examples[n=4]"
+    },
+    {
+      "id": "ddefdf0ae534",
+      "type": "step",
+      "front": "Example 5: ?",
+      "back": "Use Reciprocal Trigonometric Identities · DOK 1 · practice 14, 15, 27-30 · Quiz item 4 (csc, cot, sec of 225 degrees) and statements C and D of item 3 (cot, sec). The concept summary's table (sin = y, csc = 1/y, cos = x, sec = 1/x, tan = y/x, cot = x/y) is this Example. …",
+      "order": 19,
+      "after": [
+        "ab8515a2619e"
+      ],
+      "minute": null,
+      "source": "examples[n=5]"
+    },
+    {
+      "id": "48bbba89af1e",
+      "type": "cue",
+      "front": "Example 4 · Purposeful question: How would you draw a reference triangle in the case where (θ) is greater than 180°?",
+      "back": "Listen for: The reference triangle would be drawn for the reference angle of (θ) below the x-axis.",
+      "order": 20,
+      "after": [
+        "ab8515a2619e"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "29: 356 Understand & Apply",
+          "item": 0,
+          "line": 331
+        },
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "765508b28442",
+      "type": "cue",
+      "front": "Example 4 · Purposeful question: Why is the sine negative when the terminal point is in Quadrant IV?",
+      "back": "Listen for: Quadrant IV is below the x-axis, where all y-values are negative.",
+      "order": 21,
+      "after": [
+        "48bbba89af1e"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "30: 357 Example 4 continued",
+          "item": 0,
+          "line": 386
+        },
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "1463c47a3ca7",
+      "type": "cue",
+      "front": "Example 4 · Purposeful question: Can more than one angle have the same reference angle?",
+      "back": "Listen for: Yes, since the reference angle is the acute angle formed with the x-axis, all angles that have the same angle measure above or below the x-axis would have the same reference angle.",
+      "order": 22,
+      "after": [
+        "765508b28442"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "30: 357 Example 4 continued",
+          "item": 1,
+          "line": 388
+        },
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "ed645c8775de",
+      "type": "cue",
+      "front": "Example 4 · Teacher prompt: conference/confer",
+      "back": "Listen for: CON-fer-ence/con-FER",
+      "order": 23,
+      "after": [
+        "1463c47a3ca7"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 0,
+          "line": 419
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "bc35d843f5d0",
+      "type": "cue",
+      "front": "Example 4 · Teacher prompt: excellence/excel",
+      "back": "Listen for: EX-cel-lence/ex-CEL",
+      "order": 24,
+      "after": [
+        "ed645c8775de"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 1,
+          "line": 420
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e545c5e45012",
+      "type": "cue",
+      "front": "Example 4 · Teacher prompt: preference/prefer",
+      "back": "Listen for: PRE-fer-ence/pre-FER",
+      "order": 25,
+      "after": [
+        "bc35d843f5d0"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 2,
+          "line": 421
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "96fd1fdc0d1c",
+      "type": "cue",
+      "front": "Example 4 · Teacher prompt: inference/infer",
+      "back": "Listen for: IN-fer-ence/in-FER",
+      "order": 26,
+      "after": [
+        "e545c5e45012"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 3,
+          "line": 422
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "611c8f526dad",
+      "type": "cue",
+      "front": "Example 4 · Teacher prompt: What does it mean if a side is opposite (θ)?",
+      "back": "Listen for: The side is across from the angle (θ).",
+      "order": 27,
+      "after": [
+        "96fd1fdc0d1c"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 4,
+          "line": 424
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "427518ad2891",
+      "type": "cue",
+      "front": "Example 4 · Teacher prompt: What does it mean to say a side is adjacent to (θ)?",
+      "back": "Listen for: The side is next to the angle (θ) and helps form the angle (θ).",
+      "order": 28,
+      "after": [
+        "611c8f526dad"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[5]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 5,
+          "line": 425
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[5]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "85451e93b156",
+      "type": "cue",
+      "front": "Example 4 · Teacher prompt: Is the hypotenuse opposite or adjacent to (θ)?",
+      "back": "Listen for: Adjacent, it is next to the angle (θ) and is one of the lines that helps form the angle (θ).",
+      "order": 29,
+      "after": [
+        "427518ad2891"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[6]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 6,
+          "line": 426
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[6]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "ab99cd4682cc",
+      "type": "cue",
+      "front": "Example 4 · Teacher prompt: True or False: The hypotenuse is adjacent to the right angle of the reference triangle.",
+      "back": "Listen for: False",
+      "order": 30,
+      "after": [
+        "85451e93b156"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[7]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 7,
+          "line": 427
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[7]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "bbff82f7a573",
+      "type": "cue",
+      "front": "Example 4 · Teacher prompt: Write a sentence for each of the three definitions of the word radius.",
+      "back": "Listen for: The radius of the circle is 10 centimeters. The students at the school live within a twenty-mile radius of the building. DeSanto broke his radius while skateboarding.",
+      "order": 31,
+      "after": [
+        "ab99cd4682cc"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[8]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 8,
+          "line": 429
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[8]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "3c0094541f89",
+      "type": "cue",
+      "front": "Example 4 · Teacher prompt: Which definition is used in the example?",
+      "back": "Listen for: the first",
+      "order": 32,
+      "after": [
+        "bbff82f7a573"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[9]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 4,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 9,
+          "line": 431
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[9]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "86b37d2a0901",
+      "type": "cue",
+      "front": "Example 5 · Connect representations: How do you determine the denominator for the secant and cosecant functions?",
+      "back": "Listen for: The denominator of the secant function is the x-coordinate of the terminal point, while the denominator of the cosecant function is the y-coordinate of the terminal point, since they are reciprocals of the cosine and sine functions.",
+      "order": 33,
+      "after": [
+        "ddefdf0ae534"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 5,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "30: 357 Example 4 continued",
+          "item": 0,
+          "line": 413
+        },
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c6b3023c7e9e",
+      "type": "cue",
+      "front": "Example 5 · Connect representations: How can you use the terminal point on the unit circle to find the cotangent?",
+      "back": "Listen for: Use the x-coordinate of the terminal point divided by the y-coordinate of the terminal point.",
+      "order": 34,
+      "after": [
+        "86b37d2a0901"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[1].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 5,
+          "category": "GeneralizeETP",
+          "block": 1,
+          "page": "31: 358 Understand & Apply",
+          "item": 0,
+          "line": 446
+        },
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "d9167f33399f",
+      "type": "trap",
+      "front": "Example 5 · Common error: What error should I watch for, and how does the TE respond?",
+      "back": "Try It! 5 Some students may incorrectly use the x-coordinate of the terminal point of the angle for the denominator of the cosecant. Have students use the standard ratio of (cscθ=1/(opposite/hypotenuse)), where (opposite/hypotenuse=y/1=y), to see that it is the y-coordinate that should be used.",
+      "order": 35,
+      "after": [
+        "c6b3023c7e9e"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.CommonError[0].guidance",
+      "teaching": {
+        "example": 5,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_7-2_TE.tex",
+          "anchor": 5,
+          "category": "CommonError",
+          "block": 0,
+          "page": "31: 358 Understand & Apply",
+          "item": 0,
+          "line": 449
+        },
+        "promptKey": "examples[n=5].teacherPrompts.CommonError[0].guidance",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c519acfd1310",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "If the coordinates of the terminal point of an angle theta on the unit circle are (-3/5, 4/5), describe and correct the error a student made in finding tan theta. Student work: tan theta = (-3/5)/(4/5) = -3/4.",
+      "order": 36,
+      "after": [
+        "ddefdf0ae534"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "cfc97896764e",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "tan theta = sin theta / cos theta = y/x = (4/5)/(-3/5) = -4/3. The student divided x by y, which is the reciprocal of the tangent (the cotangent). No DOK 3 item exists in the 7-2 TE (item analysis: Examples 1-7, DOK 1 and 2 only; Practice 37 has no printed DOK). …",
+      "order": 37,
+      "after": [
+        "ddefdf0ae534"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "483f17ca3d29",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "The graph shows the terminal sides of an angle with measure theta and its supplement, 180 - theta, on the unit circle (terminal points (x, y) in Quadrant I and (?, ?) in Quadrant II).",
+      "order": 38,
+      "after": [
+        "1f69267c1801"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "9816df801a5f",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. How are the coordinates of the intersection of the terminal side of an angle with measure theta and the unit circle related to the sine and cosine of the angle? (The x-coordinate is the cosine and the y-coordinate is the sine.)",
+      "order": 39,
+      "after": [
+        "483f17ca3d29"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "4312bb7033ca",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. What do you notice about theta and the measure of the acute angle formed by the terminal side of 180 - theta and the x-axis? (The acute angles have the same measure.)",
+      "order": 40,
+      "after": [
+        "483f17ca3d29"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "a82aa9daecff",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Draw the terminal sides of angles in Quadrants III and IV that form the same acute angle with the x-axis as the angles in Quadrants I and II. How are these angles related to theta? (180 + theta and 360 - theta.)",
+      "order": 41,
+      "after": [
+        "483f17ca3d29"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "e74f3c512c65",
+      "type": "cue",
+      "front": "Opener prompt 4?",
+      "back": "D. Communicate Precisely: How are all four terminal sides related geometrically on the coordinate plane? (They are reflections over the coordinate axes.)",
+      "order": 42,
+      "after": [
+        "483f17ca3d29"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[3]"
+    },
+    {
+      "id": "f206b1515a80",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What do you notice about the terminal sides of the angles theta and 180 - theta? → They are symmetric about the y-axis.",
+      "order": 43,
+      "after": [
+        "483f17ca3d29"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "bb5bf70b7308",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "What do the values of x and y represent when determining the sine and cosine of theta? → The side lengths of a right triangle formed by the x-axis, the line from (x, y) to the origin, and the vertical line from (x, y) to the x-axis.",
+      "order": 44,
+      "after": [
+        "f206b1515a80"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "95ccc9922afc",
+      "type": "cue",
+      "front": "During, small group: ask? (2)",
+      "back": "How are the coordinates of the intersection of the unit circle with the terminal sides of the angles theta and 180 - theta related? → The x-coordinates are the same number with the opposite sign; the y-coordinates are identical.",
+      "order": 45,
+      "after": [
+        "bb5bf70b7308"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "4f8255a8f5a8",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "If theta = 30 degrees, what are the coordinates of the intersection of the unit circle with the terminal sides in each quadrant? → Quadrant I (sqrt3/2, 1/2); Quadrant II (-sqrt3/2, 1/2); Quadrant III (-sqrt3/2, -1/2); Quadrant IV (sqrt3/2, -1/2).",
+      "order": 46,
+      "after": [
+        "95ccc9922afc"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "10d826966289",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "How does the unit circle help to find the values of the sine and cosine of any angle theta? → The hypotenuse of the right triangle containing theta is always 1, so the sine and cosine are the lengths of the other two sides of the reference triangle.",
+      "order": 47,
+      "after": [
+        "4f8255a8f5a8"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "0e8cef43b843",
+      "type": "cue",
+      "front": "Habits of Mind, Reason: ask?",
+      "back": "When you connect the four points on the unit circle, the figure is a rectangle. For what angle theta is that rectangle a square? → pi/4, or 45 degrees.",
+      "order": 48,
+      "after": [
+        "10d826966289"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "b950b8b1f8fe",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The opener is Examples 1-2 content (reference angles and quadrant symmetry), both cut; it works as the hook because part C produces the four angles theta, 180 - theta, 180 + theta, 360 - theta that Example 4 uses, and the early-finisher question (theta = 30 degrees in every quadrant) is Example 4B/C's terminal …",
+      "order": 49,
+      "after": [
+        "483f17ca3d29"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "c81f11778764",
+      "type": "anchor",
+      "front": "IXL for example 4?",
+      "back": "6H8 Evaluate trigonometric ratios using reference angles: sin, cos, tan",
+      "order": 50,
+      "after": [
+        "ab8515a2619e"
+      ],
+      "minute": null,
+      "source": "ixl.6H8"
+    },
+    {
+      "id": "f4bc90cef3d3",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "PAE Evaluate trigonometric ratios using reference angles: sec, csc, cot",
+      "order": 51,
+      "after": [
+        "ddefdf0ae534"
+      ],
+      "minute": null,
+      "source": "ixl.PAE"
+    },
+    {
+      "id": "76725bc0b5b5",
+      "type": "anchor",
+      "front": "IXL for example 5? (2)",
+      "back": "ZF7 Determine trigonometric ratios using points on the unit circle",
+      "order": 52,
+      "after": [
+        "ddefdf0ae534"
+      ],
+      "minute": null,
+      "source": "ixl.ZF7"
+    }
+  ]
+}

@@ -1,0 +1,689 @@
+{
+  "lesson": "4-3",
+  "title": "Multiplying and Dividing Rational Expressions",
+  "nodes": [
+    {
+      "id": "ec3bc30bac28",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How does multiplying and dividing fractions help you multiply and divide rational expressions?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "f3ef39f86e66",
+      "type": "anchor",
+      "front": "Define: factor",
+      "back": "factor a difference of squares written backwards: 9 - x^2 = (3-x)(3+x), 4 - x^2 = (2-x)(2+x) (2-3 factoring; IXL QKF)",
+      "order": 2,
+      "after": [
+        "ec3bc30bac28"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.factor"
+    },
+    {
+      "id": "d5bd869f7679",
+      "type": "anchor",
+      "front": "Define: common factor",
+      "back": "divide by multiplying by the reciprocal of the divisor, then divide out common factors (Example 5; IXL MG2)",
+      "order": 3,
+      "after": [
+        "ec3bc30bac28"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.common factor"
+    },
+    {
+      "id": "12379b90ef6a",
+      "type": "anchor",
+      "front": "Define: reciprocal",
+      "back": "divide by multiplying by the reciprocal of the divisor, then divide out common factors (Example 5; IXL MG2)",
+      "order": 4,
+      "after": [
+        "ec3bc30bac28"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.reciprocal"
+    },
+    {
+      "id": "09f2a60bf696",
+      "type": "anchor",
+      "front": "Define: domain",
+      "back": "take the domain from the ORIGINAL denominators, before anything divides out, and for a quotient also leave out the zeros of the divisor's numerator (Example 2 domain step; Example 5 step 3; IXL 79Q)",
+      "order": 5,
+      "after": [
+        "ec3bc30bac28"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.domain"
+    },
+    {
+      "id": "1032ffa9f8c6",
+      "type": "anchor",
+      "front": "Define: simplified form",
+      "back": "I can explain how I simplified a rational expression using the words factor, common factor, reciprocal, domain and simplified form.",
+      "order": 6,
+      "after": [
+        "ec3bc30bac28"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.simplified form"
+    },
+    {
+      "id": "f1321a208164",
+      "type": "anchor",
+      "front": "Quiz item 4 asks?",
+      "back": "Five multiple-choice items, all DOK 2, skill A85. Item 4 (graded): the quotient of (9 - x^2)/(3x) and (x^2 + 6x + 9)/(3x); choices A (x-3)/(3-x), B (x-3)/(x+3), C (3-x)/(x+3), D (x+3)/(x-3). Item 2 (graded): simplify (x+5)(x^2-25)/((x+5)^2(x-5)^2) and give the domain. …",
+      "order": 7,
+      "after": [
+        "f3ef39f86e66",
+        "d5bd869f7679",
+        "12379b90ef6a",
+        "09f2a60bf696",
+        "1032ffa9f8c6"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "640973808461",
+      "type": "anchor",
+      "front": "Quiz item 4 answer?",
+      "back": "Item 4: C, (3-x)/(x+3). Item 2: B, 1/(x-5); all real numbers except -5 and 5. Item 5: D, (x-2)/(x(x+2)). (TE key; verify against the TE key on quiz day.)",
+      "order": 8,
+      "after": [
+        "f3ef39f86e66",
+        "d5bd869f7679",
+        "12379b90ef6a",
+        "09f2a60bf696",
+        "1032ffa9f8c6"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "e5e85f2c1f7b",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need?",
+      "back": "factor a difference of squares written backwards: 9 - x^2 = (3-x)(3+x), 4 - x^2 = (2-x)(2+x) (2-3 factoring; IXL QKF)",
+      "order": 9,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "e7edd2a07a64",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (2)",
+      "back": "factor trinomials and perfect squares: x^2 + 6x + 9 = (x+3)^2, x^2 + 3x - 10 = (x-2)(x+5) (2-3; IXL UB5)",
+      "order": 10,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "5849cbf37c0c",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (3)",
+      "back": "take the domain from the ORIGINAL denominators, before anything divides out, and for a quotient also leave out the zeros of the divisor's numerator (Example 2 domain step; Example 5 step 3; IXL 79Q)",
+      "order": 11,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "839be6805887",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (4)",
+      "back": "divide by multiplying by the reciprocal of the divisor, then divide out common factors (Example 5; IXL MG2)",
+      "order": 12,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "1180fecebbf2",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (5)",
+      "back": "recognize opposites: 2 - x = -(x - 2), b - a = -(a - b) (Example 2 step 3; quiz items 3 and 4 turn on it)",
+      "order": 13,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "ddb01ccc580b",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (6)",
+      "back": "for the bonus: width = area / length, the same move as Practice 37 (base = area / height) in the packet",
+      "order": 14,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
+      "id": "38653c4ee2a9",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Simplify (x^2-2x)/((x-2)(x+3)); answer C, x/(x+3). Example 2 (factor out x, divide out x-2). Left off the short form; available for Form B.",
+      "order": 15,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "967119daff77",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Simplify (x+5)(x^2-25)/((x+5)^2(x-5)^2) and state the domain; answer B, 1/(x-5), all reals except -5 and 5. Example 2 (factor, domain from the original denominator, divide out). Graded, 10 points.",
+      "order": 16,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "a26848b684b4",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Multiply (ab^2-a^2b)/(ab) by a^2b^2/(a-b); answer A, -a^2b^2 (a, b not 0; the TE choice omits a not equal to b). Example 3 (cut). The multiplication is Example 5 after its first step and the sign move b - a = -(a - b) is Example 2 step 3. Left off the short form.",
+      "order": 17,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "c02091f1b67e",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Quotient of (9-x^2)/(3x) and (x^2+6x+9)/(3x); answer C, (3-x)/(x+3). Example 5 (reciprocal, factor, divide out). Graded, 10 points.",
+      "order": 18,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "eaad99f20016",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Rectangle: width = area (x^2-4)/(2x) divided by length (x+2)^2/2; answer D, (x-2)/(x(x+2)). Example 5 division in a context (Example 6 is the TE's context example, cut); rehearsed by the packet's Practice block (TE Practice 37). Proposed +5 bonus.",
+      "order": 19,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "5008a083ce56",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Simplify a rational expression · DOK 1-2 · practice 22, 23, 24, 25, 39, 17, 38 · Quiz items 1 and 2 (item 2 graded): factor, take the domain from the original denominator, divide out the common factor. Its step 2 - x = -(x - 2) is also the sign move quiz items 3 and 4 need. …",
+      "order": 20,
+      "after": [
+        "f1321a208164",
+        "640973808461"
+      ],
+      "minute": null,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "2529f688bdba",
+      "type": "step",
+      "front": "Example 5: ?",
+      "back": "Divide rational expressions · DOK 1, 2, 3 · practice 30, 31, 32, 33, 40, 13 · Quiz items 4 and 5 (item 4 graded, item 5 the proposed bonus), and its multiply-by-the-reciprocal step makes it the multiplication practice for item 3. It carries the lesson's only DOK 3 (practice 13). …",
+      "order": 21,
+      "after": [
+        "5008a083ce56"
+      ],
+      "minute": null,
+      "source": "examples[n=5]"
+    },
+    {
+      "id": "747f64a6ce24",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Why is (-1) factored out of (2-x) in the numerator?",
+      "back": "Listen for: If you factor out (-1), you can divide out the common factor (x-2).",
+      "order": 22,
+      "after": [
+        "5008a083ce56"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_4-3_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "40: 199 Examples 1 continued, 2, 3",
+          "item": 0,
+          "line": 221
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "cafb6e4b86f5",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Why can you cross out factors that divide to 1?",
+      "back": "Listen for: A rational expression with factors that divide to 1 can be written as 1 times another rational expression, and 1 is not typically written in products.",
+      "order": 23,
+      "after": [
+        "747f64a6ce24"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_4-3_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "40: 199 Examples 1 continued, 2, 3",
+          "item": 1,
+          "line": 223
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c62b26a50541",
+      "type": "cue",
+      "front": "Example 2 · Reasoning: what should I ask? (1/2)",
+      "back": "Ask: Critique Reasoning Bailey simplified the rational expression ((x^2+2x+4)/(x^2+x+2)) by dividing out the (x^2)-terms and then dividing out a factor of (x+2) to get 2 as the simplified form of the rational expression. Is Bailey correct? Why or why not?",
+      "order": 24,
+      "after": [
+        "cafb6e4b86f5"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_4-3_TE.tex",
+          "anchor": 2,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "40: 199 Examples 1 continued, 2, 3",
+          "item": 0,
+          "line": 281
+        },
+        "promptKey": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 2
+      }
+    },
+    {
+      "id": "0cabfa93a4db",
+      "type": "cue",
+      "front": "Example 2 · Reasoning: what should I ask? (2/2)",
+      "back": "Listen for: No; you cannot eliminate terms from the numerator and denominator if they are bound by addition. You must factor the expression first, and then eliminate like factors.",
+      "order": 25,
+      "after": [
+        "c62b26a50541"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0].part[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_4-3_TE.tex",
+          "anchor": 2,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "40: 199 Examples 1 continued, 2, 3",
+          "item": 0,
+          "line": 281
+        },
+        "promptKey": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 2,
+        "parts": 2
+      }
+    },
+    {
+      "id": "dc1f4e5cb322",
+      "type": "cue",
+      "front": "Example 5 · Purposeful question: Why do you factor out (-1)?",
+      "back": "Listen for: The factoring out of (-1) allows you to divide common factors from the numerator and the denominator.",
+      "order": 26,
+      "after": [
+        "2529f688bdba"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_4-3_TE.tex",
+          "anchor": 5,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "41: 200 Examples 4, 5",
+          "item": 0,
+          "line": 324
+        },
+        "promptKey": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "b380b030d0b2",
+      "type": "cue",
+      "front": "Example 5 · Purposeful question: How is dividing rational expressions similar to dividing fractions?",
+      "back": "Listen for: You multiply by the reciprocal of the divisor.",
+      "order": 27,
+      "after": [
+        "dc1f4e5cb322"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_4-3_TE.tex",
+          "anchor": 5,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "41: 200 Examples 4, 5",
+          "item": 1,
+          "line": 326
+        },
+        "promptKey": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "5e9c4bb86c1f",
+      "type": "cue",
+      "front": "Example 5 · Support: How do you decide what can be factored out of each expression?",
+      "back": "Listen for: Find the greatest common factor.",
+      "order": 28,
+      "after": [
+        "b380b030d0b2"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_4-3_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "41: 200 Examples 4, 5",
+          "item": 0,
+          "line": 353
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "24e91b8d721e",
+      "type": "cue",
+      "front": "Example 5 · Support: What are the quotient and the domain?",
+      "back": "Listen for: (3(x+1)); (x≠-2,-1,0).",
+      "order": 29,
+      "after": [
+        "5e9c4bb86c1f"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_4-3_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "41: 200 Examples 4, 5",
+          "item": 1,
+          "line": 355
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e72f85283aeb",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Why are rational expressions closed under multiplication and division?",
+      "order": 30,
+      "after": [
+        "2529f688bdba"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "9bc905cee367",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "Sample (TE): a/b divided by c/d = (a/b)/(c/d) = ((a/b)(d/c))/((c/d)(d/c)) = (ad/bc)/1 = ad/bc = (a/b)(d/c). …",
+      "order": 31,
+      "after": [
+        "2529f688bdba"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "696a96d21a90",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "The graph of the line y = x + 2, through (-2, 0) and (0, 2), on a grid from about -17.5 to 17.5 by -12.5 to 12.5.",
+      "order": 32,
+      "after": [
+        "ec3bc30bac28"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "75f76f0d0169",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. What is the domain of this function? (all real numbers)",
+      "order": 33,
+      "after": [
+        "696a96d21a90"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "21a2cb740d9f",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Sketch a function that resembles the graph, but restrict its domain to exclude 2. (the line with an open circle at (2, 4))",
+      "order": 34,
+      "after": [
+        "696a96d21a90"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "e8c6b3742ae4",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Use Structure: Consider the function you have sketched. What kind of function might have a graph like this? Explain. (one whose denominator is zero when x = 2)",
+      "order": 35,
+      "after": [
+        "696a96d21a90"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "6942b4441707",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What do you notice about the graph of the function? → Sample: x-intercept -2; y-intercept 2; the function is linear.",
+      "order": 36,
+      "after": [
+        "696a96d21a90"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "0e0277135dbc",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "Why is it important to know the domain of a function? → The domain needs to make sense for the scenario, and some values of x make the function undefined, so they cannot be in the domain.",
+      "order": 37,
+      "after": [
+        "6942b4441707"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "6a60c3c1f827",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Sketch the function y = -x + 4. What is the domain of the function? → All real numbers.",
+      "order": 38,
+      "after": [
+        "0e0277135dbc"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "9ee750105539",
+      "type": "cue",
+      "front": "Early finishers: ask? (2)",
+      "back": "Sketch the graph of the function, excluding -4 from the domain. Describe the new graph created. → A line with a negative slope and an opening at x = -4; x-intercept 4, y-intercept 4.",
+      "order": 39,
+      "after": [
+        "6a60c3c1f827"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "66d3ba824ed6",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "How does the exclusion of an x-value in a function's domain due to an asymptote compare to the exclusion of an x-value at a single point? → An asymptote occurs where the denominator is zero and the numerator is not; the graph gets close to it but never touches. …",
+      "order": 40,
+      "after": [
+        "9ee750105539"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "75ccf28c068f",
+      "type": "cue",
+      "front": "Habits of Mind, Reason: ask?",
+      "back": "Does the graph of y = (2x + 6)/(x + 3) have a vertical asymptote at x = -3? Explain. → No; the function approaches (-3, 2) from both sides, so there is a hole at x = -3 instead of an asymptote.",
+      "order": 41,
+      "after": [
+        "66d3ba824ed6"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "e72d08599cb7",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The TE's printed answer to C, y = (2x - 4)/(x - 2), simplifies to y = 2 with a hole at (2, 2); it does not give the line y = x + 2 drawn in B. …",
+      "order": 42,
+      "after": [
+        "696a96d21a90"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "bf8b58caa464",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "37N Simplify rational expressions",
+      "order": 43,
+      "after": [
+        "5008a083ce56"
+      ],
+      "minute": null,
+      "source": "ixl.37N"
+    },
+    {
+      "id": "69e7155c3186",
+      "type": "anchor",
+      "front": "IXL for example 2? (2)",
+      "back": "79Q Domain of rational functions",
+      "order": 44,
+      "after": [
+        "5008a083ce56"
+      ],
+      "minute": null,
+      "source": "ixl.79Q"
+    },
+    {
+      "id": "4875d524bb8e",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "MG2 Multiply and divide rational expressions",
+      "order": 45,
+      "after": [
+        "2529f688bdba"
+      ],
+      "minute": null,
+      "source": "ixl.MG2"
+    }
+  ]
+}

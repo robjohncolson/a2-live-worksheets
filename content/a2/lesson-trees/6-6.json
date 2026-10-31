@@ -1,0 +1,559 @@
+{
+  "lesson": "6-6",
+  "title": "Exponential and Logarithmic Equations",
+  "nodes": [
+    {
+      "id": "02f7eef9f9cb",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How do properties of exponents and logarithms help you solve equations?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "d1eb55440eb7",
+      "type": "anchor",
+      "front": "Define: common base",
+      "back": "write 4, 8, 25, 1/2 and 0.001 as powers of a common base (Example 1, Try It 1; IXL YQY)",
+      "order": 2,
+      "after": [
+        "02f7eef9f9cb"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.common base"
+    },
+    {
+      "id": "98419fa54c64",
+      "type": "anchor",
+      "front": "Define: exponent",
+      "back": "Power of a Power: (5^2)^(x-2) = 5^(2x-4); the outside exponent multiplies the WHOLE inside exponent (Example 1 'watch line 3'; quiz item 3 turns on it; prereq IXL V2J)",
+      "order": 3,
+      "after": [
+        "02f7eef9f9cb"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.exponent"
+    },
+    {
+      "id": "390018a9f0fd",
+      "type": "anchor",
+      "front": "Define: argument",
+      "back": "Power Property of logarithms first: 2 log x = log x^2 (the coefficient note beside Example 5's check; TE Practice 30 and 34 practise it; prereq IXL 7T3), then set the arguments equal (Example 5; IXL BXU, RLX)",
+      "order": 4,
+      "after": [
+        "02f7eef9f9cb"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.argument"
+    },
+    {
+      "id": "e645ebccca16",
+      "type": "anchor",
+      "front": "Define: extraneous solution",
+      "back": "I can explain each step of my solution using the words common base, exponent, argument and extraneous solution.",
+      "order": 5,
+      "after": [
+        "02f7eef9f9cb"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.extraneous solution"
+    },
+    {
+      "id": "51d7bbaa23dd",
+      "type": "anchor",
+      "front": "Quiz item 3 asks?",
+      "back": "Item 3 (graded, the quiz's only DOK 3): Max solved 5^(x+3) = 25^(x-2) with an error. Part A: label lines 2-4 of his work with Rewrite with a common base / Power of a Power Property / Property of Equality for Exponential Equations. Part B: name the line with the error and give the correct solution. …",
+      "order": 6,
+      "after": [
+        "d1eb55440eb7",
+        "98419fa54c64",
+        "390018a9f0fd",
+        "e645ebccca16"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "5ac1a38d582b",
+      "type": "anchor",
+      "front": "Quiz item 3 answer?",
+      "back": "Item 3: Part A line 2 = Rewrite with a common base, line 3 = Power of a Power Property, line 4 = Property of Equality for Exponential Equations; Part B line 3 (should be 5^(2x-4)), x = 7. Item 4: A, B. Item 2: C (2/3 hour; 4 cubic km). (TE key; verify against the TE key on quiz day.)",
+      "order": 7,
+      "after": [
+        "d1eb55440eb7",
+        "98419fa54c64",
+        "390018a9f0fd",
+        "e645ebccca16"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "40c8b06b5fbc",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need?",
+      "back": "write 4, 8, 25, 1/2 and 0.001 as powers of a common base (Example 1, Try It 1; IXL YQY)",
+      "order": 8,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "32f0cfa2e2e7",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (2)",
+      "back": "Power of a Power: (5^2)^(x-2) = 5^(2x-4); the outside exponent multiplies the WHOLE inside exponent (Example 1 'watch line 3'; quiz item 3 turns on it; prereq IXL V2J)",
+      "order": 9,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "760fa3341af1",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (3)",
+      "back": "name the property used on each line (Example 1's Why column; the packet's Practice is the structural parallel of item 3)",
+      "order": 10,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "6a58ea8add70",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (4)",
+      "back": "Power Property of logarithms first: 2 log x = log x^2 (the coefficient note beside Example 5's check; TE Practice 30 and 34 practise it; prereq IXL 7T3), then set the arguments equal (Example 5; IXL BXU, RLX)",
+      "order": 11,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "96f409055381",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (5)",
+      "back": "factor the quadratic and check every root in the ORIGINAL equation; a root that makes an argument zero or negative is extraneous (Example 5, Try It 5)",
+      "order": 12,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "d7b5fee70799",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (6)",
+      "back": "for the bonus: substitute x back to get the volume, 8^(2/3) = 4 (Example 1's check line)",
+      "order": 13,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
+      "id": "0b0f5b0a3b6d",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "7^(x-1) = 3; answer A, x = log 3 / log 7 + 1 (DOK 1; skills F71, F72, F73). Example 3 (take the log of both sides; Example 2 rewrites with logs), both cut. Not on the short form (full Savvas quiz only; listed in the key for a retake or Form B); IXL 9F2 is the unstarred optional row.",
+      "order": 14,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "6c2a5988439e",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Clouds 4^(3x-1) and 8^x: same volume after 2/3 hour, volume 4; answer C (DOK 2; F72, F73). Example 1 (common base 2). On the short form as the proposed +5 bonus (3 for C, 2 for the common-base work).",
+      "order": 15,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "d6a8e525fd7a",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Max's error analysis on 5^(x+3) = 25^(x-2), Parts A and B; Part B answer line 3, x = 7 (DOK 3; F72, F73). Example 1, rehearsed by the packet's Practice (Lena, 2^(x+5) = 8^(x-1), error in the Power of a Power line). On the short form, graded, 10 points.",
+      "order": 16,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "269e8857ebe4",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Select all solutions of 2 log x = log(5x - 4); answer A, B (x = 1, 4) (DOK 2; F72, F73). Example 5 (equal arguments, factor, check) after the Power Property. On the short form, graded, 10 points.",
+      "order": 17,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "825996121d2d",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Solve ln(3x) = 2x - 5 by graphing, larger x to the nearest hundredth; answer 3.70 (DOK 2; F72, F73). Example 6 (graphing calculator / Desmos), cut. Not on the short form (full Savvas quiz only; listed in the key for a retake or Form B).",
+      "order": 18,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "da927dcb3013",
+      "type": "step",
+      "front": "Example 1: ?",
+      "back": "Solve Exponential Equations Using a Common Base · DOK 1 · practice 16, 17, 18, 19, 20, 21, 45 · Teaches quiz items 2 and 3, the most of any Example, including item 3, the quiz's only DOK 3. The concept summary's first column (Property of Equality for Exponential Equations) is this Example. …",
+      "order": 19,
+      "after": [
+        "51d7bbaa23dd",
+        "5ac1a38d582b"
+      ],
+      "minute": null,
+      "source": "examples[n=1]"
+    },
+    {
+      "id": "e0727cf9ac26",
+      "type": "step",
+      "front": "Example 5: ?",
+      "back": "Solve Logarithmic Equations · DOK 1, 3 · practice 29-37, 44, 12, 15, 43, 46 · Teaches quiz item 4 (set the arguments equal, factor, check for extraneous roots; item 4 adds the Power Property first). It is the second column of the concept summary and the only Example with DOK 3 practice items (43, 46). …",
+      "order": 20,
+      "after": [
+        "da927dcb3013"
+      ],
+      "minute": null,
+      "source": "examples[n=5]"
+    },
+    {
+      "id": "d5019e1b3123",
+      "type": "cue",
+      "front": "Example 1 · Connect representations: Why was each side of the equation written with an equivalent expression using 2 as the base?",
+      "back": "Listen for: In order to solve an exponential equation, the bases must be the same.",
+      "order": 21,
+      "after": [
+        "da927dcb3013"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_6-6_TE.tex",
+          "anchor": 1,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "72: 321 Understand & Apply",
+          "item": 0,
+          "line": 183
+        },
+        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "06daca0c3475",
+      "type": "cue",
+      "front": "Example 1 · Connect representations: Could the expressions have been rewritten by using a common base of (1/2), 4, or 10 rather than 2?",
+      "back": "Listen for: The expressions could be rewritten with a common base of (1/2) or 4. They could also be rewritten with a common base of 10, however, this would make the equation more complex rather than drawing closer to a solution.",
+      "order": 22,
+      "after": [
+        "d5019e1b3123"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_6-6_TE.tex",
+          "anchor": 1,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "72: 321 Understand & Apply",
+          "item": 1,
+          "line": 185
+        },
+        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "cf1e27cbfd63",
+      "type": "cue",
+      "front": "Example 5 · Connect representations: What is an extraneous solution and how do they occur?",
+      "back": "Listen for: An extraneous solution is a root of a transformed equation that is not a root of the original equation. They occur when you transform an equation in order to solve it, without regard to the domain of the original equation.",
+      "order": 23,
+      "after": [
+        "e0727cf9ac26"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_6-6_TE.tex",
+          "anchor": 5,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "75: 324, Examples 5 and 6",
+          "item": 0,
+          "line": 391
+        },
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "3ec4c1b9ffa6",
+      "type": "cue",
+      "front": "Example 5 · Check student thinking: Why is (-5) an extraneous solution (part a), but (-1/2) is not extraneous (part b)?",
+      "back": "Listen for: In part b, a negative x-value results in a positive argument for the natural log. But in part a, a negative x-value results in a negative argument for the logarithm with base 5, resulting in an expression that is undefined.",
+      "order": 24,
+      "after": [
+        "cf1e27cbfd63"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_6-6_TE.tex",
+          "anchor": 5,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "75: 324, Examples 5 and 6",
+          "item": 0,
+          "line": 396
+        },
+        "promptKey": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "ef871a5356bb",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "A biologist uses n = k log(A) for the number of a species n on a land mass of area A. a. Use the graph (points (100, 1000) and (1000, 1500)) to determine k. b. Determine the land mass in acres needed to support 3,000 of the species.",
+      "order": 25,
+      "after": [
+        "e0727cf9ac26"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "424cacc851f1",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "a. 500 (1000 = k log 100 = 2k; check 500 log 1000 = 1500). b. 1,000,000 acres (3000 = 500 log A, log A = 6, A = 10^6). Tied to kept Example 5 by the TE item analysis (43 and 46 are the lesson's only DOK 3 items); students must choose a point, solve for k, then undo the log, which no IXL skill asks. …",
+      "order": 26,
+      "after": [
+        "e0727cf9ac26"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "2b24457d39fd",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "A store sells two fitness trackers until TrackSmart sales exceed FitTracker sales. Weekly sales, weeks 1-4: FitTracker 28, 54, 112, 228; TrackSmart 5, 17, 44, 130.",
+      "order": 27,
+      "after": [
+        "02f7eef9f9cb"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "2cb439c4d206",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Model With Mathematics: find an equation of an exponential function that models the sales for each fitness tracker. Describe your method. (TE: regression, y = 13.6266(2.0180)^x and y = 1.8081(2.9227)^x)",
+      "order": 28,
+      "after": [
+        "2b24457d39fd"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "7f9e71ac7b10",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Based on the equations that you wrote, determine when the store will stop selling FitTracker. (TE: the graphs intersect near x = 6, so after 6 weeks)",
+      "order": 29,
+      "after": [
+        "2b24457d39fd"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "86c120396f39",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "Why do you think an exponential model is better than a linear or a quadratic model for this problem? → Sales are not increasing at a constant rate, so a linear model would not make sense; nothing in the data suggests a downward turn, so a quadratic model would not make sense.",
+      "order": 30,
+      "after": [
+        "2b24457d39fd"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "ed6726bc1db1",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "How do you know that TrackSmart will outsell FitTracker at some point? → TrackSmart is increasing at a greater rate, so eventually its sales will be greater.",
+      "order": 31,
+      "after": [
+        "86c120396f39"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "3112a980c9cd",
+      "type": "cue",
+      "front": "During, small group: ask? (2)",
+      "back": "How can you use the equations to determine when the store will stop selling FitTracker? → Evaluate each model for different numbers of weeks until FitTracker sales are less than TrackSmart sales.",
+      "order": 32,
+      "after": [
+        "ed6726bc1db1"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "0af425afd924",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Graph the two equations you found. Does your graph verify your results? Explain. → Yes; the x-coordinate of the intersection is when TrackSmart begins to exceed FitTracker.",
+      "order": 33,
+      "after": [
+        "3112a980c9cd"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "e4334f56d9a3",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "Why did different methods result in the same answer for Part B? → The methods differ, but the equations themselves should be fairly alike.",
+      "order": 34,
+      "after": [
+        "0af425afd924"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "48a4e71b2049",
+      "type": "cue",
+      "front": "Habits of Mind, Look for Relationships: ask?",
+      "back": "How do you know that the sales data is modeled by an exponential function? → Of the linear, quadratic and exponential regressions, the exponential model had the highest r value.",
+      "order": 35,
+      "after": [
+        "e4334f56d9a3"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "7eb46a96b067",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The opener needs calculator exponential regression and ends at 'solve by graphing' (Example 6), which the fast packet cuts; it does not lead into Example 1 or 5. …",
+      "order": 36,
+      "after": [
+        "2b24457d39fd"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "453ec71bae54",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "YQY Solve exponential equations by rewriting the base",
+      "order": 37,
+      "after": [
+        "da927dcb3013"
+      ],
+      "minute": null,
+      "source": "ixl.YQY"
+    },
+    {
+      "id": "aa65e28c5552",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "BXU Solve logarithmic equations I",
+      "order": 38,
+      "after": [
+        "e0727cf9ac26"
+      ],
+      "minute": null,
+      "source": "ixl.BXU"
+    },
+    {
+      "id": "a4e3321e0a29",
+      "type": "anchor",
+      "front": "IXL for example 5? (2)",
+      "back": "RLX Solve logarithmic equations II",
+      "order": 39,
+      "after": [
+        "e0727cf9ac26"
+      ],
+      "minute": null,
+      "source": "ixl.RLX"
+    },
+    {
+      "id": "159a27cd346f",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "9F2 Solve exponential equations using common logarithms",
+      "order": 40,
+      "after": [
+        "02f7eef9f9cb"
+      ],
+      "minute": null,
+      "source": "ixl.9F2"
+    }
+  ]
+}

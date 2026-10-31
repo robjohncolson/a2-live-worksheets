@@ -1,0 +1,668 @@
+{
+  "lesson": "4-2",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why is the vertical asymptote of the graph of (g) three units to the right of the vertical asymptote of (f)? Why is the horizontal asymptote 2 units up from the horizontal asymptote of (f)?",
+      "answer": "Since (g(x)=12f(x-3)+4), the graph of (g) is three units to the right of (f). So where the graph of (f) approaches (x=0), the graph of (g) approaches (x=3). Similarly, the graph of (g) is 4 units up from the graph of (f), so where (f) approaches (y=0), (g) approaches (y=4).",
+      "variant": "example",
+      "notes": [
+        "Printed question says 2 units up; the equation, graph and response indicate 4 units up."
+      ],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "26: 189 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 170
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the asymptotes of the graph of (f) as (a) changes?",
+      "answer": "As (a) increases, the vertical location of the horizontal asymptote increases. The location of the vertical asymptote does not change.",
+      "variant": "additional",
+      "notes": [
+        "Printed generalization omits the cancellation case a=2."
+      ],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4 Additional Example is Powered by Desmos. Activities are available at SavvasRealize.com. Go back; ESSENTIAL QUESTION; SOLUTION. Describe the effect of the ratio of the leading coefficients on the graph of (f(x)=(ax+1)/(2x+1)) as the value of (a) changes. As (a) increases, the horizontal asymptote is translated upwards. The value of the horizontal asymptote is equal to the ratio of the leading coefficients in the numerator and the denominator. Help students understand how increasing the ratio of leading coefficients in a rational function affects the location of the horizontal asymptote.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Digital family of rational curves (ax+1)/(2x+1), x,y axes, window approximately -5 to5 both, unit grid; labels x -4,-2,0,2,4 and y2,4. Orange, purple, green and blue curves approach horizontal levels1,2,3,4 respectively and vertical x=-0.5; upper left and lower right branches, arrows at bounds. No marked points."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "26: 189 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 211
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What functions should you graph to solve this problem?",
+      "answer": "(c(x)=325/(x+12)) and (f(x)=14.77)",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 5 The average cost per unit (c(x)) to produce (x) pairs of earrings is given by (c(x)=325/(x+12)). Last month, the average cost per unit was $14.77. How many earrings were produced last month? Graph (y=325/(x+12)) and (y=14.77). The graphs intersect at approximately (x=10). The company produced 10 earrings last month. Printed prompt defines x as pairs of earrings, while the solution says 10 earrings. TRY ANOTHER ONE; SOLUTION. Help students understand how to use rational functions to solve real-world applications.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Blue decreasing y=325/(x+12) and orange horizontal y14.77; axes x,y, grid spacing2.5, labels x0,5,10,15,20,25,30 and y5,10,15,20,25,30. Window approximately x -5 to35,y -5 to35; crossing near(10,14.77), not marked; curve and line end arrows."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "26: 189 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 225
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What is a reasonable domain for this situation? Explain.",
+      "answer": "The set of all nonnegative numbers because (x) cannot be a negative number of units",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 5 The average cost per unit (c(x)) to produce (x) pairs of earrings is given by (c(x)=325/(x+12)). Last month, the average cost per unit was $14.77. How many earrings were produced last month? Graph (y=325/(x+12)) and (y=14.77). The graphs intersect at approximately (x=10). The company produced 10 earrings last month. Printed prompt defines x as pairs of earrings, while the solution says 10 earrings. TRY ANOTHER ONE; SOLUTION. Help students understand how to use rational functions to solve real-world applications.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Blue decreasing y=325/(x+12) and orange horizontal y14.77; axes x,y, grid spacing2.5, labels x0,5,10,15,20,25,30 and y5,10,15,20,25,30. Window approximately x -5 to35,y -5 to35; crossing near(10,14.77), not marked; curve and line end arrows."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "26: 189 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 227
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "In Try It 1(a), why is there a vertical asymptote at (x=-1/2)?",
+      "answer": "That is the location where the denominator of the function (2x+1), is equal to zero.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "27: 190 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 233
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How do you find the factors of (x^2+7x+12)?",
+      "answer": "Sample: You can use the Quadratic Formula or recognize that the factors of the polynomial are (x+4) and (x+3) because 4 and 3 are the factors of 12 that have a sum of 7.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representation",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "27: 190 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 244
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Are there any rational functions that do not have vertical asymptotes?",
+      "answer": "A function whose denominator never equals zero, or a function where the factors of the denominator are also in the numerator, allowing them to be rewritten as a factor of 1",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "27: 190 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 250
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How would the graph of a rational function look if one of the factors were a factor of both the numerator and the denominator?",
+      "answer": "Instead of having an asymptote at the value where the repeated factor equals zero, there would be a discontinuity.",
+      "variant": "example",
+      "notes": [
+        "The printed statement presumes the common factor cancels completely from the denominator."
+      ],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "27: 190 Example 1 continued; Example 2",
+        "item": 1,
+        "line": 252
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What happens to a fraction as the denominator approaches infinity?",
+      "answer": "The value of the fraction approaches zero.",
+      "variant": "example",
+      "notes": [
+        "Printed response assumes the numerator is fixed or grows more slowly."
+      ],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "28: 191 Example 3",
+        "item": 0,
+        "line": 283
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What does the relationship between the degrees of the numerator and the denominator tell you about the horizontal asymptotes of these functions?",
+      "answer": "In part (a), the numerator has a greater degree than the denominator, so there is no horizontal asymptote. In part (b), the degree of the numerator is equal to the degree of the denominator, so the horizontal asymptote is equal to the ratio of the leading coefficients. In part (c), the denominator has a greater degree, so the horizontal asymptote is at (y=0).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "28: 191 Example 3",
+        "item": 0,
+        "line": 325
+      }
+    },
+    {
+      "example": 3,
+      "category": "CommonError",
+      "key": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Students may think that because the coefficient of (x^2) in the denominator is greater than in the numerator, the horizontal asymptote is (y=0). Have students consider the function (f(x)=(x^2)/(3x^2)), and ask them to graph the function. Ask students how the end behavior of function (f) relates to the end behavior of function (h).",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 3,
+        "category": "CommonError",
+        "block": 0,
+        "page": "28: 191 Example 3",
+        "item": 0,
+        "line": 328
+      }
+    },
+    {
+      "example": 3,
+      "category": "HabitsOfMind",
+      "key": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Under what conditions could there be a horizontal asymptote at (y=-2)? Give an example.",
+      "answer": "Sample: A horizontal asymptote exists at (y=-2) when the function is a vertical translation by (-2) of a rational function, where the degree of the denominator is greater than the degree of the numerator; (y=1/x-2)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Model With Mathematics. Use with EXAMPLES 1, 2, & 3",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 3,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "28: 191 Example 3",
+        "item": 0,
+        "line": 334
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "What happens to (f(x)) and (g(x)) for larger values of (x)?",
+      "answer": "The values for (f(x)) and (g(x)) stabilize---the function (f) approaches (5/2), and the function (g) approaches (17/3).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students. USE WITH EXAMPLE 3 Students may have trouble understanding why you can estimate the horizontal asymptotes by looking at the ratio of leading coefficients. Have students use technology to evaluate the rational functions below for larger and larger values of (x) so that they can see that the horizontal asymptote is based on the leading coefficients. 1. (f(x)=(5x-1)/(2x+3)) 2. (g(x)=(17x-1)/(3x+3))",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "28: 191 Example 3",
+        "item": 0,
+        "line": 343
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine which technique to use to find the horizontal asymptotes in this function?",
+      "answer": "The degrees of the numerator and the denominator are the same, so you can use the ratio of the leading coefficients.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "29: 192 Example 4",
+        "item": 0,
+        "line": 349
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What strategies did you use to graph this function?",
+      "answer": "Sample: Set the denominator equal to zero to find the vertical asymptote. Compute the ratio of the leading coefficients to find the horizontal asymptote. Sketch the asymptotes on the graph. Select some test points to graph the function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "29: 192 Example 4",
+        "item": 0,
+        "line": 388
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why does the intersection at (a=11.1) mean that the solution is (a≥11.1)?",
+      "answer": "For (a≥11.1), the (y)-coordinates of the graph of (D(a)) are greater than or equal to 60. When (a<11.1), the (y)-coordinates of (D(a)) are less than 60.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "30: 193 Example 5",
+        "item": 0,
+        "line": 394
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How would the solution change if the doctor had a larger dosage?",
+      "answer": "A larger dosage would correspond to a horizontal line at a larger (y)-coordinate, which would intersect the graph of (D(a)) at a larger (x)-coordinate. So the child would have to be older in order to receive the dosage.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "30: 193 Example 5",
+        "item": 1,
+        "line": 396
+      }
+    },
+    {
+      "example": 5,
+      "category": "HabitsOfMind",
+      "key": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "What are the asymptotes for the function (D(a)=200a/(a+12))?",
+      "answer": "vertical asymptote at (x=-12), which is outside the domain and horizontal asymptote at (y=200)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Make Sense and Persevere. Use with EXAMPLES 4 & 5",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "30: 193 Example 5",
+        "item": 0,
+        "line": 420
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What is a dosage for a medication?",
+      "answer": "the amount of medicine a person takes to treat an injury, or illness",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING: BEGINNING. The problem is about medicine. Have students write the word medicine in the center of a page and create a web of examples and ideas about medication.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 193 Example 5",
+        "item": 0,
+        "line": 426
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What are some factors that impact a person's dosage for a medication?",
+      "answer": "age, weight, a person's allergies, etc.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING: BEGINNING. The problem is about medicine. Have students write the word medicine in the center of a page and create a web of examples and ideas about medication.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 193 Example 5",
+        "item": 1,
+        "line": 428
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "What does intersection mean?",
+      "answer": "the point or points that two graphs share",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING: BEGINNING. The problem is about medicine. Have students write the word medicine in the center of a page and create a web of examples and ideas about medication.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 193 Example 5",
+        "item": 2,
+        "line": 431
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What is the meaning of administer in this context?",
+      "answer": "to give or provide",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING: BEGINNING. The problem is about medicine. Have students write the word medicine in the center of a page and create a web of examples and ideas about medication.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 193 Example 5",
+        "item": 3,
+        "line": 433
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Why might an adult's dosage be used to find a child's dosage?",
+      "answer": "adults are fully grown, so dosages may be standard, while children have not fully grown yet, so they may be more sensitive to medication",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING: BEGINNING. The problem is about medicine. Have students write the word medicine in the center of a page and create a web of examples and ideas about medication.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 193 Example 5",
+        "item": 4,
+        "line": 436
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "What other factor or factors can determine a child's dosage for a medication?",
+      "answer": "a child's weight, if known, may be used to determine their dosage for a medication",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING: BEGINNING. The problem is about medicine. Have students write the word medicine in the center of a page and create a web of examples and ideas about medication.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 193 Example 5",
+        "item": 5,
+        "line": 438
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why do you check to see if the numerator of a rational function is equal to zero after finding the potential vertical asymptotes?",
+      "answer": "You need to determine if the rational function can be simplified by common factors between the numerator and denominator. This may cause the removal of a factor in the denominator, which means there is not an asymptote there.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "31: 194 Example 6",
+        "item": 0,
+        "line": 444
+      }
+    },
+    {
+      "example": 6,
+      "category": "HabitsOfMind",
+      "key": "examples[n=6].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "When will the graph of a rational function have two vertical asymptotes?",
+      "answer": "When the denominator of a function has two distinct zeros that are both distinct from the zeros of the numerator, the graph of the function will have two vertical asymptotes.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Reason. Use with EXAMPLE 6",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 6,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "31: 194 Example 6",
+        "item": 0,
+        "line": 477
+      }
+    },
+    {
+      "example": 6,
+      "category": "RtIExtend",
+      "key": "examples[n=6].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the horizontal asymptotes of this function compared to a function with the same degree in the numerator and denominator?",
+      "answer": "If the degree of the denominator is higher than the degree of the numerator, the asymptote is (y=0). If the degree of the numerator and the denominator are the same, then the horizontal asymptote is equal to the ratio of the leading coefficients.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking. USE WITH EXAMPLE 6 Have students graph a rational function where the degree of the denominator is higher than the degree of the numerator.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 6,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "31: 194 Example 6",
+        "item": 0,
+        "line": 483
+      }
+    },
+    {
+      "example": 6,
+      "category": "RtIExtend",
+      "key": "examples[n=6].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "What strategies could you use to graph this function?",
+      "answer": "Sample: Determine the vertical asymptotes; sketch them on a coordinate plane; and choose some test points from different parts of the graph to determine the shape of the function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking. USE WITH EXAMPLE 6 Have students graph a rational function where the degree of the denominator is higher than the degree of the numerator.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-2_TE.tex",
+        "anchor": 6,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "31: 194 Example 6",
+        "item": 1,
+        "line": 485
+      }
+    }
+  ]
+}

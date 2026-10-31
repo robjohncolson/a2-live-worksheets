@@ -1,0 +1,581 @@
+{
+  "lesson": "2-5",
+  "title": "Completing the Square",
+  "nodes": [
+    {
+      "id": "a702e38bcaaf",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How can you solve a quadratic equation by completing the square?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "72072ef471c6",
+      "type": "anchor",
+      "front": "Define: perfect square trinomial",
+      "back": "I can explain each step of completing the square using the words perfect square trinomial, both sides, square root, and imaginary.",
+      "order": 2,
+      "after": [
+        "a702e38bcaaf"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.perfect square trinomial"
+    },
+    {
+      "id": "8c0e12921605",
+      "type": "anchor",
+      "front": "Define: both sides",
+      "back": "move the constant to the other side, then add (b/2)^2 to both sides (Example 3; IXL 9MW)",
+      "order": 3,
+      "after": [
+        "a702e38bcaaf"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.both sides"
+    },
+    {
+      "id": "5a5d183dc803",
+      "type": "anchor",
+      "front": "Define: square root",
+      "back": "write the side with x as a perfect square (x + b/2)^2 and take the square root of both sides with +/- (Example 3; Do Now from IXL FG7)",
+      "order": 4,
+      "after": [
+        "a702e38bcaaf"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.square root"
+    },
+    {
+      "id": "a9e3923d2792",
+      "type": "anchor",
+      "front": "Define: imaginary",
+      "back": "I can explain each step of completing the square using the words perfect square trinomial, both sides, square root, and imaginary.",
+      "order": 5,
+      "after": [
+        "a702e38bcaaf"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.imaginary"
+    },
+    {
+      "id": "f7971fbd2826",
+      "type": "anchor",
+      "front": "Quiz item 3 asks?",
+      "back": "Item 3: solve 0 = x^2 + 6x + 13 by completing the square (A x = 5 and 1; B 3 +/- i sqrt 22; C -1 and 1; D -3 +/- 2i). Item 5 (also graded): find the zeros of f(x) = -5x^2 + 4x - 1 by completing the square, written as x = [] + []i and x = [] - []i. Item 2 (bonus): write x^2 + 24x + 60 = 0 in the form (x + p)^2 = q.",
+      "order": 6,
+      "after": [
+        "72072ef471c6",
+        "8c0e12921605",
+        "5a5d183dc803",
+        "a9e3923d2792"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "88d28194297f",
+      "type": "anchor",
+      "front": "Quiz item 3 answer?",
+      "back": "Item 3: D, x = -3 +/- 2i ((x + 3)^2 = -4). Item 5: x = 2/5 + (1/5)i and x = 2/5 - (1/5)i (divide by -5, add 4/25 to both sides, (x - 2/5)^2 = -1/25). Item 2: B, (x + 12)^2 = 84. (verify against the TE key on quiz day)",
+      "order": 7,
+      "after": [
+        "72072ef471c6",
+        "8c0e12921605",
+        "5a5d183dc803",
+        "a9e3923d2792"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "1ffca5485044",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need?",
+      "back": "move the constant to the other side, then add (b/2)^2 to both sides (Example 3; IXL 9MW)",
+      "order": 8,
+      "after": [
+        "f7971fbd2826"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "3c2e50525141",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (2)",
+      "back": "write the side with x as a perfect square (x + b/2)^2 and take the square root of both sides with +/- (Example 3; Do Now from IXL FG7)",
+      "order": 9,
+      "after": [
+        "f7971fbd2826"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "9abb5a0855a6",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (3)",
+      "back": "a negative number under the square root gives i: sqrt(-4) = 2i, sqrt(-2) = i sqrt 2 (Example 3, Try It 3; Lesson 2-4 skill)",
+      "order": 10,
+      "after": [
+        "f7971fbd2826"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "269058035380",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (4)",
+      "back": "for item 5: set f(x) = 0 and divide every term by the x^2 coefficient (-5) before completing the square; half of -4/5 is -2/5, squared 4/25 (packet Practice block, a parallel with g(x) = -4x^2 + 8x - 5; TE concept-summary Common Error: circle the coefficient of x^2)",
+      "order": 11,
+      "after": [
+        "f7971fbd2826"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "f14fd8587782",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (5)",
+      "back": "for the item 2 bonus: stop after the perfect-square line; the three wrong choices are the 'added 144 to one side only', 'did not move the constant' and 'half of 12' errors (Example 3's first three lines)",
+      "order": 12,
+      "after": [
+        "f7971fbd2826"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "09c975b8745b",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Solve x^2 - 18x + 81 = 4, select all (C, D: x = 7, x = 11). The left side is already a perfect square trinomial: Example 1 (cut); it is the square-root step at the end of Example 3, and the Do Now on IXL FG7. Left off the short form.",
+      "order": 13,
+      "after": [
+        "f7971fbd2826"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "e85711e6309c",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Write x^2 + 24x + 60 = 0 as (x + p)^2 = q (B, (x + 12)^2 = 84): Example 2B (cut), the same moves as the first three lines of Example 3; IXL 9MW. Proposed +5 bonus.",
+      "order": 14,
+      "after": [
+        "f7971fbd2826"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "0d0ebc072cb4",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Solve 0 = x^2 + 6x + 13 by completing the square (D, -3 +/- 2i): Example 3 and Try It 3; IXL NPH. Proposed graded, 10 points.",
+      "order": 15,
+      "after": [
+        "f7971fbd2826"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "432883fa3c12",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Baking sheet, perimeter 58 in., area 201.25 in.^2 (A, 17.5 in. by 11.5 in.): Example 4 (the rancher's pasture, cut). One whiteboard round from Example 4 if the PLC wants it graded; left off the short form.",
+      "order": 16,
+      "after": [
+        "f7971fbd2826"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "3aa7d9fca4bb",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Zeros of f(x) = -5x^2 + 4x - 1 (2/5 +/- (1/5)i): Example 3 after dividing by a = -5 (the factor-out step is Example 5's, cut); rehearsed by the packet Practice block; IXL NPH. Proposed graded, 10 points.",
+      "order": 17,
+      "after": [
+        "f7971fbd2826"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "6f9aafd7b963",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Solve a Quadratic Equation by Completing the Square · DOK 1, 2, 3 · practice 30-41, 52, 11, 12, 16 · The lesson (brief: one Example). …",
+      "order": 18,
+      "after": [
+        "f7971fbd2826",
+        "88d28194297f"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "ecf2c68beff5",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: How do you know that you need to complete the square to solve the equation?",
+      "back": "Listen for: The quadratic expression is not a perfect square trinomial.",
+      "order": 19,
+      "after": [
+        "6f9aafd7b963"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-5_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "63: 92 Understand & Apply",
+          "item": 0,
+          "line": 295
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "adc8b4b1133b",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: How could you check to make sure you completed the square correctly?",
+      "back": "Listen for: Check the solution in the original equation.",
+      "order": 20,
+      "after": [
+        "ecf2c68beff5"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-5_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "63: 92 Understand & Apply",
+          "item": 1,
+          "line": 297
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "fc742fdfe44d",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: What types of solutions does this equation have? Explain.",
+      "back": "Listen for: The solutions are complex because the square root of a negative number is imaginary.",
+      "order": 21,
+      "after": [
+        "adc8b4b1133b"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-5_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "63: 92 Understand & Apply",
+          "item": 2,
+          "line": 299
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "20f21441fe8c",
+      "type": "cue",
+      "front": "Example 3 · Extend thinking: How is the process of completing the square in this example similar to the process used in Example 3? How is it different?",
+      "back": "Listen for: The process is the same in both cases: you find the value ((b/2)^2) and add it to each side of the equation. In this equation, you must also remember that, to square a fraction, you square both the numerator and the denominator.",
+      "order": 22,
+      "after": [
+        "fc742fdfe44d"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_2-5_TE.tex",
+          "anchor": 3,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "63: 92 Understand & Apply",
+          "item": 0,
+          "line": 316
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "8e6a9bd6dc91",
+      "type": "cue",
+      "front": "Example 3 · Extend thinking: What is the solution?",
+      "back": "Listen for: (x=1), (x=-1/3)",
+      "order": 23,
+      "after": [
+        "20f21441fe8c"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtIExtend[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_2-5_TE.tex",
+          "anchor": 3,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "63: 92 Understand & Apply",
+          "item": 1,
+          "line": 318
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtIExtend[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "9649c6600665",
+      "type": "cue",
+      "front": "Example 3 · Reasoning: Richard is completing the square to solve the equation (2x^2+8x=19). He wrote: (2(x^2+4x+4)=19+). What number should Richard write in the blank?",
+      "back": "Listen for: 8",
+      "order": 24,
+      "after": [
+        "8e6a9bd6dc91"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_2-5_TE.tex",
+          "anchor": 3,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "64: 93 Understand & Apply",
+          "item": 0,
+          "line": 330
+        },
+        "promptKey": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a6e74de88c0a",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Explain why you should not try to complete the square when solving 0 = x^2 - 4.",
+      "order": 25,
+      "after": [
+        "6f9aafd7b963"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "b89c8ff2d49e",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "There is already a 'complete' square in the equation, namely x^2. There is no need to complete the square. Add 4 to each side, then take the square root of each side (x = 2 or x = -2). Students must decide when the method is needed, not just run it: b = 0, so (b/2)^2 = 0 and the square is already complete. …",
+      "order": 26,
+      "after": [
+        "6f9aafd7b963"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "92d8b0c75739",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Hana and Enrique used different methods to solve the equation x^2 - 6x + 9 = 16. Hana subtracts 16, factors x^2 - 6x - 7 = (x - 7)(x + 1) = 0 and gets 7 and -1. Enrique writes (x - 3)^2 = 16, says 'I can square 4 or -4 to get 16', and gets x - 3 = 4 or x - 3 = -4, so 7 and -1.",
+      "order": 27,
+      "after": [
+        "a702e38bcaaf"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "133a93f61a20",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Does Hana's method work? If her method is valid, explain the reasoning she used. If her method is not valid, explain why not.",
+      "order": 28,
+      "after": [
+        "92d8b0c75739"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "ac49ac192d9e",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Does Enrique's method work? If his method is valid, explain the reasoning he used. If his method is not valid, explain why not.",
+      "order": 29,
+      "after": [
+        "92d8b0c75739"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "e7ee8f36df8b",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Use Structure: Can you use either Hana's or Enrique's method to solve the equation x^2 + 10x + 25 = 3? Explain. (Enrique's: the left side is (x + 5)^2 and 3 is not a perfect square, so the solutions are irrational and factoring will not find them.)",
+      "order": 30,
+      "after": [
+        "92d8b0c75739"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "3dbee2ad3aab",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "How do the results of each student's work compare? → They both get the same answer.",
+      "order": 31,
+      "after": [
+        "92d8b0c75739"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "79f5b384b952",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "How do the solution methods compare? → They both factored; however, Hana began by transforming the equation into the form ax^2 + bx + c = 0, and Enrique began by transforming the equation into the form (x - p)^2 = q.",
+      "order": 32,
+      "after": [
+        "3dbee2ad3aab"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "844c31b0f86d",
+      "type": "cue",
+      "front": "During, small group: ask? (2)",
+      "back": "How is the equation in Part C different? → There is not a way to factor it and set the factored expression equal to a perfect square.",
+      "order": 33,
+      "after": [
+        "79f5b384b952"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "9b2843ef005d",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Solve the equation in Part C. Whose solution method did you use? How do the solutions compare? → x = -5 +/- sqrt 3; Enrique's method; 3 is not a perfect square, so the solutions are irrational.",
+      "order": 34,
+      "after": [
+        "844c31b0f86d"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "e24f8cbe4923",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "Do you think there are other methods for solving quadratic equations? → Yes. The left side of the quadratic equation in the form ax^2 + bx + c = 0 can be graphed as a parabola. The real solutions can be seen as x-intercepts.",
+      "order": 35,
+      "after": [
+        "9b2843ef005d"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "a109acbdf90c",
+      "type": "cue",
+      "front": "Habits of Mind, Make Sense and Persevere: ask?",
+      "back": "Why does Hana set her two factors equal to zero, while Enrique sets his factors equal to 4 and -4? → Hana applies the Zero Product Property, while Enrique recognizes perfect squares on both sides of the equation and so uses square roots to solve.",
+      "order": 36,
+      "after": [
+        "e24f8cbe4923"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "657e1b332ccd",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The opener's equations are already perfect square trinomials (Example 1 and quiz item 1 territory); nothing in it adds (b/2)^2. Use Part C as the bridge: ask what Enrique would do if the left side were x^2 + 10x with no 25, which is the key-idea box on page 1 and then Example 3. …",
+      "order": 37,
+      "after": [
+        "92d8b0c75739"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "0519e357d1be",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "9MW Complete the square",
+      "order": 38,
+      "after": [
+        "6f9aafd7b963"
+      ],
+      "minute": null,
+      "source": "ixl.9MW"
+    },
+    {
+      "id": "0f0e128c4c64",
+      "type": "anchor",
+      "front": "IXL for example 3? (2)",
+      "back": "NPH Solve a quadratic equation by completing the square",
+      "order": 39,
+      "after": [
+        "6f9aafd7b963"
+      ],
+      "minute": null,
+      "source": "ixl.NPH"
+    }
+  ]
+}

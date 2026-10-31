@@ -1,0 +1,566 @@
+{
+  "lesson": "3-7",
+  "title": "Transformations of Polynomial Functions",
+  "nodes": [
+    {
+      "id": "3a45784746bc",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How are symmetry and transformations represented in the graph and equation of a polynomial function?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "32b4c115952b",
+      "type": "anchor",
+      "front": "Define: parent function",
+      "back": "parent function from the degree: x^3 (cubic) or x^4 (quartic) (Example 3 step 1; IXL KT8)",
+      "order": 2,
+      "after": [
+        "3a45784746bc"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.parent function"
+    },
+    {
+      "id": "b2e358e30eea",
+      "type": "anchor",
+      "front": "Define: leading coefficient",
+      "back": "the leading coefficient multiplies every y-value: |a| > 1 stretches vertically (Example 3A; IXL KT8, RSN)",
+      "order": 3,
+      "after": [
+        "3a45784746bc"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.leading coefficient"
+    },
+    {
+      "id": "d8a76fb4b874",
+      "type": "anchor",
+      "front": "Define: stretch",
+      "back": "the leading coefficient multiplies every y-value: |a| > 1 stretches vertically (Example 3A; IXL KT8, RSN)",
+      "order": 4,
+      "after": [
+        "3a45784746bc"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.stretch"
+    },
+    {
+      "id": "ca29fc743ce7",
+      "type": "anchor",
+      "front": "Define: reflection",
+      "back": "item 4 (bonus) reads Example 3 backwards: the turning point (0, 0) moved to (h, k) = (2, -3); both ends up means a quartic with no reflection (Example 4, cut; IXL RSN)",
+      "order": 5,
+      "after": [
+        "3a45784746bc"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.reflection"
+    },
+    {
+      "id": "310c12e4cc37",
+      "type": "anchor",
+      "front": "Define: translation",
+      "back": "order: stretch or reflect before the vertical translation, because -(x^4 - 1) = -x^4 + 1, not -x^4 - 1 (Example 3 TE question 'Is the order important?'; the Practice question)",
+      "order": 6,
+      "after": [
+        "3a45784746bc"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.translation"
+    },
+    {
+      "id": "5dbe18867388",
+      "type": "anchor",
+      "front": "Quiz item 2 asks?",
+      "back": "Item 2: identify the parent function of f(x) = -x^4 - 1 and list the transformations in order (A and B differ only by the order: translate then reflect vs reflect then translate; C and D name the cubic parent). …",
+      "order": 7,
+      "after": [
+        "32b4c115952b",
+        "b2e358e30eea",
+        "d8a76fb4b874",
+        "ca29fc743ce7",
+        "310c12e4cc37"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "ea42d110ca13",
+      "type": "anchor",
+      "front": "Quiz item 2 answer?",
+      "back": "2: B (x^4; reflect over the x-axis, translate down 1 unit); 3: C, D; 4: D (f(x) = (x - 2)^4 - 3) (verify against the TE key on quiz day)",
+      "order": 8,
+      "after": [
+        "32b4c115952b",
+        "b2e358e30eea",
+        "d8a76fb4b874",
+        "ca29fc743ce7",
+        "310c12e4cc37"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "22bb5f8f4c07",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need?",
+      "back": "parent function from the degree: x^3 (cubic) or x^4 (quartic) (Example 3 step 1; IXL KT8)",
+      "order": 9,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "72277727f52e",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (2)",
+      "back": "the leading coefficient multiplies every y-value: |a| > 1 stretches vertically (Example 3A; IXL KT8, RSN)",
+      "order": 10,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "632519706b2e",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (3)",
+      "back": "the added constant k translates vertically (Example 3A and Try It 3; IXL KT8)",
+      "order": 11,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "4cb6dc72365f",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (4)",
+      "back": "a negative leading coefficient reflects over the x-axis and flips the end behavior (the packet Practice, TE Practice 18 and 8; IXL XMK warm-up, from 3-1)",
+      "order": 12,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "f142f8ff5590",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (5)",
+      "back": "order: stretch or reflect before the vertical translation, because -(x^4 - 1) = -x^4 + 1, not -x^4 - 1 (Example 3 TE question 'Is the order important?'; the Practice question)",
+      "order": 13,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "0958e7695aaf",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (6)",
+      "back": "item 4 (bonus) reads Example 3 backwards: the turning point (0, 0) moved to (h, k) = (2, -3); both ends up means a quartic with no reflection (Example 4, cut; IXL RSN)",
+      "order": 14,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
+      "id": "7bcbadf09dcf",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Classify a graphed cubic (symmetric about the origin, crossing near -1.7, 0, 1.7) as even, odd or neither (odd): Example 1, cut. DOK 1, Realize skill F63. Full Savvas quiz only (left off the short form); the packet Extension box gives the even/odd definitions and IXL Q83 (unstarred, optional) covers it.",
+      "order": 15,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "1a62263ff896",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Parent of f(x) = -x^4 - 1 and the transformations in order (B: x^4; reflect over the x-axis, translate down 1 unit): Example 3, then the packet Practice (TE Practice 18, -x^4 - 8, is its structural parallel). DOK 2, F63. …",
+      "order": 16,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "26aad9688d40",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "How g(x) = 3x^3 + 6 differs from x^3, select all (C, D: the leading coefficient 3 stretches vertically; adding 6 translates up 6): Example 3A and Try It 3 (2x^3 - 5). DOK 2, F63. On the short form, graded: 10 points (5 each for C and D, minus 2 per wrong box, not below 0).",
+      "order": 17,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "4077e824e4ea",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Equation of an upward quartic with labeled minimum (2, -3) (D: f(x) = (x - 2)^4 - 3): Example 4 (cut), answered by reading Example 3 backwards. DOK 2, F63. On the short form as the +5 bonus (3 for D, 2 for the explain-your-choice sentence: both ends up means a quartic).",
+      "order": 18,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "3929609f769d",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Cube volume V(x) = x^3 in cubic centimeters rewritten in cubic millimeters (1000; V(x) = 1000x^3): Example 5 and Try It 5a, cut. DOK 2, F63. Full Savvas quiz only (left off the short form); the IXL map has no unit-conversion-of-volume skill.",
+      "order": 19,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "f1c9be2a814b",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Graph Transformations of Cubic and Quartic Parent Functions · DOK 1, 2 · practice 17, 18, 25, 8 · The lesson. …",
+      "order": 20,
+      "after": [
+        "5dbe18867388",
+        "ea42d110ca13"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "ef296820ce3f",
+      "type": "cue",
+      "front": "Example 3 · Support: How does changing the values for (a), (h), and (k) transform the graph?",
+      "back": "Listen for: (a) stretches and compresses the graph, (h) shifts the graph horizontally, and (k) shifts the graph vertically.",
+      "order": 21,
+      "after": [
+        "f1c9be2a814b"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_3-7_TE.tex",
+          "anchor": 3,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "89: 168",
+          "item": 0,
+          "line": 278
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a5fd0f1f54cd",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: Compare and contrast the two functions shown in the graph.",
+      "back": "Listen for: The graph of the parent function is wider. The graph of the transformed function is shifted below the (x)-axis. Both graphs are even, open upward, and are symmetrical across the (y)-axis.",
+      "order": 22,
+      "after": [
+        "ef296820ce3f"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_3-7_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "90: 169",
+          "item": 0,
+          "line": 323
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "b44dc3a93521",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: Is the order in which you apply the transformations important?",
+      "back": "Listen for: It doesn't matter in which order you apply the translations, but the vertical stretch should be applied before the vertical translation.",
+      "order": 23,
+      "after": [
+        "a5fd0f1f54cd"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_3-7_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "90: 169",
+          "item": 1,
+          "line": 326
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "2f4e2311b1df",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: Why is knowing the graph of the parent function a valuable tool?",
+      "back": "Listen for: Knowing the parent graph gives you a starting place. You do not have to make a table of points to graph the function; instead, you can compare the function to the parent function to determine the transformation.",
+      "order": 24,
+      "after": [
+        "b44dc3a93521"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_3-7_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "90: 169",
+          "item": 2,
+          "line": 328
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "fc342817a25b",
+      "type": "cue",
+      "front": "Example 3 · Check student thinking: How does the graph of a function (g(x)=a(x-h)^n+k) compare to the graph of the parent function (f(x)=x^n)?",
+      "back": "Listen for: The (a)-value stretches or compresses the graph vertically, the (h)-value shifts the graph horizontally, and the (k)-value shifts the graph vertically.",
+      "order": 25,
+      "after": [
+        "2f4e2311b1df"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_3-7_TE.tex",
+          "anchor": 3,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "90: 169",
+          "item": 0,
+          "line": 357
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c0677897658b",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Provide an example that demonstrates the following statement is not true. If the degree of a function is an even number, then the function is an even function.",
+      "order": 26,
+      "after": [
+        "f1c9be2a814b"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "4da2be08d34c",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "TE sample: f(x) = 2x^4 + x^3 - 2 has even degree but is not even: f(-x) = 2(-x)^4 + (-x)^3 - 2 = 2x^4 - x^3 - 2, which is not equal to f(x) (the TE prints the second f(x) where f(-x) is meant). …",
+      "order": 27,
+      "after": [
+        "f1c9be2a814b"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "e148d6da39bf",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Look at the polynomial graphs below: f(x) = x^2 (a parabola with vertex at the origin, both ends up) and g(x) = x^3 (through the origin, from lower left to upper right).",
+      "order": 28,
+      "after": [
+        "3a45784746bc"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "86d5ad23bfd9",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Is the graph of f or g symmetric about the y-axis? Is the graph of f or g symmetric about the origin? Explain. (f is symmetric about the y-axis: its reflection across the y-axis is identical; g is symmetric about the origin: it is identical when rotated 180 degrees about the origin.)",
+      "order": 29,
+      "after": [
+        "e148d6da39bf"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "2dcfff2af7d8",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Look for Relationships: graph more functions of the form y = x^n where n is a natural number. Which of these functions are symmetric about the origin? Which are symmetric about the y-axis? What conjectures can you make? (Even n: symmetric about the y-axis; odd n: symmetric about the origin.)",
+      "order": 30,
+      "after": [
+        "e148d6da39bf"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "9fe9967bf79f",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What do you notice about the two graphs? → f(x) is a parabola that opens upward; it is symmetric across the y-axis and has a minimum at the origin. g(x) is cubic; it passes through the origin and it is symmetric about the origin.",
+      "order": 31,
+      "after": [
+        "e148d6da39bf"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "9a35ed918a48",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "What does it mean for a graph to be symmetrical? → It has an axis of symmetry; the graph is reflected across a line. One part of the graph is the mirror image of the other part.",
+      "order": 32,
+      "after": [
+        "9fe9967bf79f"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "0bdb585aff79",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Graph the functions m(x) = x and h(x) = x^4. How does the symmetry of these graphs compare to the symmetry of f(x) and g(x)? → The graph of m(x) is symmetric about the origin, like the graph of g(x). The graph of h(x) is symmetric about the y-axis, like the graph of f(x).",
+      "order": 33,
+      "after": [
+        "9a35ed918a48"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "d56f91c03f69",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "What do you notice about the degree of the polynomial and the type of symmetry it has? → A polynomial with an even degree is symmetric about the y-axis. A polynomial with an odd degree is symmetric about the origin.",
+      "order": 34,
+      "after": [
+        "0bdb585aff79"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "bbe23bc5d2ef",
+      "type": "cue",
+      "front": "Habits of Mind, Look for Relationships: ask?",
+      "back": "Do you notice any other patterns among the functions with even degree and the functions with odd degree? → Functions with an even degree always go the same direction when approaching positive and negative infinity, while odd functions always go opposite directions.",
+      "order": 35,
+      "after": [
+        "d56f91c03f69"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "c4a784b85343",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The TE's After answer ('a polynomial with an even degree is symmetric about the y-axis') is true only for the power functions y = x^n on the screen, not for every polynomial; Practice 12 (the DOK 3 Extension) exists to break it. Say 'for y = x^n' on the board. …",
+      "order": 36,
+      "after": [
+        "e148d6da39bf"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "af716ace2883",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "KT8 Describe function transformations",
+      "order": 37,
+      "after": [
+        "f1c9be2a814b"
+      ],
+      "minute": null,
+      "source": "ixl.KT8"
+    },
+    {
+      "id": "6f0cf052cb67",
+      "type": "anchor",
+      "front": "IXL for example 3? (2)",
+      "back": "RSN Transformations of functions",
+      "order": 38,
+      "after": [
+        "f1c9be2a814b"
+      ],
+      "minute": null,
+      "source": "ixl.RSN"
+    },
+    {
+      "id": "6617ad20f9f6",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "Q83 Even and odd functions",
+      "order": 39,
+      "after": [
+        "3a45784746bc"
+      ],
+      "minute": null,
+      "source": "ixl.Q83"
+    }
+  ]
+}

@@ -1,0 +1,581 @@
+{
+  "lesson": "2-1",
+  "prompts": [
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you tell if (a) is positive or negative before writing the entire equation?",
+      "answer": "Compare the (y)-coordinate of the vertex to the (y)-coordinate of the other point. If the (y)-coordinate of the other point is greater, then the parabola opens upward, and (a) is positive. If not, the parabola opens downward, and (a) is negative.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples Additional Examples are available at SavvasRealize.com. ADDITIONAL EXAMPLE 3 What is the equation of a parabola with vertex (-2,-6) that passes through (-4,-10)? Substitute -2 for (h), -6 for (k), -4 for (x), and -10 for (y) in the vertex form of a quadratic equation. (-10=a(-4-(-2))^2+(-6)) (-10=a(-2)^2-6) (-1=a) An equation of the parabola with vertex (-2,-6) that passes through (-4,-10) is (y=-(x+2)^2-6). (y=-(x+2)^2-6) Example 3 Give students extra practice writing the equation of a parabola given the vertex and another point besides the (y)-intercept with this additional example.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 61 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 195
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Suppose a new satellite dish was made that had the same width as the satellite dish above, but wasn't as deep. Would the value of (a) in the equation representing the shape of the satellite dish be less than or greater than the satellite dish above?",
+      "answer": "less than",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4 The curvature of a satellite dish is in the shape of a parabola. The graph of the function is shown in the figure. Write the equation of the parabola in vertex form and in the form (y=ax^2+bx+c). (y-0=a(x-15)^2) (10=a(0-15)^2) (10=a(225)) (2/45=a) vertex form: (y-0=2/45(x-15)^2) Isolate (y): (y=2/45(x^2-30x+225)) (y=2/45x^2-4/3x+10) (y-0=2/45(x-15)^2); (y=2/45x^2-4/3x+10) Example 4 Show students another context in which they might need to write the equation of a parabola given its graph with this additional example.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Satellite dish graph: blue upward parabola with vertex (15,0), passing through (0,10) and (30,10), small arrowhead at right branch. Gray axes x and y, window x=0 to 30,y=0 to about 12. Horizontal labels 0,5,10,15,20,25; vertical labels 0,5,10. Grid spacing x=2.5,y=2.5."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 61 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 213
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How does the variable (a) affect the graph in relation to the parent function?",
+      "answer": "The value of (a) determines if the parabola is vertically stretched or vertically compressed, and whether it opens upward or downward.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Transform a Quadratic Function Example 1 is Powered by Desmos. Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "15: 62 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 221
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do (a), (h), and (k) affect the domain and range of a quadratic function in vertex form?",
+      "answer": "These values do not affect the domain of the function. The domain is all real numbers. These values affect the range. If (a) is positive, (k) is the minimum value of the range. If (a) is negative, (k) is the maximum value of the range.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Determine Key Features of a Quadratic Function Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 62 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 254
+      }
+    },
+    {
+      "example": 2,
+      "category": "HabitsOfMind",
+      "key": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Make Sense and Persevere In what order should you apply the transformations shown in the Try It! for Example 2?",
+      "answer": "reflection first, then vertical and horizontal translation",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND Use with EXAMPLE 2",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 2,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "15: 62 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 272
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "How can you relate these movements to how the value of (a) affects the graph of a parabola?",
+      "answer": "When (|a|>1), the parabola is stretched taller. When (0<|a|<1), the parabola is compressed, appearing wider and closer to the (x)-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 1 SPEAKING BEGINNING Have students discuss the meanings of the terms stretch and compress. Ask half the students to do a morning stretch, stretching their limbs up as high as possible. Ask the other half to bend down and reach their arms out to the sides, compressing their bodies as close to the floor as possible.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 62 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 278
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What do you think of when you hear the word translate?",
+      "answer": "change from one language to another",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 1 SPEAKING BEGINNING Have students discuss the meanings of the terms stretch and compress. Ask half the students to do a morning stretch, stretching their limbs up as high as possible. Ask the other half to bend down and reach their arms out to the sides, compressing their bodies as close to the floor as possible.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 62 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 281
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Words translated from one language to another may look completely different. Do the translated graphs look completely different? Explain.",
+      "answer": "No; they change position, but retain the same shape.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 1 SPEAKING BEGINNING Have students discuss the meanings of the terms stretch and compress. Ask half the students to do a morning stretch, stretching their limbs up as high as possible. Ask the other half to bend down and reach their arms out to the sides, compressing their bodies as close to the floor as possible.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 62 Step 2 Understand & Apply",
+        "item": 2,
+        "line": 283
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What does it mean to translate a function? To transform a function?",
+      "answer": "translate: slide vertically or horizontally; transform: change the position and/or shape of",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 1 SPEAKING BEGINNING Have students discuss the meanings of the terms stretch and compress. Ask half the students to do a morning stretch, stretching their limbs up as high as possible. Ask the other half to bend down and reach their arms out to the sides, compressing their bodies as close to the floor as possible.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 62 Step 2 Understand & Apply",
+        "item": 3,
+        "line": 286
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Describe how the terms translate and transform are related.",
+      "answer": "A translation only changes position; a transformation may also change the shape.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 1 SPEAKING BEGINNING Have students discuss the meanings of the terms stretch and compress. Ask half the students to do a morning stretch, stretching their limbs up as high as possible. Ask the other half to bend down and reach their arms out to the sides, compressing their bodies as close to the floor as possible.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 62 Step 2 Understand & Apply",
+        "item": 4,
+        "line": 288
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Do you have to use both the vertex and the (y)-intercept to write the equation of a parabola?",
+      "answer": "No, you do not have to use the (y)-intercept. You can use another point that lies on the parabola.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write an Equation of a Parabola Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "16: 63 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 296
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Why is the (y)-intercept a good point to use in this example?",
+      "answer": "The (y)-intercept is easy to find from the graph. The calculations are simpler because the (x)-coordinate is 0.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write an Equation of a Parabola Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "16: 63 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 298
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Which ordered pair would you use first to find the equation of the parabola?",
+      "answer": "You use the coordinates of the vertex first and substitute for (h) and (k).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "16: 63 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 324
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "What can you learn about the values of (a), (b), and (c) by looking at the graph?",
+      "answer": "If the parabola opens upward, then (a) is positive. If it opens downward, then (a) is negative. The value of (c) is the (y)-coordinate of the (y)-intercept. You cannot determine the value of (b) by looking at the graph.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write an Equation of a Parabola Given the Graph Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "16: 63 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 330
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Why does the ball start with a height of 4?",
+      "answer": "When the ball leaves the person's hand, it is 4 ft off the ground.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write an Equation of a Parabola Given the Graph Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "16: 63 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 332
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtIExtend",
+      "key": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Identify the vertex, axis of symmetry, minimum or maximum, domain, and range of the function.",
+      "answer": "1. vertex: (3/2,3/4); axis of symmetry: (x=3/2); maximum at (y=3/4); domain: (-∞,∞); range: (-∞,3/4]. 2. vertex: (-1/3,-1/6); axis of symmetry: (x=-1/3); minimum at (y=-1/6); domain: (-∞,∞); range: [-1/6,∞).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 2 Have students identify the key features of quadratic functions when the coordinates of the vertex are fractions. 1. (f(x)=-1/2(x-3/2)^2+3/4) 2. (g(x)=2/3(x+1/3)^2-1/6)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 2,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "16: 63 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 359
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the two graphs?",
+      "answer": "The graphs open in the same direction. The graphs appear to have the same shape. The graph of (g) is shifted up and to the left.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write an Equation of a Transformed Function Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "17: 64 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 372
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What does this tell you about the value of (a) in the equations of (f) and (g)?",
+      "answer": "Since (g) is a translation of (f), the value of (a) does not change.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write an Equation of a Transformed Function Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "17: 64 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 374
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine the value of (a) from the given information?",
+      "answer": "In Part a, the graph of (j) is a translation of (f). This means that (a=1). In Part b, the graph of (j) is a reflection of (f) in the (x)-axis. This means that (a=-1).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "17: 64 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 406
+      }
+    },
+    {
+      "example": 5,
+      "category": "CommonError",
+      "key": "examples[n=5].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 5a Some students may switch the coordinate values when writing the vertex form of the equation of the parabola. Emphasize that (h) is the (x)-coordinate of the vertex and (k) is the (y)-coordinate of the vertex.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 5,
+        "category": "CommonError",
+        "block": 0,
+        "page": "17: 64 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 409
+      }
+    },
+    {
+      "example": 5,
+      "category": "HabitsOfMind",
+      "key": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Generalize What information do you need to write the equation of a quadratic function in vertex form?",
+      "answer": "the value of the vertex and at least one other point on the transformed function",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND Use with EXAMPLE 5",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 5,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "17: 64 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 415
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "Reflect (-3,5) across the (x)-axis.",
+      "answer": "(-3,-5)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 5 Some students may struggle with reflecting points across the (x)-axis. Have students practice reflecting points across the (x)- and (y)-axes.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "17: 64 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 422
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "Reflect (-4,-7) across the (y)-axis.",
+      "answer": "(4,-7)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 5 Some students may struggle with reflecting points across the (x)-axis. Have students practice reflecting points across the (x)- and (y)-axes.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "17: 64 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 424
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[2]",
+      "kind": "question",
+      "question": "Reflect (4,1) across the (x)-axis.",
+      "answer": "(4,-1)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 5 Some students may struggle with reflecting points across the (x)-axis. Have students practice reflecting points across the (x)- and (y)-axes.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "17: 64 Step 2 Understand & Apply",
+        "item": 2,
+        "line": 426
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[3]",
+      "kind": "question",
+      "question": "Reflect (2,-2) across the (y)-axis.",
+      "answer": "(-2,-2)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 5 Some students may struggle with reflecting points across the (x)-axis. Have students practice reflecting points across the (x)- and (y)-axes.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-1_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "17: 64 Step 2 Understand & Apply",
+        "item": 3,
+        "line": 428
+      }
+    }
+  ]
+}

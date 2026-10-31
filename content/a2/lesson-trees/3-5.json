@@ -1,0 +1,933 @@
+{
+  "lesson": "3-5",
+  "title": "Zeros of Polynomial Functions",
+  "nodes": [
+    {
+      "id": "10bf34212d94",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How are the zeros of a polynomial function related to an equation and graph of the function?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "4a38b034e2cb",
+      "type": "anchor",
+      "front": "Define: zero",
+      "back": "Zero-Product Property: each factor gives a zero (Example 1; IXL PVM)",
+      "order": 2,
+      "after": [
+        "10bf34212d94"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.zero"
+    },
+    {
+      "id": "c31b86e551f9",
+      "type": "anchor",
+      "front": "Define: factor",
+      "back": "factor out the common x, then factor the quadratic (Example 1 step 1; IXL UB5 warm-up)",
+      "order": 3,
+      "after": [
+        "10bf34212d94"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.factor"
+    },
+    {
+      "id": "e8afe4a7a7b8",
+      "type": "anchor",
+      "front": "Define: multiplicity",
+      "back": "odd multiplicity crosses, even multiplicity has a turning point at the x-axis (Example 2; IXL PVM, 8CQ)",
+      "order": 4,
+      "after": [
+        "10bf34212d94"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.multiplicity"
+    },
+    {
+      "id": "2db1a660c0e5",
+      "type": "anchor",
+      "front": "Define: crosses",
+      "back": "odd multiplicity crosses, even multiplicity has a turning point at the x-axis (Example 2; IXL PVM, 8CQ)",
+      "order": 5,
+      "after": [
+        "10bf34212d94"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.crosses"
+    },
+    {
+      "id": "539f6fdcbfaa",
+      "type": "anchor",
+      "front": "Define: turning point",
+      "back": "odd multiplicity crosses, even multiplicity has a turning point at the x-axis (Example 2; IXL PVM, 8CQ)",
+      "order": 6,
+      "after": [
+        "10bf34212d94"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.turning point"
+    },
+    {
+      "id": "a935b57e7c34",
+      "type": "anchor",
+      "front": "Quiz item 1 asks?",
+      "back": "Item 1: Part A, all the zeros of f(x) = x^3 + 2x^2 - 3x; Part B, use the zeros to sketch the graph (Example 1 exactly). …",
+      "order": 7,
+      "after": [
+        "4a38b034e2cb",
+        "c31b86e551f9",
+        "e8afe4a7a7b8",
+        "2db1a660c0e5",
+        "539f6fdcbfaa"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "83c6b03840ca",
+      "type": "anchor",
+      "front": "Quiz item 1 answer?",
+      "back": "1A: -3, 0, 1 (f = x(x + 3)(x - 1)); 1B: cubic crossing at -3, 0, 1, rising to the right, local max near (-1.9, 6.1), local min near (0.5, -0.9); 5: D (f = -(x - 1)^2(x + 4)); 4: B (-3, multiplicity 1; (x + 3)(x^2 + 1)) (verify against the TE key on quiz day)",
+      "order": 8,
+      "after": [
+        "4a38b034e2cb",
+        "c31b86e551f9",
+        "e8afe4a7a7b8",
+        "2db1a660c0e5",
+        "539f6fdcbfaa"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "8adf12986f9d",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need?",
+      "back": "factor out the common x, then factor the quadratic (Example 1 step 1; IXL UB5 warm-up)",
+      "order": 9,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "fba7dcb2eef1",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (2)",
+      "back": "Zero-Product Property: each factor gives a zero (Example 1; IXL PVM)",
+      "order": 10,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "8815329114d7",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (3)",
+      "back": "sign of each factor on each interval, so the graph is above or below the x-axis between zeros (Example 1 sign table; IXL 8CQ)",
+      "order": 11,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "2b90fc9db2a3",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (4)",
+      "back": "odd multiplicity crosses, even multiplicity has a turning point at the x-axis (Example 2; IXL PVM, 8CQ)",
+      "order": 12,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "c4bffdf21591",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (5)",
+      "back": "item 5 starts in standard form: test a candidate zero (f(1) = 0), divide by x - 1 (synthetic division from 3-4), factor the quotient (the packet Practice; IXL NCY)",
+      "order": 13,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "daad0e1037fc",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (6)",
+      "back": "end behavior from the leading term -x^3 (quiz 5 choices A and B fail on it; IXL XMK, from 3-1)",
+      "order": 14,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
+      "id": "e76e36eb03eb",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (7)",
+      "back": "item 4 (bonus) factors by grouping: x^2(x + 3) + (x + 3) = (x + 3)(x^2 + 1); one whiteboard round if the bonus stays (factor by grouping is not an assigned IXL skill here)",
+      "order": 15,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[6]"
+    },
+    {
+      "id": "9f6308c71fb5",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Part A zeros of x^3 + 2x^2 - 3x (-3, 0, 1), Part B sketch from the zeros: Example 1 and Try It 1a. DOK 2, Realize skills F62 (A) and A73 (B). Graded, 10 points.",
+      "order": 16,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "a90277e19293",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Solve x^3 + 5x^2 - x - 7 = x^2 + 6x + 3 (x = -5, -1, 2): Example 5, cut. DOK 2, F62. Left off the short form.",
+      "order": 17,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "286363fe33b3",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Solve x^3 - 4x > 0 (-2 < x < 0 or x > 2, the union; the TE prints \"and\"): Example 6, cut. DOK 2, F62. Left off the short form.",
+      "order": 18,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "019808aee6ff",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Zeros and multiplicities of y = x^3 + 3x^2 + x + 3 from the graph (B: -3, multiplicity 1): Example 2 plus factoring by grouping. DOK 1, F62. Bonus, +5.",
+      "order": 19,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "35eb96a3037c",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Zeros of -x^3 - 2x^2 + 7x - 4 and the behavior at each (D: -4 crosses, 1 is a tangent double zero, f < 0 between, f -> infinity on the left): Examples 1 and 2; the Practice block is its structural parallel. DOK 2, F62. Graded, 10 points.",
+      "order": 20,
+      "after": [
+        "a935b57e7c34"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "76bcb90dfa55",
+      "type": "step",
+      "front": "Example 1: ?",
+      "back": "Use Zeros to Graph a Polynomial Function · DOK 1, 2 · practice 12, 13, 29, 6 · The lesson. Quiz item 1 is this example with new numbers (factor, list the zeros, sketch from the sign of each interval), and its sign table is half of quiz item 5. …",
+      "order": 21,
+      "after": [
+        "a935b57e7c34",
+        "83c6b03840ca"
+      ],
+      "minute": null,
+      "source": "examples[n=1]"
+    },
+    {
+      "id": "16d544c1093f",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Understand How a Multiple Zero Can Affect a Graph · DOK 1, 2 · practice 14, 15, 16, 7, 8, 10 · Quiz items 4 and 5 both turn on multiplicity (item 5's right answer is the one that says f is tangent at the double zero 1), and the concept summary is built on it (multiplicity 2 turns, 3 and 1 cross). …",
+      "order": 22,
+      "after": [
+        "76bcb90dfa55"
+      ],
+      "minute": null,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "e853e875c970",
+      "type": "cue",
+      "front": "Example 1 · Purposeful question: How is the Zero Product Property helpful when graphing a polynomial function?",
+      "back": "Listen for: It helps you identify ordered pairs that are on the graph and determine endpoints of intervals.",
+      "order": 23,
+      "after": [
+        "76bcb90dfa55"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 1,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "61: 150",
+          "item": 0,
+          "line": 174
+        },
+        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "befb9ac27641",
+      "type": "cue",
+      "front": "Example 1 · Check student thinking: What step is important before sketching the graph of each function?",
+      "back": "Listen for: Factor each function to find the zeros of the function.",
+      "order": 24,
+      "after": [
+        "e853e875c970"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 1,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "62: 151",
+          "item": 0,
+          "line": 237
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "03c180c905f3",
+      "type": "cue",
+      "front": "Example 2 · Connect representations: What do you notice about each graph in relation to the polynomial function it represents?",
+      "back": "Listen for: The number of unique factors of the polynomial function is the same as the number of times that its graph crosses or is tangent to the (x)-axis.",
+      "order": 25,
+      "after": [
+        "16d544c1093f"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "62: 151",
+          "item": 0,
+          "line": 243
+        },
+        "promptKey": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "5562191fe524",
+      "type": "cue",
+      "front": "Example 2 · Connect representations: How does the term multiplicity of a zero relate to multiplication?",
+      "back": "Listen for: The multiplicity of a zero is the number of times that the factor is multiplied in the polynomial function.",
+      "order": 26,
+      "after": [
+        "03c180c905f3"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "62: 151",
+          "item": 1,
+          "line": 245
+        },
+        "promptKey": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "8d4645335931",
+      "type": "cue",
+      "front": "Example 2 · Check student thinking: What do you know about the signs of the (y)-values of the points in the intervals on each side of a zero whose multiplicity is even?",
+      "back": "Listen for: The signs are the same.",
+      "order": 27,
+      "after": [
+        "5562191fe524"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "62: 151",
+          "item": 0,
+          "line": 274
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "aa1634cf338c",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What does it mean for a number to be even? Odd?",
+      "back": "Listen for: divisible by 2; not divisible by 2",
+      "order": 28,
+      "after": [
+        "8d4645335931"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 0,
+          "line": 285
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "1b409adbcd49",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Name one way to remember that when a zero is repeated an odd number of times, the graph crosses over the (x)-axis.",
+      "back": "Listen for: Odd and over both start with o.",
+      "order": 29,
+      "after": [
+        "aa1634cf338c"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 1,
+          "line": 287
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "d090eaed596e",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Name one way to remember that when a zero is repeated an even number of times, the graph does not cross the (x)-axis.",
+      "back": "Listen for: Even ends with an n for not cross.",
+      "order": 30,
+      "after": [
+        "1b409adbcd49"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 2,
+          "line": 289
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "73ae7462ed55",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: In each function, what is the multiplicity of (-2)?",
+      "back": "Listen for: 1",
+      "order": 31,
+      "after": [
+        "d090eaed596e"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 3,
+          "line": 292
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e238e6bf844b",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What happens to each graph at (x=-2)?",
+      "back": "Listen for: It crosses the (x)-axis.",
+      "order": 32,
+      "after": [
+        "73ae7462ed55"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 4,
+          "line": 293
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "653155b9ce0b",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: In which functions is the multiplicity of 1 odd?",
+      "back": "Listen for: the two functions on the left",
+      "order": 33,
+      "after": [
+        "e238e6bf844b"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[5]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 5,
+          "line": 294
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[5]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e76941af0dd0",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What happens to the graphs at (x=1) when the multiplicity of 1 is odd?",
+      "back": "Listen for: It crosses the (x)-axis.",
+      "order": 34,
+      "after": [
+        "653155b9ce0b"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[6]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 6,
+          "line": 295
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[6]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "9d284fa74030",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: In which functions is the multiplicity of 1 even?",
+      "back": "Listen for: the two functions on the right",
+      "order": 35,
+      "after": [
+        "e76941af0dd0"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[7]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 7,
+          "line": 296
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[7]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a79ab75452a6",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What happens to the graphs at (x=1) when the multiplicity of 1 is even?",
+      "back": "Listen for: It is tangent to the (x)-axis.",
+      "order": 36,
+      "after": [
+        "9d284fa74030"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[8]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 8,
+          "line": 297
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[8]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "400a9bc6d07d",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: In your journals, write definitions for multiple, multiply, and multiplicity in your own words and use each term in a sentence.",
+      "back": "Listen for: Check students' work.",
+      "order": 37,
+      "after": [
+        "a79ab75452a6"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[9]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 9,
+          "line": 299
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[9]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "3a51dfdbff03",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Write a paragraph using ((x+4)), ((x-1)), multiple, and multiply to explain the meaning of multiplicity.",
+      "back": "Listen for: In the function (f(x)=(x+4)^2(x-1)^3), the factors ((x+4)) and ((x-1)) occur multiple times. The factor ((x+4)) is multiplied by itself, so the multiplicity of (-4) is two. The factor ((x-1)) occurs three times, so the multiplicity of 1 is three.",
+      "order": 38,
+      "after": [
+        "400a9bc6d07d"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[10]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-5_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "62: 151",
+          "item": 10,
+          "line": 301
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[10]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "80bc124a3be7",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Venetta opened several deli sandwich franchises in 2000. The profit P (in hundreds of dollars) of the franchises in t years (since the franchises opened) can be modeled by P(t) = t^3 + t^2 - 6t. Part A: sketch a graph of the function. Part B: based on the model, during what years did Venetta not make a profit? …",
+      "order": 39,
+      "after": [
+        "16d544c1093f"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "da315ff2f4a7",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "Part A: P(t) = t(t + 3)(t - 2), zeros -3, 0, 2; for t >= 0 the graph dips below the axis between 0 and 2 (minimum near t = 1.1, P = -4.1) and then rises steeply (the TE graph shows t from 0 to 24 and P up to 16,000). Part B: the first two years (P(t) < 0 for 0 < t < 2). …",
+      "order": 40,
+      "after": [
+        "16d544c1093f"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "1010774a77e0",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Charlie's and Aisha's STEM club built a small rocket and launched it from a field. The rocket fell to the ground 5 s after it launched. Its height h, in feet, at time t seconds can be modeled by h(t) = at^2 + bt + c.",
+      "order": 41,
+      "after": [
+        "10bf34212d94"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "a1ab428e5c1a",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. How are the launch and landing times related to the modeling function? (h = 0 at both, so t = 0 and t = 5 solve 0 = at^2 + bt + c.)",
+      "order": 42,
+      "after": [
+        "1010774a77e0"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "e316e88a661f",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. What additional information about the rocket launch could you use to construct an accurate model for the rocket's height relative to the ground? (The height at another time, or the initial speed and gravitational acceleration.)",
+      "order": 43,
+      "after": [
+        "1010774a77e0"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "ebf0006bfda1",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Construct Arguments: Charlie believes that h(t) = -16t^2 + 80t models the height of the rocket. Do you agree? Explain your reasoning and indicate the domain of this function. (Yes: it is 0 at 0 s and 5 s; domain 0 to 5.)",
+      "order": 44,
+      "after": [
+        "1010774a77e0"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "079fae94e3e8",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "How would you describe the function that models the height of the rocket? → It is a quadratic function written in standard form. The variable t represents the time in seconds after the rocket was launched; the value of the function is the rocket's height t seconds after launch.",
+      "order": 45,
+      "after": [
+        "1010774a77e0"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "99382b7223c8",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "Why do you need additional information to construct an accurate model for the height of the rocket? → You need three points to write the equation of a parabola; the problem gives only two, the launch point and the landing point.",
+      "order": 46,
+      "after": [
+        "079fae94e3e8"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "39d536b55453",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Another rocket was launched that fell to the ground 10 seconds after it was launched. How does the maximum height of this rocket compare to the first rocket? → The maximum height of this rocket is four times as high as that of the first rocket.",
+      "order": 47,
+      "after": [
+        "99382b7223c8"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "5359caf29e8f",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "What information in the problem statement helps you determine the value of c in the model? → The rocket is launched from the ground, so when t = 0, h(0) = 0.",
+      "order": 48,
+      "after": [
+        "39d536b55453"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "199ce589f2f5",
+      "type": "cue",
+      "front": "After, whole class: ask? (2)",
+      "back": "How can you determine the maximum height of the rocket in Charlie's model? → The maximum height occurs at t = 2.5, halfway between 0 and 5. Evaluate the function at t = 2.5.",
+      "order": 49,
+      "after": [
+        "5359caf29e8f"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "7d5921ccb227",
+      "type": "cue",
+      "front": "Habits of Mind, Reason: ask?",
+      "back": "In Charlie's function, what is the value of c? Why is this the correct value? → 0; the rocket is launched from the ground, a height of 0 ft.",
+      "order": 50,
+      "after": [
+        "199ce589f2f5"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "bdf29f2502e8",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The TE's printed answer to C gives the domain as 'all x-values from 0 to 5'; the variable is t, so say 0 <= t <= 5. The opener is a quadratic, not a cubic: bridge to Example 1 by factoring Charlie's model as -16t(t - 5) and reading the launch and landing times off the factors (zero = factor). …",
+      "order": 51,
+      "after": [
+        "1010774a77e0"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "7d20fdd90999",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "PVM Find the zeros of factored polynomials",
+      "order": 52,
+      "after": [
+        "76bcb90dfa55"
+      ],
+      "minute": null,
+      "source": "ixl.PVM"
+    },
+    {
+      "id": "f683552e03d9",
+      "type": "anchor",
+      "front": "IXL for example 1? (2)",
+      "back": "8CQ Match polynomial functions and graphs using zeros",
+      "order": 53,
+      "after": [
+        "76bcb90dfa55"
+      ],
+      "minute": null,
+      "source": "ixl.8CQ"
+    },
+    {
+      "id": "6d007ad7abc4",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "NCY Factor a polynomial given a root",
+      "order": 54,
+      "after": [
+        "16d544c1093f"
+      ],
+      "minute": null,
+      "source": "ixl.NCY"
+    }
+  ]
+}

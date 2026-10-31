@@ -1,0 +1,714 @@
+{
+  "lesson": "1-4",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Can a term of an arithmetic sequence be less than the previous term?",
+      "answer": "Yes; the common difference of an arithmetic sequence can be a negative number. If the common difference is negative, each term is less than the previous term.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Understand Arithmetic Sequences Build Procedural Fluency From Conceptual Understanding. PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "52: 31 Example 1",
+        "item": 0,
+        "line": 185
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How many differences of consecutive terms do you have to calculate to show that a sequence is not arithmetic?",
+      "answer": "You only have to find one difference that is different from the others to have a counterexample.",
+      "variant": "additional",
+      "notes": [
+        "Digital controls: Go back, ESSENTIAL QUESTION, SOLUTION."
+      ],
+      "context": {
+        "text": "Understand Arithmetic Sequences Build Procedural Fluency From Conceptual Understanding. PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "52: 31 Example 1",
+        "item": 1,
+        "line": 204
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do you know that an arithmetic sequence with a positive first term and a negative common difference has a finite number of positive terms?",
+      "answer": "Since the common difference (d) is negative, the terms (a_1+(n-1)d) are decreasing as (n) increases. Eventually the sequence will decrease to 0.",
+      "variant": "additional",
+      "notes": [
+        "Printed decrease to 0; likely decrease to 0 or below. This example goes from 3 to -1 and never equals 0. Digital controls: Go back, ESSENTIAL QUESTION, SOLUTION."
+      ],
+      "context": {
+        "text": "Additional Examples are available at SavvasRealize.com. ADDITIONAL EXAMPLE 4 There are 35 people entered in a contest. After each round of the contest, 4 people are eliminated. This continues as long as there is a positive number of participants. When the contest reaches the least possible number of participants, the contest ends and the remaining participants win a prize. How many rounds does the contest have? How many people will win a prize? (a_1=35) (d=-4) (a_n=35-4(n-1)) (0=35-4(n-1)) (4(n-1)=35) (n-1=8.75) (n=9.75) There are enough participants for 9 rounds but not enough for 10, so the contest has 9 rounds. (a_9=35-4(9-1)) (a_9=35-32) (a_9=3) 3 people will win a prize. Printed 9 rounds; likely 8 elimination rounds after the initial 35-person state. The ninth sequence term follows eight subtractions of 4. Example 4 Students will solve a problem involving an arithmetic sequence with a negative common difference.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "52: 31 Example 1",
+        "item": 0,
+        "line": 227
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How can you determine whether a pattern is an arithmetic sequence?",
+      "answer": "You can subtract each term from the next term. If the result of each subtraction is the same number, then the terms have a common difference and the sequence is arithmetic.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 1 CONTINUED PART B",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "53: 32 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 259
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Can the terms of an arithmetic sequence be negative numbers?",
+      "answer": "Yes; the terms of an arithmetic sequence can be negative. A sequence can start with a negative number, or a sequence can have a negative common difference, so that the terms will eventually become negative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "53: 32 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 270
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "When considering a sequence as a function, what is the domain of the function?",
+      "answer": "When considering a sequence as a function, its domain is positive integers.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write a Function for an Arithmetic Sequence Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "53: 32 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 276
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How does the explicit definition compare to the recursive definition?",
+      "answer": "Each definition shows the common difference and the first term of the sequence. You can use the explicit definition to find any value of the sequence, without having to calculate all previous values.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Translate Between Recursive and Explicit Forms Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "54: 33 Examples 3 and 4",
+        "item": 0,
+        "line": 311
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "When might you want to use the recursive definition of the sequence rather than the explicit definition?",
+      "answer": "The recursive definition may be the better option when you want to write all of the terms in a sequence up to a certain term.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Translate Between Recursive and Explicit Forms Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "54: 33 Examples 3 and 4",
+        "item": 1,
+        "line": 313
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "When translating between a recursive definition and an explicit one, what should you do first?",
+      "answer": "You should identify the common difference and the first term of the sequence.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "54: 33 Examples 3 and 4",
+        "item": 0,
+        "line": 339
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How can you find an explicit formula for a sequence if you do not know the common difference?",
+      "answer": "If you know the value of two of the terms in the sequence, you can use them to calculate the common difference.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve Problems With Arithmetic Sequences Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "54: 33 Examples 3 and 4",
+        "item": 0,
+        "line": 345
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What method could you use to find the explicit definition of the sequence?",
+      "answer": "In the general explicit formula, you can substitute 1 for (a_1), 2 for (a_n), and 7 for (n), and solve for (d). Then you can write the explicit definition using 1 for (a_1) and (1/6) for (d).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "55: 34 Example 4 continued; Example 5",
+        "item": 0,
+        "line": 379
+      }
+    },
+    {
+      "example": 4,
+      "category": "CommonError",
+      "key": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Some students may write their substitutions into the explicit formula as (1=2+d(7-1)), resulting in (d=-1/6). Have students explain their answer in the context of the situation. Because Samantha ran farther on the seventh day than she did on the first day, the common difference should be positive.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 4,
+        "category": "CommonError",
+        "block": 0,
+        "page": "55: 34 Example 4 continued; Example 5",
+        "item": 0,
+        "line": 382
+      }
+    },
+    {
+      "example": 4,
+      "category": "HabitsOfMind",
+      "key": "examples[n=4].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Use Appropriate Tools How can you use the recursive definition for an arithmetic sequence to find the 120th term?",
+      "answer": "Rewrite the recursive definition as an explicit definition. Then use the explicit to calculate (a_120).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use with EXAMPLES 1, 2, 3, & 4",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 4,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "55: 34 Example 4 continued; Example 5",
+        "item": 0,
+        "line": 388
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Where does the (2· S_5) come from?",
+      "answer": "The sequence (S_5) was added to itself, and adding any value to itself is the same as multiplying it by 2.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find the Sum of an Arithmetic Sequence Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "55: 34 Example 4 continued; Example 5",
+        "item": 0,
+        "line": 394
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why is 14 rewritten as (1+13) rather than as the sum of two other addends that result in 14?",
+      "answer": "The first and last terms of this sequence are 1 and 13. Both the first and last terms are used in the recursive and explicit definitions, so it makes sense to use them as the addends that result in 14.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find the Sum of an Arithmetic Sequence Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "55: 34 Example 4 continued; Example 5",
+        "item": 1,
+        "line": 396
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "Why is it helpful to have an explicit formula for a finite series?",
+      "answer": "The formula for the sum of the sequence can be helpful if you are finding the sum of a lot of terms. Rather than finding each term in the sequence, you can find the sum just by knowing the first term, last term, and number of terms in the sequence.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find the Sum of an Arithmetic Sequence Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "55: 34 Example 4 continued; Example 5",
+        "item": 2,
+        "line": 398
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How could you find the sum of the sequence in part (b) using the general formula? Is there another way to find the sum?",
+      "answer": "Before using the general formula to find the sum of the sequence, you need to count the terms to find the value of (n). Then you can use the general formula for the sum. You could also find the sum of the sequence by adding all of the terms.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "56: 35 Example 5 continued; Sigma Notation; Example 6",
+        "item": 0,
+        "line": 448
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "When would you find a sum by writing out all of the terms?",
+      "answer": "You would find the sum by writing all the terms when there is a small number of terms in the series.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Sigma Notation Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "56: 35 Example 5 continued; Sigma Notation; Example 6",
+        "item": 0,
+        "line": 460
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Can you find the sum of a sequence without knowing how many terms are in the sequence?",
+      "answer": "No; to find the sum of a sequence you either need to know each term of the sequence or use the explicit formula for the sequence that requires the number of terms, (n).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Sigma Notation Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "56: 35 Example 5 continued; Sigma Notation; Example 6",
+        "item": 1,
+        "line": 462
+      }
+    },
+    {
+      "example": 6,
+      "category": "ElicitEvidence",
+      "key": "examples[n=6].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine the number of terms in the series (8+13+18+…+43)?",
+      "answer": "From the terms given, you can identify the values of (a_1), (a_n), and (d). Substitute these values into the formula for the explicit definition of a sequence, and solve for (n).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 6,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "56: 35 Example 5 continued; Sigma Notation; Example 6",
+        "item": 0,
+        "line": 467
+      }
+    },
+    {
+      "example": 6,
+      "category": "RtISupport",
+      "key": "examples[n=6].teacherPrompts.RtISupport[0].guidance",
+      "kind": "support",
+      "question": "How does the TE support students who struggle?",
+      "answer": "Students may struggle with the concept of sigma notation. Have students practice writing series in sigma notation. Write the series with the given characteristics in sigma notation. 1. (a_1=5,d=3,n=15) 2. (a_1=8,d=-2,n=13) 3. (a_1=15,d=4,n=10)",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 6,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "56: 35 Example 5 continued; Sigma Notation; Example 6",
+        "item": 0,
+        "line": 470
+      }
+    },
+    {
+      "example": 7,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=7].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What information are you given to find the total number of cans?",
+      "answer": "You are given the number of cans in each of the first three rows.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use a Finite Arithmetic Series Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 7,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "57: 36 Example 6 continued; Example 7",
+        "item": 0,
+        "line": 519
+      }
+    },
+    {
+      "example": 7,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=7].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What do you need to find in order to calculate the total number of cans in the display?",
+      "answer": "You first need to find the common difference. Then, using the given information and the common difference, you can write the explicit formula for the sum of a series to calculate the number of cans in the display.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use a Finite Arithmetic Series Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 7,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "57: 36 Example 6 continued; Example 7",
+        "item": 1,
+        "line": 521
+      }
+    },
+    {
+      "example": 7,
+      "category": "HabitsOfMind",
+      "key": "examples[n=7].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Make Sense and Persevere What is the sum of the first 50 odd whole numbers? Explain how you found your answer.",
+      "answer": "2,500; The explicit definition gives (a_i=2i-1), and the index runs from 1 to 50.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use with EXAMPLES 5, 6, & 7",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 7,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "57: 36 Example 6 continued; Example 7",
+        "item": 0,
+        "line": 546
+      }
+    },
+    {
+      "example": 7,
+      "category": "ELLAddendum",
+      "key": "examples[n=7].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "The top row has 1 can. What number can be used to describe the top row?",
+      "answer": "first",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 7) WRITING BEGINNING Look at numbers that give positions in the example: 2 cans in the second row; 3 cans in the third row. There are 10 rows of cans in the pyramid.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 7,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "57: 36 Example 6 continued; Example 7",
+        "item": 0,
+        "line": 552
+      }
+    },
+    {
+      "example": 7,
+      "category": "ELLAddendum",
+      "key": "examples[n=7].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What does the term finite mean?",
+      "answer": "having an end or defined limits",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 7) WRITING BEGINNING Look at numbers that give positions in the example: 2 cans in the second row; 3 cans in the third row. There are 10 rows of cans in the pyramid.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 7,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "57: 36 Example 6 continued; Example 7",
+        "item": 1,
+        "line": 556
+      }
+    },
+    {
+      "example": 7,
+      "category": "ELLAddendum",
+      "key": "examples[n=7].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Which part of the description indicates that the arithmetic sequence is finite?",
+      "answer": "``there are 10 rows of cans''",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 7) WRITING BEGINNING Look at numbers that give positions in the example: 2 cans in the second row; 3 cans in the third row. There are 10 rows of cans in the pyramid.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 7,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "57: 36 Example 6 continued; Example 7",
+        "item": 2,
+        "line": 558
+      }
+    },
+    {
+      "example": 7,
+      "category": "ELLAddendum",
+      "key": "examples[n=7].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What word means not finite?",
+      "answer": "infinite",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 7) WRITING BEGINNING Look at numbers that give positions in the example: 2 cans in the second row; 3 cans in the third row. There are 10 rows of cans in the pyramid.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 7,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "57: 36 Example 6 continued; Example 7",
+        "item": 3,
+        "line": 560
+      }
+    },
+    {
+      "example": 7,
+      "category": "ELLAddendum",
+      "key": "examples[n=7].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "How is a pyramid made of cans in the example different from the pyramids in Egypt?",
+      "answer": "The can pyramid is only slanted in two dimensions (length and width), but the pyramids in Egypt are 3-D square pyramids.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 7) WRITING BEGINNING Look at numbers that give positions in the example: 2 cans in the second row; 3 cans in the third row. There are 10 rows of cans in the pyramid.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 7,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "57: 36 Example 6 continued; Example 7",
+        "item": 4,
+        "line": 563
+      }
+    },
+    {
+      "example": 7,
+      "category": "ELLAddendum",
+      "key": "examples[n=7].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "Is it possible to stack the cans to make a square pyramid?",
+      "answer": "yes",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 7) WRITING BEGINNING Look at numbers that give positions in the example: 2 cans in the second row; 3 cans in the third row. There are 10 rows of cans in the pyramid.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 7,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "57: 36 Example 6 continued; Example 7",
+        "item": 5,
+        "line": 565
+      }
+    },
+    {
+      "example": 7,
+      "category": "ELLAddendum",
+      "key": "examples[n=7].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "How many cans would be in the bottom layer of a square pyramid if it had 10 rows?",
+      "answer": "100",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 7) WRITING BEGINNING Look at numbers that give positions in the example: 2 cans in the second row; 3 cans in the third row. There are 10 rows of cans in the pyramid.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-4_TE.tex",
+        "anchor": 7,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "57: 36 Example 6 continued; Example 7",
+        "item": 6,
+        "line": 567
+      }
+    }
+  ]
+}

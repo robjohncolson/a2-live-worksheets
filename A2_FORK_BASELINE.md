@@ -2837,3 +2837,31 @@ Validation: all 99 server files / 1,817 tests passed; 51 focused compiler,
 selector, continuity and teacher-brief tests passed. GitNexus staged detection
 identified the expected shared plan/privacy paths as CRITICAL; the blast radius
 was reported before the affected edits and those paths were regression-tested.
+
+## Fast lessons for every remaining year-plan lesson - 2026-10-30/31
+
+`docs/a2-fast-lesson-spec.md` writes down the PLC's Oct 20 shape (at most two Savvas Examples
+chosen for the lesson-quiz items, Web Jams on the starred IXL skills, the Savvas quiz; SmartScore
+70 replaces the quiz) and the artifact set each lesson gets. It was applied to the 29 lessons
+after 1-6 in the year plan (23 keep/bridge lessons with two Examples, 6 brief lessons with one):
+a packet and a short-form quiz per lesson in `../Lesson_planning/` (`a2_<L>_fast.*`,
+`a2_<L>_quiz_fast.*`), and a teacher-prep entry, an objectives entry and the IXL skills in this
+repo (`content/a2/lesson-prep.json`, `content/a2/lesson-objectives.json`,
+`data/a2-lesson-skills.json`; Topics 3+ mapped for the first time), with the lesson trees and
+teacher-prompt caches regenerated. 1-5 and 1-6 received objectives entries and 1-6 a prep entry.
+Every keep/cut is a proposal until the PLC rules; `docs/a2-fast-lessons-status.md` lists each
+lesson's proposal and the open decisions.
+
+Validation chain: `tools/check_fast_packet.py` (planning repo) passes on all 29 packets and quizzes
+(two warnings on row counts were cleared by trimming the 2-1, 2-2 and 2-4 tables); an independent
+agent recomputed every worked answer and inspected every rendered page (22 lessons passed on the
+first round, 7 after one fix round); Codex gpt-6-astra reviewed every lesson adversarially
+(round 1: 8 GREEN, 6 AMBER, 15 RED, 68 findings; the real mathematical errors were in 2-5, 3-1,
+4-1, 4-3, 5-1, 7-3 and 4-4, plus graph windows, missing continuation arrows, numbering and scored
+invented prompts), a fix round applied them under the rulings now in the spec, and round 2 came
+back 26 GREEN with three small leftovers (2-4 table rows, a 2-7 test pin, a one-dollar rounding
+comment in 6-2) and one Desk finding (empty `ixl` lists on cut Examples), all fixed before round 3.
+Root suite: the same pre-existing failures as before this work (`a2-fork-freeze`,
+`a2-objectives-display`, `a2-secrets`; `draft-card-decks` is flaky), no new failures; server
+suite 99 files pass. `tests/a2-lesson-skills.test.js` now accepts Topics 3+ and pins 2-1 (L8C
+last) and 2-7 (U5D last).

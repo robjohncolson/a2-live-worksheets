@@ -1,0 +1,641 @@
+{
+  "lesson": "3-1",
+  "title": "Graphing Polynomial Functions",
+  "nodes": [
+    {
+      "id": "6bd7d7a7e4c9",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How do the key features of a polynomial function help you sketch its graph?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "cf1f464199a9",
+      "type": "anchor",
+      "front": "Define: degree",
+      "back": "degree and sign of the leading coefficient decide the two ends (Example 2; Try It 2; IXL XMK)",
+      "order": 2,
+      "after": [
+        "6bd7d7a7e4c9"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.degree"
+    },
+    {
+      "id": "370fc0066f07",
+      "type": "anchor",
+      "front": "Define: leading coefficient",
+      "back": "degree and sign of the leading coefficient decide the two ends (Example 2; Try It 2; IXL XMK)",
+      "order": 3,
+      "after": [
+        "6bd7d7a7e4c9"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.leading coefficient"
+    },
+    {
+      "id": "954505e50790",
+      "type": "anchor",
+      "front": "Define: end behavior",
+      "back": "I can describe a polynomial graph using the words degree, leading coefficient, end behavior, turning point, and relative maximum / relative minimum.",
+      "order": 4,
+      "after": [
+        "6bd7d7a7e4c9"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.end behavior"
+    },
+    {
+      "id": "5913fcefe090",
+      "type": "anchor",
+      "front": "Define: turning point",
+      "back": "a turning point is where the graph changes from increasing to decreasing or back; the x-intercepts (choices E and F in item 3) are not turning points (Example 3A; IXL XJU)",
+      "order": 5,
+      "after": [
+        "6bd7d7a7e4c9"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.turning point"
+    },
+    {
+      "id": "ca964ee1eef4",
+      "type": "anchor",
+      "front": "Define: relative maximum / relative minimum",
+      "back": "I can describe a polynomial graph using the words degree, leading coefficient, end behavior, turning point, and relative maximum / relative minimum.",
+      "order": 6,
+      "after": [
+        "6bd7d7a7e4c9"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.relative maximum / relative minimum"
+    },
+    {
+      "id": "4bc84dbf54d4",
+      "type": "anchor",
+      "front": "Quiz item 3 asks?",
+      "back": "Graded proposal: item 2 (end behavior of f(x) = x^3 - 7x^2 + 10x from its degree and leading coefficient, select all; Example 2) and item 3 (estimate all turning points of a W-shaped quartic from its graph, select all of -3, 0, 4, -1.5, 1, -1, 1.5; Example 3), 10 points each; item 4 (fill increasing / decreasing / …",
+      "order": 7,
+      "after": [
+        "cf1f464199a9",
+        "370fc0066f07",
+        "954505e50790",
+        "5913fcefe090",
+        "ca964ee1eef4"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "3490fc4db56b",
+      "type": "anchor",
+      "front": "Quiz item 3 answer?",
+      "back": "Item 2: A, E. Item 3: B, D, G (x = 0, -1.5, 1.5). Item 4: decreasing; negative; increasing; positive. (Verify against the TE key on quiz day.) The short form's item 4 names the turning points a = (5 - sqrt 19)/3 ~ 0.21 and b = (5 + sqrt 19)/3 ~ 3.12 in place of the Savvas 1/3 and 3, which are not exact; the answers …",
+      "order": 8,
+      "after": [
+        "cf1f464199a9",
+        "370fc0066f07",
+        "954505e50790",
+        "5913fcefe090",
+        "ca964ee1eef4"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "71690ea0e39e",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need?",
+      "back": "degree and sign of the leading coefficient decide the two ends (Example 2; Try It 2; IXL XMK)",
+      "order": 9,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "7b1e3f467e08",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (2)",
+      "back": "a turning point is where the graph changes from increasing to decreasing or back; the x-intercepts (choices E and F in item 3) are not turning points (Example 3A; IXL XJU)",
+      "order": 10,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "e0fee8ec186e",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (3)",
+      "back": "read increasing / decreasing left to right between turning points (Example 3A table)",
+      "order": 11,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "055e816d155c",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (4)",
+      "back": "positive / negative means above / below the x-axis between the zeros: no kept Example says it, so the packet's Practice block (a different cubic, the same four sentences) rehearses item 4",
+      "order": 12,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "d9118c80cac5",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Which statement is true of f(x) = x^2 + 6x^3 - 4 + 2x^5? (C, exactly one x-intercept; DOK 2). Needs standard form (Example 1), end behavior (Example 2, kills choice B) and a graph or table of a quintic (Example 3, Try It 3). …",
+      "order": 13,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "afe6cce0dcb4",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "On the short form, graded 10. End behavior of f(x) = x^3 - 7x^2 + 10x, select all (A, E; DOK 1): Example 2 + Try It 2 + XMK. The added degree / leading-coefficient line is unscored work.",
+      "order": 14,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "0d68c7cb1235",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "On the short form, graded 10. Estimate all turning points of a W-shaped quartic from its graph (B, D, G; DOK 2): Example 3A (turning points, relative maximum and minimum) + Try It 3 + XJU.",
+      "order": 15,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "c13fd97b8bf2",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "On the short form, +5 bonus. Increasing / decreasing / positive / negative interval sentences from the graph of f(x) = -x^3 + 5x^2 - 2x - 8 (decreasing; negative; increasing; positive; DOK 2): Example 3A for increasing / decreasing, the packet's Practice block for positive / negative (that half is Example 4 content, …",
+      "order": 16,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "baa85db2a677",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Not on the short form (full Savvas quiz only). Water tank y = 1.15x^3 - 0.1x^2 + 2: the y-intercept is 2, the volume of water before the faucet is turned on (DOK 2). Example 5 only (cut). If the PLC wants it, one whiteboard round: 'the y-intercept is the value when x = 0'.",
+      "order": 17,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "b164d2f8d238",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Understand End Behavior of Polynomial Functions · DOK 1 · practice 21-23 · Quiz item 2 (graded) and choice B of item 1; the concept summary's GRAPHS panel is this Example's four cases, and the lesson note says end behavior feeds 3-5. …",
+      "order": 18,
+      "after": [
+        "4bc84dbf54d4",
+        "3490fc4db56b"
+      ],
+      "minute": null,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "9eafab25aac8",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Graph a Polynomial Function · DOK 1, 3 · practice 24, 25, 14, 15 · Quiz item 3 (graded: turning points from a graph) and the increasing / decreasing half of item 4; the concept summary's KEY FEATURES (turning point, relative minimum, relative maximum) are defined here, and it is the only kept-candidate Example with …",
+      "order": 19,
+      "after": [
+        "b164d2f8d238"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "825bcbf6bf95",
+      "type": "cue",
+      "front": "Example 2 · Connect representations: What differences and similarities do you notice between the graphs?",
+      "back": "Listen for: Two of the graphs are the same shape, but going in different directions. One opens upward, and one opens downward.",
+      "order": 20,
+      "after": [
+        "b164d2f8d238"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_3-1_TE.tex",
+          "anchor": 2,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "15: 120, Understand \\& Apply",
+          "item": 0,
+          "line": 234
+        },
+        "promptKey": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "faf4196a47de",
+      "type": "cue",
+      "front": "Example 2 · Connect representations: How does each feature describe the end behavior of the graphs?",
+      "back": "Listen for: The degree of the polynomial determines the shape of the graph. The sign of the leading coefficient affects the orientation of the graph.",
+      "order": 21,
+      "after": [
+        "825bcbf6bf95"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_3-1_TE.tex",
+          "anchor": 2,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "15: 120, Understand \\& Apply",
+          "item": 1,
+          "line": 236
+        },
+        "promptKey": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "7aafa0556b5f",
+      "type": "trap",
+      "front": "Example 2 · Common error: What error should I watch for, and how does the TE respond?",
+      "back": "Try It! 2 Students may incorrectly define the greatest coefficient as the leading coefficient. Remind students to rewrite the polynomial, reordering the terms so the exponents are in descending order.",
+      "order": 22,
+      "after": [
+        "faf4196a47de"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "teaching": {
+        "example": 2,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_3-1_TE.tex",
+          "anchor": 2,
+          "category": "CommonError",
+          "block": 0,
+          "page": "15: 120, Understand \\& Apply",
+          "item": 0,
+          "line": 283
+        },
+        "promptKey": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c77c2a3124ee",
+      "type": "cue",
+      "front": "Example 2 · Extend thinking: Which term has the greatest effect on the output of the functions?",
+      "back": "Listen for: The term with the highest degree has the greatest effect on the final output of the functions.",
+      "order": 23,
+      "after": [
+        "7aafa0556b5f"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_3-1_TE.tex",
+          "anchor": 2,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "15: 120, Understand \\& Apply",
+          "item": 0,
+          "line": 298
+        },
+        "promptKey": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "20d99f214427",
+      "type": "cue",
+      "front": "Example 2 · Extend thinking: Which coefficient has the most influence on the output of the functions?",
+      "back": "Listen for: Since the leading coefficient belongs to the term with the greatest degree, it has the most influence on the functions' output; therefore, it will also have the most influence on the graph.",
+      "order": 24,
+      "after": [
+        "c77c2a3124ee"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.RtIExtend[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_3-1_TE.tex",
+          "anchor": 2,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "15: 120, Understand \\& Apply",
+          "item": 1,
+          "line": 300
+        },
+        "promptKey": "examples[n=2].teacherPrompts.RtIExtend[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "3624071a1595",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: What can be determined from looking at the polynomial function before graphing?",
+      "back": "Listen for: The leading coefficient is negative, and the degree is even; therefore, the y-values will decrease as the x-values go to negative infinity, and the y-values will decrease as the x-values go to positive infinity.",
+      "order": 25,
+      "after": [
+        "9eafab25aac8"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_3-1_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "16: 121, Understand \\& Apply",
+          "item": 0,
+          "line": 306
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "dc3a756dbd79",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: How is the table helpful when sketching the graph of a polynomial function? What points are important?",
+      "back": "Listen for: The table is used to help determine the behavior of the graph that occurs between the ends. The turning points are important points.",
+      "order": 26,
+      "after": [
+        "3624071a1595"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_3-1_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "16: 121, Understand \\& Apply",
+          "item": 1,
+          "line": 308
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "197355271027",
+      "type": "cue",
+      "front": "Example 3 · Check student thinking: How can you identify the turning points of the graph?",
+      "back": "Listen for: You can use a table to find where the values change from increasing to decreasing.",
+      "order": 27,
+      "after": [
+        "dc3a756dbd79"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_3-1_TE.tex",
+          "anchor": 3,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "16: 121, Understand \\& Apply",
+          "item": 0,
+          "line": 364
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "24e7a5566431",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "An analyst predicts the function f(x) = -2x^5 + 6x^4 - x^3 + 5x^2 + 6x + 50 will give a new company's revenue after x years. Should the CEO expect the company to be successful? Explain.",
+      "order": 28,
+      "after": [
+        "9eafab25aac8"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "6a2cb9ab2415",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "No; the end behavior of the function as x approaches infinity is negative infinity (degree 5, odd; leading coefficient -2, negative), so the model predicts the revenue earned by the company will become negative. …",
+      "order": 29,
+      "after": [
+        "9eafab25aac8"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "7762aed3b6a5",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Consider functions of the form f(x) = x^n, where n is a positive integer.",
+      "order": 30,
+      "after": [
+        "6bd7d7a7e4c9"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "c9095cdf51ad",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Graph f(x) = x^n for n = 1, 3, and 5. Look at the graphs in Quadrant I. As the exponent increases, what is happening to the graphs? Which quadrants do the graphs pass through? (Steeper; Quadrants I and III.)",
+      "order": 31,
+      "after": [
+        "7762aed3b6a5"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "ae6191673fee",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Look for Relationships: now graph f(x) = x^n for n = 2, 4, and 6. What happens to these graphs in Quadrant I as the exponent increases? Which quadrants do the graphs pass through? (Steeper; Quadrants I and II.)",
+      "order": 32,
+      "after": [
+        "7762aed3b6a5"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "1207f4ee70a2",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Write two equations in the form f(x) = x^n with graphs that you predict are in Quadrants I and II, and two with graphs in Quadrants I and III. Use graphing technology to test your predictions. (For example x^6, x^8; x^7, x^9.)",
+      "order": 33,
+      "after": [
+        "7762aed3b6a5"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "1a1ee1e9d3ab",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What do you know about the effect of exponents on negative and positive numbers? → A negative number raised to an even power gives a positive product; raised to an odd power, the product stays negative.",
+      "order": 34,
+      "after": [
+        "7762aed3b6a5"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "32cd53a34eed",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "What general observation can you make about the graphs with exponents that are odd numbers? → They start at the bottom left, in Quadrant III, and move to the top right, in Quadrant I.",
+      "order": 35,
+      "after": [
+        "1a1ee1e9d3ab"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "2ee0d387ff64",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Graph f(x) = -x^n for n = 2, 3, 4, and 5. What happens to the graphs and the range of each function when -1 is the coefficient of x? → The graph is reflected across the x-axis. For n = 3 or 5 the range is unchanged; for n = 2 or 4 it changes from real numbers >= 0 to real numbers <= 0.",
+      "order": 36,
+      "after": [
+        "32cd53a34eed"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "4dadfc6f452c",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "What generalizations can be made about how specific features of equations cause specific behaviors in the graphs? …",
+      "order": 37,
+      "after": [
+        "2ee0d387ff64"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "7cdf36a13a80",
+      "type": "cue",
+      "front": "Habits of Mind, Construct Arguments: ask?",
+      "back": "Compare the end behavior of f(x) = x^n for n = 1, 3, 5 with n = 2, 4, 10. Write a general statement comparing odd and even exponents. → When n is odd, the sign of the y-values differs as x approaches positive or negative infinity; when n is even, the sign is the same.",
+      "order": 38,
+      "after": [
+        "4dadfc6f452c"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "1e3e2cc5f608",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The printed 'becomes steeper' describes the graphs outside -1 < x < 1; between 0 and 1 the higher powers are flatter (the TE notes this). …",
+      "order": 39,
+      "after": [
+        "7762aed3b6a5"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "f29943d852d5",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "XMK Match polynomial functions and graphs using end behavior",
+      "order": 40,
+      "after": [
+        "b164d2f8d238"
+      ],
+      "minute": null,
+      "source": "ixl.XMK"
+    },
+    {
+      "id": "b598eeaabe66",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "XJU Match polynomial functions and graphs",
+      "order": 41,
+      "after": [
+        "9eafab25aac8"
+      ],
+      "minute": null,
+      "source": "ixl.XJU"
+    }
+  ]
+}

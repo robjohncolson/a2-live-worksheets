@@ -1,0 +1,726 @@
+{
+  "lesson": "3-5",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How is the Zero Product Property helpful when graphing a polynomial function?",
+      "answer": "It helps you identify ordered pairs that are on the graph and determine endpoints of intervals.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Zeros to Graph a Polynomial Function Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "61: 150",
+        "item": 0,
+        "line": 174
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How does the number of real zeros affect the shape of the graph?",
+      "answer": "The graph of the function only crosses the (x)-axis one time.",
+      "variant": "additional",
+      "notes": [
+        "Additional Examples are available at SavvasRealize.com. Go back. ESSENTIAL QUESTION. SOLUTION."
+      ],
+      "context": {
+        "text": "Additional Example 1 Sketch the graph of the function by finding the zeros. (f(x)=x^3-3x^2+16x-48) (f(x)=x^3-3x^2+16x-48) (=(x-3)(x^2+16)) Zero at (x=3). Example 1 Students sketch the graph of a cubic function with only one real zero.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Orange increasing cubic with one real x-intercept at 3 marked by a dot; x labels -2 and 4, y labels 50 and -50, origin O; graph of x cubed minus 3x squared plus 16x minus 48."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "61: 150",
+        "item": 0,
+        "line": 186
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do the values of the positive (x)-intercepts represent in this context?",
+      "answer": "The values represent the break-even points where the company would neither lose money nor make a profit.",
+      "variant": "additional",
+      "notes": [
+        "Go back. ESSENTIAL QUESTION. SOLUTION."
+      ],
+      "context": {
+        "text": "Additional Example 4 A company manufactures and sells Adirondack chairs. The company's profit (P), in thousands of dollars earned, is a function of the number of chairs sold, (x), measured in thousands. The profit is modeled by the function: (P(x)=-x^3+2x^2+29x-30) What do the zeros of the function tell you about the number of chairs that the company should produce? Based on the graph of the function, the zeros are at (-5), 1, and 6. When (P(x)) is positive, the company earns a profit. The function is positive on (x<-5), and (1<x<6). Since the company cannot produce a negative amount of chairs, disregard values for (x) less than (-5). So the company should make between 1,000 and 6,000 chairs to make a profit. Example 4 Students interpret the positive zeros of a polynomial function.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Orange cubic with negative leading coefficient crossing x-axis at -5, 1, 6; x labels -6, -4, -2, O, 2, 4, 6; y labels 100, 50, -100; local minimum left of y-axis and local maximum near x=4."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "61: 150",
+        "item": 0,
+        "line": 201
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What step is important before sketching the graph of each function?",
+      "answer": "Factor each function to find the zeros of the function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "62: 151",
+        "item": 0,
+        "line": 237
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about each graph in relation to the polynomial function it represents?",
+      "answer": "The number of unique factors of the polynomial function is the same as the number of times that its graph crosses or is tangent to the (x)-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Understand How a Multiple Zero Can Affect a Graph Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "62: 151",
+        "item": 0,
+        "line": 243
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How does the term multiplicity of a zero relate to multiplication?",
+      "answer": "The multiplicity of a zero is the number of times that the factor is multiplied in the polynomial function.",
+      "variant": "example",
+      "notes": [
+        "Example 2 is Powered by Desmos. Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Understand How a Multiple Zero Can Affect a Graph Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "62: 151",
+        "item": 1,
+        "line": 245
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What do you know about the signs of the (y)-values of the points in the intervals on each side of a zero whose multiplicity is even?",
+      "answer": "The signs are the same.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "62: 151",
+        "item": 0,
+        "line": 274
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What does it mean for a number to be even? Odd?",
+      "answer": "divisible by 2; not divisible by 2",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 0,
+        "line": 285
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "Name one way to remember that when a zero is repeated an odd number of times, the graph crosses over the (x)-axis.",
+      "answer": "Odd and over both start with o.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 1,
+        "line": 287
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Name one way to remember that when a zero is repeated an even number of times, the graph does not cross the (x)-axis.",
+      "answer": "Even ends with an n for not cross.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 2,
+        "line": 289
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "In each function, what is the multiplicity of (-2)?",
+      "answer": "1",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 3,
+        "line": 292
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "What happens to each graph at (x=-2)?",
+      "answer": "It crosses the (x)-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 4,
+        "line": 293
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "In which functions is the multiplicity of 1 odd?",
+      "answer": "the two functions on the left",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 5,
+        "line": 294
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "What happens to the graphs at (x=1) when the multiplicity of 1 is odd?",
+      "answer": "It crosses the (x)-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 6,
+        "line": 295
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[7]",
+      "kind": "question",
+      "question": "In which functions is the multiplicity of 1 even?",
+      "answer": "the two functions on the right",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 7,
+        "line": 296
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[8]",
+      "kind": "question",
+      "question": "What happens to the graphs at (x=1) when the multiplicity of 1 is even?",
+      "answer": "It is tangent to the (x)-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 8,
+        "line": 297
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[9]",
+      "kind": "question",
+      "question": "In your journals, write definitions for multiple, multiply, and multiplicity in your own words and use each term in a sentence.",
+      "answer": "Check students' work.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 9,
+        "line": 299
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[10]",
+      "kind": "question",
+      "question": "Write a paragraph using ((x+4)), ((x-1)), multiple, and multiply to explain the meaning of multiplicity.",
+      "answer": "In the function (f(x)=(x+4)^2(x-1)^3), the factors ((x+4)) and ((x-1)) occur multiple times. The factor ((x+4)) is multiplied by itself, so the multiplicity of (-4) is two. The factor ((x-1)) occurs three times, so the multiplicity of 1 is three.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 2. SPEAKING: BEGINNING Have students discuss the meanings of odd and even. Then discuss ways to remember how the number of times a zero is repeated affects the graph of a polynomial function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "62: 151",
+        "item": 10,
+        "line": 301
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the graph that helps in determining the zeros of the function?",
+      "answer": "The graph only crosses the (x)-axis once and does not have a turning point on the (x)-axis, so there is only one real zero, and the multiplicity of that zero is odd.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find Real and Complex Zeros Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "62: 151",
+        "item": 0,
+        "line": 308
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why is it helpful to use synthetic division to find a zero of a function?",
+      "answer": "If you use synthetic division, and there is no remainder, then the number you divided by is a zero of the function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find Real and Complex Zeros Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "62: 151",
+        "item": 1,
+        "line": 310
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the graph of the function in part (a)?",
+      "answer": "The function crosses the (x)-axis once. It appears to have a zero at (x=3).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "63: 152",
+        "item": 0,
+        "line": 349
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[1]",
+      "kind": "question",
+      "question": "Are there any types of functions where the function values change signs without intersecting the (x)-axis?",
+      "answer": "Yes, a function that is not continuous, such as a piecewise step function, can change signs without having a zero on the (x)-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "63: 152",
+        "item": 1,
+        "line": 351
+      }
+    },
+    {
+      "example": 3,
+      "category": "CommonError",
+      "key": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Students may state that (x=3) is the only zero of the function. Remind students that the graph only shows real zeros, so they also need to find the complex zeros of the function using the Quadratic Formula.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 3,
+        "category": "CommonError",
+        "block": 0,
+        "page": "63: 152",
+        "item": 0,
+        "line": 354
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why is it important to think about the domain of the function before starting?",
+      "answer": "Because this is a real-life example, there may be values that mathematically satisfy the equation, but do not make sense in the context of the problem.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find the Polynomial Model Implement Tasks that Promote Reasoning and Problem Solving",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "63: 152",
+        "item": 0,
+        "line": 371
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Why would only discrete values greater than 0 be in the domain of this function?",
+      "answer": "The context of this function is selling lamps. You cannot sell partial lamps or negative lamps, so only values greater than 0 that represent a whole number of lamps make sense in this problem.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find the Polynomial Model Implement Tasks that Promote Reasoning and Problem Solving",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "63: 152",
+        "item": 1,
+        "line": 373
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "kind": "question",
+      "question": "What do the zeros represent in the context of the problem?",
+      "answer": "The zeros (x=3) and (x=10) are points where the company's profit is 0. The zero (x=-2) has no meaning in this context because the company cannot sell a negative number of lamps.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find the Polynomial Model Implement Tasks that Promote Reasoning and Problem Solving",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "63: 152",
+        "item": 2,
+        "line": 375
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How do you think the new maximum profit will compare to the maximum profit in the example?",
+      "answer": "Because the cost of the materials is decreasing, the maximum profit will be greater.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "64: 153",
+        "item": 0,
+        "line": 415
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How could you find the roots of (P(x)) if you didn't recognize the identity (x^3+3x^2y+3xy^2+y^3=(x+y)^3)?",
+      "answer": "Use a calculator to graph the function (P(x)) and see where the graph appears to cross the (x)-axis. Then use synthetic division to test whether that value is a root and find another factor in order to simplify (P(x)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve Polynomial Equations Build Procedural Fluency from Conceptual Understanding",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "64: 153",
+        "item": 0,
+        "line": 428
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "In part a, what do you notice about both sides of the equation?",
+      "answer": "Both sides of the equation have an (x^3)-term, which you can subtract from both sides before solving.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "65: 154",
+        "item": 0,
+        "line": 455
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why is the solution of the inequality the same as the intervals where the graph of (P(x)) is below the (x)-axis?",
+      "answer": "The inequality is (x^3-16x<0). You are trying to find the values of (x^3-16x) that are less than zero. The graph of (P(x)) shows all values of (x^3-16x). The intervals where the graph is below the (x)-axis are the same as the solutions of (x^3-16x<0) because the (y)-value of any point below the (x)-axis is less than 0.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a Polynomial Inequality by Graphing Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "65: 154",
+        "item": 0,
+        "line": 461
+      }
+    },
+    {
+      "example": 6,
+      "category": "RtISupport",
+      "key": "examples[n=6].teacherPrompts.RtISupport[0].guidance",
+      "kind": "support",
+      "question": "How does the TE support students who struggle?",
+      "answer": "Students may struggle with solving cubic inequalities. Have students practice solving quadratic inequalities. 1. What values of (x) are solutions to the inequality (x^2-12x+35<0)? 2. What values of (x) are solutions to the inequality (2x^2-5x-3>0)? 3. What values of (x) are solutions to the inequality (9x^2-9x-4<0)? 4. What values of (x) are solutions to the inequality (x^2+9x+18>0)?",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_3-5_TE.tex",
+        "anchor": 6,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "65: 154",
+        "item": 0,
+        "line": 495
+      }
+    }
+  ]
+}

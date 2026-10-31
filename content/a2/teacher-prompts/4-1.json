@@ -1,0 +1,743 @@
+{
+  "lesson": "4-1",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the pattern?",
+      "answer": "As (x) increases, (y) decreases proportionally, and the product of each (xy) is 12.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Identify Inverse Variation: Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 181 Understand & Apply",
+        "item": 0,
+        "line": 173
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How can you confirm that a table of values represents an inverse variation using multiplication?",
+      "answer": "A table of values represents an inverse variation when there is a constant product (xy) for all ordered pairs.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Identify Inverse Variation: Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 181 Understand & Apply",
+        "item": 1,
+        "line": 175
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "What does it mean if the product of (xy) is not constant within a table?",
+      "answer": "The relationship between (x) and (y) does not vary inversely.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Identify Inverse Variation: Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 181 Understand & Apply",
+        "item": 2,
+        "line": 177
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How does this inverse variation differ from others you have seen?",
+      "answer": "The process is the same, but this example involves multiplying fractions.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 1 John draws five rectangles, in which (x) represents the length and (y) represents the width. What are the areas of his rectangles? Does this data represent an inverse variation? Why or why not? x | (1/2) | 1 | 3 | 5 | 12; y | 15 | (71/2) | (21/2) | (11/2) | (5/8) The area of each rectangle is (71/2) square units. The data does represent an inverse variation because as (x) increases, (y) decreases proportionally, creating a constant of variation where (xy=71/2). Example 1 Help students explore inverse variation further with an example that includes fractions, to help them understand that the coordinates of an inverse variation can be any real number. Printed any real number overlooks the exclusion of zero for a nonzero constant of variation.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "14: 181 Understand & Apply",
+        "item": 0,
+        "line": 219
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you rewrite the equation for an inverse variation in a different form to make it easier to work with when using fractions?",
+      "answer": "Since fractions represent division, the equation can be written in the form (y=k÷ x).",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 2 In an inverse variation, (x=2/3) when (y=5/6). Write an equation to represent the inverse variation. Then, find the value of (y) when (x=1/3). (xy=k) ((2/3)(5/6)=5/9) (xy=5/9) Then, if (x=1/3) (y=k/x) (y=(5/9)/(1/3)) (y=(5/9)(3/1)) (y=5/3) (xy=5/9); (y=5/3) Example 2 Help students understand the process of setting up the inverse variation when (x), (y), and (k) are not whole numbers.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 181 Understand & Apply",
+        "item": 0,
+        "line": 235
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Is it necessary to check for more products that are constant after identifying two that are not constant?",
+      "answer": "No; if any two have a product that is not constant, the table of values does not represent an inverse variation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "15: 182 Understand & Apply",
+        "item": 0,
+        "line": 256
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How does the constant of variation (k) help determine the values of (x) and (y)?",
+      "answer": "The constant of variation (k) is the product of (x) and (y); therefore, any two values that have a product equal to the constant of variation satisfy the inverse relationship.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "15: 182 Understand & Apply",
+        "item": 0,
+        "line": 271
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What are two more pairs of values for (x) and (y) that would fit the relationship?",
+      "answer": "When (x=2), (y=15); when (x=1/2), (y=60). Any two numbers that have a product of 30 fit the relationship.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "15: 182 Understand & Apply",
+        "item": 1,
+        "line": 273
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "With an inverse variation, can you find an unknown value for (x) or (y) without finding (k) first?",
+      "answer": "No; the values of (x) and (y) are dependent upon (k).",
+      "variant": "example",
+      "notes": [
+        "Printed No overlooks solving with a proportion directly from known pairs."
+      ],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "15: 182 Understand & Apply",
+        "item": 0,
+        "line": 301
+      }
+    },
+    {
+      "example": 2,
+      "category": "CommonError",
+      "key": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Students may write the equation (y/x=3) to represent the inverse variation and calculate (y=45). Have students look at the two forms of an inverse variation and compare that to the equation they wrote. Ask them how their equation differs from these forms of the inverse variation.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 2,
+        "category": "CommonError",
+        "block": 0,
+        "page": "15: 182 Understand & Apply",
+        "item": 0,
+        "line": 305
+      }
+    },
+    {
+      "example": 2,
+      "category": "HabitsOfMind",
+      "key": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "For rectangles that have a constant perimeter, the length increases as the width decreases. Is the relationship between the length and width an inverse variation? Explain.",
+      "answer": "No; the relationship between length and width is not an inverse variation because you add twice the length and twice the width to find the perimeter. Inverse variations involve variables that are multiplied and divided.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Construct Arguments Use with EXAMPLES 1 & 2.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 2,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "15: 182 Understand & Apply",
+        "item": 0,
+        "line": 311
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What information about the inverse variation model is given that will be used to set up an equation?",
+      "answer": "The model explains that a certain length of bouzouki string, (s), will produce a certain frequency, (f), from which you can find the constant of variation, their product.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use an Inverse Variation Model: Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "16: 183 Understand & Apply",
+        "item": 0,
+        "line": 317
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Using the inverse variation model, can you find the frequency for any string length?",
+      "answer": "Yes; if you know the values of (k) and (s), then any frequency can be found using the equation (f=k/s).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use an Inverse Variation Model: Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "16: 183 Understand & Apply",
+        "item": 1,
+        "line": 319
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How can you write an inverse variation model to represent the situation being described?",
+      "answer": "Since the temperature determines the time, ((degrees)(time)=k), creating the inverse variation model (t=k/d).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "16: 183 Understand & Apply",
+        "item": 0,
+        "line": 347
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "On each spoke, write something that occurs in cycles.",
+      "answer": "Samples: the Olympics, full moon, seasons, school year, cell phone bills, life cycle of a butterfly",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3. WRITING BEGINNING Cycle means any complete round, as in a series of occurrences that repeats; or as in a recurring period of time, such as the cycle of months in a year. Have students draw a round wheel with spokes, or lines drawn from the center of the wheel to the circumference.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 183 Understand & Apply",
+        "item": 0,
+        "line": 357
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What is a cycle in regards to a guitar string?",
+      "answer": "the number of times it vibrates back and forth",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3. WRITING BEGINNING Cycle means any complete round, as in a series of occurrences that repeats; or as in a recurring period of time, such as the cycle of months in a year. Have students draw a round wheel with spokes, or lines drawn from the center of the wheel to the circumference.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 183 Understand & Apply",
+        "item": 1,
+        "line": 359
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Although the definitions are similar, which one best describes the way frequency is used in the example?",
+      "answer": "2",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3. WRITING BEGINNING Cycle means any complete round, as in a series of occurrences that repeats; or as in a recurring period of time, such as the cycle of months in a year. Have students draw a round wheel with spokes, or lines drawn from the center of the wheel to the circumference.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 183 Understand & Apply",
+        "item": 2,
+        "line": 362
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What affects the frequency of sounds from a guitar?",
+      "answer": "Samples: the string length; the tension of the string",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3. WRITING BEGINNING Cycle means any complete round, as in a series of occurrences that repeats; or as in a recurring period of time, such as the cycle of months in a year. Have students draw a round wheel with spokes, or lines drawn from the center of the wheel to the circumference.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 183 Understand & Apply",
+        "item": 3,
+        "line": 364
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Why is this situation an example of an inverse variation?",
+      "answer": "As one variable increases, the other decreases proportionally.",
+      "variant": "example",
+      "notes": [
+        "Printed tapping activity does not specify a fixed number of taps; tap count and elapsed time at a fixed rate vary directly."
+      ],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3. WRITING BEGINNING Cycle means any complete round, as in a series of occurrences that repeats; or as in a recurring period of time, such as the cycle of months in a year. Have students draw a round wheel with spokes, or lines drawn from the center of the wheel to the circumference.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 183 Understand & Apply",
+        "item": 4,
+        "line": 367
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the relationship between the (x)- and (y)-values?",
+      "answer": "They have a product of 1, which means that they are reciprocals.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph the Reciprocal Function: Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "17: 184 Understand & Apply",
+        "item": 0,
+        "line": 374
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How does the reciprocal function relate to inverse variation?",
+      "answer": "The reciprocal function is a set of (x)- and (y)-values that are reciprocals. This represents an inverse variation because the constant product is 1.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph the Reciprocal Function: Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "17: 184 Understand & Apply",
+        "item": 1,
+        "line": 376
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "Why is the domain and range of the inverse function restricted?",
+      "answer": "An inverse function will have a denominator that is a variable; therefore, any number that causes that denominator to be zero will be undefined for that (x)-value. Also, the function cannot equal zero if the numerator is a nonzero real number.",
+      "variant": "example",
+      "notes": [
+        "Printed inverse function here refers to the reciprocal function, not inverse functions in general."
+      ],
+      "context": {
+        "text": "Graph the Reciprocal Function: Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "17: 184 Understand & Apply",
+        "item": 2,
+        "line": 378
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How does the graph of (f(x)=1/x) compare with the graph of (g(x)=10/x)?",
+      "answer": "The graph of (g(x)) is a vertical stretch of the graph of (f(x)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "17: 184 Understand & Apply",
+        "item": 0,
+        "line": 409
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "What happens to the (y)-values as (x) approaches 0?",
+      "answer": "The (y)-values increase.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students Students may struggle to understand the concept of an asymptote and how a function can continually approach a line but never reach it. Use a table of values to graph the function (y=2/x) for (x=1/6,1/4,1/2,1,2,3,4).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "17: 184 Understand & Apply",
+        "item": 0,
+        "line": 416
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "What do you think the graph looks like for (x)-values between 0 and (1/6)?",
+      "answer": "Since lesser (x)-values have greater (y)-values, the points with (x)-values between 0 and (1/6) will be higher up on the graph, making this part of the graph look almost vertical.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students Students may struggle to understand the concept of an asymptote and how a function can continually approach a line but never reach it. Use a table of values to graph the function (y=2/x) for (x=1/6,1/4,1/2,1,2,3,4).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "17: 184 Understand & Apply",
+        "item": 1,
+        "line": 418
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].questions[2]",
+      "kind": "question",
+      "question": "What does your calculator show when you use zero as an (x)-value? Why?",
+      "answer": "An error occurs because (2/0) is undefined.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students Students may struggle to understand the concept of an asymptote and how a function can continually approach a line but never reach it. Use a table of values to graph the function (y=2/x) for (x=1/6,1/4,1/2,1,2,3,4).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "17: 184 Understand & Apply",
+        "item": 2,
+        "line": 420
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How can you recognize and describe a translation on a coordinate plane?",
+      "answer": "A translation is a shift from an original position that is described by horizontal movement and/or vertical movement.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph Translations of the Reciprocal Function: Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "18: 185 Understand & Apply",
+        "item": 0,
+        "line": 426
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What is a good point of reference when graphing a translation?",
+      "answer": "The parent function (f(x)=1/x) has asymptotes that intersect at (0,0). Therefore, that is a good point to count from when identifying the asymptotes of a translation as well as the points of the graph.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph Translations of the Reciprocal Function: Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "18: 185 Understand & Apply",
+        "item": 1,
+        "line": 428
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What can you use to determine the specific transformation in order to identify the equations of the asymptotes, and how does this relate to the domain and the range?",
+      "answer": "For the function in (f(x)=1/(x-h)+k) form, (h,k) is the point of intersection of the asymptotes. Therefore, (x=h) and (y=k) are the equations of the asymptotes. The values of (h) and (k) also define the limitations on the domain and range.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "18: 185 Understand & Apply",
+        "item": 0,
+        "line": 456
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[1]",
+      "kind": "question",
+      "question": "How can you define (h,k) in translations of the reciprocal function?",
+      "answer": "The coordinate (h,k) is the intersection of the horizontal and vertical asymptotes.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "18: 185 Understand & Apply",
+        "item": 1,
+        "line": 458
+      }
+    },
+    {
+      "example": 5,
+      "category": "HabitsOfMind",
+      "key": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "A translation of the reciprocal function has a vertical asymptote at (x=5). What is a possible equation for the function?",
+      "answer": "Sample: (f(x)=1/(x-5))",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Communicate Precisely Use with EXAMPLES 2, 3, & 5.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 5,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "18: 185 Understand & Apply",
+        "item": 0,
+        "line": 463
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtIExtend",
+      "key": "examples[n=5].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "How can you use a graph to identify the translation from one function to another?",
+      "answer": "Graph both functions by identifying their translation from the parent function. Then describe the translation from the first function to the second function detailing the horizontal and vertical shifts.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking Students that grasp the concept of translations can take their understanding a step further by identifying translations from one function to another. Describe the translation that occurs from the function (f(x)=1/(x-6)+4) to the function (g(x)=1/(x+3)-9).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-1_TE.tex",
+        "anchor": 5,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "18: 185 Understand & Apply",
+        "item": 0,
+        "line": 470
+      }
+    }
+  ]
+}

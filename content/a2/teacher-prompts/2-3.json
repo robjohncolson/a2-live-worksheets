@@ -1,0 +1,652 @@
+{
+  "lesson": "2-3",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How is using the Distributive Property helpful when factoring a quadratic expression?",
+      "answer": "Factoring a quadratic expression is using the Distributive Property in reverse, so you can use this property to check your work.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Factor a Quadratic Expression. Pose Purposeful Questions Part A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "37: 76, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 158
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How can you verify that you have used the correct factors of the product of the leading coefficient and the constant to create the middle terms that will be used to factor by grouping?",
+      "answer": "The factors of the product of the leading coefficient and the constant must also have a sum equal to the value of the middle term of the trinomial.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Factor a Quadratic Expression. Pose Purposeful Questions Part A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "37: 76, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 161
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How can you check the factors and verify they are in the correct order?",
+      "answer": "Multiply the factors using the Distributive Property.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples. ADDITIONAL EXAMPLE 1 Additional Examples are available at SavvasRealize.com. Factor the expression (6x^2-2x-28). (2(3x^2-x-14)) (2(3x-7)(x+2)) (2(3x-7)(x+2)) Example 1 Provide students with more practice factoring quadratic functions when the leading coefficient is not 1 with this additional example.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "37: 76, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 199
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Without graphing this quadratic function, how do you know which zero is a possible solution?",
+      "answer": "The width cannot be a negative value, so you can disregard a negative zero.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4 The length of a rectangle is 5 in. longer than its width and the rectangle has an area of 50 in.^2. What are the dimensions of the rectangle? (w(w+5)=50) (w^2-5w=50) (w^2+5w-50=0) ((w+10)(w-5)=0) (w+10=0) or (w-5=0) (w=-10) or (w=5) Since (w) represents the width of a rectangle, it cannot be negative. So, (w=5). The dimensions of the rectangle are 5 in. and 10 in. 5 in. and 10 in. Printed second line uses (w^2-5w=50); likely (w^2+5w=50), consistent with adjacent lines. Example 4 Allow students to experience a problem with a new context that requires them to evaluate the reasonableness of their solutions with this additional example.",
+        "figures": [
+          {
+            "kind": "diagram",
+            "description": "Rectangle dimension diagram: left vertical side labeled (w), bottom horizontal side labeled (w+5), interior labeled (A=50) in.^2. Pale lines form the left and bottom sides; top and right not visible in the printed screenshot."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "37: 76, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 216
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How does the graph help you verify the values of the zeros of a function?",
+      "answer": "The zeros of the function are the values of (x) when (y=0); therefore, they are the (x)-intercepts.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Relate Factors to Zeros of a Function Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "38: 77, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 224
+      }
+    },
+    {
+      "example": 2,
+      "category": "CommonError",
+      "key": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 2 Students may think that the value of the (y)-intercept, 20, is also a zero of the function. Have them substitute the zeros of the function into the original function and the factored form of the function to check their answers.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 2,
+        "category": "CommonError",
+        "block": 0,
+        "page": "38: 77, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 246
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why is it important to write the equation in factored form to solve?",
+      "answer": "The Zero Product Property states that if (ab=0), then (a=0) or (b=0). By writing the equation in factored form, you can find the value of the variable that makes each factor equal zero.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve Quadratic Equations by Factoring. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "38: 77, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 258
+      }
+    },
+    {
+      "example": 1,
+      "category": "RtISupport",
+      "key": "examples[n=1].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "After using the Distributive Property to expand the product, what do you notice about the two middle terms of the quadratic expression?",
+      "answer": "The coefficients of the two middle terms have the same product as the leading coefficient and the constant.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 1 Some students may have difficulty factoring quadratic expressions that have a leading coefficient other than 1. Have students practice multiplying binomial expressions. This allows them to work through the process backward and see the connection to the factored form. 3. ((2x-5)(3x+7)) 4. ((5x+3)(x-2))",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 1,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "38: 77, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 278
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Can the equations be solved by factoring if you use the properties of equality to rewrite them with the 0 on the left side of the equation?",
+      "answer": "Yes, the equations could still be solved by factoring if the equations had 0 on the left side, but it would be more difficult because the leading coefficient would be negative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 3 Have students solve more complex quadratic equations that require using the properties of equality to simplify before factoring. Solve the quadratic equations by factoring. 5. (-2x^2-x+12=-3x^2+6x) 6. (8x^2+3x-3=7x^2-5)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "38: 77, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 287
+      }
+    },
+    {
+      "example": 3,
+      "category": "HabitsOfMind",
+      "key": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Error Analysis Anna solved the equation (x^2+8x-20=0) by factoring. She wrote ((x-10)(x+2)=0) and expected the (x)-intercepts of the function (y=x^2+8x-20) to be at -10 and 2. Was she right?",
+      "answer": "No; the factored form of the equation is ((x+10)(x-2)=0). Although the (x)-intercepts are correct, Anna incorrectly applied the Zero Product Property. If she had factored the equation correctly, it is unlikely that she would have found the correct (x)-intercepts.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND Use with EXAMPLES 1, 2, & 3",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 3,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 312
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "Why is it helpful to factor out the GCF as a step in finding the zeros?",
+      "answer": "Factoring out the GCF first will simplify the factoring process.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find the Zeros of a Quadratic Function. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 317
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Why is one of the zeros of the function not a valid solution in the context of the situation",
+      "answer": "The (x)-axis stands for time, and time cannot be negative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find the Zeros of a Quadratic Function. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 319
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What information about the function is given in the first sentence, and why is it important?",
+      "answer": "The (y)-intercept is given as 128 ft. This information is important because it implies that one of the zeros of the quadratic function is negative. Because time cannot be negative, that zero is not a possible solution in the context of the problem.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 345
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What other words mean the same thing as identify in the example?",
+      "answer": "find, determine, tell",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 5 READING BEGINNING Students may have difficulty understanding the task in the example. Break down the word order and usage to help students understand what they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 351
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "Why is the s in interval(s) in parentheses?",
+      "answer": "It is a way to show that there may only be one interval or there may be more than one interval.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 5 READING BEGINNING Students may have difficulty understanding the task in the example. Break down the word order and usage to help students understand what they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 353
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "What other words in the example mean the same thing as on which?",
+      "answer": "where, when",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 5 READING BEGINNING Students may have difficulty understanding the task in the example. Break down the word order and usage to help students understand what they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 2,
+        "line": 355
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "How many cuts did you make?",
+      "answer": "2",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 5 READING BEGINNING Students may have difficulty understanding the task in the example. Break down the word order and usage to help students understand what they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 3,
+        "line": 358
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "How many pieces of ribbon resulted?",
+      "answer": "3",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 5 READING BEGINNING Students may have difficulty understanding the task in the example. Break down the word order and usage to help students understand what they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 4,
+        "line": 360
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "How does this demonstration relate to the example?",
+      "answer": "It shows how two zeros create three intervals.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 5 READING BEGINNING Students may have difficulty understanding the task in the example. Break down the word order and usage to help students understand what they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 5,
+        "line": 362
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "Trace the graph from left to right, then explain what turn means.",
+      "answer": "to change direction",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 5 READING BEGINNING Students may have difficulty understanding the task in the example. Break down the word order and usage to help students understand what they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 6,
+        "line": 365
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[7]",
+      "kind": "question",
+      "question": "Where would you say this graph turns? Explain.",
+      "answer": "at the vertex; The graph was going down, but at the vertex, it changes direction and starts going up.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 5 READING BEGINNING Students may have difficulty understanding the task in the example. Break down the word order and usage to help students understand what they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 7,
+        "line": 367
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[8]",
+      "kind": "question",
+      "question": "Is that how turn is used in the example?",
+      "answer": "No; The example describes how the (y)-values of the graph turn from positive to negative, or from negative to positive, when the graph crosses over the (x)-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 5 READING BEGINNING Students may have difficulty understanding the task in the example. Break down the word order and usage to help students understand what they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "39: 78, Step 2 Understand & Apply",
+        "item": 8,
+        "line": 369
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How can a function be both positive and negative? Explain algebraically and graphically.",
+      "answer": "A function can be positive for some values and negative for others. Algebraically: A function is positive when an (x)-value gives a positive (y)-value and negative when an (x)-value gives a negative (y)-value. Graphically: When the graph is above the (x)-axis, it is positive, and when it is below the (x)-axis, it is negative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Determine Positive or Negative Intervals Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "40: 79, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 377
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Why is it important to identify positive and negative intervals of a function?",
+      "answer": "Understanding when a function is positive and when it is negative can help with interpreting solutions of real-world contexts.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Determine Positive or Negative Intervals Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "40: 79, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 379
+      }
+    },
+    {
+      "example": 5,
+      "category": "HabitsOfMind",
+      "key": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Construct Arguments Is it always true that the (y)-values of a quadratic function have opposite signs on either side of a zero of the function? Explain why or give a counter-example.",
+      "answer": "No; for the equation (y=x^2), all (y) values are nonnegative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND Use with EXAMPLES 4 & 5",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 5,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "40: 79, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 411
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why is it necessary to use a point other than the (x)-intercepts to write an equation for a parabola?",
+      "answer": "The (x)-intercepts describe where the parabola intersects the (x)-axis, but do not completely describe the entire parabola's behavior. Therefore, you should consider all values of the variables in the vertex form (y=a(x-p)(x-q)).",
+      "variant": "example",
+      "notes": [
+        "Printed answer calls (y=a(x-p)(x-q)) vertex form; likely factored form."
+      ],
+      "context": {
+        "text": "Write the Equation of a Parabola in Factored Form. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 79, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 416
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why are you given 3 points to determine the equation instead of 2?",
+      "answer": "Because the equation is not linear, 3 points are needed to determine the equation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write the Equation of a Parabola in Factored Form. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 79, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 419
+      }
+    },
+    {
+      "example": 6,
+      "category": "HabitsOfMind",
+      "key": "examples[n=6].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Model With Mathematics Is there any other parabola with (x)-intercepts at (-2,0) and (-1,0)? Give an equation or explain why there is no such parabola.",
+      "answer": "Yes; any equation of the form (y=a(x+2)(x+1)), such as (y=5(x+2)(x+1))",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND Use with EXAMPLE 6",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-3_TE.tex",
+        "anchor": 6,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "40: 79, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 441
+      }
+    }
+  ]
+}

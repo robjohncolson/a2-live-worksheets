@@ -1,0 +1,605 @@
+{
+  "lesson": "2-6",
+  "title": "The Quadratic Formula",
+  "nodes": [
+    {
+      "id": "c7a952176876",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How can you use the Quadratic Formula to solve quadratic equations or to predict the nature of their solutions?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "e9bcff662017",
+      "type": "anchor",
+      "front": "Define: discriminant",
+      "back": "for item 4: set h(t) equal to the height, rewrite in standard form, then the discriminant (packet Practice page, TE practice 30-31)",
+      "order": 2,
+      "after": [
+        "c7a952176876"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.discriminant"
+    },
+    {
+      "id": "97352e3e911a",
+      "type": "anchor",
+      "front": "Define: radicand",
+      "back": "a negative radicand gives i: sqrt(-27) = 3i sqrt 3 (Example 1B, Try It 1b; 2-4 skill, warm-up IXL 5VV)",
+      "order": 3,
+      "after": [
+        "c7a952176876"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.radicand"
+    },
+    {
+      "id": "45a66810c7ed",
+      "type": "anchor",
+      "front": "Define: real",
+      "back": "compute only b^2 - 4ac and read >0 / =0 / <0 as two real / one real / two non-real (Example 3, Try It 3; IXL QHK)",
+      "order": 4,
+      "after": [
+        "c7a952176876"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.real"
+    },
+    {
+      "id": "5fba7d7d4a07",
+      "type": "anchor",
+      "front": "Define: non-real",
+      "back": "compute only b^2 - 4ac and read >0 / =0 / <0 as two real / one real / two non-real (Example 3, Try It 3; IXL QHK)",
+      "order": 5,
+      "after": [
+        "c7a952176876"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.non-real"
+    },
+    {
+      "id": "a3f8aaa16a40",
+      "type": "anchor",
+      "front": "Quiz item 1 asks?",
+      "back": "Item 1: solve x^2 + 8x - 6 = 0 with the Quadratic Formula and choose the simplified pair (A 32 +/- 2 sqrt 2; B -4 +/- sqrt 22; C 12 and -1/2; D 4 +/- 2 sqrt 22). Item 3 (also graded): the nature of the roots of 49x^2 - 28x + 4 = 0 (two real, one real, two complex, one complex). …",
+      "order": 6,
+      "after": [
+        "e9bcff662017",
+        "97352e3e911a",
+        "45a66810c7ed",
+        "5fba7d7d4a07"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "8641ac5d5ebb",
+      "type": "anchor",
+      "front": "Quiz item 1 answer?",
+      "back": "Item 1: B, x = -4 +/- sqrt 22 (radicand 64 + 24 = 88 = 4 x 22). Item 3: B, one real root (discriminant 784 - 784 = 0). Item 2: A and C, x = -1 +/- i sqrt 6 (radicand -24). (verify against the TE key on quiz day)",
+      "order": 7,
+      "after": [
+        "e9bcff662017",
+        "97352e3e911a",
+        "45a66810c7ed",
+        "5fba7d7d4a07"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "422203d8bbb0",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need?",
+      "back": "write the equation as ax^2 + bx + c = 0 and name a, b, c with their signs (Example 1; IXL YQH)",
+      "order": 8,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "6b22aae3e9d0",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (2)",
+      "back": "substitute with parentheses, start with -b, simplify the radical (sqrt 88 = 2 sqrt 22, sqrt 124 = 2 sqrt 31) and divide every term by 2a (Example 1A, Try It 1a)",
+      "order": 9,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "9997a0f30b89",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (3)",
+      "back": "a negative radicand gives i: sqrt(-27) = 3i sqrt 3 (Example 1B, Try It 1b; 2-4 skill, warm-up IXL 5VV)",
+      "order": 10,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "d9aa9c52445d",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (4)",
+      "back": "compute only b^2 - 4ac and read >0 / =0 / <0 as two real / one real / two non-real (Example 3, Try It 3; IXL QHK)",
+      "order": 11,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "504ad19f9420",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (5)",
+      "back": "for item 4: set h(t) equal to the height, rewrite in standard form, then the discriminant (packet Practice page, TE practice 30-31)",
+      "order": 12,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "a629f8a0a444",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (6)",
+      "back": "for item 5: set b^2 - 4ac = 0 and solve for b, both signs (Example 3's '= 0' case; one whiteboard round on TE practice 32, 5x^2 + kx + 5 = 0, k = +/-10)",
+      "order": 13,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
+      "id": "3d493ed88700",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Solve x^2 + 8x - 6 = 0 with the Quadratic Formula (real, irrational): Example 1A + Try It 1a + YQH. Proposed graded, 10 points.",
+      "order": 14,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "5314c926f16d",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Select all solutions of x^2 + 2x + 7 = 0 (non-real, -1 +/- i sqrt 6): Example 1B + Try It 1b + YQH (5VV warm-up for sqrt of a negative). Proposed +5 bonus (select-all, like the 1-2 bonus); the teacher may grade it instead of item 1, since the TE's lesson focus is complex solutions.",
+      "order": 15,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "905cae5cfdc1",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Nature of the roots of 49x^2 - 28x + 4 = 0 (discriminant 0, one real root): Example 3 + Try It 3 + QHK. Proposed graded, 10 points.",
+      "order": 16,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "752671cb82cb",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Richard's ball h(t) = -5t^2 + 10t + 6: does it reach 12 m? (discriminant of -5t^2 + 10t - 6 = 0 is -20 < 0, so no; answer D). Taught by Example 4 (cut); rehearsed by the packet's Practice page (TE practice 30-31, Deon's ball) and QHK. Left off the short form.",
+      "order": 17,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "e7a0ae0d29d0",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Values of b that give 27x^2 + bx + 3 = 0 one real solution (b^2 - 324 = 0, b = +/-18; answer A, F). Taught by Example 5 (cut); Example 3's discriminant = 0 case plus one whiteboard round (practice 32) covers it. Left off the short form.",
+      "order": 18,
+      "after": [
+        "a3f8aaa16a40"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "f1b78eb6d77e",
+      "type": "step",
+      "front": "Example 1: ?",
+      "back": "Solve Quadratic Equations (A: 3x^2 - 4x - 9 = 0, real; B: x^2 - 9x + 27 = 0, non-real) · DOK 1, 2, 3 · practice 16-21, 38, 10, 15, 13, 39 · The lesson. Quiz items 1 and 2 are Parts A and B exactly (real irrational pair; non-real pair with i). …",
+      "order": 19,
+      "after": [
+        "a3f8aaa16a40",
+        "8641ac5d5ebb"
+      ],
+      "minute": null,
+      "source": "examples[n=1]"
+    },
+    {
+      "id": "adf238f0f272",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Identify the Number of Real-Number Solutions (three parabolas: two, one, no x-intercepts) · DOK 1-2 · practice 11, 26-29, 37, 14 · Quiz item 3 directly, and the discriminant it introduces is the tool for items 4 and 5 (cut Examples 4 and 5 are this example applied). …",
+      "order": 20,
+      "after": [
+        "f1b78eb6d77e"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "347261101d51",
+      "type": "cue",
+      "front": "Example 1 · Purposeful question: Why must a be a nonzero number in the quadratic equation?",
+      "back": "Listen for: If (a=0), the equation would be linear rather than quadratic.",
+      "order": 21,
+      "after": [
+        "f1b78eb6d77e"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-6_TE.tex",
+          "anchor": 1,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "73: 98 Understand & Apply",
+          "item": 0,
+          "line": 172
+        },
+        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a6bbb90bc35d",
+      "type": "cue",
+      "front": "Example 1 · Purposeful question: What distinguishes real solutions from complex solutions?",
+      "back": "Listen for: Complex solutions contain i, which is equal to (√(-1)). Real solutions may contain a radical, but do not contain an i.",
+      "order": 22,
+      "after": [
+        "347261101d51"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-6_TE.tex",
+          "anchor": 1,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "73: 98 Understand & Apply",
+          "item": 1,
+          "line": 174
+        },
+        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "5af22e02e326",
+      "type": "cue",
+      "front": "Example 1 · Check student thinking: Compare the two equations.",
+      "back": "Listen for: The Quadratic Formula can be used to solve both equations. The first problem has two real solutions, and the second problem has two complex solutions.",
+      "order": 23,
+      "after": [
+        "a6bbb90bc35d"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_2-6_TE.tex",
+          "anchor": 1,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "73: 98 Understand & Apply",
+          "item": 0,
+          "line": 180
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "2ae3bd8591ca",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: If each parabola were reflected over the horizontal line that contains its vertex, how many and what type of roots would each parabola have?",
+      "back": "Listen for: The first parabola would have two complex roots because it would not cross the x-axis. The second would still have one real root because its vertex would still be on the x-axis. The third would have two real roots because it would cross the x-axis in two places.",
+      "order": 24,
+      "after": [
+        "adf238f0f272"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-6_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "75: 100, Understand & Apply",
+          "item": 0,
+          "line": 320
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "1b2c0177d7fd",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: Do you need to solve the equations to determine the number and types of solutions?",
+      "back": "Listen for: No; evaluating the discriminant will reveal the number and types of solutions to a quadratic equation.",
+      "order": 25,
+      "after": [
+        "2ae3bd8591ca"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-6_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "75: 100, Understand & Apply",
+          "item": 1,
+          "line": 322
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "26cde659972c",
+      "type": "trap",
+      "front": "Example 3 · Common error: What error should I watch for, and how does the TE respond?",
+      "back": "Try It! 3 Students may think that when the discriminant is negative, there are no solutions. Remind them that a negative discriminant means there are no real solutions, but there are two complex solutions.",
+      "order": 26,
+      "after": [
+        "1b2c0177d7fd"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+      "teaching": {
+        "example": 3,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_2-6_TE.tex",
+          "anchor": 3,
+          "category": "CommonError",
+          "block": 0,
+          "page": "75: 100, Understand & Apply",
+          "item": 0,
+          "line": 354
+        },
+        "promptKey": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "003f1091c53b",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Seaira wants to use the Quadratic Formula to solve the equation x^4 + 5x^2 - 5 = 0. Is this possible? If so, describe the steps she should follow.",
+      "order": 27,
+      "after": [
+        "adf238f0f272"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "9bb1875a93a8",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "Yes. Treat x^2 as the variable: a = 1, b = 5, c = -5 gives x^2 = (-5 +/- sqrt 45)/2 = (-5 +/- 3 sqrt 5)/2. Then take square roots of each value: x = +/- sqrt((-5 + 3 sqrt 5)/2), about +/-0.92, and x = +/- i sqrt((5 + 3 sqrt 5)/2), about +/-2.42i. …",
+      "order": 28,
+      "after": [
+        "adf238f0f272"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "1afeae8b6ce0",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "You can complete the square to solve the general quadratic equation ax^2 + bx + c = 0 and derive the Quadratic Formula. The eight steps of the derivation are shown, from ax^2 + bx + c = 0 to x = (-b +/- sqrt(b^2 - 4ac))/(2a).",
+      "order": 29,
+      "after": [
+        "c7a952176876"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "157c932302a0",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Construct Arguments: Justify each step in this general solution. (Subtract c; divide by a; add (b/2a)^2 to complete the square; factor and simplify; common denominator; take the square root of each side; subtract b/2a.)",
+      "order": 30,
+      "after": [
+        "1afeae8b6ce0"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "35f6f8d6f250",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. What must be true of the value of b^2 - 4ac if the equation ax^2 + bx + c = 0 has two non-real solutions? If it has just one solution? (Negative for two non-real solutions; zero for one solution.)",
+      "order": 31,
+      "after": [
+        "1afeae8b6ce0"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "9b01f6ba3175",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "Why might you want to complete the square on the general quadratic equation? → If you memorize the result of completing the square in general, it will be easier to complete the process when a, b, and c are replaced by numbers.",
+      "order": 32,
+      "after": [
+        "1afeae8b6ce0"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "688a5b4a45ae",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "How would completing the square for an equation like 2x^2 + 7x + 6 = 0 help to understand how to solve ax^2 + bx + c = 0 for x? → Having a concrete model to follow makes it easier to apply the same process in an abstract situation.",
+      "order": 33,
+      "after": [
+        "9b01f6ba3175"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "8dc2202cc05e",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Name values of a, b, and c that would result in two nonreal solutions. → 2, 4, 3: 4^2 - 4(2)(3) = -8 < 0. A negative b^2 - 4ac means taking +/- the square root of a negative number, which gives two nonreal solutions.",
+      "order": 34,
+      "after": [
+        "688a5b4a45ae"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "800f92db22e8",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "How did you determine what must be true about the value of b^2 - 4ac in order to have one solution or two nonreal solutions? → When b^2 - 4ac = 0, x equals -b/(2a), which yields one solution. …",
+      "order": 35,
+      "after": [
+        "8dc2202cc05e"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "a4c4c8b1465e",
+      "type": "cue",
+      "front": "Habits of Mind, Communicate Precisely: ask?",
+      "back": "Why is there a +/- sign in the second-to-last step of the derivation of the Quadratic Formula? → Both the negative square root and the positive square root give the same value when squared.",
+      "order": 36,
+      "after": [
+        "800f92db22e8"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "28b282a3894c",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "Part A (justify eight algebra steps) is a full-period task and 2-5 Completing the Square is a brief lesson, so in the fast format show the derivation as a read-along and run only Part B: it is the discriminant idea of Example 3 and quiz items 3-5. …",
+      "order": 37,
+      "after": [
+        "1afeae8b6ce0"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "272824362aa0",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "YQH Solve a quadratic equation using the quadratic formula",
+      "order": 38,
+      "after": [
+        "f1b78eb6d77e"
+      ],
+      "minute": null,
+      "source": "ixl.YQH"
+    },
+    {
+      "id": "8ad995a85ac1",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "QHK Using the discriminant",
+      "order": 39,
+      "after": [
+        "adf238f0f272"
+      ],
+      "minute": null,
+      "source": "ixl.QHK"
+    },
+    {
+      "id": "20407d2214ac",
+      "type": "anchor",
+      "front": "IXL for example 1? (2)",
+      "back": "5VV Introduction to complex numbers",
+      "order": 40,
+      "after": [
+        "f1b78eb6d77e"
+      ],
+      "minute": null,
+      "source": "ixl.5VV"
+    },
+    {
+      "id": "7ead89aa9af2",
+      "type": "anchor",
+      "front": "IXL for example 4?",
+      "back": "CEU Solve quadratic equations: word problems",
+      "order": 41,
+      "after": [
+        "c7a952176876"
+      ],
+      "minute": null,
+      "source": "ixl.CEU"
+    }
+  ]
+}

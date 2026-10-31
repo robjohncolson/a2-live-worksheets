@@ -1,0 +1,568 @@
+{
+  "lesson": "2-6",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why must a be a nonzero number in the quadratic equation?",
+      "answer": "If (a=0), the equation would be linear rather than quadratic.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve Quadratic Equations: Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "73: 98 Understand & Apply",
+        "item": 0,
+        "line": 172
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What distinguishes real solutions from complex solutions?",
+      "answer": "Complex solutions contain i, which is equal to (√(-1)). Real solutions may contain a radical, but do not contain an i.",
+      "variant": "example",
+      "notes": [
+        "Printed complex solutions here means nonreal complex solutions; real numbers are also complex numbers."
+      ],
+      "context": {
+        "text": "Solve Quadratic Equations: Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "73: 98 Understand & Apply",
+        "item": 1,
+        "line": 174
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Compare the two equations.",
+      "answer": "The Quadratic Formula can be used to solve both equations. The first problem has two real solutions, and the second problem has two complex solutions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "73: 98 Understand & Apply",
+        "item": 0,
+        "line": 180
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "Can you identify the values of a, b, and c the way the equation is written?",
+      "answer": "No, the equation must first be rewritten in standard form in order to identify the values for a, b, and c.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples Additional Examples are available at SavvasRealize.com. ADDITIONAL EXAMPLE 1 Use the Quadratic Formula to solve (-6x^2-5x=2(3x+2)). Expand: (-6x^2-5x=6x+4) Rearrange the terms: (6x^2+11x+4=0) Apply the Quadratic Formula: (x=(-(11)±√((11)^2-4(6)(4)))/(2(6))) Simplify: (x=-1/2,-4/3) (x=-1/2,-4/3) TRY ANOTHER ONE. SOLUTION. Example 1 Have students use the Quadratic Formula to solve equations that are not initially written in standard form with this additional example.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "73: 98 Understand & Apply",
+        "item": 0,
+        "line": 195
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How does the discriminant help you check that your answers are reasonable?",
+      "answer": "If the discriminant is positive, the solution should be two real numbers and the graph should cross the x-axis in two places; if it is 0, there should be one real solution and the vertex of the graph should be on the x-axis; and if it is negative, the solution should be two complex solutions and the graph should not cross the x-axis.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 3 The discriminant of a quadratic equation is (8^2-4(-10)(24)). How many and what type of roots with the quadratic equation have? Write and graph a quadratic equation using the values of a, b, and c from the discriminant. Use the Quadratic Formula to find the x-intercepts to the nearest tenth. Simplify: (8^2-4(-10)(24)=1,024) Since the discriminant is positive, the quadratic equation will have two distinct, real roots. Write the quadratic equation: (f(x)=-10x^2+8x+24) Use the Quadratic Formula to find the x-intercepts (x=(-8±√(8^2-4(-10)(24)))/(2(-10))) (x=(-2±8√(1))/-5) (x=(-2+8)/-5) or (x=(-2-8)/-5) two distinct, real roots Printed ``with the quadratic equation''; likely ``will the quadratic equation.'' The viewport clips the bottom of the last equation and graph. SOLUTION. Example 3 Have students practice interpreting the meaning of the value of the discriminant.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Digital example graph of (f(x)=-10x^2+8x+24): orange downward-opening parabola, vertex approximately (0.4,25.6), x-intercepts (-1.2,0) and (2,0), y-intercept (0,24). Black arrowed x- and y-axes; visible x-window about [-5,5], y-window about [-4,27.5], grid spacing 1 horizontally and 2.5 vertically; x labels -4,-2,O,2,4 and y labels 5,10,15,20. Lower graph and last equation denominators are cut off by the digital viewport."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "73: 98 Understand & Apply",
+        "item": 0,
+        "line": 214
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine whether a quadratic equation is easily factorable?",
+      "answer": "Calculate (b^2-4ac). If the solution is not a perfect square, then the quadratic equation may not be easily factored.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Choose a Solution Method. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "74: 99, Understand & Apply",
+        "item": 0,
+        "line": 252
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "If you factored by trial and error, what question would you need to start with?",
+      "answer": "What products of factors of -20 and factors of 6 have a sum of -7?",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Choose a Solution Method. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "74: 99, Understand & Apply",
+        "item": 1,
+        "line": 254
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtISupport",
+      "key": "examples[n=2].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "Two methods were used to solve the equation (2x^2-11x+12=0). Explain the errors that were made in each method. (2x^2-11x+12=0) ((2x-3)(x+4)=0) (x=3/2) and (-4) (x=(-11±√((-11)^2-4(2)(12)))/(2(2))) (x=(-11±√(25))/4) (x=(-11±5)/4) (x=-6/4) and (x=-16/4) (x=-3/2) and (-4)",
+      "answer": "When factoring, the wrong sign was used in the second factor. Factors of 24 that have a sum of -11 must both be negative. When using the Quadratic Formula, b was used instead of -b.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 2 Students may make sign mistakes when negative numbers are required in factoring or using the Quadratic Formula. Use this problem to help students identify common mistakes.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 2,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "74: 99, Understand & Apply",
+        "item": 0,
+        "line": 306
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "If each parabola were reflected over the horizontal line that contains its vertex, how many and what type of roots would each parabola have?",
+      "answer": "The first parabola would have two complex roots because it would not cross the x-axis. The second would still have one real root because its vertex would still be on the x-axis. The third would have two real roots because it would cross the x-axis in two places.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Identify the Number of Real-Number Solutions. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "75: 100, Understand & Apply",
+        "item": 0,
+        "line": 320
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Do you need to solve the equations to determine the number and types of solutions?",
+      "answer": "No; evaluating the discriminant will reveal the number and types of solutions to a quadratic equation.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Identify the Number of Real-Number Solutions. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "75: 100, Understand & Apply",
+        "item": 1,
+        "line": 322
+      }
+    },
+    {
+      "example": 3,
+      "category": "CommonError",
+      "key": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 3 Students may think that when the discriminant is negative, there are no solutions. Remind them that a negative discriminant means there are no real solutions, but there are two complex solutions.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 3,
+        "category": "CommonError",
+        "block": 0,
+        "page": "75: 100, Understand & Apply",
+        "item": 0,
+        "line": 354
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "The is part of the Quadratic Formula.",
+      "answer": "discriminant",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) WRITING ADVANCED Students may confuse discriminant with discriminate. Explain that to discriminate means to make a distinction in favor of or against a person or thing. Discriminant is exclusively a math term that refers to a specific expression used to determine certain properties of an equation. In their journals, have students fill in the blank to correctly complete each sentence.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "75: 100, Understand & Apply",
+        "item": 0,
+        "line": 361
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "It is against the law for employers to against someone with a tattoo.",
+      "answer": "discriminate",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) WRITING ADVANCED Students may confuse discriminant with discriminate. Explain that to discriminate means to make a distinction in favor of or against a person or thing. Discriminant is exclusively a math term that refers to a specific expression used to determine certain properties of an equation. In their journals, have students fill in the blank to correctly complete each sentence.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "75: 100, Understand & Apply",
+        "item": 1,
+        "line": 362
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Evaluate the to determine the number of solutions to a quadratic equation.",
+      "answer": "discriminant",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) WRITING ADVANCED Students may confuse discriminant with discriminate. Explain that to discriminate means to make a distinction in favor of or against a person or thing. Discriminant is exclusively a math term that refers to a specific expression used to determine certain properties of an equation. In their journals, have students fill in the blank to correctly complete each sentence.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "75: 100, Understand & Apply",
+        "item": 2,
+        "line": 363
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What type of function do you normally think of when you hear the word straight?",
+      "answer": "linear",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) WRITING ADVANCED Students may confuse discriminant with discriminate. Explain that to discriminate means to make a distinction in favor of or against a person or thing. Discriminant is exclusively a math term that refers to a specific expression used to determine certain properties of an equation. In their journals, have students fill in the blank to correctly complete each sentence.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "75: 100, Understand & Apply",
+        "item": 3,
+        "line": 365
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "What do you observe as I toss the tennis ball straight into the air that could explain why the equation is quadratic?",
+      "answer": "Its height increases until it reaches its maximum, and then decreases as it falls.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) WRITING ADVANCED Students may confuse discriminant with discriminate. Explain that to discriminate means to make a distinction in favor of or against a person or thing. Discriminant is exclusively a math term that refers to a specific expression used to determine certain properties of an equation. In their journals, have students fill in the blank to correctly complete each sentence.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "75: 100, Understand & Apply",
+        "item": 4,
+        "line": 366
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "The discriminate is an algebraic expression.",
+      "answer": "false",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) WRITING ADVANCED Students may confuse discriminant with discriminate. Explain that to discriminate means to make a distinction in favor of or against a person or thing. Discriminant is exclusively a math term that refers to a specific expression used to determine certain properties of an equation. In their journals, have students fill in the blank to correctly complete each sentence.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "75: 100, Understand & Apply",
+        "item": 5,
+        "line": 368
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "When the discriminant is positive, there are two real solutions.",
+      "answer": "true",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) WRITING ADVANCED Students may confuse discriminant with discriminate. Explain that to discriminate means to make a distinction in favor of or against a person or thing. Discriminant is exclusively a math term that refers to a specific expression used to determine certain properties of an equation. In their journals, have students fill in the blank to correctly complete each sentence.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "75: 100, Understand & Apply",
+        "item": 6,
+        "line": 369
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[7]",
+      "kind": "question",
+      "question": "It is against the law to discriminate against someone because of religious beliefs.",
+      "answer": "true",
+      "variant": "example",
+      "notes": [
+        "Printed ``height of the ball in seconds''; likely height in meters, with time in seconds."
+      ],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) WRITING ADVANCED Students may confuse discriminant with discriminate. Explain that to discriminate means to make a distinction in favor of or against a person or thing. Discriminant is exclusively a math term that refers to a specific expression used to determine certain properties of an equation. In their journals, have students fill in the blank to correctly complete each sentence.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "75: 100, Understand & Apply",
+        "item": 7,
+        "line": 370
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why does the equation need to be rewritten in standard form?",
+      "answer": "Writing the equation in standard form reduces the possibility of error in identifying the values of a, b, and c.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Interpret the Discriminant. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "76: 101, Understand & Apply",
+        "item": 0,
+        "line": 376
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why are there two values of b that will result in one real solution?",
+      "answer": "When the discriminant equals 0, there is only one real solution. But in this case, there are two values that cause the discriminant to equal 0.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use the Discriminant to Find a Particular Equation. Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "76: 101, Understand & Apply",
+        "item": 0,
+        "line": 408
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Describe what the graphs of (y=2x^2+12x+18) and (y=2x^2-12x+18) look like.",
+      "answer": "When (b=12), the parabola has a minimum at (-3,0). When (b=-12), the parabola has a minimum at (3,0). Both graphs have only one real solution.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use the Discriminant to Find a Particular Equation. Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "76: 101, Understand & Apply",
+        "item": 1,
+        "line": 410
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtIExtend",
+      "key": "examples[n=5].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Write a quadratic equation that has two nonreal solutions.",
+      "answer": "Answers may vary. Sample: (0=3x^2+6x+5); (b^2-4ac=-24) when (a=3), (b=6), and (c=5).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 5 Have students practice writing quadratic equations with a given number of solutions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 5,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "76: 101, Understand & Apply",
+        "item": 0,
+        "line": 439
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtIExtend",
+      "key": "examples[n=5].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "Write a quadratic equation that has one real solution.",
+      "answer": "Answers may vary. Sample: (5=2x^2-8x+13); (b^2-4ac=0) when (a=2), (b=-8), and (c=8).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 5 Have students practice writing quadratic equations with a given number of solutions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-6_TE.tex",
+        "anchor": 5,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "76: 101, Understand & Apply",
+        "item": 1,
+        "line": 441
+      }
+    }
+  ]
+}

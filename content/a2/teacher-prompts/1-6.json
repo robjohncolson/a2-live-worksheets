@@ -1,0 +1,489 @@
+{
+  "lesson": "1-6",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What methods can you use to graph a linear equation?",
+      "answer": "Make a table of x- and y-values, rewrite the equation in slope-intercept form, and use the slope and y-intercept to sketch the graph.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a System of Linear Equations Use and Connect Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "76: 47 Understand & Apply",
+        "item": 0,
+        "line": 168
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Why can you set the equations (x=3-2y) and (x=4+2y) equal to each other?",
+      "answer": "You can use the Transitive Property. If two equations are equal to the same term, in this case x, then they are equal to each other.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a System of Linear Equations Use and Connect Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "76: 47 Understand & Apply",
+        "item": 1,
+        "line": 170
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What does it mean when there is no solution to a system of linear equations? What type of system is this?",
+      "answer": "The graphs of the equations do not intersect. There is no ordered pair that is a solution of both equations. This is an inconsistent system.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "76: 47 Understand & Apply",
+        "item": 0,
+        "line": 199
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Some of these systems of linear equations have one solution and some have no solutions. Can you think of a situation where a system of linear equations could have infinitely many solutions?",
+      "answer": "Yes; if the equations represented the same line, there would be infinitely many solutions.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples: ADDITIONAL EXAMPLE 1 Additional Examples are available at SavvasRealize.com. Solve the system of linear equations. ({ 2x+6y=10; -3x-6y=9 }) (2x+6y=10→ x=5-3y) (-3x-6y=9→ x=-3-2y) (5-3y=-3-2y) (8=y) (x=5-3y=5-3(8)=-19) (-19,8) Digital controls: Go back; ESSENTIAL QUESTION; SOLUTION. Example 1 Help students understand how to solve a system of linear equations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "76: 47 Understand & Apply",
+        "item": 0,
+        "line": 215
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "When one of the equations only contains two variables, what might be an efficient first step in solving the system?",
+      "answer": "If you use elimination to eliminate z from the second and third equations, you can solve a system of two equations with just x and y.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 3 Solve the system of equations. ({ x+5y=4; 3x-2y+z=-6; -x-y+9z=-9 }) The first equation only contains the variables x and y. Multiply the second equation by (-9) and add it to the third equation to eliminate z. (-27x+18y-9z=54) (-x-y+9z=-9) (-28x+17y=45) Now solve the system of equations that consists of the resulting equation and the first equation from the original system. (-28x+17y=45→ -28x+17y=45) (x+5y=4→ 28x+140y=112) (157y=157) (y=1) (x+5y=4) (x+5(1)=4) (x=-1) Finally, substitute the values of x and y into either the second or third equation to solve for z. See back of book. The screenshot displays x=-1 and y=1 but stops before displaying z or an ordered triple. Digital controls: Go back; ESSENTIAL QUESTION; SOLUTION. Example 3 Help students understand how to reduce a system of three variables to a system of two variables.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "76: 47 Understand & Apply",
+        "item": 0,
+        "line": 239
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why is this a system of inequalities rather than a system of equations?",
+      "answer": "The situation deals with ranges of numbers. Notice the language and the use of at least and not more than.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a System of Linear Inequalities Use and Connect Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "77: 48 Understand & Apply",
+        "item": 0,
+        "line": 246
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Why are there multiple solutions of a system of inequalities?",
+      "answer": "The inequalities represent a range of values that are solutions, rather than just one point of intersection. Any point in the shaded region of the graph is a solution of the system of linear inequalities.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a System of Linear Inequalities Use and Connect Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "77: 48 Understand & Apply",
+        "item": 1,
+        "line": 248
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What is the effect of including (x≥0) and (y≥0) in this system of inequalities?",
+      "answer": "It limits the solutions to the first quadrant.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "77: 48 Understand & Apply",
+        "item": 0,
+        "line": 287
+      }
+    },
+    {
+      "example": 2,
+      "category": "HabitsOfMind",
+      "key": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Make Sense and Persevere Is it possible to solve a system of linear inequalities using the same methods you used to solve a system of linear equations?",
+      "answer": "No; you could find the coordinates of the vertices at the points of intersection, but you could not show all of the solutions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use with EXAMPLES 1 & 2",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 2,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "77: 48 Understand & Apply",
+        "item": 0,
+        "line": 292
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What does eliminate mean?",
+      "answer": "remove something",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) Printed reference to Example 5; this lesson has only Examples 1-3. The quoted inconsistent-system sentence appears in Example 3B. LISTENING BEGINNING Have students listen as you use the term eliminate in different context. (e.g., \"The team was eliminated from the tournament.\") Challenge students to offer a definition of the term based on how they heard the word used.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "77: 48 Understand & Apply",
+        "item": 0,
+        "line": 299
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What is eliminated?",
+      "answer": "one of the variables",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) Printed reference to Example 5; this lesson has only Examples 1-3. The quoted inconsistent-system sentence appears in Example 3B. LISTENING BEGINNING Have students listen as you use the term eliminate in different context. (e.g., \"The team was eliminated from the tournament.\") Challenge students to offer a definition of the term based on how they heard the word used.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "77: 48 Understand & Apply",
+        "item": 1,
+        "line": 301
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Why might it be helpful to know this relationship between verbs and the suffix -ion?",
+      "answer": "It can help you recognize the meaning of some nouns if you are familiar with the verb.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) Printed reference to Example 5; this lesson has only Examples 1-3. The quoted inconsistent-system sentence appears in Example 3B. LISTENING BEGINNING Have students listen as you use the term eliminate in different context. (e.g., \"The team was eliminated from the tournament.\") Challenge students to offer a definition of the term based on how they heard the word used.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "77: 48 Understand & Apply",
+        "item": 2,
+        "line": 304
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What does the word inconsistent mean in this sentence?",
+      "answer": "It means that there are no values for the variables that make the equations true simultaneously.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) Printed reference to Example 5; this lesson has only Examples 1-3. The quoted inconsistent-system sentence appears in Example 3B. LISTENING BEGINNING Have students listen as you use the term eliminate in different context. (e.g., \"The team was eliminated from the tournament.\") Challenge students to offer a definition of the term based on how they heard the word used.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "77: 48 Understand & Apply",
+        "item": 3,
+        "line": 307
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Why would you need to check the values of x and y in both equations?",
+      "answer": "For the values to be a solution of the system, they have to create true statements when substituted into both equations.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) Printed reference to Example 5; this lesson has only Examples 1-3. The quoted inconsistent-system sentence appears in Example 3B. LISTENING BEGINNING Have students listen as you use the term eliminate in different context. (e.g., \"The team was eliminated from the tournament.\") Challenge students to offer a definition of the term based on how they heard the word used.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "77: 48 Understand & Apply",
+        "item": 4,
+        "line": 309
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What ideas do you have about how to start solving a set of equations?",
+      "answer": "Look for variables whose coefficients can be easily made negatives of each other.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a System of Equations in Three Variables Use and Connect Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "78: 49 Understand & Apply",
+        "item": 0,
+        "line": 316
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Would it be possible to solve this system of equations graphically, as you did with systems of equations in two variables?",
+      "answer": "No; you cannot graph an equation with three variables on an x-y coordinate plane.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a System of Equations in Three Variables Use and Connect Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "78: 49 Understand & Apply",
+        "item": 1,
+        "line": 318
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "kind": "question",
+      "question": "Why are you able to add a product of the second equation to the third equation without changing the solution?",
+      "answer": "If you replace one equation by the sum of that equation and a multiple of the other, the resulting system has the same solutions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a System of Equations in Three Variables Use and Connect Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "78: 49 Understand & Apply",
+        "item": 2,
+        "line": 320
+      }
+    },
+    {
+      "example": 3,
+      "category": "CommonError",
+      "key": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Students may be overwhelmed when starting the problem. Encourage them to look for an easy first step that reduces one variable in two equations. And then repeat that process.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 3,
+        "category": "CommonError",
+        "block": 0,
+        "page": "78: 49 Understand & Apply",
+        "item": 0,
+        "line": 367
+      }
+    },
+    {
+      "example": 3,
+      "category": "HabitsOfMind",
+      "key": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Generalize What is the goal of the substitution and elimination methods?",
+      "answer": "The goal is to rewrite a system of three equations in three variables as a simpler system of two equations in two variables, and eventually as a single equation in one variable.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use with EXAMPLE 3",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 3,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "78: 49 Understand & Apply",
+        "item": 0,
+        "line": 373
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtIExtend",
+      "key": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Is there an easy way to graph this without using technology?",
+      "answer": "Yes; Rewrite each inequality as an equation in slope-intercept form to graph the lines. Then refer to the (≥) and (≤) symbols or test points to determine which region to shade.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking: USE WITH EXAMPLE 2 Have students work through an example of solving a system of linear inequalities using graphing. ({ 2x+7y≥1; 3x≤2; x-6y≥-43; 5y-8x≥13 })",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "RtI extension graph: gray grid spacing 2, x labels -16,-12,-8,-4,O,4, y labels 4,8; window x [-18,6], y [-4,12]. Solid blue boundaries y=(1-2x)/7, x=2/3, y=(x+43)/6, y=(8x+13)/5 with arrowheads. Yellow region above falling line, below gently rising line, above steep rising line and left of vertical boundary. Four vertices inferred from displayed equations: (-295/19,87/19),(-43/33,17/33),(2/3,11/3),(2/3,131/18)."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 2,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "78: 49 Understand & Apply",
+        "item": 0,
+        "line": 382
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "Which two equations could you add together in order to eliminate a variable?",
+      "answer": "1. Equations (2x+2y+z=2) and (2x-2y+z=4) could be combined to eliminate the y-terms. 2. Equations (-x-2y-z=1) and (x-2y-2z=6) could be combined to eliminate the x-terms.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students: USE WITH EXAMPLE 3 When finding the solution of a system of linear equations in three variables, students may have trouble deciding where to begin. Have students practice with these examples. 1. ({ 2x+2y+z=2; 2x-2y+z=4; x+y-z=5 }) (17/6,-1/2,-8/3) 2. ({ -x-2y-z=1; x-2y-2z=6; 2x+4y+3z=4 }) (11/2,-25/4,6)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_1-6_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "78: 49 Understand & Apply",
+        "item": 0,
+        "line": 392
+      }
+    }
+  ]
+}

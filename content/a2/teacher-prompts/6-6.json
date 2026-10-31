@@ -1,0 +1,520 @@
+{
+  "lesson": "6-6",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why was each side of the equation written with an equivalent expression using 2 as the base?",
+      "answer": "In order to solve an exponential equation, the bases must be the same.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Facilitate Meaningful Mathematical Discourse ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "72: 321 Understand & Apply",
+        "item": 0,
+        "line": 183
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Could the expressions have been rewritten by using a common base of (1/2), 4, or 10 rather than 2?",
+      "answer": "The expressions could be rewritten with a common base of (1/2) or 4. They could also be rewritten with a common base of 10, however, this would make the equation more complex rather than drawing closer to a solution.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Facilitate Meaningful Mathematical Discourse ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "72: 321 Understand & Apply",
+        "item": 1,
+        "line": 185
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Which base did you use for Part a? For Part b?",
+      "answer": "5 for Part a because it is a factor of both 25 and 125; 10 for Part b because it is a factor of both 0.001 and 10",
+      "variant": "example",
+      "notes": [
+        "Printed explanation calls 10 a factor of 0.001; likely intended that both are powers of 10."
+      ],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "72: 321 Understand & Apply",
+        "item": 0,
+        "line": 190
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What is the first step to solve this problem?",
+      "answer": "Use the Product Property of Logarithms.",
+      "variant": "additional",
+      "notes": [
+        "Printed answer names Product Property; the displayed first step uses equality of logarithmic arguments."
+      ],
+      "context": {
+        "text": "Additional Example 5 Additional Examples are available at SavvasRealize.com. Go back; ESSENTIAL QUESTION; SOLUTION. What is the solution to (log(x^2-x)=log20)? (x^2-x=20) (x^2-x-20=0) ((x-5)(x+4)=0) (x=5 x=-4) The value (x=-4) is not an extraneous solution because the value of (x^2-x) is positive. (x=5), (x=-4) Students practice solving logarithmic equations with multiple logarithmic terms in this additional example.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "72: 321 Understand & Apply",
+        "item": 0,
+        "line": 205
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you graph each side of the equation as its own function?",
+      "answer": "Set each side of the equation equal to (y), then graph the two equations.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 6 Go back; ESSENTIAL QUESTION; SOLUTION; TRY ANOTHER ONE. Solve the equation (10^(6-x)+2=log_3(5x)+3) by graphing. Let (y_1=10^(6-x)+2) and (y_2=log_3(5x)+3). The point of intersection is approximately (5.398,6), so the solution of the equation is approximately (x=5.398). (x≈5.398) Students solve exponential and logarithmic equations by graphing with this additional example.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Unit grid x=-9 to11, y=-9 to11; black axes x,y,O with even labels x=-8,-6,-4,-2,2,4,6,8,10 and y=-8,-6,-4,-2,2,4,6,8,10. Orange decreasing y1=10^(6-x)+2, upward arrow near x=5, horizontal right arrow toward y=2. Blue increasing y2=log_3(5x)+3, vertical asymptote x=0 approached from the right downward, right arrow near (11,6.6). Black filled intersection approximately (5.398,6)."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "72: 321 Understand & Apply",
+        "item": 0,
+        "line": 219
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why is (10^((log17))) equivalent to 17?",
+      "answer": "because exponentials and logarithms are inverse operations",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Implement Tasks that Promote Reasoning and Problem Solving ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "73: 322 Understand & Apply",
+        "item": 0,
+        "line": 240
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why are (log3) and (xlog5) subtracted from both sides of the equation?",
+      "answer": "(xlog3) and (xlog5) have a common factor of (x) and (log3) is a constant. By subtracting those terms from both sides, (x) can be factored out and the equation can be solved.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "73: 322 Understand & Apply",
+        "item": 0,
+        "line": 278
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Explain how the Distributive Property is used to solve the equation.",
+      "answer": "The Distributive Property is used to multiply (log7) through (x+1). It's used again to factor (x) out of (3xlog2-xlog7).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "73: 322 Understand & Apply",
+        "item": 0,
+        "line": 283
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtISupport",
+      "key": "examples[n=2].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "What property did you use to rewrite each equation?",
+      "answer": "Power Property of Logarithms",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 2 Some students have difficulty rewriting equations using logarithms. Have students rewrite the equations using logarithms. 1. (5^x=16) (xlog5=log16) 2. (2^(2x-3)=19) ((2x-3)log2=log19) 3. (4^(3x)=6^(x-2)) (3xlog4=(x-2)log6)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 2,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "73: 322 Understand & Apply",
+        "item": 0,
+        "line": 293
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "What would you do first to solve these problems?",
+      "answer": "Rewrite the equation with the exponential term on one side and the constant term on the other side.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 3 Have students explore solving multi-step exponential equations. Have students solve these equations and round their answers to the nearest thousandth. 1. (15=6^(2x)-9) 0.887 2. (5^(x-5)+1=4) 5.683 3. (2^(2x+1)-6=-3) 0.293",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "73: 322 Understand & Apply",
+        "item": 0,
+        "line": 303
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do you know that the ratios of the number of acres are all 1.8?",
+      "answer": "The number of minutes are increasing by 1, so divide consecutive numbers of acres to find the ratios.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "74: 323 Understand & Apply",
+        "item": 0,
+        "line": 333
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why does knowing the ratios are all 1.8 translate to knowing that the growth rate (b) is also 1.8?",
+      "answer": "When the ratios of y values are equal, it is best to use an exponential model. And the b value is the common ratio.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "74: 323 Understand & Apply",
+        "item": 1,
+        "line": 335
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Do you expect the answer to be greater than or less than the answer in the example? Explain.",
+      "answer": "Less than; It should take less time for the fire to spread to 100 acres than it does to spread to 160 acres. However, because the fire is spreading exponentially, there should not be much of a difference in the times.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "74: 323 Understand & Apply",
+        "item": 0,
+        "line": 340
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What does the word verify mean?",
+      "answer": "check",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) READING BEGINNING Ask students to read the Interpret section of the example. Then ask them to read the definition of verify in a glossary or dictionary.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "74: 323 Understand & Apply",
+        "item": 0,
+        "line": 351
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What other units could be used to measure area?",
+      "answer": "Samples: square inches, square feet, square yards, square centimeters, square meters",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) READING BEGINNING Ask students to read the Interpret section of the example. Then ask them to read the definition of verify in a glossary or dictionary.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "74: 323 Understand & Apply",
+        "item": 1,
+        "line": 354
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Find a partner. Take turns using each of the units we discussed, including acre in a complete sentence.",
+      "answer": "Listen for students to use the units appropriately in complete sentences.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) READING BEGINNING Ask students to read the Interpret section of the example. Then ask them to read the definition of verify in a glossary or dictionary.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "74: 323 Understand & Apply",
+        "item": 2,
+        "line": 356
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "How does the diagram, showing how a fire grows, suggest that this is exponential growth?",
+      "answer": "The part of the diagram that shows how many acres have burned after a given number of minutes suggests that this is exponential growth.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) READING BEGINNING Ask students to read the Interpret section of the example. Then ask them to read the definition of verify in a glossary or dictionary.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "74: 323 Understand & Apply",
+        "item": 3,
+        "line": 359
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Does the term grows always mean exponential growth, or can linear and quadratic graphs also show growth? Explain.",
+      "answer": "The term grows does not always mean exponential growth. Linear graphs can show a constant growth rate. Quadratic graphs can show a variable, but not exponential, growth rate.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) READING BEGINNING Ask students to read the Interpret section of the example. Then ask them to read the definition of verify in a glossary or dictionary.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "74: 323 Understand & Apply",
+        "item": 4,
+        "line": 361
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What is an extraneous solution and how do they occur?",
+      "answer": "An extraneous solution is a root of a transformed equation that is not a root of the original equation. They occur when you transform an equation in order to solve it, without regard to the domain of the original equation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Build Procedural Fluency from Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "75: 324, Examples 5 and 6",
+        "item": 0,
+        "line": 391
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why is (-5) an extraneous solution (part a), but (-1/2) is not extraneous (part b)?",
+      "answer": "In part b, a negative x-value results in a positive argument for the natural log. But in part a, a negative x-value results in a negative argument for the logarithm with base 5, resulting in an expression that is undefined.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "75: 324, Examples 5 and 6",
+        "item": 0,
+        "line": 396
+      }
+    },
+    {
+      "example": 5,
+      "category": "CommonError",
+      "key": "examples[n=5].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 5 Students may think (x=-1/2) is extraneous because it is negative, and therefore respond with no solution to part b. Remind them that the equation does not call for (ln x), but for (ln(-4x-1)) and (ln(4x^2)). When x is evaluated at (-1/2), the bases are positive.",
+      "variant": "example",
+      "notes": [
+        "Printed bases; likely arguments."
+      ],
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 5,
+        "category": "CommonError",
+        "block": 0,
+        "page": "75: 324, Examples 5 and 6",
+        "item": 0,
+        "line": 399
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Could you let (Y_1=x-2) and (Y_2=5log(2x+1))? Explain.",
+      "answer": "Yes; the order the equations are input into the calculator is not important. Both equations will still be graphed in the same window and the points of intersection will be visible.",
+      "variant": "example",
+      "notes": [
+        "Availability Example 6 Powered by Desmos Examples at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Implement Tasks That Promote Reasoning and Problem Solving ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-6_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "75: 324, Examples 5 and 6",
+        "item": 0,
+        "line": 432
+      }
+    }
+  ]
+}

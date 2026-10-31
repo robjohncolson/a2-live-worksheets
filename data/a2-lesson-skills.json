@@ -156,19 +156,30 @@
     "1-4": [
       {
         "code": "C8R",
-        "level": "core"
+        "level": "core",
+        "example": 1,
+        "note": "Find terms of an arithmetic sequence; starred on the fast packet: feeds the quiz item 1 bonus (Example 1 is cut; the Do Now)"
       },
       {
         "code": "H82",
-        "level": "core"
+        "level": "core",
+        "example": 3,
+        "note": "Explicit definition a_n = a1 + d(n - 1); starred; Web Jam for Example 3 (Part A, Try It 3a); feeds graded quiz item 3 and Topic 1 Assessment item 8"
       },
       {
         "code": "ZAH",
-        "level": "core"
+        "level": "core",
+        "example": 3,
+        "note": "Recursive definition; starred; Web Jam for Example 3 (Part B, Try It 3b); feeds graded quiz item 4 and Topic 1 Assessment item 7"
       },
       {
         "code": "W6A",
-        "level": "core"
+        "level": "core",
+        "example": [
+          5,
+          7
+        ],
+        "note": "Sum of an arithmetic series (Examples 5 and 7, cut); optional and unstarred: feeds no scored item on the short form (quiz items 2 and 5 are full Savvas quiz only); Topic 1 Assessment item 9"
       }
     ],
     "1-5": [
@@ -242,165 +253,259 @@
     "2-1": [
       {
         "code": "FS8",
-        "level": "prereq"
+        "level": "prereq",
+        "note": "Read values off a function graph (prerequisite for reading the vertex and y-intercept in Example 4)"
       },
       {
         "code": "RSN",
-        "level": "prereq"
+        "level": "prereq",
+        "note": "Transformations of functions (Lesson 1-2 prerequisite)"
       },
       {
         "code": "KQL",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1,
+          5
+        ],
+        "note": "Optional, unstarred: transformations of y = x^2 (Examples 1 and 5, cut in the fast packet); feeds quiz items 1 and 5, full Savvas quiz only, so no scored item on the short form"
       },
       {
         "code": "WMS",
-        "level": "core"
+        "level": "core",
+        "example": 2,
+        "note": "Optional, unstarred: key features read off a graph (a 1-1 core skill); feeds no scored item on the short form, since quiz item 2 reads an equation"
       },
       {
         "code": "S9G",
-        "level": "core"
+        "level": "core",
+        "example": 1,
+        "note": "Not in the packet's IXL table (feeds no short-form quiz item); stays in the authored Topics 1-2 list."
       },
       {
         "code": "2YJ",
-        "level": "core"
+        "level": "core",
+        "example": 4,
+        "note": "Not in the packet's IXL table (feeds no short-form quiz item); stays in the authored Topics 1-2 list."
       },
       {
         "code": "URV",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3,
+          4
+        ],
+        "note": "Starred: vertex plus one point gives a; feeds quiz items 3 (+5 bonus) and 4 (graded) (Example 4 steps 1-3; Example 3 is cut)"
+      },
+      {
+        "code": "L8C",
+        "level": "core",
+        "example": 2,
+        "note": "Starred: key features from an equation in vertex form; feeds quiz item 2 (graded), Example 2 and Try It 2. Also a 2-2 core skill",
+        "changeNote": "Added 2026-10-30 for the 2-1 fast packet: graded quiz item 2 (greatest height from h(x) = -1/2(x - 4)^2 + 3) had no equation-based skill on the authored 2-1 list; appended as the last core entry"
       }
     ],
     "2-2": [
       {
         "code": "8GN",
-        "level": "prereq"
+        "level": "prereq",
+        "note": "Multiply polynomials: the vertex-form-to-standard-form expansion of the Critique & Explain opener; warm-up row in the fast packet"
       },
       {
         "code": "WMS",
-        "level": "prereq"
+        "level": "prereq",
+        "note": "Key features read off a drawn parabola; warm-up row in the fast packet"
       },
       {
         "code": "L8C",
-        "level": "core"
+        "level": "core",
+        "example": 3,
+        "note": "Fast packet 2026-10-31: starred; vertex, maximum or minimum from an equation in standard form, quiz item 3 (pebble, graded) and item 2 (Bill's toy, +5 bonus); Example 3 and Try It 3"
       },
       {
         "code": "S9G",
-        "level": "core"
+        "level": "core",
+        "example": 2,
+        "note": "Fast packet 2026-10-31: starred; graph a quadratic from its key features, quiz item 5 (diver's path, graded); Example 2, Try It 2 and the Practice"
       },
       {
         "code": "AJ7",
-        "level": "core"
+        "level": "core",
+        "example": 3,
+        "note": "Not in the packet's IXL table (feeds no short-form quiz item); stays in the authored Topics 1-2 list."
       },
       {
         "code": "4A7",
-        "level": "core"
+        "level": "core",
+        "example": 1,
+        "note": "Not in the packet's IXL table (feeds no short-form quiz item); stays in the authored Topics 1-2 list."
       },
       {
         "code": "ED9",
-        "level": "core"
+        "level": "core",
+        "example": 4,
+        "note": "Not in the packet's IXL table (feeds no short-form quiz item); stays in the authored Topics 1-2 list."
       }
     ],
     "2-3": [
       {
         "code": "NMZ",
-        "level": "prereq"
+        "level": "prereq",
+        "example": 4,
+        "note": "Factor out a monomial: the -16 GCF step of Example 4 (cut) and quiz item 3 (full Savvas quiz only), also the Practice block; optional in the fast packet, feeds no scored item on the short form"
       },
       {
         "code": "UB5",
-        "level": "prereq"
+        "level": "prereq",
+        "example": [
+          1,
+          3
+        ],
+        "note": "Factor quadratics: starred in the fast packet for quiz item 1 (the +5 bonus) and the factoring step of item 2 (Example 3, Part B grouping; Example 1 is cut); level kept prereq per the Topics 1-2 pin, PLC may promote to core"
       },
       {
         "code": "TRU",
-        "level": "core"
+        "level": "core",
+        "example": [
+          2,
+          3
+        ],
+        "note": "Zero Product Property with the factors given: optional, unstarred warm-up before Example 3; feeds no scored item on the short form"
       },
       {
         "code": "CJC",
-        "level": "core"
+        "level": "core",
+        "example": 3,
+        "note": "Solve by factoring: starred, quiz item 2 (Example 3, Try It 3)"
       },
       {
         "code": "G2Q",
-        "level": "core"
+        "level": "core",
+        "example": 6,
+        "note": "Write from the zeros: optional, unstarred warm-up before Example 6; feeds no scored item on the short form"
       },
       {
         "code": "HPB",
-        "level": "core"
+        "level": "core",
+        "example": 6,
+        "note": "Factored form from the x-intercepts and another point: starred, quiz item 5 (Example 6, Try It 6, Practice 45)"
       },
       {
         "code": "DP9",
-        "level": "core"
+        "level": "core",
+        "example": 5,
+        "note": "Quadratic inequalities / sign intervals: Example 5 (cut) and quiz item 4 (full Savvas quiz only); optional in the fast packet, feeds no scored item on the short form"
       }
     ],
     "2-4": [
       {
         "code": "FG7",
-        "level": "prereq"
+        "level": "prereq",
+        "example": [
+          1,
+          6
+        ],
+        "note": "Square roots of a negative number (Examples 1 and 6, cut); quiz item 1, full Savvas quiz only; optional row in the fast packet"
       },
       {
         "code": "5VV",
-        "level": "core"
+        "level": "core",
+        "example": 1,
+        "note": "i, real part, imaginary part (Example 1 and the concept box); optional warm-up in the fast packet, feeds no scored item"
       },
       {
         "code": "JVF",
-        "level": "core"
+        "level": "core",
+        "example": 2,
+        "note": "Fast packet: starred; quiz item 2, the scored +5 bonus (Example 2 cut; Practice b is the parallel)"
       },
       {
         "code": "VZ8",
-        "level": "core"
+        "level": "core",
+        "example": 3,
+        "note": "Fast packet: starred; quiz items 3 and 4 (Example 3A and 3B, Try It 3)"
       },
       {
         "code": "EUT",
-        "level": "core"
+        "level": "core",
+        "example": 1,
+        "note": "Not in the packet's IXL table (feeds no short-form quiz item); stays in the authored Topics 1-2 list."
       },
       {
         "code": "7U5",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3,
+          4
+        ],
+        "note": "Fast packet: starred; quiz item 3, a number times its conjugate (Example 3B, Try It 3b); also the divisor step of Example 4"
       },
       {
         "code": "MBM",
-        "level": "core"
+        "level": "core",
+        "example": 4,
+        "note": "Not in the packet's IXL table (feeds no short-form quiz item); stays in the authored Topics 1-2 list."
       }
     ],
     "2-5": [
       {
         "code": "FG7",
-        "level": "prereq"
+        "level": "prereq",
+        "note": "Solve by square roots; warm-up row and Do Now (Example 1 is cut); the square-root step at the end of Example 3; feeds quiz item 1 (full Savvas quiz only)"
       },
       {
         "code": "9MW",
-        "level": "core"
+        "level": "core",
+        "example": 3,
+        "note": "Complete the square: the first three lines of Example 3; starred; feeds quiz item 2 (+5 bonus) and the first steps of items 3 and 5"
       },
       {
         "code": "NPH",
-        "level": "core"
+        "level": "core",
+        "example": 3,
+        "note": "Solve by completing the square: Example 3, Try It 3 and the Practice block; starred; feeds graded quiz items 3 and 5 (also 1 and 4 on the full Savvas quiz)"
       },
       {
         "code": "2YJ",
-        "level": "core"
+        "level": "core",
+        "example": 5,
+        "note": "Optional, unstarred in the fast packet: vertex form from 2-1; Example 5 is cut and no quiz item needs it; proposed demote to prereq for the PLC"
       }
     ],
     "2-6": [
       {
         "code": "CJC",
-        "level": "prereq"
+        "level": "prereq",
+        "note": "Solve by factoring (2-3); prerequisite Jam for the cut Example 2 (choose a method)"
       },
       {
         "code": "NPH",
-        "level": "prereq"
+        "level": "prereq",
+        "note": "Completing the square (2-5); the Explore & Reason derivation of the Quadratic Formula"
       },
       {
         "code": "YQH",
-        "level": "core"
+        "level": "core",
+        "example": 1,
+        "note": "Fast packet: starred; the Quadratic Formula, Example 1 and Try It 1; feeds quiz item 1 (graded) and item 2 (the +5 bonus)"
       },
       {
         "code": "QHK",
-        "level": "core"
+        "level": "core",
+        "example": 3,
+        "note": "Fast packet: starred; the discriminant, Example 3 and Try It 3; feeds quiz item 3 (graded); items 4 and 5 are on the full Savvas quiz only"
       },
       {
         "code": "CEU",
-        "level": "core"
+        "level": "core",
+        "example": 4,
+        "note": "Fast packet: unstarred, optional; word problems for the Practice page (TE practice 30-31); Example 4 is cut and quiz item 4 is on the full Savvas quiz only, so it feeds no scored item on the short form"
       },
       {
         "code": "5VV",
-        "level": "core"
+        "level": "core",
+        "example": 1,
+        "note": "Fast packet: unstarred, optional warm-up; the square root of a negative number for Example 1B (a 2-4 skill); feeds no scored item directly (YQH carries quiz item 2)"
       }
     ],
     "2-7": [
@@ -414,15 +519,681 @@
       },
       {
         "code": "VQU",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1,
+          4,
+          5
+        ],
+        "note": "Graph a line and a parabola and read the intersections: Example 1 (count solutions), Example 4 (graph both boundaries; quiz item 4), Example 5 (intersection feature)"
       },
       {
         "code": "HVZ",
-        "level": "core"
+        "level": "core",
+        "example": [
+          2,
+          3
+        ],
+        "note": "Substitute and solve the quadratic: quiz items 2 and 3; backs Example 3 in the fast packet (Example 2 is cut)"
       },
       {
         "code": "DKB",
-        "level": "core"
+        "level": "core",
+        "example": [
+          5
+        ],
+        "note": "Not in the packet's IXL table (feeds no quiz item); stays in the authored Topics 1-2 list."
+      },
+      {
+        "code": "U5D",
+        "level": "core",
+        "example": [
+          4
+        ],
+        "note": "Added 2026-10-30 for quiz item 4 (graded): IXL has no linear-quadratic inequality skill; this 1-6 skill carries the solid/dashed boundary, test point and overlap steps of Example 4"
+      }
+    ],
+    "3-1": [
+      {
+        "code": "DYB",
+        "level": "prereq"
+      },
+      {
+        "code": "XMK",
+        "level": "core",
+        "example": 2,
+        "note": "End behavior from degree and leading coefficient (Ex 2); feeds quiz item 2. Starred in the fast packet."
+      },
+      {
+        "code": "XJU",
+        "level": "core",
+        "example": 3,
+        "note": "Read a polynomial graph (Ex 3); closest map skill to quiz items 3-4 (turning points, intervals). Starred; verify the skill's items in IXL before assigning."
+      },
+      {
+        "code": "PHD",
+        "level": "core",
+        "example": 3,
+        "note": "Average rate of change (Ex 3B, Try It 3b); not on the quiz. Assigned in 1-1."
+      }
+    ],
+    "3-2": [
+      {
+        "code": "DYB",
+        "level": "prereq",
+        "note": "Polynomial vocabulary: like terms, degree, standard form (Example 1B degree callout); Do Now warm-up before Example 1"
+      },
+      {
+        "code": "9A3",
+        "level": "core",
+        "example": 1,
+        "note": "Add and subtract polynomials: quiz item 1 (starred in the fast packet)"
+      },
+      {
+        "code": "8GN",
+        "level": "core",
+        "example": 2,
+        "note": "Multiply polynomials: quiz item 2 and the box volume in bonus item 4 (starred); expansion feeds 3-5"
+      }
+    ],
+    "3-3": [
+      {
+        "code": "8GN",
+        "level": "prereq",
+        "note": "Multiply polynomials (assigned in 3-2); answers bonus quiz item 2 by distribution"
+      },
+      {
+        "code": "G7Y",
+        "level": "core",
+        "example": [
+          4,
+          5
+        ],
+        "note": "Pascal's triangle: build Rows 6-8 (Explore & Reason A); Do Now before Example 5; Row 8 feeds quiz item 4"
+      },
+      {
+        "code": "A7M",
+        "level": "core",
+        "example": 5,
+        "note": "Pascal's triangle and the Binomial Theorem: quiz items 4-5 and Topic 3 assessment item 3 (starred in the fast packet)"
+      },
+      {
+        "code": "NEU",
+        "level": "core",
+        "example": 5,
+        "note": "Binomial Theorem II: full expansion with a constant (possibly negative) b; quiz items 4-5 and Topic 3 assessment item 3 (starred in the fast packet)"
+      },
+      {
+        "code": "NJV",
+        "level": "core",
+        "example": 3,
+        "note": "Factor sums and differences of cubes: quiz item 3 and Topic 3 assessment item 7; Example 3 is cut, so optional and left off the packet table"
+      }
+    ],
+    "3-4": [
+      {
+        "code": "8GN",
+        "level": "prereq",
+        "note": "Multiply polynomials: check a division by quotient times divisor plus remainder (unstarred warm-up row in the packet)"
+      },
+      {
+        "code": "D6D",
+        "level": "core",
+        "example": 2,
+        "note": "Synthetic division (starred): quiz item 2 and the DOK 3 exit question (practice 34); item 1 is full Savvas quiz only"
+      },
+      {
+        "code": "CHC",
+        "level": "core",
+        "example": 5,
+        "note": "Remainder Theorem, remainder = P(a) (starred): bonus quiz item 3; item 4 is full Savvas quiz only (Examples 3-4 cut, taught through Example 5)"
+      },
+      {
+        "code": "VXE",
+        "level": "core",
+        "example": 5,
+        "note": "Factor Theorem (starred): quiz item 5; feeds 3-5"
+      },
+      {
+        "code": "NCY",
+        "level": "core",
+        "example": 5,
+        "note": "Factor a polynomial given a root, optional (unstarred): feeds no quiz item; the exit question and the bridge to 3-5"
+      }
+    ],
+    "3-5": [
+      {
+        "code": "UB5",
+        "level": "prereq",
+        "note": "Unstarred warm-up row in the packet: factor the quadratic left after factoring out x (quiz item 1A)"
+      },
+      {
+        "code": "XMK",
+        "level": "prereq",
+        "note": "Unstarred warm-up row in the packet, from 3-1: end behavior; quiz item 5 choices differ by end behavior"
+      },
+      {
+        "code": "PVM",
+        "level": "core",
+        "example": [
+          1,
+          2
+        ],
+        "note": "Starred: zeros from the factors (Ex 1) and their multiplicities (Ex 2); quiz items 1A and 5, bonus item 4"
+      },
+      {
+        "code": "8CQ",
+        "level": "core",
+        "example": [
+          1,
+          2
+        ],
+        "note": "Starred: match a graph to its zeros, the Ex 1 sketch and the Ex 2 cross-or-turn behavior; quiz item 1B, bonus item 4"
+      },
+      {
+        "code": "NCY",
+        "level": "core",
+        "example": 2,
+        "note": "Starred: factor a cubic given one root, the packet Practice after Ex 2 (structural parallel of quiz item 5; Ex 3 Steps 1-2, cut)"
+      }
+    ],
+    "3-7": [
+      {
+        "code": "R7X",
+        "level": "prereq",
+        "note": "Function transformation rules from 1-2: a, h and k in a f(x - h) + k (Example 3 applies them to x^3 and x^4)"
+      },
+      {
+        "code": "XMK",
+        "level": "prereq",
+        "note": "End behavior from 3-1: a negative leading coefficient flips the ends (the packet Practice, quiz item 2)"
+      },
+      {
+        "code": "KT8",
+        "level": "core",
+        "example": 3,
+        "note": "Describe each change from the parent function (Ex 3, Try It 3); quiz items 2 and 3"
+      },
+      {
+        "code": "RSN",
+        "level": "core",
+        "example": [
+          3,
+          4
+        ],
+        "note": "Graph a transformation and write its equation: Ex 3, and Ex 4 (cut) read backwards; quiz items 2 and 4"
+      },
+      {
+        "code": "Q83",
+        "level": "core",
+        "example": [
+          1,
+          2
+        ],
+        "note": "Even and odd functions (Ex 1-2, cut); quiz item 1 and the DOK 3 Extension (Practice 12)"
+      }
+    ],
+    "4-1": [
+      {
+        "code": "C9D",
+        "level": "prereq",
+        "note": "Classify variation: a constant product xy means inverse variation (Example 1 idea, cut); warm-up for quiz items 1 and 2"
+      },
+      {
+        "code": "PNY",
+        "level": "core",
+        "example": 3,
+        "note": "Write and solve inverse variation equations: find k, then use it; quiz items 1, 2 and 3 (starred)"
+      },
+      {
+        "code": "PXE",
+        "level": "core",
+        "example": 3,
+        "note": "Find the constant of variation k = xy (Example 3 Step 1); quiz items 1 and 2 (starred)"
+      },
+      {
+        "code": "ULD",
+        "level": "core",
+        "example": 5,
+        "note": "Optional, unstarred: domain and range of reciprocal functions (Example 5, cut); feeds Savvas quiz items 4 and 5 (full Savvas quiz only), no scored item on the short form; Lesson 4-2's warm-up"
+      }
+    ],
+    "4-2": [
+      {
+        "code": "ULD",
+        "level": "prereq",
+        "note": "Lesson 4-1 reciprocal functions (asymptotes of a/(x-h)+k); warm-up for quiz item 1"
+      },
+      {
+        "code": "UB5",
+        "level": "prereq",
+        "note": "Factor a quadratic denominator to find where it is 0 (Example 3's f, DOK 3 item 10, quiz item 2)"
+      },
+      {
+        "code": "7JJ",
+        "level": "core",
+        "example": 3,
+        "note": "Vertical and horizontal asymptotes from the equation; quiz items 3 and 5 (starred)"
+      },
+      {
+        "code": "79Q",
+        "level": "core",
+        "example": 4,
+        "note": "Excluded values: the denominator is 0 at the vertical asymptote (Example 4 Step 1); quiz items 1 and 3 (starred)"
+      }
+    ],
+    "4-3": [
+      {
+        "code": "UB5",
+        "level": "prereq",
+        "note": "Factor trinomials (Lesson 2-3); every 4-3 problem starts by factoring top and bottom"
+      },
+      {
+        "code": "QKF",
+        "level": "prereq",
+        "note": "Difference of squares and perfect-square trinomials: 4 - x^2, 9 - x^2, x^2 + 6x + 9 on the quiz"
+      },
+      {
+        "code": "37N",
+        "level": "core",
+        "example": 2,
+        "note": "Simplify a rational expression; quiz items 1 and 2"
+      },
+      {
+        "code": "79Q",
+        "level": "core",
+        "example": 2,
+        "note": "Excluded values from the original denominator; the domain half of quiz item 2"
+      },
+      {
+        "code": "MG2",
+        "level": "core",
+        "example": 5,
+        "note": "Multiply and divide rational expressions; quiz items 3, 4 and 5 and the DOK 3 (practice 13)"
+      }
+    ],
+    "4-4": [
+      {
+        "code": "UB5",
+        "level": "prereq",
+        "note": "Factor each denominator first (Example 4 step 1); quiz item 2 (LCM) is this step"
+      },
+      {
+        "code": "37N",
+        "level": "prereq",
+        "note": "Divide out a common factor, the last step (quiz item 1: 18/(2(2x+1)) = 9/(2x+1)); 4-3 skill"
+      },
+      {
+        "code": "FEX",
+        "level": "core",
+        "example": 4,
+        "note": "Add and subtract with unlike denominators, distributing the -1; quiz items 1 and 3"
+      },
+      {
+        "code": "YD8",
+        "level": "core",
+        "example": 6,
+        "note": "Simplify compound (complex) fractions by the LCD; quiz items 4 and 5"
+      }
+    ],
+    "4-5": [
+      {
+        "code": "7JJ",
+        "level": "prereq",
+        "note": "Excluded values: the numbers that make a denominator 0 can never be solutions (the domain check before solving)"
+      },
+      {
+        "code": "FEX",
+        "level": "prereq",
+        "note": "Add and subtract rational expressions (4-4): finding the common denominator to multiply by"
+      },
+      {
+        "code": "CHP",
+        "level": "core",
+        "example": [
+          1,
+          4
+        ],
+        "note": "Solve rational equations; quiz items 1, 3 and 4 (Examples 1 and 4)"
+      },
+      {
+        "code": "CJC",
+        "level": "core",
+        "example": 4,
+        "note": "Factor the quadratic left after clearing the fractions; quiz item 4 (Example 4B)"
+      }
+    ],
+    "5-1": [
+      {
+        "code": "EUH",
+        "level": "prereq",
+        "note": "Roots of integers: the perfect powers the lesson leans on (243 = 3^5, 32 = 2^5, 27 = 3^3, 625 = 5^4, cube root of -8 = -2); the Do Now warm-up and the packet's optional warm-up row"
+      },
+      {
+        "code": "9TM",
+        "level": "core",
+        "example": 2,
+        "note": "Rational exponent to radical and back (index = denominator, power = numerator); starred, quiz items 2 (bonus) and 3"
+      },
+      {
+        "code": "KJX",
+        "level": "core",
+        "example": 2,
+        "note": "Evaluate rational exponents, root first then power; starred, quiz item 3"
+      },
+      {
+        "code": "U42",
+        "level": "core",
+        "example": 5,
+        "note": "Nth roots: the root step of Example 5 (cube root of -8 after dividing -4x^3 = 32 by -4; +/- for an even index and a positive radicand); starred for quiz item 5, also item 1 on the full Savvas quiz"
+      },
+      {
+        "code": "LQX",
+        "level": "core",
+        "example": 4,
+        "note": "Simplify nth roots with variables; unstarred and optional: feeds no scored item on the short form (quiz item 4 is on the full Savvas quiz only; Example 4 is cut)"
+      }
+    ],
+    "5-5": [
+      {
+        "code": "PS2",
+        "level": "prereq",
+        "note": "Evaluate functions (Lesson 1-1); composition is substitution, a number first, then a whole expression"
+      },
+      {
+        "code": "QQD",
+        "level": "prereq",
+        "note": "Add and subtract functions (Example 1, cut); the + g(x) in quiz item 1"
+      },
+      {
+        "code": "EKJ",
+        "level": "core",
+        "example": 5,
+        "note": "Composition of linear and quadratic functions, find the rule; quiz items 1 and 5"
+      },
+      {
+        "code": "P9T",
+        "level": "core",
+        "example": 5,
+        "note": "Composition of linear and quadratic functions, find a value; quiz item 4 (bonus), inside out"
+      },
+      {
+        "code": "RSP",
+        "level": "core",
+        "example": 6,
+        "note": "Composition of linear functions, find the rule; the order f o g versus g o f (Example 6, Try It 6) behind quiz item 1's trap"
+      }
+    ],
+    "5-6": [
+      {
+        "code": "LSG",
+        "level": "prereq"
+      },
+      {
+        "code": "UAJ",
+        "level": "prereq"
+      },
+      {
+        "code": "YLX",
+        "level": "core",
+        "example": 1,
+        "note": "Inverse from a table: switch x and y (quiz 1; packet warm-up)"
+      },
+      {
+        "code": "K2W",
+        "level": "core",
+        "example": 2,
+        "note": "Reflect across y = x (Ex 2B; quiz 2, starred)"
+      },
+      {
+        "code": "9KT",
+        "level": "core",
+        "example": [
+          2,
+          5
+        ],
+        "note": "Is g the inverse of f? (quiz 5 bonus, starred)"
+      },
+      {
+        "code": "Z5C",
+        "level": "core",
+        "example": 2,
+        "note": "Read inverse values off a graph; optional, not in the packet table"
+      },
+      {
+        "code": "ZRQ",
+        "level": "core",
+        "example": [
+          2,
+          3,
+          4
+        ],
+        "note": "Switch and solve, with a domain restriction when needed (Ex 2-4; quiz 3, 4, 5, starred)"
+      }
+    ],
+    "6-1": [
+      {
+        "code": "LWE",
+        "level": "prereq",
+        "note": "Evaluate exponential functions: fill the Example 1 and Try It 1 tables; Do Now warm-up before Example 1"
+      },
+      {
+        "code": "EFD",
+        "level": "core",
+        "example": 1,
+        "note": "Domain and range of exponential functions: quiz item 3 (starred in the fast packet)"
+      },
+      {
+        "code": "U7P",
+        "level": "core",
+        "example": 1,
+        "note": "Graph exponential functions: Try It 1 and the graph in quiz item 4 (starred)"
+      },
+      {
+        "code": "DBW",
+        "level": "core",
+        "example": 3,
+        "note": "Write exponential functions: word problems: quiz item 4, the decay model 144,000(0.928)^t (starred)"
+      },
+      {
+        "code": "TYQ",
+        "level": "core",
+        "example": 3,
+        "note": "Exponential growth and decay: word problems: Try It 3 and bonus item 2 (starred)"
+      }
+    ],
+    "6-2": [
+      {
+        "code": "LWE",
+        "level": "prereq",
+        "note": "Evaluate exponential functions: calculator powers and the e key; Do Now before Example 2"
+      },
+      {
+        "code": "YJW",
+        "level": "core",
+        "example": 2,
+        "note": "Compound interest A = P(1 + r/n)^(nt); quiz items 3 and 5 (starred). Check in IXL that early questions ask for the value, not the time (logs)"
+      },
+      {
+        "code": "5GU",
+        "level": "core",
+        "example": 4,
+        "note": "Continuously compounded interest A = Pe^(rt); quiz items 4 and 5 and the DOK 3 exit question (practice 27) (starred)"
+      },
+      {
+        "code": "KLF",
+        "level": "core",
+        "example": [
+          2,
+          4
+        ],
+        "note": "Linear vs exponential growth: simple interest is linear, compounding is exponential; quiz item 5 (bonus)"
+      }
+    ],
+    "6-3": [
+      {
+        "code": "LWE",
+        "level": "prereq",
+        "note": "Powers of the base (5^3, (1/4)^-2): the THINK step of Example 3"
+      },
+      {
+        "code": "8RK",
+        "level": "core",
+        "example": [
+          3,
+          5
+        ],
+        "note": "Switch between exponential and logarithmic form; Savvas quiz item 3 and the first step of item 5"
+      },
+      {
+        "code": "GBR",
+        "level": "core",
+        "example": 3,
+        "note": "Evaluate logarithms, including undefined ones; Savvas quiz item 4"
+      },
+      {
+        "code": "BXU",
+        "level": "core",
+        "example": 5,
+        "note": "Solve log(expression) = c by rewriting in exponential form; Savvas quiz item 5"
+      },
+      {
+        "code": "TDF",
+        "level": "core",
+        "example": 4,
+        "note": "Example 4 is cut in the fast packet; unstarred row for Savvas quiz item 2 (ln 16) and the rounding in Example 5"
+      }
+    ],
+    "6-6": [
+      {
+        "code": "V2J",
+        "level": "prereq",
+        "note": "Power rule for exponents: (5^2)^(x-2) = 5^(2x-4); the step quiz item 3 turns on"
+      },
+      {
+        "code": "7T3",
+        "level": "prereq",
+        "note": "Power property of logarithms: 2 log x = log x^2, the first step of quiz item 4"
+      },
+      {
+        "code": "UB5",
+        "level": "prereq",
+        "note": "Factor quadratics (Lesson 2-3); Example 5 and quiz item 4 end in a factorable quadratic"
+      },
+      {
+        "code": "YQY",
+        "level": "core",
+        "example": 1,
+        "note": "Solve by rewriting with a common base; quiz items 2 and 3"
+      },
+      {
+        "code": "BXU",
+        "level": "core",
+        "example": 5,
+        "note": "Solve logarithmic equations; quiz item 4 and DOK 3 item 43"
+      },
+      {
+        "code": "RLX",
+        "level": "core",
+        "example": 5,
+        "note": "Logarithmic equations that need a log property first (as quiz item 4 does); confirm the IXL item mix on the skill page"
+      },
+      {
+        "code": "9F2",
+        "level": "core",
+        "example": 3,
+        "note": "Take the common log of both sides; quiz item 1 on the full Realize quiz only (not on the short form). Kept core on cut Example 3 (teacher's call; the 1-3 RVD precedent) rather than demoted, since the lesson already has three prereq codes; unstarred optional row in the packet"
+      }
+    ],
+    "7-1": [
+      {
+        "code": "ANN",
+        "level": "prereq",
+        "note": "Quadrants: name the quadrant of an angle's terminal side; the Do Now before Example 1"
+      },
+      {
+        "code": "7CV",
+        "level": "core",
+        "example": 1,
+        "note": "Coterminal angles: add or subtract 360°; quiz item 1 (bonus) and item 2, and the Exit question (practice 19)"
+      },
+      {
+        "code": "BRP",
+        "level": "core",
+        "example": 1,
+        "note": "Reference angles; quiz items 2 and 3 ask the reverse (the angle from its reference angle and quadrant)"
+      },
+      {
+        "code": "EDC",
+        "level": "core",
+        "example": 3,
+        "note": "Convert between radians and degrees; quiz item 4 and the radian choices in item 1"
+      },
+      {
+        "code": "UA5",
+        "level": "core",
+        "example": 4,
+        "note": "Radians and arc length; Example 4 is cut in the fast packet, so optional; quiz item 5 (off the short form)"
+      }
+    ],
+    "7-2": [
+      {
+        "code": "NUF",
+        "level": "prereq",
+        "note": "Special right triangles (45-45-90, 30-60-90): the bridge skill and the reminder box beside Example 4; Do Now warm-up before Example 4"
+      },
+      {
+        "code": "BRP",
+        "level": "prereq",
+        "note": "Reference angles: Example 1 (cut) folded into step 2 of Example 4; warm-up"
+      },
+      {
+        "code": "6H8",
+        "level": "core",
+        "example": 4,
+        "note": "sin, cos, tan by reference angle in any quadrant: quiz item 1 and bonus item 3 (starred in the fast packet)"
+      },
+      {
+        "code": "PAE",
+        "level": "core",
+        "example": 5,
+        "note": "sec, csc, cot by reference angle: quiz item 4 and bonus item 3 statements C and D (starred)"
+      },
+      {
+        "code": "ZF7",
+        "level": "core",
+        "example": 5,
+        "note": "Six ratios from a given terminal point on the unit circle: Try It 5 (unstarred)"
+      }
+    ],
+    "7-3": [
+      {
+        "code": "6H8",
+        "level": "prereq",
+        "note": "Sine and cosine values of special angles (Lesson 7-2 core); the graphs are built from them (cut Examples 1-2)"
+      },
+      {
+        "code": "EDC",
+        "level": "prereq",
+        "note": "Radian measure on the x-axis: periods like 2pi, pi, 4pi (Lesson 7-1)"
+      },
+      {
+        "code": "9S8",
+        "level": "core",
+        "example": 3,
+        "note": "Amplitude |a| and period 2pi/b from the equation; quiz items 1 and 3"
+      },
+      {
+        "code": "5XN",
+        "level": "core",
+        "example": 6,
+        "note": "Amplitude and period read off a graph; quiz item 3 (graph of g) and item 4"
+      },
+      {
+        "code": "A7V",
+        "level": "core",
+        "example": 6,
+        "note": "Graph y = a sin bx and y = a cos bx (five-point pattern); DOK 3 Practice 23 and bonus quiz item 4; optional Jam"
       }
     ]
   }

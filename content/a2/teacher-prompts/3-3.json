@@ -1,0 +1,706 @@
+{
+  "lesson": "3-3",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine the coefficients in order to rewrite the polynomial identity?",
+      "answer": "You can find the coefficients by finding the square roots of the first and last coefficient of the original polynomial.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples. ADDITIONAL EXAMPLE 1 Which identity is represented by (16d^2+64df+64f^2)? Rewrite the expression using the polynomial identity. Square of a Sum ((a+b)^2=a^2+2ab+b^2) Therefore, (16d^2+64df+64f^2=(4d+8f)^2). Square of a Sum; ((4d+8f)^2) Go back. ESSENTIAL QUESTION. SOLUTION. Example 1 Students gain practice in identifying which polynomial identity is represented.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "37: 134 Understand & Apply",
+        "item": 0,
+        "line": 207
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Suppose the height of the container is the same as the length and width. How could you write an expression to determine the volume of food that fits in the new container?",
+      "answer": "Cube the length of the side.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 2 Additional Examples are available at SavvasRealize.com. Audra wants to build a larger food container to feed her ducklings. The current side lengths are (2x+4y) in. She would like the sides of the new food container to be triple the original lengths. What is the area of the new food container? New side length: (3(2x+4y)=6x+12y) in. Square of a Sum: ((6x+12y)^2=36x^2+2·6·12+144y^2) Area: (36x^2+144+144y^2) in.² (36x^2+144+144y^2) in.² Printed calculation omits xy from the middle term; likely 144xy. Go back. ESSENTIAL QUESTION. SOLUTION. Example 2 Students use their knowledge of multiplying polynomials to solve a real-life problem.",
+        "figures": [
+          {
+            "kind": "diagram",
+            "description": "Small pale green square at upper right, left and bottom side labels 2x+4y in orange; larger pale green square below left, left and bottom side labels 3(2x+4y) in orange."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "37: 134 Understand & Apply",
+        "item": 0,
+        "line": 221
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "When proving the identity, why does it make sense to start with the expression on the right side?",
+      "answer": "You start with the expression on the right because you need to multiply the two polynomials first using the Distributive Property. You then group and combine like terms in order to finish transforming it to the expression on the left.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Prove a Polynomial Identity. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "38: 135 Understand & Apply",
+        "item": 0,
+        "line": 227
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "When proving the Difference of Cubes Identity, which side of the equal sign should you start with? Explain.",
+      "answer": "You should start with the right side of the equation, so you can multiply the two polynomials first.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "38: 135 Understand & Apply",
+        "item": 0,
+        "line": 254
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "What do you recognize about the right side of the equation in the Square of a Sum Identity?",
+      "answer": "The first and last terms are squared, but the middle term is 2 times the first and last term.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Polynomial Identities to Multiply. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "38: 135 Understand & Apply",
+        "item": 0,
+        "line": 265
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "How do you determine the numerical values for (a) and (b)?",
+      "answer": "To find (b), find the difference of the numbers in the original problem and divide by 2. To find (a), subtract the number for (b) from the largest original number.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Polynomial Identities to Multiply. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "38: 135 Understand & Apply",
+        "item": 1,
+        "line": 268
+      }
+    },
+    {
+      "example": 2,
+      "category": "CommonError",
+      "key": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 2 When squaring (3x^2) or (5y^3), students may only square the variable and forget to square the coefficient. Encourage students to check their work by factoring their result using the appropriate identity.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 2,
+        "category": "CommonError",
+        "block": 0,
+        "page": "38: 135 Understand & Apply",
+        "item": 0,
+        "line": 300
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What does it mean for a term to be a perfect square?",
+      "answer": "The square root of the coefficient is an integer, and the exponent of the variable is divisible by 2.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Polynomial Identities to Factor and Simplify. Pose Purposeful Questions ETP PARTS A AND B",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "39: 136 Understand & Apply",
+        "item": 0,
+        "line": 308
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How can you determine if a variable raised to a power is a perfect cube?",
+      "answer": "Check if the power is divisible by 3. If it is, it is a perfect cube.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Polynomial Identities to Factor and Simplify. Pose Purposeful Questions ETP PARTS A AND B",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "39: 136 Understand & Apply",
+        "item": 1,
+        "line": 311
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "Why can you use the Sum of Cubes Identity when 11 and 5 are not divisible by 3?",
+      "answer": "11 and 5 take the place of the variables. The exponents are the parts of the expression that need to be divisible by 3.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Use Polynomial Identities to Factor and Simplify. Pose Purposeful Questions ETP PARTS A AND B",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "39: 136 Understand & Apply",
+        "item": 2,
+        "line": 314
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How do you determine which polynomial identity you will use to factor each expression?",
+      "answer": "Consider whether the coefficients are perfect squares or perfect cubes, and whether the exponents of each term are divisible by 2 or 3 to determine if you are working with squares or cubes.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "39: 136 Understand & Apply",
+        "item": 0,
+        "line": 371
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Use polynomial identities to rewrite the expression ((-12m^6-10n^8)(144m^12-120m^6n^8+100n^16)).",
+      "answer": "(-1728m^18-1000n^24)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 3 Students will rewrite expressions using polynomial identities.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "39: 136 Understand & Apply",
+        "item": 0,
+        "line": 382
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "Use polynomial identities to rewrite the expression ((8x^9-9z^7)(64x^18+72x^9z^7+81z^14)).",
+      "answer": "(512x^27-729z^21)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 3 Students will rewrite expressions using polynomial identities.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "39: 136 Understand & Apply",
+        "item": 1,
+        "line": 384
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[2]",
+      "kind": "question",
+      "question": "Use polynomial identities to rewrite the expression ((12x^4+8x^7)(12x^4-8x^7)).",
+      "answer": "(144x^8-64x^14)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 3 Students will rewrite expressions using polynomial identities.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "39: 136 Understand & Apply",
+        "item": 2,
+        "line": 386
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[3]",
+      "kind": "question",
+      "question": "Use polynomial identities to rewrite the expression ((3x^4+5x^7)(9x^8-15x^11+25x^14)).",
+      "answer": "(27x^12+125x^21)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 3 Students will rewrite expressions using polynomial identities.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "39: 136 Understand & Apply",
+        "item": 3,
+        "line": 388
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How is the diagram in the example similar to Pascal's Triangle?",
+      "answer": "The coefficients of each term of the simplified expressions are the numbers in Pascal's Triangle.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Expand a Power of a Binomial. Use and Connect Mathematical Representations ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "40: 137 Understand & Apply",
+        "item": 0,
+        "line": 395
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What are the patterns of the powers when reading the terms from left to right?",
+      "answer": "The powers of (x) decrease from (n) to 0, and the powers of (y) increase from 0 to (n).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Expand a Power of a Binomial. Use and Connect Mathematical Representations ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "40: 137 Understand & Apply",
+        "item": 1,
+        "line": 397
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "kind": "question",
+      "question": "What pattern do you notice in the coefficients of each row?",
+      "answer": "Each coefficient is the sum of the two coefficients above it in the previous row.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Expand a Power of a Binomial. Use and Connect Mathematical Representations ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "40: 137 Understand & Apply",
+        "item": 2,
+        "line": 400
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine which row of Pascal's Triangle to use in order to expand the expression?",
+      "answer": "You need to use Row 6 because the binomial is raised to the sixth power.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "40: 137 Understand & Apply",
+        "item": 0,
+        "line": 433
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "How are the words array and pattern related?",
+      "answer": "A pattern is an arrangement of items ordered in a certain way that is repeated, and an array is a type of pattern arranged in rows and columns.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Give students each a bowl of small items (buttons, game tokens, or coins). Have students listen to instructions you give on how to arrange the items on their desks. Use the words from the example---such as array, pattern, and diagonally---in your instructions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "40: 137 Understand & Apply",
+        "item": 0,
+        "line": 439
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What are some other words that are like diagonally that tell you about the direction or placement of something?",
+      "answer": "horizontally and vertically",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Give students each a bowl of small items (buttons, game tokens, or coins). Have students listen to instructions you give on how to arrange the items on their desks. Use the words from the example---such as array, pattern, and diagonally---in your instructions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "40: 137 Understand & Apply",
+        "item": 1,
+        "line": 441
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "What does it mean to obtain something from someone or somewhere?",
+      "answer": "to get it or to be given it",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Give students each a bowl of small items (buttons, game tokens, or coins). Have students listen to instructions you give on how to arrange the items on their desks. Use the words from the example---such as array, pattern, and diagonally---in your instructions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "40: 137 Understand & Apply",
+        "item": 2,
+        "line": 444
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "How is the word obtained used in this question?",
+      "answer": "It means the first expression can be found from the second expression.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Give students each a bowl of small items (buttons, game tokens, or coins). Have students listen to instructions you give on how to arrange the items on their desks. Use the words from the example---such as array, pattern, and diagonally---in your instructions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "40: 137 Understand & Apply",
+        "item": 3,
+        "line": 446
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Where in the paragraph does it explain how to get the numbers 2, 3, 4, and 6 in the diagram?",
+      "answer": "Each number is the sum of the two numbers diagonally above it.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Give students each a bowl of small items (buttons, game tokens, or coins). Have students listen to instructions you give on how to arrange the items on their desks. Use the words from the example---such as array, pattern, and diagonally---in your instructions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "40: 137 Understand & Apply",
+        "item": 4,
+        "line": 449
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "Where in the paragraph does it explain why numbers along the sides of the triangle in the diagram are always 1?",
+      "answer": "The last sentence explains that if there is not a second number, you should think of it as 0.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Give students each a bowl of small items (buttons, game tokens, or coins). Have students listen to instructions you give on how to arrange the items on their desks. Use the words from the example---such as array, pattern, and diagonally---in your instructions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "40: 137 Understand & Apply",
+        "item": 5,
+        "line": 451
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why is it important to use Pascal's Triangle when applying the Binomial Theorem?",
+      "answer": "Pascal's Triangle determines the coefficients of each term.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Apply the Binomial Theorem. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "41: 138 Understand & Apply",
+        "item": 0,
+        "line": 458
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What do you think is a common mistake when using the Binomial Theorem to expand an expression with exponents inside the parentheses?",
+      "answer": "forgetting to multiply the original exponents by the exponents from the expansion",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Apply the Binomial Theorem. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "41: 138 Understand & Apply",
+        "item": 1,
+        "line": 461
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "Write the powers of the expanded expression ((x+12)^5) using the Binomial Theorem.",
+      "answer": "(C_0a^5+C_1a^4b+C_2a^3b^2+C_3a^2b^3+C_4ab^4+C_5b^5)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 5 Students practice the step-by-step process of expanding expressions using the Binomial Theorem and Pascal's Triangle.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "41: 138 Understand & Apply",
+        "item": 0,
+        "line": 512
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "Use Pascal's Triangle to list the coefficients for the above expression.",
+      "answer": "(C_0=1,C_1=5,C_2=10,C_3=10,C_4=5,C_5=1)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 5 Students practice the step-by-step process of expanding expressions using the Binomial Theorem and Pascal's Triangle.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "41: 138 Understand & Apply",
+        "item": 1,
+        "line": 514
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[2]",
+      "kind": "question",
+      "question": "Write the expanded expression.",
+      "answer": "(a^5+5a^4b+10a^3b^2+10a^2b^3+5ab^4+b^5)",
+      "variant": "example",
+      "notes": [
+        "Printed answer retains generic a and b rather than substituting x and 12 from the prompt."
+      ],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 5 Students practice the step-by-step process of expanding expressions using the Binomial Theorem and Pascal's Triangle.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-3_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "41: 138 Understand & Apply",
+        "item": 2,
+        "line": 516
+      }
+    }
+  ]
+}

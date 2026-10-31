@@ -1,0 +1,950 @@
+{
+  "lesson": "7-1",
+  "title": "Angles and the Unit Circle",
+  "nodes": [
+    {
+      "id": "9b2aee0b0b40",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How can we extend the trigonometric ratios to angles greater than 90°?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "ba8174cb3f57",
+      "type": "anchor",
+      "front": "Define: initial side",
+      "back": "I can explain where an angle ends using the words initial side, terminal side, quadrant, coterminal, and radian.",
+      "order": 2,
+      "after": [
+        "9b2aee0b0b40"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.initial side"
+    },
+    {
+      "id": "f0fe24f82e31",
+      "type": "anchor",
+      "front": "Define: terminal side",
+      "back": "write the angle from how far the terminal side is from the x-axis: Quadrant II 180° - ref, Quadrant III 180° + ref, Quadrant IV 360° - ref (Example 1A figures 140°, 200°, 330° and Example 1B 210°, 315°; IXL BRP drills the reverse direction)",
+      "order": 3,
+      "after": [
+        "9b2aee0b0b40"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.terminal side"
+    },
+    {
+      "id": "d2b79a85b630",
+      "type": "anchor",
+      "front": "Define: quadrant",
+      "back": "the quadrant from the angle: 0-90 I, 90-180 II, 180-270 III, 270-360 IV (Example 1A; IXL ANN as the Do Now)",
+      "order": 4,
+      "after": [
+        "9b2aee0b0b40"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.quadrant"
+    },
+    {
+      "id": "ad90786328a8",
+      "type": "anchor",
+      "front": "Define: coterminal",
+      "back": "coterminal angles: add or subtract 360°; a negative angle turns clockwise (Example 1C; IXL 7CV)",
+      "order": 5,
+      "after": [
+        "9b2aee0b0b40"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.coterminal"
+    },
+    {
+      "id": "9cefcc909ed6",
+      "type": "anchor",
+      "front": "Define: radian",
+      "back": "radians to degrees: multiply by 180°/pi (Example 3A; IXL EDC); degrees to radians: multiply by pi/180 (Example 3B)",
+      "order": 6,
+      "after": [
+        "9b2aee0b0b40"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.radian"
+    },
+    {
+      "id": "c7688cea8332",
+      "type": "anchor",
+      "front": "Quiz item 3 asks?",
+      "back": "Five items, four DOK 1 and one DOK 2; skill codes F84 (items 1, 2, 3, 5) and F85 (item 4). Item 3 (graded): the positive angle under 360° in standard position for a reference angle of 68° in Quadrant II, 75° in Quadrant IV and 22° in Quadrant III. Item 4 (graded): convert pi/6 and 5pi/3 radians to degrees. …",
+      "order": 7,
+      "after": [
+        "ba8174cb3f57",
+        "f0fe24f82e31",
+        "d2b79a85b630",
+        "ad90786328a8",
+        "9cefcc909ed6"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "001369d907ec",
+      "type": "anchor",
+      "front": "Quiz item 3 answer?",
+      "back": "Item 3: 112°, 285°, 202°. Item 4: 30°, 300°. Item 1: B, C, E (the angle is 150°; -4pi/3 = -240° is coterminal with 120°, and 210° is in Quadrant III). (TE key; verify against the TE key on quiz day.)",
+      "order": 8,
+      "after": [
+        "ba8174cb3f57",
+        "f0fe24f82e31",
+        "d2b79a85b630",
+        "ad90786328a8",
+        "9cefcc909ed6"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "744e8c3375c5",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need?",
+      "back": "the quadrant from the angle: 0-90 I, 90-180 II, 180-270 III, 270-360 IV (Example 1A; IXL ANN as the Do Now)",
+      "order": 9,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "4a9b0f27e120",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (2)",
+      "back": "write the angle from how far the terminal side is from the x-axis: Quadrant II 180° - ref, Quadrant III 180° + ref, Quadrant IV 360° - ref (Example 1A figures 140°, 200°, 330° and Example 1B 210°, 315°; IXL BRP drills the reverse direction)",
+      "order": 10,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "5d16d896d74e",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (3)",
+      "back": "coterminal angles: add or subtract 360°; a negative angle turns clockwise (Example 1C; IXL 7CV)",
+      "order": 11,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "c4de7485d583",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (4)",
+      "back": "radians to degrees: multiply by 180°/pi (Example 3A; IXL EDC); degrees to radians: multiply by pi/180 (Example 3B)",
+      "order": 12,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "463409b4cb0d",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (5)",
+      "back": "for the bonus: convert the radian choices before judging them (5pi/6 = 150°, -4pi/3 = -240°), then check each degree choice against 150° plus or minus 360°",
+      "order": 13,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "c5b294f4eab6",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Select all the measures of the drawn angle (terminal side 30° above the negative x-axis, so 150°); answer B, C, E. Examples 1 (coterminal and negative measures) and 3 (5pi/6 and -4pi/3 to degrees). DOK 1, F84. Proposed +5 bonus.",
+      "order": 14,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "7b99d0d7b42e",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Reference angle 35° with the terminal side in Quadrant IV, possible positive and negative measures; answer A, 325° and -35°. Example 1 (Parts B and C). DOK 1, F84. Left off the short form (full Savvas quiz only); available for Form B.",
+      "order": 15,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "d3f5e7be4b5a",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "The positive angle under 360° for a reference angle in a given quadrant (68° QII, 75° QIV, 22° QIII); answer 112°, 285°, 202°. Example 1 (Parts A and B write each angle as 180° - 40°, 180° + 30°, 360° - 45°). DOK 1, F84. Graded, 10 points.",
+      "order": 16,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "f4c63ee431c2",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Convert pi/6 and 5pi/3 radians to degrees; answer 30°, 300°. Example 3A. DOK 1, F85. Graded, 10 points.",
+      "order": 17,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "9c6988f7f06b",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Carousel horse on a circle of radius 15 ft through 2pi/3 radians: arc length 15(2pi/3) = 10pi, about 31 ft. Example 4 (cut). DOK 2, F84. Left off the short form (full Savvas quiz only); the TE answer template prints 'radians = ft', so on a Form B write 'arc length = ft'.",
+      "order": 18,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "55d422f9176e",
+      "type": "step",
+      "front": "Example 1: ?",
+      "back": "Explore angles in the coordinate plane (A: standard position and quadrants; B: sketch 210° and 315°; C: negative and coterminal angles) · DOK 1-2 · practice 16, 21, 22, 48, 19 · Quiz items 1, 2 and 3 (item 3 graded, item 1 the bonus). …",
+      "order": 19,
+      "after": [
+        "c7688cea8332",
+        "001369d907ec"
+      ],
+      "minute": null,
+      "source": "examples[n=1]"
+    },
+    {
+      "id": "fbfce64eb244",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Convert between degrees and radians (A: 5pi/4 to 225°; B: 75° to 5pi/12) · DOK 1-2 · practice 27, 28, 29, 30, 31, 32, 33, 34, 20 · Quiz item 4 (graded) and the radian choices of item 1 (bonus). …",
+      "order": 20,
+      "after": [
+        "55d422f9176e"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "a857076ecdae",
+      "type": "cue",
+      "front": "Example 1 · Connect representations: What statement can you make about an angle by looking at its graph?",
+      "back": "Listen for: You can give a range of 90° that the angle measure will fall.",
+      "order": 21,
+      "after": [
+        "55d422f9176e"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "14: 345 Understand & Apply",
+          "item": 0,
+          "line": 164
+        },
+        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a4ed867b08f5",
+      "type": "cue",
+      "front": "Example 1 · Connect representations: What does it mean when you say an angle is in standard position?",
+      "back": "Listen for: The vertex of the angle is at the origin; the initial side is the positive x-axis, and the terminal side is the other ray that forms the angle.",
+      "order": 22,
+      "after": [
+        "a857076ecdae"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "14: 345 Understand & Apply",
+          "item": 1,
+          "line": 166
+        },
+        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "336e03dfa620",
+      "type": "cue",
+      "front": "Example 1 · Purposeful question: How do you know that the triangle you formed is a right triangle?",
+      "back": "Listen for: The line drawn to the point is a vertical line, so it is perpendicular to the x-axis.",
+      "order": 23,
+      "after": [
+        "a4ed867b08f5"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "15: 346 Example 1 continued",
+          "item": 0,
+          "line": 210
+        },
+        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "fd6c3c576463",
+      "type": "cue",
+      "front": "Example 1 · Purposeful question: What do you notice about the positive and negative measures of an angle?",
+      "back": "Listen for: The sum of the absolute values of the measures is 360°.",
+      "order": 24,
+      "after": [
+        "336e03dfa620"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "15: 346 Example 1 continued",
+          "item": 1,
+          "line": 212
+        },
+        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "9d90ba1ce6f5",
+      "type": "cue",
+      "front": "Example 1 · Purposeful question: How is measuring a positive angle different than measuring a negative angle?",
+      "back": "Listen for: When you measure a positive angle, you start at the initial side and rotate counterclockwise until you reach the terminal side. When you measure a negative angle, you start at the initial side and rotate clockwise until you reach the terminal side.",
+      "order": 25,
+      "after": [
+        "fd6c3c576463"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "15: 346 Example 1 continued",
+          "item": 2,
+          "line": 214
+        },
+        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "d44375904098",
+      "type": "cue",
+      "front": "Example 1 · Purposeful question: The measure of the angle could be ((120+360k)°), where k is any natural number. How many coterminal angles are there?",
+      "back": "Listen for: Because k could be any natural number, there are an infinite number of coterminal angles.",
+      "order": 26,
+      "after": [
+        "9d90ba1ce6f5"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[3]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "15: 346 Example 1 continued",
+          "item": 3,
+          "line": 216
+        },
+        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "15fda2f8a197",
+      "type": "trap",
+      "front": "Example 1 · Common error: What error should I watch for, and how does the TE respond? (1/2)",
+      "back": "Try It! 1 Students may confuse the direction of the positive and negative angle measures and write the wrong sign with the measure. Have students trace the angle with their finger so they can see which direction it is going.",
+      "order": 27,
+      "after": [
+        "d44375904098"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.CommonError[0].guidance",
+      "teaching": {
+        "example": 1,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "CommonError",
+          "block": 0,
+          "page": "15: 346 Example 1 continued",
+          "item": 0,
+          "line": 223
+        },
+        "promptKey": "examples[n=1].teacherPrompts.CommonError[0].guidance",
+        "part": 1,
+        "parts": 2
+      }
+    },
+    {
+      "id": "8436fd29bc77",
+      "type": "trap",
+      "front": "Example 1 · Common error: What error should I watch for, and how does the TE respond? (2/2)",
+      "back": "Positive angles start at the initial side and rotate counterclockwise toward the positive part of the y-axis, and negative angles rotate clockwise toward the negative part of the y-axis.",
+      "order": 28,
+      "after": [
+        "15fda2f8a197"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.CommonError[0].guidance.part[1]",
+      "teaching": {
+        "example": 1,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "CommonError",
+          "block": 0,
+          "page": "15: 346 Example 1 continued",
+          "item": 0,
+          "line": 223
+        },
+        "promptKey": "examples[n=1].teacherPrompts.CommonError[0].guidance",
+        "part": 2,
+        "parts": 2
+      }
+    },
+    {
+      "id": "13e0e09cbf6f",
+      "type": "cue",
+      "front": "Example 1 · Teacher prompt: What does it mean to terminate?",
+      "back": "Listen for: To terminate something means to end it.",
+      "order": 29,
+      "after": [
+        "8436fd29bc77"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 347 Understand & Apply",
+          "item": 0,
+          "line": 316
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "cfc0497b8672",
+      "type": "cue",
+      "front": "Example 1 · Teacher prompt: One ray of an angle in standard position is called the initial side. Why is the other ray called the terminal side?",
+      "back": "Listen for: You can think of the initial side as the side where the angle starts and the terminal side as the side where the angle ends.",
+      "order": 30,
+      "after": [
+        "13e0e09cbf6f"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 347 Understand & Apply",
+          "item": 1,
+          "line": 318
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "8897a7f85154",
+      "type": "cue",
+      "front": "Example 1 · Teacher prompt: Why is it important to do some things in a standard way?",
+      "back": "Listen for: so the results are the same each time; For example, when using standard ruler, 8 inches is always the same length.",
+      "order": 31,
+      "after": [
+        "cfc0497b8672"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 347 Understand & Apply",
+          "item": 2,
+          "line": 321
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "b5a88e536e3e",
+      "type": "cue",
+      "front": "Example 1 · Teacher prompt: What makes an angle in standard position on a coordinate plane standard?",
+      "back": "Listen for: It is always positioned so one of its rays (the initial side) is found along the x-axis and the vertex is at the origin.",
+      "order": 32,
+      "after": [
+        "8897a7f85154"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 347 Understand & Apply",
+          "item": 3,
+          "line": 323
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a007adbf0ee6",
+      "type": "cue",
+      "front": "Example 1 · Teacher prompt: Do co-terminal angles always share a side?",
+      "back": "Listen for: Yes; the initial side and the terminal side are always shared.",
+      "order": 33,
+      "after": [
+        "b5a88e536e3e"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 347 Understand & Apply",
+          "item": 4,
+          "line": 326
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "07d439eece7c",
+      "type": "cue",
+      "front": "Example 1 · Teacher prompt: Can two angles that are co-terminal both be negative?",
+      "back": "Listen for: Yes; subtracting 360° from a negative angle will result in two negative co-terminal angles.",
+      "order": 34,
+      "after": [
+        "a007adbf0ee6"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[5]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 1,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "16: 347 Understand & Apply",
+          "item": 5,
+          "line": 328
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[5]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "995fea588a06",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: How do you know that (2π) radians is equal to 360°?",
+      "back": "Listen for: The arc length of a 360° angle is the circumference of the circle. The circumference of a unit circle is (2π) units. Because 1 radian subtends an arc length of 1 unit, the radian measure of the 360° angle is ((2π)/1=2π) radians.",
+      "order": 35,
+      "after": [
+        "fbfce64eb244"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "17: 348 Understand & Apply",
+          "item": 0,
+          "line": 334
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "8963b0b97570",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: Why do you multiply the number of radians by ((180°)/(π)) when converting radians to degrees?",
+      "back": "Listen for: (π) radians is equal to 180°. If you divide both sides by (π), you find that 1 radian (=(180°)/(π)).",
+      "order": 36,
+      "after": [
+        "995fea588a06"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "17: 348 Understand & Apply",
+          "item": 1,
+          "line": 336
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "d146020e70fb",
+      "type": "cue",
+      "front": "Example 3 · Check student thinking: What method can you use to rewrite a radian measure in degrees?",
+      "back": "Listen for: You can multiply the radian measure by the conversion factor ((180°)/(π)).",
+      "order": 37,
+      "after": [
+        "8963b0b97570"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_7-1_TE.tex",
+          "anchor": 3,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "17: 348 Understand & Apply",
+          "item": 0,
+          "line": 369
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "7cd104e7076e",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "What is the relationship between a positive angle and a negative angle that share a common terminal side? Write a formula that relates the two measures.",
+      "order": 38,
+      "after": [
+        "fbfce64eb244"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "62762c5d5550",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "TE: the sum of the positive angle and the negative angle is a multiple of 360° or 2pi; negative angle + positive angle = k x 360° or 2k pi. The TE transcription flags this: coterminal measures differ by a multiple of 360°, so the formula that holds is positive - negative = 360°k (k a positive integer), e.g. …",
+      "order": 39,
+      "after": [
+        "fbfce64eb244"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "29734a24f956",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "A triangle with a vertical side of 20, a horizontal side of 21 and a hypotenuse of 29; angle A is at the bottom right, between the base and the hypotenuse.",
+      "order": 40,
+      "after": [
+        "9b2aee0b0b40"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "707a196c3540",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Is this a right triangle? How do you know? (Yes: 20^2 + 21^2 = 400 + 441 = 841 = 29^2.)",
+      "order": 41,
+      "after": [
+        "29734a24f956"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "fd85ab0b9765",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. If it is, find sin A, cos A, and tan A. (sin A = 20/29, cos A = 21/29, tan A = 20/21.)",
+      "order": 42,
+      "after": [
+        "29734a24f956"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "370442d9822a",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Look for Relationships: suppose there is a similar triangle that has lengths twice as long. Would the sine, cosine, and tangent of the corresponding angle be twice as large? Explain. (No: numerator and denominator both double, so each ratio is unchanged.)",
+      "order": 43,
+      "after": [
+        "29734a24f956"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "3fdbec666cc4",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "If triangle ABC is a right triangle, which angle must be the right angle? → The angle opposite the longest side (29). The TE prints 'Angle A', but the figure puts A at an acute angle opposite the side of length 20; the right angle is the unlabeled vertex between the sides 20 and 21.",
+      "order": 44,
+      "after": [
+        "29734a24f956"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "76f8481d9961",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "Draw a triangle with lengths twice those of triangle ABC, then write the ratios for the sine, cosine, and tangent of the angle corresponding with angle A. What happens when you simplify the ratios of the side lengths? …",
+      "order": 45,
+      "after": [
+        "3fdbec666cc4"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "eba9b931d369",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Draw 3 more triangles similar to triangle ABC. Show how the ratios created are equivalent. → Check students' work.",
+      "order": 46,
+      "after": [
+        "76f8481d9961"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "4cef8ffaa56a",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "How many ratios of side lengths are there in one right triangle? → 6",
+      "order": 47,
+      "after": [
+        "eba9b931d369"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "152d6d8b4329",
+      "type": "cue",
+      "front": "After, whole class: ask? (2)",
+      "back": "If a group of triangles is similar, are ratios of side lengths always equivalent? → Yes; similar triangles multiply every side by the same value, so each ratio stays the same.",
+      "order": 48,
+      "after": [
+        "4cef8ffaa56a"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "062939d81e59",
+      "type": "cue",
+      "front": "Habits of Mind, Look for Relationships: ask?",
+      "back": "Find the side lengths of two right triangles, one that is similar to triangle ABC and one that is not. How do the sine, cosine, and tangent ratios compare to the ratios for triangle ABC? …",
+      "order": 49,
+      "after": [
+        "152d6d8b4329"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "f38eef4ef705",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The opener reviews right-triangle trigonometry from Geometry; it leads to Example 5 (sine and cosine on the unit circle), which the fast packet cuts, not to the kept Examples 1 and 3. …",
+      "order": 50,
+      "after": [
+        "29734a24f956"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "de376fb66f87",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "7CV Coterminal angles",
+      "order": 51,
+      "after": [
+        "55d422f9176e"
+      ],
+      "minute": null,
+      "source": "ixl.7CV"
+    },
+    {
+      "id": "c38552f9571f",
+      "type": "anchor",
+      "front": "IXL for example 1? (2)",
+      "back": "BRP Reference angles",
+      "order": 52,
+      "after": [
+        "55d422f9176e"
+      ],
+      "minute": null,
+      "source": "ixl.BRP"
+    },
+    {
+      "id": "1094a45ec918",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "EDC Convert between radians and degrees",
+      "order": 53,
+      "after": [
+        "fbfce64eb244"
+      ],
+      "minute": null,
+      "source": "ixl.EDC"
+    },
+    {
+      "id": "f9a07f105849",
+      "type": "anchor",
+      "front": "IXL for example 4?",
+      "back": "UA5 Radians and arc length",
+      "order": 54,
+      "after": [
+        "9b2aee0b0b40"
+      ],
+      "minute": null,
+      "source": "ixl.UA5"
+    }
+  ]
+}

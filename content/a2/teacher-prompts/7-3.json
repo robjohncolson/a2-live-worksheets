@@ -1,0 +1,749 @@
+{
+  "lesson": "7-3",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Can you choose any point as the starting point of the period?",
+      "answer": "Yes, any point can be the starting point because the function repeats. For example, in the function (y=sin x), the period is (2π). Both the interval 0 to (2π) and the interval (-π) to (π) represent the entire period.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph the Sine Function. Build Procedural Fluency From Conceptual Understanding Part A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 363 Understand & Apply",
+        "item": 0,
+        "line": 167
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What do you notice about the (y)-values in each period?",
+      "answer": "Beginning at the origin, the y-values start at 0, increase to 1, decrease to -1, and then increase back to 0.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph the Sine Function. Build Procedural Fluency From Conceptual Understanding Part A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 363 Understand & Apply",
+        "item": 1,
+        "line": 169
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "What does the period represent in this situation?",
+      "answer": "The period represents the amount of time between waves.",
+      "variant": "additional",
+      "notes": [
+        "Digital controls: Go back; ESSENTIAL QUESTION; SOLUTION."
+      ],
+      "context": {
+        "text": "Additional Examples. ADDITIONAL EXAMPLE 1 Additional Examples are available at SavvasRealize.com. A lab runs an experiment studying waves. The height of the waves in simulation is shown in the graph, where (y=0) represents the water level when there are no waves. What are the period and amplitude of the graph? The graph pattern repeats after intervals of 8. Therefore, the period of the graph is 8. The midline of the graph is (y=0). The maxima and minima are a distance of 4 from the midline. Therefore the amplitude is 4. Example 1 Students identify the features of the graph of a periodic function in a real-world situation.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Additional Example1 orange sine wave, axes x,y and origin O; x labels0,2,4,6,8,10,12, unit grid; y labels-4,-2,2,4, unit grid. Curve goes (0,0),(2,4),(4,0),(6,-4),(8,0),(10,4),(12,0), continuing beyond window with arrows; midline0, amplitude4, period8."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "40: 363 Understand & Apply",
+        "item": 0,
+        "line": 181
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the period when (b) is a multiple of (π)?",
+      "answer": "When b is a multiple of (π), the period is an integer or a fraction that is not multiplied by (π).",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 3 What are the amplitude and period of (f(x)=1/2sin((π)/3 x))? Amplitude: (a=1/2) Period: ((2π)/b=(2π)/(π/3)=(2π)/1·3/(π)=6) Multiplying the cosine function by (1/2) results in an amplitude of (1/2). The graph of the function (sin((π)/3 x)) will be a horizontal compression of the graph of (sin x) by a factor of (1/(π/3)=3/(π)). Therefore the period is (3/(π)·2π=6). Amplitude: (1/2); period: 6. Printed \"cosine function\"; likely sine function. Digital controls: Go back; ESSENTIAL QUESTION; TRY ANOTHER ONE; SOLUTION. Example 3 Students transition to finding the amplitude and period of functions with (a) and (b) as fractions and when (b) is a multiple of (π).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 363 Understand & Apply",
+        "item": 0,
+        "line": 194
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[2].questions[0]",
+      "kind": "question",
+      "question": "How are the minimum and maximum of the function (y=sin x) related?",
+      "answer": "The minimum and maximum are opposites of each other. They are both the same distance from the midline, which in this case is the x-axis. This distance is the amplitude.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 1 CONTINUED. Part B",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 2,
+        "page": "41: 364 Example 1 continued",
+        "item": 0,
+        "line": 231
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[2].questions[1]",
+      "kind": "question",
+      "question": "Why do the minimum and maximum values repeat every (2π) radians?",
+      "answer": "The period of the function is (2π), so each value repeats every (2π) radians.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 1 CONTINUED. Part B",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 2,
+        "page": "41: 364 Example 1 continued",
+        "item": 1,
+        "line": 233
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the (y)-values in each period?",
+      "answer": "Beginning at the origin, the y-values start at the maximum value 1, decrease to the minimum at -1 and increase back to the maximum.",
+      "variant": "example",
+      "notes": [
+        "Printed \"Beginning at the origin\"; likely beginning at x=0, since cosine has y-intercept1."
+      ],
+      "context": {
+        "text": "Graph the Cosine Function. Pose Purposeful Questions Part A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "41: 364 Example 1 continued",
+        "item": 0,
+        "line": 249
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How are the graphs of (y=sin x) and (y=cos x) the same? How are they different?",
+      "answer": "Both graphs have the same domain, range, period, midline, and amplitude. The graphs have the same basic shape, but they are shifted horizontally by (π/2).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph the Cosine Function. Pose Purposeful Questions Part A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "41: 364 Example 1 continued",
+        "item": 1,
+        "line": 253
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "How does the sketching an angle on the unit circle aid in understanding the sine and cosine graphs?",
+      "answer": "The unit circle relates three values: the angle measure and its cosine and sine ratios in the ordered pair. The graphs of the sine and cosine functions focus on the independent variable, the angle measure, and then one of the ordered pair values. As the angle measure changes along the x-axis, the graph highlights the changes in positions along the unit circle.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph the Cosine Function. Pose Purposeful Questions Part A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "41: 364 Example 1 continued",
+        "item": 2,
+        "line": 255
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How is the amplitude related to other transformations of functions you have previously studied?",
+      "answer": "In the equation, the output of the function is multiplied by the value of the amplitude. In the graph, multiplying by the amplitude value results in a vertical stretch ((|a|>1)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Identify Amplitude and Period. Pose Purposeful Questions Part A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "42: 365 Understand & Apply",
+        "item": 0,
+        "line": 280
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Why does the negative sign in the function (y=-sin2x) not affect the amplitude of the function?",
+      "answer": "The negative sign is the same as multiplying the function by -1. Because the absolute value of -1 is 1, the amplitude of the function is 1.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Identify Amplitude and Period. Pose Purposeful Questions Part A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "42: 365 Understand & Apply",
+        "item": 1,
+        "line": 283
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[2]",
+      "kind": "question",
+      "question": "Under what conditions would the coefficient of (x) make the period longer?",
+      "answer": "If the coefficient of x were between 0 and 1, the period would be longer because only a fraction of the graph would occur between 0 and (2π).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Identify Amplitude and Period. Pose Purposeful Questions Part A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "42: 365 Understand & Apply",
+        "item": 2,
+        "line": 285
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What process do you use to determine the period of each function?",
+      "answer": "Determine the factor by which the function is stretched or compressed, and then multiply (2π) by this factor.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "42: 365 Understand & Apply",
+        "item": 0,
+        "line": 320
+      }
+    },
+    {
+      "example": 3,
+      "category": "CommonError",
+      "key": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Some students may incorrectly calculate the period by multiplying (2π) by the coefficient of (x) rather than dividing (2π) by the coefficient of (x). Have students graph the function and indicate on the graph the period of the function.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 3,
+        "category": "CommonError",
+        "block": 0,
+        "page": "42: 365 Understand & Apply",
+        "item": 0,
+        "line": 323
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine the key points for the graphs of functions of the form (y=asin bx) and (y=acos bx)?",
+      "answer": "Divide the x-value of each key point of the parent function by b and multiply the y-value of each key point of the parent function by a.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph (y=asin bx) and (y=acos bx). Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "43: 366 Understand & Apply",
+        "item": 0,
+        "line": 330
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What process do you use to determine the period and the frequency.",
+      "answer": "The period is (2π) divided by b. The frequency is the reciprocal of the period.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "43: 366 Understand & Apply",
+        "item": 0,
+        "line": 336
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].guidance",
+      "kind": "support",
+      "question": "How does the TE support students who struggle?",
+      "answer": "Some students may struggle with issues of scale for the sine and cosine functions. Have students use their calculators and viewing windows to display two periods along the x-axis. Alternatively, have them graph (y_1=sin x) and then (y_2=asin bx) for comparison: ZOOM, down arrow, 7: ZTrig. These exercises together will help students identify stretches and compressions. 1. (sin2x) 2. (2cos1/4 x)",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "43: 366 Understand & Apply",
+        "item": 0,
+        "line": 344
+      }
+    },
+    {
+      "example": 4,
+      "category": "InlineCommonError",
+      "key": "examples[n=4].teacherPrompts.inlineCommonError[0]",
+      "kind": "trap",
+      "question": "What misconception should I watch for?",
+      "answer": "Use key points to determine if a graph's appearance is different because of a change in the viewing window with technology or a transformation from the parent function.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 4,
+        "category": "InlineCommonError",
+        "block": 0,
+        "item": 0,
+        "line": 372,
+        "page": "43: 366 Understand & Apply"
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine the midline of a graph if you are given the minimum and maximum values of the function?",
+      "answer": "You add the minimum and maximum values and then divide the sum by 2.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Develop a Graph and an Equation From a Description. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "44: 367 Example 4 continued",
+        "item": 0,
+        "line": 398
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How does the movement of the hour hand on the clock correspond to the graph of the function?",
+      "answer": "Between 12:00 and 6:00, the tip of the hour hand is decreasing. The graph of the function decreases between (x=0) and (x=6). Between 6:00 and 12:00, the tip of the hour hand is increasing. The graph of the function increases between (x=6) and (x=12).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Develop a Graph and an Equation From a Description. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "44: 367 Example 4 continued",
+        "item": 1,
+        "line": 400
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What is different about the units in Example 4 compared to the time in the Try It?",
+      "answer": "In Example 4, the units for time are hours, but in the Try It, the units for time are minutes.",
+      "variant": "example",
+      "notes": [
+        "Printed Example4 twice; likely Example5."
+      ],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "44: 367 Example 4 continued",
+        "item": 0,
+        "line": 406
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "How do the words above and below relate to maximum and minimum?",
+      "answer": "Values must be below the maximum and above the minimum.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING. BEGINNING. Review the meanings of maximum and minimum with students. Then provide several sentence frames with either the word minimum or maximum missing for them to practice using the words correctly. For example: \"For people's safety, the auditorium has a holding capacity of 100 people.\" \"To get an A on the quiz, you have to answer a of nine questions correctly.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 367 Example 4 continued",
+        "item": 0,
+        "line": 413
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "In the example, are the maximum and minimum values (x)- or (y)-values?",
+      "answer": "y-values",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING. BEGINNING. Review the meanings of maximum and minimum with students. Then provide several sentence frames with either the word minimum or maximum missing for them to practice using the words correctly. For example: \"For people's safety, the auditorium has a holding capacity of 100 people.\" \"To get an A on the quiz, you have to answer a of nine questions correctly.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 367 Example 4 continued",
+        "item": 1,
+        "line": 415
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "In which quadrant is the minute hand at 4:40?",
+      "answer": "Quadrant III",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING. BEGINNING. Review the meanings of maximum and minimum with students. Then provide several sentence frames with either the word minimum or maximum missing for them to practice using the words correctly. For example: \"For people's safety, the auditorium has a holding capacity of 100 people.\" \"To get an A on the quiz, you have to answer a of nine questions correctly.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 367 Example 4 continued",
+        "item": 2,
+        "line": 418
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "How many hours are represented in each quadrant in the example?",
+      "answer": "3 hours",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING. BEGINNING. Review the meanings of maximum and minimum with students. Then provide several sentence frames with either the word minimum or maximum missing for them to practice using the words correctly. For example: \"For people's safety, the auditorium has a holding capacity of 100 people.\" \"To get an A on the quiz, you have to answer a of nine questions correctly.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 367 Example 4 continued",
+        "item": 3,
+        "line": 420
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Why is noon not (0,5)?",
+      "answer": "The x-value represents the hour of time, and time continues on. You cannot repeat hour 0 again.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING. BEGINNING. Review the meanings of maximum and minimum with students. Then provide several sentence frames with either the word minimum or maximum missing for them to practice using the words correctly. For example: \"For people's safety, the auditorium has a holding capacity of 100 people.\" \"To get an A on the quiz, you have to answer a of nine questions correctly.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 367 Example 4 continued",
+        "item": 4,
+        "line": 423
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "Which definition of cycle fits the example and how does it relate to the word repeat?",
+      "answer": "a series of events that occurs again and again in the same way; To repeat something is to do something again and again; a cycle repeats.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 5 WRITING. BEGINNING. Review the meanings of maximum and minimum with students. Then provide several sentence frames with either the word minimum or maximum missing for them to practice using the words correctly. For example: \"For people's safety, the auditorium has a holding capacity of 100 people.\" \"To get an A on the quiz, you have to answer a of nine questions correctly.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "44: 367 Example 4 continued",
+        "item": 5,
+        "line": 425
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How can the period of a trigonometric function be determined by its graph?",
+      "answer": "The period of a trigonometric function can be determined by its graph by subtracting the x-values of consecutive maximum points.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Compare Key Features of Two Periodic Functions. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "45: 368 Example 5 continued",
+        "item": 0,
+        "line": 459
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How would the graph of (f) compare to the graph of (g)?",
+      "answer": "The distance between consecutive maximums would be longer in the graph of f.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Compare Key Features of Two Periodic Functions. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "45: 368 Example 5 continued",
+        "item": 1,
+        "line": 461
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "kind": "question",
+      "question": "How would the equation of (g) compare to the equation of (f)?",
+      "answer": "The equation of g would be the same as the equation of f, except that the coefficient of x would be (π/2).",
+      "variant": "example",
+      "notes": [
+        "Printed answer omits the phase needed for displayed g; the graphed g is (-4sin(π x/2)), with maxima at3 and7."
+      ],
+      "context": {
+        "text": "Compare Key Features of Two Periodic Functions. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "45: 368 Example 5 continued",
+        "item": 2,
+        "line": 463
+      }
+    },
+    {
+      "example": 6,
+      "category": "ElicitEvidence",
+      "key": "examples[n=6].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What do you know about the relationship between the period and the frequency of a function?",
+      "answer": "The period and the frequency are reciprocals.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 6,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "45: 368 Example 5 continued",
+        "item": 0,
+        "line": 497
+      }
+    },
+    {
+      "example": 6,
+      "category": "RtIExtend",
+      "key": "examples[n=6].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "How do the period and amplitude of the functions compare?",
+      "answer": "Because amplitude is (|a|), the amplitude of each function is the same, 2. The period of m, (1/2), is less than the period of n, ((π)/2).",
+      "variant": "example",
+      "notes": [
+        "Printed introduction says integer period; the displayed m has period1/2. The graphed peaks occur every pi/2."
+      ],
+      "context": {
+        "text": "Extend Student Thinking. USE WITH EXAMPLE 6 Have students explore comparing the period and amplitude of two periodic functions when one has a negative coefficient and a period that is an integer value while the other has a period that is a multiple of (π). The equation for m and the graph of n are given below. (m=-2sin(4π x))",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Red n on square grid, axes x,y arrowed, origin O; x labels-pi/2,pi/2, gridpi/4; y labels-2,2, grid1. Window-pi to pi,-4 to4. Red cosine has maxima(-pi/2,2),(0,2),(pi/2,2), troughs(-3pi/4,-2),(-pi/4,-2),(pi/4,-2),(3pi/4,-2). Curve end arrows, red n label upper right."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_7-3_TE.tex",
+        "anchor": 6,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "45: 368 Example 5 continued",
+        "item": 0,
+        "line": 512
+      }
+    }
+  ]
+}

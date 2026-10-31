@@ -1,0 +1,733 @@
+{
+  "lesson": "3-4",
+  "title": "Dividing Polynomials",
+  "nodes": [
+    {
+      "id": "c3df9790866f",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How can you divide polynomials?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "e7bf8c64525d",
+      "type": "anchor",
+      "front": "Define: divisor",
+      "back": "write the divisor x+2 as x-(-2), so a = -2 is the zero of the divisor (Example 5B). Corey's error in Reteach 2 is this one: 45 is P(2), the remainder is P(-2) = 13. Jettie's 149 in Do You Understand 2 is wrong too: the remainder for x+5 is P(-5) = -49",
+      "order": 2,
+      "after": [
+        "c3df9790866f"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.divisor"
+    },
+    {
+      "id": "a6476bd2b201",
+      "type": "anchor",
+      "front": "Define: quotient",
+      "back": "synthetic division: bring down, multiply by a, add; the bottom row except its last number gives the quotient, one degree lower than the dividend (Example 2; IXL D6D)",
+      "order": 3,
+      "after": [
+        "c3df9790866f"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.quotient"
+    },
+    {
+      "id": "f1d7c869b7ac",
+      "type": "anchor",
+      "front": "Define: remainder",
+      "back": "write the divisor x+2 as x-(-2), so a = -2 is the zero of the divisor (Example 5B). Corey's error in Reteach 2 is this one: 45 is P(2), the remainder is P(-2) = 13. Jettie's 149 in Do You Understand 2 is wrong too: the remainder for x+5 is P(-5) = -49",
+      "order": 4,
+      "after": [
+        "c3df9790866f"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.remainder"
+    },
+    {
+      "id": "cf428a77c6e0",
+      "type": "anchor",
+      "front": "Define: factor",
+      "back": "remainder 0 means x - a is a factor, so P(x) = quotient times (x - a) (Factor Theorem; Example 5A; IXL VXE)",
+      "order": 5,
+      "after": [
+        "c3df9790866f"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.factor"
+    },
+    {
+      "id": "491bc1c2c4c5",
+      "type": "anchor",
+      "front": "Quiz item 5 asks?",
+      "back": "Item 5: if x+2 is a factor of P(x) = 2x^3 + 5x^2 + 5x + 6, select the two factors that express P(x) as a product (A (x+2), B (2x^2 - x - 3), C (2x^2 - x + 3), D (2x^2 + x - 3), E (2x^2 + x + 3), F not a factor). …",
+      "order": 6,
+      "after": [
+        "e7bf8c64525d",
+        "a6476bd2b201",
+        "f1d7c869b7ac",
+        "cf428a77c6e0"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "05c29fae5a4a",
+      "type": "anchor",
+      "front": "Quiz item 5 answer?",
+      "back": "A, E: P(x) = (x+2)(2x^2 + x + 3); synthetic division with a = -2 gives the bottom row 2, 1, 3 | 0 (verify against the TE key on quiz day). Item 2: B (products 2, 6, 0, -8; quotient x^3 + 3x^2 - 4). Item 3: -23; -23; Yes.",
+      "order": 7,
+      "after": [
+        "e7bf8c64525d",
+        "a6476bd2b201",
+        "f1d7c869b7ac",
+        "cf428a77c6e0"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "af403584a735",
+      "type": "anchor",
+      "front": "Before quiz item 5 students need?",
+      "back": "write the divisor x+2 as x-(-2), so a = -2 is the zero of the divisor (Example 5B). Corey's error in Reteach 2 is this one: 45 is P(2), the remainder is P(-2) = 13. Jettie's 149 in Do You Understand 2 is wrong too: the remainder for x+5 is P(-5) = -49",
+      "order": 8,
+      "after": [
+        "491bc1c2c4c5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "f694eebf5b07",
+      "type": "anchor",
+      "front": "Before quiz item 5 students need? (2)",
+      "back": "synthetic division: bring down, multiply by a, add; the bottom row except its last number gives the quotient, one degree lower than the dividend (Example 2; IXL D6D)",
+      "order": 9,
+      "after": [
+        "491bc1c2c4c5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "c275d9b7c8c2",
+      "type": "anchor",
+      "front": "Before quiz item 5 students need? (3)",
+      "back": "the last number of the bottom row is the remainder, and it equals P(a) (Remainder Theorem; Example 5 Methods 1 and 2 both give -21; IXL CHC)",
+      "order": 10,
+      "after": [
+        "491bc1c2c4c5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "8d7370eb0f50",
+      "type": "anchor",
+      "front": "Before quiz item 5 students need? (4)",
+      "back": "remainder 0 means x - a is a factor, so P(x) = quotient times (x - a) (Factor Theorem; Example 5A; IXL VXE)",
+      "order": 11,
+      "after": [
+        "491bc1c2c4c5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "9b82546c3272",
+      "type": "anchor",
+      "front": "Before quiz item 5 students need? (5)",
+      "back": "write 0 for a missing term of the dividend (Example 2's 0x, Example 5B's 0x^4, quiz item 4's missing x^3)",
+      "order": 12,
+      "after": [
+        "491bc1c2c4c5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "1d4ba7af5420",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Long division of x^3 + x^2 - 2x + 14 by x + 3, built from term choices (x^2 - 2x + 4 + 2/(x+3)). Example 1 (cut). The divisor is x - (-3), so Example 2's synthetic division gives the same quotient and remainder (IXL D6D with a = -3; YN5, long division, is not in the table). …",
+      "order": 13,
+      "after": [
+        "491bc1c2c4c5"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "416059a803e8",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Finish Morgan's synthetic division of x^4 + x^3 - 6x^2 - 4x + 8 by x - 2 and pick the quotient (B). Example 2 + Try It 2; IXL D6D. On the short form as question 2, graded 10.",
+      "order": 14,
+      "after": [
+        "491bc1c2c4c5"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "4e04d24e9d53",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Verify the Remainder Theorem for 2x^3 - x^2 + 4x + 5 divided by x + 2 (remainder -23, P(-2) = -23, Yes). Example 3 is cut; Example 5 shows the same two computations (synthetic and direct substitution agree) and the packet's theorem box gives the reason. IXL CHC. On the short form as question 3, the proposed +5 bonus.",
+      "order": 15,
+      "after": [
+        "491bc1c2c4c5"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "f17627ba9cfe",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Remainder of x^4 - 5x^2 - 6x - 10 divided by x - 3 (B, 8; skill F01). Example 4 (cut); the zero placeholder for the missing x^3 is rehearsed by Example 2, Try It 2 and Example 5B; IXL CHC. Full Savvas quiz only: left off the short form (retake or Form B).",
+      "order": 16,
+      "after": [
+        "491bc1c2c4c5"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "92a4340a01d3",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "x + 2 is a factor of 2x^3 + 5x^2 + 5x + 6; pick (x+2) and (2x^2 + x + 3). Example 5A + Try It 5a; IXL VXE. On the short form as question 5, graded 10.",
+      "order": 17,
+      "after": [
+        "491bc1c2c4c5"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "098b024bba82",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Use Synthetic Division to Divide by x - a · DOK 1, 3 · practice 20-23, 33, 34, 38 · Quiz item 2 directly (finish a synthetic division by x - 2) and the tool for items 1, 3, 4 and 5; the concept summary's synthetic-division panel. …",
+      "order": 18,
+      "after": [
+        "491bc1c2c4c5",
+        "05c29fae5a4a"
+      ],
+      "minute": null,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "bbab6f87f9d7",
+      "type": "step",
+      "front": "Example 5: ?",
+      "back": "Check Whether x - a Is a Factor of P(x) (A: x - 6 is a factor; B: x + 3 is not) · DOK 1, 2 · practice 29-32, 36, 9, 37 · Quiz item 5 directly (x + 2 is a factor; write the product) and items 3-4 through its two methods (synthetic and direct substitution give the same remainder). …",
+      "order": 19,
+      "after": [
+        "098b024bba82"
+      ],
+      "minute": null,
+      "source": "examples[n=5]"
+    },
+    {
+      "id": "1e70fde25325",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: When would you use synthetic division and why is it useful?",
+      "back": "Listen for: Synthetic division can be used to divide a polynomial by a linear factor. Synthetic division keeps the coefficients organized and is more efficient.",
+      "order": 20,
+      "after": [
+        "098b024bba82"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_3-4_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "50: 143 Example 1 continued",
+          "item": 0,
+          "line": 275
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "83a91fcc2747",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Why do you reverse the sign of the constant term in the divisor?",
+      "back": "Listen for: The linear divisor is represented as ((x-a)), so the subtraction sign would reverse the sign of the constant term.",
+      "order": 21,
+      "after": [
+        "1e70fde25325"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_3-4_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "50: 143 Example 1 continued",
+          "item": 1,
+          "line": 277
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a4cecd1d5beb",
+      "type": "trap",
+      "front": "Example 2 · Common error: What error should I watch for, and how does the TE respond?",
+      "back": "Try It! 2 Students may multiply the zero of the divisor, 1, by (-5) and place that answer under the second coefficient. Have students use long division to do the same problem, and ask them to consider the relationship between the values in the synthetic division and the values in the long division.",
+      "order": 22,
+      "after": [
+        "83a91fcc2747"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "teaching": {
+        "example": 2,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_3-4_TE.tex",
+          "anchor": 2,
+          "category": "CommonError",
+          "block": 0,
+          "page": "50: 143 Example 1 continued",
+          "item": 0,
+          "line": 281
+        },
+        "promptKey": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "61dafa6356c0",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What does it mean to reverse the sign of the constant term in the divisor?",
+      "back": "Listen for: The divisor is (x-2). The constant is (-2), so reversing the sign means to use 2.",
+      "order": 23,
+      "after": [
+        "a4cecd1d5beb"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-4_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "50: 143 Example 1 continued",
+          "item": 0,
+          "line": 293
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "f18049dd5711",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What does bring down the coefficient mean in Step 2?",
+      "back": "Listen for: Copy the coefficient below the line.",
+      "order": 24,
+      "after": [
+        "61dafa6356c0"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-4_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "50: 143 Example 1 continued",
+          "item": 1,
+          "line": 295
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "49603efd2cac",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Why might this method of dividing be considered artificial?",
+      "back": "Listen for: It appears to be an artificial form of dividing because the variables and exponents are removed during the process.",
+      "order": 25,
+      "after": [
+        "f18049dd5711"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-4_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "50: 143 Example 1 continued",
+          "item": 2,
+          "line": 298
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "5e45b90b61fe",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Could you use synthetic division to divide (3x^3+5x^2-x+7) by (2x+3)?",
+      "back": "Listen for: No; the method only works when the leading coefficient of the linear factor is 1.",
+      "order": 26,
+      "after": [
+        "49603efd2cac"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-4_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "50: 143 Example 1 continued",
+          "item": 3,
+          "line": 300
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "1441c70222a0",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Which mathematical terms did you hear?",
+      "back": "Listen for: divided by, synthetic division, polynomial, linear expression, leading coefficient, divisor, zero, long division, coefficients, dividend, coefficients of the dividend, multiply, add",
+      "order": 27,
+      "after": [
+        "5e45b90b61fe"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_3-4_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "50: 143 Example 1 continued",
+          "item": 4,
+          "line": 303
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a60e10384a73",
+      "type": "cue",
+      "front": "Example 5 · Purposeful question: How does understanding the Factor Theorem help to determine whether ((x-a)) is a factor of a given polynomial?",
+      "back": "Listen for: If (P(a)=0) or there is not a remainder when dividing the polynomial by the binomial, the binomial is a factor. If (P(a)≠0) or there is a remainder when dividing the polynomial by the binomial, the binomial is not a factor.",
+      "order": 28,
+      "after": [
+        "bbab6f87f9d7"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_3-4_TE.tex",
+          "anchor": 5,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "53: 146 Understand & Apply",
+          "item": 0,
+          "line": 478
+        },
+        "promptKey": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e274431718a2",
+      "type": "cue",
+      "front": "Example 5 · Check student thinking: Why is the binomial not a factor of the polynomial if the remainder is not 0?",
+      "back": "Listen for: If there is a remainder, then the divisor does not divide evenly into the dividend.",
+      "order": 29,
+      "after": [
+        "a60e10384a73"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_3-4_TE.tex",
+          "anchor": 5,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "53: 146 Understand & Apply",
+          "item": 0,
+          "line": 525
+        },
+        "promptKey": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "804d95a61357",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Dajuan wants to determine the length and height of his DVD stand. The function f(x) = x^3 + 14x^2 + 57x + 72 represents the volume of the DVD stand, where the width is x + 3 units. What are possible dimensions for the length and height of the DVD stand? Explain.",
+      "order": 30,
+      "after": [
+        "bbab6f87f9d7"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "276f9f9a3bcb",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "Divide by x + 3 with synthetic division (a = -3): bottom row 1, 11, 24 | 0, so the quotient is x^2 + 11x + 24 and the remainder is 0. Factor the quotient: (x + 3)(x + 8). Possible length and height: x + 3 and x + 8. …",
+      "order": 31,
+      "after": [
+        "bbab6f87f9d7"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "19cbe471bb05",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Santiago tried factoring (x + 2) out of 3x^2 + 7x + 4. Using algebra tiles, he made a rectangle (three x^2 tiles, one x tile, and two rows of three x tiles and one 1 tile) with 2 unit tiles left over.",
+      "order": 32,
+      "after": [
+        "c3df9790866f"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "4764b0542179",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Reason: Can you conclude whether (x + 2) is a factor of 3x^2 + 7x + 4? Explain your reasoning. (No: if x + 2 were a factor there would be no tiles outside the rectangle; here there is a remainder of 2.)",
+      "order": 33,
+      "after": [
+        "19cbe471bb05"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "58bee1314527",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Write an expression for 3x^2 + 7x + 4 in terms of (x + 2). ((x + 2)(3x + 1) + 2)",
+      "order": 34,
+      "after": [
+        "19cbe471bb05"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "07881c72bd8b",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Use algebra tiles to show 2x^2 + 7x + 6 divided by (x + 2). ((x + 2)(2x + 3), no tiles left over)",
+      "order": 35,
+      "after": [
+        "19cbe471bb05"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "bc933e38a07e",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What is different about Santiago's arrangement of algebra tiles when compared to other arrangements you have seen? → There are 2 tiles that are not part of the arrangement.",
+      "order": 36,
+      "after": [
+        "19cbe471bb05"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "c375b5a48482",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "Santiago arranged some of the algebra tiles to form a rectangle. What two factors do these tiles represent? What is their product? → (x + 2) and (3x + 1); 3x^2 + 7x + 2.",
+      "order": 37,
+      "after": [
+        "bc933e38a07e"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "74a0b4ad11ad",
+      "type": "cue",
+      "front": "During, small group: ask? (2)",
+      "back": "How does this product compare to Santiago's original expression? → The constant term is 2 less than the constant term in Santiago's original expression.",
+      "order": 38,
+      "after": [
+        "c375b5a48482"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "53c6d1fa9eec",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Write an expression for 3x^2 + 14x + 18 in terms of (x + 3). → (x + 3)(3x + 5) + 3 (the TE prints the remainder as 3/(x + 3); the product form needs + 3).",
+      "order": 39,
+      "after": [
+        "74a0b4ad11ad"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "fb7e231a7f29",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "How did you determine how to write the quotient of 2x^2 + 7x + 6 and x + 2? → Start with 2 x^2-tiles, 7 x-tiles and 6 unit tiles. Arranged into a rectangle with one x-tile and two 1-tiles along one side, the other side has 2 x-tiles and 3 1-tiles, with no tiles left over.",
+      "order": 40,
+      "after": [
+        "53c6d1fa9eec"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "83883a8c276d",
+      "type": "cue",
+      "front": "Habits of Mind, Look for Relationships: ask?",
+      "back": "If the remainder in a division problem is zero, what can you say about the dividend? → The divisor is a factor of the dividend.",
+      "order": 41,
+      "after": [
+        "fb7e231a7f29"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "5c7bf3f06e8d",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The TE prints the answer to B (and to the early-finishers question) with the remainder as a fraction, (x + 2)(3x + 1) + 2/(x + 2); the product form is (x + 2)(3x + 1) + 2, so correct it on the board. The digital version of part A prints 3x^2 - 7x - 4; use the plus signs. …",
+      "order": 42,
+      "after": [
+        "19cbe471bb05"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "b4a35765c07c",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "D6D Divide polynomials using synthetic division",
+      "order": 43,
+      "after": [
+        "098b024bba82"
+      ],
+      "minute": null,
+      "source": "ixl.D6D"
+    },
+    {
+      "id": "7e9b7b4742fe",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "CHC Evaluate polynomials using synthetic division",
+      "order": 44,
+      "after": [
+        "bbab6f87f9d7"
+      ],
+      "minute": null,
+      "source": "ixl.CHC"
+    },
+    {
+      "id": "b4e8596225f4",
+      "type": "anchor",
+      "front": "IXL for example 5? (2)",
+      "back": "VXE Factor theorem",
+      "order": 45,
+      "after": [
+        "bbab6f87f9d7"
+      ],
+      "minute": null,
+      "source": "ixl.VXE"
+    },
+    {
+      "id": "87ff3a93f86b",
+      "type": "anchor",
+      "front": "IXL for example 5? (3)",
+      "back": "NCY Factor a polynomial given a root",
+      "order": 46,
+      "after": [
+        "bbab6f87f9d7"
+      ],
+      "minute": null,
+      "source": "ixl.NCY"
+    }
+  ]
+}

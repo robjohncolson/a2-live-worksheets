@@ -24,6 +24,388 @@
       ],
       "languageObjective": "Students will explain transformations of functions, provided pre-taught vocabulary, the three-reads strategy, and structured student-talk time.",
       "essentialQuestion": "How do the values a, b, h, and k in a·f(b(x − h)) + k transform the graph of a parent function, f(x)?"
+    },
+    "1-3": {
+      "mathObjectives": [
+        "I can graph a piecewise-defined function and write its rule from a graph."
+      ],
+      "standards": [],
+      "languageObjective": "I can describe a graph using the words interval, piece, slope, and open point / closed point in complete sentences.",
+      "essentialQuestion": "How do you model a situation in which different functions describe specific intervals of its domain?",
+      "source": "Lesson_planning/a2_1-3_fast.pdf goals line; essential question from the Savvas TE (a2_1-3_TE.tex). The TE prints no standards codes."
+    },
+    "1-4": {
+      "mathObjectives": [
+        "I can write an arithmetic sequence with a recursive definition and with an explicit definition, and translate from one to the other."
+      ],
+      "standards": [
+        "HSF.IF.A.3",
+        "HSF.BF.A.1a",
+        "HSF.BF.A.2"
+      ],
+      "languageObjective": "I can explain how a recursive definition and an explicit definition describe the same sequence, using the words first term, common difference, previous term, and term number.",
+      "essentialQuestion": "What is an arithmetic sequence, and how do you represent and find its terms and their sums?",
+      "source": "Lesson_planning/a2_1-4_fast.pdf goals line; essential question from a2_1-4_TE.tex; standards from the Savvas Realize standards pane for the lesson quiz (Lesson_planning/aga_24_a2_na_0104_lq_standards.txt: F-IF.A.3, F-BF.A.1a, F-BF.A.2, written here in the HSF form the other entries use)."
+    },
+    "1-5": {
+      "mathObjectives": [
+        "I can solve an equation or inequality by graphing both sides and reading where the graphs meet."
+      ],
+      "standards": [
+        "HSA.CED.A.1",
+        "HSA.REI.D.11"
+      ],
+      "languageObjective": "I can say \"the solution is where the graphs intersect\" and \"the inequality is true where one graph is above (or below) the other.\"",
+      "essentialQuestion": "How can you solve an equation or inequality by graphing?",
+      "source": "Lesson_planning/a2_1-5_fast.pdf goals line; essential question from a2_1-5_TE.tex; standards from aga_24_a2_na_0105_lq_standards.txt (Savvas Realize standards pane)"
+    },
+    "1-6": {
+      "mathObjectives": [
+        "I can solve a system of two linear equations and graph a system of inequalities."
+      ],
+      "standards": [
+        "HSA.REI.C.6"
+      ],
+      "languageObjective": "I can say \"the solution is the ordered pair that makes both equations true\" and \"the solution region is where the shadings overlap.\"",
+      "essentialQuestion": "How can you find and represent solutions of systems of linear equations and inequalities?",
+      "source": "Lesson_planning/a2_1-6_fast.pdf goals line; essential question from a2_1-6_TE.tex; standards from aga_24_a2_na_0106_lq_standards.txt (Savvas Realize standards pane)"
+    },
+    "2-1": {
+      "mathObjectives": [
+        "I can find the vertex, axis of symmetry, maximum or minimum, domain and range of a quadratic function in vertex form, and write its equation from the vertex and one other point."
+      ],
+      "standards": [
+        "HSF.IF.B.4",
+        "HSF.IF.B.5",
+        "HSF.BF.B.3"
+      ],
+      "languageObjective": "I can explain how vertex form describes a parabola using the words vertex, axis of symmetry, maximum, minimum and opens upward or downward.",
+      "essentialQuestion": "How are transformations related to the vertex form of a quadratic function?",
+      "source": "Lesson_planning/a2_2-1_fast.pdf goals line; essential question from a2_2-1_TE.tex; standards from the Savvas Realize standards pane for the lesson quiz (Lesson_planning/aga_24_a2_na_0201_lq_standards.txt: F-IF.B.4, F-IF.B.5, F-BF.B.3, written here in the HSF form the other entries use)."
+    },
+    "2-2": {
+      "mathObjectives": [
+        "I can graph a quadratic function in standard form from its vertex, axis of symmetry and y-intercept, and use the vertex to find a maximum or minimum in a real-world problem."
+      ],
+      "standards": [
+        "HSF.IF.B.4",
+        "HSF.IF.B.5",
+        "HSF.IF.C.7a",
+        "HSF.IF.C.8a",
+        "HSA.REI.C.6"
+      ],
+      "languageObjective": "I can explain how I found a maximum or minimum using the words standard form, vertex, axis of symmetry, y-intercept and maximum / minimum.",
+      "essentialQuestion": "What key features can you determine about a quadratic function from an equation in standard form?",
+      "source": "Lesson_planning/a2_2-2_fast.pdf goals line; essential question from a2_2-2_TE.tex; standards from the Savvas Realize standards pane for the 2-2 Lesson Quiz (Lesson_planning/aga_24_a2_na_0202_lq_standards.txt, pulled 2026-10-23: F-IF.B.4, F-IF.B.5, F-IF.C.7a, F-IF.C.8a, A-REI.C.6), written in this file's HS notation. A-REI.C.6 (linear systems) is tagged for quiz item 4, the three-point parabola of the cut Example 4. The TE prints no standards codes."
+    },
+    "2-3": {
+      "mathObjectives": [
+        "I can solve a quadratic equation by factoring and write a quadratic function in factored form from its zeros and one more point."
+      ],
+      "standards": [
+        "HSA.SSE.B.3a",
+        "HSA.APR.B.3",
+        "HSA.REI.B.4b",
+        "HSA.CED.A.2"
+      ],
+      "languageObjective": "I can explain how the factors of a quadratic give its zeros using the words factor, zero, Zero Product Property, and x-intercept.",
+      "essentialQuestion": "How is the factored form helpful in solving quadratic equations?",
+      "source": "Lesson_planning/a2_2-3_fast.pdf goals line; essential question from a2_2-3_TE.tex; standards from the Topic 2 list in Algebra_2_Curriculum_Map_SY_25-26.pdf, filtered to the packet's objective (no Realize standards file exists for 2-3): A-SSE.B.3a factor to reveal zeros, A-APR.B.3 zeros from a factorization, A-REI.B.4b solve by factoring, A-CED.A.2 write the equation from zeros and a point (Example 6, quiz item 5). F-IF.B.4 (positive/negative intervals) belongs to the cut Example 5. The TE prints no standards codes."
+    },
+    "2-4": {
+      "mathObjectives": [
+        "I can multiply complex numbers and write each product in the form a+bi."
+      ],
+      "standards": [
+        "HSN.CN.A.1",
+        "HSN.CN.A.2"
+      ],
+      "languageObjective": "I can explain each step of a product using the words imaginary unit, real part, imaginary part, and complex conjugates.",
+      "essentialQuestion": "How can you represent and operate on numbers that are not on the real number line?",
+      "source": "Lesson_planning/a2_2-4_fast.pdf goals line; essential question from a2_2-4_TE.tex. No Realize standards file exists for 2-4 and the TE prints no standards codes; standards from the Topic 2 list in Algebra_2_Curriculum_Map_SY_25-26.pdf (HSN.CN.A.1: i^2 = -1 and the form a + bi; HSN.CN.A.2: add, subtract and multiply complex numbers), filtered to the packet's learning goal."
+    },
+    "2-5": {
+      "mathObjectives": [
+        "I can solve quadratic equations by completing the square, even when the solutions are imaginary."
+      ],
+      "standards": [
+        "HSA.REI.B.4a",
+        "HSA.REI.B.4b",
+        "HSN.CN.C.7"
+      ],
+      "languageObjective": "I can explain each step of completing the square using the words perfect square trinomial, both sides, square root, and imaginary.",
+      "essentialQuestion": "How can you solve a quadratic equation by completing the square?",
+      "source": "Lesson_planning/a2_2-5_fast.pdf goals line; essential question from a2_2-5_TE.tex; standards from the Topic 2 list in Algebra_2_Curriculum_Map_SY_25-26.pdf (no Realize standards file for 2-5; the TE prints none), filtered to the lesson objective: A-REI.B.4a (complete the square to transform a quadratic into (x - p)^2 = q), A-REI.B.4b (solve by completing the square; write complex solutions as a +/- bi) and N-CN.C.7 (quadratics with real coefficients and complex solutions, quiz items 3 and 5)."
+    },
+    "2-6": {
+      "mathObjectives": [
+        "I can solve quadratic equations using the Quadratic Formula and use the discriminant to predict the number and type of solutions."
+      ],
+      "standards": [
+        "HSA.REI.B.4b",
+        "HSN.CN.C.7"
+      ],
+      "languageObjective": "I can explain how many solutions a quadratic equation has and what type they are, using the words discriminant, radicand, real, and non-real.",
+      "essentialQuestion": "How can you use the Quadratic Formula to solve quadratic equations or to predict the nature of their solutions?",
+      "source": "Lesson_planning/a2_2-6_fast.pdf goals line; essential question from a2_2-6_TE.tex; standards from the Topic 2 list in Algebra_2_Curriculum_Map_SY_25-26.pdf (no Realize standards file for 2-6; the TE prints none), filtered to the lesson objective: A-REI.B.4b (solve by the quadratic formula; recognize complex solutions and write them as a +/- bi) and N-CN.C.7 (quadratics with real coefficients and complex solutions). A-REI.B.4a (derive the formula) is the Explore & Reason opener only and is left out."
+    },
+    "2-7": {
+      "mathObjectives": [
+        "I can solve a linear-quadratic system by substitution and shade the solution region of a linear-quadratic system of inequalities."
+      ],
+      "standards": [
+        "HSA.REI.C.7",
+        "HSA.REI.D.11"
+      ],
+      "languageObjective": "I can explain why my answer solves the system using the words substitute, intersection, boundary, and region.",
+      "essentialQuestion": "How can you solve a system of two equations or inequalities in which one is linear and one is quadratic?",
+      "source": "Lesson_planning/a2_2-7_fast.pdf goals line; essential question from a2_2-7_TE.tex (the TE prints no standards). No Realize standards file for 2-7 (aga_24_a2_na_0207_lq_standards.txt not pulled); standards from the Topic 2 list in Algebra_2_Curriculum_Map_SY_25-26.pdf filtered to this lesson: A-REI.C.7 (solve a linear-quadratic system algebraically and graphically) and A-REI.D.11 (intersections of y = f(x) and y = g(x) are the solutions). A-REI.D.12 (systems of linear inequalities) is the base Example 4 extends but names linear inequalities only, so it is left out."
+    },
+    "3-1": {
+      "mathObjectives": [
+        "I can predict the end behavior of a polynomial function from its degree and leading coefficient, and use a table of values to find its turning points and sketch its graph."
+      ],
+      "standards": [
+        "HSF.IF.C.7c",
+        "HSF.IF.B.4",
+        "HSF.IF.B.6"
+      ],
+      "languageObjective": "I can describe a polynomial graph using the words degree, leading coefficient, end behavior, turning point, and relative maximum / relative minimum.",
+      "essentialQuestion": "How do the key features of a polynomial function help you sketch its graph?",
+      "source": "Lesson_planning/a2_3-1_fast.pdf goals line; essential question from a2_3-1_TE.tex; standards from the Topic 3 list in Algebra_2_Curriculum_Map_SY_25-26.pdf (no Realize standards file for 3-1), filtered to the lesson objective: F.IF.C.7c graph polynomial functions showing end behavior; F.IF.B.4 key features (increasing/decreasing, relative maximums and minimums, end behavior); F.IF.B.6 average rate of change (Example 3B). The TE prints no standards codes."
+    },
+    "3-2": {
+      "mathObjectives": [
+        "I can add, subtract, and multiply polynomials and write the answer in standard form."
+      ],
+      "standards": [
+        "HSA.APR.A.1"
+      ],
+      "languageObjective": "I can explain each step using the words like terms, coefficient, Distributive Property, degree, and standard form.",
+      "essentialQuestion": "How do you add, subtract, and multiply polynomials?",
+      "source": "Lesson_planning/a2_3-2_fast.pdf goals line; essential question from a2_3-2_TE.tex; standards from the Topic 3 list in Algebra_2_Curriculum_Map_SY_25-26.pdf (A-APR.A.1: perform arithmetic operations on polynomials; polynomials are closed under addition, subtraction and multiplication), filtered to this lesson's objective. No Realize standards file (aga_24_a2_na_0302_lq_standards.txt) exists yet; the TE prints no standards codes."
+    },
+    "3-3": {
+      "mathObjectives": [
+        "I can use Pascal's Triangle and the Binomial Theorem to expand a power of a binomial."
+      ],
+      "standards": [
+        "HSA.APR.C.4",
+        "HSA.SSE.A.2"
+      ],
+      "languageObjective": "I can explain how I expanded a binomial using the words row, coefficient, exponent, and term.",
+      "essentialQuestion": "How can you use polynomial identities to rewrite expressions efficiently?",
+      "source": "Lesson_planning/a2_3-3_fast.pdf goals line; essential question from a2_3-3_TE.tex; standards from the Topic 3 list in Algebra_2_Curriculum_Map_SY_25-26.pdf, filtered to this lesson's objective: A-APR.C.4 (prove polynomial identities and use them; the map lists 3-3 'Expand binomials using the Binomial Theorem' under this topic and APR.C is its only identities cluster) and A-SSE.A.2 (use the structure of an expression to rewrite it, as in seeing (s^2+3)^5 as (a+b)^5). The Binomial Theorem's own code, A-APR.C.5 (+), is not on the district map, so it is not listed. No Realize standards file (aga_24_a2_na_0303_lq_standards.txt) exists yet; the TE prints no standards codes."
+    },
+    "3-4": {
+      "mathObjectives": [
+        "I can divide a polynomial by a linear binomial with synthetic division and use the remainder to tell whether the binomial is a factor."
+      ],
+      "standards": [
+        "HSA.APR.B.2",
+        "HSA.APR.D.6"
+      ],
+      "languageObjective": "I can explain whether a binomial is a factor of a polynomial using the words divisor, quotient, remainder and factor.",
+      "essentialQuestion": "How can you divide polynomials?",
+      "source": "Lesson_planning/a2_3-4_fast.pdf goals line; essential question from a2_3-4_TE.tex; standards from the Topic 3 list in Algebra_2_Curriculum_Map_SY_25-26.pdf (A-APR.B.2 Remainder Theorem; A-APR.D.6 rewrite a(x)/b(x) as q(x) + r(x)/b(x) by long division), filtered to the lesson objective. No Realize standards file exists for 3-4; the TE prints no standards codes."
+    },
+    "3-5": {
+      "mathObjectives": [
+        "I can find the zeros of a polynomial function by factoring and use them to sketch its graph."
+      ],
+      "standards": [
+        "HSA.APR.B.3",
+        "HSF.IF.C.7c"
+      ],
+      "languageObjective": "I can explain what a graph does at each zero using the words zero, factor, multiplicity, crosses, and turning point.",
+      "essentialQuestion": "How are the zeros of a polynomial function related to an equation and graph of the function?",
+      "source": "Lesson_planning/a2_3-5_fast.pdf goals line; essential question from a2_3-5_TE.tex; standards from the Topic 3 list in Algebra_2_Curriculum_Map_SY_25-26.pdf filtered to the map's 3-5 objectives (identify zeros by factoring or synthetic division; use the zeros to sketch the graph): A-APR.B.3 and F-IF.C.7c. No Realize standards file exists for 3-5 and the TE prints none."
+    },
+    "3-7": {
+      "mathObjectives": [
+        "I can describe how the graph of a cubic or quartic function is stretched, reflected, and translated from its parent function."
+      ],
+      "standards": [
+        "HSF.BF.B.3"
+      ],
+      "languageObjective": "I can explain each change to a graph using the words parent function, leading coefficient, stretch, reflection, and translation.",
+      "essentialQuestion": "How are symmetry and transformations represented in the graph and equation of a polynomial function?",
+      "source": "Lesson_planning/a2_3-7_fast.pdf goals line; essential question from a2_3-7_TE.tex; standards from the Topic 3 list in Algebra_2_Curriculum_Map_SY_25-26.pdf filtered to the map's 3-7 objectives (identify the effect on cubic and quartic graphs of replacing f(x) with f(x)+k, kf(x), f(kx), f(x+k); recognize even and odd functions; determine the equation from a graph): HSF.BF.B.3, which names both the transformations and even and odd functions. No Realize standards file exists for 3-7 and the TE prints none."
+    },
+    "4-1": {
+      "mathObjectives": [
+        "I can write an inverse variation equation from one pair of values and use it to find a missing value in a table or a word problem."
+      ],
+      "standards": [
+        "HSA.CED.A.2"
+      ],
+      "languageObjective": "I can explain how I found a missing value using the words varies inversely, product, constant of variation, and inverse variation.",
+      "essentialQuestion": "How are inverse variations related to the reciprocal function?",
+      "source": "Lesson_planning/a2_4-1_fast.pdf goals line; essential question from a2_4-1_TE.tex; standards from the Topic 4 list in Algebra_2_Curriculum_Map_SY_25-26.pdf filtered to the packet's objective (A-CED.A.2: create equations in two or more variables to represent relationships between quantities, here y = k/x). No Realize standards file exists for 4-1 and the TE prints none. F-BF.B.3 (transformations of simple rational functions) and F-IF.C.7d (graph rational functions with asymptotes) fit the TE's I CAN but belong to Examples 4 and 5, which the fast packet cuts."
+    },
+    "4-2": {
+      "mathObjectives": [
+        "I can find the vertical and horizontal asymptotes of a rational function and use them to graph it."
+      ],
+      "standards": [
+        "HSF.IF.C.7d"
+      ],
+      "languageObjective": "I can explain how I found each asymptote using the words numerator, denominator, degree, asymptote, and leading coefficient.",
+      "essentialQuestion": "How can you graph a rational function?",
+      "source": "Lesson_planning/a2_4-2_fast.pdf goals line; essential question from a2_4-2_TE.tex; standards from the Topic 4 list in Algebra_2_Curriculum_Map_SY_25-26.pdf filtered to the packet's objective (F-IF.C.7d: graph rational functions, identifying zeros and asymptotes, and showing end behavior). No Realize standards file exists for 4-2 and the TE prints none. A-APR.D.6 (rewrite with long division) is on the map's 4-2 line but belongs to Example 1, which the fast packet cuts."
+    },
+    "4-3": {
+      "mathObjectives": [
+        "I can simplify a rational expression and find the product and the quotient of rational expressions, and state the domain."
+      ],
+      "standards": [
+        "HSA.APR.D.7",
+        "HSA.SSE.A.2"
+      ],
+      "languageObjective": "I can explain how I simplified a rational expression using the words factor, common factor, reciprocal, domain and simplified form.",
+      "essentialQuestion": "How does multiplying and dividing fractions help you multiply and divide rational expressions?",
+      "source": "Lesson_planning/a2_4-3_fast.pdf goals line; essential question from a2_4-3_TE.tex; standards from the district curriculum map (Algebra_2_Curriculum_Map_SY_25-26.pdf, Topic 4 standards list) filtered to its two Lesson 4-3 objectives: A.APR.D.7 (multiply and divide rational expressions) and A.SSE.A.2 (use the structure of an expression to rewrite it). No Realize standards file exists for 4-3 and the TE prints none."
+    },
+    "4-4": {
+      "mathObjectives": [
+        "I can find the sum or difference of rational expressions and write a compound fraction in a simpler form."
+      ],
+      "standards": [
+        "HSA.APR.D.7"
+      ],
+      "languageObjective": "I can explain each step of adding, subtracting or simplifying using the words factor, least common denominator, numerator and compound fraction.",
+      "essentialQuestion": "How do you rewrite rational expressions to find sums and differences?",
+      "source": "Lesson_planning/a2_4-4_fast.pdf goals line; essential question from a2_4-4_TE.tex; standards from the Topic 4 list in Algebra_2_Curriculum_Map_SY_25-26.pdf (A-APR.D.7, whose wording the map's Lesson 4-4 objective repeats). No Realize standards file exists for 4-4, and the TE prints none."
+    },
+    "4-5": {
+      "mathObjectives": [
+        "I can solve a rational equation by multiplying both sides by a common denominator, and I can identify any extraneous solutions."
+      ],
+      "standards": [
+        "HSA.REI.A.1",
+        "HSA.CED.A.1"
+      ],
+      "languageObjective": "I can explain why a solution is or is not valid using the words rational equation, common denominator, domain and extraneous solution.",
+      "essentialQuestion": "How can you solve rational equations and identify extraneous solutions?",
+      "source": "Lesson_planning/a2_4-5_fast.pdf goals line; essential question from a2_4-5_TE.tex; standards from the Topic 4 list in Algebra_2_Curriculum_Map_SY_25-26.pdf, filtered to the lesson objective (A-REI.A.1 explain each step of solving an equation and justify or refute a solution method; A-CED.A.1 create and solve one-variable equations, including rational ones, for problems). The map's Lesson 4-5 outcomes are 'Solve rational equations in one variable' and 'Identify extraneous solutions to rational equations and give examples of how they arise'. A-REI.A.2 (solve simple rational equations, extraneous solutions) fits the lesson but is not on the map's Topic 4 list, so it is left out. No Realize standards file exists for 4-5; the TE prints no standards codes."
+    },
+    "5-1": {
+      "mathObjectives": [
+        "I can relate rational exponents to roots, evaluate expressions with rational exponents, and solve equations by taking the nth root of both sides."
+      ],
+      "standards": [
+        "HSN.RN.A.1",
+        "HSN.RN.A.2"
+      ],
+      "languageObjective": "I can explain what a rational exponent means, and how I took a root to solve an equation, using the words root, power, index and radicand.",
+      "essentialQuestion": "How are exponents and radicals used to represent roots of real numbers?",
+      "source": "Lesson_planning/a2_5-1_fast.pdf goals line; essential question from a2_5-1_TE.tex; standards from the district curriculum map (Algebra_2_Curriculum_Map_SY_25-26.pdf, Topic 5 standards list) filtered to the Lesson 5-1 objectives: N.RN.A.1 (the meaning of rational exponents, extending the properties of integer exponents) and N.RN.A.2 (rewrite expressions involving radicals and rational exponents). Solving x^n = c has no closer match on the Topic 5 list (A.REI.A.2 is radical equations, Lesson 5-5), so none is added. No Realize standards file exists for 5-1 and the TE prints none."
+    },
+    "5-5": {
+      "mathObjectives": [
+        "I can write the rule and state the domain of a composite function, and use the order of a composition to answer a real-world question."
+      ],
+      "standards": [
+        "HSF.BF.A.1b",
+        "HSF.BF.A.1c"
+      ],
+      "languageObjective": "I can explain how I composed two functions using the words composition, inside function, substitute, order and domain.",
+      "essentialQuestion": "How do you combine, multiply, divide, and compose functions, and how do you find the domain of the resulting function?",
+      "source": "Lesson_planning/a2_5-5_fast.pdf goals line; essential question from a2_5-5_TE.tex; standards from the district curriculum map (Algebra_2_Curriculum_Map_SY_25-26.pdf, Topic 5 standards list) filtered to its two Lesson 5-5 objectives: F.BF.A.1b (combine standard function types using arithmetic operations) and F.BF.A.1c (compose functions). No Realize standards file exists for 5-5 and the TE prints none."
+    },
+    "5-6": {
+      "mathObjectives": [
+        "I can find the inverse of a function from a table, an equation, or a graph, and restrict the domain so that the inverse is a function."
+      ],
+      "standards": [
+        "HSF.BF.B.4a",
+        "HSF.BF.B.4c",
+        "HSF.BF.B.4d"
+      ],
+      "languageObjective": "I can explain how a function and its inverse are related using the words inverse, reflection, domain, range, and restrict.",
+      "essentialQuestion": "How can you find the inverse of a function and verify the two functions are inverses?",
+      "source": "Lesson_planning/a2_5-6_fast.pdf goals line; essential question from a2_5-6_TE.tex; standards from the Topic 5 list in Algebra_2_Curriculum_Map_SY_25-26.pdf, filtered to the packet's objective (no Realize standards file exists for 5-6): F-BF.B.4a write an expression for the inverse (switch and solve, Example 2), F-BF.B.4c read values of an inverse from a table or graph (the concept-summary table, quiz item 1), F-BF.B.4d produce an invertible function by restricting the domain (Example 3, quiz item 3). F-BF.B.4b (verify by composition) belongs to the cut Example 5. The TE prints no standards codes."
+    },
+    "6-1": {
+      "mathObjectives": [
+        "I can recognize the key features of an exponential function and write an exponential growth or decay model from a starting amount and a percent rate."
+      ],
+      "standards": [
+        "HSF.IF.C.7e",
+        "HSF.IF.C.8b",
+        "HSF.LE.A.2",
+        "HSF.LE.B.5"
+      ],
+      "languageObjective": "I can describe an exponential function using the words growth factor, decay factor, y-intercept, asymptote, and end behavior.",
+      "essentialQuestion": "How do graphs and equations communicate key features of exponential growth and decay functions?",
+      "source": "Lesson_planning/a2_6-1_fast.pdf goals line; essential question from a2_6-1_TE.tex; standards from the Topic 6 list in Algebra_2_Curriculum_Map_SY_25-26.pdf, filtered to this lesson's objective (F-IF.C.7e: graph exponential functions showing intercepts and end behavior; F-IF.C.8b: interpret exponential expressions, appreciation and depreciation rates; F-LE.A.2: construct exponential functions from a description; F-LE.B.5: interpret the parameters of an exponential function in context). F-BF.B.3 (transformations) is left out because Example 2 is cut. No Realize standards file (aga_24_a2_na_0601_lq_standards.txt) exists yet; the TE prints no standards codes."
+    },
+    "6-2": {
+      "mathObjectives": [
+        "I can write an exponential model for money that earns compound interest or continuously compounded interest, and use it to find the value of the account."
+      ],
+      "standards": [
+        "HSA.SSE.A.1",
+        "HSA.SSE.B.3c",
+        "HSF.IF.C.8b",
+        "HSF.LE.A.2",
+        "HSF.LE.B.5"
+      ],
+      "languageObjective": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
+      "essentialQuestion": "How can you develop exponential models to represent and interpret situations?",
+      "source": "Lesson_planning/a2_6-2_fast.pdf goals line; essential question from a2_6-2_TE.tex; standards from the Topic 6 list in Algebra_2_Curriculum_Map_SY_25-26.pdf, filtered to this lesson's objective: HSA.SSE.A.1 (interpret P(1 + r)^n, the map's own example), HSA.SSE.B.3c (use properties of exponents to transform exponential expressions: Example 2B's annual growth rate), HSF.IF.C.8b (properties of exponents to interpret exponential functions in financial situations), HSF.LE.A.2 (construct exponential functions from a description or two input-output pairs: the fast packet covers the description half, building A(t) from the words in Example 2, Try It 2 and quiz item 3; the two-point half is the cut Example 5 and full-Savvas-only quiz item 2), HSF.LE.B.5 (interpret the parameters of an exponential function in context). No Realize standards file (aga_24_a2_na_0602_lq_standards.txt) exists yet; the TE prints no standards codes."
+    },
+    "6-3": {
+      "mathObjectives": [
+        "I can evaluate a logarithm by finding the exponent that gives the argument, and solve an equation by switching between logarithmic form and exponential form."
+      ],
+      "standards": [
+        "HSF.BF.B.5",
+        "HSF.LE.A.4"
+      ],
+      "languageObjective": "I can explain how I evaluated a logarithm or solved an equation using the words base, exponent, argument, logarithmic form, and exponential form.",
+      "essentialQuestion": "What are logarithms and how are they evaluated?",
+      "source": "Lesson_planning/a2_6-3_fast.pdf goals line; essential question from a2_6-3_TE.tex (the TE prints no standards codes); standards from the Topic 6 list in Algebra_2_Curriculum_Map_SY_25-26.pdf filtered to this lesson's objective (F-BF.5: the inverse relationship between exponents and logarithms; F-LE.4: express the solution to ab^(ct) = d as a logarithm and evaluate it with technology). No Realize standards file exists for 6-3."
+    },
+    "6-6": {
+      "mathObjectives": [
+        "I can solve an exponential equation by rewriting both sides with a common base, and solve a logarithmic equation by setting the arguments equal and checking for extraneous solutions."
+      ],
+      "standards": [
+        "HSF.LE.A.4",
+        "HSF.BF.B.5",
+        "HSA.REI.A.1"
+      ],
+      "languageObjective": "I can explain each step of my solution using the words common base, exponent, argument and extraneous solution.",
+      "essentialQuestion": "How do properties of exponents and logarithms help you solve equations?",
+      "source": "Lesson_planning/a2_6-6_fast.pdf goals line; essential question from a2_6-6_TE.tex; standards from the district curriculum map (Algebra_2_Curriculum_Map_SY_25-26.pdf, Topic 6 standards list) filtered to the Lesson 6-6 objective: F.LE.A.4 (express as a logarithm the solution to ab^(ct) = d), F.BF.B.5 (use the inverse relationship between exponents and logarithms to solve problems) and A.REI.A.1 (explain each step in solving an equation; quiz item 3 asks students to name each step and refute a solution). No Realize standards file exists for 6-6 and the TE prints none."
+    },
+    "7-1": {
+      "mathObjectives": [
+        "I can find a positive, a negative, and a greater-than-360° measure for an angle in standard position, and convert between degrees and radians."
+      ],
+      "standards": [],
+      "languageObjective": "I can explain where an angle ends using the words initial side, terminal side, quadrant, coterminal, and radian.",
+      "essentialQuestion": "How can we extend the trigonometric ratios to angles greater than 90°?",
+      "source": "Lesson_planning/a2_7-1_fast.pdf goals line; essential question from a2_7-1_TE.tex. Standards left empty: the TE prints none ('standards: none printed'), no Realize standards file (aga_24_a2_na_0701_lq_standards.txt) has been downloaded, and the curriculum map text on hand (Algebra_2_Curriculum_Map_SY_25-26.pdf) lists Topic 7 only in its timeline, with no Topic 7 standards list to filter. Fill from the Realize standards pane when it is downloaded."
+    },
+    "7-2": {
+      "mathObjectives": [
+        "I can use special triangles and reference angles to find the values of all six trigonometric functions of an angle in any quadrant."
+      ],
+      "standards": [],
+      "languageObjective": "I can explain how I found a trigonometric value using the words reference angle, quadrant, terminal point, and reciprocal.",
+      "essentialQuestion": "How can you use the unit circle to find values of trigonometric functions?",
+      "source": "Lesson_planning/a2_7-2_fast.pdf goals line; essential question from a2_7-2_TE.tex. Standards left empty: no Realize standards file (aga_24_a2_na_0702_lq_standards.txt) exists, the TE prints no standards codes ('standards: none printed'), and the curriculum map text (Algebra_2_Curriculum_Map_SY_25-26.pdf) has no Topic 7 standards list (its detailed sections cover Topics 1-6 only), so an empty list beats a guess. The likely code is F-TF.A.2 (unit circle extends trigonometric functions to all real numbers); confirm from Realize before adding it."
+    },
+    "7-3": {
+      "mathObjectives": [
+        "I can find the amplitude and period of a sine or cosine function from its equation or its graph, and use them to compare two periodic functions."
+      ],
+      "standards": [],
+      "languageObjective": "I can explain how two periodic functions compare using the words amplitude, period, midline, and frequency.",
+      "essentialQuestion": "What are the key features of sine and cosine functions?",
+      "source": "Lesson_planning/a2_7-3_fast.pdf goals line; essential question from a2_7-3_TE.tex. Standards left empty: no Realize standards file exists for 7-3, the TE prints none, and the curriculum map text (Algebra_2_Curriculum_Map_SY_25-26.pdf) has no Topic 7 standards section (its topic sections end at Topic 6)."
     }
   }
 }

@@ -1,0 +1,890 @@
+{
+  "lesson": "5-1",
+  "title": "nth Roots, Radicals, and Rational Exponents",
+  "nodes": [
+    {
+      "id": "07c1175b86d3",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How are exponents and radicals used to represent roots of real numbers?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "8156228a4ff2",
+      "type": "anchor",
+      "front": "Define: root",
+      "back": "denominator of the exponent = index of the radical (which root), numerator = power (Example 2; concept summary; IXL 9TM)",
+      "order": 2,
+      "after": [
+        "07c1175b86d3"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.root"
+    },
+    {
+      "id": "def534b88f5a",
+      "type": "anchor",
+      "front": "Define: power",
+      "back": "denominator of the exponent = index of the radical (which root), numerator = power (Example 2; concept summary; IXL 9TM)",
+      "order": 3,
+      "after": [
+        "07c1175b86d3"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.power"
+    },
+    {
+      "id": "7c71e01bdfa2",
+      "type": "anchor",
+      "front": "Define: index",
+      "back": "denominator of the exponent = index of the radical (which root), numerator = power (Example 2; concept summary; IXL 9TM)",
+      "order": 4,
+      "after": [
+        "07c1175b86d3"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.index"
+    },
+    {
+      "id": "4be0efcabc58",
+      "type": "anchor",
+      "front": "Define: radicand",
+      "back": "an odd index gives one real root with the sign of the radicand (cube root of -8 = -2); an even index and a positive radicand give two real roots, +/- (x^4 = 625, x = +/-5), and a negative radicand gives none (Example 5B; quiz item 1)",
+      "order": 5,
+      "after": [
+        "07c1175b86d3"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.radicand"
+    },
+    {
+      "id": "a269289f27d5",
+      "type": "anchor",
+      "front": "Quiz item 3 asks?",
+      "back": "Five items. Item 3 (graded, DOK 2, A82): explain what 243^(3/5) means (the [square/cube/fourth/fifth] root of 243 [squared/cubed/to the fourth/to the fifth power]) and evaluate it (choices 3, 9, 27, 81). Item 5 (graded, DOK 2, A84): solve -4x^3 = 32. …",
+      "order": 6,
+      "after": [
+        "8156228a4ff2",
+        "def534b88f5a",
+        "7c71e01bdfa2",
+        "4be0efcabc58"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "738b4275ec8c",
+      "type": "anchor",
+      "front": "Quiz item 3 answer?",
+      "back": "Item 3: fifth; cubed; 27. Item 5: x = -2. Item 2: A, D, F. (TE key; verify against the TE key on quiz day.)",
+      "order": 7,
+      "after": [
+        "8156228a4ff2",
+        "def534b88f5a",
+        "7c71e01bdfa2",
+        "4be0efcabc58"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "3f309925796f",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need?",
+      "back": "denominator of the exponent = index of the radical (which root), numerator = power (Example 2; concept summary; IXL 9TM)",
+      "order": 8,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "744f54fa89ee",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (2)",
+      "back": "recognise perfect powers: 243 = 3^5, 32 = 2^5, 27 = 3^3, 16 = 2^4, 625 = 5^4 (prereq; IXL EUH)",
+      "order": 9,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "ed546a43e51a",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (3)",
+      "back": "take the root first, then the power, so the numbers stay small: (fifth root of 243)^3 = 3^3 = 27 (Example 2B; IXL KJX)",
+      "order": 10,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "a3c0f68a655b",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (4)",
+      "back": "get x^n alone first (divide by the coefficient, including a negative one: -4x^3 = 32 gives x^3 = -8), then raise both sides to the 1/n power (Example 5; IXL U42 for the root step)",
+      "order": 11,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "0e247d722e0e",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (5)",
+      "back": "an odd index gives one real root with the sign of the radicand (cube root of -8 = -2); an even index and a positive radicand give two real roots, +/- (x^4 = 625, x = +/-5), and a negative radicand gives none (Example 5B; quiz item 1)",
+      "order": 12,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "20ab140dda17",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (6)",
+      "back": "for the bonus: rewrite each choice as one power of x with the Power of a Power Property; (x^(1/4))^(2/4) = x^(1/8) and the cube root of x^4 = x^(4/3) are the traps (packet Practice)",
+      "order": 13,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
+      "id": "446a14504372",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Real fourth roots of 256; answer 4 and -4 (DOK 1, A83). Example 1 (cut); the +/- move for an even index and a positive number is Example 5B (x^4 = 625, x = +/-5). Not on the short form (full Savvas quiz only; available for Form B or a retake).",
+      "order": 14,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "14ae944ec77a",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Select all expressions equivalent to x^(3/4); answer A, D, F (DOK 2, A82). Example 2 (rule: index = denominator, power = numerator), rehearsed by the packet's Practice (a structural parallel for y^(2/5)). On the short form as the +5 bonus.",
+      "order": 15,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "a2386f3db84e",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Explain what 243^(3/5) means, then evaluate; answer fifth root, cubed, 27 (DOK 2, A82). Example 2; Try It 2 is the same task. On the short form, scored, 10 points.",
+      "order": 16,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "f6093817ae2e",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Simplify the fourth root of 81m^12n^4, variables positive; answer C, 3m^3n (DOK 1, A80). Example 4 (cut). Not on the short form (full Savvas quiz only); IXL LQX is the optional practice.",
+      "order": 17,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "18308bd4b8d0",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Solve -4x^3 = 32; answer x = -2 (DOK 2, A84). Example 5 (divide by the coefficient, raise both sides to the 1/3 power); Try It 5a. On the short form, scored, 10 points.",
+      "order": 18,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "19dfec2b2e62",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Understand Rational Exponents · DOK 1-2 · practice 29, 30, 31, 32, 48, 20, 21, 24, 47 · Quiz items 2 and 3 (both skill A82, the only Example with two quiz items). The concept summary's first column (Relating Radical and Exponential Forms) is this Example. …",
+      "order": 19,
+      "after": [
+        "a269289f27d5",
+        "738b4275ec8c"
+      ],
+      "minute": null,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "31af82fc67f9",
+      "type": "step",
+      "front": "Example 5: ?",
+      "back": "Use nth Roots to Solve Equations · DOK 1 · practice 39, 40, 41, 42 · Quiz item 5 (solve -4x^3 = 32) and, through Part B's +/- for an even index and a positive radicand, quiz item 1. …",
+      "order": 20,
+      "after": [
+        "19dfec2b2e62"
+      ],
+      "minute": null,
+      "source": "examples[n=5]"
+    },
+    {
+      "id": "728cbed453ae",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Does the order in which you raise a number to a power and find the nth root matter?",
+      "back": "Listen for: No; you can raise a number to a power and then take the nth root, or you can take the nth root and then raise that number to a power.",
+      "order": 21,
+      "after": [
+        "19dfec2b2e62"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 0,
+          "line": 248
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "bc97466876c7",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Assuming that (root[n](x)) is a real number, what do you know about the value of (n) if (x) is negative?",
+      "back": "Listen for: If (x) is negative, the value of (n) is an odd number, because you cannot find real nth roots of a negative number if (n) is even.",
+      "order": 22,
+      "after": [
+        "728cbed453ae"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 1,
+          "line": 250
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "9d293a84b2eb",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Could a rational exponent have a 1 in the denominator? What does that represent?",
+      "back": "Listen for: A rational exponent can have a 1 in the denominator. A rational exponent with a 1 in the denominator would be the same as an exponent with an integer value.",
+      "order": 23,
+      "after": [
+        "bc97466876c7"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 2,
+          "line": 252
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "8eb71032e063",
+      "type": "cue",
+      "front": "Example 2 · Check student thinking: What do the numerator and denominator of a rational exponent represent?",
+      "back": "Listen for: The numerator is the power that the number is raised to. The denominator is the root of the number you're finding.",
+      "order": 24,
+      "after": [
+        "9d293a84b2eb"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 0,
+          "line": 287
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "bcb29950ba69",
+      "type": "cue",
+      "front": "Example 2 · Reasoning: Generalize If a base raised to a fractional exponent is imaginary, what is true about the values of the numbers involved?",
+      "back": "Listen for: The base is negative, and the denominator of the fractional exponent must be even.",
+      "order": 25,
+      "after": [
+        "8eb71032e063"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 0,
+          "line": 292
+        },
+        "promptKey": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "13e2ad39c898",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Using context clues, what does the word expression mean in the sentences you read?",
+      "back": "Listen for: a way of communicating, or representing, emotions without speaking",
+      "order": 26,
+      "after": [
+        "bcb29950ba69"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 0,
+          "line": 298
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "997e9a2e1f21",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Have students read the first sentence of both parts (a) and (b). What does the word expression mean in the example?",
+      "back": "Listen for: numbers and symbols that show a value",
+      "order": 27,
+      "after": [
+        "13e2ad39c898"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 1,
+          "line": 300
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "166fc48f0e2f",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Does power mean the same thing in the example as it does in the sentence you heard?",
+      "back": "Listen for: no",
+      "order": 28,
+      "after": [
+        "997e9a2e1f21"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 2,
+          "line": 303
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "84f6354f3652",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What other word did you hear in the example that means the same thing as power?",
+      "back": "Listen for: exponent",
+      "order": 29,
+      "after": [
+        "166fc48f0e2f"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 3,
+          "line": 305
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "92c8c7b43adc",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Listen to the first sentence again. What is the exponent? What is the power?",
+      "back": "Listen for: (1/4); (1/4); Exponent and power are synonyms.",
+      "order": 30,
+      "after": [
+        "84f6354f3652"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 4,
+          "line": 307
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "4bc4788437c3",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What does the word property mean in the first sentence?",
+      "back": "Listen for: a piece of land that a person owns",
+      "order": 31,
+      "after": [
+        "92c8c7b43adc"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[5]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 5,
+          "line": 310
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[5]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "059aa092f2a4",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What does the word property mean in the second sentence?",
+      "back": "Listen for: a characteristic that describes something",
+      "order": 32,
+      "after": [
+        "4bc4788437c3"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[6]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 6,
+          "line": 312
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[6]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "cb7040b8a0a4",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: How does the second definition help you understand how the term property is used in math?",
+      "back": "Listen for: Math properties describe the characteristics of numbers and their relationships.",
+      "order": 33,
+      "after": [
+        "059aa092f2a4"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[7]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "15: 228 Understand & Apply, Example 2",
+          "item": 7,
+          "line": 314
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[7]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "6e1cace11c96",
+      "type": "cue",
+      "front": "Example 5 · Purposeful question: What property are you using when you rewrite ((x^5)^(1/5)) as (x)?",
+      "back": "Listen for: the Power of a Power Property",
+      "order": 34,
+      "after": [
+        "31af82fc67f9"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 5,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "17: 230 Understand & Apply",
+          "item": 0,
+          "line": 423
+        },
+        "promptKey": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "7e8f0defda5c",
+      "type": "cue",
+      "front": "Example 5 · Check student thinking: What do you notice about these equations that makes them easier to solve?",
+      "back": "Listen for: The coefficient of the variable divides the value on the other side of the equation evenly. In part (a), this quotient is a perfect cube. In part (b), this quotient is a perfect fourth power.",
+      "order": 35,
+      "after": [
+        "6e1cace11c96"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 5,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "17: 230 Understand & Apply",
+          "item": 0,
+          "line": 457
+        },
+        "promptKey": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c554e1afd1fa",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "A milk processing company uses cylindrical containers whose height equals the diameter of the base; volume 169.65 ft^3. Part A: how much material is needed for the lateral surface area? Part B: the cargo hold of a ship is 20 ft high; what is the largest number of these containers that could be stacked inside it?",
+      "order": 36,
+      "after": [
+        "31af82fc67f9"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "0e5b1b6bdbf5",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "h = 2r, so 169.65 = pi r^2 (2r) = 2 pi r^3, r^3 = 27.0, r = 3 ft, h = 6 ft. Part A: lateral area 2 pi r h = 36 pi ft^2 (about 113.1 ft^2). Part B: 20 / 6 = 3.33, so 3 containers. …",
+      "order": 37,
+      "after": [
+        "31af82fc67f9"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "f1b8b92c6955",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "The graph of y = x^2 (a parabola with vertex at the origin) on a grid from about x = -5 to 5 and y = -5 to 15.",
+      "order": 38,
+      "after": [
+        "07c1175b86d3"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "2e33ec0a5e99",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Find all possible values of x or y so that the point is on the graph: (2, _), (3, _), (-3, _), (5, _), (_, 4), (_, -16), (_, 7), (_, 5). (4; 9; 9; 25; -2 and 2; no possible value; -sqrt 7 and sqrt 7; -sqrt 5 and sqrt 5)",
+      "order": 39,
+      "after": [
+        "f1b8b92c6955"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "67688c88b136",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Communicate Precisely: write a precise set of instructions that show how to find an approximate value of sqrt 13 using the graph. (Draw y = 13, then go straight down from where it meets the graph to the positive x-axis and read the value.)",
+      "order": 40,
+      "after": [
+        "f1b8b92c6955"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "f78b7588b90a",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Draw a graph of y = x^3. Use the graph to approximate the cube roots of 5, -5 and 8, and a solution to x^3 = 5, x^3 = -5 and x^3 = 8. (about 1.7; about -1.7; 2; about 1.7; about -1.7; 2)",
+      "order": 41,
+      "after": [
+        "f1b8b92c6955"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "269b143a8c36",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What do you notice about the graph of y = x^2? → The graph is a parabola. All values of y are greater than or equal to zero.",
+      "order": 42,
+      "after": [
+        "f1b8b92c6955"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "3a894e2d8e38",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "What is true about the possible missing x-values compared to the possible missing y-values? → For a missing x-value there are 2 possible values (when y is positive); for a missing y-value there is only 1 possible value.",
+      "order": 43,
+      "after": [
+        "269b143a8c36"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "03f9588d4d19",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Draw a graph of y = x^4 and y = x^5 and use them to approximate values as in Part C. How do the numbers of x- and y-values compare to y = x^2 and y = x^3? → A positive y-value of y = x^4 has 2 x-values, like y = x^2. Each y-value of y = x^5 has 1 x-value, like y = x^3.",
+      "order": 44,
+      "after": [
+        "3a894e2d8e38"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "7e5976a7b9ac",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "Can the instructions you created in Part B be used to approximate the cube root of a number? → Yes: find the point whose y-value is the number under the radical sign and read its x-value.",
+      "order": 45,
+      "after": [
+        "03f9588d4d19"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "77b22f5e5932",
+      "type": "cue",
+      "front": "After, whole class: ask? (2)",
+      "back": "What do you notice about the answers in Part C? → The cube root of 5 equals the solution to x^3 = 5, the cube root of -5 the solution to x^3 = -5, and the cube root of 8 the solution to x^3 = 8.",
+      "order": 46,
+      "after": [
+        "7e5976a7b9ac"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "3f707a2a59ce",
+      "type": "cue",
+      "front": "Habits of Mind, Look for Relationships: ask?",
+      "back": "How is sqrt 5 related to 5? How is the cube root of 5 related to 5? How do you think the fourth root of 5 is related to 5? → (sqrt 5)^2 = 5; (cube root of 5)^3 = 5; (fourth root of 5)^4 = 5.",
+      "order": 47,
+      "after": [
+        "77b22f5e5932"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "ac592f754b6e",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The TE's printed During answer says every missing x-value has two possibilities, but its own Part A lists (_, -16), which has none, and y = 0 has only one: say 'two for a positive y'. The early-finisher answer has the same gap for y = x^4. …",
+      "order": 48,
+      "after": [
+        "f1b8b92c6955"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "293c9c8925f5",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "9TM Convert between rational exponents and radicals",
+      "order": 49,
+      "after": [
+        "19dfec2b2e62"
+      ],
+      "minute": null,
+      "source": "ixl.9TM"
+    },
+    {
+      "id": "b97fef503dff",
+      "type": "anchor",
+      "front": "IXL for example 2? (2)",
+      "back": "KJX Evaluate rational exponents",
+      "order": 50,
+      "after": [
+        "19dfec2b2e62"
+      ],
+      "minute": null,
+      "source": "ixl.KJX"
+    },
+    {
+      "id": "34c5785486fd",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "U42 Nth roots",
+      "order": 51,
+      "after": [
+        "31af82fc67f9"
+      ],
+      "minute": null,
+      "source": "ixl.U42"
+    },
+    {
+      "id": "94b0615afa0e",
+      "type": "anchor",
+      "front": "IXL for example 4?",
+      "back": "LQX Simplify radical expressions with variables I",
+      "order": 52,
+      "after": [
+        "07c1175b86d3"
+      ],
+      "minute": null,
+      "source": "ixl.LQX"
+    }
+  ]
+}

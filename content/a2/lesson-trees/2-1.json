@@ -1,0 +1,626 @@
+{
+  "lesson": "2-1",
+  "title": "Vertex Form of a Quadratic Function",
+  "nodes": [
+    {
+      "id": "fbd42192f62f",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How are transformations related to the vertex form of a quadratic function?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "6768474294f3",
+      "type": "anchor",
+      "front": "Define: vertex",
+      "back": "read the vertex (h, k) and the y-intercept off a graph whose y-axis is scaled by 10 (Example 4 graph; Try It 4)",
+      "order": 2,
+      "after": [
+        "fbd42192f62f"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.vertex"
+    },
+    {
+      "id": "e3db1e183123",
+      "type": "anchor",
+      "front": "Define: axis of symmetry",
+      "back": "I can explain how vertex form describes a parabola using the words vertex, axis of symmetry, maximum, minimum and opens upward or downward.",
+      "order": 3,
+      "after": [
+        "fbd42192f62f"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.axis of symmetry"
+    },
+    {
+      "id": "880056a7dbbd",
+      "type": "anchor",
+      "front": "Define: maximum",
+      "back": "I can explain how vertex form describes a parabola using the words vertex, axis of symmetry, maximum, minimum and opens upward or downward.",
+      "order": 4,
+      "after": [
+        "fbd42192f62f"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.maximum"
+    },
+    {
+      "id": "8bc5426232a2",
+      "type": "anchor",
+      "front": "Define: minimum",
+      "back": "I can explain how vertex form describes a parabola using the words vertex, axis of symmetry, maximum, minimum and opens upward or downward.",
+      "order": 5,
+      "after": [
+        "fbd42192f62f"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.minimum"
+    },
+    {
+      "id": "1ddb9063febe",
+      "type": "anchor",
+      "front": "Define: opens upward or downward",
+      "back": "I can explain how vertex form describes a parabola using the words vertex, axis of symmetry, maximum, minimum and opens upward or downward.",
+      "order": 6,
+      "after": [
+        "fbd42192f62f"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.opens upward or downward"
+    },
+    {
+      "id": "704cfe9c34c9",
+      "type": "anchor",
+      "front": "Quiz item 4 asks?",
+      "back": "Item 4: a downward parabola is graphed on a grid (x -2 to 8, y -30 to 70, no points labeled); choose its equation in the form y = ax^2 + bx + c. Choices A -5x^2 - 20x - 65; B -5x^2 - 20x - 20; C -x^2 - 27x - 90; D -5x^2 + 20x + 25. …",
+      "order": 7,
+      "after": [
+        "6768474294f3",
+        "e3db1e183123",
+        "880056a7dbbd",
+        "8bc5426232a2",
+        "1ddb9063febe"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "27688880249c",
+      "type": "anchor",
+      "front": "Quiz item 4 answer?",
+      "back": "D: y = -5x^2 + 20x + 25 (25 = a(0 - 2)^2 + 45 gives a = -5; -5(x - 2)^2 + 45 expands to -5x^2 + 20x + 25; zeros -1 and 5 match the graph). Verify against the TE key on quiz day.",
+      "order": 8,
+      "after": [
+        "6768474294f3",
+        "e3db1e183123",
+        "880056a7dbbd",
+        "8bc5426232a2",
+        "1ddb9063febe"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "08af32bfdefd",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need?",
+      "back": "read the vertex (h, k) and the y-intercept off a graph whose y-axis is scaled by 10 (Example 4 graph; Try It 4)",
+      "order": 9,
+      "after": [
+        "704cfe9c34c9"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "c6aa9fa8d62f",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (2)",
+      "back": "substitute the vertex for h and k and one point for x and y, then solve for a (Example 4 step 2; IXL URV; Savvas item 3 is this step alone)",
+      "order": 10,
+      "after": [
+        "704cfe9c34c9"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "6600f27c02f5",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (3)",
+      "back": "square a binomial and distribute a to reach y = ax^2 + bx + c (Example 4 step 4; IXL 4A7, standard form from the vertex and another point, is the exact rehearsal but is a 2-2 core skill, not on the authored 2-1 list, so it is not in the 2-1 packet table)",
+      "order": 11,
+      "after": [
+        "704cfe9c34c9"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "26198dbc445c",
+      "type": "anchor",
+      "front": "Before quiz item 4 students need? (4)",
+      "back": "check: c is the y-intercept and a < 0 because the parabola opens downward (Example 4 Check line)",
+      "order": 12,
+      "after": [
+        "704cfe9c34c9"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "85d4e3545245",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Select all true statements about g(x) = (x + 2)^2 + 4 as a transformation of f(x) = x^2 (key B, C; DOK 2; F60, F68). Example 1 (cut). Example 2's vertex reading answers it: vertex (-2, 4) means left 2 and up 4, and a = 1 > 0 opens upward. Not on the short form (full Savvas quiz only); retake / Form B item.",
+      "order": 13,
+      "after": [
+        "704cfe9c34c9"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "82de88ef4bba",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "h(x) = -1/2(x - 4)^2 + 3 is a bird's height; which point is the greatest height? (key A, (4, 3); DOK 2; F60). Example 2 + Try It 2 (vertex (h, k), a < 0 so the vertex is the maximum). On the short form as item 2; proposed graded, 10 points (7 choice + 3 for the explain-your-choice vertex sentence).",
+      "order": 14,
+      "after": [
+        "704cfe9c34c9"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "ef2432e5322b",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Vertex form of the parabola with vertex (9, -1) through (7, 7) (key A, y = 2(x - 9)^2 - 1; DOK 2; F60). Taught by Example 3 (cut); Example 4 steps 1-3 and Try It 4 do the same substitution. On the short form as item 3; proposed +5 bonus (5 with the substitution shown, 3 for A with no work).",
+      "order": 15,
+      "after": [
+        "704cfe9c34c9"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "611afc9f5475",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Graph to y = ax^2 + bx + c (key D, y = -5x^2 + 20x + 25; DOK 2; F16). Example 4 + Try It 4. On the short form as item 4; proposed graded, 10 points (6 choice + 2 for the vertex and y-intercept read off the graph + 2 for a = -5 shown; both prompts are show-your-work for the TE task).",
+      "order": 16,
+      "after": [
+        "704cfe9c34c9"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "1434729a24d9",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "f(x) = x^2 translated right 3 and down 5, written as y = ax^2 + bx + c (key B, y = x^2 - 6x + 4; DOK 2; F16, F68). Example 5 (cut); its expansion step is Example 4 step 4 and the translation-to-vertex step is Example 2 read backwards. …",
+      "order": 17,
+      "after": [
+        "704cfe9c34c9"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "c780901b95ac",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Determine Key Features of a Quadratic Function · DOK 1, 2, 3 · practice 22-25; 12, 14, 32, 34; 15, 38 · Quiz item 2 (the bird's greatest height is the vertex of a downward parabola) and the vertex/sign-of-a reading behind items 1 and 5. …",
+      "order": 18,
+      "after": [
+        "704cfe9c34c9",
+        "27688880249c"
+      ],
+      "minute": null,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "34d1b0fcaa4c",
+      "type": "step",
+      "front": "Example 4: ?",
+      "back": "Write an Equation of a Parabola Given the Graph · DOK 1, 2 · practice 29; 13 · Quiz item 4 directly (read the vertex and y-intercept off a graph, find a, expand to y = ax^2 + bx + c) and item 3's substitution (steps 1-3). Try It 4 is the same task with vertex (2, 10) and y-intercept 4. …",
+      "order": 19,
+      "after": [
+        "c780901b95ac"
+      ],
+      "minute": null,
+      "source": "examples[n=4]"
+    },
+    {
+      "id": "d4f06b32c753",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: How do (a), (h), and (k) affect the domain and range of a quadratic function in vertex form?",
+      "back": "Listen for: These values do not affect the domain of the function. The domain is all real numbers. These values affect the range. If (a) is positive, (k) is the minimum value of the range. If (a) is negative, (k) is the maximum value of the range.",
+      "order": 20,
+      "after": [
+        "c780901b95ac"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-1_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "15: 62 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 254
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "fa67db6e5e8c",
+      "type": "cue",
+      "front": "Example 2 · Reasoning: Make Sense and Persevere In what order should you apply the transformations shown in the Try It! for Example 2?",
+      "back": "Listen for: reflection first, then vertical and horizontal translation",
+      "order": 21,
+      "after": [
+        "d4f06b32c753"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_2-1_TE.tex",
+          "anchor": 2,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "15: 62 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 272
+        },
+        "promptKey": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "7c0258fffc66",
+      "type": "cue",
+      "front": "Example 2 · Extend thinking: Identify the vertex, axis of symmetry, minimum or maximum, domain, and range of the function.",
+      "back": "Listen for: 1. vertex: (3/2,3/4); axis of symmetry: (x=3/2); maximum at (y=3/4); domain: (-∞,∞); range: (-∞,3/4]. 2. vertex: (-1/3,-1/6); axis of symmetry: (x=-1/3); minimum at (y=-1/6); domain: (-∞,∞); range: [-1/6,∞).",
+      "order": 22,
+      "after": [
+        "fa67db6e5e8c"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_2-1_TE.tex",
+          "anchor": 2,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "16: 63 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 359
+        },
+        "promptKey": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "ba6ff5c712e2",
+      "type": "cue",
+      "front": "Example 4 · Purposeful question: What can you learn about the values of (a), (b), and (c) by looking at the graph?",
+      "back": "Listen for: If the parabola opens upward, then (a) is positive. If it opens downward, then (a) is negative. The value of (c) is the (y)-coordinate of the (y)-intercept. You cannot determine the value of (b) by looking at the graph.",
+      "order": 23,
+      "after": [
+        "34d1b0fcaa4c"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-1_TE.tex",
+          "anchor": 4,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "16: 63 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 330
+        },
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "7d7d9cbef0b6",
+      "type": "cue",
+      "front": "Example 4 · Purposeful question: Why does the ball start with a height of 4?",
+      "back": "Listen for: When the ball leaves the person's hand, it is 4 ft off the ground.",
+      "order": 24,
+      "after": [
+        "ba6ff5c712e2"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-1_TE.tex",
+          "anchor": 4,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "16: 63 Step 2 Understand & Apply",
+          "item": 1,
+          "line": 332
+        },
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "2d06d1f47089",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Amaya is standing 30 ft from a volleyball net. The net is 8 ft high. Amaya serves the ball. The path of the ball is modeled by y = -0.02(x - 18)^2 + 12, where x is the ball's horizontal distance in feet from Amaya's position and y is the distance in feet from the ground to the ball. a. …",
+      "order": 25,
+      "after": [
+        "34d1b0fcaa4c"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "803bacf5faa5",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "a. 18 ft: the vertex is (18, 12) and a = -0.02 < 0, so the vertex is the maximum and its x-coordinate is the horizontal distance. b. Substitute x = 30: y = -0.02(30 - 18)^2 + 12 = -0.02(144) + 12 = 9.12 ft. …",
+      "order": 26,
+      "after": [
+        "34d1b0fcaa4c"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "57e7580bd234",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "A table gives A(x), the area of a square as a function of side length x units (x a positive real number): x = 1, 2, 3, 4 gives A(x) = 1, 4, 9, 16.",
+      "order": 27,
+      "after": [
+        "fbd42192f62f"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "f63aaebc5cd7",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Consider the function where the areas in the table are doubled. Write the equation of a function that represents this. (f(x) = 2(x^2))",
+      "order": 28,
+      "after": [
+        "57e7580bd234"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "017df2693d95",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Look for Relationships: graph the ordered pairs for both A(x) and your new function. How would you describe the differences in the locations of these points? (The new points are closer to the y-axis; each y-value is twice that of A(x).)",
+      "order": 29,
+      "after": [
+        "57e7580bd234"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "af8f2845bb33",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. Find the equation for a function whose x-values are the same as A(x) but whose y-values are 2 units greater than each y-value in A(x). (g(x) = x^2 + 2)",
+      "order": 30,
+      "after": [
+        "57e7580bd234"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "32dbffcb2096",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "Do you see any patterns in the table? → The value of A(x) in the third row is equal to the square of the value of x in the first row.",
+      "order": 31,
+      "after": [
+        "57e7580bd234"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "e00d6659559f",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "Why is it helpful to think of the new function described in Part A in terms of A(x)? → You know that A(x) = x^2. The new function is 2x^2, so f(x) = 2A(x): if you know A(x), multiply it by 2.",
+      "order": 32,
+      "after": [
+        "32dbffcb2096"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "6507f7137d3c",
+      "type": "cue",
+      "front": "During, small group: ask? (2)",
+      "back": "What does A(x) + 2 mean in relation to A(x)? → Find the value of A(x), and then add 2 to that value.",
+      "order": 33,
+      "after": [
+        "e00d6659559f"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "4140627bcbc8",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Suppose you double both the length and the width of the square to make a larger square. How are the corresponding areas affected? → The corresponding areas are 4 times as great.",
+      "order": 34,
+      "after": [
+        "6507f7137d3c"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "196aa21cc690",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "What strategy can you use to determine the relationship between the new function described in Part A and A(x)? → Add another row to the table for the values of f(x). Each value of f(x) is twice the value of A(x), so f(x) = 2A(x).",
+      "order": 35,
+      "after": [
+        "4140627bcbc8"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "ec10b2efad4c",
+      "type": "cue",
+      "front": "After, whole class: ask? (2)",
+      "back": "What strategy can you use to determine the value of f(x) + 1 if you know the value of A(x)? → Multiply the value of A(x) by 2 and then add 1.",
+      "order": 36,
+      "after": [
+        "196aa21cc690"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "dd5e6b9e3f0c",
+      "type": "cue",
+      "front": "Habits of Mind, Communicate Precisely: ask?",
+      "back": "Suppose you started with a different function. Would altering A(x) in the two ways you did have the same effect? → Yes; multiplying any function by 2 doubles each y-value, and adding 2 raises each y-value by 2.",
+      "order": 37,
+      "after": [
+        "ec10b2efad4c"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[6]"
+    },
+    {
+      "id": "2b26dd256691",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The opener only stretches (a) and shifts up (k); it never moves the vertex sideways, so it sets up Example 1 (cut) more than the kept Examples. Use Part C as the bridge to Example 2: g(x) = x^2 + 2 has vertex (0, 2), so k is the y-coordinate of the vertex; then ask where the vertex would be for (x - 3)^2 + 2. …",
+      "order": 38,
+      "after": [
+        "57e7580bd234"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "e205005f136e",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "KQL Transformations of quadratic functions",
+      "order": 39,
+      "after": [
+        "fbd42192f62f"
+      ],
+      "minute": null,
+      "source": "ixl.KQL"
+    },
+    {
+      "id": "19848a097d21",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "WMS Characteristics of quadratic functions: graphs",
+      "order": 40,
+      "after": [
+        "c780901b95ac"
+      ],
+      "minute": null,
+      "source": "ixl.WMS"
+    },
+    {
+      "id": "6a1d9f97b4a6",
+      "type": "anchor",
+      "front": "IXL for example 1? (2)",
+      "back": "S9G Graph a quadratic function",
+      "order": 41,
+      "after": [
+        "fbd42192f62f"
+      ],
+      "minute": null,
+      "source": "ixl.S9G"
+    },
+    {
+      "id": "f6b84e9d9863",
+      "type": "anchor",
+      "front": "IXL for example 4?",
+      "back": "2YJ Write a quadratic function in vertex form",
+      "order": 42,
+      "after": [
+        "34d1b0fcaa4c"
+      ],
+      "minute": null,
+      "source": "ixl.2YJ"
+    },
+    {
+      "id": "b888d540358e",
+      "type": "anchor",
+      "front": "IXL for example 4? (2)",
+      "back": "URV Write a quadratic function in vertex form from its vertex and another point",
+      "order": 43,
+      "after": [
+        "34d1b0fcaa4c"
+      ],
+      "minute": null,
+      "source": "ixl.URV"
+    },
+    {
+      "id": "b6c8d379871c",
+      "type": "anchor",
+      "front": "IXL for example 2? (2)",
+      "back": "L8C Characteristics of quadratic functions: equations",
+      "order": 44,
+      "after": [
+        "c780901b95ac"
+      ],
+      "minute": null,
+      "source": "ixl.L8C"
+    }
+  ]
+}

@@ -1,0 +1,637 @@
+{
+  "lesson": "3-1",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why is the order of the terms important when writing a polynomial?",
+      "answer": "The order helps you identify the leading coefficient. The leading coefficient is one of the indicators of the graph's behavior.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Identify Features of a Polynomial. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 119, Understand \\& Apply",
+        "item": 0,
+        "line": 166
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why do you think it is important to identify the polynomial's degree, type, number of terms, and leading coefficient?",
+      "answer": "These key features of the polynomial aid in classifying the polynomial and sketching its graph.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "14: 119, Understand \\& Apply",
+        "item": 0,
+        "line": 195
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do you write the polynomial in standard form without changing its rule?",
+      "answer": "It must be written in descending order by degree, being careful to move the entire term, the sign, the coefficient, and the exponent.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples. ADDITIONAL EXAMPLE 2 Additional Examples are available at SavvasRealize.com. Go back. ESSENTIAL QUESTION. SOLUTION. Use the leading coefficient and the degree of the polynomial function to determine the end behavior of the graph. (f(x)=1+2x^3-5x^4+6x^2-7x^5)Printed equation symbols are damaged: equals appears as a dash, plus signs as vertical strokes, and minus signs are faint or absent. Rewrite the function so the polynomial is in standard form: (f(x)=-7x^5-5x^4+2x^3+6x^2+1)Equality and operation symbols are damaged as in the preceding equation. Leading coefficient: -7 Degree: 5 This is an odd function with a negative leading coefficient, so the function will increase infinitely as x decreases and decrease infinitely as x increases. Leading coefficient: -7; Degree: 5. The function will increase infinitely as x decreases and decrease infinitely as x increases. Printed ``odd function''; likely polynomial of odd degree. Example 2 Students need more experience with the many different forms of polynomial functions that they may encounter.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 119, Understand \\& Apply",
+        "item": 0,
+        "line": 211
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How will you use the leading coefficient and its degree to begin sketching the graph?",
+      "answer": "The degree will determine if the ends of the graph point in the same or opposite directions. The sign of the leading coefficient will determine whether the right-most end of the graph points up or down.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 3 Graph the polynomial function (f(x)=-x^3-x^2+6x). Identify key features and sketch a graph. Use a table to estimate the turning points. x | -3 | -2 | -1 | 0 | 1 | 2 | 3; y | 0 | -8 | -6 | 0 | 4 | 0 | -18 Turning points occur at about (-2,-8) and about (1,4). The polynomial has an odd degree and negative leading coefficient, so, as (x→-∞), (y→+∞). As (x→+∞), (y→-∞). Turning points occur at about (-2,-8) and about (1,4). As (x→-∞), (y→+∞); as (x→+∞), (y→-∞). Go back. ESSENTIAL QUESTION. SOLUTION. Example 3 Students may need more examples of how to interpret a graph's behavior.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Orange cubic f(x)=-x^3-x^2+6x on square gray grid, axes x,y with arrows, window approximately x,y=[-10,10], grid spacing 2.5; labels x=-5,O,5 and y=5. Curve has left end up, right end down; zeros -3,0,2, approximate minimum (-1.8,-8.2), maximum (1.1,4.1). No points marked."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 119, Understand \\& Apply",
+        "item": 0,
+        "line": 228
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What differences and similarities do you notice between the graphs?",
+      "answer": "Two of the graphs are the same shape, but going in different directions. One opens upward, and one opens downward.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Understand End Behavior of Polynomial Functions. Build Procedural Fluency from Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "15: 120, Understand \\& Apply",
+        "item": 0,
+        "line": 234
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How does each feature describe the end behavior of the graphs?",
+      "answer": "The degree of the polynomial determines the shape of the graph. The sign of the leading coefficient affects the orientation of the graph.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Understand End Behavior of Polynomial Functions. Build Procedural Fluency from Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "15: 120, Understand \\& Apply",
+        "item": 1,
+        "line": 236
+      }
+    },
+    {
+      "example": 2,
+      "category": "CommonError",
+      "key": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 2 Students may incorrectly define the greatest coefficient as the leading coefficient. Remind students to rewrite the polynomial, reordering the terms so the exponents are in descending order.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 2,
+        "category": "CommonError",
+        "block": 0,
+        "page": "15: 120, Understand \\& Apply",
+        "item": 0,
+        "line": 283
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtIExtend",
+      "key": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Which term has the greatest effect on the output of the functions?",
+      "answer": "The term with the highest degree has the greatest effect on the final output of the functions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 2 Students may find it interesting that the leading coefficient and its degree have such a significant effect on the graph of functions. Use the following polynomial functions and a table to determine how the leading coefficient and its degree control the end behavior of the graphs and why their effects are important. 1. (f(x)=x^2+3) 2. (f(x)=x^3+2x^2+5)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 2,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "15: 120, Understand \\& Apply",
+        "item": 0,
+        "line": 298
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtIExtend",
+      "key": "examples[n=2].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "Which coefficient has the most influence on the output of the functions?",
+      "answer": "Since the leading coefficient belongs to the term with the greatest degree, it has the most influence on the functions' output; therefore, it will also have the most influence on the graph.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 2 Students may find it interesting that the leading coefficient and its degree have such a significant effect on the graph of functions. Use the following polynomial functions and a table to determine how the leading coefficient and its degree control the end behavior of the graphs and why their effects are important. 1. (f(x)=x^2+3) 2. (f(x)=x^3+2x^2+5)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 2,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "15: 120, Understand \\& Apply",
+        "item": 1,
+        "line": 300
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What can be determined from looking at the polynomial function before graphing?",
+      "answer": "The leading coefficient is negative, and the degree is even; therefore, the y-values will decrease as the x-values go to negative infinity, and the y-values will decrease as the x-values go to positive infinity.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph a Polynomial Function. Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "16: 121, Understand \\& Apply",
+        "item": 0,
+        "line": 306
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How is the table helpful when sketching the graph of a polynomial function? What points are important?",
+      "answer": "The table is used to help determine the behavior of the graph that occurs between the ends. The turning points are important points.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Graph a Polynomial Function. Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "16: 121, Understand \\& Apply",
+        "item": 1,
+        "line": 308
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How can you identify the turning points of the graph?",
+      "answer": "You can use a table to find where the values change from increasing to decreasing.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "16: 121, Understand \\& Apply",
+        "item": 0,
+        "line": 364
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do you recognize the zeros of the function from the verbal descriptions?",
+      "answer": "By the locations of positive to negative transitions where intervals are connected.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Sketch the Graph from a Verbal Description. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "17: 122, Understand \\& Apply",
+        "item": 0,
+        "line": 370
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How do these verbal descriptions relate to the degree and leading coefficient of a polynomial function?",
+      "answer": "The end behavior as described by the intervals matches the end behavior as predicted by the polynomial's leading coefficient and degree.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Sketch the Graph from a Verbal Description. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "17: 122, Understand \\& Apply",
+        "item": 1,
+        "line": 372
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Is it necessary to include the descriptions indicating where the polynomial function increases or decreases?",
+      "answer": "Yes; if the increasing and decreasing intervals are not included, then it is not possible to determine the number of turning points.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "17: 122, Understand \\& Apply",
+        "item": 0,
+        "line": 407
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "What might be a strategy to organize your thoughts about the descriptions?",
+      "answer": "Rewrite the descriptions with interpretations of key words.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 4 Students may struggle with interpreting verbal descriptions, as well as with interval notation. Use the following descriptions to take a closer look at how to interpret the actual shape of the graph. Use the verbal descriptions to sketch a graph of the polynomial function f. (f(x)) is positive on the intervals ((-∞,-3)) and ((5,∞)). (f(x)) is negative on the interval ((-3,5)). (f(x)) is increasing on the interval ((0,∞)). (f(x)) is decreasing on the interval ((-∞,0))",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "17: 122, Understand \\& Apply",
+        "item": 0,
+        "line": 424
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "How can you use the interval descriptions to mark key points on the graph?",
+      "answer": "The interval descriptions help to locate the turning points to begin sketching.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 4 Students may struggle with interpreting verbal descriptions, as well as with interval notation. Use the following descriptions to take a closer look at how to interpret the actual shape of the graph. Use the verbal descriptions to sketch a graph of the polynomial function f. (f(x)) is positive on the intervals ((-∞,-3)) and ((5,∞)). (f(x)) is negative on the interval ((-3,5)). (f(x)) is increasing on the interval ((0,∞)). (f(x)) is decreasing on the interval ((-∞,0))",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "17: 122, Understand \\& Apply",
+        "item": 1,
+        "line": 426
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Initially, what can you interpret about the end behavior of the function by looking at the written model?",
+      "answer": "The leading coefficient is negative, and the degree is odd; therefore, as x approaches negative infinity, y approaches positive infinity. Also, as x approaches positive infinity, y approaches negative infinity.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Interpret a Polynomial Model. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "18: 123, Understand \\& Apply",
+        "item": 0,
+        "line": 432
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What is important to consider when a real-world context is represented by a polynomial model?",
+      "answer": "There may be values in the domain and range of the function that do not make sense in the context, such as negative values. Therefore, the domain and range need to be limited to represent the situation.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Interpret a Polynomial Model. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "18: 123, Understand \\& Apply",
+        "item": 1,
+        "line": 434
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "Substances that are neither solid nor liquid are referred to as .",
+      "answer": "gases",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING In their journals, have students copy and complete these sentences to ensure that they understand the definitions of gases, reaction, and inflate.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "18: 123, Understand \\& Apply",
+        "item": 0,
+        "line": 475
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "Chemical changes often cause a , or a result of two things acting together.",
+      "answer": "reaction",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING In their journals, have students copy and complete these sentences to ensure that they understand the definitions of gases, reaction, and inflate.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "18: 123, Understand \\& Apply",
+        "item": 1,
+        "line": 477
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "To is to cause to expand with air or with gas.",
+      "answer": "inflate",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING In their journals, have students copy and complete these sentences to ensure that they understand the definitions of gases, reaction, and inflate.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "18: 123, Understand \\& Apply",
+        "item": 2,
+        "line": 479
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What term do we typically use in math to describe a fixed amount?",
+      "answer": "constant",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING In their journals, have students copy and complete these sentences to ensure that they understand the definitions of gases, reaction, and inflate.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "18: 123, Understand \\& Apply",
+        "item": 3,
+        "line": 482
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "What term do we typically use in math to describe different amounts?",
+      "answer": "variable",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING In their journals, have students copy and complete these sentences to ensure that they understand the definitions of gases, reaction, and inflate.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "18: 123, Understand \\& Apply",
+        "item": 4,
+        "line": 484
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "Why does Abby only change the amount of vinegar and not the amount of baking soda?",
+      "answer": "In an experiment, if you change more than one quantity, then you would not be able to tell which change was responsible for the result.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING In their journals, have students copy and complete these sentences to ensure that they understand the definitions of gases, reaction, and inflate.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "18: 123, Understand \\& Apply",
+        "item": 5,
+        "line": 486
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "What does the word capped mean? What part of the text helps you understand the meaning?",
+      "answer": "placed over the opening; the picture",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING In their journals, have students copy and complete these sentences to ensure that they understand the definitions of gases, reaction, and inflate.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "18: 123, Understand \\& Apply",
+        "item": 6,
+        "line": 489
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[7]",
+      "kind": "question",
+      "question": "Why is Abby mixing baking soda and vinegar?",
+      "answer": "She is conducting an experiment to determine the amount of vinegar needed to cause a chemical reaction that will release gases and fill the balloon.",
+      "variant": "example",
+      "notes": [
+        "Printed ELL questions use Abby; the example names Sofia."
+      ],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING In their journals, have students copy and complete these sentences to ensure that they understand the definitions of gases, reaction, and inflate.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-1_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "18: 123, Understand \\& Apply",
+        "item": 7,
+        "line": 491
+      }
+    }
+  ]
+}

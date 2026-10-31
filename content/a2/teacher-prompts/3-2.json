@@ -1,0 +1,574 @@
+{
+  "lesson": "3-2",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why can the Commutative and Associative Properties be applied in the same step?",
+      "answer": "One deals with grouping like terms and the other deals with ordering. It makes sense to group the like terms that you order next to each other.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Add and Subtract Polynomials. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "26: 127 Understand & Apply",
+        "item": 0,
+        "line": 170
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "If two polynomials are being subtracted, what property must be used?",
+      "answer": "Applying the subtraction sign is the same as multiplying the second polynomial by -1 and then adding both polynomials. You must use the Distributive Property to apply subtraction to the entire polynomial.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Add and Subtract Polynomials. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "26: 127 Understand & Apply",
+        "item": 1,
+        "line": 173
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Which property should be applied first in order to simplify the expression?",
+      "answer": "the Distributive Property; The order of operations requires multiplication before addition and subtraction.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples. ADDITIONAL EXAMPLE 2 Additional Examples are available at SavvasRealize.com. Go back. ESSENTIAL QUESTION. SOLUTION. Use the Distributive, Commutative, and Associative Properties to simplify the polynomial. (3x(2x-6)-(-4x^2+7x)(5x+2))Operation signs and closing parenthesis in the first displayed expression are damaged; the repeated expression below is legible. (3x(2x-6)-(-4x^2+7x)(5x+2)) (=6x^2-18x-(-20x^3-8x^2+35x^2+14x)) (=6x^2-18x+20x^3-27x^2-14x) (=20x^3-21x^2-32x) (20x^3-21x^2-32x) Example 2 When simplifying polynomial functions, more than one operation must often be performed. Have students simplify polynomial expressions that require them to add, subtract, and multiply with this additional example.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "26: 127 Understand & Apply",
+        "item": 0,
+        "line": 219
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Show two different ways to write the area of the rectangle.",
+      "answer": "(A(x)=(x+2+x-6)(x+2+4)); (A(x)=(x+2)^2+4(x+2)+(x-6)(x+2)+4(x-6))",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4 John has to write a function that models the possible areas of a rectangle that started as a square with an area of ((x+2)^2). A. Use the area model to write a polynomial function that represents the possible values of x. B. For what domain is this rectangle possible? A. (A(x)=(x+6)(2x-4)) B. (x>2) Printed x>2 makes the combined height positive, but the pictured x-6 strip has positive height only for x>6. Go back. ESSENTIAL QUESTION. SOLUTION. Example 4 Polynomial functions can be used to model a variety of situations. Have students write a polynomial function that models the area of a rectangle with this additional example.",
+        "figures": [
+          {
+            "kind": "diagram",
+            "description": "Area model of a rectangle divided into four regions: blue upper-left square with side x+2, green right strip of width 4 and height x+2, green bottom strip height x-6 and width x+2, yellow bottom-right rectangle width 4 and height x-6. Top labels x+2 and 4; left labels x+2 and x-6."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "26: 127 Understand & Apply",
+        "item": 0,
+        "line": 233
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "When you multiply a binomial (2 terms) and a trinomial (3 terms), what is the maximum number of terms in the product?",
+      "answer": "A binomial multiplied by a trinomial can result in a polynomial with six terms, because each of the 2 terms in the binomial will be distributed to each of the 3 terms in the trinomial.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Multiply Polynomials. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "27: 128 Understand & Apply",
+        "item": 0,
+        "line": 240
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Does it matter which two binomials you multiply first?",
+      "answer": "No; multiplication is commutative, so the binomials can be multiplied in any order.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Multiply Polynomials. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "27: 128 Understand & Apply",
+        "item": 1,
+        "line": 243
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What does it mean to say that the set of polynomials is closed under addition?",
+      "answer": "It means that when you add two or more polynomials together, the sum will be a polynomial.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Understand Closure. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "27: 128 Understand & Apply",
+        "item": 0,
+        "line": 285
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtISupport",
+      "key": "examples[n=2].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "What property is used to multiply terms that contain variables? How is the property applied?",
+      "answer": "Product Property of Exponents; When multiplying terms that have the same base, add their exponents.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 2 Students often struggle with using the Distributive Property. Have students practice the process of using this property with simpler expressions. Distribute and combine like terms. 1. (2x(3x-6)) 2. (4x(2x^2+3x-7)) 3. ((x-5)(2x-9))",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 2,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "27: 128 Understand & Apply",
+        "item": 0,
+        "line": 319
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "What is the difference between revenue and profit in this example?",
+      "answer": "Revenue is the amount of money Hachi gets for selling the Seminole Indian dolls. Profit is the amount of money left after subtracting her costs.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write a Polynomial Function. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "28: 129 Understand & Apply",
+        "item": 0,
+        "line": 325
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Why does the price function need to be multiplied by the number of items sold whereas the cost function does not?",
+      "answer": "The price function represents the price per item, and so you multiply by the number of items to get the revenue (income). The cost function already represents the total cost.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write a Polynomial Function. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "28: 129 Understand & Apply",
+        "item": 1,
+        "line": 327
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[2]",
+      "kind": "question",
+      "question": "How is the maximum point on the graph related to the nine Seminole Indian dolls?",
+      "answer": "The maximum is at (9.25,107.125), but Hachi cannot sell part of a doll, which means the most profit Hachi can make is $107.00 when she sells 9 Seminole Indian dolls.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Write a Polynomial Function. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "28: 129 Understand & Apply",
+        "item": 2,
+        "line": 329
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How does the change in the cost of materials affect the maximum of the profit function?",
+      "answer": "With the decreased costs, Hachi will now make a maximum profit of $211 when she sells 11 Seminole Indian dolls.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "28: 129 Understand & Apply",
+        "item": 0,
+        "line": 367
+      }
+    },
+    {
+      "example": 4,
+      "category": "CommonError",
+      "key": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 4 Students may think that profit is maximized when the greatest number of Seminole Indian dolls are sold. Have students think about what factors impact the profit, and whether selling more always results in a greater profit.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 4,
+        "category": "CommonError",
+        "block": 0,
+        "page": "28: 129 Understand & Apply",
+        "item": 0,
+        "line": 370
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtIExtend",
+      "key": "examples[n=4].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine the function that models the area of the patio not taken up by the garden?",
+      "answer": "Answers may vary. Sample: Find the area of the rectangle by multiplying the length by the width. Then subtract from that the area of the triangle.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 4 Give students new contexts in which to practice writing polynomial functions. Rachel is installing a triangular garden bed from one corner of the patio to the half-way point of the opposite side. Write a polynomial function that represents the area of the part of her patio that is not taken up by the garden.",
+        "figures": [
+          {
+            "kind": "diagram",
+            "description": "Black rectangular patio outline, horizontal bottom side labeled x+4 in red and right vertical side labeled x-1 in red. Diagonal black line runs from lower-left corner to midpoint of top edge, cutting off the triangular garden on the left."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 4,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "28: 129 Understand & Apply",
+        "item": 0,
+        "line": 379
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtIExtend",
+      "key": "examples[n=4].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "What is a function that models this area?",
+      "answer": "(f(x)=3/4x^2+9/4x-3)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 4 Give students new contexts in which to practice writing polynomial functions. Rachel is installing a triangular garden bed from one corner of the patio to the half-way point of the opposite side. Write a polynomial function that represents the area of the part of her patio that is not taken up by the garden.",
+        "figures": [
+          {
+            "kind": "diagram",
+            "description": "Black rectangular patio outline, horizontal bottom side labeled x+4 in red and right vertical side labeled x-1 in red. Diagonal black line runs from lower-left corner to midpoint of top edge, cutting off the triangular garden on the left."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 4,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "28: 129 Understand & Apply",
+        "item": 1,
+        "line": 381
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do the y-intercepts represent for each function?",
+      "answer": "the profit for selling zero products",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Compare Two Polynomial Functions. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "29: 130 Understand & Apply",
+        "item": 0,
+        "line": 388
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What restrictions are on the domains of these functions?",
+      "answer": "The domains represent the number of items sold, so they must be the set of whole numbers.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Compare Two Polynomial Functions. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "29: 130 Understand & Apply",
+        "item": 1,
+        "line": 391
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "How can you determine a realistic number of items that Hachi and Kiyo can each produce and sell?",
+      "answer": "The numbers of items they can produce and sell are the positive domain values that result in a positive value for each function.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Compare Two Polynomial Functions. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "29: 130 Understand & Apply",
+        "item": 2,
+        "line": 393
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Without graphing (g(x)), how can you compare the two functions?",
+      "answer": "By inspecting the equation, (g(x)) will be a parabola that opens downward. It has x-intercepts at -1 and 5, so the function will be positive over that interval. When (x>5), (g(x)) will be negative, while (f(x)) will be positive.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "29: 130 Understand & Apply",
+        "item": 0,
+        "line": 432
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "Does a compound word always have to be one word?",
+      "answer": "No; a compound word can be one word, a hyphenated word, or two words (an open compound).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING Have students write in their journals what they think the word startup means. Explain that the word startup is a compound word. Challenge students to list other compound words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "29: 130 Understand & Apply",
+        "item": 0,
+        "line": 443
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What other compound words can you find in the example?",
+      "answer": "flowerpot",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING Have students write in their journals what they think the word startup means. Explain that the word startup is a compound word. Challenge students to list other compound words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "29: 130 Understand & Apply",
+        "item": 1,
+        "line": 445
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "What does entrepreneur mean?",
+      "answer": "a person who starts his or her own business",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING Have students write in their journals what they think the word startup means. Explain that the word startup is a compound word. Challenge students to list other compound words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "29: 130 Understand & Apply",
+        "item": 2,
+        "line": 448
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "How could you rephrase the question in Part A without the words neither and anything?",
+      "answer": "``Who would lose more money if each person produced zero items to sell?''",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING Have students write in their journals what they think the word startup means. Explain that the word startup is a compound word. Challenge students to list other compound words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "29: 130 Understand & Apply",
+        "item": 3,
+        "line": 451
+      }
+    },
+    {
+      "example": 5,
+      "category": "ELLAddendum",
+      "key": "examples[n=5].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "How does rephrasing the question help you understand how to solve the problem?",
+      "answer": "By changing ``neither... produced anything'' to ``each produced zero items,'' you can see that you need to find the y-value when the x-value is 0.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 5) WRITING BEGINNING Have students write in their journals what they think the word startup means. Explain that the word startup is a compound word. Challenge students to list other compound words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-2_TE.tex",
+        "anchor": 5,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "29: 130 Understand & Apply",
+        "item": 4,
+        "line": 453
+      }
+    }
+  ]
+}

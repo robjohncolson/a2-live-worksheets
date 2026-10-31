@@ -1,0 +1,859 @@
+{
+  "lesson": "5-1",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "When finding the nth root of a number, what do you notice about the real and complex solutions?",
+      "answer": "The sum of the number of real and complex solutions is (n).",
+      "variant": "example",
+      "notes": [
+        "Printed real and complex; likely real and nonreal complex, counting multiplicity."
+      ],
+      "context": {
+        "text": "Find All Real nth Roots. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 227 Understand & Apply",
+        "item": 0,
+        "line": 166
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How are the real roots of an even power related?",
+      "answer": "The real roots of an even power are opposites.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Find All Real nth Roots. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 227 Understand & Apply",
+        "item": 1,
+        "line": 169
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What do you know about the roots of a number before you solve the problem?",
+      "answer": "If the degree is odd, there will be an odd number of real roots. If the degree is even, there will be an even number of real roots.",
+      "variant": "example",
+      "notes": [
+        "This teacher block is printed on PDF page14. Printed even-root generalization omits the zero radicand, which has one distinct real root."
+      ],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "15: 228 Example 1 continued",
+        "item": 0,
+        "line": 204
+      }
+    },
+    {
+      "example": 1,
+      "category": "CommonError",
+      "key": "examples[n=1].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "When finding the real fourth roots of 81, students may give the root as 3. Have students find the square roots of 81, reminding them that there are two real roots. Then ask students how this is related to finding the real fourth roots of 81.",
+      "variant": "example",
+      "notes": [
+        "Printed on PDF page14."
+      ],
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 1,
+        "category": "CommonError",
+        "block": 0,
+        "page": "15: 228 Example 1 continued",
+        "item": 0,
+        "line": 208
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "Can you find the real cube and fourth roots of a negative number?",
+      "answer": "You can find the cube root of a negative number, but there is no real number that when raised to the fourth power results in a negative number.",
+      "variant": "additional",
+      "notes": [
+        "Printed on PDF page14. Additional Examples are available at SavvasRealize.com. Digital labels: Go back; Essential Question; Solution."
+      ],
+      "context": {
+        "text": "Additional Examples: Additional Example 1 Find the real fourth roots of (-256). (x^4=-256) (x^4+256=0) (x^4+256=0) does not have real solutions. Therefore, there are no real fourth roots of (-256). There are no real fourth roots of (-256). Example 1 Help students find the real cube and fourth roots of a negative number.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "15: 228 Example 1 continued",
+        "item": 0,
+        "line": 222
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What is the value of (n) in the nth root in this example?",
+      "answer": "2",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 6 A clerk is wrapping two cube-shaped packages and wants to know the smallest amount of wrapping paper that can wrap each package. The edge length of the larger package is 3 in. greater than the edge length of the smaller package. The surface area of the larger package is 384 (in.^2). What is the surface area of the smaller package? (384=6(x+3)^2) (64=(x+3)^2) (8=x+3) (5=x) The side length of the smaller cube is 5 in. (6(5)^2=6(25)=150), so the surface area of the smaller cube is 150 (in.^2). 150 (in.^2) Example 6 Help students use nth roots to find the edge length of a cube, given the surface area.",
+        "figures": [
+          {
+            "kind": "diagram",
+            "description": "Two pale green cubes, smaller above larger, with solid visible edges and dashed hidden edges. Smaller edge labeled x in.; larger edge labeled (x+3) in."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 228 Example 1 continued",
+        "item": 0,
+        "line": 239
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why is the expression (6s^2) used to find the surface area of a cube?",
+      "answer": "The area of a face of a cube is equal to (s^2) and there are 6 faces on a cube.",
+      "variant": "additional",
+      "notes": [
+        "Printed on PDF page14. Digital labels: Go back; Essential Question; Solution. Example1 continuation kept with its example."
+      ],
+      "context": {
+        "text": "Additional Example 6 A clerk is wrapping two cube-shaped packages and wants to know the smallest amount of wrapping paper that can wrap each package. The edge length of the larger package is 3 in. greater than the edge length of the smaller package. The surface area of the larger package is 384 (in.^2). What is the surface area of the smaller package? (384=6(x+3)^2) (64=(x+3)^2) (8=x+3) (5=x) The side length of the smaller cube is 5 in. (6(5)^2=6(25)=150), so the surface area of the smaller cube is 150 (in.^2). 150 (in.^2) Example 6 Help students use nth roots to find the edge length of a cube, given the surface area.",
+        "figures": [
+          {
+            "kind": "diagram",
+            "description": "Two pale green cubes, smaller above larger, with solid visible edges and dashed hidden edges. Smaller edge labeled x in.; larger edge labeled (x+3) in."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 228 Example 1 continued",
+        "item": 1,
+        "line": 241
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Does the order in which you raise a number to a power and find the nth root matter?",
+      "answer": "No; you can raise a number to a power and then take the nth root, or you can take the nth root and then raise that number to a power.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Understand Rational Exponents. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 0,
+        "line": 248
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Assuming that (root[n](x)) is a real number, what do you know about the value of (n) if (x) is negative?",
+      "answer": "If (x) is negative, the value of (n) is an odd number, because you cannot find real nth roots of a negative number if (n) is even.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Understand Rational Exponents. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 1,
+        "line": 250
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "Could a rational exponent have a 1 in the denominator? What does that represent?",
+      "answer": "A rational exponent can have a 1 in the denominator. A rational exponent with a 1 in the denominator would be the same as an exponent with an integer value.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Understand Rational Exponents. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 2,
+        "line": 252
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What do the numerator and denominator of a rational exponent represent?",
+      "answer": "The numerator is the power that the number is raised to. The denominator is the root of the number you're finding.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 0,
+        "line": 287
+      }
+    },
+    {
+      "example": 2,
+      "category": "HabitsOfMind",
+      "key": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Generalize If a base raised to a fractional exponent is imaginary, what is true about the values of the numbers involved?",
+      "answer": "The base is negative, and the denominator of the fractional exponent must be even.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 1 & 2",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 0,
+        "line": 292
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "Using context clues, what does the word expression mean in the sentences you read?",
+      "answer": "a way of communicating, or representing, emotions without speaking",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) READING BEGINNING Write the following sentences on the board and help students to read them. Laughter is an expression of emotion. He sat there with an expression of sadness on his face. Although her voice was quiet, her expression reflected strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 0,
+        "line": 298
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "Have students read the first sentence of both parts (a) and (b). What does the word expression mean in the example?",
+      "answer": "numbers and symbols that show a value",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) READING BEGINNING Write the following sentences on the board and help students to read them. Laughter is an expression of emotion. He sat there with an expression of sadness on his face. Although her voice was quiet, her expression reflected strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 1,
+        "line": 300
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Does power mean the same thing in the example as it does in the sentence you heard?",
+      "answer": "no",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) READING BEGINNING Write the following sentences on the board and help students to read them. Laughter is an expression of emotion. He sat there with an expression of sadness on his face. Although her voice was quiet, her expression reflected strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 2,
+        "line": 303
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What other word did you hear in the example that means the same thing as power?",
+      "answer": "exponent",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) READING BEGINNING Write the following sentences on the board and help students to read them. Laughter is an expression of emotion. He sat there with an expression of sadness on his face. Although her voice was quiet, her expression reflected strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 3,
+        "line": 305
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Listen to the first sentence again. What is the exponent? What is the power?",
+      "answer": "(1/4); (1/4); Exponent and power are synonyms.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) READING BEGINNING Write the following sentences on the board and help students to read them. Laughter is an expression of emotion. He sat there with an expression of sadness on his face. Although her voice was quiet, her expression reflected strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 4,
+        "line": 307
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "What does the word property mean in the first sentence?",
+      "answer": "a piece of land that a person owns",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) READING BEGINNING Write the following sentences on the board and help students to read them. Laughter is an expression of emotion. He sat there with an expression of sadness on his face. Although her voice was quiet, her expression reflected strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 5,
+        "line": 310
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "What does the word property mean in the second sentence?",
+      "answer": "a characteristic that describes something",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) READING BEGINNING Write the following sentences on the board and help students to read them. Laughter is an expression of emotion. He sat there with an expression of sadness on his face. Although her voice was quiet, her expression reflected strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 6,
+        "line": 312
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[7]",
+      "kind": "question",
+      "question": "How does the second definition help you understand how the term property is used in math?",
+      "answer": "Math properties describe the characteristics of numbers and their relationships.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) READING BEGINNING Write the following sentences on the board and help students to read them. Laughter is an expression of emotion. He sat there with an expression of sadness on his face. Although her voice was quiet, her expression reflected strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 228 Understand & Apply, Example 2",
+        "item": 7,
+        "line": 314
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why might it be easier to calculate the nth root before raising to a power?",
+      "answer": "When you calculate the nth root first, the number that you raise to a power is smaller, so the calculation is easier.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Evaluate Expressions with Rational Exponents. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "16: 229 Understand & Apply",
+        "item": 0,
+        "line": 320
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What is another method you could use to evaluate an expression that has a negative rational exponent?",
+      "answer": "You can rewrite the base of the exponent as its reciprocal before or after calculating the root and power.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Evaluate Expressions with Rational Exponents. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "16: 229 Understand & Apply",
+        "item": 1,
+        "line": 322
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "How is the Fujita scale classification related to the value of (F) you calculated?",
+      "answer": "The number in the Fujita scale classification is equal to the integer part of the value calculated.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Evaluate Expressions with Rational Exponents. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "16: 229 Understand & Apply",
+        "item": 2,
+        "line": 324
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[3]",
+      "kind": "question",
+      "question": "Why is a calculator a useful tool when approximating a cube root?",
+      "answer": "If the cube root is not a perfect cube, it is difficult to accurately approximate the value.",
+      "variant": "example",
+      "notes": [
+        "Printed ``cube root is not a perfect cube''; likely radicand is not a perfect cube. Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Evaluate Expressions with Rational Exponents. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "16: 229 Understand & Apply",
+        "item": 3,
+        "line": 326
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "In Part A, does it matter in what order you apply the negative?",
+      "answer": "Because the power is within parentheses, you must evaluate the power before applying the negative.",
+      "variant": "example",
+      "notes": [
+        "Printed Part A; likely Try It3a, which has an external negative sign."
+      ],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "16: 229 Understand & Apply",
+        "item": 0,
+        "line": 368
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What is another approach you can use to simplify the expression?",
+      "answer": "You can write the 5th root as the rational exponent (1/5). Then multiply the exponent of each factor by the rational exponent and simplify.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Simplify nth Roots. Pose Purposeful Questions PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "17: 230 Understand & Apply",
+        "item": 0,
+        "line": 386
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why is it necessary to assume all variables represent positive numbers?",
+      "answer": "Because the given expression uses the radical symbol, which represents the principal (positive) root, it can only be equivalent to an expression with a nonnegative value. The exponent of (x^5) is odd, so the value of (x^5) could be negative. In this case, the expression (x^5y^2) would not be equivalent to the given expression because it would be negative. Using variables to represent only positive numbers ensures that the resulting expression is nonnegative and thus equivalent to the given expression.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Simplify nth Roots. Pose Purposeful Questions PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "17: 230 Understand & Apply",
+        "item": 1,
+        "line": 389
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why is it important to write the radicand as an expression to a power before evaluating?",
+      "answer": "Rewriting as an expression to a power makes it simpler to find the nth root.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "17: 230 Understand & Apply",
+        "item": 0,
+        "line": 418
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What property are you using when you rewrite ((x^5)^(1/5)) as (x)?",
+      "answer": "the Power of a Power Property",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use nth Roots to Solve Equations. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "17: 230 Understand & Apply",
+        "item": 0,
+        "line": 423
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about these equations that makes them easier to solve?",
+      "answer": "The coefficient of the variable divides the value on the other side of the equation evenly. In part (a), this quotient is a perfect cube. In part (b), this quotient is a perfect fourth power.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "17: 230 Understand & Apply",
+        "item": 0,
+        "line": 457
+      }
+    },
+    {
+      "example": 4,
+      "category": "HabitsOfMind",
+      "key": "examples[n=4].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Make Sense and Persevere What is an example of a variable expression that has both a cube root and a fourth root, which can be simplified to an expression without a radical?",
+      "answer": "Answers will vary. Sample: (x^12)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 3 & 4",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 4,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "17: 230 Understand & Apply",
+        "item": 0,
+        "line": 462
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].guidance",
+      "kind": "support",
+      "question": "How does the TE support students who struggle?",
+      "answer": "Students may have difficulty simplifying expressions with nth roots. Have students practice simplifying expressions with square roots. Simplify each expression. Assume all variables are positive. 1. (√(4a^4)) 2. (√(49y^6z^2)) 3. (√(121m^8n^4))",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "17: 230 Understand & Apply",
+        "item": 0,
+        "line": 465
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What does volume mean in the context of this problem?",
+      "answer": "The volume is the amount of water that a cube can hold.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use nth Roots to Solve Problems. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "18: 231 Understand & Apply",
+        "item": 0,
+        "line": 476
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What do you notice about the image that is important to understanding and solving this problem?",
+      "answer": "The top cube is larger than the smaller cube. To find the difference of the volumes of the cubes, you have to subtract the volume of the smaller cube from the volume of the larger cube.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Use nth Roots to Solve Problems. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "18: 231 Understand & Apply",
+        "item": 1,
+        "line": 478
+      }
+    },
+    {
+      "example": 6,
+      "category": "ElicitEvidence",
+      "key": "examples[n=6].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Is the edge length of the smaller cube an integer? How can you tell without solving?",
+      "answer": "No; you can tell because the value of the volume, 200 (cm^3), is not a perfect cube.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 6,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "18: 231 Understand & Apply",
+        "item": 0,
+        "line": 509
+      }
+    },
+    {
+      "example": 6,
+      "category": "HabitsOfMind",
+      "key": "examples[n=6].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Communicate Precisely What are the steps necessary to solve the equation (ax^n=b)?",
+      "answer": "Divide both sides of the equation by (a) to isolate the (x)-term. Then take the nth root of both sides so you have (x=root[n](b/a)).",
+      "variant": "example",
+      "notes": [
+        "Printed answer omits the negative solution for even n and positive b/a."
+      ],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 5 & 6",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-1_TE.tex",
+        "anchor": 6,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "18: 231 Understand & Apply",
+        "item": 0,
+        "line": 514
+      }
+    }
+  ]
+}

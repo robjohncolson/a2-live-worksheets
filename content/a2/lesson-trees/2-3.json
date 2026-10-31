@@ -1,0 +1,588 @@
+{
+  "lesson": "2-3",
+  "title": "Factored Form of a Quadratic Function",
+  "nodes": [
+    {
+      "id": "7c4225a5c0a8",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How is the factored form helpful in solving quadratic equations?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "f04cc1d2e21b",
+      "type": "anchor",
+      "front": "Define: factor",
+      "back": "get 0 on one side, factor, then set each factor equal to 0 (Example 3A; IXL CJC)",
+      "order": 2,
+      "after": [
+        "7c4225a5c0a8"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.factor"
+    },
+    {
+      "id": "22f16660aaab",
+      "type": "anchor",
+      "front": "Define: zero",
+      "back": "a zero x = p gives the factor (x - p): watch the sign (Example 6; the exit question is practice 14)",
+      "order": 3,
+      "after": [
+        "7c4225a5c0a8"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.zero"
+    },
+    {
+      "id": "420b10375e3d",
+      "type": "anchor",
+      "front": "Define: Zero Product Property",
+      "back": "I can explain how the factors of a quadratic give its zeros using the words factor, zero, Zero Product Property, and x-intercept.",
+      "order": 4,
+      "after": [
+        "7c4225a5c0a8"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.zero product property"
+    },
+    {
+      "id": "d5382ae95ae5",
+      "type": "anchor",
+      "front": "Define: x-intercept",
+      "back": "I can explain how the factors of a quadratic give its zeros using the words factor, zero, Zero Product Property, and x-intercept.",
+      "order": 5,
+      "after": [
+        "7c4225a5c0a8"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.x-intercept"
+    },
+    {
+      "id": "65b678d72b56",
+      "type": "anchor",
+      "front": "Quiz item 2 asks?",
+      "back": "Graded proposal: item 2, solve x^2 + 7x = 30 (choices A x = 15 and x = -2; B x = -6 and x = 5; C x = -10 and x = 3; D x = 10 and x = -3), and item 5, the long-jumper parabola from two zeros and one more point (choices A y = -x^2 + 12x - 27; B y = -3x^2 + 4x - 9; C y = 3x^2 - 4x + 9; D y = x^2 - 12x + 27). …",
+      "order": 6,
+      "after": [
+        "f04cc1d2e21b",
+        "22f16660aaab",
+        "420b10375e3d",
+        "d5382ae95ae5"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "85c8d4102eff",
+      "type": "anchor",
+      "front": "Quiz item 2 answer?",
+      "back": "Item 2: C (x^2 + 7x - 30 = 0, (x + 10)(x - 3) = 0). Item 5: A (lift-off x = 3, landing x = 3 + 6 = 9, y = a(x - 3)(x - 9), the point (8, 5) gives 5 = -5a, a = -1). Item 1: 3, 1, 4, that is (3x + 1)(x - 4). (verify against the TE key on quiz day)",
+      "order": 7,
+      "after": [
+        "f04cc1d2e21b",
+        "22f16660aaab",
+        "420b10375e3d",
+        "d5382ae95ae5"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "39c5dccc5bde",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need?",
+      "back": "get 0 on one side, factor, then set each factor equal to 0 (Example 3A; IXL CJC)",
+      "order": 8,
+      "after": [
+        "65b678d72b56"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "364bc467059f",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (2)",
+      "back": "factor ax^2 + bx + c with a not 1 by the ac / grouping step (Example 3B step 2; IXL UB5; quiz item 1)",
+      "order": 9,
+      "after": [
+        "65b678d72b56"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "36c157ec8e52",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (3)",
+      "back": "a zero x = p gives the factor (x - p): watch the sign (Example 6; the exit question is practice 14)",
+      "order": 10,
+      "after": [
+        "65b678d72b56"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "76279869db24",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (4)",
+      "back": "read the zeros out of a word problem (item 5: he lands 6 m after lift-off, so the second zero is 9, not 6), then substitute one more point to find a (Example 6, Try It 6, Practice 45 Part B; IXL HPB)",
+      "order": 11,
+      "after": [
+        "65b678d72b56"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "f988de775164",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Factor 3x^2 - 11x - 4 (answer 3, 1, 4): Example 1 skill (cut); the packet rehearses the same ac / grouping move in Example 3B step 2. Proposed +5 bonus. IXL UB5.",
+      "order": 12,
+      "after": [
+        "65b678d72b56"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "054ebaae4b84",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Solve x^2 + 7x = 30 (answer C): Example 3A and Try It 3a. Graded 10. IXL CJC.",
+      "order": 13,
+      "after": [
+        "65b678d72b56"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "c3718b75c57a",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Projectile h(t) = -16t^2 + 32t + 128, after how many seconds it lands (answer 4): Example 4 (cut). Try It 4 uses this exact function, so the item is either rehearsed verbatim or untaught; left off the short form. …",
+      "order": 14,
+      "after": [
+        "65b678d72b56"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "862353f61dae",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Intervals where x^2 + 12x + 27 is positive (answer (-inf, -9) and (-3, inf)): Example 5 (cut). Left off the short form.",
+      "order": 15,
+      "after": [
+        "65b678d72b56"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "75ed6052069d",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Long-jumper parabola from lift-off, landing and one more point (answer A): Example 6 and Try It 6; the context is rehearsed by the packet's Practice block (Practice & Problem Solving 45 Part B, same structure). Graded 10. IXL HPB.",
+      "order": 16,
+      "after": [
+        "65b678d72b56"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "8c2ae1b13e6e",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Solve Quadratic Equations by Factoring (A: x^2 + x = 42; B: 2x^2 = -9x + 5) · DOK 1, 2 · practice 24-29, 43, 11, 40, 42 · Quiz item 2 directly (Part A), and Part B's grouping step is quiz item 1. Factoring to solve is the most-used downstream skill (3-5, 4-3, 4-4, 4-5). …",
+      "order": 17,
+      "after": [
+        "65b678d72b56",
+        "85c8d4102eff"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "b4b39963878c",
+      "type": "step",
+      "front": "Example 6: ?",
+      "back": "Write the Equation of a Parabola in Factored Form (x-intercepts -2 and -1, through (-3, 20)) · DOK 1, 3 · practice 12, 37, 38, 10, 39, 45 · Quiz item 5 (long jumper: two zeros from the context, then one more point). The concept summary's FACTORED FORM panel, y = a(x - p)(x - q), is this Example. …",
+      "order": 18,
+      "after": [
+        "8c2ae1b13e6e"
+      ],
+      "minute": null,
+      "source": "examples[n=6]"
+    },
+    {
+      "id": "9d51433f3198",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: Why is it important to write the equation in factored form to solve?",
+      "back": "Listen for: The Zero Product Property states that if (ab=0), then (a=0) or (b=0). By writing the equation in factored form, you can find the value of the variable that makes each factor equal zero.",
+      "order": 19,
+      "after": [
+        "8c2ae1b13e6e"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-3_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "38: 77, Step 2 Understand & Apply",
+          "item": 0,
+          "line": 258
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "964e4aac195d",
+      "type": "cue",
+      "front": "Example 3 · Extend thinking: Can the equations be solved by factoring if you use the properties of equality to rewrite them with the 0 on the left side of the equation?",
+      "back": "Listen for: Yes, the equations could still be solved by factoring if the equations had 0 on the left side, but it would be more difficult because the leading coefficient would be negative.",
+      "order": 20,
+      "after": [
+        "9d51433f3198"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_2-3_TE.tex",
+          "anchor": 3,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "38: 77, Step 2 Understand & Apply",
+          "item": 0,
+          "line": 287
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "f3804410d03e",
+      "type": "cue",
+      "front": "Example 3 · Reasoning: Error Analysis Anna solved the equation (x^2+8x-20=0) by factoring. She wrote ((x-10)(x+2)=0) and expected the (x)-intercepts of the function (y=x^2+8x-20) to be at -10 and 2. Was she right?",
+      "back": "Listen for: No; the factored form of the equation is ((x+10)(x-2)=0). Although the (x)-intercepts are correct, Anna incorrectly applied the Zero Product Property. If she had factored the equation correctly, it is unlikely that she would have found the correct (x)-intercepts.",
+      "order": 21,
+      "after": [
+        "964e4aac195d"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_2-3_TE.tex",
+          "anchor": 3,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "39: 78, Step 2 Understand & Apply",
+          "item": 0,
+          "line": 312
+        },
+        "promptKey": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e14b3aba7b8c",
+      "type": "cue",
+      "front": "Example 6 · Purposeful question: Why are you given 3 points to determine the equation instead of 2?",
+      "back": "Listen for: Because the equation is not linear, 3 points are needed to determine the equation.",
+      "order": 22,
+      "after": [
+        "b4b39963878c"
+      ],
+      "minute": null,
+      "source": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 6,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_2-3_TE.tex",
+          "anchor": 6,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "40: 79, Step 2 Understand & Apply",
+          "item": 1,
+          "line": 419
+        },
+        "promptKey": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "90efd33c576c",
+      "type": "cue",
+      "front": "Example 6 · Reasoning: Model With Mathematics Is there any other parabola with (x)-intercepts at (-2,0) and (-1,0)? Give an equation or explain why there is no such parabola.",
+      "back": "Listen for: Yes; any equation of the form (y=a(x+2)(x+1)), such as (y=5(x+2)(x+1))",
+      "order": 23,
+      "after": [
+        "e14b3aba7b8c"
+      ],
+      "minute": null,
+      "source": "examples[n=6].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 6,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_2-3_TE.tex",
+          "anchor": 6,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "40: 79, Step 2 Understand & Apply",
+          "item": 0,
+          "line": 441
+        },
+        "promptKey": "examples[n=6].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "603101bc159f",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "A pumpkin is launched from the ground and lands 4.5 s later; its maximum height is 81 ft. Part A: write a function for the height x seconds after launch and explain how you found it. Part B: a second pumpkin is launched from the ground, is 64 ft high after 1 s and lands after 5 s; what is its maximum height? Explain.",
+      "order": 24,
+      "after": [
+        "b4b39963878c"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "c7e1c3b93ec6",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "Part A: zeros 0 and 4.5, peak halfway at (2.25, 81); 81 = a(2.25)(2.25 - 4.5) = -5.0625a, a = -16; y = -16x(x - 4.5) = -16x^2 + 72x. Part B: y = ax(x - 5), 64 = a(1)(-4), a = -16; y = -16x(x - 5); maximum at x = 2.5: -16(2.5)(-2.5) = 100 ft (TE: 100 ft at 2.5 s). …",
+      "order": 25,
+      "after": [
+        "b4b39963878c"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "a4a6b860f57d",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Martell wrote an equation in factored form, y = (x + 8)(x - 2), to represent a quadratic function. Kimberly wrote the equation y = x^2 + 6x - 16, and Takeisha wrote the equation y = (x + 3)^2 - 25. The graph is an upward parabola with vertex (-3, -25), x-intercepts -8 and 2, and y-intercept -16.",
+      "order": 26,
+      "after": [
+        "7c4225a5c0a8"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "e1f573b59a1f",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Reason: Do all three equations represent the same function? If not, whose is different? Explain algebraically. (Yes: (x + 8)(x - 2) and (x + 3)^2 - 25 both simplify to x^2 + 6x - 16.)",
+      "order": 27,
+      "after": [
+        "a4a6b860f57d"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "49eff8a7cfdc",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. How else could you determine if all three equations represent the same function? (Graph the three equations on the same plane.)",
+      "order": 28,
+      "after": [
+        "a4a6b860f57d"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "8f09d841adfd",
+      "type": "cue",
+      "front": "Opener prompt 3?",
+      "back": "C. What information can Martell's form help you find that is more difficult to find using Kimberly's or Takeisha's form? (Where the graph crosses the x-axis.)",
+      "order": 29,
+      "after": [
+        "a4a6b860f57d"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[2]"
+    },
+    {
+      "id": "4c358cf7e03f",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "What key features from the graph relate to the students' equations? → The x-intercepts -8 and 2 from Martell's equation; the y-intercept -16 from Kimberly's; the vertex (-3, -25) from Takeisha's.",
+      "order": 30,
+      "after": [
+        "a4a6b860f57d"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "82f8226fc60a",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "What strategy could you use to compare all three equations? → Write all equations in the same form: multiply out Martell's and Takeisha's binomials to get standard form.",
+      "order": 31,
+      "after": [
+        "4c358cf7e03f"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "f46090dbc72a",
+      "type": "cue",
+      "front": "During, small group: ask? (2)",
+      "back": "What method can you use to verify that the graphs of the students' equations are the same? → Graphing calculator, table.",
+      "order": 32,
+      "after": [
+        "82f8226fc60a"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "3122215c7c04",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Write three different forms of a quadratic equation with x-intercepts of -6 and 4. → y = (x + 6)(x - 4); y = x^2 + 2x - 24; y = (x + 1)^2 - 25.",
+      "order": 33,
+      "after": [
+        "f46090dbc72a"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "975bfbbd8025",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "Why is it useful to write quadratic equations in different forms? → Each form can be used to identify certain key features of the graph of a function.",
+      "order": 34,
+      "after": [
+        "3122215c7c04"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "202601c7120e",
+      "type": "cue",
+      "front": "Habits of Mind, Use Structure: ask?",
+      "back": "Whose form of the equation is most useful for finding the vertex? The y-intercept? The x-intercepts? → Takeisha's; Kimberly's; Martell's.",
+      "order": 35,
+      "after": [
+        "975bfbbd8025"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[5]"
+    },
+    {
+      "id": "3a877281e4bd",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "Spend the opener on part C: Martell's factored form shows the x-intercepts -8 and 2, the bridge to the Zero Product Property (Example 3) and to y = a(x - p)(x - q) (Example 6). Part A's expanding is 2-2 review; two minutes. The early-finishers question (x-intercepts -6 and 4) is Example 6 with a = 1, a good preview. …",
+      "order": 36,
+      "after": [
+        "a4a6b860f57d"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "91be508c1512",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "TRU Solve a quadratic equation using the zero product property",
+      "order": 37,
+      "after": [
+        "8c2ae1b13e6e"
+      ],
+      "minute": null,
+      "source": "ixl.TRU"
+    },
+    {
+      "id": "86a63a586ed0",
+      "type": "anchor",
+      "front": "IXL for example 3? (2)",
+      "back": "CJC Solve a quadratic equation by factoring",
+      "order": 38,
+      "after": [
+        "8c2ae1b13e6e"
+      ],
+      "minute": null,
+      "source": "ixl.CJC"
+    },
+    {
+      "id": "8ac0c11873a6",
+      "type": "anchor",
+      "front": "IXL for example 6?",
+      "back": "G2Q Write a quadratic function from its zeros",
+      "order": 39,
+      "after": [
+        "b4b39963878c"
+      ],
+      "minute": null,
+      "source": "ixl.G2Q"
+    },
+    {
+      "id": "10e626ffbd65",
+      "type": "anchor",
+      "front": "IXL for example 6? (2)",
+      "back": "HPB Write a quadratic function in factored form from its x-intercepts and another point",
+      "order": 40,
+      "after": [
+        "b4b39963878c"
+      ],
+      "minute": null,
+      "source": "ixl.HPB"
+    },
+    {
+      "id": "e49dfb3edd12",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "DP9 Graph solutions to quadratic inequalities",
+      "order": 41,
+      "after": [
+        "7c4225a5c0a8"
+      ],
+      "minute": null,
+      "source": "ixl.DP9"
+    }
+  ]
+}

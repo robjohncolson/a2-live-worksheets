@@ -1,0 +1,678 @@
+{
+  "lesson": "2-4",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How are the equations in Part A and Part B alike? How are they different?",
+      "answer": "They both show a variable squared set equal to a number. In Part A that number is positive, but in Part B, that number is negative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Build Procedural Fluency From Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "48: 83, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 157
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Why is the (√(-9)) not equal to (-3)?",
+      "answer": "Since ((-3)(-3)=9), (-3) cannot be the square root of (-9).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Build Procedural Fluency From Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "48: 83, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 159
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "If (n<0), why must (√(n)) be an imaginary number?",
+      "answer": "There is no real number that, when multiplied by itself, equals a negative number. So the square root of a negative number must be imaginary.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "48: 83, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 192
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why can you not combine the real and imaginary parts to form one number?",
+      "answer": "They are not like terms.",
+      "variant": "additional",
+      "notes": [
+        "Additional Examples are available at SavvasRealize.com. Screen controls: Go back; ESSENTIAL QUESTION; TRY ANOTHER ONE; SOLUTION."
+      ],
+      "context": {
+        "text": "Additional Examples: ADDITIONAL EXAMPLE 2 Add the complex numbers. ((a+2bi)+(3a+4bi)) (a+3a+2bi+4bi) (4a+6bi) (4a+6bi) Example 2 Give students practice combining complex numbers that contain variable parts with this additional example.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "48: 83, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 208
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Do you actually divide to find this quotient?",
+      "answer": "No, you multiply the numerator and denominator by the complex conjugate of the denominator.",
+      "variant": "additional",
+      "notes": [
+        "Screen controls: Go back; ESSENTIAL QUESTION; SOLUTION."
+      ],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4 Divide. a. ((a+bi)/(c+di)) b. ((a+bi)/(c-di)) a. Use the complex conjugate of ((c+di)) to multiply the expression by 1: ((a+bi)/(c+di)×(c-di)/(c-di)) Use the Distributive Property: (((a+bi)(c-di))/(c^2-cdi+cdi+d^2)) Simplify: (((a+bi)(c-di))/(c^2+d^2)) (((a+bi)(c-di))/(c^2+d^2)) b. Use the complex conjugate of ((c-di)) to multiply the expression by 1: ((a+bi)/(c-di)×(c+di)/(c+di)) Use the Distributive Property: (((a+bi)(c+di))/(c^2+cdi-cdi+d^2)) (((a+bi)(c+di))/(c^2+cdi-cdi+d^2)) Example 4 Have students simplify quotients that contain complex numbers with variable parts with this additional example.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "48: 83, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 230
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "In Part B, why is the difference written as an addition problem?",
+      "answer": "Rewriting the problem as an addition problem applies the subtraction to all of the terms being taken away, reducing the opportunity to make errors in the subtraction.",
+      "variant": "example",
+      "notes": [
+        "SavvasRealize.com. Activity. Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "49: 84, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 237
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How could the sum of two complex numbers be a real number?",
+      "answer": "If the imaginary parts of each complex number are opposites",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "49: 84, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 275
+      }
+    },
+    {
+      "example": 2,
+      "category": "CommonError",
+      "key": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 2b Students may treat the coefficient of (i) as 0 instead of 1. Have them rewrite the expression as ((3-2i)-(-4+1i)) before finding the difference.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 2,
+        "category": "CommonError",
+        "block": 0,
+        "page": "49: 84, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 283
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "How are these equations alike? How are they different?",
+      "answer": "They all have a single isolated variable on the left side and a number on the right. Some numbers are imaginary and some are real.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Students may struggle with recognizing (i) as a number rather than as a variable. 1. (x=√(25)) 2. (x=-√(25)) 3. (x=√(25)i) 4. (x=-√(25)i)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "49: 84, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 294
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "How do you know if the value of (x) is positive and real, negative and real, or imaginary?",
+      "answer": "If there is a negative sign outside the square root, (x) will be a negative real number. If the sign is inside the square root, it will be imaginary. If there is no negative sign in either place, (x) will be a positive real number.",
+      "variant": "example",
+      "notes": [
+        "Printed answer discusses a negative sign inside the radical, while items 3 and 4 display (i) outside (√(25))."
+      ],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Students may struggle with recognizing (i) as a number rather than as a variable. 1. (x=√(25)) 2. (x=-√(25)) 3. (x=√(25)i) 4. (x=-√(25)i)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "49: 84, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 296
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[2]",
+      "kind": "question",
+      "question": "What is the product of each expression?",
+      "answer": "(6i+4); (-4i+8); (6x-4x^2); (-4x-8x^2)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Students may struggle with recognizing (i) as a number rather than as a variable. 1. (x=√(25)) 2. (x=-√(25)) 3. (x=√(25)i) 4. (x=-√(25)i)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "49: 84, Step 2 Understand & Apply",
+        "item": 2,
+        "line": 304
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[3]",
+      "kind": "question",
+      "question": "How are the expressions for 1 and 3 alike? How are they different?",
+      "answer": "They are each a monomial multiplied by a binomial. They use the same coefficients. One uses a variable, while the other uses (i).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Students may struggle with recognizing (i) as a number rather than as a variable. 1. (x=√(25)) 2. (x=-√(25)) 3. (x=√(25)i) 4. (x=-√(25)i)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "49: 84, Step 2 Understand & Apply",
+        "item": 3,
+        "line": 306
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[4]",
+      "kind": "question",
+      "question": "How are the results different?",
+      "answer": "The products of the expressions with (i) have a constant term, but the products of expressions with (x) do not because (i^2) simplifies to (-1).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Students may struggle with recognizing (i) as a number rather than as a variable. 1. (x=√(25)) 2. (x=-√(25)) 3. (x=√(25)i) 4. (x=-√(25)i)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "49: 84, Step 2 Understand & Apply",
+        "item": 4,
+        "line": 308
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How is the problem in Part B like multiplying binomials?",
+      "answer": "Each of the two terms in the first expression must be multiplied by each of the two terms in the second expression.",
+      "variant": "example",
+      "notes": [
+        "SavvasRealize.com. Activity. Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "50: 85, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 314
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How does multiplying the denominator by its complex conjugate result in a real number?",
+      "answer": "The products of the inner terms and outer terms sum to zero, eliminating the imaginary terms. The product of the imaginary terms result in (i^2), which equals (-1).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "50: 85, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 355
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "Which number does not belong as part of a complex conjugate: (2+3i), (3-2i), or (2-3i)?",
+      "answer": "(3-2i)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Recall that complex conjugates are complex numbers with equivalent real parts and opposite imaginary parts.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 85, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 381
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "Explain how the product of the complex conjugates from the previous question has a real product.",
+      "answer": "The first two terms have a product of 4; the two middle terms, (6i) and (-6i) add to 0; and the last two terms have a product of 9. The sum of 4 and 9 is 13, a real number.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Recall that complex conjugates are complex numbers with equivalent real parts and opposite imaginary parts.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 85, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 383
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Which part of the fraction is the denominator?",
+      "answer": "the bottom part of the fraction",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Recall that complex conjugates are complex numbers with equivalent real parts and opposite imaginary parts.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 85, Step 2 Understand & Apply",
+        "item": 2,
+        "line": 386
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What is another word for component?",
+      "answer": "part",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Recall that complex conjugates are complex numbers with equivalent real parts and opposite imaginary parts.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 85, Step 2 Understand & Apply",
+        "item": 3,
+        "line": 388
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "How could you describe an equivalent fraction?",
+      "answer": "a fraction that has the same value as the original fraction",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Recall that complex conjugates are complex numbers with equivalent real parts and opposite imaginary parts.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 85, Step 2 Understand & Apply",
+        "item": 4,
+        "line": 390
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "What are some other words that begin with the prefix con- that have to do with things coming together?",
+      "answer": "connect, congregate, convene, consensus, converge",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Recall that complex conjugates are complex numbers with equivalent real parts and opposite imaginary parts.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 85, Step 2 Understand & Apply",
+        "item": 5,
+        "line": 393
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "Why do complex conjugates belong together?",
+      "answer": "When they are multiplied together, the result is a real number.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Recall that complex conjugates are complex numbers with equivalent real parts and opposite imaginary parts.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 85, Step 2 Understand & Apply",
+        "item": 6,
+        "line": 395
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How is factoring the sum of squares different than factoring the difference of squares?",
+      "answer": "The difference of squares can be rewritten as the product of two binomials composed of real number terms, but the sum of squares is rewritten as the product of two complex numbers.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Build Procedural Fluency From Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "51: 86, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 408
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Why is the first step in factoring the expression in Part B to factor out a 3?",
+      "answer": "Neither 12 nor 3 is a perfect square, but when you factor out a 3, the coefficients of the new terms are 4 and 1, both of which are perfect squares.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Build Procedural Fluency From Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "51: 86, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 410
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How do you know whether each term is a perfect square?",
+      "answer": "A term is a perfect square if there is a constant or a monomial that, when squared, equals the term. You can check your square roots on a calculator if needed.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "51: 86, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 441
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Graph (y=x^2+4). How does the graph show that there are no real solutions to the equation?",
+      "answer": "The parabola never intersects the (x)-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "51: 86, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 446
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Does the Zero Product Property hold for imaginary numbers?",
+      "answer": "Yes. The Zero Product Property can be used to solve equations that involve complex factors.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "51: 86, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 448
+      }
+    },
+    {
+      "example": 6,
+      "category": "RtIExtend",
+      "key": "examples[n=6].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Compare these equations to other equations you have solved.",
+      "answer": "Each equation requires an additional step; however, the final step involves finding the square root of a negative number.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 6 Have students solve the following equations. 1. (3x^2+108=0) 2. (-0.25x^2-25=0)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 6,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "51: 86, Step 2 Understand & Apply",
+        "item": 0,
+        "line": 480
+      }
+    },
+    {
+      "example": 6,
+      "category": "RtIExtend",
+      "key": "examples[n=6].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "What are the solutions to each equation?",
+      "answer": "1. (x=6i) and (x=-6i); 2. (x=10i) and (x=-10i)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 6 Have students solve the following equations. 1. (3x^2+108=0) 2. (-0.25x^2-25=0)",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-4_TE.tex",
+        "anchor": 6,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "51: 86, Step 2 Understand & Apply",
+        "item": 1,
+        "line": 482
+      }
+    }
+  ]
+}

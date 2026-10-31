@@ -1,0 +1,785 @@
+{
+  "lesson": "5-6",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How does switching the values in the table help you determine the inverse relation?",
+      "answer": "In the original relation, the values in the x-column are the elements of the domain and those in the y-column are the elements of the range. Switching the values changes the domain to the range and the range to the domain of the new relation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Represent the Inverse of a Relation. Build Procedural Fluency From Conceptual Understanding",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "78: 269 Understand & Apply",
+        "item": 0,
+        "line": 163
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How can the inverse of a relation that is not a function be a function?",
+      "answer": "The inverse of the relation can be a function if each value in the domain appears only once in the relation.",
+      "variant": "example",
+      "notes": [
+        "Printed domain; likely range of the original relation, or domain of its inverse."
+      ],
+      "context": {
+        "text": "Represent the Inverse of a Relation. Build Procedural Fluency From Conceptual Understanding",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "78: 269 Understand & Apply",
+        "item": 1,
+        "line": 165
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What is the first step when solving this problem?",
+      "answer": "Swap the values between the x and y columns.",
+      "variant": "additional",
+      "notes": [
+        "Printed HHelp retained. Digital labels: Go back; ESSENTIAL QUESTION; SOLUTION."
+      ],
+      "context": {
+        "text": "Additional Examples: ADDITIONAL EXAMPLE 1 Identify the inverse relation. Is it a function? x | -1 | 1 | 1 | 4 | 6; y | 2 | -1 | 5 | 0 | 2 Inverse Relation: x | 2 | 1 | 5 | 0 | 2; y | -1 | 1 | 1 | 4 | 6 The x-value 2 is in the domain of the inverse relation twice, so the inverse is not a function. The inverse is not a function. Printed inverse table has 1 instead of -1 as the second x-value. Example 1 HHelp students understand finding the inverse of a relation that is not a function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "78: 269 Understand & Apply",
+        "item": 0,
+        "line": 209
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Are there any restrictions on the domain of a cubic function when finding its inverse function?",
+      "answer": "No; the inverse of the cubic function is a function over the entire domain.",
+      "variant": "additional",
+      "notes": [
+        "Additional Examples are available at SavvasRealize.com. Go back; ESSENTIAL QUESTION; SOLUTION."
+      ],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4 The profits for a company can be modeled by the inverse function of (f(x)=2x^3+5). Find the equation of the inverse function. (f(x)=2x^3+5) (y=2x^3+5) (x=2y^3+5) (x-5=2y^3) ((x-5)/2=y^3) (y=root[3]((x-5)/2)) (f^(-1)(x)=root[3]((x-5)/2)) (f^(-1)(x)=root[3]((x-5)/2)) Example 4 Help students transition to finding the inverse of a cubic function.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "78: 269 Understand & Apply",
+        "item": 0,
+        "line": 226
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why is the inverse of (f(x)=x^2) written with (±)?",
+      "answer": "The domain of f contains both positive and negative values of x. If the (±) were missing, then only the positive values would appear in the inverse.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find an Equation of an Inverse Relation. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "79: 270 Example 1 continued",
+        "item": 0,
+        "line": 246
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How can you tell that the inverse of f is not a function from the graph?",
+      "answer": "The graph shows that in the inverse, there are multiple values of y for a single value of x. Therefore, it is not a function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find an Equation of an Inverse Relation. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "79: 270 Example 1 continued",
+        "item": 1,
+        "line": 248
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "If a point ((x,y)) is on the graph of the function, what do you know about the graph of the inverse?",
+      "answer": "The point ((y,x)) is on the graph of the inverse.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find an Equation of an Inverse Relation. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "79: 270 Example 1 continued",
+        "item": 2,
+        "line": 250
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How is the graph of (f(x)=2x+1) related to the graph of the inverse of f, (y=(x-1)/2)?",
+      "answer": "The graph of the inverse is a reflection of the graph of f about the line (y=x).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "79: 270 Example 1 continued",
+        "item": 0,
+        "line": 279
+      }
+    },
+    {
+      "example": 2,
+      "category": "HabitsOfMind",
+      "key": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Communicate Precisely Think of (f(x)=2x+1) as a number path: start with x, multiply by 2, and add 1. How would you describe the path from the result back to x?",
+      "answer": "Start with (f(x)), subtract 1, and divide by 2.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 1 & 2",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 2,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "79: 270 Example 1 continued",
+        "item": 0,
+        "line": 284
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Do you have to restrict the domain of every function to find an inverse function?",
+      "answer": "No; you only have to restrict the domain if the function has more than one x-value for the same y-value.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Restrict a Domain to Produce an Inverse Function. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "80: 271 Restrict a Domain",
+        "item": 0,
+        "line": 298
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How could you restrict the domain of (f(x)=x^2) to produce a different inverse function?",
+      "answer": "By restricting the domain to (x≤0), the inverse function becomes (f^(-1)(x)=-√(x)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Restrict a Domain to Produce an Inverse Function. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "80: 271 Restrict a Domain",
+        "item": 1,
+        "line": 300
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What value of x can you use to restrict the domain of any quadratic function to find an inverse function?",
+      "answer": "You can use the value of x at the vertex or at the axis of symmetry.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "80: 271 Restrict a Domain",
+        "item": 0,
+        "line": 332
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What happens to each (x/y) pair in the two tables?",
+      "answer": "Their positions are reversed.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 3 SPEAKING. BEGINNING. Draw a table of (x/y)-values on the board. Then draw a table that shows the inverse of the first table. Without explaining what you have done, ask students to describe what they see.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "80: 271 Restrict a Domain",
+        "item": 0,
+        "line": 338
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "The two tables are inverses of each other. What does it mean for one relation to be the inverse of another?",
+      "answer": "The x- and y-values are reversed.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 3 SPEAKING. BEGINNING. Draw a table of (x/y)-values on the board. Then draw a table that shows the inverse of the first table. Without explaining what you have done, ask students to describe what they see.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "80: 271 Restrict a Domain",
+        "item": 1,
+        "line": 340
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "What does duplicate mean?",
+      "answer": "the same as",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 3 SPEAKING. BEGINNING. Draw a table of (x/y)-values on the board. Then draw a table that shows the inverse of the first table. Without explaining what you have done, ask students to describe what they see.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "80: 271 Restrict a Domain",
+        "item": 2,
+        "line": 343
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What does eliminate mean?",
+      "answer": "to get rid of",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 3 SPEAKING. BEGINNING. Draw a table of (x/y)-values on the board. Then draw a table that shows the inverse of the first table. Without explaining what you have done, ask students to describe what they see.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "80: 271 Restrict a Domain",
+        "item": 3,
+        "line": 345
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Why do duplicate y-values need to be eliminated?",
+      "answer": "so that the inverse of the given function still meets the definition of a function",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 3 SPEAKING. BEGINNING. Draw a table of (x/y)-values on the board. Then draw a table that shows the inverse of the first table. Without explaining what you have done, ask students to describe what they see.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "80: 271 Restrict a Domain",
+        "item": 4,
+        "line": 347
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "How does the sentence help you understand the meaning of restrict?",
+      "answer": "The university wants to restrict, or set limits on, the number of students on campus.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 3 SPEAKING. BEGINNING. Draw a table of (x/y)-values on the board. Then draw a table that shows the inverse of the first table. Without explaining what you have done, ask students to describe what they see.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "80: 271 Restrict a Domain",
+        "item": 5,
+        "line": 350
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "How is the term restrict similarly used in reference to the domain of an inverse function?",
+      "answer": "Limits are needed on the domain values of a function so that its inverse still meets the requirements of being a function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 3 SPEAKING. BEGINNING. Draw a table of (x/y)-values on the board. Then draw a table that shows the inverse of the first table. Without explaining what you have done, ask students to describe what they see.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "80: 271 Restrict a Domain",
+        "item": 6,
+        "line": 352
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "If the graph of a function can be intersected by a horizontal line in more than one place, what do you know about the inverse of the function?",
+      "answer": "You know that the inverse is not a function because the graph of the inverse will not pass the vertical line test.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find an Equation of an Inverse Function. Use and Connect Mathematical Representations PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "81: 272 Find an Equation of an Inverse Function",
+        "item": 0,
+        "line": 359
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Does the domain of a square root function need to be restricted to have an inverse function?",
+      "answer": "No; no horizontal line intersects the graph of a square root function in more than one place. However, the domain of the inverse function needs to be restricted to the values of the range of the original square root function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find an Equation of an Inverse Function. Use and Connect Mathematical Representations PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "81: 272 Find an Equation of an Inverse Function",
+        "item": 1,
+        "line": 361
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "kind": "question",
+      "question": "Why does the domain of the function not need to be restricted?",
+      "answer": "The graph of the function cannot be intersected by a horizontal line in more than one place, so the function has an inverse without needing to restrict the domain.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find an Equation of an Inverse Function. Use and Connect Mathematical Representations PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "81: 272 Find an Equation of an Inverse Function",
+        "item": 2,
+        "line": 364
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What can you tell about the inverse function by looking at the equation of the function?",
+      "answer": "The function contains a cube root of the variable x. The inverse function will then have the cube of x.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "81: 272 Find an Equation of an Inverse Function",
+        "item": 0,
+        "line": 414
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Does the order of the function composition matter when verifying that two functions are inverses of each other?",
+      "answer": "No; you need to simplify both (f(g(x))) and (g(f(x))), but the order in which you perform the compositions does not matter.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Composition to Verify Inverse Functions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "82: 273 Use Composition to Verify Inverse Functions",
+        "item": 0,
+        "line": 420
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How is the composition of a function and its inverse related to the graph of a function and its inverse?",
+      "answer": "The composition of a function and its inverse is equal to x. The graph of the inverse of a function is a reflection of the graph of the function across the line (y=x).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Composition to Verify Inverse Functions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "82: 273 Use Composition to Verify Inverse Functions",
+        "item": 1,
+        "line": 422
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "How are inverse functions similar to inverse operations?",
+      "answer": "When you add a number and its inverse, the result is 0, which is the additive identity. When you multiply a number and its inverse, the result is 1, which is the multiplicative identity. When you perform the composition of a function and its inverse, the result is x, which is the identity function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Composition to Verify Inverse Functions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "82: 273 Use Composition to Verify Inverse Functions",
+        "item": 2,
+        "line": 424
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How is composition used to determine whether two functions are inverses of each other?",
+      "answer": "Find ((f° g)(x)) and ((g° f)(x)). If both compositions are equal to x, then the functions f and g are inverses.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "82: 273 Use Composition to Verify Inverse Functions",
+        "item": 0,
+        "line": 475
+      }
+    },
+    {
+      "example": 5,
+      "category": "CommonError",
+      "key": "examples[n=5].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Some students may not distribute the (1/4) to the constant term, causing them to incorrectly determine that f and g are inverse functions. Have students graph both functions on the same coordinate grid to verify whether they are reflections of each other across the line (y=x).",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 5,
+        "category": "CommonError",
+        "block": 0,
+        "page": "82: 273 Use Composition to Verify Inverse Functions",
+        "item": 0,
+        "line": 478
+      }
+    },
+    {
+      "example": 5,
+      "category": "HabitsOfMind",
+      "key": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Construct Arguments Dana says that the functions (f(x)=(x-2)^2+5) and (g(x)=√(x-5)+2) are inverses. Keegan says that the functions are inverses only if the domain is restricted. Is either person correct? Explain.",
+      "answer": "Keegan is correct. The functions are inverses if you restrict the domain of f to (x≥2).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 3--5",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 5,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "82: 273 Use Composition to Verify Inverse Functions",
+        "item": 0,
+        "line": 484
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you verify that you have rewritten the formula for r correctly?",
+      "answer": "Substitute the rewritten formula for r into the original formula and simplify. The formula will simplify to V.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Rewrite a Formula. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "83: 274 Rewrite a Formula",
+        "item": 0,
+        "line": 490
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How is the relationship between the original and rewritten formulas similar to the relationship between a function and its inverse?",
+      "answer": "If you substitute the rewritten formula into the original formula and simplify, the result is the identity (V=V). This is similar to the composition of a function and its inverse function.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Rewrite a Formula. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "83: 274 Rewrite a Formula",
+        "item": 1,
+        "line": 492
+      }
+    },
+    {
+      "example": 6,
+      "category": "ElicitEvidence",
+      "key": "examples[n=6].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What is the first step in solving this problem?",
+      "answer": "Write the formula for the volume of a rectangular prism, (V=lwh).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 6,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "83: 274 Rewrite a Formula",
+        "item": 0,
+        "line": 525
+      }
+    },
+    {
+      "example": 6,
+      "category": "HabitsOfMind",
+      "key": "examples[n=6].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Make Sense and Persevere In the formula (V=4/3π r^3), which variable is the dependent variable? In the formula (r=root[3](3/(4π)V)), which variable is the dependent variable?",
+      "answer": "V; r",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLE 6",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 6,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "83: 274 Rewrite a Formula",
+        "item": 0,
+        "line": 530
+      }
+    },
+    {
+      "example": 6,
+      "category": "RtISupport",
+      "key": "examples[n=6].teacherPrompts.RtISupport[0].guidance",
+      "kind": "support",
+      "question": "How does the TE support students who struggle?",
+      "answer": "Some students may have difficulty rewriting formulas. Have students practice rewriting linear equations for a given variable. 1. Rewrite (a+2b=6) for b. 2. Rewrite (3x-y=-5) for y. 3. Rewrite (m=4n-7) for n.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_5-6_TE.tex",
+        "anchor": 6,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "83: 274 Rewrite a Formula",
+        "item": 0,
+        "line": 533
+      }
+    }
+  ]
+}

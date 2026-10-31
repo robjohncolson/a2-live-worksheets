@@ -317,6 +317,9 @@ Findings worth carrying into lesson checks and topic assessments:
 
 - `data/a2-lesson-targets.json` is the source of truth for plan and ratings. Edit it and this
   document together.
+- Each lesson is first cut to the PLC's fast shape (`docs/a2-fast-lesson-spec.md`: at most two
+  Examples chosen for the quiz items, Web Jams, the Savvas quiz) and gets its packet, short-form
+  quiz, teacher prep, objectives and IXL skills; publishing follows.
 - Lesson authoring and publishing into `content/a2/` follow the bare-minimum order, then the
   bridge list. Lessons marked `later` are not authored until the department decides otherwise
   (the test refuses to publish one). Brief and skip lessons may still be authored as short treatments.

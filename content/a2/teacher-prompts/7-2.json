@@ -1,0 +1,930 @@
+{
+  "lesson": "7-2",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you use information in the diagram about the different quadrants to help you sketch the angle?",
+      "answer": "The diagram can help you identify the quadrant that the terminal side of the angle lies in.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "27: 354 Understand & Apply",
+        "item": 0,
+        "line": 186
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Is the terminal side of an angle always in a quadrant? Explain.",
+      "answer": "No; the terminal side of an angle could be on the x- or y-axis, whenever the measure of the angle is a multiple of 90°.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "27: 354 Understand & Apply",
+        "item": 1,
+        "line": 188
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "Can two different angles have the same reference angle?",
+      "answer": "Yes; the reference angle is the angle formed between the terminal side of the angle and the x-axis. A 110° angle and 250° angle both have a 70° reference angle.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "27: 354 Understand & Apply",
+        "item": 2,
+        "line": 190
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[3]",
+      "kind": "question",
+      "question": "Do angles in Quadrant I have reference angles?",
+      "answer": "Yes; the measure of the reference angle is the same as the measure of the acute angle formed by the x-axis and the terminal side.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "27: 354 Understand & Apply",
+        "item": 3,
+        "line": 192
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How far would you need to travel to the hiding place if you traveled only along north-south or east-west paths?",
+      "answer": "The sine and cosine of 45° is ((√(2))/2), so the total distance traveled would be (2((√(2))/2)) or (√(2)), or approximately 1.4 mi.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 5 Additional Examples are available at SavvasRealize.com. Go back. ESSENTIAL QUESTION. SOLUTION. Corryn has hidden a geocache at some point along a 1-mile radius around the meeting point of her group. The only clue she has provided is that (cotθ=1) where (θ) is the angle she traveled from the meeting point. Indicate on the unit circle where you would look for the geocache. If (cotθ=1), then (cosθ=sinθ) and the two side lengths are the same. The angles where this occurs are when the reference angle is 45° AND both coordinates of the terminal side are either positive or negative. The points where the group should look are 45° north of east (Quadrant I) and 45° south of west (Quadrant III). Example 5 Students transition to using reciprocal functions to solve a real-world problem.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Unit circle centered at orange O on square quarter-unit grid. Arrowed x-axis East/West and y-axis North/South, -1 and 1 ticks. Blue diameter southwest to northeast, orange theta=45° in Quadrant I."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "27: 354 Understand & Apply",
+        "item": 0,
+        "line": 208
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How would your answer change if you did not know that (θ) was in Quadrant III?",
+      "answer": "Since (cosθ) is negative, (θ) must be in either in Quadrant II or III. But the sign of the sine changes between the two quadrants, so you would not know the complete answer.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 6 Go back. ESSENTIAL QUESTION. SOLUTION. TRY ANOTHER ONE. What is (sinθ) if (cosθ=-0.8) and (θ) is in Quadrant III? (sin^2θ+cos^2θ=1) (sin^2θ+(-0.8)^2=1) (sin^2θ+0.64=1) (sin^2θ=0.36) (sinθ=±0.6) Since (θ) is in Quadrant III, (sinθ) is negative. Therefore, (sinθ=-0.6). (sinθ=-0.6) Example 6 Students increase their understanding of relationships between the sine and cosine functions by applying the Pythagorean identity.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "27: 354 Understand & Apply",
+        "item": 0,
+        "line": 223
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "Suppose an angle has measure (x), with (-90<x<90). What do you notice about the measures of the reference angles in Quadrant I or Quadrant IV?",
+      "answer": "If the angle is in Quadrant I, the measure of the reference angle is equal to the positive angle measure. If the angle is in Quadrant IV, the measure of the reference angle is equal to the absolute value of the negative angle measure.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 1 CONTINUED.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "28: 355 Understand & Apply",
+        "item": 0,
+        "line": 229
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How does using the unit circle simplify the application of the Pythagorean Theorem?",
+      "answer": "The length of the hypotenuse of the reference triangle is always 1, so the square of the hypotenuse is also 1.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Connect and Use Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "28: 355 Understand & Apply",
+        "item": 0,
+        "line": 271
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How do you determine whether the positive or negative value of the square root is correct when calculating the sine or cosine of (θ)?",
+      "answer": "Since the sine is the y-coordinate of the terminal point, it is positive when the terminal point is in Quadrant I or II and negative when it is in Quadrant III or IV. Since the cosine is the x-coordinate of the terminal point, it is positive when the terminal point is in Quadrant I or IV and negative when it is in Quadrant II or III.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Connect and Use Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "28: 355 Understand & Apply",
+        "item": 1,
+        "line": 273
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How can you find the cosine when the value of the sine is known?",
+      "answer": "Find the numeric value for (x) by using the Pythagorean Theorem with the hypotenuse equaling 1 and the value of the sine as one of the legs. Then apply the sign based on the quadrant of the terminal side.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "28: 355 Understand & Apply",
+        "item": 0,
+        "line": 278
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How can the coordinates of the terminal point be used to calculate the tangent of an angle?",
+      "answer": "Tangent is equal to sine divided by cosine. So using the coordinates of the terminal point, it would be the y-coordinate divided by the x-coordinate.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Special Right Triangles in the Unit Circle to Find Trigonometric Functions Connect and Use Mathematical Representations. PART A.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "29: 356 Understand & Apply",
+        "item": 0,
+        "line": 312
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Why is a reference triangle not helpful in this case?",
+      "answer": "The terminal point lies on the x-axis, so the coordinates of the terminal point are known.",
+      "variant": "example",
+      "notes": [
+        "Printed Part B teacher question and answer describe a terminal point on the x-axis; likely misplaced, since student Part B uses pi/6 and pi/3."
+      ],
+      "context": {
+        "text": "Use Special Right Triangles in the Unit Circle to Find Trigonometric Functions Connect and Use Mathematical Representations. PART A.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "29: 356 Understand & Apply",
+        "item": 1,
+        "line": 315
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why do you need to know in which quadrant the terminal point lies in order to evaluate the tangent of an angle?",
+      "answer": "The quadrant location determines the sign of the sine and cosine values, which affects the calculation of the tangent.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "29: 356 Understand & Apply",
+        "item": 0,
+        "line": 321
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How would you draw a reference triangle in the case where (θ) is greater than 180°?",
+      "answer": "The reference triangle would be drawn for the reference angle of (θ) below the x-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find Trigonometric Functions with Special Angles as Reference Angles Pose Purposeful Questions. PART A.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "29: 356 Understand & Apply",
+        "item": 0,
+        "line": 331
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Are the signs of the sine and cosine of the reference angle for (θ) always the same as (θ)?",
+      "answer": "No, the signs for the sine and cosine of the reference angle for (θ) are always positive, but the signs of the sine and cosine of (θ) depend on the quadrant that the reference angle is in.",
+      "variant": "example",
+      "notes": [
+        "Printed ``quadrant that the reference angle is in''; likely the quadrant of theta."
+      ],
+      "context": {
+        "text": "Find Trigonometric Functions with Special Angles as Reference Angles Pose Purposeful Questions. PART A.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "29: 356 Understand & Apply",
+        "item": 1,
+        "line": 333
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "Use the coordinates of the terminal point to evaluate the tangent for 30° and 150°.",
+      "answer": "(tan30°=(√(3))/3), (tan150°=-(√(3))/3)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Help students understand how to calculate the tangent using sine and cosine, and the importance of the quadrant of the terminal point in the calculation. The angle 150° has a reference angle of 30°. (tanθ=(sinθ)/(cosθ)) The terminal point coordinates are (cosθ,sinθ).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "29: 356 Understand & Apply",
+        "item": 0,
+        "line": 343
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "What is different about the evaluation of the tangent for the two angles?",
+      "answer": "Since the cosine for 150° is negative but the sine is positive, the tangent is negative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Help students understand how to calculate the tangent using sine and cosine, and the importance of the quadrant of the terminal point in the calculation. The angle 150° has a reference angle of 30°. (tanθ=(sinθ)/(cosθ)) The terminal point coordinates are (cosθ,sinθ).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "29: 356 Understand & Apply",
+        "item": 1,
+        "line": 345
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "Why is the sine negative when the terminal point is in Quadrant IV?",
+      "answer": "Quadrant IV is below the x-axis, where all y-values are negative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 4 CONTINUED. PART B.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "30: 357 Example 4 continued",
+        "item": 0,
+        "line": 386
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Can more than one angle have the same reference angle?",
+      "answer": "Yes, since the reference angle is the acute angle formed with the x-axis, all angles that have the same angle measure above or below the x-axis would have the same reference angle.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 4 CONTINUED. PART B.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "30: 357 Example 4 continued",
+        "item": 1,
+        "line": 388
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How do you determine the denominator for the secant and cosecant functions?",
+      "answer": "The denominator of the secant function is the x-coordinate of the terminal point, while the denominator of the cosecant function is the y-coordinate of the terminal point, since they are reciprocals of the cosine and sine functions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Connect and Use Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 0,
+        "line": 413
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "conference/confer",
+      "answer": "CON-fer-ence/con-FER",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLES 4 and 7) SPEAKING BEGINNING Display the words reference and refer. Discuss the difference in pronunciation: REF-er-ence versus re-FER. The emphasis is placed on the first syllable for the noun reference but is placed on the second syllable for the verb refer. Display the following word pairs that follow the same pattern and help students to pronounce the words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 0,
+        "line": 419
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "excellence/excel",
+      "answer": "EX-cel-lence/ex-CEL",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLES 4 and 7) SPEAKING BEGINNING Display the words reference and refer. Discuss the difference in pronunciation: REF-er-ence versus re-FER. The emphasis is placed on the first syllable for the noun reference but is placed on the second syllable for the verb refer. Display the following word pairs that follow the same pattern and help students to pronounce the words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 1,
+        "line": 420
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "preference/prefer",
+      "answer": "PRE-fer-ence/pre-FER",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLES 4 and 7) SPEAKING BEGINNING Display the words reference and refer. Discuss the difference in pronunciation: REF-er-ence versus re-FER. The emphasis is placed on the first syllable for the noun reference but is placed on the second syllable for the verb refer. Display the following word pairs that follow the same pattern and help students to pronounce the words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 2,
+        "line": 421
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "inference/infer",
+      "answer": "IN-fer-ence/in-FER",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLES 4 and 7) SPEAKING BEGINNING Display the words reference and refer. Discuss the difference in pronunciation: REF-er-ence versus re-FER. The emphasis is placed on the first syllable for the noun reference but is placed on the second syllable for the verb refer. Display the following word pairs that follow the same pattern and help students to pronounce the words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 3,
+        "line": 422
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "What does it mean if a side is opposite (θ)?",
+      "answer": "The side is across from the angle (θ).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLES 4 and 7) SPEAKING BEGINNING Display the words reference and refer. Discuss the difference in pronunciation: REF-er-ence versus re-FER. The emphasis is placed on the first syllable for the noun reference but is placed on the second syllable for the verb refer. Display the following word pairs that follow the same pattern and help students to pronounce the words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 4,
+        "line": 424
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "What does it mean to say a side is adjacent to (θ)?",
+      "answer": "The side is next to the angle (θ) and helps form the angle (θ).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLES 4 and 7) SPEAKING BEGINNING Display the words reference and refer. Discuss the difference in pronunciation: REF-er-ence versus re-FER. The emphasis is placed on the first syllable for the noun reference but is placed on the second syllable for the verb refer. Display the following word pairs that follow the same pattern and help students to pronounce the words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 5,
+        "line": 425
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "Is the hypotenuse opposite or adjacent to (θ)?",
+      "answer": "Adjacent, it is next to the angle (θ) and is one of the lines that helps form the angle (θ).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLES 4 and 7) SPEAKING BEGINNING Display the words reference and refer. Discuss the difference in pronunciation: REF-er-ence versus re-FER. The emphasis is placed on the first syllable for the noun reference but is placed on the second syllable for the verb refer. Display the following word pairs that follow the same pattern and help students to pronounce the words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 6,
+        "line": 426
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[7]",
+      "kind": "question",
+      "question": "True or False: The hypotenuse is adjacent to the right angle of the reference triangle.",
+      "answer": "False",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLES 4 and 7) SPEAKING BEGINNING Display the words reference and refer. Discuss the difference in pronunciation: REF-er-ence versus re-FER. The emphasis is placed on the first syllable for the noun reference but is placed on the second syllable for the verb refer. Display the following word pairs that follow the same pattern and help students to pronounce the words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 7,
+        "line": 427
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[8]",
+      "kind": "question",
+      "question": "Write a sentence for each of the three definitions of the word radius.",
+      "answer": "The radius of the circle is 10 centimeters. The students at the school live within a twenty-mile radius of the building. DeSanto broke his radius while skateboarding.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLES 4 and 7) SPEAKING BEGINNING Display the words reference and refer. Discuss the difference in pronunciation: REF-er-ence versus re-FER. The emphasis is placed on the first syllable for the noun reference but is placed on the second syllable for the verb refer. Display the following word pairs that follow the same pattern and help students to pronounce the words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 8,
+        "line": 429
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[9]",
+      "kind": "question",
+      "question": "Which definition is used in the example?",
+      "answer": "the first",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLES 4 and 7) SPEAKING BEGINNING Display the words reference and refer. Discuss the difference in pronunciation: REF-er-ence versus re-FER. The emphasis is placed on the first syllable for the noun reference but is placed on the second syllable for the verb refer. Display the following word pairs that follow the same pattern and help students to pronounce the words.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "30: 357 Example 4 continued",
+        "item": 9,
+        "line": 431
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[1].questions[0]",
+      "kind": "question",
+      "question": "How can you use the terminal point on the unit circle to find the cotangent?",
+      "answer": "Use the x-coordinate of the terminal point divided by the y-coordinate of the terminal point.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "EXAMPLE 5 CONTINUED. Connect and Use Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 1,
+        "page": "31: 358 Understand & Apply",
+        "item": 0,
+        "line": 446
+      }
+    },
+    {
+      "example": 5,
+      "category": "CommonError",
+      "key": "examples[n=5].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 5 Some students may incorrectly use the x-coordinate of the terminal point of the angle for the denominator of the cosecant. Have students use the standard ratio of (cscθ=1/(opposite/hypotenuse)), where (opposite/hypotenuse=y/1=y), to see that it is the y-coordinate that should be used.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 5,
+        "category": "CommonError",
+        "block": 0,
+        "page": "31: 358 Understand & Apply",
+        "item": 0,
+        "line": 449
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How does using the unit circle simplify the application of the Pythagorean Identity?",
+      "answer": "The length of the hypotenuse of the reference triangle is always 1, so the square of the hypotenuse is also 1.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Connect and Use Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "31: 358 Understand & Apply",
+        "item": 0,
+        "line": 486
+      }
+    },
+    {
+      "example": 6,
+      "category": "GeneralizeETP",
+      "key": "examples[n=6].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How do you determine whether the positive or negative value of the square root is correct when calculating the sine or cosine of (θ)?",
+      "answer": "Since the sine is the y-coordinate of the terminal point, it is positive when the terminal point is in Quadrant I or II and negative when it is in Quadrant III or IV. Since the cosine is the x-coordinate of the terminal point, it is positive when the terminal point is in Quadrant I or IV and negative when it is in Quadrant II or III.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Connect and Use Mathematical Representations.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 6,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "31: 358 Understand & Apply",
+        "item": 1,
+        "line": 488
+      }
+    },
+    {
+      "example": 6,
+      "category": "ElicitEvidence",
+      "key": "examples[n=6].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How can you find the cosine when the value of the sine is known?",
+      "answer": "Substitute the value of the sine in the Pythagorean Identity and solve for the cosine. Determine the sign of the cosine by the quadrant in which (θ) is found.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 6,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "31: 358 Understand & Apply",
+        "item": 0,
+        "line": 493
+      }
+    },
+    {
+      "example": 7,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=7].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can the coordinates of terminal points on a unit circle be applied to a circle of any radius?",
+      "answer": "All circles have the same 360° rotation, so the ratios of the sides of the reference triangles can be scaled by the relative length of the radius.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 7,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "32: 359 Understand & Apply",
+        "item": 0,
+        "line": 522
+      }
+    },
+    {
+      "example": 7,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=7].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How can you use a similar process for microscopic distances?",
+      "answer": "The scaling factor would be a number smaller than 1.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 7,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "32: 359 Understand & Apply",
+        "item": 1,
+        "line": 524
+      }
+    },
+    {
+      "example": 7,
+      "category": "RtIExtend",
+      "key": "examples[n=7].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "How far from the ground are you when the Ferris wheel stops?",
+      "answer": "170 ft",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Advanced Students USE WITH EXAMPLE 7 Have students explore the use of a scaling factor to extend evaluations with the unit circle to a real-world example. A Ferris wheel has a radius of 104 ft. You board the Ferris wheel at the bottom, 14 ft above the ground. The Ferris wheel rotates 240° counterclockwise before stopping to let on other passengers.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 7,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "32: 359 Understand & Apply",
+        "item": 0,
+        "line": 535
+      }
+    },
+    {
+      "example": 7,
+      "category": "RtIExtend",
+      "key": "examples[n=7].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "How can you determine the reference angle for the height above the x-axis?",
+      "answer": "starts at 270° and stops at 150°, so reference angle is (180°-150°=30°)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Advanced Students USE WITH EXAMPLE 7 Have students explore the use of a scaling factor to extend evaluations with the unit circle to a real-world example. A Ferris wheel has a radius of 104 ft. You board the Ferris wheel at the bottom, 14 ft above the ground. The Ferris wheel rotates 240° counterclockwise before stopping to let on other passengers.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 7,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "32: 359 Understand & Apply",
+        "item": 1,
+        "line": 536
+      }
+    },
+    {
+      "example": 7,
+      "category": "RtIExtend",
+      "key": "examples[n=7].teacherPrompts.RtIExtend[0].questions[2]",
+      "kind": "question",
+      "question": "How is the height above the x-axis calculated?",
+      "answer": "(sin30°=0.5); multiplied by the circle's radius, 104 ft, it equals 52 ft.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Advanced Students USE WITH EXAMPLE 7 Have students explore the use of a scaling factor to extend evaluations with the unit circle to a real-world example. A Ferris wheel has a radius of 104 ft. You board the Ferris wheel at the bottom, 14 ft above the ground. The Ferris wheel rotates 240° counterclockwise before stopping to let on other passengers.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-2_TE.tex",
+        "anchor": 7,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "32: 359 Understand & Apply",
+        "item": 2,
+        "line": 538
+      }
+    }
+  ]
+}

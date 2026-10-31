@@ -1,0 +1,703 @@
+{
+  "lesson": "4-5",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why do you have to confirm that the solution is valid in the original equation?",
+      "answer": "You have to make sure the solution does not cause the denominator of the rational expression to equal zero.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Solve a Rational Equation. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "61: 212 Understand & Apply",
+        "item": 0,
+        "line": 161
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why do you multiply both sides of the equation by the common denominator?",
+      "answer": "You multiply both sides by the common denominator to eliminate the fractions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "61: 212 Understand & Apply",
+        "item": 0,
+        "line": 190
+      }
+    },
+    {
+      "example": 1,
+      "category": "HabitsOfMind",
+      "key": "examples[n=1].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Critique Reasoning For part (b), Kaitlyn wrote (1=2x-7), then (8=2x), and (4=x). Is she correct? Explain.",
+      "answer": "No; Kaitlyn did not distribute the 2 properly. The equation becomes (1=2(x-7)), with (x=7.5).",
+      "variant": "example",
+      "notes": [
+        "Printed part (b) refers to Try It 1b."
+      ],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLE 1",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 1,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "61: 212 Understand & Apply",
+        "item": 0,
+        "line": 195
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Does a rational equation with multiple solutions always have an extraneous solution?",
+      "answer": "No, it is possible that each solution is in the domain of the original equation.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples. Additional Example 3 What are the solution(s) to the equation? (5/(x+6)+4/(x+3)=3) ((x+6)(x+3)(5/(x+6)+4/(x+3))=3(x+6)(x+3)) (5(x+3)+4(x+6)=3(x+6)(x+3)) (5x+15+4x+24=3x^2+27x+54) (0=x^2+6x+5) (0=(x+1)(x+5)) (x=-1) and (x=-5) Both (-1) and (-5) are in the domain of the original equation, so the solutions are (x=-1) and (x=-5). (x=-1) and (x=-5). Additional Examples are available at SavvasRealize.com. Digital labels: Go back; Essential Question; Solution. Example 3 Help students understand when a solution is extraneous.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "61: 212 Understand & Apply",
+        "item": 0,
+        "line": 213
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do the rational expressions in the original equation represent?",
+      "answer": "(1/40), (1/(x-5)), and (1/x) represent individual rates to wash a car, and (1/20) represents the rate for all three to wash a car together.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 5 It takes Reggie 40 minutes to wash a car by himself. It takes Angie (x) minutes to wash a car by herself. It takes Sophie five fewer minutes than Angie to wash a car. It takes 20 minutes for the three people to wash the car together. How long does it take Sophie to wash the car by herself? Name | Time (minutes); Reggie | 40; Sophie | (x-5); Angie | (x) Reggie can wash 1 car in 40 minutes, so his rate, in cars per minute, is (1/40). Angie's rate is (1/x), and Sophie's rate is (1/(x-5)). Together, they can wash 1 car in 20 minutes, so the sum of their rates is equal to (1/20). (1/40+1/(x-5)+1/x=1/20) (40x(x-5)(1/40+1/(x-5)+1/x)=40x(x-5)(1/20)) (x(x-5)+40x+40(x-5)=2x(x-5)) (x^2-5x+40x+40x-200=2x^2-10x) (0=x^2-85x+200) (x≈82.6) or (x≈2.4) (x≈2.4) is an extraneous solution because it makes (1/(x-5)) negative, which doesn't make sense in the context of this problem. Sophie's time: (x-5=77.6) min. 77.6 min. Digital labels: Go back; Essential Question; Solution. The negative-rate root is rejected by the context; it does not make the original rational equation undefined. Example 5 Extend students' understanding by relating the rates people take to complete a task to rational expressions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "61: 212 Understand & Apply",
+        "item": 0,
+        "line": 238
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why do you add the expressions that represent the two work-rates?",
+      "answer": "In one hour, Arthur completes (1/x) of the job, and Cheyenne completes (2/x) of the job. Together, they complete (1/x+2/x) of the job.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a Work-Rate Problem. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "62: 213 Understand & Apply",
+        "item": 0,
+        "line": 244
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How could you solve this equation without multiplying both sides by (24x)?",
+      "answer": "You can add the fractions and then cross-multiply.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Solve a Work-Rate Problem. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "62: 213 Understand & Apply",
+        "item": 1,
+        "line": 246
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why is it important to define the variable before writing an equation to represent the problem?",
+      "answer": "Without understanding what the variable represents, it would be difficult to set up the equation correctly.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "62: 213 Understand & Apply",
+        "item": 0,
+        "line": 276
+      }
+    },
+    {
+      "example": 2,
+      "category": "HabitsOfMind",
+      "key": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Reason In a work-rate problem, explain why you can't average the individual rates to determine how long it will take to complete a job together.",
+      "answer": "Averaging the two rates would result in a rate less than the faster person's rate. But two individuals working together would complete the work in less time than the person with the faster rate could do alone.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLE 2",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 2,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "62: 213 Understand & Apply",
+        "item": 0,
+        "line": 281
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtIExtend",
+      "key": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Rebecca can rake all of the leaves in a yard in (x) hours. Angus can rake all of the leaves in a yard in 2 more hours than Rebecca. Together they can rake the yard in 10 hours. How many hours does it take for Rebecca to rake the yard by herself? Write your answer to the nearest hundredth.",
+      "answer": "19.05 h",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking. USE WITH EXAMPLE 2 Challenge students to solve a work-rate problem with radical solutions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 2,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "62: 213 Understand & Apply",
+        "item": 0,
+        "line": 287
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How do you know that the common denominator ((x-5)(x-3)) will divide out (x^2-8x+15)?",
+      "answer": "The product of (x-5) and (x-3) is equal to (x^2-8x+15).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Identify an Extraneous Solution. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "63: 214 Understand & Apply",
+        "item": 0,
+        "line": 293
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Are all values that make the value of the denominator 0 extraneous solutions?",
+      "answer": "No; in this equation, 3 is a value that makes the denominator 0, but it is not an extraneous solution of the equation.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Identify an Extraneous Solution. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "63: 214 Understand & Apply",
+        "item": 1,
+        "line": 295
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How can you use a graph to verify your solution?",
+      "answer": "Graph each side of the equation. Notice that the two graphs do not intersect. Therefore, there is no solution.",
+      "variant": "example",
+      "notes": [
+        "Answer refers to Try It 3."
+      ],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "63: 214 Understand & Apply",
+        "item": 0,
+        "line": 332
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What smaller word do you see at the beginning of the word extraneous?",
+      "answer": "extra",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Tell students that this example is about identifying extraneous solutions to equations. Ask students to guess the meaning of extraneous and then use the word to describe things they might see around the classroom that could be viewed as extraneous.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "63: 214 Understand & Apply",
+        "item": 0,
+        "line": 339
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What do you think extraneous means based on what you know about what extra means?",
+      "answer": "something extra that is not needed or useful",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Tell students that this example is about identifying extraneous solutions to equations. Ask students to guess the meaning of extraneous and then use the word to describe things they might see around the classroom that could be viewed as extraneous.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "63: 214 Understand & Apply",
+        "item": 1,
+        "line": 341
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "What is an assumption?",
+      "answer": "something that is accepted as true",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Tell students that this example is about identifying extraneous solutions to equations. Ask students to guess the meaning of extraneous and then use the word to describe things they might see around the classroom that could be viewed as extraneous.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "63: 214 Understand & Apply",
+        "item": 2,
+        "line": 344
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What kind of information would you typically expect to get from a phrase using the word under? Is that how it's used here?",
+      "answer": "information about the position or location of an object; no",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Tell students that this example is about identifying extraneous solutions to equations. Ask students to guess the meaning of extraneous and then use the word to describe things they might see around the classroom that could be viewed as extraneous.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "63: 214 Understand & Apply",
+        "item": 3,
+        "line": 346
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "When is a solution valid?",
+      "answer": "A solution is valid when it does not make the denominator of a fraction equal to 0.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Tell students that this example is about identifying extraneous solutions to equations. Ask students to guess the meaning of extraneous and then use the word to describe things they might see around the classroom that could be viewed as extraneous.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "63: 214 Understand & Apply",
+        "item": 4,
+        "line": 349
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "What does not valid mean?",
+      "answer": "not reasonable or acceptable",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 3) SPEAKING BEGINNING Tell students that this example is about identifying extraneous solutions to equations. Ask students to guess the meaning of extraneous and then use the word to describe things they might see around the classroom that could be viewed as extraneous.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "63: 214 Understand & Apply",
+        "item": 5,
+        "line": 351
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine values that cannot be solutions to the equation without solving?",
+      "answer": "Any value that makes a denominator zero cannot be a solution to the equation. You can set each denominator equal to zero to find these values.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Check for Extraneous Solutions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "64: 215 Understand & Apply",
+        "item": 0,
+        "line": 357
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Do you have to multiply both sides of the equation by the least common denominator to eliminate the fractions?",
+      "answer": "You do not have to multiply by the least common denominator, but you do have to multiply by a common denominator.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Check for Extraneous Solutions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "64: 215 Understand & Apply",
+        "item": 1,
+        "line": 359
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the equation in part (b)? How can this help you solve the problem?",
+      "answer": "The denominators on each side of the equation are equal. Because the denominators are equal, you can set the numerators equal to each other to solve. Then check for extraneous solutions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "64: 215 Understand & Apply",
+        "item": 0,
+        "line": 400
+      }
+    },
+    {
+      "example": 4,
+      "category": "HabitsOfMind",
+      "key": "examples[n=4].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Communicate Precisely What is an extraneous solution?",
+      "answer": "An extraneous solution is a solution that arises from manipulations of equivalent equations but is not a solution to the original problem.",
+      "variant": "example",
+      "notes": [
+        "Printed ``equivalent equations''; an operation that introduces extraneous roots does not preserve equivalence on the enlarged domain."
+      ],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 3 & 4",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 4,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "64: 215 Understand & Apply",
+        "item": 0,
+        "line": 405
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].guidance",
+      "kind": "support",
+      "question": "How does the TE support students who struggle?",
+      "answer": "Students may need additional practice with multiplying rational expressions, when solving problems with extraneous solutions. Have students practice multiplying these rational expressions. Find the product. 1. ((x-4)/(x+7)·(x+5)/(x-4)) 2. ((x^2-16)/(x^2+6x+9)·(x^2+5x+6)/(x^2-3x-4)) 3. ((x^2+5x-14)/(2x^2+7x-4)·(2x^2-9x+4)/(x^2+9x+14))",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "64: 215 Understand & Apply",
+        "item": 0,
+        "line": 409
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "What does each side of the equation represent?",
+      "answer": "the amount of time Jake paddled in one direction",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a Rate Problem. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "65: 216 Understand & Apply",
+        "item": 0,
+        "line": 423
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Why is the 1 added to (16/(5+c)) rather than to (6/(5-c))?",
+      "answer": "(6/(5-c)) represents Jake's time traveling upstream, and his time traveling upstream equals 1 hour more than his time traveling downstream.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a Rate Problem. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "65: 216 Understand & Apply",
+        "item": 1,
+        "line": 425
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[1].questions[2]",
+      "kind": "question",
+      "question": "Would (c=-25) be an extraneous solution if you were solving the problem without context?",
+      "answer": "No; (c=-25) would not be an extraneous solution. This solution satisfies the original equation and does not cause the original equation to have a zero in the denominator.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Solve a Rate Problem. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "65: 216 Understand & Apply",
+        "item": 2,
+        "line": 427
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How would you set up an equation to solve this problem?",
+      "answer": "You know that it takes 20 minutes for three people working together to plant the garden. You can add each person's rate and set it equal to the rate of the three people together.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "65: 216 Understand & Apply",
+        "item": 0,
+        "line": 461
+      }
+    },
+    {
+      "example": 5,
+      "category": "CommonError",
+      "key": "examples[n=5].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Some students may answer the question with the solution of the equation instead of using the solution to answer the question. Emphasize that (x=60) is the number of minutes it takes Benito to plant the garden on his own, not Tyler. Point out that Tyler takes (x+15), or 75 minutes. Remind students to make sure that they have answered the question being asked.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 5,
+        "category": "CommonError",
+        "block": 0,
+        "page": "65: 216 Understand & Apply",
+        "item": 0,
+        "line": 464
+      }
+    },
+    {
+      "example": 5,
+      "category": "HabitsOfMind",
+      "key": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Make Sense and Persevere What does the fraction (1/50) mean with regards to Marta?",
+      "answer": "This fraction refers to the amount of garden Marta can plant in 1 minute.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLE 5",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-5_TE.tex",
+        "anchor": 5,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "65: 216 Understand & Apply",
+        "item": 0,
+        "line": 470
+      }
+    }
+  ]
+}

@@ -1,0 +1,653 @@
+{
+  "lesson": "3-4",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do you determine the terms in the quotient when dividing two polynomials?",
+      "answer": "Divide the greatest degree terms to get the first term in the quotient. Multiply this result by the divisor, and subtract from the dividend to discover what remains in order to continue dividing using the same process.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Long Division to Divide Polynomials. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "49: 142 Understand & Apply",
+        "item": 0,
+        "line": 170
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why do you need to have terms with 0 as coefficients in the dividend?",
+      "answer": "These are placeholders for (x^2) and (x). The quotient may have (x^2)- and (x)-terms even if the dividend does not.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Long Division to Divide Polynomials. Pose Purposeful Questions ETP PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "49: 142 Understand & Apply",
+        "item": 1,
+        "line": 173
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the divisors that is different from the example?",
+      "answer": "The divisors are quadratic polynomials.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "49: 142 Understand & Apply",
+        "item": 0,
+        "line": 178
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "Why is it useful to replace a missing term with a zero?",
+      "answer": "The zero is a placeholder to keep the columns lined up for long division.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples. ADDITIONAL EXAMPLE 1 Use long division to complete the table.Write the dividend as the quotient times the divisor plus the remainder. Dividend | Divisor | Divisor (×) Quotient + Remainder; (7x^2+2) | (3x) | (3x(2x+1)+x^2-3x+2); (7x^3+10x) | (3x+8) | ; (7x^4+16x^2+9) | (3x^2+8x) | The printed table fills only the first row. Its remainder has degree 2, greater than the divisor's degree. Go back. ESSENTIAL QUESTION. SOLUTION. Example 1 Students practice dividing polynomials with varying degrees/powers using long division.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "49: 142 Understand & Apply",
+        "item": 0,
+        "line": 192
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you use the Factor Theorem and synthetic substitution to quickly determine any factors of (P(x))?",
+      "answer": "If (P(a)=0), then (x-a) is a factor. The bottom line of synthetic substitution gives the coefficients of the other factor. The first term of that factor is one degree less than the first term of (P(x)).",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 2 Additional Examples are available at SavvasRealize.com. Use the Remainder and Factor Theorems to determine whether the given binomial is a factor of (P(x)). If so, write the polynomial in factored form. (P(x)=x^3-5x^2+2x-10); binomial: (x-5) The binomial (x-5) is a factor of (P(x)) if 5 is a zero of (P(x)). Use synthetic substitution. 5 | 1 | (-5) | 2 | (-10); | | 5 | 0 | 10; | 1 | 5 | 2 | 0 Because (P(5)=0), you can conclude that (x-5) is a factor of (P(x)). (x^3-5x^2+2x-10=(x^2+2)(x-5)) (x^3-5x^2+2x-10=(x^2+2)(x-5)) Printed bottom row's second entry is 5; likely 0. Go back. ESSENTIAL QUESTION. SOLUTION. Example 2 Students determine if a linear divisor is a factor of a polynomial, and if so, write the factorization.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "49: 142 Understand & Apply",
+        "item": 0,
+        "line": 213
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "When would you use synthetic division and why is it useful?",
+      "answer": "Synthetic division can be used to divide a polynomial by a linear factor. Synthetic division keeps the coefficients organized and is more efficient.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Synthetic Division to Divide by (x-a). Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "50: 143 Example 1 continued",
+        "item": 0,
+        "line": 275
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Why do you reverse the sign of the constant term in the divisor?",
+      "answer": "The linear divisor is represented as ((x-a)), so the subtraction sign would reverse the sign of the constant term.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Use Synthetic Division to Divide by (x-a). Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "50: 143 Example 1 continued",
+        "item": 1,
+        "line": 277
+      }
+    },
+    {
+      "example": 2,
+      "category": "CommonError",
+      "key": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 2 Students may multiply the zero of the divisor, 1, by (-5) and place that answer under the second coefficient. Have students use long division to do the same problem, and ask them to consider the relationship between the values in the synthetic division and the values in the long division.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 2,
+        "category": "CommonError",
+        "block": 0,
+        "page": "50: 143 Example 1 continued",
+        "item": 0,
+        "line": 281
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What does it mean to reverse the sign of the constant term in the divisor?",
+      "answer": "The divisor is (x-2). The constant is (-2), so reversing the sign means to use 2.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) SPEAKING BEGINNING To complete synthetic division, it is important to follow directions. Have students practice giving directions by directing a partner to a certain destination. Discuss what the directions in the example mean.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 143 Example 1 continued",
+        "item": 0,
+        "line": 293
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What does bring down the coefficient mean in Step 2?",
+      "answer": "Copy the coefficient below the line.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) SPEAKING BEGINNING To complete synthetic division, it is important to follow directions. Have students practice giving directions by directing a partner to a certain destination. Discuss what the directions in the example mean.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 143 Example 1 continued",
+        "item": 1,
+        "line": 295
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Why might this method of dividing be considered artificial?",
+      "answer": "It appears to be an artificial form of dividing because the variables and exponents are removed during the process.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) SPEAKING BEGINNING To complete synthetic division, it is important to follow directions. Have students practice giving directions by directing a partner to a certain destination. Discuss what the directions in the example mean.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 143 Example 1 continued",
+        "item": 2,
+        "line": 298
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "Could you use synthetic division to divide (3x^3+5x^2-x+7) by (2x+3)?",
+      "answer": "No; the method only works when the leading coefficient of the linear factor is 1.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) SPEAKING BEGINNING To complete synthetic division, it is important to follow directions. Have students practice giving directions by directing a partner to a certain destination. Discuss what the directions in the example mean.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 143 Example 1 continued",
+        "item": 3,
+        "line": 300
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Which mathematical terms did you hear?",
+      "answer": "divided by, synthetic division, polynomial, linear expression, leading coefficient, divisor, zero, long division, coefficients, dividend, coefficients of the dividend, multiply, add",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 2) SPEAKING BEGINNING To complete synthetic division, it is important to follow directions. Have students practice giving directions by directing a partner to a certain destination. Discuss what the directions in the example mean.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "50: 143 Example 1 continued",
+        "item": 4,
+        "line": 303
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Explain how (P(x)=x^3+10x^2+29x+24) was rewritten as (P(x)=(x^2+5x+4)(x+5)+4).",
+      "answer": "((x+5)) was given as one factor. Synthetic division was used to find the other factor, (x^2+5x+4), and the remainder, 4.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Relate P(a) to the Remainder of (P(x)÷(x-a)). Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "51: 144 Example 2 continued",
+        "item": 0,
+        "line": 357
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why would you evaluate (P(-5)) using the function in the form (P(x)=(x^2+5x+4)(x+5)+4)?",
+      "answer": "When (x=-5), (x+5=0). Since the product of any number and 0 is 0, (P(-5)=4). This demonstrates that (P(-5)) is equal to the remainder when (P(x)) is divided by (x-(-5)).",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Relate P(a) to the Remainder of (P(x)÷(x-a)). Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "51: 144 Example 2 continued",
+        "item": 1,
+        "line": 359
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What is the purpose of using synthetic division in this situation?",
+      "answer": "to prove the remainder is equal to (f(-2))",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "51: 144 Example 2 continued",
+        "item": 0,
+        "line": 365
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "What is the value of (a)?",
+      "answer": "(a=-2)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Students use synthetic division to solve ((x^4+3x^3-10x)÷(x+2)) in this guided instruction.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "51: 144 Example 2 continued",
+        "item": 0,
+        "line": 371
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "What is the quotient?",
+      "answer": "(x^3+x^2-2x-6)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Students use synthetic division to solve ((x^4+3x^3-10x)÷(x+2)) in this guided instruction.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "51: 144 Example 2 continued",
+        "item": 1,
+        "line": 373
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[2]",
+      "kind": "question",
+      "question": "What is the remainder? How do you find the remainder?",
+      "answer": "12; It is the last number of the bottom row of the synthetic division.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Students use synthetic division to solve ((x^4+3x^3-10x)÷(x+2)) in this guided instruction.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "51: 144 Example 2 continued",
+        "item": 2,
+        "line": 375
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[3]",
+      "kind": "question",
+      "question": "How can you check that your remainder is accurate?",
+      "answer": "Substitute (-2) for (x) in (x^4+3x^3-10x). The answer should be the same as the remainder because of the Remainder Theorem.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Students use synthetic division to solve ((x^4+3x^3-10x)÷(x+2)) in this guided instruction.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "51: 144 Example 2 continued",
+        "item": 3,
+        "line": 377
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtISupport",
+      "key": "examples[n=3].teacherPrompts.RtISupport[0].questions[4]",
+      "kind": "question",
+      "question": "What is the value of (x^4+3x^3-10x) if (x=-2)?",
+      "answer": "12",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 3 Students use synthetic division to solve ((x^4+3x^3-10x)÷(x+2)) in this guided instruction.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 3,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "51: 144 Example 2 continued",
+        "item": 4,
+        "line": 379
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How do the Remainder Theorem and Factor Theorem compare?",
+      "answer": "The Remainder Theorem states that when (P(x)) is divided by (x-a), the remainder is equivalent to (P(a)). The Factor Theorem states that the binomial ((x-a)) is a factor of (P(x)) if and only if (P(a)=0). The Factor Theorem is a special case of the Remainder Theorem, describing the situation when the remainder is zero.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "CONCEPT Remainder Theorem and Factor Theorem Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "52: 145 Example 3 continued",
+        "item": 0,
+        "line": 428
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do you determine what value to use for (a)?",
+      "answer": "(a) is the number of years between 2021 and 2029, so subtract them to determine (a=8).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use the Remainder Theorem to Evaluate Polynomials. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "52: 145 Example 3 continued",
+        "item": 0,
+        "line": 439
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How is understanding the Remainder Theorem helpful in solving this problem?",
+      "answer": "According to the Remainder Theorem, the remainder of the division problem using (a=8) will be the value of the function at (a=8). So the remainder 293 is also the number of turtles on the island in 2029.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Use the Remainder Theorem to Evaluate Polynomials. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "52: 145 Example 3 continued",
+        "item": 1,
+        "line": 441
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How does the remainder for year 5 compare to the estimated revenue in year 5?",
+      "answer": "The remainder is 285 for year 5. Since the expected annual revenue is in thousands of dollars, you need to multiply $1000 by the remainder to estimate the revenue in year 5.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "52: 145 Example 3 continued",
+        "item": 0,
+        "line": 466
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtIExtend",
+      "key": "examples[n=4].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Divide (f(x)=9x^2-3x+1) by a linear divisor ((x-a)). The remainder is 21. Solve for (a). Explain your process.",
+      "answer": "Set (9x^2-3x+1=21) because the remainder is equal to (f(a)). Solve (9x^2-3x-20=0). The solutions are (a=-4/3) and (a=5/3). Substitute your answers for (a) in (f(x)=9x^2-3x+1) to check your work.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 4 Have students practice using the Remainder Theorem to solve for the linear divisor when the remainder is known.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 4,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "52: 145 Example 3 continued",
+        "item": 0,
+        "line": 472
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How does understanding the Factor Theorem help to determine whether ((x-a)) is a factor of a given polynomial?",
+      "answer": "If (P(a)=0) or there is not a remainder when dividing the polynomial by the binomial, the binomial is a factor. If (P(a)≠0) or there is a remainder when dividing the polynomial by the binomial, the binomial is not a factor.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Check Whether (x-a) Is a Factor of P(x). Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "53: 146 Understand & Apply",
+        "item": 0,
+        "line": 478
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why is the binomial not a factor of the polynomial if the remainder is not 0?",
+      "answer": "If there is a remainder, then the divisor does not divide evenly into the dividend.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_3-4_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "53: 146 Understand & Apply",
+        "item": 0,
+        "line": 525
+      }
+    }
+  ]
+}

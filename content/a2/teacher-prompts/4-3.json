@@ -1,0 +1,745 @@
+{
+  "lesson": "4-3",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why is the domain for the identity different from the domain of just the original rational expression?",
+      "answer": "Because the equivalence of two expressions must occur where the expressions are both defined.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write Equivalent Rational Expressions. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "39: 198 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 153
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Why does the denominator affect the domain but the numerator does not?",
+      "answer": "For real values of (x), a rational expression is the quotient of real numbers. Quotients of real numbers are undefined only when the denominator is 0, and does not depend on the numerator.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write Equivalent Rational Expressions. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "39: 198 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 155
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[2]",
+      "kind": "question",
+      "question": "How else can you write an expression equivalent to the original rational expression?",
+      "answer": "Multiplying ((x+3)/(x+9)) by any other rational expression, such as (x/x), ((2-x)/(2-x)), ((x^2)/(x^2)), etc., will result in an equivalent rational expression to the original.",
+      "variant": "example",
+      "notes": [
+        "Printed ``any other rational expression''; the examples are factors of 1 where defined."
+      ],
+      "context": {
+        "text": "Write Equivalent Rational Expressions. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "39: 198 Step 2 Understand & Apply",
+        "item": 2,
+        "line": 157
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Are the expressions ((x^3-16x)/(4x^4+16x^3)) and ((x(x-4))/(4x^2)) equivalent? What is the domain of each simplified expression? Simplify the first expression. ((x^3-16x)/(4x^4+16x^3)=(x(x^2-16))/(4x^3(x+4))=(x(x-4)(x+4))/(4x^3(x+4))=(x-4)/(4x^2)) The domain of the first expression is all real numbers except 0 and -4. Simplify the second expression. ((x(x-4))/(4x^2)=(x-4)/4x) The domain of the first expression is all real numbers except 0. Since ((x-4)/(4x^2)≠(x-4)/4x), the expressions are not equivalent.",
+      "answer": "Not equivalent; first: all real numbers except 0 and -4; second: all real numbers except 0.",
+      "variant": "additional",
+      "notes": [
+        "Printed second domain sentence says ``first expression''; likely second expression."
+      ],
+      "context": {
+        "text": "Additional Example 1 Additional Examples are available at SavvasRealize.com.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "39: 198 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 182
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why are 0 and -4 excluded from the domain of the first expression?",
+      "answer": "These values make the denominator (4x^4+16x^3=0), and the denominator cannot equal 0.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 1 Additional Examples are available at SavvasRealize.com.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "39: 198 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 193
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "Why is 0 excluded from the domain of the second expression?",
+      "answer": "This value makes the denominator (4x^3=0), and the denominator cannot equal 0.",
+      "variant": "additional",
+      "notes": [
+        "Printed denominator in this teacher answer is 4x cubed; the displayed second expression has denominator 4x squared."
+      ],
+      "context": {
+        "text": "Additional Example 1 Additional Examples are available at SavvasRealize.com.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "39: 198 Step 2 Understand & Apply",
+        "item": 2,
+        "line": 195
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Multiply the expressions and state the domain. ((-x^2+3)/(x^2+2x-3)·5/(x-9)·(4x^3+8x^2-12x)) ((-x^2+3)/(x^2+2x-3)·5/(x-9)·(4x^3+8x^2-12x)/1=(-1(x^2-3))/(x^2+2x-3)·5/(x-9)·(4x(x^2+2x-3))/1) (=(-1(x^2-3)·5·4x)/(x-9)=(-20x(x^2-3))/(x-9))",
+      "answer": "((-20x(x^2-3))/(x-9)); (x≠-3,1,9).",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 4",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "39: 198 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 201
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How does multiplying two rational expressions and a polynomial compare with multiplying two rational expressions or a rational expression and a polynomial?",
+      "answer": "They are all like multiplying fractions. The polynomials are written as rational expressions with a denominator of 1.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 4",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "39: 198 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 207
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What are the common factors that occur in both the numerator and the denominator?",
+      "answer": "(x+2)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "40: 199 Examples 1 continued, 2, 3",
+        "item": 0,
+        "line": 213
+      }
+    },
+    {
+      "example": 1,
+      "category": "CommonError",
+      "key": "examples[n=1].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Students may think that a common factor (x-2) results in excluding (-2) from the domain. Have students find the expression or factor when (x=2). Then ask them for another factor that could result in excluding (-2) from the domain.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 1,
+        "category": "CommonError",
+        "block": 0,
+        "page": "40: 199 Examples 1 continued, 2, 3",
+        "item": 0,
+        "line": 216
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why is (-1) factored out of (2-x) in the numerator?",
+      "answer": "If you factor out (-1), you can divide out the common factor (x-2).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Simplify a Rational Expression. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 199 Examples 1 continued, 2, 3",
+        "item": 0,
+        "line": 221
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why can you cross out factors that divide to 1?",
+      "answer": "A rational expression with factors that divide to 1 can be written as 1 times another rational expression, and 1 is not typically written in products.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Simplify a Rational Expression. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 199 Examples 1 continued, 2, 3",
+        "item": 1,
+        "line": 223
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine that the domain is (z≠0) and (y≠0) by looking at the rational expressions?",
+      "answer": "The denominator cannot equal 0 because the rational expression would be undefined. Therefore, (z≠0) and (y≠0) because multiplying 0 by any number is 0.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Multiply Rational Expressions. Pose Purposeful Questions PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 199 Examples 1 continued, 2, 3",
+        "item": 0,
+        "line": 248
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why do you factor the expressions in the numerator and the denominator?",
+      "answer": "You can divide out the common factors, and you can determine the restrictions on the domain by using the Zero Product Property.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Multiply Rational Expressions. Pose Purposeful Questions PART A",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "40: 199 Examples 1 continued, 2, 3",
+        "item": 1,
+        "line": 251
+      }
+    },
+    {
+      "example": 2,
+      "category": "HabitsOfMind",
+      "key": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Critique Reasoning Bailey simplified the rational expression ((x^2+2x+4)/(x^2+x+2)) by dividing out the (x^2)-terms and then dividing out a factor of (x+2) to get 2 as the simplified form of the rational expression. Is Bailey correct? Why or why not?",
+      "answer": "No; you cannot eliminate terms from the numerator and denominator if they are bound by addition. You must factor the expression first, and then eliminate like factors.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 1 & 2",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 2,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "40: 199 Examples 1 continued, 2, 3",
+        "item": 0,
+        "line": 281
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "The domain of the product of two rational expressions is all real numbers except 0, -3, and 6.",
+      "answer": "Sample: (1/(x^2+3x)·1/(x-6))",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking. USE WITH EXAMPLE 3 Challenge students to write an expression as the product of two rational expressions with the given domain.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "40: 199 Examples 1 continued, 2, 3",
+        "item": 0,
+        "line": 287
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What do you already know about multiplying a fraction and a whole number that is helpful here?",
+      "answer": "To multiply a fraction and a whole number, you need to also make the whole number a fraction with a denominator of 1.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Multiply a Rational Expression by a Polynomial. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "41: 200 Examples 4, 5",
+        "item": 0,
+        "line": 293
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Is there a number for (x) that would make (x^2+4=0)?",
+      "answer": "No; squaring any number, whether negative or positive, results in a positive number. Adding two positive numbers will never equal 0.",
+      "variant": "example",
+      "notes": [
+        "Printed explanation omits the zero case; zero squared is zero, and zero plus 4 is still positive."
+      ],
+      "context": {
+        "text": "Multiply a Rational Expression by a Polynomial. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "41: 200 Examples 4, 5",
+        "item": 1,
+        "line": 295
+      }
+    },
+    {
+      "example": 4,
+      "category": "HabitsOfMind",
+      "key": "examples[n=4].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Generalize Why is it important to identify the domain of a rational expression before you simplify it rather than after?",
+      "answer": "Simplifying the expression may eliminate some values where the original expression is undefined.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 3 & 4",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 4,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "41: 200 Examples 4, 5",
+        "item": 0,
+        "line": 319
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why do you factor out (-1)?",
+      "answer": "The factoring out of (-1) allows you to divide common factors from the numerator and the denominator.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Divide Rational Expressions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "41: 200 Examples 4, 5",
+        "item": 0,
+        "line": 324
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How is dividing rational expressions similar to dividing fractions?",
+      "answer": "You multiply by the reciprocal of the divisor.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Divide Rational Expressions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "41: 200 Examples 4, 5",
+        "item": 1,
+        "line": 326
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "How do you decide what can be factored out of each expression?",
+      "answer": "Find the greatest common factor.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students. USE WITH EXAMPLE 5 Students have the opportunity for guided practice in dividing two rational expressions. Divide ((3x^3+6x^2+3x)/(x+2)÷(x^2+x)/(x+2)). Multiply by the reciprocal of the divisor. Factor the numerators and denominators individually. Divide out the common factors.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "41: 200 Examples 4, 5",
+        "item": 0,
+        "line": 353
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "What are the quotient and the domain?",
+      "answer": "(3(x+1)); (x≠-2,-1,0).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students. USE WITH EXAMPLE 5 Students have the opportunity for guided practice in dividing two rational expressions. Divide ((3x^3+6x^2+3x)/(x+2)÷(x^2+x)/(x+2)). Multiply by the reciprocal of the divisor. Factor the numerators and denominators individually. Divide out the common factors.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "41: 200 Examples 4, 5",
+        "item": 1,
+        "line": 355
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What does it mean to have the lesser ratio of surface area to volume?",
+      "answer": "the division of surface area by volume that results in a smaller rational expression",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Division of Rational Expressions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "42: 201 Example 6",
+        "item": 0,
+        "line": 361
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How do the efficiency ratios of the rectangular prism and the cylinder compare to each other?",
+      "answer": "The rectangular prisms and the cylinder will always have the same efficiency ratio, regardless of the (x)-value selected.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Division of Rational Expressions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "42: 201 Example 6",
+        "item": 1,
+        "line": 363
+      }
+    },
+    {
+      "example": 6,
+      "category": "HabitsOfMind",
+      "key": "examples[n=6].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Use Structure Is the domain of the quotient ((2x^2-12x)/(x+5)÷((x-6)/(x+5))) different from the domain of the product (((2x^2-12x)/(x+5))((x-6)/(x+5)))? Explain.",
+      "answer": "Yes; the domain of the product includes the value (x=6), while the domain of the quotient does not include (x=6).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 5 & 6",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 6,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "42: 201 Example 6",
+        "item": 0,
+        "line": 405
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "How you would arrange these items from lowest to highest in value?",
+      "answer": "paper clip, pen, stapler, cell phone",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) SPEAKING BEGINNING When you evaluate something, you assign it a value or level of importance. Display a pen, a stapler, a paper clip, and a cell phone. Have students discuss the following questions in small groups.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 201 Example 6",
+        "item": 0,
+        "line": 411
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "Why would the packaging with a lesser ratio of surface area to volume be more valuable to a company?",
+      "answer": "If the company spends less on packaging, they can make a larger profit.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) SPEAKING BEGINNING When you evaluate something, you assign it a value or level of importance. Display a pen, a stapler, a paper clip, and a cell phone. Have students discuss the following questions in small groups.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 201 Example 6",
+        "item": 1,
+        "line": 413
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "What does surface area mean?",
+      "answer": "the sum of the areas of all of the outside surfaces of an object",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) SPEAKING BEGINNING When you evaluate something, you assign it a value or level of importance. Display a pen, a stapler, a paper clip, and a cell phone. Have students discuss the following questions in small groups.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 201 Example 6",
+        "item": 2,
+        "line": 416
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What does volume mean?",
+      "answer": "the capacity an object can hold, or the amount of space it takes up",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) SPEAKING BEGINNING When you evaluate something, you assign it a value or level of importance. Display a pen, a stapler, a paper clip, and a cell phone. Have students discuss the following questions in small groups.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 201 Example 6",
+        "item": 3,
+        "line": 418
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Why is the design with the lesser ratio of surface area to volume more efficient?",
+      "answer": "because the packaging would use less material to contain a given volume",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) SPEAKING BEGINNING When you evaluate something, you assign it a value or level of importance. Display a pen, a stapler, a paper clip, and a cell phone. Have students discuss the following questions in small groups.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 201 Example 6",
+        "item": 4,
+        "line": 420
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "Which method of putting the puzzle together was more efficient? Explain",
+      "answer": "The first method was more efficient.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) SPEAKING BEGINNING When you evaluate something, you assign it a value or level of importance. Display a pen, a stapler, a paper clip, and a cell phone. Have students discuss the following questions in small groups.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-3_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "42: 201 Example 6",
+        "item": 5,
+        "line": 423
+      }
+    }
+  ]
+}

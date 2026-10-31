@@ -1,0 +1,676 @@
+{
+  "lesson": "4-4",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about the denominators in Part A?",
+      "answer": "The denominators of the rational expressions are the same.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Add Rational Expressions With Like Denominators. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "50: 205 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 145
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What do you notice about the denominators in Part B?",
+      "answer": "Even though the denominators are written differently, they are equivalent: (x^2+3x=x(x+3)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Add Rational Expressions With Like Denominators. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "50: 205 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 147
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Can you add the numerators of these rational expressions?",
+      "answer": "Yes; the denominators of the rational expressions are the same, so you can add the numerators.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "50: 205 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 175
+      }
+    },
+    {
+      "example": 1,
+      "category": "HabitsOfMind",
+      "key": "examples[n=1].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Make Sense and Persevere Explain why it does not make sense to add the denominators when adding rational numbers. Use numerical fractions to support your thinking.",
+      "answer": "When adding two fractions such as (1/5+2/5), you add their numerators and keep the common denominator to get a sum of (3/5). You use the same process to add rational numbers.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLE 1",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 1,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "50: 205 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 180
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What is the difference? ((8x+9)/(5x+5)-(4x-4)/(x+1)) ((8x+9)/(5x+5)-(4x-4)/(x+1)=((8x+9)-(4x-4)5)/(5x+5)) (=(8x+9-20x+20)/(5x+5)) (=(-12x+29)/(5x+5)) The difference is (-12x+29/5x+5) for (x≠-1).",
+      "answer": "((-12x+29)/(5x+5)); (x≠-1).",
+      "variant": "additional",
+      "notes": [
+        "Printed final sentence uses slash notation without grouping; the worked fraction above clarifies the intended numerator and denominator. Digital buttons: Go back; Essential Question; Try Another One; Solution."
+      ],
+      "context": {
+        "text": "Additional Example 4 Additional Examples are available at SavvasRealize.com.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "50: 205 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 185
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What values are not in the domain when adding or subtracting rational expressions?",
+      "answer": "Any value that makes any denominator equal to 0 is not in the domain.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 4 Additional Examples are available at SavvasRealize.com.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "50: 205 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 194
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Can you determine the time of the trip with the information given? Explain.",
+      "answer": "No; you need to know the speed that Franklin walked.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Example 5 Franklin is traveling to an amusement park. He walks two miles to get to the bus stop. He rides the bus for five miles at an average speed that is 10 times as fast as he walked. He then walks one more mile at the same walking speed as before. Complete the table and write an expression for Franklin's total travel time. | Distance | Rate | Time; First Walk | 2 | (r) | (2/r); Bus | 5 | (10r) | (5/(10r)); Second Walk | 1 | (r) | (1/r) The screen repeats the table with the Time column completed. Total Time (2/r+5/10r+1/r=(2(10))/10r+5/10r+10/10r) (=(20+5+10)/10r) (=35/10r=7/2r) (7/2r) Digital buttons: Go back; Essential Question; Solution. Example 5 Help students transition to solving a rate problem for a three-part trip.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "50: 205 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 214
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How can you find the LCM of two rational expressions if the polynomials cannot be factored?",
+      "answer": "You multiply the two polynomials.",
+      "variant": "example",
+      "notes": [
+        "Printed rule assumes the polynomials have no common nonconstant factor; identical irreducible polynomials, for example, would not require multiplication. Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Identify the Least Common Multiple of Polynomials. Build Procedural Fluency from Conceptual Understanding",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "51: 206 Understand & Apply",
+        "item": 0,
+        "line": 220
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How could the LCM of the polynomials be one of the polynomials?",
+      "answer": "One of the polynomials is a factor of the other.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "51: 206 Understand & Apply",
+        "item": 0,
+        "line": 252
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why would you want to find the sum using LCM instead of any other common multiple?",
+      "answer": "Using the LCM will reduce the amount of simplifying you need to do after adding.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Add Rational Expressions With Unlike Denominators. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "51: 206 Understand & Apply",
+        "item": 0,
+        "line": 257
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How is thinking about adding fractions with unlike denominators helpful when adding rational expressions with unlike denominators?",
+      "answer": "The process that you use to add fractions with unlike denominators is similar to the process for adding rational expressions with unlike denominators. Thinking about fractions may help simplify the process.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Add Rational Expressions With Unlike Denominators. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "51: 206 Understand & Apply",
+        "item": 1,
+        "line": 259
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why should you try to factor the expression after adding the numerators?",
+      "answer": "You factor the expression to see if there are any common factors you can divide out of the numerator and denominator.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "51: 206 Understand & Apply",
+        "item": 0,
+        "line": 287
+      }
+    },
+    {
+      "example": 2,
+      "category": "RtISupport",
+      "key": "examples[n=2].teacherPrompts.RtISupport[0].guidance",
+      "kind": "support",
+      "question": "How does the TE support students who struggle?",
+      "answer": "Students may have difficulty finding the LCM of polynomials. Have students practice finding the LCM of integers. 1. Find the LCM of 24 and 42. 2. Find the LCM of 11 and 17. 3. Find the LCM of 15, 25, and 40.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 2,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "51: 206 Understand & Apply",
+        "item": 0,
+        "line": 290
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How is subtracting rational expressions similar to adding rational expressions?",
+      "answer": "When adding or subtracting, you need to find the least common denominator and rewrite the rational expressions before performing the operation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Subtract Rational Expressions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "52: 207 Understand & Apply",
+        "item": 0,
+        "line": 310
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "How is the Distributive Property used when subtracting rational expressions?",
+      "answer": "The Distributive Property is used when simplifying the numerator by subtracting polynomials. You multiply each term of the polynomial by (-1).",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Subtract Rational Expressions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "52: 207 Understand & Apply",
+        "item": 1,
+        "line": 312
+      }
+    },
+    {
+      "example": 4,
+      "category": "CommonError",
+      "key": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "When subtracting rational expressions, students may forget to distribute the negative sign. Have students relate subtracting rational expressions to subtracting polynomials, reminding them that they need to multiply each term by (-1) before removing the parentheses and combining like terms in the numerator.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 4,
+        "category": "CommonError",
+        "block": 0,
+        "page": "52: 207 Understand & Apply",
+        "item": 0,
+        "line": 335
+      }
+    },
+    {
+      "example": 4,
+      "category": "HabitsOfMind",
+      "key": "examples[n=4].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Communicate Precisely How does finding the LCM of two or more polynomials help you to add and subtract rational expressions?",
+      "answer": "Once you know the LCM of polynomials in the denominators, you can multiply and divide each rational expression by the expression required to make each denominator the LCM. Then you can add or subtract the rational expressions.",
+      "variant": "example",
+      "notes": [
+        "Printed ``multiply and divide each rational expression''; likely multiply its numerator and denominator by the required factor."
+      ],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 2, 3, & 4",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 4,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "52: 207 Understand & Apply",
+        "item": 0,
+        "line": 341
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How do you know that you are supposed to add the two rational expressions?",
+      "answer": "The problem asks you to find an expression for the total time. Each expression represents the time for part of the trip. You need to add the times to find the total time.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Rational Expressions to Solve Problems. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "52: 207 Understand & Apply",
+        "item": 0,
+        "line": 347
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "How is the table a useful tool when solving this problem?",
+      "answer": "The table organizes all of the information in the problem statement and the picture in one place. From the table, it is easy to see the expressions needed to calculate the total time.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Rational Expressions to Solve Problems. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "52: 207 Understand & Apply",
+        "item": 1,
+        "line": 349
+      }
+    },
+    {
+      "example": 5,
+      "category": "HabitsOfMind",
+      "key": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Construct Arguments Does Jorge spend more time traveling to his friend's house, or back home? Support your answer algebraically.",
+      "answer": "traveling to his friend's house. You can express the time traveled to Jorge's friend's house by (20/r) and the time home by (20/(r+5)). Since (20/(r+5)<20/r), Jorge spends less time traveling home.",
+      "variant": "example",
+      "notes": [
+        "Printed anchor is Example 5; the friend's-house trip is in Try It 5."
+      ],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLE 5",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 5,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "52: 207 Understand & Apply",
+        "item": 0,
+        "line": 372
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What do you notice about a compound fraction that is different from other fractions?",
+      "answer": "The numerator or denominator of a compound fraction contains a fraction.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Simplify a Compound Fraction. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "53: 208 Understand & Apply",
+        "item": 0,
+        "line": 393
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Is there another method you could use to write a simpler form of the compound fraction?",
+      "answer": "You can multiply the numerator by the reciprocal of the denominator, then write the rational expression as a single fraction.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Simplify a Compound Fraction. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "53: 208 Understand & Apply",
+        "item": 1,
+        "line": 395
+      }
+    },
+    {
+      "example": 6,
+      "category": "ElicitEvidence",
+      "key": "examples[n=6].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What first step would you take to rewrite the compound fraction?",
+      "answer": "The first step is to multiply the numerator and denominator by the LCD of all rational expressions in the numerator and denominator. This eliminates the fractions from the numerator and denominator and makes the compound fraction easier to simplify.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 6,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "53: 208 Understand & Apply",
+        "item": 0,
+        "line": 421
+      }
+    },
+    {
+      "example": 6,
+      "category": "HabitsOfMind",
+      "key": "examples[n=6].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Reason Edwin multiplied the top and bottom of the fraction in Try It 6a by (3/(x+1)+(x-1)/4). Will this technique work to simplify the compound fraction? Explain.",
+      "answer": "No; this will not simplify the denominator because the product of ((x+1)/3+4/(x-1)) and (3/(x+1)+(x-1)/4) gives 2 plus additional terms.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLE 6",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 6,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "53: 208 Understand & Apply",
+        "item": 0,
+        "line": 426
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "How is the LCD different from the denominator in the compound fraction?",
+      "answer": "The LCD is the product of all of the denominators that appear in the compound fraction (x), (y), and (x+1). The denominator of the compound fraction is (1/y).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) READING BEGINNING Help students understand the steps in the method by previewing the math vocabulary before reading the example. Show the students the following terms and their definitions: LCD, numerator, denominator, and reciprocal. Give students a copy of the math steps in the example. Have them read the example and label the terms as they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "53: 208 Understand & Apply",
+        "item": 0,
+        "line": 432
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "When multiplying the numerator and denominator of the compound fraction by the LCD, what is being eliminated?",
+      "answer": "Multiplying the numerator and denominator by the LCD ``eliminates'' fractions. The compound fraction is rewritten with a numerator and denominator with no fractions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) READING BEGINNING Help students understand the steps in the method by previewing the math vocabulary before reading the example. Show the students the following terms and their definitions: LCD, numerator, denominator, and reciprocal. Give students a copy of the math steps in the example. Have them read the example and label the terms as they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "53: 208 Understand & Apply",
+        "item": 1,
+        "line": 435
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "What property is helpful in eliminating the fractions?",
+      "answer": "The Distributive Property is helpful for multiplying each addend in the brackets by the LCD.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) READING BEGINNING Help students understand the steps in the method by previewing the math vocabulary before reading the example. Show the students the following terms and their definitions: LCD, numerator, denominator, and reciprocal. Give students a copy of the math steps in the example. Have them read the example and label the terms as they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "53: 208 Understand & Apply",
+        "item": 2,
+        "line": 437
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "Does a compound fraction have to include more than one fraction?",
+      "answer": "No; the description says one or more fractions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) READING BEGINNING Help students understand the steps in the method by previewing the math vocabulary before reading the example. Show the students the following terms and their definitions: LCD, numerator, denominator, and reciprocal. Give students a copy of the math steps in the example. Have them read the example and label the terms as they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "53: 208 Understand & Apply",
+        "item": 3,
+        "line": 440
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Does a compound fraction have to have fractions in both the numerator and denominator?",
+      "answer": "No; the definition says and/or, which means a compound fraction may have a fraction in either the numerator or the denominator, or it may have fractions in both.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 6) READING BEGINNING Help students understand the steps in the method by previewing the math vocabulary before reading the example. Show the students the following terms and their definitions: LCD, numerator, denominator, and reciprocal. Give students a copy of the math steps in the example. Have them read the example and label the terms as they are reading.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_4-4_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "53: 208 Understand & Apply",
+        "item": 4,
+        "line": 442
+      }
+    }
+  ]
+}

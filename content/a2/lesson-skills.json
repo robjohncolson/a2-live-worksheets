@@ -252,28 +252,41 @@
         "directoryId": "NN.1",
         "name": "Find terms of an arithmetic sequence",
         "url": "https://www.ixl.com/math/algebra-2/find-terms-of-an-arithmetic-sequence",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1
+        ]
       },
       {
         "code": "H82",
         "directoryId": "NN.5",
         "name": "Write a formula for an arithmetic sequence",
         "url": "https://www.ixl.com/math/algebra-2/write-a-formula-for-an-arithmetic-sequence",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3
+        ]
       },
       {
         "code": "ZAH",
         "directoryId": "NN.8",
         "name": "Write a recursive formula for a sequence",
         "url": "https://www.ixl.com/math/algebra-2/write-a-recursive-formula-for-a-sequence",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3
+        ]
       },
       {
         "code": "W6A",
         "directoryId": "OO.3",
         "name": "Find the sum of an arithmetic series",
         "url": "https://www.ixl.com/math/algebra-2/find-the-sum-of-an-arithmetic-series",
-        "level": "core"
+        "level": "core",
+        "example": [
+          5,
+          7
+        ]
       }
     ],
     "1-5": [
@@ -412,35 +425,62 @@
         "directoryId": "N.4",
         "name": "Transformations of quadratic functions",
         "url": "https://www.ixl.com/math/algebra-2/transformations-of-quadratic-functions",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1,
+          5
+        ]
       },
       {
         "code": "WMS",
         "directoryId": "N.1",
         "name": "Characteristics of quadratic functions: graphs",
         "url": "https://www.ixl.com/math/algebra-2/characteristics-of-quadratic-functions-graphs",
-        "level": "core"
+        "level": "core",
+        "example": [
+          2
+        ]
       },
       {
         "code": "S9G",
         "directoryId": "N.5",
         "name": "Graph a quadratic function",
         "url": "https://www.ixl.com/math/algebra-2/graph-a-quadratic-function",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1
+        ]
       },
       {
         "code": "2YJ",
         "directoryId": "N.6",
         "name": "Write a quadratic function in vertex form",
         "url": "https://www.ixl.com/math/algebra-2/write-a-quadratic-function-in-vertex-form",
-        "level": "core"
+        "level": "core",
+        "example": [
+          4
+        ]
       },
       {
         "code": "URV",
         "directoryId": "N.11",
         "name": "Write a quadratic function in vertex form from its vertex and another point",
         "url": "https://www.ixl.com/math/algebra-2/write-a-quadratic-function-in-vertex-form-from-its-vertex-and-another-point",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3,
+          4
+        ]
+      },
+      {
+        "code": "L8C",
+        "directoryId": "N.2",
+        "name": "Characteristics of quadratic functions: equations",
+        "url": "https://www.ixl.com/math/algebra-2/characteristics-of-quadratic-functions-equations",
+        "level": "core",
+        "example": [
+          2
+        ]
       }
     ],
     "2-2": [
@@ -463,35 +503,50 @@
         "directoryId": "N.2",
         "name": "Characteristics of quadratic functions: equations",
         "url": "https://www.ixl.com/math/algebra-2/characteristics-of-quadratic-functions-equations",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3
+        ]
       },
       {
         "code": "S9G",
         "directoryId": "N.5",
         "name": "Graph a quadratic function",
         "url": "https://www.ixl.com/math/algebra-2/graph-a-quadratic-function",
-        "level": "core"
+        "level": "core",
+        "example": [
+          2
+        ]
       },
       {
         "code": "AJ7",
         "directoryId": "N.9",
         "name": "Domain and range of quadratic functions: equations",
         "url": "https://www.ixl.com/math/algebra-2/domain-and-range-of-quadratic-functions-equations",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3
+        ]
       },
       {
         "code": "4A7",
         "directoryId": "N.12",
         "name": "Write a quadratic function in standard form from its vertex and another point",
         "url": "https://www.ixl.com/math/algebra-2/write-a-quadratic-function-in-standard-form-from-its-vertex-and-another-point",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1
+        ]
       },
       {
         "code": "ED9",
         "directoryId": "N.15",
         "name": "Write a quadratic function from three points",
         "url": "https://www.ixl.com/math/algebra-2/write-a-quadratic-function-from-three-points",
-        "level": "core"
+        "level": "core",
+        "example": [
+          4
+        ]
       }
     ],
     "2-3": [
@@ -500,49 +555,72 @@
         "directoryId": "M.3",
         "name": "Factor out a monomial",
         "url": "https://www.ixl.com/math/algebra-2/factor-out-a-monomial",
-        "level": "prereq"
+        "level": "prereq",
+        "example": [
+          4
+        ]
       },
       {
         "code": "UB5",
         "directoryId": "M.5",
         "name": "Factor quadratics",
         "url": "https://www.ixl.com/math/algebra-2/factor-quadratics",
-        "level": "prereq"
+        "level": "prereq",
+        "example": [
+          1,
+          3
+        ]
       },
       {
         "code": "TRU",
         "directoryId": "O.2",
         "name": "Solve a quadratic equation using the zero product property",
         "url": "https://www.ixl.com/math/algebra-2/solve-a-quadratic-equation-using-the-zero-product-property",
-        "level": "core"
+        "level": "core",
+        "example": [
+          2,
+          3
+        ]
       },
       {
         "code": "CJC",
         "directoryId": "O.3",
         "name": "Solve a quadratic equation by factoring",
         "url": "https://www.ixl.com/math/algebra-2/solve-a-quadratic-equation-by-factoring",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3
+        ]
       },
       {
         "code": "G2Q",
         "directoryId": "N.10",
         "name": "Write a quadratic function from its zeros",
         "url": "https://www.ixl.com/math/algebra-2/write-a-quadratic-function-from-its-zeros",
-        "level": "core"
+        "level": "core",
+        "example": [
+          6
+        ]
       },
       {
         "code": "HPB",
         "directoryId": "N.13",
         "name": "Write a quadratic function in factored form from its x-intercepts and another point",
         "url": "https://www.ixl.com/math/algebra-2/write-a-quadratic-function-in-factored-form-from-its-x-intercepts-and-another-point",
-        "level": "core"
+        "level": "core",
+        "example": [
+          6
+        ]
       },
       {
         "code": "DP9",
         "directoryId": "O.9",
         "name": "Graph solutions to quadratic inequalities",
         "url": "https://www.ixl.com/math/algebra-2/graph-solutions-to-quadratic-inequalities",
-        "level": "core"
+        "level": "core",
+        "example": [
+          5
+        ]
       }
     ],
     "2-4": [
@@ -551,49 +629,72 @@
         "directoryId": "O.1",
         "name": "Solve a quadratic equation using square roots",
         "url": "https://www.ixl.com/math/algebra-2/solve-a-quadratic-equation-using-square-roots",
-        "level": "prereq"
+        "level": "prereq",
+        "example": [
+          1,
+          6
+        ]
       },
       {
         "code": "5VV",
         "directoryId": "K.1",
         "name": "Introduction to complex numbers",
         "url": "https://www.ixl.com/math/algebra-2/introduction-to-complex-numbers",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1
+        ]
       },
       {
         "code": "JVF",
         "directoryId": "K.2",
         "name": "Add and subtract complex numbers",
         "url": "https://www.ixl.com/math/algebra-2/add-and-subtract-complex-numbers",
-        "level": "core"
+        "level": "core",
+        "example": [
+          2
+        ]
       },
       {
         "code": "VZ8",
         "directoryId": "K.4",
         "name": "Multiply complex numbers",
         "url": "https://www.ixl.com/math/algebra-2/multiply-complex-numbers",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3
+        ]
       },
       {
         "code": "EUT",
         "directoryId": "K.8",
         "name": "Powers of i",
         "url": "https://www.ixl.com/math/algebra-2/powers-of-i",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1
+        ]
       },
       {
         "code": "7U5",
         "directoryId": "K.3",
         "name": "Complex conjugates",
         "url": "https://www.ixl.com/math/algebra-2/complex-conjugates",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3,
+          4
+        ]
       },
       {
         "code": "MBM",
         "directoryId": "K.5",
         "name": "Divide complex numbers",
         "url": "https://www.ixl.com/math/algebra-2/divide-complex-numbers",
-        "level": "core"
+        "level": "core",
+        "example": [
+          4
+        ]
       }
     ],
     "2-5": [
@@ -609,21 +710,30 @@
         "directoryId": "O.4",
         "name": "Complete the square",
         "url": "https://www.ixl.com/math/algebra-2/complete-the-square",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3
+        ]
       },
       {
         "code": "NPH",
         "directoryId": "O.5",
         "name": "Solve a quadratic equation by completing the square",
         "url": "https://www.ixl.com/math/algebra-2/solve-a-quadratic-equation-by-completing-the-square",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3
+        ]
       },
       {
         "code": "2YJ",
         "directoryId": "N.6",
         "name": "Write a quadratic function in vertex form",
         "url": "https://www.ixl.com/math/algebra-2/write-a-quadratic-function-in-vertex-form",
-        "level": "core"
+        "level": "core",
+        "example": [
+          5
+        ]
       }
     ],
     "2-6": [
@@ -646,28 +756,40 @@
         "directoryId": "O.6",
         "name": "Solve a quadratic equation using the quadratic formula",
         "url": "https://www.ixl.com/math/algebra-2/solve-a-quadratic-equation-using-the-quadratic-formula",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1
+        ]
       },
       {
         "code": "QHK",
         "directoryId": "O.8",
         "name": "Using the discriminant",
         "url": "https://www.ixl.com/math/algebra-2/using-the-discriminant",
-        "level": "core"
+        "level": "core",
+        "example": [
+          3
+        ]
       },
       {
         "code": "CEU",
         "directoryId": "O.7",
         "name": "Solve quadratic equations: word problems",
         "url": "https://www.ixl.com/math/algebra-2/solve-quadratic-equations-word-problems",
-        "level": "core"
+        "level": "core",
+        "example": [
+          4
+        ]
       },
       {
         "code": "5VV",
         "directoryId": "K.1",
         "name": "Introduction to complex numbers",
         "url": "https://www.ixl.com/math/algebra-2/introduction-to-complex-numbers",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1
+        ]
       }
     ],
     "2-7": [
@@ -690,21 +812,1007 @@
         "directoryId": "P.1",
         "name": "Solve a linear-quadratic system of equations by graphing: lines and parabolas",
         "url": "https://www.ixl.com/math/algebra-2/solve-a-linear-quadratic-system-of-equations-by-graphing-lines-and-parabolas",
-        "level": "core"
+        "level": "core",
+        "example": [
+          1,
+          4,
+          5
+        ]
       },
       {
         "code": "HVZ",
         "directoryId": "P.2",
         "name": "Solve a linear-quadratic system of equations: lines and parabolas",
         "url": "https://www.ixl.com/math/algebra-2/solve-a-linear-quadratic-system-of-equations-lines-and-parabolas",
-        "level": "core"
+        "level": "core",
+        "example": [
+          2,
+          3
+        ]
       },
       {
         "code": "DKB",
         "directoryId": "P.3",
         "name": "Solve a linear-quadratic system of equations: lines and circles",
         "url": "https://www.ixl.com/math/algebra-2/solve-a-linear-quadratic-system-of-equations-lines-and-circles",
-        "level": "core"
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "U5D",
+        "directoryId": "F.4",
+        "name": "Solve systems of linear inequalities by graphing",
+        "url": "https://www.ixl.com/math/algebra-2/solve-systems-of-linear-inequalities-by-graphing",
+        "level": "core",
+        "example": [
+          4
+        ]
+      }
+    ],
+    "3-1": [
+      {
+        "code": "DYB",
+        "directoryId": "L.1",
+        "name": "Polynomial vocabulary",
+        "url": "https://www.ixl.com/math/algebra-2/polynomial-vocabulary",
+        "level": "prereq"
+      },
+      {
+        "code": "XMK",
+        "directoryId": "Q.12",
+        "name": "Match polynomial functions and graphs using end behavior",
+        "url": "https://www.ixl.com/math/algebra-2/match-polynomial-functions-and-graphs-using-end-behavior",
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "XJU",
+        "directoryId": "Q.14",
+        "name": "Match polynomial functions and graphs",
+        "url": "https://www.ixl.com/math/algebra-2/match-polynomial-functions-and-graphs",
+        "level": "core",
+        "example": [
+          3
+        ]
+      },
+      {
+        "code": "PHD",
+        "directoryId": "A.9",
+        "name": "Average rate of change",
+        "url": "https://www.ixl.com/math/algebra-2/average-rate-of-change",
+        "level": "core",
+        "example": [
+          3
+        ]
+      }
+    ],
+    "3-2": [
+      {
+        "code": "DYB",
+        "directoryId": "L.1",
+        "name": "Polynomial vocabulary",
+        "url": "https://www.ixl.com/math/algebra-2/polynomial-vocabulary",
+        "level": "prereq"
+      },
+      {
+        "code": "9A3",
+        "directoryId": "L.2",
+        "name": "Add and subtract polynomials",
+        "url": "https://www.ixl.com/math/algebra-2/add-and-subtract-polynomials",
+        "level": "core",
+        "example": [
+          1
+        ]
+      },
+      {
+        "code": "8GN",
+        "directoryId": "L.3",
+        "name": "Multiply polynomials",
+        "url": "https://www.ixl.com/math/algebra-2/multiply-polynomials",
+        "level": "core",
+        "example": [
+          2
+        ]
+      }
+    ],
+    "3-3": [
+      {
+        "code": "8GN",
+        "directoryId": "L.3",
+        "name": "Multiply polynomials",
+        "url": "https://www.ixl.com/math/algebra-2/multiply-polynomials",
+        "level": "prereq"
+      },
+      {
+        "code": "G7Y",
+        "directoryId": "L.8",
+        "name": "Pascal's triangle",
+        "url": "https://www.ixl.com/math/algebra-2/pascals-triangle",
+        "level": "core",
+        "example": [
+          4,
+          5
+        ]
+      },
+      {
+        "code": "A7M",
+        "directoryId": "L.9",
+        "name": "Pascal's triangle and the Binomial Theorem",
+        "url": "https://www.ixl.com/math/algebra-2/pascals-triangle-and-the-binomial-theorem",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "NEU",
+        "directoryId": "L.11",
+        "name": "Binomial Theorem II",
+        "url": "https://www.ixl.com/math/algebra-2/binomial-theorem-ii",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "NJV",
+        "directoryId": "M.8",
+        "name": "Factor sums and differences of cubes",
+        "url": "https://www.ixl.com/math/algebra-2/factor-sums-and-differences-of-cubes",
+        "level": "core",
+        "example": [
+          3
+        ]
+      }
+    ],
+    "3-4": [
+      {
+        "code": "8GN",
+        "directoryId": "L.3",
+        "name": "Multiply polynomials",
+        "url": "https://www.ixl.com/math/algebra-2/multiply-polynomials",
+        "level": "prereq"
+      },
+      {
+        "code": "D6D",
+        "directoryId": "L.5",
+        "name": "Divide polynomials using synthetic division",
+        "url": "https://www.ixl.com/math/algebra-2/divide-polynomials-using-synthetic-division",
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "CHC",
+        "directoryId": "L.7",
+        "name": "Evaluate polynomials using synthetic division",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-polynomials-using-synthetic-division",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "VXE",
+        "directoryId": "Q.1",
+        "name": "Factor theorem",
+        "url": "https://www.ixl.com/math/algebra-2/factor-theorem",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "NCY",
+        "directoryId": "Q.4",
+        "name": "Factor a polynomial given a root",
+        "url": "https://www.ixl.com/math/algebra-2/factor-a-polynomial-given-a-root",
+        "level": "core",
+        "example": [
+          5
+        ]
+      }
+    ],
+    "3-5": [
+      {
+        "code": "UB5",
+        "directoryId": "M.5",
+        "name": "Factor quadratics",
+        "url": "https://www.ixl.com/math/algebra-2/factor-quadratics",
+        "level": "prereq"
+      },
+      {
+        "code": "XMK",
+        "directoryId": "Q.12",
+        "name": "Match polynomial functions and graphs using end behavior",
+        "url": "https://www.ixl.com/math/algebra-2/match-polynomial-functions-and-graphs-using-end-behavior",
+        "level": "prereq"
+      },
+      {
+        "code": "PVM",
+        "directoryId": "Q.2",
+        "name": "Find the zeros of factored polynomials",
+        "url": "https://www.ixl.com/math/algebra-2/find-the-zeros-of-factored-polynomials",
+        "level": "core",
+        "example": [
+          1,
+          2
+        ]
+      },
+      {
+        "code": "8CQ",
+        "directoryId": "Q.13",
+        "name": "Match polynomial functions and graphs using zeros",
+        "url": "https://www.ixl.com/math/algebra-2/match-polynomial-functions-and-graphs-using-zeros",
+        "level": "core",
+        "example": [
+          1,
+          2
+        ]
+      },
+      {
+        "code": "NCY",
+        "directoryId": "Q.4",
+        "name": "Factor a polynomial given a root",
+        "url": "https://www.ixl.com/math/algebra-2/factor-a-polynomial-given-a-root",
+        "level": "core",
+        "example": [
+          2
+        ]
+      }
+    ],
+    "3-7": [
+      {
+        "code": "R7X",
+        "directoryId": "W.1",
+        "name": "Function transformation rules",
+        "url": "https://www.ixl.com/math/algebra-2/function-transformation-rules",
+        "level": "prereq"
+      },
+      {
+        "code": "XMK",
+        "directoryId": "Q.12",
+        "name": "Match polynomial functions and graphs using end behavior",
+        "url": "https://www.ixl.com/math/algebra-2/match-polynomial-functions-and-graphs-using-end-behavior",
+        "level": "prereq"
+      },
+      {
+        "code": "KT8",
+        "directoryId": "W.6",
+        "name": "Describe function transformations",
+        "url": "https://www.ixl.com/math/algebra-2/describe-function-transformations",
+        "level": "core",
+        "example": [
+          3
+        ]
+      },
+      {
+        "code": "RSN",
+        "directoryId": "W.5",
+        "name": "Transformations of functions",
+        "url": "https://www.ixl.com/math/algebra-2/transformations-of-functions",
+        "level": "core",
+        "example": [
+          3,
+          4
+        ]
+      },
+      {
+        "code": "Q83",
+        "directoryId": "Q.16",
+        "name": "Even and odd functions",
+        "url": "https://www.ixl.com/math/algebra-2/even-and-odd-functions",
+        "level": "core",
+        "example": [
+          1,
+          2
+        ]
+      }
+    ],
+    "4-1": [
+      {
+        "code": "C9D",
+        "directoryId": "Y.3",
+        "name": "Classify variation",
+        "url": "https://www.ixl.com/math/algebra-2/classify-variation",
+        "level": "prereq"
+      },
+      {
+        "code": "PNY",
+        "directoryId": "Y.2",
+        "name": "Write and solve inverse variation equations",
+        "url": "https://www.ixl.com/math/algebra-2/write-and-solve-inverse-variation-equations",
+        "level": "core",
+        "example": [
+          3
+        ]
+      },
+      {
+        "code": "PXE",
+        "directoryId": "Y.5",
+        "name": "Find the constant of variation",
+        "url": "https://www.ixl.com/math/algebra-2/find-the-constant-of-variation",
+        "level": "core",
+        "example": [
+          3
+        ]
+      },
+      {
+        "code": "ULD",
+        "directoryId": "X.2",
+        "name": "Domain and range of reciprocal functions",
+        "url": "https://www.ixl.com/math/algebra-2/domain-and-range-of-reciprocal-functions",
+        "level": "core",
+        "example": [
+          5
+        ]
+      }
+    ],
+    "4-2": [
+      {
+        "code": "ULD",
+        "directoryId": "X.2",
+        "name": "Domain and range of reciprocal functions",
+        "url": "https://www.ixl.com/math/algebra-2/domain-and-range-of-reciprocal-functions",
+        "level": "prereq"
+      },
+      {
+        "code": "UB5",
+        "directoryId": "M.5",
+        "name": "Factor quadratics",
+        "url": "https://www.ixl.com/math/algebra-2/factor-quadratics",
+        "level": "prereq"
+      },
+      {
+        "code": "7JJ",
+        "directoryId": "X.1",
+        "name": "Rational functions: asymptotes and excluded values",
+        "url": "https://www.ixl.com/math/algebra-2/rational-functions-asymptotes-and-excluded-values",
+        "level": "core",
+        "example": [
+          3
+        ]
+      },
+      {
+        "code": "79Q",
+        "directoryId": "X.3",
+        "name": "Domain of rational functions",
+        "url": "https://www.ixl.com/math/algebra-2/domain-of-rational-functions",
+        "level": "core",
+        "example": [
+          4
+        ]
+      }
+    ],
+    "4-3": [
+      {
+        "code": "UB5",
+        "directoryId": "M.5",
+        "name": "Factor quadratics",
+        "url": "https://www.ixl.com/math/algebra-2/factor-quadratics",
+        "level": "prereq"
+      },
+      {
+        "code": "QKF",
+        "directoryId": "M.6",
+        "name": "Factor using a quadratic pattern",
+        "url": "https://www.ixl.com/math/algebra-2/factor-using-a-quadratic-pattern",
+        "level": "prereq"
+      },
+      {
+        "code": "37N",
+        "directoryId": "X.6",
+        "name": "Simplify rational expressions",
+        "url": "https://www.ixl.com/math/algebra-2/simplify-rational-expressions",
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "79Q",
+        "directoryId": "X.3",
+        "name": "Domain of rational functions",
+        "url": "https://www.ixl.com/math/algebra-2/domain-of-rational-functions",
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "MG2",
+        "directoryId": "X.7",
+        "name": "Multiply and divide rational expressions",
+        "url": "https://www.ixl.com/math/algebra-2/multiply-and-divide-rational-expressions",
+        "level": "core",
+        "example": [
+          5
+        ]
+      }
+    ],
+    "4-4": [
+      {
+        "code": "UB5",
+        "directoryId": "M.5",
+        "name": "Factor quadratics",
+        "url": "https://www.ixl.com/math/algebra-2/factor-quadratics",
+        "level": "prereq"
+      },
+      {
+        "code": "37N",
+        "directoryId": "X.6",
+        "name": "Simplify rational expressions",
+        "url": "https://www.ixl.com/math/algebra-2/simplify-rational-expressions",
+        "level": "prereq"
+      },
+      {
+        "code": "FEX",
+        "directoryId": "X.8",
+        "name": "Add and subtract rational expressions",
+        "url": "https://www.ixl.com/math/algebra-2/add-and-subtract-rational-expressions",
+        "level": "core",
+        "example": [
+          4
+        ]
+      },
+      {
+        "code": "YD8",
+        "directoryId": "X.10",
+        "name": "Simplify complex fractions",
+        "url": "https://www.ixl.com/math/algebra-2/simplify-complex-fractions",
+        "level": "core",
+        "example": [
+          6
+        ]
+      }
+    ],
+    "4-5": [
+      {
+        "code": "7JJ",
+        "directoryId": "X.1",
+        "name": "Rational functions: asymptotes and excluded values",
+        "url": "https://www.ixl.com/math/algebra-2/rational-functions-asymptotes-and-excluded-values",
+        "level": "prereq"
+      },
+      {
+        "code": "FEX",
+        "directoryId": "X.8",
+        "name": "Add and subtract rational expressions",
+        "url": "https://www.ixl.com/math/algebra-2/add-and-subtract-rational-expressions",
+        "level": "prereq"
+      },
+      {
+        "code": "CHP",
+        "directoryId": "X.11",
+        "name": "Solve rational equations",
+        "url": "https://www.ixl.com/math/algebra-2/solve-rational-equations",
+        "level": "core",
+        "example": [
+          1,
+          4
+        ]
+      },
+      {
+        "code": "CJC",
+        "directoryId": "O.3",
+        "name": "Solve a quadratic equation by factoring",
+        "url": "https://www.ixl.com/math/algebra-2/solve-a-quadratic-equation-by-factoring",
+        "level": "core",
+        "example": [
+          4
+        ]
+      }
+    ],
+    "5-1": [
+      {
+        "code": "EUH",
+        "directoryId": "R.1",
+        "name": "Roots of integers",
+        "url": "https://www.ixl.com/math/algebra-2/roots-of-integers",
+        "level": "prereq"
+      },
+      {
+        "code": "9TM",
+        "directoryId": "T.2",
+        "name": "Convert between rational exponents and radicals",
+        "url": "https://www.ixl.com/math/algebra-2/convert-between-rational-exponents-and-radicals",
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "KJX",
+        "directoryId": "T.1",
+        "name": "Evaluate rational exponents",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-rational-exponents",
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "U42",
+        "directoryId": "R.6",
+        "name": "Nth roots",
+        "url": "https://www.ixl.com/math/algebra-2/nth-roots",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "LQX",
+        "directoryId": "R.4",
+        "name": "Simplify radical expressions with variables I",
+        "url": "https://www.ixl.com/math/algebra-2/simplify-radical-expressions-with-variables-i",
+        "level": "core",
+        "example": [
+          4
+        ]
+      }
+    ],
+    "5-5": [
+      {
+        "code": "PS2",
+        "directoryId": "A.3",
+        "name": "Evaluate functions",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-functions",
+        "level": "prereq"
+      },
+      {
+        "code": "QQD",
+        "directoryId": "U.1",
+        "name": "Add and subtract functions",
+        "url": "https://www.ixl.com/math/algebra-2/add-and-subtract-functions",
+        "level": "prereq"
+      },
+      {
+        "code": "EKJ",
+        "directoryId": "U.8",
+        "name": "Composition of linear and quadratic functions: find an equation",
+        "url": "https://www.ixl.com/math/algebra-2/composition-of-linear-and-quadratic-functions-find-an-equation",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "P9T",
+        "directoryId": "U.7",
+        "name": "Composition of linear and quadratic functions: find a value",
+        "url": "https://www.ixl.com/math/algebra-2/composition-of-linear-and-quadratic-functions-find-a-value",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "RSP",
+        "directoryId": "U.6",
+        "name": "Composition of linear functions: find an equation",
+        "url": "https://www.ixl.com/math/algebra-2/composition-of-linear-functions-find-an-equation",
+        "level": "core",
+        "example": [
+          6
+        ]
+      }
+    ],
+    "5-6": [
+      {
+        "code": "LSG",
+        "directoryId": "D.2",
+        "name": "Graph a linear function",
+        "url": "https://www.ixl.com/math/algebra-2/graph-a-linear-function",
+        "level": "prereq"
+      },
+      {
+        "code": "UAJ",
+        "directoryId": "S.2",
+        "name": "Graph square root functions",
+        "url": "https://www.ixl.com/math/algebra-2/graph-square-root-functions",
+        "level": "prereq"
+      },
+      {
+        "code": "YLX",
+        "directoryId": "V.2",
+        "name": "Find values of inverse functions from tables",
+        "url": "https://www.ixl.com/math/algebra-2/find-values-of-inverse-functions-from-tables",
+        "level": "core",
+        "example": [
+          1
+        ]
+      },
+      {
+        "code": "K2W",
+        "directoryId": "V.4",
+        "name": "Graphs of inverse functions",
+        "url": "https://www.ixl.com/math/algebra-2/graphs-of-inverse-functions",
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "9KT",
+        "directoryId": "V.1",
+        "name": "Identify inverse functions",
+        "url": "https://www.ixl.com/math/algebra-2/identify-inverse-functions",
+        "level": "core",
+        "example": [
+          2,
+          5
+        ]
+      },
+      {
+        "code": "Z5C",
+        "directoryId": "V.3",
+        "name": "Find values of inverse functions from graphs",
+        "url": "https://www.ixl.com/math/algebra-2/find-values-of-inverse-functions-from-graphs",
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "ZRQ",
+        "directoryId": "V.5",
+        "name": "Find inverse functions and relations",
+        "url": "https://www.ixl.com/math/algebra-2/find-inverse-functions-and-relations",
+        "level": "core",
+        "example": [
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "6-1": [
+      {
+        "code": "LWE",
+        "directoryId": "Z.2",
+        "name": "Evaluate exponential functions",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-exponential-functions",
+        "level": "prereq"
+      },
+      {
+        "code": "EFD",
+        "directoryId": "Z.1",
+        "name": "Domain and range of exponential functions",
+        "url": "https://www.ixl.com/math/algebra-2/domain-and-range-of-exponential-functions",
+        "level": "core",
+        "example": [
+          1
+        ]
+      },
+      {
+        "code": "U7P",
+        "directoryId": "Z.4",
+        "name": "Graph exponential functions",
+        "url": "https://www.ixl.com/math/algebra-2/graph-exponential-functions",
+        "level": "core",
+        "example": [
+          1
+        ]
+      },
+      {
+        "code": "DBW",
+        "directoryId": "Z.3",
+        "name": "Write exponential functions: word problems",
+        "url": "https://www.ixl.com/math/algebra-2/write-exponential-functions-word-problems",
+        "level": "core",
+        "example": [
+          3
+        ]
+      },
+      {
+        "code": "TYQ",
+        "directoryId": "Z.10",
+        "name": "Exponential growth and decay: word problems",
+        "url": "https://www.ixl.com/math/algebra-2/exponential-growth-and-decay-word-problems",
+        "level": "core",
+        "example": [
+          3
+        ]
+      }
+    ],
+    "6-2": [
+      {
+        "code": "LWE",
+        "directoryId": "Z.2",
+        "name": "Evaluate exponential functions",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-exponential-functions",
+        "level": "prereq"
+      },
+      {
+        "code": "YJW",
+        "directoryId": "CC.4",
+        "name": "Compound interest: word problems",
+        "url": "https://www.ixl.com/math/algebra-2/compound-interest-word-problems",
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
+        "code": "5GU",
+        "directoryId": "CC.5",
+        "name": "Continuously compounded interest: word problems",
+        "url": "https://www.ixl.com/math/algebra-2/continuously-compounded-interest-word-problems",
+        "level": "core",
+        "example": [
+          4
+        ]
+      },
+      {
+        "code": "KLF",
+        "directoryId": "Z.8",
+        "name": "Describe linear and exponential growth and decay",
+        "url": "https://www.ixl.com/math/algebra-2/describe-linear-and-exponential-growth-and-decay",
+        "level": "core",
+        "example": [
+          2,
+          4
+        ]
+      }
+    ],
+    "6-3": [
+      {
+        "code": "LWE",
+        "directoryId": "Z.2",
+        "name": "Evaluate exponential functions",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-exponential-functions",
+        "level": "prereq"
+      },
+      {
+        "code": "8RK",
+        "directoryId": "AA.3",
+        "name": "Convert between exponential and logarithmic form: all bases",
+        "url": "https://www.ixl.com/math/algebra-2/convert-between-exponential-and-logarithmic-form-all-bases",
+        "level": "core",
+        "example": [
+          3,
+          5
+        ]
+      },
+      {
+        "code": "GBR",
+        "directoryId": "AA.4",
+        "name": "Evaluate logarithms",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-logarithms",
+        "level": "core",
+        "example": [
+          3
+        ]
+      },
+      {
+        "code": "BXU",
+        "directoryId": "CC.6",
+        "name": "Solve logarithmic equations I",
+        "url": "https://www.ixl.com/math/algebra-2/solve-logarithmic-equations-i",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "TDF",
+        "directoryId": "AA.7",
+        "name": "Evaluate logarithms using a calculator",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-logarithms-using-a-calculator",
+        "level": "core",
+        "example": [
+          4
+        ]
+      }
+    ],
+    "6-6": [
+      {
+        "code": "V2J",
+        "directoryId": "T.5",
+        "name": "Power rule",
+        "url": "https://www.ixl.com/math/algebra-2/power-rule",
+        "level": "prereq"
+      },
+      {
+        "code": "7T3",
+        "directoryId": "AA.11",
+        "name": "Power property of logarithms",
+        "url": "https://www.ixl.com/math/algebra-2/power-property-of-logarithms",
+        "level": "prereq"
+      },
+      {
+        "code": "UB5",
+        "directoryId": "M.5",
+        "name": "Factor quadratics",
+        "url": "https://www.ixl.com/math/algebra-2/factor-quadratics",
+        "level": "prereq"
+      },
+      {
+        "code": "YQY",
+        "directoryId": "CC.1",
+        "name": "Solve exponential equations by rewriting the base",
+        "url": "https://www.ixl.com/math/algebra-2/solve-exponential-equations-by-rewriting-the-base",
+        "level": "core",
+        "example": [
+          1
+        ]
+      },
+      {
+        "code": "BXU",
+        "directoryId": "CC.6",
+        "name": "Solve logarithmic equations I",
+        "url": "https://www.ixl.com/math/algebra-2/solve-logarithmic-equations-i",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "RLX",
+        "directoryId": "CC.7",
+        "name": "Solve logarithmic equations II",
+        "url": "https://www.ixl.com/math/algebra-2/solve-logarithmic-equations-ii",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "9F2",
+        "directoryId": "CC.2",
+        "name": "Solve exponential equations using common logarithms",
+        "url": "https://www.ixl.com/math/algebra-2/solve-exponential-equations-using-common-logarithms",
+        "level": "core",
+        "example": [
+          3
+        ]
+      }
+    ],
+    "7-1": [
+      {
+        "code": "ANN",
+        "directoryId": "II.4",
+        "name": "Quadrants",
+        "url": "https://www.ixl.com/math/algebra-2/quadrants",
+        "level": "prereq"
+      },
+      {
+        "code": "7CV",
+        "directoryId": "II.5",
+        "name": "Coterminal angles",
+        "url": "https://www.ixl.com/math/algebra-2/coterminal-angles",
+        "level": "core",
+        "example": [
+          1
+        ]
+      },
+      {
+        "code": "BRP",
+        "directoryId": "II.6",
+        "name": "Reference angles",
+        "url": "https://www.ixl.com/math/algebra-2/reference-angles",
+        "level": "core",
+        "example": [
+          1
+        ]
+      },
+      {
+        "code": "EDC",
+        "directoryId": "II.1",
+        "name": "Convert between radians and degrees",
+        "url": "https://www.ixl.com/math/algebra-2/convert-between-radians-and-degrees",
+        "level": "core",
+        "example": [
+          3
+        ]
+      },
+      {
+        "code": "UA5",
+        "directoryId": "II.2",
+        "name": "Radians and arc length",
+        "url": "https://www.ixl.com/math/algebra-2/radians-and-arc-length",
+        "level": "core",
+        "example": [
+          4
+        ]
+      }
+    ],
+    "7-2": [
+      {
+        "code": "NUF",
+        "directoryId": "HH.2",
+        "name": "Special right triangles",
+        "url": "https://www.ixl.com/math/algebra-2/special-right-triangles",
+        "level": "prereq"
+      },
+      {
+        "code": "BRP",
+        "directoryId": "II.6",
+        "name": "Reference angles",
+        "url": "https://www.ixl.com/math/algebra-2/reference-angles",
+        "level": "prereq"
+      },
+      {
+        "code": "6H8",
+        "directoryId": "JJ.2",
+        "name": "Evaluate trigonometric ratios using reference angles: sin, cos, tan",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-trigonometric-ratios-using-reference-angles-sin-cos-tan",
+        "level": "core",
+        "example": [
+          4
+        ]
+      },
+      {
+        "code": "PAE",
+        "directoryId": "JJ.3",
+        "name": "Evaluate trigonometric ratios using reference angles: sec, csc, cot",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-trigonometric-ratios-using-reference-angles-sec-csc-cot",
+        "level": "core",
+        "example": [
+          5
+        ]
+      },
+      {
+        "code": "ZF7",
+        "directoryId": "JJ.1",
+        "name": "Determine trigonometric ratios using points on the unit circle",
+        "url": "https://www.ixl.com/math/algebra-2/determine-trigonometric-ratios-using-points-on-the-unit-circle",
+        "level": "core",
+        "example": [
+          5
+        ]
+      }
+    ],
+    "7-3": [
+      {
+        "code": "6H8",
+        "directoryId": "JJ.2",
+        "name": "Evaluate trigonometric ratios using reference angles: sin, cos, tan",
+        "url": "https://www.ixl.com/math/algebra-2/evaluate-trigonometric-ratios-using-reference-angles-sin-cos-tan",
+        "level": "prereq"
+      },
+      {
+        "code": "EDC",
+        "directoryId": "II.1",
+        "name": "Convert between radians and degrees",
+        "url": "https://www.ixl.com/math/algebra-2/convert-between-radians-and-degrees",
+        "level": "prereq"
+      },
+      {
+        "code": "9S8",
+        "directoryId": "LL.11",
+        "name": "Find properties of sine and cosine functions",
+        "url": "https://www.ixl.com/math/algebra-2/find-properties-of-sine-and-cosine-functions",
+        "level": "core",
+        "example": [
+          3
+        ]
+      },
+      {
+        "code": "5XN",
+        "directoryId": "LL.12",
+        "name": "Write equations of sine and cosine functions from graphs",
+        "url": "https://www.ixl.com/math/algebra-2/write-equations-of-sine-and-cosine-functions-from-graphs",
+        "level": "core",
+        "example": [
+          6
+        ]
+      },
+      {
+        "code": "A7V",
+        "directoryId": "LL.14",
+        "name": "Graph sine and cosine functions",
+        "url": "https://www.ixl.com/math/algebra-2/graph-sine-and-cosine-functions",
+        "level": "core",
+        "example": [
+          6
+        ]
       }
     ]
   }

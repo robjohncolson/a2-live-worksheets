@@ -1,0 +1,641 @@
+{
+  "lesson": "6-2",
+  "title": "Exponential Models",
+  "nodes": [
+    {
+      "id": "6f44e4819666",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "How can you develop exponential models to represent and interpret situations?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "60ffcadd096f",
+      "type": "anchor",
+      "front": "Define: principal",
+      "back": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
+      "order": 2,
+      "after": [
+        "6f44e4819666"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.principal"
+    },
+    {
+      "id": "9225f41237f4",
+      "type": "anchor",
+      "front": "Define: interest rate",
+      "back": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
+      "order": 3,
+      "after": [
+        "6f44e4819666"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.interest rate"
+    },
+    {
+      "id": "ca32b0b8f9f9",
+      "type": "anchor",
+      "front": "Define: compounding periods",
+      "back": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
+      "order": 4,
+      "after": [
+        "6f44e4819666"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.compounding periods"
+    },
+    {
+      "id": "c5c068fe1442",
+      "type": "anchor",
+      "front": "Define: compounded continuously",
+      "back": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
+      "order": 5,
+      "after": [
+        "6f44e4819666"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.compounded continuously"
+    },
+    {
+      "id": "531998351823",
+      "type": "anchor",
+      "front": "Define: natural base e",
+      "back": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
+      "order": 6,
+      "after": [
+        "6f44e4819666"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.natural base e"
+    },
+    {
+      "id": "63746521d5ba",
+      "type": "anchor",
+      "front": "Quiz item 3 asks?",
+      "back": "Item 3: Micah invests $5,280 at 4.2% compounded monthly; complete A(t) = __(1 + __)^__ from the tiles 5280, 5501, 5298.48 / 0.042/12, 0.042/6, 0.042 / 12t, t, t/12. Item 4: Steve invests $1,800 at 3.7% compounded continuously; value after 10 years (A $2,466, B $2,589, C $2,601, D $2,606). …",
+      "order": 7,
+      "after": [
+        "60ffcadd096f",
+        "9225f41237f4",
+        "ca32b0b8f9f9",
+        "c5c068fe1442",
+        "531998351823"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "5c185ac9cd99",
+      "type": "anchor",
+      "front": "Quiz item 3 answer?",
+      "back": "Item 3: A(t) = 5280(1 + 0.042/12)^(12t). Item 4: D, 1800e^(0.37) = $2,605.92 (A is simple interest, B annual, C quarterly compounding). Item 5: 80; 89; linear; exponential; linear; exponential. (Verify against the TE key on quiz day.)",
+      "order": 8,
+      "after": [
+        "60ffcadd096f",
+        "9225f41237f4",
+        "ca32b0b8f9f9",
+        "c5c068fe1442",
+        "531998351823"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "6e333dd2ebb2",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need?",
+      "back": "read P, r and n from the words and write A = P(1 + r/n)^(nt), with n = 12 for monthly (Example 2A; Try It 2; IXL YJW)",
+      "order": 9,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "210127b75456",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (2)",
+      "back": "write r as a decimal (4.2% = 0.042) and put n in both places: r/n inside, nt in the exponent (Example 2; practice 12 is the 'used 12 for quarterly' error)",
+      "order": 10,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "827e931bc130",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (3)",
+      "back": "A = Pe^(rt) for continuous compounding, with e raised to the whole product rt on the calculator (Example 4 common error; Try It 4; IXL 5GU)",
+      "order": 11,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "78823ff30d29",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (4)",
+      "back": "for the bonus (item 5): simple interest A = P(1 + rt) is linear, compounding is exponential; compare values after 1 year and after 6 years (packet Practice: Lena, $5,000, 8 years, a structural parallel)",
+      "order": 12,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "07414a2f55f9",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Town of 4,200 in 1970 decreasing 2.4% per year: y = 4200(0.976)^t, about 0.605% per quarter. Example 1 (cut). Left off the short form; the strongest SAT item on the quiz. Example 2B's power-of-a-power rewrite is the same move in reverse.",
+      "order": 13,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "80fdc1ed6b69",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "y = a*b^x through (3,5) and (4,10): which point is also on the graph? D (5,20). Example 5 (cut). Left off the short form.",
+      "order": 14,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "15a128f7a98b",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Build the monthly compound interest model from tiles: Example 2 (Try It 2 is the same model). Graded, 10 points.",
+      "order": 15,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "125e6cb17a09",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Continuously compounded value after 10 years: Example 4 (Try It 4). Graded, 10 points.",
+      "order": 16,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "7c951078bdd4",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Compare 5% simple, 4.5% continuous and 4.75% yearly on $8,000 for 6 years; name linear vs exponential: Examples 2 and 4 plus the packet Practice (structural parallel). +5 bonus.",
+      "order": 17,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "e549c0da1612",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Understand compound interest (Tamira, $5,000 at 4% for 3 years: A annually, quarterly, monthly; B the annual growth rate of each) · DOK 1, 2, 3 · practice 16-19, 12, 33 · Quiz item 3 (the monthly model from tiles) and the yearly-compounding third of item 5. …",
+      "order": 18,
+      "after": [
+        "63746521d5ba",
+        "5c185ac9cd99"
+      ],
+      "minute": null,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "9b9a2d6f1529",
+      "type": "step",
+      "front": "Example 4: ?",
+      "back": "Find continuously compounded interest (Regina, $12,600 at 3.2% for 12 years: $18,499) · DOK 2, 3 · practice 20-21, 29, 31-32, 27 · Quiz item 4 directly and the continuous third of item 5; it also holds the DOK 3 (practice 27, the packet's exit question). …",
+      "order": 19,
+      "after": [
+        "e549c0da1612"
+      ],
+      "minute": null,
+      "source": "examples[n=4]"
+    },
+    {
+      "id": "ad08f3bbf953",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Why is 0.04 used in the formula for (r) rather than 4?",
+      "back": "Listen for: The rate is 4%; percent means out of 100 and (4÷100=0.04).",
+      "order": 20,
+      "after": [
+        "e549c0da1612"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "27: 294 Understand & Apply",
+          "item": 0,
+          "line": 263
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "25ec71733d45",
+      "type": "cue",
+      "front": "Example 2 · Check student thinking: When banks advertise an interest rates of 3% interest compounded quarterly, do they really pay 3% every quarter? Explain.",
+      "back": "Listen for: No; 3% is the annual rate. The bank only pays (1/4) of the annual rate each quarter.",
+      "order": 21,
+      "after": [
+        "ad08f3bbf953"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 2,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "27: 294 Understand & Apply",
+          "item": 0,
+          "line": 268
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "6b9e1f916ddf",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What currency could be used to apply this same illustration to semi-annually?",
+      "back": "Listen for: half dollar",
+      "order": 22,
+      "after": [
+        "25ec71733d45"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 294 Understand & Apply",
+          "item": 0,
+          "line": 274
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "fbf4867abca4",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Using complete sentences, write a description of what happens when interest is compounded monthly.",
+      "back": "Listen for: Check students' work.",
+      "order": 23,
+      "after": [
+        "6b9e1f916ddf"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 294 Understand & Apply",
+          "item": 1,
+          "line": 276
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "7b2480d297ab",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: The words in the example that specify time all end in -ly. How does that ending change the meaning of the words?",
+      "back": "Listen for: It changes the meaning from a single time unit to a frequency of occurrence.",
+      "order": 24,
+      "after": [
+        "fbf4867abca4"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 294 Understand & Apply",
+          "item": 2,
+          "line": 279
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "2383158c8ea4",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What things might you do or might happen annually? semi-annually? quarterly? monthly? weekly? daily?",
+      "back": "Listen for: Answers will vary.",
+      "order": 25,
+      "after": [
+        "7b2480d297ab"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 294 Understand & Apply",
+          "item": 3,
+          "line": 281
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "fc8cb8f7ca59",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: What is the value of (n) when the period is semi-annual?",
+      "back": "Listen for: 2; Semi- means half, so when interest is compounded semi-annually, it is applied every half year, or two times per year.",
+      "order": 26,
+      "after": [
+        "2383158c8ea4"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 294 Understand & Apply",
+          "item": 4,
+          "line": 284
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c1a3c1c387db",
+      "type": "trap",
+      "front": "Example 4 · Teacher prompt: What misconception should I watch for?",
+      "back": "Be sure that when you evaluate (e^(0.032(12))) you either simplify 0.032(12) as 0.384 first, or use parentheses to ensure that (e) is raised to the entire product, rather than just the first factor.",
+      "order": 27,
+      "after": [
+        "9b9a2d6f1529"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.inlineCommonError[0]",
+      "teaching": {
+        "example": 4,
+        "kind": "trap",
+        "category": "InlineCommonError",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 4,
+          "category": "InlineCommonError",
+          "block": 0,
+          "item": 0,
+          "line": 357,
+          "page": "29: 296 Understand & Apply"
+        },
+        "promptKey": "examples[n=4].teacherPrompts.inlineCommonError[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "b949f2a987c9",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "Adam and Jacinta open an account on the same day, each with $8,000 for 20 years. Adam's interest is compounded quarterly at 1.25%; Jacinta's is compounded continuously at 1.25%. Who do you predict will have more money after 20 years? Explain your reasoning.",
+      "order": 28,
+      "after": [
+        "9b9a2d6f1529"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "4376bd60e4bf",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "Jacinta. Adam: 8000(1 + 0.0125/4)^80 = $10,268.20; Jacinta: 8000e^(0.0125*20) = 8000e^0.25 = $10,272.20. TE: continuously compounded interest increases at a faster rate. Uses both kept Examples at once and asks for a prediction with a reason (MP.3), which no IXL skill does. …",
+      "order": 29,
+      "after": [
+        "9b9a2d6f1529"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "2836a3ab988e",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Juan is studying exponential growth of bacteria cultures, each controlled to a specific growth rate. Four cultures start with 10,000 bacteria: A grows 8% per day for 1 day, B 4% for 2 days, C 2% for 4 days, D 1% for 8 days. Students complete the table of final numbers (10,800; 10,816; 10,824; 10,828).",
+      "order": 30,
+      "after": [
+        "6f44e4819666"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "db97ebd4dc7f",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. What is the relationship between the daily growth rate and the time in days for each culture? (Each product is 0.08.)",
+      "order": 31,
+      "after": [
+        "2836a3ab988e"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "9ea1cd46bc2a",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Look for Relationships. Would you expect a culture with a growth rate of 1/2% and a time of 16 days to have more or fewer cells than the others in the table? Explain. (More: 10,000(1.005)^16 = 10,831.)",
+      "order": 32,
+      "after": [
+        "2836a3ab988e"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "8ae8333fae3d",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "Do you expect the final number of bacteria to be the same for each culture? Explain. → No; although the product of the growth rate per day and the number of days is constant, the final number of bacteria will be different because the growth rate is compounded.",
+      "order": 33,
+      "after": [
+        "2836a3ab988e"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "e4c45d38338e",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "How do the growth rate of 1/2% and the time of 16 days fit the table? → They continue the patterns in the table. The growth rate is halved in each row, the number of days is doubled, and the product of the two values is 0.08.",
+      "order": 34,
+      "after": [
+        "8ae8333fae3d"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "87c030c758e6",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "How would the result change with a rate of decay rather than one of growth? → With growth, a lower rate over a longer time gives more bacteria; with decay, a lower rate over a longer time means fewer bacteria die.",
+      "order": 35,
+      "after": [
+        "e4c45d38338e"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "343102932f4a",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "Did the result of the activity match your expectation before starting the activity? → Sample: No; I thought the number of bacteria would be constant because the product of the growth rate and the number of days was constant. Then introduce exponential models for compound interest.",
+      "order": 36,
+      "after": [
+        "87c030c758e6"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "f3906a379798",
+      "type": "cue",
+      "front": "Habits of Mind, Generalize: ask?",
+      "back": "How would the numbers of final bacteria change if the initial number were doubled in each culture? Explain. → They would also double, because the exponent applies only to the growth factor, not the initial number.",
+      "order": 37,
+      "after": [
+        "343102932f4a"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "a1b69bf967d2",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The TE's sample answers print periods as thousands separators (10.800 means 10,800), and culture D is truncated: 10,000(1.01)^8 = 10,828.57, so 10,829 when rounded. …",
+      "order": 38,
+      "after": [
+        "2836a3ab988e"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "55bf7e2e8a07",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "YJW Compound interest: word problems",
+      "order": 39,
+      "after": [
+        "e549c0da1612"
+      ],
+      "minute": null,
+      "source": "ixl.YJW"
+    },
+    {
+      "id": "d0d03109e14f",
+      "type": "anchor",
+      "front": "IXL for example 4?",
+      "back": "5GU Continuously compounded interest: word problems",
+      "order": 40,
+      "after": [
+        "9b9a2d6f1529"
+      ],
+      "minute": null,
+      "source": "ixl.5GU"
+    },
+    {
+      "id": "e0e71dbb2205",
+      "type": "anchor",
+      "front": "IXL for example 2? (2)",
+      "back": "KLF Describe linear and exponential growth and decay",
+      "order": 41,
+      "after": [
+        "e549c0da1612"
+      ],
+      "minute": null,
+      "source": "ixl.KLF"
+    }
+  ]
+}

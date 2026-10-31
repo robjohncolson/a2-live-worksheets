@@ -1,10 +1,37 @@
 # Continuation Prompt — Algebra 2 Desk, SY26-27
 
-Updated 2026-10-22 (Thursday of week 7). Paste into the next Claude Code / Codex session after
+Updated 2026-10-31 (Saturday after week 8). Paste into the next Claude Code / Codex session after
 `git pull`. Read `CLAUDE.md`, `A2_FORK_PLAN.md`, `A2_FORK_BASELINE.md` and the specs under
 `docs/a2-*-spec.md` first. Everything below is deployed unless marked otherwise.
 
-## What changed 2026-10-07 to 10-22 (read this first)
+## What changed 2026-10-30/31 (read this first)
+
+1. **Every remaining year-plan lesson has a fast lesson** built to `docs/a2-fast-lesson-spec.md`
+   (the PLC's Oct 20 shape written down: at most two Savvas Examples chosen for the lesson-quiz
+   items, Web Jams on the starred IXL skills, the Savvas quiz; SmartScore 70 replaces the quiz).
+   Per lesson, in `../Lesson_planning/`: `a2_<L>_fast.tex` + `.pdf` (3-4 pages on
+   `fast-packet-template.tex`) and `a2_<L>_quiz_fast.tex` + `.pdf` (the TE quiz items with their
+   Savvas numbers, a scoring proposal, an answer key). In this repo: a `content/a2/lesson-prep.json`
+   entry (keep/cut proposal, quiz focus, DOK 3, IXL per example, opener questions), a
+   `content/a2/lesson-objectives.json` entry (packet goals verbatim) and, for Topics 3+, the
+   authored IXL codes in `data/a2-lesson-skills.json`; `lesson-trees/` and `teacher-prompts/` are
+   regenerated. Lessons: 2-1, 2-2, 2-3, 2-6, 2-7, 3-1, 3-2, 3-4, 3-5, 4-2, 4-3, 4-4, 4-5, 5-1,
+   5-5, 5-6, 6-1, 6-2, 6-3, 6-6, 7-1, 7-2, 7-3 and the brief 1-4, 2-4, 2-5, 3-3, 3-7, 4-1. 1-5
+   and 1-6 got objectives entries, 1-6 a prep entry, 1-5's prep was aligned to its fast packet.
+   **Every keep/cut is a proposal until the PLC rules**; `docs/a2-fast-lessons-status.md` lists
+   each lesson's proposal and the decisions left to the teacher (which items count, which skills
+   are starred, a few Example swaps). Record a ruling in the prep entry's `status` line.
+2. **How it was checked:** `python tools/check_fast_packet.py` (planning repo) lints every packet
+   and quiz; an independent agent verified each lesson's mathematics and rendered pages; Codex
+   (gpt-6-astra, `cross-agent.py --task-type review --read-only`) reviewed every lesson twice,
+   with a fix round between; the merge into this repo goes through
+   `scripts/merge-fast-lesson-drafts.mjs`. Root suite: the same four pre-existing failures as
+   before (`a2-fork-freeze`, `a2-objectives-display`, `a2-secrets`, `draft-card-decks`); server
+   suite green. `tests/a2-lesson-skills.test.js` now accepts Topics 3+ and pins 2-1 with L8C last.
+3. **Not pushed.** The commits are local in both repos; push after the teacher looks at one
+   packet (2-1 is next in the plan, due Nov 19/20) and the Topic 1 assessment week is over.
+
+## What changed 2026-10-07 to 10-22 (still true unless superseded above)
 
 1. **The Class Log phone talks to roster-server** (`school/class-log`, a sibling folder of this
    repo; the Kotlin app records each block). Every phone route is `Bearer CLASS_LOG_TOKEN`

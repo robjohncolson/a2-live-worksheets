@@ -1,0 +1,581 @@
+{
+  "lesson": "7-1",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What statement can you make about an angle by looking at its graph?",
+      "answer": "You can give a range of 90° that the angle measure will fall.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "14: 345 Understand & Apply",
+        "item": 0,
+        "line": 164
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What does it mean when you say an angle is in standard position?",
+      "answer": "The vertex of the angle is at the origin; the initial side is the positive x-axis, and the terminal side is the other ray that forms the angle.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "14: 345 Understand & Apply",
+        "item": 1,
+        "line": 166
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do you know that the triangle you formed is a right triangle?",
+      "answer": "The line drawn to the point is a vertical line, so it is perpendicular to the x-axis.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 346 Example 1 continued",
+        "item": 0,
+        "line": 210
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What do you notice about the positive and negative measures of an angle?",
+      "answer": "The sum of the absolute values of the measures is 360°.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 346 Example 1 continued",
+        "item": 1,
+        "line": 212
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "How is measuring a positive angle different than measuring a negative angle?",
+      "answer": "When you measure a positive angle, you start at the initial side and rotate counterclockwise until you reach the terminal side. When you measure a negative angle, you start at the initial side and rotate clockwise until you reach the terminal side.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 346 Example 1 continued",
+        "item": 2,
+        "line": 214
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[3]",
+      "kind": "question",
+      "question": "The measure of the angle could be ((120+360k)°), where k is any natural number. How many coterminal angles are there?",
+      "answer": "Because k could be any natural number, there are an infinite number of coterminal angles.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 346 Example 1 continued",
+        "item": 3,
+        "line": 216
+      }
+    },
+    {
+      "example": 1,
+      "category": "CommonError",
+      "key": "examples[n=1].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 1 Students may confuse the direction of the positive and negative angle measures and write the wrong sign with the measure. Have students trace the angle with their finger so they can see which direction it is going. Positive angles start at the initial side and rotate counterclockwise toward the positive part of the y-axis, and negative angles rotate clockwise toward the negative part of the y-axis.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "CommonError",
+        "block": 0,
+        "page": "15: 346 Example 1 continued",
+        "item": 0,
+        "line": 223
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Is it possible for an angle measured in radians to be negative?",
+      "answer": "Yes; an angle measured in radians can be positive or negative, like degree measures. When negative angle measures in degrees are converted to angle measures in radians, they are still negative.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples printed on source page 14; placed outside the spanning Example 1. Go back, ESSENTIAL QUESTION, SOLUTION controls. Additional Examples are available at SavvasRealize.com. ADDITIONAL EXAMPLE 3 Convert 680° to radians. (680°·(π)/(180°)=(34π)/9) radians Example 3 Students convert degree measures greater than 360° to radians.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 346 Example 1 continued",
+        "item": 0,
+        "line": 233
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What is the first step when finding the radius, given the radian measure and the length of the intercepted arc?",
+      "answer": "Rewrite the formula for calculating the radian measure so that it is solved for the radius.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4 The hand of a clock moves through an angle of ((π)/2). The distance the tip of the clock hand travels is 9.4 in. What is the length of the clock hand? (radius=(length of intercepted arc)/(Radian Measure)=(9.4)/((π)/2)≈6) The length of the clock hand is about 6 in. Example 4 Students find the radius, given the radian measure and the length of the intercepted arc.",
+        "figures": [
+          {
+            "kind": "diagram",
+            "description": "Black circle, blue center point, orange radii to top and right marking central angle pi/2. Upper right quarter arc labeled9.4 inches. No ticks or axes."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "15: 346 Example 1 continued",
+        "item": 0,
+        "line": 244
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Why does the name unit circle accurately describe the circle?",
+      "answer": "The radius of the circle is 1 unit.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "16: 347 Understand & Apply",
+        "item": 0,
+        "line": 268
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How can you determine in which quadrant the terminal side of an angle with a given radian measure lies?",
+      "answer": "Compare the given radian measure to 0, ((π)/2), (π), ((3π)/2), and (2π). Angle measures between 0 and ((π)/2) are in Quadrant I. Angle measures between ((π)/2) and (π) are in Quadrant II. Angle measures between (π) and ((3π)/2) are in Quadrant III. Angle measures between ((3π)/2) and (2π) are in Quadrant IV.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "16: 347 Understand & Apply",
+        "item": 1,
+        "line": 270
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine in which quadrant an angle that measures (-(5π)/6) lies?",
+      "answer": "Add (2π) to the angle measure and then compare to 0, ((π)/2), (π), ((3π)/2), and (2π).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "16: 347 Understand & Apply",
+        "item": 0,
+        "line": 305
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What does it mean to terminate?",
+      "answer": "To terminate something means to end it.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 1) LISTENING BEGINNING Describe situations that use the word terminal, such as going to an airport terminal, or a having a terminal illness. Ask students what these situations have in common.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 347 Understand & Apply",
+        "item": 0,
+        "line": 316
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "One ray of an angle in standard position is called the initial side. Why is the other ray called the terminal side?",
+      "answer": "You can think of the initial side as the side where the angle starts and the terminal side as the side where the angle ends.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 1) LISTENING BEGINNING Describe situations that use the word terminal, such as going to an airport terminal, or a having a terminal illness. Ask students what these situations have in common.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 347 Understand & Apply",
+        "item": 1,
+        "line": 318
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Why is it important to do some things in a standard way?",
+      "answer": "so the results are the same each time; For example, when using standard ruler, 8 inches is always the same length.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 1) LISTENING BEGINNING Describe situations that use the word terminal, such as going to an airport terminal, or a having a terminal illness. Ask students what these situations have in common.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 347 Understand & Apply",
+        "item": 2,
+        "line": 321
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "What makes an angle in standard position on a coordinate plane standard?",
+      "answer": "It is always positioned so one of its rays (the initial side) is found along the x-axis and the vertex is at the origin.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 1) LISTENING BEGINNING Describe situations that use the word terminal, such as going to an airport terminal, or a having a terminal illness. Ask students what these situations have in common.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 347 Understand & Apply",
+        "item": 3,
+        "line": 323
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "Do co-terminal angles always share a side?",
+      "answer": "Yes; the initial side and the terminal side are always shared.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 1) LISTENING BEGINNING Describe situations that use the word terminal, such as going to an airport terminal, or a having a terminal illness. Ask students what these situations have in common.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 347 Understand & Apply",
+        "item": 4,
+        "line": 326
+      }
+    },
+    {
+      "example": 1,
+      "category": "ELLAddendum",
+      "key": "examples[n=1].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "Can two angles that are co-terminal both be negative?",
+      "answer": "Yes; subtracting 360° from a negative angle will result in two negative co-terminal angles.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 1) LISTENING BEGINNING Describe situations that use the word terminal, such as going to an airport terminal, or a having a terminal illness. Ask students what these situations have in common.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 1,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "16: 347 Understand & Apply",
+        "item": 5,
+        "line": 328
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How do you know that (2π) radians is equal to 360°?",
+      "answer": "The arc length of a 360° angle is the circumference of the circle. The circumference of a unit circle is (2π) units. Because 1 radian subtends an arc length of 1 unit, the radian measure of the 360° angle is ((2π)/1=2π) radians.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "17: 348 Understand & Apply",
+        "item": 0,
+        "line": 334
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "Why do you multiply the number of radians by ((180°)/(π)) when converting radians to degrees?",
+      "answer": "(π) radians is equal to 180°. If you divide both sides by (π), you find that 1 radian (=(180°)/(π)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "17: 348 Understand & Apply",
+        "item": 1,
+        "line": 336
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What method can you use to rewrite a radian measure in degrees?",
+      "answer": "You can multiply the radian measure by the conversion factor ((180°)/(π)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "17: 348 Understand & Apply",
+        "item": 0,
+        "line": 369
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "Why is 6,720 km substituted for the radius?",
+      "answer": "The satellite orbits 320 km above Earth's surface. The radius of the satellite's orbit is equal to the radius of Earth plus the distance from the satellite to Earth's surface.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "18: 349 Understand & Apply",
+        "item": 0,
+        "line": 380
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "How can you use the formula for the radian measure to find the distance the satellite travels?",
+      "answer": "Since you know the radius length and the angle measure, you can solve the formula for radian measure for the length of the intercepted arc, substitute the values of the angle measure and the length of the radius, and simplify.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "18: 349 Understand & Apply",
+        "item": 1,
+        "line": 382
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How could you determine the angle the satellite passes through while being tracked if you were given the distance the satellite travels while being tracked?",
+      "answer": "You could substitute the distance the satellite is tracked and the radius of the satellite's orbit and solve for the angle measure.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "18: 349 Understand & Apply",
+        "item": 0,
+        "line": 406
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do you know that (sinθ=y) and (cosθ=x) on a unit circle?",
+      "answer": "Using a reference triangle and trigonometric ratios, you know that (sinθ=y/r) and (cosθ=x/r), where r is equal to the radius of the circle. Because this is a unit circle, (r=1), so (sinθ=y) and (cosθ=x).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_7-1_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "19: 350 Understand & Apply",
+        "item": 0,
+        "line": 412
+      }
+    }
+  ]
+}

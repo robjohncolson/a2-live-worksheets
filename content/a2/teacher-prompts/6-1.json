@@ -1,0 +1,614 @@
+{
+  "lesson": "6-1",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Consider the functions (f(x)=2^x) and (g(x)=5(1/2)^x). What information tells you whether the functions are increasing or decreasing?",
+      "answer": "the value of (b); If (b>1), the function is increasing and if (b<1), the function is decreasing.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "14: 285 Understand & Apply",
+        "item": 0,
+        "line": 166
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do the asymptote and the (y)-intercept of (g(x)) compare to the asymptote and the (y)-intercept of (f(x))?",
+      "answer": "The asymptote is the same for both functions, the (x)-axis. The (y)-intercept of (f(x)) is 1. The (y)-intercept of (g(x)) is 0.",
+      "variant": "additional",
+      "notes": [
+        "Printed teacher answer says both asymptotes are the (x)-axis; likely (g) has asymptote (y=1), as stated in the worked solution. Additional Examples are available at SavvasRealize.com. Digital controls: Go back, ESSENTIAL QUESTION, SOLUTION."
+      ],
+      "context": {
+        "text": "Additional Examples. ADDITIONAL EXAMPLE 2 Graph the function (g(x)=-4^x+1). Describe the graph in terms of transformations of the parent function (f(x)=4^x). Since the sign of (a) changed, the function is reflected across the (x)-axis. By adding a constant (k=1), the function shifts vertically by 1 unit. The (y)-intercept changes from 1 to (-1) due to the reflection, then is translated vertically 1 unit to ((0,0)) due to the value of (k). The horizontal asymptote changes from (y=0) to (y=1). Example 2 Help students transition to graphing transformations of exponential functions with this additional example.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Axes x and y, x window -5 to 5 with labels -4,-2,2,4, y window -10 to 10 with labels every 2 excluding 0; unit grid. Red f=4^x rises through (0,1), approaches y=0 on left; blue g=-4^x+1 falls through (0,0), approaches y=1 on left. Curves have arrows at left and at top/bottom respectively; f and g labeled by right ends. Positive-axis arrows, O at origin."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 285 Understand & Apply",
+        "item": 0,
+        "line": 176
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Give a scenario that could be modeled by this function.",
+      "answer": "Sample: A stock is purchased for $35. Its value increases by 50% each year.",
+      "variant": "additional",
+      "notes": [
+        "Digital controls: Go back, ESSENTIAL QUESTION, SOLUTION."
+      ],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4A Consider the function (f(x)=35(1.5)^x). What is the rate of growth or the rate of decay for the function? Since (1.5>1), this is a rate of growth. The rate of growth is (1.5-1=0.5), so (r=0.5). Example 4 Help students transition to modeling exponential functions with this additional example.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "14: 285 Understand & Apply",
+        "item": 0,
+        "line": 185
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "The point ((1,3)) is on (f(x)). How does a reflection tell you what point will be on (g(x))?",
+      "answer": "Because (g(x)) is a reflection of (f(x)) across the (x)-axis, the point ((1,-3)) will be on the graph of (g(x)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "15: 286 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 231
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How does a translation of (f(x)-4) tell you the new point on (h(x))?",
+      "answer": "All points on the graph will be shifted down 4 units.",
+      "variant": "example",
+      "notes": [
+        "Example 2 is Powered by Desmos. Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "15: 286 Example 1 continued; Example 2",
+        "item": 1,
+        "line": 233
+      }
+    },
+    {
+      "example": 2,
+      "category": "InlineCommonError",
+      "key": "examples[n=2].teacherPrompts.inlineCommonError[0]",
+      "kind": "trap",
+      "question": "What misconception should I watch for?",
+      "answer": "You may confuse reflection across the axes. Recall that if the (y)-value is multiplied by (-1), as in this case, with (g(x)=-3^x), the reflection is across the (x)-axis. Each (y)-value is replaced by its opposite.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 2,
+        "category": "InlineCommonError",
+        "block": 0,
+        "item": 0,
+        "line": 248,
+        "page": "15: 286 Example 1 continued; Example 2"
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "What word related to parent could be used to describe a transformed function?",
+      "answer": "child",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 2 WRITING BEGINNING. Direct students to consider the relationship between the parent function and the transformed function in each graph. Have students use a Venn diagram to compare and contrast the everyday use of the term parent with the mathematical use of the term.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 286 Example 1 continued; Example 2",
+        "item": 0,
+        "line": 272
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "Why is (f) considered the parent of (g)?",
+      "answer": "(g) is a reflection of (f), as children are often a reflection of their parents.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 2 WRITING BEGINNING. Direct students to consider the relationship between the parent function and the transformed function in each graph. Have students use a Venn diagram to compare and contrast the everyday use of the term parent with the mathematical use of the term.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 286 Example 1 continued; Example 2",
+        "item": 1,
+        "line": 275
+      }
+    },
+    {
+      "example": 2,
+      "category": "ELLAddendum",
+      "key": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "How are the words related?",
+      "answer": "Reflections, translations, and shifts are all types of transformations. Translation and shift are synonymous.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 2 WRITING BEGINNING. Direct students to consider the relationship between the parent function and the transformed function in each graph. Have students use a Venn diagram to compare and contrast the everyday use of the term parent with the mathematical use of the term.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 2,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "15: 286 Example 1 continued; Example 2",
+        "item": 2,
+        "line": 278
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What is the relationship between the numbers on the left side of the graphic and the expressions on the right side of the graphic?",
+      "answer": "On the left side of the graphic, the number of years since 2010 increases by 1 each row. On the right side of the graphic, those increases become the exponent of 1.013 in the numerical expression that models the population.",
+      "variant": "example",
+      "notes": [
+        "Printed teacher answer says 2010; likely 2020, as in the student example."
+      ],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "16: 287 Example 3",
+        "item": 0,
+        "line": 284
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why is the growth factor 1.013 rather than 0.013?",
+      "answer": "The growth rate is 1.3%. But the 1 in the ones place of the growth factor accounts for the size of the original population.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "16: 287 Example 3",
+        "item": 1,
+        "line": 287
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How can you tell by the description of the value of the printer whether (0<b<1) or (b>1)?",
+      "answer": "(0<b<1) because the value of the printer is decreasing.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "16: 287 Example 3",
+        "item": 0,
+        "line": 317
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[1]",
+      "kind": "question",
+      "question": "Does your answer make sense? Explain.",
+      "answer": "Sample: The original value of the printer was $35,750 and the value decreases at a rate of 22% per year. That is a decrease of $7,865 the first year. If the value decreased at a constant rate, it would be less than $13,000 after three years. But each year, the value of the printer is less than it was the previous year. This means that 22% of the value is less in any given year than it was the previous year. So each year, the value decreases by a smaller amount than it did the previous year, making $16,965 a reasonable answer.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "16: 287 Example 3",
+        "item": 1,
+        "line": 319
+      }
+    },
+    {
+      "example": 3,
+      "category": "CommonError",
+      "key": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 3c Some students may subtract the value after 6 years from the original value. Emphasize that the amount of decrease in the second 3 years is found by subtracting the value after 6 years from the value after 3 years.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 3,
+        "category": "CommonError",
+        "block": 0,
+        "page": "16: 287 Example 3",
+        "item": 0,
+        "line": 322
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "What is an exponential function that models the situation?",
+      "answer": "1. (y=45(1.045)^x) 2. (y=240(0.93)^x) 3. (y=13(0.75)^x)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking. USE WITH EXAMPLE 3 Have students explore writing exponential growth and decay models, given the initial value and the rate of growth or the rate of decay. 1. initial value: 45; rate of growth: 4.5% 2. initial value: 240; rate of decay: 7% 3. initial value: 13; rate of decay: 25%",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "16: 287 Example 3",
+        "item": 0,
+        "line": 332
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "For Exercise 1, write a real-world context for this function.",
+      "answer": "Sample: The population of a herd of cattle is 45 in 2010. The population grows at a rate of 4.5% every year. Write a function to model the population of the herd of cattle.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking. USE WITH EXAMPLE 3 Have students explore writing exponential growth and decay models, given the initial value and the rate of growth or the rate of decay. 1. initial value: 45; rate of growth: 4.5% 2. initial value: 240; rate of decay: 7% 3. initial value: 13; rate of decay: 25%",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "16: 287 Example 3",
+        "item": 1,
+        "line": 334
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Why is (0<x<12) a reasonable domain?",
+      "answer": "After 12 years, vehicles are not worth much because of their mileage.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Connect Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "17: 288 Concept; Example 4",
+        "item": 0,
+        "line": 340
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "The value of another car can be modeled by (y=31·0.77^x). How does the value of this car compare to that of the value of the car given in the example?",
+      "answer": "Originally the second car is worth more because ($31,000>$24,000). But the value of the second decreases at a higher rate of 23% per year.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Connect Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "17: 288 Concept; Example 4",
+        "item": 1,
+        "line": 342
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How would the function change if 250 hawks were released and their population increased by 5.5% each year?",
+      "answer": "(f(x)=250(1.055)^x)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "17: 288 Concept; Example 4",
+        "item": 0,
+        "line": 377
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What part of an exponential function (f(x)=a· b^x) determines how rapidly the function will grow?",
+      "answer": "The value of (b) determines how rapidly an exponential function grows. For (b>1), the larger (b) is, the more rapidly the function will grow.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Implement Tasks That Promote Reasoning and Problem Solving",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "18: 289 Example 4 continued; Example 5",
+        "item": 0,
+        "line": 394
+      }
+    },
+    {
+      "example": 5,
+      "category": "GeneralizeETP",
+      "key": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How else could you compare the two functions besides comparing their growth factors?",
+      "answer": "You could graph the two functions on the same coordinate grid to compare.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Implement Tasks That Promote Reasoning and Problem Solving",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 5,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "18: 289 Example 4 continued; Example 5",
+        "item": 1,
+        "line": 396
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Is it possible to determine when the value of the painting will surpass the value of the sculpture?",
+      "answer": "Yes; You could graph the sculpture value function on the same coordinate grid as the graph of the Painting's value, and locate the point of intersection of the graphs. The value of the painting will be larger than the value of the sculpture for all (x)-values to the right of the intersection point.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "18: 289 Example 4 continued; Example 5",
+        "item": 0,
+        "line": 424
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "Is the exponential function a growth or decay function? How do you know?",
+      "answer": "(f(x)) is a decay function because the (y)-coordinates are decreasing.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students. USE WITH EXAMPLE 5 Some students may have difficulty finding the growth or decay factor for an exponential function given points on the graph. Have students practice finding the growth or decay factor for the function (f(x)=235(b)^x) given the points ((0,235)), ((1,212.7)) and ((2,192.5)).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "18: 289 Example 4 continued; Example 5",
+        "item": 0,
+        "line": 437
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "Would you expect the growth or decay factor to be greater than 1?",
+      "answer": "No; since the function is a decay function, (b) is a decay factor, with (0<b<1).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students. USE WITH EXAMPLE 5 Some students may have difficulty finding the growth or decay factor for an exponential function given points on the graph. Have students practice finding the growth or decay factor for the function (f(x)=235(b)^x) given the points ((0,235)), ((1,212.7)) and ((2,192.5)).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "18: 289 Example 4 continued; Example 5",
+        "item": 1,
+        "line": 439
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[2]",
+      "kind": "question",
+      "question": "Describe (b) in terms of a ratio.",
+      "answer": "The growth or decay factor of an exponential function is the ratio of successive (y)-coordinates. So, (b=(f(1))/(f(0))) or (b=(f(2))/(f(1))).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students. USE WITH EXAMPLE 5 Some students may have difficulty finding the growth or decay factor for an exponential function given points on the graph. Have students practice finding the growth or decay factor for the function (f(x)=235(b)^x) given the points ((0,235)), ((1,212.7)) and ((2,192.5)).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "18: 289 Example 4 continued; Example 5",
+        "item": 2,
+        "line": 441
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[3]",
+      "kind": "question",
+      "question": "What is (b) and how does it relate to the exponential function?",
+      "answer": "(b≈0.905), so the function is (f(x)=235(0.905)^x). The function decreases by almost 10% for each increase in (x).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students. USE WITH EXAMPLE 5 Some students may have difficulty finding the growth or decay factor for an exponential function given points on the graph. Have students practice finding the growth or decay factor for the function (f(x)=235(b)^x) given the points ((0,235)), ((1,212.7)) and ((2,192.5)).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_6-1_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "18: 289 Example 4 continued; Example 5",
+        "item": 3,
+        "line": 443
+      }
+    }
+  ]
+}

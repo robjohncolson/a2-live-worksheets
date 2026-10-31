@@ -1,0 +1,483 @@
+{
+  "lesson": "2-7",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "For how many values of b will there be 2 solutions? 1 solution? No solution?",
+      "answer": "There are an infinite number of values of b that will produce 2 solutions or no solution. There is one value of b that will produce 1 solution.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Determine the Number of Solutions. Build Procedural Fluency From Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "84: 105, Understand & Apply",
+        "item": 0,
+        "line": 169
+      }
+    },
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Suppose the constant b was added to the quadratic function instead of the linear function. For what values of b will there be 2 solutions? 1 solution? No solution?",
+      "answer": "When (b<1), there are 2 solutions. When (b=1), there is one solution. When (b>1), there is no solution.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Determine the Number of Solutions. Build Procedural Fluency From Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "84: 105, Understand & Apply",
+        "item": 1,
+        "line": 171
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What mathematical value are you trying to find when solving this problem?",
+      "answer": "the y-value of the point when the ball hits the ground",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples. ADDITIONAL EXAMPLE 3 Additional Examples are available at SavvasRealize.com. Go back. ESSENTIAL QUESTION. A golfer is hitting a shot up a hill. The hill is represented by the equation (y=0.125x). The path of the ball is modeled by the equation (y=-0.03x^2+3x). How much higher will the ball be when it lands than when it was hit? Set the two equations equal to each other: (-0.03x^2+3x=0.125x) (-0.03x^2+3x-0.125x=0) (-0.03x^2+2.875x=0) (x(-0.03x+2.875)=0) (x=0), (x≈95.833) Substitute: (y=0.125(95.833)≈11.98) The ball will be about 12 units higher when it lands than when it was hit. about 12 units higher SOLUTION. Example 3 Students can practice applying linear-quadratic systems to the game of golf with this additional example.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Blue downward parabola (y=-0.03x^2+3x) from (0,0) through vertex (50,75) to (100,0); orange increasing line (y=0.125x) through origin, arrow at right. Window x=0 to about 105, y=0 to 80, grid spacing 10, labels x=0,20,40,60,80,100 and y=0,20,40,60; x,y axes labeled. The line crosses the parabola near (95.83,11.98)."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "84: 105, Understand & Apply",
+        "item": 0,
+        "line": 212
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "Can you tell by looking at the equation whether it will have 0, 1, or 2 solutions?",
+      "answer": "No; you could rewrite the equation in standard form and calculate the discriminant, but you can not tell just by looking at the equation.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 5 Solve the equation (3x^2-x+8=4x-3) by writing a linear-quadratic system and solving using the intersection feature of a graphing calculator. Write the equations as a linear-quadratic system: (y=3x^2-x+8); (y=4x-3) Graph on a calculator and use the intersection feature to solve. The line and curve do not intersect. Therefore there is no solution. no solution Go back. ESSENTIAL QUESTION. SOLUTION. Example 5 Help students understand that a quadratic equation can be rewritten as a linear-quadratic system and can be solved using the intersection feature of a graphing calculator with this additional example.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Orange upward parabola (y=3x^2-x+8), vertex near (0.167,7.917), blue line (y=4x-3) through (0,-3), no intersections; arrowed curve ends and line. Unit grid window x=[-10,10], y=[-3,15]; x labels -5,O,5 and y labels 5,10; axes x,y arrowed."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "84: 105, Understand & Apply",
+        "item": 0,
+        "line": 226
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Do you have to substitute the first equation into the second equation to solve the problem?",
+      "answer": "No, you could solve the second equation for y and substitute into the first equation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Solve a Linear-Quadratic System Using Substitution. Build Procedural Fluency from Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "85: 106, Understand & Apply",
+        "item": 0,
+        "line": 232
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How can you decide which equation to substitute into the other equation?",
+      "answer": "Use the equation that already has one of the variables isolated on one side. If neither equation has an isolated variable, then look for an equation that has a variable with a coefficient of 1 and solve for that variable in order to substitute into the other equation.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Solve a Linear-Quadratic System Using Substitution. Build Procedural Fluency from Conceptual Understanding ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "85: 106, Understand & Apply",
+        "item": 1,
+        "line": 234
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "Do you need to know the horizontal distance the ball traveled in order to determine how far Laika must run up the hill?",
+      "answer": "Yes, the horizontal distance traveled is one of the legs of the right triangle that is used to determine how far Laika must run up the hill.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Applying a Linear-Quadratic System. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "85: 106, Understand & Apply",
+        "item": 0,
+        "line": 261
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "kind": "question",
+      "question": "How are the two graphs related?",
+      "answer": "Both graphs show the slope of the hill. The first graph shows the hill as a line with the horizontal distance and height scaled by 2.5 feet. The second graph shows the hill as a line with the horizontal distance and height scaled by 1 foot.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Applying a Linear-Quadratic System. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "85: 106, Understand & Apply",
+        "item": 1,
+        "line": 263
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "Solve (y≤ x+3); (y>2x-4)",
+      "answer": "See graph.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 4 Some students may struggle with solving linear-quadratic systems of inequalities. Have students practice solving systems of linear inequalities.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "85: 106, Understand & Apply",
+        "item": 0,
+        "line": 280
+      }
+    },
+    {
+      "example": 4,
+      "category": "RtISupport",
+      "key": "examples[n=4].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "Solve (y>x-4); (y≤3x)",
+      "answer": "See graph.",
+      "variant": "example",
+      "notes": [
+        "Second support graph shades the opposite sides from the printed inequalities; retained as shown."
+      ],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 4 Some students may struggle with solving linear-quadratic systems of inequalities. Have students practice solving systems of linear inequalities.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "85: 106, Understand & Apply",
+        "item": 1,
+        "line": 283
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What do the three shaded regions represent? Which region contains solutions of the system?",
+      "answer": "The shaded region below the parabola represents all ordered pairs that are solutions of the equation (y<-2x^2+10x-10). The region above the line represents all ordered pairs that are solutions of the equation (4x+y>4). The overlapping region represents all ordered pairs that are solutions of both equations; these ordered pairs are the solutions of the system.",
+      "variant": "example",
+      "notes": [
+        "Printed teacher answer has +10x; the student example uses +12x."
+      ],
+      "context": {
+        "text": "Solve a Linear-Quadratic System of Inequalities. Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "86: 107, Understand & Apply",
+        "item": 0,
+        "line": 321
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How can you check your work to ensure that the shaded region actually contains the solutions of the system?",
+      "answer": "Choose a point that is not on the graph of either equation. Substitute the x- and y-values of the point into both inequalities and simplify. If both inequalities result in a true statement, then it is a solution, and all points in the same region are solutions.",
+      "variant": "example",
+      "notes": [
+        "Examples are available at SavvasRealize.com."
+      ],
+      "context": {
+        "text": "Solve a Linear-Quadratic System of Inequalities. Use and Connect Mathematical Representations ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "86: 107, Understand & Apply",
+        "item": 1,
+        "line": 324
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "Based on how you heard it used in these sentences, what do you think the word test means?",
+      "answer": "evaluate",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Have students listen as you read the following sentences. 1. The class takes a math test. 2. The test came back negative. 3. It was a test of her strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "86: 107, Understand & Apply",
+        "item": 0,
+        "line": 359
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "How is the use of the word test different among the three sentences?",
+      "answer": "In the first sentence, test describes a school assessment. In the second sentence, it refers to a medical evaluation. In the third sentence, test is used to mean a challenge.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Have students listen as you read the following sentences. 1. The class takes a math test. 2. The test came back negative. 3. It was a test of her strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "86: 107, Understand & Apply",
+        "item": 1,
+        "line": 361
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "Using context clues, what does the word determine mean?",
+      "answer": "to find or identify",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Have students listen as you read the following sentences. 1. The class takes a math test. 2. The test came back negative. 3. It was a test of her strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "86: 107, Understand & Apply",
+        "item": 2,
+        "line": 364
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "In what contexts can you use the word region?",
+      "answer": "regions in a country, regional sports championships",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Have students listen as you read the following sentences. 1. The class takes a math test. 2. The test came back negative. 3. It was a test of her strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "86: 107, Understand & Apply",
+        "item": 3,
+        "line": 367
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "In what part of speech did you use the word shade?",
+      "answer": "noun, verb",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Have students listen as you read the following sentences. 1. The class takes a math test. 2. The test came back negative. 3. It was a test of her strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "86: 107, Understand & Apply",
+        "item": 4,
+        "line": 369
+      }
+    },
+    {
+      "example": 4,
+      "category": "ELLAddendum",
+      "key": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "How is region used in the example?",
+      "answer": "It is used to mean an area or section of the coordinate plane.",
+      "variant": "example",
+      "notes": [
+        "Printed ``shade'' in a question otherwise discussing ``region.''"
+      ],
+      "context": {
+        "text": "English Language Learners (Use with EXAMPLE 4) LISTENING BEGINNING Have students listen as you read the following sentences. 1. The class takes a math test. 2. The test came back negative. 3. It was a test of her strength.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "86: 107, Understand & Apply",
+        "item": 5,
+        "line": 371
+      }
+    },
+    {
+      "example": 4,
+      "category": "CommonError",
+      "key": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 4 Students may forget to reverse the sign of the inequality symbol when they solve the linear inequality for y, causing them to shade the wrong part of the graph. Have students check by selecting a point in the shaded region and use the point's coordinates to verify that each of the original inequalities is true.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 4,
+        "category": "CommonError",
+        "block": 0,
+        "page": "87: 108, Understand & Apply",
+        "item": 0,
+        "line": 376
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "How can you show that the system of equations is equivalent to the original equation?",
+      "answer": "Both equations in the system are equal to y. You can substitute the second equation into the first equation to obtain the original equation.",
+      "variant": "example",
+      "notes": [
+        "Example 5 is Powered by Desmos. Examples are available at SavvasRealize.com. Activity."
+      ],
+      "context": {
+        "text": "Using a System to Solve an Equation. Pose Purposeful Questions ETP",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-7_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "87: 108, Understand & Apply",
+        "item": 0,
+        "line": 382
+      }
+    }
+  ]
+}

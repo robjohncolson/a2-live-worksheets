@@ -1,0 +1,810 @@
+{
+  "lesson": "2-2",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "GeneralizeETP",
+      "key": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "How are the values of (a), (b), and (c) in the standard form and vertex form of the quadratic function related?",
+      "answer": "(a) is the same in both forms, (b) is equal to (-2ah), and (c) is equal to (ah^2+k).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Find the Vertex from a Quadratic Function in Standard Form Build Procedural Fluency from Conceptual Understanding",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 1,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "25: 68 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 162
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What do you need to know to determine the (x)-coordinate of the vertex? The (y)-coordinate of the vertex?",
+      "answer": "(a) and (b); the value of the (x)-coordinate of the vertex",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "25: 68 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 191
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How can you determine how far the glider falls before the wind catches it?",
+      "answer": "Calculate the minimum value for (y) (the (y)-coordinate of the vertex).",
+      "variant": "additional",
+      "notes": [
+        "Printed answer gives the minimum height; distance fallen would be the initial height minus that height."
+      ],
+      "context": {
+        "text": "Additional Examples Additional Examples are available at SavvasRealize.com. ADDITIONAL EXAMPLE 2 A hang-glider jumps from a cliff and falls before the wind catches the glider. Graph the path of the glider described by the function (f(x)=2.5x^2-25x+500). See graph. Example 2 Give students practice graphing parabolas with a real-world context with this additional example.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Additional Example 2: orange upward parabola f(x)=2.5x^2-25x+500 shown in first quadrant, minimum (5,437.5), starts (0,500) and rises to (20,1000); gray axes x,y, x labels 0,4,8,12,16, y labels 0,200,400,600,800; grid spacing x=2,y=100, window x=0 to 20,y=0 to 1000."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "25: 68 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 201
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What does the (x)-axis in your graph represent?",
+      "answer": "the distance from the cliff",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples Additional Examples are available at SavvasRealize.com. ADDITIONAL EXAMPLE 2 A hang-glider jumps from a cliff and falls before the wind catches the glider. Graph the path of the glider described by the function (f(x)=2.5x^2-25x+500). See graph. Example 2 Give students practice graphing parabolas with a real-world context with this additional example.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Additional Example 2: orange upward parabola f(x)=2.5x^2-25x+500 shown in first quadrant, minimum (5,437.5), starts (0,500) and rises to (20,1000); gray axes x,y, x labels 0,4,8,12,16, y labels 0,200,400,600,800; grid spacing x=2,y=100, window x=0 to 20,y=0 to 1000."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "25: 68 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 204
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "What does the (y)-axis in your graph represent?",
+      "answer": "the height from the ground",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples Additional Examples are available at SavvasRealize.com. ADDITIONAL EXAMPLE 2 A hang-glider jumps from a cliff and falls before the wind catches the glider. Graph the path of the glider described by the function (f(x)=2.5x^2-25x+500). See graph. Example 2 Give students practice graphing parabolas with a real-world context with this additional example.",
+        "figures": [
+          {
+            "kind": "graph",
+            "description": "Additional Example 2: orange upward parabola f(x)=2.5x^2-25x+500 shown in first quadrant, minimum (5,437.5), starts (0,500) and rises to (20,1000); gray axes x,y, x labels 0,4,8,12,16, y labels 0,200,400,600,800; grid spacing x=2,y=100, window x=0 to 20,y=0 to 1000."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "25: 68 Step 2 Understand & Apply",
+        "item": 2,
+        "line": 206
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How is the process of writing the equation of the parabola similar whether you use a calculator or not?",
+      "answer": "Start by writing an equation in standard form for each point.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 4 What is the equation of the parabola that passes through the points (2,-3), (3,-6), and (-1,-6)? Substitute each given coordinate into the standard form of a parabola equation. (-3=a(2)^2+b(2)+c) (-6=a(3)^2+b(3)+c) (-6=a(-1)^2+b(-1)+c) Solve the system to find the values of (a), (b), and (c). (a=-1), (b=2), (c=-3) Substitute -1 for (a), -6 for (b), and 8 for (c) in the standard form of a quadratic equation. (y=-x^2+2x-3) (y=-x^2+2x-3) Printed substitution sentence says -6 for b and 8 for c; likely 2 and -3, as the preceding coefficients and final equation show. Example 4 Have students practice writing the equation of a parabola that passes through three points, none of which is the vertex, with this additional example.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "25: 68 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 223
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What does the value of (a) tell you about the vertex and shape of the parabola?",
+      "answer": "If (a>0), the vertex is the lowest point of the parabola and the parabola opens upward. If (a<0), the vertex is the highest point of the parabola and the parabola opens downward.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph a Quadratic Function in Standard Form Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "26: 69 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 243
+      }
+    },
+    {
+      "example": 2,
+      "category": "GeneralizeETP",
+      "key": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "How does knowing the axis of symmetry help to graph a quadratic function?",
+      "answer": "Every point on one side of the axis of symmetry will have a corresponding point on the other side, which helps in sketching its shape.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Graph a Quadratic Function in Standard Form Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 2,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "26: 69 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 245
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why do you need to find the vertex in order to graph the function?",
+      "answer": "The vertex is where the parabola changes direction.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "26: 69 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 277
+      }
+    },
+    {
+      "example": 2,
+      "category": "CommonError",
+      "key": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "Try It! 2 When (b) is negative, students sometimes forget to include the negative sign when calculating the (x)-coordinate of the vertex because there is already a negative sign in (h=-b/2a). Remind students to include the negative sign in the calculation when (b) is negative.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 2,
+        "category": "CommonError",
+        "block": 0,
+        "page": "26: 69 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 280
+      }
+    },
+    {
+      "example": 2,
+      "category": "HabitsOfMind",
+      "key": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Error Analysis Yuson says that for the quadratic function (f(x)=2x^2+3x+1), the vertex is located at the point (0,1). Is she correct? Explain.",
+      "answer": "No; the vertex is (-3/4,-1/8).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND Use with EXAMPLE 2",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 2,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "26: 69 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 286
+      }
+    },
+    {
+      "example": 1,
+      "category": "RtISupport",
+      "key": "examples[n=1].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "Find the vertex of (y=2x^2-8x+4).",
+      "answer": "(2,-4)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 1 Some students may have difficulty with writing the vertex form of the quadratic equation in standard form. In particular, the relationship between (h) and (k) in the vertex form and the calculated values of (h) and (k) in the standard form can be confusing. To help students understand this relationship, have them draw two parabolas, labeling the vertex of one (h,k) and the vertex of the other (-b/2a,f(-b/2a)). Students can then practice calculating the coordinates of the vertex.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 1,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "26: 69 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 292
+      }
+    },
+    {
+      "example": 1,
+      "category": "RtISupport",
+      "key": "examples[n=1].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "Find the vertex of (y=-2x^2-10x+6).",
+      "answer": "(-2.5,18.5)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 1 Some students may have difficulty with writing the vertex form of the quadratic equation in standard form. In particular, the relationship between (h) and (k) in the vertex form and the calculated values of (h) and (k) in the standard form can be confusing. To help students understand this relationship, have them draw two parabolas, labeling the vertex of one (h,k) and the vertex of the other (-b/2a,f(-b/2a)). Students can then practice calculating the coordinates of the vertex.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 1,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "26: 69 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 294
+      }
+    },
+    {
+      "example": 1,
+      "category": "RtISupport",
+      "key": "examples[n=1].teacherPrompts.RtISupport[0].questions[2]",
+      "kind": "question",
+      "question": "Find the vertex of (y=x^2-2x-3).",
+      "answer": "(1,-4)",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students USE WITH EXAMPLE 1 Some students may have difficulty with writing the vertex form of the quadratic equation in standard form. In particular, the relationship between (h) and (k) in the vertex form and the calculated values of (h) and (k) in the standard form can be confusing. To help students understand this relationship, have them draw two parabolas, labeling the vertex of one (h,k) and the vertex of the other (-b/2a,f(-b/2a)). Students can then practice calculating the coordinates of the vertex.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 1,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "26: 69 Step 2 Understand & Apply",
+        "item": 2,
+        "line": 296
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "On the graph, what do you notice about the value of (y) when (x=60)? What does this mean for the company?",
+      "answer": "(y=0), if the company sold the headphones for $60, there would be no profit, so it is likely that very few people will buy headphones at that price.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Interpret the Graph of a Quadratic Function Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 304
+      }
+    },
+    {
+      "example": 3,
+      "category": "GeneralizeETP",
+      "key": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "Explain why it would never make sense for this function to have a negative value for (b).",
+      "answer": "If (b) were negative, the selling prices would be negative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Interpret the Graph of a Quadratic Function Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 306
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "How could you determine how long it took the projectile to hit the ground?",
+      "answer": "Substitute 0 for (y) and solve the equation for (x).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 337
+      }
+    },
+    {
+      "example": 3,
+      "category": "HabitsOfMind",
+      "key": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Make Sense and Persevere How long does it take for the projectile to reach its maximum height?",
+      "answer": "(13/14) seconds",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND Use with EXAMPLE 3",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 342
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "Which axis shows the selling price?",
+      "answer": "(x)-axis",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3 LISTENING BEGINNING Read the Formulate section to students while they listen. Have students point to the graph to identify each part as they listen to it being read: (x)-axis, (y)-axis, vertex, parabola.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 348
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "Which axis shows the profit in dollars?",
+      "answer": "(y)-axis",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3 LISTENING BEGINNING Read the Formulate section to students while they listen. Have students point to the graph to identify each part as they listen to it being read: (x)-axis, (y)-axis, vertex, parabola.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 350
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "What point on the graph corresponds to the maximum value of the profit function?",
+      "answer": "the vertex of the parabola",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3 LISTENING BEGINNING Read the Formulate section to students while they listen. Have students point to the graph to identify each part as they listen to it being read: (x)-axis, (y)-axis, vertex, parabola.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 2,
+        "line": 352
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "Why wouldn't selling the headphones at a higher price make a higher profit for the company?",
+      "answer": "When a product costs too much, not as many people will buy it.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3 LISTENING BEGINNING Read the Formulate section to students while they listen. Have students point to the graph to identify each part as they listen to it being read: (x)-axis, (y)-axis, vertex, parabola.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 3,
+        "line": 355
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "What does the ordered pair (40,6,000) mean in the context of this situation?",
+      "answer": "When the selling price is $40, the profit is $6,000.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3 LISTENING BEGINNING Read the Formulate section to students while they listen. Have students point to the graph to identify each part as they listen to it being read: (x)-axis, (y)-axis, vertex, parabola.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 4,
+        "line": 357
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "How are the words selling and prices related to each other?",
+      "answer": "Prices tell the amount of money a company is selling something for.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3 LISTENING BEGINNING Read the Formulate section to students while they listen. Have students point to the graph to identify each part as they listen to it being read: (x)-axis, (y)-axis, vertex, parabola.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 5,
+        "line": 360
+      }
+    },
+    {
+      "example": 3,
+      "category": "ELLAddendum",
+      "key": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[6]",
+      "kind": "question",
+      "question": "How are the words profit and earns related to each other?",
+      "answer": "Profit is the money a company earns from selling something above the cost to make and/or sell it.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners Use with EXAMPLE 3 LISTENING BEGINNING Read the Formulate section to students while they listen. Have students point to the graph to identify each part as they listen to it being read: (x)-axis, (y)-axis, vertex, parabola.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "27: 70 Step 2 Understand & Apply",
+        "item": 6,
+        "line": 362
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "Does the vertex always need to be one of the three points in order to write the equation of a parabola? Explain.",
+      "answer": "No, any three points can be used to find the equation of the parabola. The vertex can then be calculated from the equation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write the Equation of a Parabola Given Three Points Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "28: 71 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 370
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "kind": "question",
+      "question": "What is another strategy you could use to write the equation of a parabola given three points?",
+      "answer": "Use substitution.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write the Equation of a Parabola Given Three Points Examples are available at SavvasRealize.com. Use and Connect Mathematical Representations",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "28: 71 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 372
+      }
+    },
+    {
+      "example": 4,
+      "category": "ElicitEvidence",
+      "key": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Why is the coefficient for (c) always equal to 1 in the system of equations?",
+      "answer": "Because in the quadratic expression (ax^2+bx+c), no matter what number you substitute for (x), the term (c) remains constant with a coefficient of 1.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 4,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "28: 71 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 418
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "Why is there no (c) term in the quadratic equation?",
+      "answer": "(c) is equal to 0 since the (y)-intercept is (0,0), which would be the launch point of the projectile.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 3 Try It Have students apply their understanding of quadratic functions to parabolic motion of projectiles. Graph of parabolic motion of projectile Equation: (y=-g/(2· v^2·cos^2θ)· x^2+tanθ· x) (g)=acceleration from gravity, (v)=velocity, (θ)=angle the projectile was launched",
+        "figures": [
+          {
+            "kind": "diagram",
+            "description": "Parabolic projectile motion: gray x axis right, y axis up, origin at launch; red downward parabolic arc starts at origin and returns to x-axis at right. Gray arrow v slopes up and right from origin, angle theta between it and x-axis. Downward arrow g drops from left side of arch. No grid, ticks, or numeric labels."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "28: 71 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 428
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "What effect would a change in the angle have on the motion?",
+      "answer": "Since it is part of both the (a) and the (b) terms, it would affect the height of the vertex and the width of the parabola (distance of travel).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking USE WITH EXAMPLE 3 Try It Have students apply their understanding of quadratic functions to parabolic motion of projectiles. Graph of parabolic motion of projectile Equation: (y=-g/(2· v^2·cos^2θ)· x^2+tanθ· x) (g)=acceleration from gravity, (v)=velocity, (θ)=angle the projectile was launched",
+        "figures": [
+          {
+            "kind": "diagram",
+            "description": "Parabolic projectile motion: gray x axis right, y axis up, origin at launch; red downward parabolic arc starts at origin and returns to x-axis at right. Gray arrow v slopes up and right from origin, angle theta between it and x-axis. Downward arrow g drops from left side of arch. No grid, ticks, or numeric labels."
+          }
+        ]
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "28: 71 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 430
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "If you substitute the values for (x) from the points on the graph into the quadratic equation obtained by regression, how would the calculated values for (y) be related to those in the graph?",
+      "answer": "The values will differ slightly. The regression is finding the quadratic equation that best fits the data, but it may not fit exactly.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Quadratic Regression Examples are available at SavvasRealize.com. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "29: 72 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 438
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How does using quadratic regression help when determining the maximum height the discus will reach?",
+      "answer": "You can approximate the maximum height by calculating the vertex of the regression equation.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use Quadratic Regression Examples are available at SavvasRealize.com. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "29: 72 Step 2 Understand & Apply",
+        "item": 1,
+        "line": 440
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "What does the information in the table tell you about the maximum height of the football?",
+      "answer": "The maximum height is at the vertex, which occurs between 0.2 and 0.6 second. The height increases and then decreases during this interval.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "29: 72 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 480
+      }
+    },
+    {
+      "example": 5,
+      "category": "HabitsOfMind",
+      "key": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Model with Mathematics How many points does it take to determine the equation of a quadratic function? Why are so many more points used in Example 5?",
+      "answer": "3 points, or the vertex and 1 other point; More points are used because the data may not precisely fit a quadratic equation; quadratic regression is used to find the equation that most nearly fits the data points.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND Use with EXAMPLE 5",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_2-2_TE.tex",
+        "anchor": 5,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "29: 72 Step 2 Understand & Apply",
+        "item": 0,
+        "line": 485
+      }
+    }
+  ]
+}

@@ -1,0 +1,967 @@
+{
+  "lesson": "2-2",
+  "title": "Standard Form of a Quadratic Function",
+  "nodes": [
+    {
+      "id": "da825deac0ad",
+      "type": "frame",
+      "front": "Essential question?",
+      "back": "What key features can you determine about a quadratic function from an equation in standard form?",
+      "order": 1,
+      "after": [],
+      "minute": null,
+      "source": "objectives.essentialQuestion"
+    },
+    {
+      "id": "b188bf04a816",
+      "type": "anchor",
+      "front": "Define: standard form",
+      "back": "I can explain how I found a maximum or minimum using the words standard form, vertex, axis of symmetry, y-intercept and maximum / minimum.",
+      "order": 2,
+      "after": [
+        "da825deac0ad"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.standard form"
+    },
+    {
+      "id": "2db1d7e92543",
+      "type": "anchor",
+      "front": "Define: vertex",
+      "back": "a < 0 means the parabola opens down, so the vertex is a maximum (Example 3 Formulate)",
+      "order": 3,
+      "after": [
+        "da825deac0ad"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.vertex"
+    },
+    {
+      "id": "1f7456652972",
+      "type": "anchor",
+      "front": "Define: axis of symmetry",
+      "back": "the y-intercept (0, c) is the starting point, its mirror image across the axis of symmetry is a third point, and a table finds where y reaches 0 (Example 2 Steps 2-4; packet Practice; IXL S9G)",
+      "order": 4,
+      "after": [
+        "da825deac0ad"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.axis of symmetry"
+    },
+    {
+      "id": "968dbbd72893",
+      "type": "anchor",
+      "front": "Define: y-intercept",
+      "back": "the y-intercept (0, c) is the starting point, its mirror image across the axis of symmetry is a third point, and a table finds where y reaches 0 (Example 2 Steps 2-4; packet Practice; IXL S9G)",
+      "order": 5,
+      "after": [
+        "da825deac0ad"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.y-intercept"
+    },
+    {
+      "id": "a6b49f4c8117",
+      "type": "anchor",
+      "front": "Define: maximum / minimum",
+      "back": "I can explain how I found a maximum or minimum using the words standard form, vertex, axis of symmetry, y-intercept and maximum / minimum.",
+      "order": 6,
+      "after": [
+        "da825deac0ad"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.maximum / minimum"
+    },
+    {
+      "id": "d6b6b6f24f7b",
+      "type": "anchor",
+      "front": "Quiz item 3 asks?",
+      "back": "Item 3: a pebble is tossed from the top of a cliff, height y = -16x^2 + 32x + 80 feet; what is the maximum height? Item 5: graph the diver's path y = -7x^2 + 5x + 16 from the point where the diver jumped to the point where they reach the water (blank grid, x from -1.5 to 3.5 by 0.5, y from -2 to 18 by 2). …",
+      "order": 7,
+      "after": [
+        "b188bf04a816",
+        "2db1d7e92543",
+        "1f7456652972",
+        "968dbbd72893",
+        "a6b49f4c8117"
+      ],
+      "minute": null,
+      "source": "quizFocus.what"
+    },
+    {
+      "id": "f87368deb50e",
+      "type": "anchor",
+      "front": "Quiz item 3 answer?",
+      "back": "Item 3: 96 (h = -32/(2(-16)) = 1, y = -16 + 32 + 80 = 96). Item 5: a downward segment from (0, 16) through the vertex at about (0.36, 16.89) to the water at about (1.91, 0), closed ends, no arrows (TE key: see graph). Bonus item 2: price change $-1, maximum profit per toy $4. (verify against the TE key on quiz day)",
+      "order": 8,
+      "after": [
+        "b188bf04a816",
+        "2db1d7e92543",
+        "1f7456652972",
+        "968dbbd72893",
+        "a6b49f4c8117"
+      ],
+      "minute": null,
+      "source": "quizFocus.answer"
+    },
+    {
+      "id": "65a04d3661a1",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need?",
+      "back": "identify a, b and c with their signs and compute h = -b/(2a); when b is negative the formula has two negatives (Example 2 Step 1; TE Common Error for Try It 2; IXL L8C)",
+      "order": 9,
+      "after": [
+        "d6b6b6f24f7b"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[0]"
+    },
+    {
+      "id": "99b1be74848d",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (2)",
+      "back": "substitute h back in to get k, which is the maximum or minimum value (Example 3 Compute; Try It 3 is the same task as quiz item 3)",
+      "order": 10,
+      "after": [
+        "d6b6b6f24f7b"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[1]"
+    },
+    {
+      "id": "703e20ab025b",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (3)",
+      "back": "a < 0 means the parabola opens down, so the vertex is a maximum (Example 3 Formulate)",
+      "order": 11,
+      "after": [
+        "d6b6b6f24f7b"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[2]"
+    },
+    {
+      "id": "b6353f13eb38",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (4)",
+      "back": "the y-intercept (0, c) is the starting point, its mirror image across the axis of symmetry is a third point, and a table finds where y reaches 0 (Example 2 Steps 2-4; packet Practice; IXL S9G)",
+      "order": 12,
+      "after": [
+        "d6b6b6f24f7b"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[3]"
+    },
+    {
+      "id": "0b437beef642",
+      "type": "anchor",
+      "front": "Before quiz item 3 students need? (5)",
+      "back": "graph only the part that fits the situation: a closed dot where the diver jumps and where they reach the water, no arrows (packet Practice part e)",
+      "order": 13,
+      "after": [
+        "d6b6b6f24f7b"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[4]"
+    },
+    {
+      "id": "16d30be74d02",
+      "type": "anchor",
+      "front": "Quiz item 1 is covered by?",
+      "back": "Minimum point of f(x) = x^2 - 4x, multiple choice (TE key D, (2, -4)). The vertex computation of Example 2 Step 1 (Example 1 derives it). Left off the short form: items 2, 3 and 5 need the same computation; distractor A (2, 4) is the k sign slip.",
+      "order": 14,
+      "after": [
+        "d6b6b6f24f7b"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.1"
+    },
+    {
+      "id": "673d97bf5ba1",
+      "type": "anchor",
+      "front": "Quiz item 2 is covered by?",
+      "back": "Bill's toy profit f(x) = -x^2 - 2x + 3: the price change that gives the highest profit and that profit (TE key $-1 and $4). Example 3 (interpret both coordinates); b is negative, so it is the Try It 2 Common Error. Short-form bonus (+5).",
+      "order": 15,
+      "after": [
+        "d6b6b6f24f7b"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.2"
+    },
+    {
+      "id": "fc78c1cda640",
+      "type": "anchor",
+      "front": "Quiz item 3 is covered by?",
+      "back": "Pebble from a cliff, y = -16x^2 + 32x + 80: maximum height (TE key 96). Example 3 with Try It 3 (water balloon) as the matching packet work. Graded, 10 points.",
+      "order": 16,
+      "after": [
+        "d6b6b6f24f7b"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.3"
+    },
+    {
+      "id": "af486a600515",
+      "type": "anchor",
+      "front": "Quiz item 4 is covered by?",
+      "back": "Parabola through (-5, -10), (-1, 6) and (2, -3), multiple choice (TE key A, y = -x^2 - 2x + 5). Example 4 (cut). Students can still answer by substituting the three points into each choice. Left off the short form; IXL ED9 is the optional skill.",
+      "order": 17,
+      "after": [
+        "d6b6b6f24f7b"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.4"
+    },
+    {
+      "id": "d7af180905af",
+      "type": "anchor",
+      "front": "Quiz item 5 is covered by?",
+      "back": "Graph the diver's path y = -7x^2 + 5x + 16 from the jump to the water (TE key: segment from (0, 16) to about (1.91, 0), vertex near (0.36, 16.89)). Example 2 (key features) in Example 3's kind of context; the packet Practice (ball from a balcony, y = -5x^2 + 10x + 15) is the R5 parallel. Graded, 10 points.",
+      "order": 18,
+      "after": [
+        "d6b6b6f24f7b"
+      ],
+      "minute": null,
+      "source": "quizFocus.items.5"
+    },
+    {
+      "id": "f634f6df4ccf",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Graph a Quadratic Function in Standard Form · DOK 2 · practice 17, 18, 19, 20, 28 · The concept summary is built on it (vertex, axis of symmetry, y-intercept, graph). Graded quiz item 5 (graph the diver's path) and the vertex step of items 1-3. …",
+      "order": 19,
+      "after": [
+        "d6b6b6f24f7b",
+        "f87368deb50e"
+      ],
+      "minute": null,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "7886d53780af",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Interpret the Graph of a Quadratic Function · DOK 2, 3 · practice 21, 26, 27 · Graded quiz item 3 (pebble, maximum height) and bonus item 2 (price change and maximum profit). Try It 3 (water balloon) is quiz item 3 with different numbers. It carries the lesson's DOK 3 (practice 26 is the packet's Exit block).",
+      "order": 20,
+      "after": [
+        "f634f6df4ccf"
+      ],
+      "minute": null,
+      "source": "examples[n=3]"
+    },
+    {
+      "id": "7e1c45e729b0",
+      "type": "cue",
+      "front": "Example 2 · Connect representations: What does the value of (a) tell you about the vertex and shape of the parabola?",
+      "back": "Listen for: If (a>0), the vertex is the lowest point of the parabola and the parabola opens upward. If (a<0), the vertex is the highest point of the parabola and the parabola opens downward.",
+      "order": 21,
+      "after": [
+        "f634f6df4ccf"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 2,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "26: 69 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 243
+        },
+        "promptKey": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "816608f200ee",
+      "type": "cue",
+      "front": "Example 2 · Connect representations: How does knowing the axis of symmetry help to graph a quadratic function?",
+      "back": "Listen for: Every point on one side of the axis of symmetry will have a corresponding point on the other side, which helps in sketching its shape.",
+      "order": 22,
+      "after": [
+        "7e1c45e729b0"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 2,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "26: 69 Step 2 Understand & Apply",
+          "item": 1,
+          "line": 245
+        },
+        "promptKey": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "1ebddb5fa6d2",
+      "type": "cue",
+      "front": "Example 2 · Check student thinking: Why do you need to find the vertex in order to graph the function?",
+      "back": "Listen for: The vertex is where the parabola changes direction.",
+      "order": 23,
+      "after": [
+        "816608f200ee"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 2,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "26: 69 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 277
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "090347760cbf",
+      "type": "trap",
+      "front": "Example 2 · Common error: What error should I watch for, and how does the TE respond?",
+      "back": "Try It! 2 When (b) is negative, students sometimes forget to include the negative sign when calculating the (x)-coordinate of the vertex because there is already a negative sign in (h=-b/2a). Remind students to include the negative sign in the calculation when (b) is negative.",
+      "order": 24,
+      "after": [
+        "1ebddb5fa6d2"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+      "teaching": {
+        "example": 2,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 2,
+          "category": "CommonError",
+          "block": 0,
+          "page": "26: 69 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 280
+        },
+        "promptKey": "examples[n=2].teacherPrompts.CommonError[0].guidance",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c9a7c3c31336",
+      "type": "cue",
+      "front": "Example 2 · Reasoning: Error Analysis Yuson says that for the quadratic function (f(x)=2x^2+3x+1), the vertex is located at the point (0,1). Is she correct? Explain.",
+      "back": "Listen for: No; the vertex is (-3/4,-1/8).",
+      "order": 25,
+      "after": [
+        "090347760cbf"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 2,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "26: 69 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 286
+        },
+        "promptKey": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "0876488dd20b",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: On the graph, what do you notice about the value of (y) when (x=60)? What does this mean for the company?",
+      "back": "Listen for: (y=0), if the company sold the headphones for $60, there would be no profit, so it is likely that very few people will buy headphones at that price.",
+      "order": 26,
+      "after": [
+        "7886d53780af"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 304
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "765b32439281",
+      "type": "cue",
+      "front": "Example 3 · Connect representations: Explain why it would never make sense for this function to have a negative value for (b).",
+      "back": "Listen for: If (b) were negative, the selling prices would be negative.",
+      "order": 27,
+      "after": [
+        "0876488dd20b"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 1,
+          "line": 306
+        },
+        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "6a96a4273deb",
+      "type": "cue",
+      "front": "Example 3 · Check student thinking: How could you determine how long it took the projectile to hit the ground?",
+      "back": "Listen for: Substitute 0 for (y) and solve the equation for (x).",
+      "order": 28,
+      "after": [
+        "765b32439281"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 337
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "fecebac6bc46",
+      "type": "cue",
+      "front": "Example 3 · Reasoning: Make Sense and Persevere How long does it take for the projectile to reach its maximum height?",
+      "back": "Listen for: (13/14) seconds",
+      "order": 29,
+      "after": [
+        "6a96a4273deb"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 342
+        },
+        "promptKey": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e87b60f65432",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Which axis shows the selling price?",
+      "back": "Listen for: (x)-axis",
+      "order": 30,
+      "after": [
+        "fecebac6bc46"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 348
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a959a78547c9",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Which axis shows the profit in dollars?",
+      "back": "Listen for: (y)-axis",
+      "order": 31,
+      "after": [
+        "e87b60f65432"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 1,
+          "line": 350
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "f05e7a615dc4",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: What point on the graph corresponds to the maximum value of the profit function?",
+      "back": "Listen for: the vertex of the parabola",
+      "order": 32,
+      "after": [
+        "a959a78547c9"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 2,
+          "line": 352
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "449f1f016afb",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: Why wouldn't selling the headphones at a higher price make a higher profit for the company?",
+      "back": "Listen for: When a product costs too much, not as many people will buy it.",
+      "order": 33,
+      "after": [
+        "f05e7a615dc4"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 3,
+          "line": 355
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "7dcd0d691768",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: What does the ordered pair (40,6,000) mean in the context of this situation?",
+      "back": "Listen for: When the selling price is $40, the profit is $6,000.",
+      "order": 34,
+      "after": [
+        "449f1f016afb"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 4,
+          "line": 357
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "02e166d2f87a",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: How are the words selling and prices related to each other?",
+      "back": "Listen for: Prices tell the amount of money a company is selling something for.",
+      "order": 35,
+      "after": [
+        "7dcd0d691768"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 5,
+          "line": 360
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[5]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "8b22c23a14ae",
+      "type": "cue",
+      "front": "Example 3 · Teacher prompt: How are the words profit and earns related to each other?",
+      "back": "Listen for: Profit is the money a company earns from selling something above the cost to make and/or sell it.",
+      "order": 36,
+      "after": [
+        "02e166d2f87a"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[6]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "27: 70 Step 2 Understand & Apply",
+          "item": 6,
+          "line": 362
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[6]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "8530586bce99",
+      "type": "cue",
+      "front": "Example 3 · Extend thinking: Why is there no (c) term in the quadratic equation?",
+      "back": "Listen for: (c) is equal to 0 since the (y)-intercept is (0,0), which would be the launch point of the projectile.",
+      "order": 37,
+      "after": [
+        "8b22c23a14ae"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "28: 71 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 428
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "16bb2f57240d",
+      "type": "cue",
+      "front": "Example 3 · Extend thinking: What effect would a change in the angle have on the motion?",
+      "back": "Listen for: Since it is part of both the (a) and the (b) terms, it would affect the height of the vertex and the width of the parabola (distance of travel).",
+      "order": 38,
+      "after": [
+        "8530586bce99"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.RtIExtend[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_2-2_TE.tex",
+          "anchor": 3,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "28: 71 Step 2 Understand & Apply",
+          "item": 1,
+          "line": 430
+        },
+        "promptKey": "examples[n=3].teacherPrompts.RtIExtend[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "b47864809efb",
+      "type": "anchor",
+      "front": "DOK 3 task?",
+      "back": "A college's business office found the relationship between the number of admissions counselors they employ and the college's profit from tuition could be modeled by y = -10x^2 + 1,500x - 35,000. a. Graph the function. b. How many admissions counselors should the college employ to maximize its profit? c. …",
+      "order": 39,
+      "after": [
+        "7886d53780af"
+      ],
+      "minute": null,
+      "source": "dok3.task"
+    },
+    {
+      "id": "8a3efd5a050b",
+      "type": "anchor",
+      "front": "DOK 3 key?",
+      "back": "a. Downward parabola, vertex (75, 21,250), y-intercept (0, -35,000). b. 75 admissions counselors (h = -1,500/(2(-10)) = 75). c. $21,250 (y = -56,250 + 112,500 - 35,000). …",
+      "order": 40,
+      "after": [
+        "7886d53780af"
+      ],
+      "minute": null,
+      "source": "dok3.key"
+    },
+    {
+      "id": "b96ec5fffc9a",
+      "type": "cue",
+      "front": "Opener situation?",
+      "back": "Jordan and Emery are rewriting the vertex form of the quadratic function y = 2(x - 4)^2 + 5 in the form y = ax^2 + bx + c. Jordan: = (2x - 8)^2 + 5 = 4x^2 - 32x + 64 + 5 = 4x^2 - 32x + 69. Emery: = 2(x^2 - 16) + 5 = 2x^2 - 32 + 5 = 2x^2 - 27.",
+      "order": 41,
+      "after": [
+        "da825deac0ad"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.situation"
+    },
+    {
+      "id": "a6854bdcbe3a",
+      "type": "cue",
+      "front": "Opener prompt 1?",
+      "back": "A. Communicate Precisely: Did Jordan rewrite the equation correctly? Did Emery? Explain. (Neither; the correct equation is y = 2x^2 - 16x + 37.)",
+      "order": 42,
+      "after": [
+        "b96ec5fffc9a"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[0]"
+    },
+    {
+      "id": "53207da8e37a",
+      "type": "cue",
+      "front": "Opener prompt 2?",
+      "back": "B. Without rewriting the equation, how could you prove that Jordan or Emery's equations are not equivalent to the original? (Neither squared the binomial correctly: Jordan distributed the 2 before squaring; Emery did not square the binomial correctly.)",
+      "order": 43,
+      "after": [
+        "b96ec5fffc9a"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.studentPrompts[1]"
+    },
+    {
+      "id": "e0acefb02c4a",
+      "type": "cue",
+      "front": "Before, whole class: ask?",
+      "back": "How was the process used by Jordan similar to that used by Emery? How was it different? → Both students expanded the binomial. Jordan distributed the coefficient before expanding, while Emery used an incorrect sign and forgot to include the middle term.",
+      "order": 44,
+      "after": [
+        "b96ec5fffc9a"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[0]"
+    },
+    {
+      "id": "ab3bf259d014",
+      "type": "cue",
+      "front": "During, small group: ask?",
+      "back": "How does understanding the order of operations help you to determine whether Jordan and/or Emery are correct? → Check whether each expression was simplified according to the order of operations; if it was, the result is equivalent to the original equation, and if not, it is not.",
+      "order": 45,
+      "after": [
+        "e0acefb02c4a"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[1]"
+    },
+    {
+      "id": "ed255691a056",
+      "type": "cue",
+      "front": "Early finishers: ask?",
+      "back": "Rewrite y = (1/3)(x - 1/2)^2 - 3/4 in the form y = ax^2 + bx + c. → y = (1/3)x^2 - (1/3)x - 2/3",
+      "order": 46,
+      "after": [
+        "ab3bf259d014"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[2]"
+    },
+    {
+      "id": "8b7fe1c95992",
+      "type": "cue",
+      "front": "After, whole class: ask?",
+      "back": "How would you summarize the steps needed to rewrite the vertex form of the quadratic function in the form y = ax^2 + bx + c? → Square the binomial, distribute the coefficient, and then combine like terms.",
+      "order": 47,
+      "after": [
+        "ed255691a056"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[3]"
+    },
+    {
+      "id": "1df0ff1d6be0",
+      "type": "cue",
+      "front": "Habits of Mind, Reason: ask?",
+      "back": "Casey rewrote y = 2(x - 4)^2 + 5 as 2(x + 1)^2 = 2(x^2 + 2x + 1) = 2x^2 + 4x + 2. Is Casey correct? Explain. → No; Casey added 5 inside the parentheses. Expand first, then distribute the 2, then add like terms: y = 2x^2 - 16x + 37.",
+      "order": 48,
+      "after": [
+        "8b7fe1c95992"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.teQuestions[4]"
+    },
+    {
+      "id": "d8da1cb0f411",
+      "type": "trap",
+      "front": "Opener caution?",
+      "back": "The opener is the vertex-form-to-standard-form expansion (Example 1's derivation, cut), not the vertex formula the quiz needs; keep it to ten minutes and skip the early-finishers fractions. …",
+      "order": 49,
+      "after": [
+        "b96ec5fffc9a"
+      ],
+      "minute": null,
+      "source": "modelDiscuss.caution"
+    },
+    {
+      "id": "e8a46579d6ac",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "S9G Graph a quadratic function",
+      "order": 50,
+      "after": [
+        "f634f6df4ccf"
+      ],
+      "minute": null,
+      "source": "ixl.S9G"
+    },
+    {
+      "id": "2c60462b4d53",
+      "type": "anchor",
+      "front": "IXL for example 3?",
+      "back": "L8C Characteristics of quadratic functions: equations",
+      "order": 51,
+      "after": [
+        "7886d53780af"
+      ],
+      "minute": null,
+      "source": "ixl.L8C"
+    },
+    {
+      "id": "a16d55481672",
+      "type": "anchor",
+      "front": "IXL for example 3? (2)",
+      "back": "AJ7 Domain and range of quadratic functions: equations",
+      "order": 52,
+      "after": [
+        "7886d53780af"
+      ],
+      "minute": null,
+      "source": "ixl.AJ7"
+    },
+    {
+      "id": "0e5c1931a14e",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "4A7 Write a quadratic function in standard form from its vertex and another point",
+      "order": 53,
+      "after": [
+        "da825deac0ad"
+      ],
+      "minute": null,
+      "source": "ixl.4A7"
+    },
+    {
+      "id": "e8cc581ecc38",
+      "type": "anchor",
+      "front": "IXL for example 4?",
+      "back": "ED9 Write a quadratic function from three points",
+      "order": 54,
+      "after": [
+        "da825deac0ad"
+      ],
+      "minute": null,
+      "source": "ixl.ED9"
+    }
+  ]
+}

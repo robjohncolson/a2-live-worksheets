@@ -1,0 +1,722 @@
+{
+  "lesson": "5-5",
+  "prompts": [
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do you combine functions by addition or subtraction?",
+      "answer": "Combine the like terms of the two functions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Add and Subtract Functions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "66: 261 Understand & Apply",
+        "item": 0,
+        "line": 160
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How do you know that the combined function has the same domain as the two original functions?",
+      "answer": "The possible elements for the combined function are the same as the possible elements for the original functions.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Add and Subtract Functions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "66: 261 Understand & Apply",
+        "item": 1,
+        "line": 162
+      }
+    },
+    {
+      "example": 1,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "What new notation is used in the example and what does it mean?",
+      "answer": "((f+g)x) means (f(x)+g(x)), and ((f-g)x) means (f(x)-g(x)).",
+      "variant": "example",
+      "notes": [
+        "Printed notation omits parentheses around x."
+      ],
+      "context": {
+        "text": "Add and Subtract Functions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 1,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "66: 261 Understand & Apply",
+        "item": 2,
+        "line": 164
+      }
+    },
+    {
+      "example": 4,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What is the first step for each problem?",
+      "answer": "Replace the expression inside the outer parentheses.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "Additional Examples: ADDITIONAL EXAMPLE 4 Let (f(x)=2x^2-3) and let (g(x)=4x-2). Find (f(g(x))) and find (g(f(x))). (f(g(x))=2(4x-2)^2-3) (=2(16x^2-16x-4)-3) (=32x^2 32x 5) (g(f(x))=4(2x^2-3)-2) (=8x^2-12-2) (=8x^2-14) (f(g(x))=32x^2 32x 5); (g(f(x))=8x^2-14) Printed first expansion has -4 instead of +4, and the final line has missing signs between terms; likely (32x^2-32x+5). Source PDF page 66. Digital labels: Go back; Essential Question; Solution. Example 4 Help students practice evaluating composite functions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 4,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "66: 261 Understand & Apply",
+        "item": 0,
+        "line": 180
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How do you decide which bonus to take first?",
+      "answer": "The greater total will occur when 5% is taken on the additional 10,000 award points.",
+      "variant": "additional",
+      "notes": [],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 6 A member currently has 75,000 awards points. In what order should the member take the bonuses? Airline Awards Members! Get Both Bonuses! Add 10,000 award points! Add 5% of your award points! First take 10,000 points, then take 5% bonus. (10,000+75,000=85,000) (1.05(85,000)=89,250) Take a 5% bonus, then add 10,000 points. (1.05(75,000)=78,750) (78,750+10,000=88,750) The overall bonus is 500 points more if you add the 10,000 points first, and then take the 5% bonus. Add the 10,000 points first, and then take the 5% bonus. Example 6 Help students see how the order of two functions can affect the final value.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "66: 261 Understand & Apply",
+        "item": 0,
+        "line": 196
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "Why do the two orders have different outcomes?",
+      "answer": "Adding 5% first yields less because you are adding 5% of a smaller number.",
+      "variant": "additional",
+      "notes": [
+        "Source PDF page 66. Additional Examples are available at SavvasRealize.com. Go back; Essential Question; Solution."
+      ],
+      "context": {
+        "text": "ADDITIONAL EXAMPLE 6 A member currently has 75,000 awards points. In what order should the member take the bonuses? Airline Awards Members! Get Both Bonuses! Add 10,000 award points! Add 5% of your award points! First take 10,000 points, then take 5% bonus. (10,000+75,000=85,000) (1.05(85,000)=89,250) Take a 5% bonus, then add 10,000 points. (1.05(75,000)=78,750) (78,750+10,000=88,750) The overall bonus is 500 points more if you add the 10,000 points first, and then take the 5% bonus. Add the 10,000 points first, and then take the 5% bonus. Example 6 Help students see how the order of two functions can affect the final value.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "66: 261 Understand & Apply",
+        "item": 1,
+        "line": 198
+      }
+    },
+    {
+      "example": 1,
+      "category": "ElicitEvidence",
+      "key": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "A student said that (f+g) and (f-g) are shorthand for longer expressions. Explain what the student means.",
+      "answer": "(f+g) is a shorter way to express ((2x^2+7x-1)+(3-2x)), and (f-g) is a shorter way to express ((2x^2+7x-1)-(3-2x)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 1,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "67: 262 Example 1 continued",
+        "item": 0,
+        "line": 237
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How does the example involve multiplying functions?",
+      "answer": "The problem describes three functions---demand, price, and revenue---and revenue can be calculated by multiplying demand times price.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Multiply Functions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "67: 262 Example 1 continued",
+        "item": 0,
+        "line": 242
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "How do you multiply two functions?",
+      "answer": "Multiply each term of one function by each term of the other function and combine like terms",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Multiply Functions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "67: 262 Example 1 continued",
+        "item": 1,
+        "line": 244
+      }
+    },
+    {
+      "example": 2,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[2]",
+      "kind": "question",
+      "question": "For the demand function (d(x)) and the price function (p(x)), is (d(x)· p(x)) equal to (p(x)· d(x))?",
+      "answer": "Yes; the products are equal because of the Commutative Property of Multiplication.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Multiply Functions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 2,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "67: 262 Example 1 continued",
+        "item": 2,
+        "line": 246
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "kind": "question",
+      "question": "How do you find the zeros of each denominator?",
+      "answer": "Set the denominator equal to zero, and solve for the variable.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Extend Student Thinking. USE WITH EXAMPLE 3 Have students define and state the domains of the following quotients when (f(x)=x^2+2x-3), (g(x)=x^2-1), and (h(x)=x^2+4x+3). a. (f/(g+h)) ((x^2+2x-3)/(2x^2+4x+2)); The domain is the set of all real numbers x such that (x≠-1). b. ((f-h)/g) ((-2x-6)/(x^2-1)); The domain is the set of all real numbers x such that (x≠-1) and (x≠1). c. ((h-g)/(g-f)) ((2x+2)/(-x+1)); The domain is the set of all real numbers x such that (x≠1).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "67: 262 Example 1 continued",
+        "item": 0,
+        "line": 258
+      }
+    },
+    {
+      "example": 3,
+      "category": "RtIExtend",
+      "key": "examples[n=3].teacherPrompts.RtIExtend[0].questions[1]",
+      "kind": "question",
+      "question": "How do the zeros of the denominator affect the domain of the function?",
+      "answer": "The zeros of the denominator are excluded from the domain of the function.",
+      "variant": "example",
+      "notes": [
+        "Source PDF page 67."
+      ],
+      "context": {
+        "text": "Extend Student Thinking. USE WITH EXAMPLE 3 Have students define and state the domains of the following quotients when (f(x)=x^2+2x-3), (g(x)=x^2-1), and (h(x)=x^2+4x+3). a. (f/(g+h)) ((x^2+2x-3)/(2x^2+4x+2)); The domain is the set of all real numbers x such that (x≠-1). b. ((f-h)/g) ((-2x-6)/(x^2-1)); The domain is the set of all real numbers x such that (x≠-1) and (x≠1). c. ((h-g)/(g-f)) ((2x+2)/(-x+1)); The domain is the set of all real numbers x such that (x≠1).",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 3,
+        "category": "RtIExtend",
+        "block": 0,
+        "page": "67: 262 Example 1 continued",
+        "item": 1,
+        "line": 260
+      }
+    },
+    {
+      "example": 2,
+      "category": "ElicitEvidence",
+      "key": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Is it possible for x to have the value 64?",
+      "answer": "No; if (x=64), then (d(64)=-0.25(64)^2+1,000=-24), and (d(x)) cannot be less than 0.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 2,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "68: 263 Example 2 continued",
+        "item": 0,
+        "line": 294
+      }
+    },
+    {
+      "example": 3,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "How are the domains of (g) and (f/g) different?",
+      "answer": "g can have domain values that make the function equal zero, but those values cannot be in the domain of (f/g).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Divide Functions. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 3,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "68: 263 Example 2 continued",
+        "item": 0,
+        "line": 299
+      }
+    },
+    {
+      "example": 3,
+      "category": "ElicitEvidence",
+      "key": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Explain how you would find the domain of (g/f).",
+      "answer": "First, identify the domains of g and f. Then find the values that make (f(x)) equal zero and eliminate them from the domain.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 3,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "68: 263 Example 2 continued",
+        "item": 0,
+        "line": 321
+      }
+    },
+    {
+      "example": 3,
+      "category": "HabitsOfMind",
+      "key": "examples[n=3].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Communicate Precisely How are the domains of (f+g), (f-g), (f· g), and (f/g) related to the domains of f and g?",
+      "answer": "If f and g have the same domain, the domains of (f+g), (f-g), and (f· g) are that same domain. The domain of (f/g) is that same domain, but without any values for which g is zero. If f and g have different domains (as in Example 2), the domain for (f+g), (f-g), and (f· g) is the intersection of the two domains. The domain of (f/g) is further restricted by removing any values for which g is zero.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 1--3",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 3,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "68: 263 Example 2 continued",
+        "item": 0,
+        "line": 326
+      }
+    },
+    {
+      "example": 4,
+      "category": "GeneralizeETP",
+      "key": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "kind": "question",
+      "question": "What is the difference between the two notations (f(x)· g(x)) and (f(g(x)))?",
+      "answer": "(f(x)· g(x)) is the product of two expressions, and (f(g(x))) uses the function (g(x)) as the variable for the function (f(x)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Compose Functions. Build Procedural Fluency From Conceptual Understanding",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 4,
+        "category": "GeneralizeETP",
+        "block": 0,
+        "page": "68: 263 Example 2 continued",
+        "item": 0,
+        "line": 331
+      }
+    },
+    {
+      "example": 4,
+      "category": "CommonError",
+      "key": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+      "kind": "trap",
+      "question": "What error should I watch for, and how does the TE respond?",
+      "answer": "When evaluating (f(3x)), students may write (2(3x-1)) rather than (2(3x)-1). Encourage them to write the function as (f(□)=2(□)-1) to emphasize that the expression that appears in the parentheses after the f should appear within parentheses on the right side of the equation in place of the variable x.",
+      "variant": "example",
+      "notes": [],
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 4,
+        "category": "CommonError",
+        "block": 0,
+        "page": "69: 264 Example 4 continued",
+        "item": 0,
+        "line": 363
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "kind": "question",
+      "question": "What notation is introduced in the example and what does it mean?",
+      "answer": "The operation symbol (°) in (f° g) means \"apply the rule for g, and then apply the rule for f.\"",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write a Rule for a Composite Function. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "69: 264 Example 4 continued",
+        "item": 0,
+        "line": 377
+      }
+    },
+    {
+      "example": 5,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "kind": "question",
+      "question": "What procedure do you perform to find the rule for (f° g)?",
+      "answer": "Substitute the expression (g(x)) for the variable in (f(x)), then apply the operations indicated by (f(x)).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Write a Rule for a Composite Function. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 5,
+        "category": "PurposefulQuestions",
+        "block": 0,
+        "page": "69: 264 Example 4 continued",
+        "item": 1,
+        "line": 379
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+      "kind": "question",
+      "question": "What does the expression (f(g(x))) in Part A mean?",
+      "answer": "Evaluate (g(x)) to get a number or an expression. Then evaluate the function f for that number or expression.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Support Struggling Students. USE WITH EXAMPLE 5 Help students focus on specific aspects of the example by discussing the following questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "69: 264 Example 4 continued",
+        "item": 0,
+        "line": 385
+      }
+    },
+    {
+      "example": 5,
+      "category": "RtISupport",
+      "key": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+      "kind": "question",
+      "question": "How is (g(f(x))) in Part B different from (f(g(x)))?",
+      "answer": "The difference is the order of using the functions. Evaluate the \"inside\" expression first, then use the result to evaluate the \"outside\" expression.",
+      "variant": "example",
+      "notes": [
+        "Source PDF page 69. Printed Part B reference to (g(f(x))); Example 5B displays (f(g(x)))."
+      ],
+      "context": {
+        "text": "Support Struggling Students. USE WITH EXAMPLE 5 Help students focus on specific aspects of the example by discussing the following questions.",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 5,
+        "category": "RtISupport",
+        "block": 0,
+        "page": "69: 264 Example 4 continued",
+        "item": 1,
+        "line": 387
+      }
+    },
+    {
+      "example": 5,
+      "category": "ElicitEvidence",
+      "key": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "kind": "question",
+      "question": "Part a: For the two given functions f and g, how can you tell when (f° g) will be negative?",
+      "answer": "(f(x)=x^3), so (f(g(x))) will be negative when (g(x)) is negative. Because (g(x)) is negative when (x+1<0), (f° g) is negative when (x<-1).",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Elicit and Use Evidence of Student Thinking",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 5,
+        "category": "ElicitEvidence",
+        "block": 0,
+        "page": "70: 265 Example 5 continued",
+        "item": 0,
+        "line": 420
+      }
+    },
+    {
+      "example": 6,
+      "category": "PurposefulQuestions",
+      "key": "examples[n=6].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "kind": "question",
+      "question": "Why does order matter for discounts?",
+      "answer": "The amount of a percent coupon depends on the base price. To maximize a percent coupon, take it off the larger price; that is, before a dollars-off coupon.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "Use a Composite Function Model. Pose Purposeful Questions",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 6,
+        "category": "PurposefulQuestions",
+        "block": 1,
+        "page": "70: 265 Example 5 continued",
+        "item": 0,
+        "line": 425
+      }
+    },
+    {
+      "example": 6,
+      "category": "HabitsOfMind",
+      "key": "examples[n=6].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "kind": "question",
+      "question": "Reason Let (f(x)=1/3(x-2)) and (g(x)=3x+2). Find (f° g) and (g° f). Are they equivalent? If so, does this prove that the composition of two functions is commutative?",
+      "answer": "(f(g(x))=x) and (g(f(x))=x), so in this case (f° g=g° f). One example is not a proof, so this does not prove that composition of functions is commutative.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "HABITS OF MIND. Use with EXAMPLES 4--6",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 6,
+        "category": "HabitsOfMind",
+        "block": 0,
+        "page": "70: 265 Example 5 continued",
+        "item": 0,
+        "line": 458
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[0]",
+      "kind": "question",
+      "question": "How is order important in the problem?",
+      "answer": "The final price changes depending on which discount is used first.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 6 LISTENING. BEGINNING. Point out the words order and sequence in the example and explain that they mean the same thing. Have students listen as you read the definition of order: \"the arrangement of things following one after another, as in space or time.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "70: 265 Example 5 continued",
+        "item": 0,
+        "line": 464
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[1]",
+      "kind": "question",
+      "question": "What is an example of when you can not change the order of operations in a problem?",
+      "answer": "When you simplify an expression, you must follow the same order of operations.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 6 LISTENING. BEGINNING. Point out the words order and sequence in the example and explain that they mean the same thing. Have students listen as you read the definition of order: \"the arrangement of things following one after another, as in space or time.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "70: 265 Example 5 continued",
+        "item": 1,
+        "line": 466
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[2]",
+      "kind": "question",
+      "question": "How might a customer and a cashier interact?",
+      "answer": "A cashier helps a customer buy items in a store; he rings up the purchases, and the customer gives the cashier money for the purchases.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 6 LISTENING. BEGINNING. Point out the words order and sequence in the example and explain that they mean the same thing. Have students listen as you read the definition of order: \"the arrangement of things following one after another, as in space or time.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "70: 265 Example 5 continued",
+        "item": 2,
+        "line": 469
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[3]",
+      "kind": "question",
+      "question": "How are discounts and deals related?",
+      "answer": "A discount is money off the price of an item, and a deal is a good price on an item.",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 6 LISTENING. BEGINNING. Point out the words order and sequence in the example and explain that they mean the same thing. Have students listen as you read the definition of order: \"the arrangement of things following one after another, as in space or time.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "70: 265 Example 5 continued",
+        "item": 3,
+        "line": 471
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[4]",
+      "kind": "question",
+      "question": "What does it mean to post on social media?",
+      "answer": "to put a statement, advertisement, or photo online to share with other people",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 6 LISTENING. BEGINNING. Point out the words order and sequence in the example and explain that they mean the same thing. Have students listen as you read the definition of order: \"the arrangement of things following one after another, as in space or time.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "70: 265 Example 5 continued",
+        "item": 4,
+        "line": 474
+      }
+    },
+    {
+      "example": 6,
+      "category": "ELLAddendum",
+      "key": "examples[n=6].teacherPrompts.ELLAddendum[0].questions[5]",
+      "kind": "question",
+      "question": "What is a word that means the same thing as the word yields, as it is used in this example?",
+      "answer": "produces or gives",
+      "variant": "example",
+      "notes": [],
+      "context": {
+        "text": "English Language Learners. Use with EXAMPLE 6 LISTENING. BEGINNING. Point out the words order and sequence in the example and explain that they mean the same thing. Have students listen as you read the definition of order: \"the arrangement of things following one after another, as in space or time.\"",
+        "figures": []
+      },
+      "source": {
+        "file": "a2_5-5_TE.tex",
+        "anchor": 6,
+        "category": "ELLAddendum",
+        "block": 0,
+        "page": "70: 265 Example 5 continued",
+        "item": 5,
+        "line": 476
+      }
+    }
+  ]
+}
