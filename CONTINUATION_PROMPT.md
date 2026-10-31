@@ -28,8 +28,28 @@ Updated 2026-10-31 (Saturday after week 8). Paste into the next Claude Code / Co
    `scripts/merge-fast-lesson-drafts.mjs`. Root suite: the same four pre-existing failures as
    before (`a2-fork-freeze`, `a2-objectives-display`, `a2-secrets`, `draft-card-decks`); server
    suite green. `tests/a2-lesson-skills.test.js` now accepts Topics 3+ and pins 2-1 with L8C last.
-3. **Not pushed.** The commits are local in both repos; push after the teacher looks at one
-   packet (2-1 is next in the plan, due Nov 19/20) and the Topic 1 assessment week is over.
+3. **The Savvas Topic Assessment is the end goal; the quiz is the intermediate (teacher, Oct 31).**
+   The district's common topic assessments are remade from the Savvas forms (questions removed,
+   aimed at the SAT and Precalculus); the old district Topic 2 and 7 forms no longer exist. So
+   every topic's Savvas Topic Assessment (Forms A and B, keys, item analysis) is transcribed in
+   `../Lesson_planning/a2_T<N>_assessment_TE.tex` (Topics 1-7, verified item by item on the TE
+   page images), every item is mapped to its lesson and Example in `data/a2-topic-assessments.json`
+   (SAT / Precalculus relevance, the district form's status, the per-lesson re-ranking), and
+   `node scripts/build-a2-topic-assessment-audit.mjs` renders `docs/a2-topic-assessment-audit.md`
+   (`--check` verifies; `tests/a2-topic-assessments.test.js` keeps the map, the prep entries and
+   the doc in step). Spec R1 now ranks topic items above quiz items; R8 adds the packet's
+   `\topictarget{<N>}{...}` "On the Topic N test" box (the lint requires it). Under R1 the kept
+   Examples changed in 16 lessons (2-1, 2-3, 2-6, 2-7, 3-2, 4-1, 4-2, 4-4, 4-5, 5-1, 5-6, 6-1,
+   6-2, 6-3, 7-2, 7-3: rebuilt packet, quiz and Desk entries); the other 17 keep their Examples
+   and gained the box and a `topicAssessment` block in their prep entry (the Desk fold shows it
+   as "Topic N test"; the lesson tree has one anchor per item). 1-2 is quiz-only (taught in
+   October). Items the fast lessons cannot reach are listed per topic in the audit doc: Topic 1
+   items 1-4 (1-1 has no fast lesson), Topic 5 items from 5-2/5-3/5-4 and Topic 6 items from
+   6-4/6-5/6-7 (planned `later`); the department's SY25-26 Topic 6 cut kept only logarithm items,
+   six of its eight from 6-4 and 6-5. Printed-key misprints found in the Savvas forms are flagged
+   in the transcriptions' `\te` notes (T1 B11, T3 A6 sketch, T4 B4, T5 B11/B16/B17, T6 B14, T7 B4).
+4. **Pushed 2026-10-31** with the teacher's explicit approval (both repos). Both repos are
+   public: the transcriptions carry the printed keys, like the lesson quizzes before them.
 
 ## What changed 2026-10-07 to 10-22 (still true unless superseded above)
 

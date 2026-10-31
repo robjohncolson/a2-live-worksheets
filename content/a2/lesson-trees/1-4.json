@@ -223,11 +223,59 @@
       "source": "quizFocus.items.5"
     },
     {
+      "id": "9a05824ae522",
+      "type": "anchor",
+      "front": "Topic 1 test item 7 is covered by?",
+      "back": "Enzo's profit: $900 in December, $500 in January, -$300 in March (February skipped); write the recursive formula a1 = [ ], a_n = a_(n-1) + [ ] (DOK 3): Examples 2 and 4, cut",
+      "order": 19,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.7"
+    },
+    {
+      "id": "7603bddd81e8",
+      "type": "anchor",
+      "front": "Topic 1 test item 8 is covered by?",
+      "back": "Recursive a1 = 2, a_n = a_(n-1) + 7 (game-show prizes): write the explicit formula a_n = [ ] + [ ](n - 1) and find round 7 (DOK 2): Example 3, kept",
+      "order": 20,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.8"
+    },
+    {
+      "id": "d34a06023af4",
+      "type": "anchor",
+      "front": "Topic 1 test item 9 is covered by?",
+      "back": "Mya's drone flights 11, 22, 33, ..., 77 m: total distance (A 275, B 308, C 143, D 385 m) (DOK 2): Example 7, cut",
+      "order": 21,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.9"
+    },
+    {
+      "id": "87314a520720",
+      "type": "anchor",
+      "front": "Topic 1 test item 10 is covered by?",
+      "back": "Theater, 12 chairs in row 1, 2 more each row, 10 rows: reasonable domain of f(n)? (A all positive integers, B multiples of 2 from 12 to 30, C integers 1 through 10, D integers 0 through 10) (DOK 2): Example 1, cut",
+      "order": 22,
+      "after": [
+        "8c84fac132a8"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.10"
+    },
+    {
       "id": "1e4c6c2c1522",
       "type": "step",
       "front": "Example 3: ?",
       "back": "Translate Between Recursive and Explicit Forms · DOK 1, 2, 3 · practice 22, 25, 12, 15 · The lesson. Part A (recursive to explicit) is Topic 1 Assessment item 8 exactly and the form of quiz item 3; Part B (explicit to recursive) is the form of quiz item 4 and Topic 1 Assessment item 7 (DOK 3). …",
-      "order": 19,
+      "order": 23,
       "after": [
         "8c84fac132a8",
         "13717c5ef9a6"
@@ -240,7 +288,7 @@
       "type": "cue",
       "front": "Example 3 · Purposeful question: How does the explicit definition compare to the recursive definition?",
       "back": "Listen for: Each definition shows the common difference and the first term of the sequence. You can use the explicit definition to find any value of the sequence, without having to calculate all previous values.",
-      "order": 20,
+      "order": 24,
       "after": [
         "1e4c6c2c1522"
       ],
@@ -269,7 +317,7 @@
       "type": "cue",
       "front": "Example 3 · Purposeful question: When might you want to use the recursive definition of the sequence rather than the explicit definition?",
       "back": "Listen for: The recursive definition may be the better option when you want to write all of the terms in a sequence up to a certain term.",
-      "order": 21,
+      "order": 25,
       "after": [
         "562a0b8f6670"
       ],
@@ -298,7 +346,7 @@
       "type": "cue",
       "front": "Example 3 · Check student thinking: When translating between a recursive definition and an explicit one, what should you do first?",
       "back": "Listen for: You should identify the common difference and the first term of the sequence.",
-      "order": 22,
+      "order": 26,
       "after": [
         "b616b8a5d4ad"
       ],
@@ -327,7 +375,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Felipe and Gregory are given the arithmetic sequence -1, 6, 13, .... Gregory wrote the explicit definition a_n = -1 + 7(n - 1) for the sequence. Felipe wrote the definition as a_n = 7n - 8. Which one of them is correct? Explain.",
-      "order": 23,
+      "order": 27,
       "after": [
         "1e4c6c2c1522"
       ],
@@ -339,7 +387,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "Both; Gregory's formula simplifies to Felipe's: -1 + 7(n - 1) = -1 + 7n - 7 = 7n - 8. Check n = 3: -1 + 14 = 13 and 21 - 8 = 13. Students must argue that two different-looking definitions name the same sequence, the MP.3 move the quiz never asks for; IXL items are DOK 1-2 and cannot stand in for it. …",
-      "order": 24,
+      "order": 28,
       "after": [
         "1e4c6c2c1522"
       ],
@@ -351,7 +399,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Yumiko and Hugo look at a table of the number of families attending a party (0, 1, 2, 3, 4) and the items needed to fill pinatas (1, 5, 9, 13, 17). Yumiko writes f(1) = 1 + 4 = 5, f(2) = f(1) + 4 = 9, f(3) = f(2) + 4 = 13, f(4) = f(3) + 4 = 17. Hugo writes g(x) = 1 + 4x.",
-      "order": 25,
+      "order": 29,
       "after": [
         "2155bce2bcdf"
       ],
@@ -363,7 +411,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Describe the pattern Yumiko found for finding items needed for the pinatas. (Each number is 4 more than the previous number.)",
-      "order": 26,
+      "order": 30,
       "after": [
         "d6a65bd91f05"
       ],
@@ -375,7 +423,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Describe the pattern Hugo found for finding items needed for the pinatas. (He used a formula to calculate the number of items.)",
-      "order": 27,
+      "order": 31,
       "after": [
         "d6a65bd91f05"
       ],
@@ -387,7 +435,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Use Structure: compare the two methods. Which method would be more useful in finding the items needed when 100 family members attend? Why? (Hugo's: g(100) directly; Yumiko's needs f(1) through f(99) first.)",
-      "order": 28,
+      "order": 32,
       "after": [
         "d6a65bd91f05"
       ],
@@ -399,7 +447,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What do you notice about the values in the table? → The input values increase by 1. The output values increase by 4.",
-      "order": 29,
+      "order": 33,
       "after": [
         "d6a65bd91f05"
       ],
@@ -411,7 +459,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "How else could you represent the data in the table? → You could plot the ordered pairs of inputs and outputs on a coordinate plane.",
-      "order": 30,
+      "order": 34,
       "after": [
         "16189ce1e720"
       ],
@@ -423,7 +471,7 @@
       "type": "cue",
       "front": "During, small group: ask? (2)",
       "back": "Plot the ordered pairs on a coordinate plane. Draw a line to connect all the points. What do you notice? → All the points lie on a line. The equation of the line is the same as the equation Hugo found.",
-      "order": 31,
+      "order": 35,
       "after": [
         "8a4c9e92abec"
       ],
@@ -435,7 +483,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Consider the ordered pairs (0,3), (1,5), (2,7), (3,9), (4,11). Describe two different methods for finding the outputs. Compare your methods. → Use a graph: as x increases by 1, y increases by 2. Or find an equation, for example f(x) = 2x + 3.",
-      "order": 32,
+      "order": 36,
       "after": [
         "d622a08b42a8"
       ],
@@ -447,7 +495,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "What differences do you notice between Yumiko's and Hugo's methods? → In Yumiko's method you need the previous value to calculate the current value. In Hugo's method you can calculate the current value directly.",
-      "order": 33,
+      "order": 37,
       "after": [
         "49680de1722c"
       ],
@@ -459,7 +507,7 @@
       "type": "cue",
       "front": "Habits of Mind, Use Structure: ask?",
       "back": "Find the average rate of change between a few pairs of points. What can you conclude about the function represented in the table? → The average rate of change is always 4, so these values are probably from a linear function.",
-      "order": 34,
+      "order": 38,
       "after": [
         "ef019be4a5b2"
       ],
@@ -471,7 +519,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The opener is Example 3 in disguise: Yumiko's rule is recursive (previous term), Hugo's is explicit (term number); name them that way in the After question. …",
-      "order": 35,
+      "order": 39,
       "after": [
         "d6a65bd91f05"
       ],
@@ -483,7 +531,7 @@
       "type": "anchor",
       "front": "IXL for example 1?",
       "back": "C8R Find terms of an arithmetic sequence",
-      "order": 36,
+      "order": 40,
       "after": [
         "2155bce2bcdf"
       ],
@@ -495,7 +543,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "H82 Write a formula for an arithmetic sequence",
-      "order": 37,
+      "order": 41,
       "after": [
         "1e4c6c2c1522"
       ],
@@ -507,7 +555,7 @@
       "type": "anchor",
       "front": "IXL for example 3? (2)",
       "back": "ZAH Write a recursive formula for a sequence",
-      "order": 38,
+      "order": 42,
       "after": [
         "1e4c6c2c1522"
       ],
@@ -519,7 +567,7 @@
       "type": "anchor",
       "front": "IXL for example 5?",
       "back": "W6A Find the sum of an arithmetic series",
-      "order": 39,
+      "order": 43,
       "after": [
         "2155bce2bcdf"
       ],

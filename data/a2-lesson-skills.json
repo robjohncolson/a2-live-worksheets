@@ -268,13 +268,16 @@
           1,
           5
         ],
-        "note": "Optional, unstarred: transformations of y = x^2 (Examples 1 and 5, cut in the fast packet); feeds quiz items 1 and 5, full Savvas quiz only, so no scored item on the short form"
+        "note": "Starred: transformations of y = x^2; feeds quiz item 5 (graded) and Topic 2 test item 2 (Example 5, Try It 5); Example 1 is cut and quiz item 1 is full Savvas quiz only"
       },
       {
         "code": "WMS",
         "level": "core",
-        "example": 2,
-        "note": "Optional, unstarred: key features read off a graph (a 1-1 core skill); feeds no scored item on the short form, since quiz item 2 reads an equation"
+        "example": [
+          2,
+          4
+        ],
+        "note": "Optional, unstarred warm-up: read the vertex off a drawn parabola (quiz item 4, Example 4); a 1-1 core skill, and the graph version of the cut Example 2's features"
       },
       {
         "code": "S9G",
@@ -295,13 +298,13 @@
           3,
           4
         ],
-        "note": "Starred: vertex plus one point gives a; feeds quiz items 3 (+5 bonus) and 4 (graded) (Example 4 steps 1-3; Example 3 is cut)"
+        "note": "Starred: vertex plus one point gives a; feeds quiz items 3 (+5 bonus) and 4 (graded) and Topic 2 test item 1 (Example 4 steps 1-3; Example 3 is cut)"
       },
       {
         "code": "L8C",
         "level": "core",
         "example": 2,
-        "note": "Starred: key features from an equation in vertex form; feeds quiz item 2 (graded), Example 2 and Try It 2. Also a 2-2 core skill",
+        "note": "Optional, unstarred: key features from an equation in vertex form; quiz items 1 and 2, full Savvas quiz only (Example 2 is cut). Also a 2-2 core skill",
         "changeNote": "Added 2026-10-30 for the 2-1 fast packet: graded quiz item 2 (greatest height from h(x) = -1/2(x - 4)^2 + 3) had no equation-based skill on the authored 2-1 list; appended as the last core entry"
       }
     ],
@@ -352,49 +355,49 @@
         "code": "NMZ",
         "level": "prereq",
         "example": 4,
-        "note": "Factor out a monomial: the -16 GCF step of Example 4 (cut) and quiz item 3 (full Savvas quiz only), also the Practice block; optional in the fast packet, feeds no scored item on the short form"
+        "note": "Factor out a monomial: starred in the fast packet, the -16 GCF step of Example 4 and Try It 4; quiz item 3 (the +5 bonus) and Topic 2 test item 7; level kept prereq per the Topics 1-2 pin, PLC may promote to core"
       },
       {
         "code": "UB5",
         "level": "prereq",
-        "example": [
-          1,
-          3
-        ],
-        "note": "Factor quadratics: starred in the fast packet for quiz item 1 (the +5 bonus) and the factoring step of item 2 (Example 3, Part B grouping; Example 1 is cut); level kept prereq per the Topics 1-2 pin, PLC may promote to core"
+        "example": 1,
+        "note": "Factor quadratics: unstarred row in the fast packet, quiz item 1 (full Savvas quiz only; Example 1 is cut); feeds no scored item on the short form"
       },
       {
         "code": "TRU",
         "level": "core",
         "example": [
           2,
-          3
+          4
         ],
-        "note": "Zero Product Property with the factors given: optional, unstarred warm-up before Example 3; feeds no scored item on the short form"
+        "note": "Zero Product Property with the factors given: optional, unstarred warm-up before Example 4; feeds no scored item on the short form"
       },
       {
         "code": "CJC",
         "level": "core",
-        "example": 3,
-        "note": "Solve by factoring: starred, quiz item 2 (Example 3, Try It 3)"
+        "example": [
+          4,
+          5
+        ],
+        "note": "Solve by factoring: starred, quiz item 2 (graded) and the factoring step of item 3 (Example 4, Try It 4, the Exit question); Topic 2 test items 4 and 7"
       },
       {
         "code": "G2Q",
         "level": "core",
         "example": 6,
-        "note": "Write from the zeros: optional, unstarred warm-up before Example 6; feeds no scored item on the short form"
+        "note": "Write from the zeros: Example 6 (cut); on the fast packet's optional line, not in the table; feeds no scored item on the short form"
       },
       {
         "code": "HPB",
         "level": "core",
         "example": 6,
-        "note": "Factored form from the x-intercepts and another point: starred, quiz item 5 (Example 6, Try It 6, Practice 45)"
+        "note": "Factored form from the x-intercepts and another point: Example 6 (cut), quiz item 5 (full Savvas quiz only) and the drone extension; on the fast packet's optional line, not in the table"
       },
       {
         "code": "DP9",
         "level": "core",
         "example": 5,
-        "note": "Quadratic inequalities / sign intervals: Example 5 (cut) and quiz item 4 (full Savvas quiz only); optional in the fast packet, feeds no scored item on the short form"
+        "note": "Quadratic inequalities / sign intervals: starred, quiz item 4 (graded; Example 5, Try It 5) and Topic 2 test item 14"
       }
     ],
     "2-4": [
@@ -476,24 +479,24 @@
       {
         "code": "CJC",
         "level": "prereq",
-        "note": "Solve by factoring (2-3); prerequisite Jam for the cut Example 2 (choose a method)"
+        "note": "Solve by factoring (2-3); prerequisite Jam for the cut Example 2 (choose a method); not in the packet table (listed in the prerequisite sentence below it)"
       },
       {
         "code": "NPH",
         "level": "prereq",
-        "note": "Completing the square (2-5); the Explore & Reason derivation of the Quadratic Formula"
+        "note": "Completing the square (2-5); the Explore & Reason derivation of the Quadratic Formula; not in the packet table (listed in the prerequisite sentence below it)"
       },
       {
         "code": "YQH",
         "level": "core",
         "example": 1,
-        "note": "Fast packet: starred; the Quadratic Formula, Example 1 and Try It 1; feeds quiz item 1 (graded) and item 2 (the +5 bonus)"
+        "note": "Fast packet: starred; the Quadratic Formula, Example 1 and Try It 1; feeds quiz item 1 (graded) and item 2 (the +5 bonus) and Topic 2 test item 12"
       },
       {
         "code": "QHK",
         "level": "core",
-        "example": 3,
-        "note": "Fast packet: starred; the discriminant, Example 3 and Try It 3; feeds quiz item 3 (graded); items 4 and 5 are on the full Savvas quiz only"
+        "example": 5,
+        "note": "Fast packet: starred; the discriminant, Example 5 and Try It 5 (with the Key idea box); feeds quiz item 5 (graded) and Topic 2 test item 15; items 3 and 4 are on the full Savvas quiz only"
       },
       {
         "code": "CEU",
@@ -522,10 +525,10 @@
         "level": "core",
         "example": [
           1,
-          4,
-          5
+          5,
+          4
         ],
-        "note": "Graph a line and a parabola and read the intersections: Example 1 (count solutions), Example 4 (graph both boundaries; quiz item 4), Example 5 (intersection feature)"
+        "note": "Graph a line and a parabola and read the intersections: Example 1 (count solutions; quiz item 1, Topic 2 test item 16) and Example 5 (intersection feature; quiz item 5, Topic 2 test item 17), both kept; Example 4 (graph both boundaries) is cut"
       },
       {
         "code": "HVZ",
@@ -534,7 +537,7 @@
           2,
           3
         ],
-        "note": "Substitute and solve the quadratic: quiz items 2 and 3; backs Example 3 in the fast packet (Example 2 is cut)"
+        "note": "Substitute and solve the quadratic: bonus quiz item 2 (the set-equal step of the Example 1 check and the Exit question); Examples 2 and 3 are cut in the fast packet"
       },
       {
         "code": "DKB",
@@ -550,7 +553,7 @@
         "example": [
           4
         ],
-        "note": "Added 2026-10-30 for quiz item 4 (graded): IXL has no linear-quadratic inequality skill; this 1-6 skill carries the solid/dashed boundary, test point and overlap steps of Example 4"
+        "note": "Added 2026-10-30 for quiz item 4 when Example 4 was kept; after the 2026-10-31 re-cut item 4 is full Savvas quiz only and U5D is not in the packet table. Stays in the authored Topics 1-2 list (the test pins it)."
       }
     ],
     "3-1": [
@@ -581,19 +584,19 @@
       {
         "code": "DYB",
         "level": "prereq",
-        "note": "Polynomial vocabulary: like terms, degree, standard form (Example 1B degree callout); Do Now warm-up before Example 1"
+        "note": "Polynomial vocabulary: like terms, degree, standard form (Example 2B degree callout); Do Now warm-up before Example 2"
       },
       {
         "code": "9A3",
         "level": "core",
-        "example": 1,
-        "note": "Add and subtract polynomials: quiz item 1 (starred in the fast packet)"
+        "example": 4,
+        "note": "Add and subtract polynomials: Example 4's profit step P(x) = R(x) - c(x) (distribute -1); quiz item 1, the +5 bonus (starred in the fast packet). Example 1, which teaches item 1 directly, is cut."
       },
       {
         "code": "8GN",
         "level": "core",
         "example": 2,
-        "note": "Multiply polynomials: quiz item 2 and the box volume in bonus item 4 (starred); expansion feeds 3-5"
+        "note": "Multiply polynomials: quiz item 2 and the box volume in quiz item 4 (starred); Topic 3 test items 4 and 7; expansion feeds 3-5"
       }
     ],
     "3-3": [
@@ -609,25 +612,25 @@
           4,
           5
         ],
-        "note": "Pascal's triangle: build Rows 6-8 (Explore & Reason A); Do Now before Example 5; Row 8 feeds quiz item 4"
+        "note": "Pascal's triangle: optional warm-up, unstarred in the fast packet (build Rows 6-8, Explore & Reason A; Do Now before Example 5); feeds no scored item on its own, A7M carries the Row 8 step of quiz item 4"
       },
       {
         "code": "A7M",
         "level": "core",
         "example": 5,
-        "note": "Pascal's triangle and the Binomial Theorem: quiz items 4-5 and Topic 3 assessment item 3 (starred in the fast packet)"
+        "note": "Pascal's triangle and the Binomial Theorem: quiz items 4-5 and Topic 3 test items 3 and 13 (starred in the fast packet)"
       },
       {
         "code": "NEU",
         "level": "core",
         "example": 5,
-        "note": "Binomial Theorem II: full expansion with a constant (possibly negative) b; quiz items 4-5 and Topic 3 assessment item 3 (starred in the fast packet)"
+        "note": "Binomial Theorem II: full expansion with a constant (possibly negative) b; quiz items 4-5 and Topic 3 test items 3 and 13 (starred in the fast packet)"
       },
       {
         "code": "NJV",
         "level": "core",
         "example": 3,
-        "note": "Factor sums and differences of cubes: quiz item 3 and Topic 3 assessment item 7; Example 3 is cut, so optional and left off the packet table"
+        "note": "Factor sums and differences of cubes: optional, unstarred row in the fast packet; quiz item 3 (full Savvas quiz only) and district SY25-26 form item 7 (Savvas Topic 3 Form A item 8); Example 3 is cut, so it feeds no scored item on the short form"
       }
     ],
     "3-4": [
@@ -721,7 +724,7 @@
           3,
           4
         ],
-        "note": "Graph a transformation and write its equation: Ex 3, and Ex 4 (cut) read backwards; quiz items 2 and 4"
+        "note": "Graph a transformation and write its equation: Ex 3, and Ex 4 (cut) read backwards; quiz items 2 and 4 (the +5 bonus)"
       },
       {
         "code": "Q83",
@@ -730,56 +733,63 @@
           1,
           2
         ],
-        "note": "Even and odd functions (Ex 1-2, cut); quiz item 1 and the DOK 3 Extension (Practice 12)"
+        "note": "Optional, unstarred: feeds no scored item on the short form. Even and odd functions (Ex 1-2, cut); quiz item 1 (full Savvas quiz only) and the DOK 3 Extension (Practice 12)"
       }
     ],
     "4-1": [
       {
         "code": "C9D",
         "level": "prereq",
-        "note": "Classify variation: a constant product xy means inverse variation (Example 1 idea, cut); warm-up for quiz items 1 and 2"
+        "note": "Classify variation: a constant product xy means inverse variation (Example 1 idea, cut); optional warm-up for quiz items 1 and 2, not in the packet table"
       },
       {
         "code": "PNY",
         "level": "core",
         "example": 3,
-        "note": "Write and solve inverse variation equations: find k, then use it; quiz items 1, 2 and 3 (starred)"
+        "note": "Write and solve inverse variation equations: find k, then use it (Example 3, cut); quiz item 3, the +5 bonus (starred), and Topic 4 test item 1; the packet's Extension (Practice 20) is the rehearsal"
       },
       {
         "code": "PXE",
         "level": "core",
         "example": 3,
-        "note": "Find the constant of variation k = xy (Example 3 Step 1); quiz items 1 and 2 (starred)"
+        "note": "Find the constant of variation k = xy (Example 3 Step 1, cut); quiz items 1 and 2 (full Savvas quiz only); not in the packet table"
       },
       {
         "code": "ULD",
         "level": "core",
         "example": 5,
-        "note": "Optional, unstarred: domain and range of reciprocal functions (Example 5, cut); feeds Savvas quiz items 4 and 5 (full Savvas quiz only), no scored item on the short form; Lesson 4-2's warm-up"
+        "note": "Domain and range of reciprocal functions: asymptotes x = h, y = k of 1/(x - h) + k (Example 5, kept); quiz item 4 (starred); Lesson 4-2's warm-up"
+      },
+      {
+        "code": "F6J",
+        "level": "core",
+        "example": 5,
+        "note": "Translations of functions: y = 1/x translated h horizontally and k vertically (Example 5, kept); quiz item 5 (starred) and Topic 4 test items 5 and 14",
+        "changeNote": "Added 2026-10-31 (re-cut to Example 5): quiz item 5 and Topic 4 test items 5 and 14 had no skill in the authored 4-1 list."
       }
     ],
     "4-2": [
       {
         "code": "ULD",
         "level": "prereq",
-        "note": "Lesson 4-1 reciprocal functions (asymptotes of a/(x-h)+k); warm-up for quiz item 1"
+        "note": "Lesson 4-1 reciprocal functions (asymptotes of a/(x-h)+k); warm-up; quiz item 1, full Savvas quiz only"
       },
       {
         "code": "UB5",
         "level": "prereq",
-        "note": "Factor a quadratic denominator to find where it is 0 (Example 3's f, DOK 3 item 10, quiz item 2)"
+        "note": "Factor a quadratic denominator to find where it is 0 (Example 2, Try It 2a, DOK 3 item 10 in the Exit question; quiz item 2 bonus, a graded bonus item, so starred)"
       },
       {
         "code": "7JJ",
         "level": "core",
         "example": 3,
-        "note": "Vertical and horizontal asymptotes from the equation; quiz items 3 and 5 (starred)"
+        "note": "Vertical and horizontal asymptotes from the equation (Examples 2 and 3); quiz items 3 and 5 and the item 2 bonus; Topic 4 test items 3, 12 and 18 (starred)"
       },
       {
         "code": "79Q",
         "level": "core",
-        "example": 4,
-        "note": "Excluded values: the denominator is 0 at the vertical asymptote (Example 4 Step 1); quiz items 1 and 3 (starred)"
+        "example": 2,
+        "note": "Excluded values: the denominator is 0 at a vertical asymptote and the value is left out of the domain (Example 2); quiz item 3 and the item 2 bonus; Topic 4 test item 2 (starred)"
       }
     ],
     "4-3": [
@@ -816,24 +826,24 @@
       {
         "code": "UB5",
         "level": "prereq",
-        "note": "Factor each denominator first (Example 4 step 1); quiz item 2 (LCM) is this step"
+        "note": "Factor each denominator first (Example 3 step 1); quiz item 2 (LCM, full Savvas quiz only) is the LCD step"
       },
       {
         "code": "37N",
         "level": "prereq",
-        "note": "Divide out a common factor, the last step (quiz item 1: 18/(2(2x+1)) = 9/(2x+1)); 4-3 skill"
+        "note": "Divide out a common factor, the last step (Example 3 step 4; graded quiz item 1: 18/(2(2x+1)) = 9/(2x+1)); 4-3 skill"
       },
       {
         "code": "FEX",
         "level": "core",
-        "example": 4,
-        "note": "Add and subtract with unlike denominators, distributing the -1; quiz items 1 and 3"
+        "example": 3,
+        "note": "Add and subtract with unlike denominators; graded quiz item 1 and Topic 4 test item 10 (Example 3); item 3 and Topic 4 test item 4 (subtraction, Example 4 cut) also practised here"
       },
       {
         "code": "YD8",
         "level": "core",
         "example": 6,
-        "note": "Simplify compound (complex) fractions by the LCD; quiz items 4 and 5"
+        "note": "Simplify compound (complex) fractions by the LCD; graded quiz item 4, bonus item 5 and Topic 4 test item 15"
       }
     ],
     "4-5": [
@@ -851,29 +861,29 @@
         "code": "CHP",
         "level": "core",
         "example": [
-          1,
+          2,
           4
         ],
-        "note": "Solve rational equations; quiz items 1, 3 and 4 (Examples 1 and 4)"
+        "note": "Solve rational equations; starred, feeds short-form quiz items 2 (the rate equation 1/6 + 1/3 = 1/h), 3 (bonus) and 4 (and item 1, full Savvas quiz only); Topic 4 test items 9 and 11 (Example 4). No Algebra 2 IXL skill drills work-rate setup (items 7, 13), so no code is added"
       },
       {
         "code": "CJC",
         "level": "core",
         "example": 4,
-        "note": "Factor the quadratic left after clearing the fractions; quiz item 4 (Example 4B)"
+        "note": "Factor the quadratic left after clearing the fractions; starred, feeds short-form quiz item 4 (Example 4B)"
       }
     ],
     "5-1": [
       {
         "code": "EUH",
         "level": "prereq",
-        "note": "Roots of integers: the perfect powers the lesson leans on (243 = 3^5, 32 = 2^5, 27 = 3^3, 625 = 5^4, cube root of -8 = -2); the Do Now warm-up and the packet's optional warm-up row"
+        "note": "Roots of integers: the perfect powers the lesson leans on (243 = 3^5, 32 = 2^5, 27 = 3^3, 81 = 3^4, 256 = 4^4); the Do Now warm-up and the packet's optional warm-up row"
       },
       {
         "code": "9TM",
         "level": "core",
         "example": 2,
-        "note": "Rational exponent to radical and back (index = denominator, power = numerator); starred, quiz items 2 (bonus) and 3"
+        "note": "Rational exponent to radical and back (index = denominator, power = numerator); starred, quiz items 2 (bonus) and 3; Topic 5 test items 3, 5 and 10"
       },
       {
         "code": "KJX",
@@ -885,13 +895,13 @@
         "code": "U42",
         "level": "core",
         "example": 5,
-        "note": "Nth roots: the root step of Example 5 (cube root of -8 after dividing -4x^3 = 32 by -4; +/- for an even index and a positive radicand); starred for quiz item 5, also item 1 on the full Savvas quiz"
+        "note": "Nth roots: the root step of Example 5 (cube root of -8 after dividing -4x^3 = 32 by -4; +/- for an even index and a positive radicand); unstarred and optional: items 1 and 5 are on the full Savvas quiz only (Examples 1 and 5 are cut in the 2026-10-31 re-cut)"
       },
       {
         "code": "LQX",
         "level": "core",
         "example": 4,
-        "note": "Simplify nth roots with variables; unstarred and optional: feeds no scored item on the short form (quiz item 4 is on the full Savvas quiz only; Example 4 is cut)"
+        "note": "Simplify nth roots with variables (Example 4: write the radicand as an nth power); starred, quiz item 4; rehearses Topic 5 test item 1 (cube root of 27x^9y^3)"
       }
     ],
     "5-5": [
@@ -927,98 +937,103 @@
     "5-6": [
       {
         "code": "LSG",
-        "level": "prereq"
+        "level": "prereq",
+        "note": "Warm-up for the quiz 2 bonus: graph a line; not in the packet table"
       },
       {
         "code": "UAJ",
-        "level": "prereq"
+        "level": "prereq",
+        "note": "Unstarred warm-up row: the graph of y = sqrt(x - 2) in Example 4A"
       },
       {
         "code": "YLX",
         "level": "core",
-        "example": 1,
-        "note": "Inverse from a table: switch x and y (quiz 1; packet warm-up)"
+        "example": [
+          1,
+          5
+        ],
+        "note": "Optional, unstarred: inverse values from a table (Ex 1 cut; Topic 5 item 14 is Ex 5's f^-1(f(10)) from a table); quiz 1 full Savvas quiz only"
       },
       {
         "code": "K2W",
         "level": "core",
-        "example": 2,
-        "note": "Reflect across y = x (Ex 2B; quiz 2, starred)"
+        "example": 5,
+        "note": "Reflect across y = x (Ex 5A's graph, Ex 4's graphs); quiz 2 bonus, starred"
       },
       {
         "code": "9KT",
         "level": "core",
-        "example": [
-          2,
-          5
-        ],
-        "note": "Is g the inverse of f? (quiz 5 bonus, starred)"
+        "example": 5,
+        "note": "Is g the inverse of f? Verify by composition (Ex 5); quiz 5, starred"
       },
       {
         "code": "Z5C",
         "level": "core",
-        "example": 2,
-        "note": "Read inverse values off a graph; optional, not in the packet table"
+        "example": 4,
+        "note": "Read inverse values off a graph (Ex 4's graphs; Topic 5 item 17); optional, not in the packet table"
       },
       {
         "code": "ZRQ",
         "level": "core",
         "example": [
-          2,
-          3,
-          4
+          4,
+          5
         ],
-        "note": "Switch and solve, with a domain restriction when needed (Ex 2-4; quiz 3, 4, 5, starred)"
+        "note": "Switch and solve, square-root and cube-root functions (Ex 4; Ex 5A's line); quiz 4 and the quiz 2 bonus, starred; quiz 3 full Savvas quiz only"
       }
     ],
     "6-1": [
       {
         "code": "LWE",
         "level": "prereq",
-        "note": "Evaluate exponential functions: fill the Example 1 and Try It 1 tables; Do Now warm-up before Example 1"
+        "note": "Evaluate exponential functions: fill the Try It 5 table (f(x) = 50(1.075)^x and g(x) = 40(1.1)^x) and verify g(5) in Example 5; warm-up row in the packet"
+      },
+      {
+        "code": "RSN",
+        "level": "core",
+        "example": 2,
+        "note": "Transformations of functions: graded quiz item 1 (vertical stretch by 8 and reflection of 3^x) and Topic 6 test item 1 (5^x, stretch 2) (starred)",
+        "changeNote": "Added 2026-10-31 for the 6-1 re-cut toward the Topic 6 test (keep Examples 2, 5): replaces the authored list's U7P (Example 1), DBW and TYQ (Example 3), whose Examples are now cut"
       },
       {
         "code": "EFD",
         "level": "core",
-        "example": 1,
-        "note": "Domain and range of exponential functions: quiz item 3 (starred in the fast packet)"
+        "example": 2,
+        "note": "Domain and range of exponential functions: bonus quiz item 3 ((1/2)6^x) and the intercept and asymptote of Topic 6 test item 17 (starred)",
+        "changeNote": "Moved 2026-10-31 from Example 1 (cut) to Example 2 for the 6-1 re-cut (keep Examples 2, 5)"
       },
       {
-        "code": "U7P",
+        "code": "2YT",
         "level": "core",
-        "example": 1,
-        "note": "Graph exponential functions: Try It 1 and the graph in quiz item 4 (starred)"
+        "example": 5,
+        "note": "Exponential functions over unit intervals (growth factor as the ratio of y-values one unit apart): graded quiz item 5 and Topic 6 test item 4 (starred)",
+        "changeNote": "Added 2026-10-31 for the 6-1 re-cut toward the Topic 6 test (keep Examples 2, 5): replaces the authored list's U7P (Example 1), DBW and TYQ (Example 3), whose Examples are now cut"
       },
       {
-        "code": "DBW",
+        "code": "KT8",
         "level": "core",
-        "example": 3,
-        "note": "Write exponential functions: word problems: quiz item 4, the decay model 144,000(0.928)^t (starred)"
-      },
-      {
-        "code": "TYQ",
-        "level": "core",
-        "example": 3,
-        "note": "Exponential growth and decay: word problems: Try It 3 and bonus item 2 (starred)"
+        "example": 2,
+        "note": "Describe function transformations: Try It 2 and Topic 6 test items 1 and 17; not in the packet table",
+        "changeNote": "Added 2026-10-31 for the 6-1 re-cut toward the Topic 6 test (keep Examples 2, 5): replaces the authored list's U7P (Example 1), DBW and TYQ (Example 3), whose Examples are now cut"
       }
     ],
     "6-2": [
       {
         "code": "LWE",
         "level": "prereq",
-        "note": "Evaluate exponential functions: calculator powers and the e key; Do Now before Example 2"
+        "note": "Evaluate exponential functions: fractional powers such as 1.025^(1/12) and the e^x key; Do Now before Example 1"
       },
       {
         "code": "YJW",
         "level": "core",
         "example": 2,
-        "note": "Compound interest A = P(1 + r/n)^(nt); quiz items 3 and 5 (starred). Check in IXL that early questions ask for the value, not the time (logs)"
+        "note": "Compound interest A = P(1 + r/n)^(nt); quiz item 3, the +5 bonus (starred). Example 2 is cut in the 2026-10-31 re-cut. Check in IXL that early questions ask for the value, not the time (logs)"
       },
       {
         "code": "5GU",
         "level": "core",
         "example": 4,
-        "note": "Continuously compounded interest A = Pe^(rt); quiz items 4 and 5 and the DOK 3 exit question (practice 27) (starred)"
+        "note": "Continuously compounded interest A = Pe^(rt); quiz item 4, full Savvas quiz only; not in the packet table (Example 4 is cut in the 2026-10-31 re-cut)"
       },
       {
         "code": "KLF",
@@ -1027,41 +1042,55 @@
           2,
           4
         ],
-        "note": "Linear vs exponential growth: simple interest is linear, compounding is exponential; quiz item 5 (bonus)"
+        "note": "Linear vs exponential growth: simple interest is linear, compounding is exponential; quiz item 5, full Savvas quiz only; not in the packet table (Examples 2 and 4 are cut in the 2026-10-31 re-cut)"
+      },
+      {
+        "code": "E5S",
+        "level": "core",
+        "example": 1,
+        "note": "Exponential growth and decay: the factor and the rate it gives; quiz item 1 (graded, starred), Example 1 and Try It 1; Topic 6 test items 2 and 6. Check in IXL that its questions read a rate from the factor",
+        "changeNote": "Added 2026-10-31 for the 6-2 re-cut toward the Topic 6 test (keep Examples 1, 5): graded quiz item 1 and Topic 6 test items 2 and 6 had no skill on the authored 6-2 list; chosen over TYQ and DBW, which are 6-1's starred skills; appended after the authored core entries"
+      },
+      {
+        "code": "2YT",
+        "level": "core",
+        "example": 5,
+        "note": "Exponential functions over unit intervals: the factor is the ratio of consecutive y-values; quiz item 2 (graded, starred), Example 5 and Try It 5; Topic 6 test item 5",
+        "changeNote": "Added 2026-10-31 for the 6-2 re-cut toward the Topic 6 test (keep Examples 1, 5): graded quiz item 2 and Topic 6 test item 5 had no skill on the authored 6-2 list; appended last"
       }
     ],
     "6-3": [
       {
         "code": "LWE",
         "level": "prereq",
-        "note": "Powers of the base (5^3, (1/4)^-2): the THINK step of Example 3"
+        "note": "Not in the packet table. Powers of the base (8^x, 3^-3): Try It 1 and the self-paced extension (practice 17)"
       },
       {
         "code": "8RK",
         "level": "core",
         "example": [
-          3,
+          1,
           5
         ],
-        "note": "Switch between exponential and logarithmic form; Savvas quiz item 3 and the first step of item 5"
+        "note": "Switch between exponential and logarithmic form and name y = log_b x as the inverse of y = b^x; Savvas quiz items 1 and 3 and the first step of item 5; Topic 6 test item 7"
       },
       {
         "code": "GBR",
         "level": "core",
         "example": 3,
-        "note": "Evaluate logarithms, including undefined ones; Savvas quiz item 4"
+        "note": "Evaluate logarithms, including undefined ones; Savvas quiz item 4 (full Savvas quiz only after the 2026-10-31 re-cut; Example 3 cut). Unstarred optional row."
       },
       {
         "code": "BXU",
         "level": "core",
         "example": 5,
-        "note": "Solve log(expression) = c by rewriting in exponential form; Savvas quiz item 5"
+        "note": "Solve log(expression) = c by rewriting in exponential form; Savvas quiz item 5; Topic 6 test item 9"
       },
       {
         "code": "TDF",
         "level": "core",
         "example": 4,
-        "note": "Example 4 is cut in the fast packet; unstarred row for Savvas quiz item 2 (ln 16) and the rounding in Example 5"
+        "note": "Optional (feeds no scored item on the short form): Savvas quiz item 2 (ln 16) is full Savvas quiz only; Example 4 is cut in the fast packet; also the calculator step log 25 in Example 5 Part A. Unstarred."
       }
     ],
     "6-6": [
@@ -1151,49 +1180,49 @@
         "code": "6H8",
         "level": "core",
         "example": 4,
-        "note": "sin, cos, tan by reference angle in any quadrant: quiz item 1 and bonus item 3 (starred in the fast packet)"
+        "note": "sin, cos, tan by reference angle in any quadrant: quiz item 1 and Topic 7 test item 4 (starred in the fast packet)"
+      },
+      {
+        "code": "XJJ",
+        "level": "core",
+        "example": 6,
+        "note": "Pythagorean or reciprocal identity: quiz item 2 and Topic 7 test items 1, 3, 16 (starred); added 2026-10-31 when Example 6 replaced Example 5"
       },
       {
         "code": "PAE",
         "level": "core",
-        "example": 5,
-        "note": "sec, csc, cot by reference angle: quiz item 4 and bonus item 3 statements C and D (starred)"
-      },
-      {
-        "code": "ZF7",
-        "level": "core",
-        "example": 5,
-        "note": "Six ratios from a given terminal point on the unit circle: Try It 5 (unstarred)"
+        "example": 4,
+        "note": "sec, csc, cot by reference angle: bonus quiz item 4 at 225 degrees, Example 4A's terminal point with the reciprocal box (starred; Example 5 is cut)"
       }
     ],
     "7-3": [
       {
         "code": "6H8",
         "level": "prereq",
-        "note": "Sine and cosine values of special angles (Lesson 7-2 core); the graphs are built from them (cut Examples 1-2)"
+        "note": "Sine and cosine values of special angles (Lesson 7-2 core); the key points of the graphs (cut Examples 1-2); unstarred warm-up row in the packet"
       },
       {
         "code": "EDC",
         "level": "prereq",
-        "note": "Radian measure on the x-axis: periods like 2pi, pi, 4pi (Lesson 7-1)"
+        "note": "Radian measure on the x-axis: periods like 2pi, pi, 4pi (Lesson 7-1); not in the packet table"
       },
       {
         "code": "9S8",
         "level": "core",
         "example": 3,
-        "note": "Amplitude |a| and period 2pi/b from the equation; quiz items 1 and 3"
+        "note": "Amplitude |a| and period 2pi/|b| from the equation; starred, quiz item 1 and the +5 bonus item 4; Topic 7 test item 17 (frequency)"
       },
       {
         "code": "5XN",
         "level": "core",
         "example": 6,
-        "note": "Amplitude and period read off a graph; quiz item 3 (graph of g) and item 4"
+        "note": "Amplitude and period read off a graph; unstarred row, quiz item 3 (full Savvas quiz only) and Topic 7 test item 2, both under the cut Example 6"
       },
       {
         "code": "A7V",
         "level": "core",
-        "example": 6,
-        "note": "Graph y = a sin bx and y = a cos bx (five-point pattern); DOK 3 Practice 23 and bonus quiz item 4; optional Jam"
+        "example": 4,
+        "note": "Graph y = a sin bx and y = a cos bx from five key points (Example 4); starred, quiz item 2 (rate of change to the quarter-period maximum) and the +5 bonus item 4; Topic 7 test items 11 and 18"
       }
     ]
   }

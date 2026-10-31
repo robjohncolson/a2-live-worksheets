@@ -88,7 +88,7 @@
       "id": "7c00adf97bfc",
       "type": "anchor",
       "front": "Before quiz item 1 students need? (5)",
-      "back": "the same skill is Topic 1 assessment item 12, its only two-variable system (items 13 and 14 are three-variable; docs/a2-lesson-targets.md)",
+      "back": "the same skill is Topic 1 assessment items 12 and 14 (14 is the DOK 3 word problem: write and solve a two-variable system for bread and egg prices); item 13 is the three-variable system (Example 3, cut)",
       "order": 8,
       "after": [
         "a708c2cb6849"
@@ -148,7 +148,7 @@
       "id": "26227b360831",
       "type": "anchor",
       "front": "Quiz item 5 is covered by?",
-      "back": "Three-variable system (DOK 1; multiple choice, key C (4, -1, 6)): Example 3, cut in the fast packet; substituting each choice into all three equations finds C, X8H/9S5 are the optional Jams, and Topic 1 assessment items 13-14 use the same skill.",
+      "back": "Three-variable system (DOK 1; multiple choice, key C (4, -1, 6)): Example 3, cut in the fast packet; substituting each choice into all three equations finds C, X8H/9S5 are the optional Jams, and Topic 1 assessment item 13 uses the same skill.",
       "order": 13,
       "after": [
         "a708c2cb6849"
@@ -157,11 +157,47 @@
       "source": "quizFocus.items.5"
     },
     {
+      "id": "63b9fbe77129",
+      "type": "anchor",
+      "front": "Topic 1 test item 12 is covered by?",
+      "back": "Solve x + 4y = 15, 2x - y = -15 (DOK 2): Example 1, kept",
+      "order": 14,
+      "after": [
+        "a708c2cb6849"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.12"
+    },
+    {
+      "id": "a44caa369e2b",
+      "type": "anchor",
+      "front": "Topic 1 test item 13 is covered by?",
+      "back": "Solve 3x + 2y + z = 16, 4x - y = -5, y + z = 11 (A (0,5,6), B (0,5/3,2), C (16,-5,11), D (-2,11,6)) (DOK 2): Example 3, cut",
+      "order": 15,
+      "after": [
+        "a708c2cb6849"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.13"
+    },
+    {
+      "id": "dc5ff9cf500f",
+      "type": "anchor",
+      "front": "Topic 1 test item 14 is covered by?",
+      "back": "Dwayne: 1 loaf + 6 eggs = $4.45; Sheila: 1 loaf + 12 eggs = $5.65: write and solve a system for the bread and egg prices, then find Mina's cost for 3 loaves and 2 dozen eggs (DOK 3): Example 1, kept",
+      "order": 16,
+      "after": [
+        "a708c2cb6849"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.14"
+    },
+    {
       "id": "c31e1124b88c",
       "type": "step",
       "front": "Example 1: ?",
-      "back": "Solve a system of linear equations (x + 2y = 3, x - 2y = 4) · DOK 1, 2 · practice 16-19, 11, 32, 35-37 · Quiz items 1 and 3: the packet solves the TE system by substitution and again by elimination (BW5, 2CN), and Try It 1b (parallel lines) is the no-solution case.",
-      "order": 14,
+      "back": "Solve a system of linear equations (x + 2y = 3, x - 2y = 4) · DOK 1, 2 · practice 16-19, 11, 32, 35-37 · Quiz items 1 and 3: the packet solves the TE system by substitution and again by elimination (BW5, 2CN), and Try It 1b (parallel lines) is the no-solution case. Topic 1 test items 12 and 14.",
+      "order": 17,
       "after": [
         "a708c2cb6849",
         "9b079ee7ef9a"
@@ -174,7 +210,7 @@
       "type": "step",
       "front": "Example 2: ?",
       "back": "Solve a system of linear inequalities (Malcolm's chores) · DOK 1, 2, 3 · practice 20, 21, 33, 34, 14 · Quiz items 2 and 4: one inequality per constraint, a test point to shade, then a point checked in every inequality; the packet's Practice block (Dmitri's snacks) parallels item 2.",
-      "order": 15,
+      "order": 18,
       "after": [
         "c31e1124b88c"
       ],
@@ -186,7 +222,7 @@
       "type": "cue",
       "front": "Example 1 · Connect representations: What methods can you use to graph a linear equation?",
       "back": "Listen for: Make a table of x- and y-values, rewrite the equation in slope-intercept form, and use the slope and y-intercept to sketch the graph.",
-      "order": 16,
+      "order": 19,
       "after": [
         "c31e1124b88c"
       ],
@@ -215,7 +251,7 @@
       "type": "cue",
       "front": "Example 1 · Connect representations: Why can you set the equations (x=3-2y) and (x=4+2y) equal to each other?",
       "back": "Listen for: You can use the Transitive Property. If two equations are equal to the same term, in this case x, then they are equal to each other.",
-      "order": 17,
+      "order": 20,
       "after": [
         "c4b3a1e6b0c0"
       ],
@@ -244,7 +280,7 @@
       "type": "cue",
       "front": "Example 1 · Check student thinking: What does it mean when there is no solution to a system of linear equations? What type of system is this?",
       "back": "Listen for: The graphs of the equations do not intersect. There is no ordered pair that is a solution of both equations. This is an inconsistent system.",
-      "order": 18,
+      "order": 21,
       "after": [
         "3c6090938b96"
       ],
@@ -273,7 +309,7 @@
       "type": "cue",
       "front": "Example 2 · Connect representations: Why is this a system of inequalities rather than a system of equations?",
       "back": "Listen for: The situation deals with ranges of numbers. Notice the language and the use of at least and not more than.",
-      "order": 19,
+      "order": 22,
       "after": [
         "f7b7984dff6c"
       ],
@@ -302,7 +338,7 @@
       "type": "cue",
       "front": "Example 2 · Connect representations: Why are there multiple solutions of a system of inequalities?",
       "back": "Listen for: The inequalities represent a range of values that are solutions, rather than just one point of intersection. Any point in the shaded region of the graph is a solution of the system of linear inequalities.",
-      "order": 20,
+      "order": 23,
       "after": [
         "b3a66b9ce2bc"
       ],
@@ -331,7 +367,7 @@
       "type": "cue",
       "front": "Example 2 · Check student thinking: What is the effect of including (x≥0) and (y≥0) in this system of inequalities?",
       "back": "Listen for: It limits the solutions to the first quadrant.",
-      "order": 21,
+      "order": 24,
       "after": [
         "d864f498351e"
       ],
@@ -360,7 +396,7 @@
       "type": "cue",
       "front": "Example 2 · Reasoning: Make Sense and Persevere Is it possible to solve a system of linear inequalities using the same methods you used to solve a system of linear equations?",
       "back": "Listen for: No; you could find the coordinates of the vertices at the points of intersection, but you could not show all of the solutions.",
-      "order": 22,
+      "order": 25,
       "after": [
         "3dbf869632c1"
       ],
@@ -389,7 +425,7 @@
       "type": "cue",
       "front": "Example 2 · Extend thinking: Is there an easy way to graph this without using technology?",
       "back": "Listen for: Yes; Rewrite each inequality as an equation in slope-intercept form to graph the lines. Then refer to the (≥) and (≤) symbols or test points to determine which region to shade.",
-      "order": 23,
+      "order": 26,
       "after": [
         "ea74e2927a31"
       ],
@@ -418,7 +454,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Find a solution to the following system of equations: x = 5 - 3y, y = -2x.",
-      "order": 24,
+      "order": 27,
       "after": [
         "f7b7984dff6c"
       ],
@@ -430,7 +466,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "(-1, 2) (TE key): substituting y = -2x into x = 5 - 3y gives x = 5 + 6x, so x = -1 and y = 2. As printed it is an Example 1 substitution system that reads like DOK 1-2, not an inequalities task. …",
-      "order": 25,
+      "order": 28,
       "after": [
         "f7b7984dff6c"
       ],
@@ -442,7 +478,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "The graph shows two lines that intersect at one point (a blue line through (0, 3) and a steeper red line; the TE's early-finisher answer gives them as y = 0.5x + 3 and y = 3x - 5, which meet exactly at (3.2, 4.6)).",
-      "order": 26,
+      "order": 29,
       "after": [
         "ea94d3675aaa"
       ],
@@ -454,7 +490,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. What are the approximate coordinates of the point of intersection? (TE sample: (3.1, 4.8))",
-      "order": 27,
+      "order": 30,
       "after": [
         "1030344bb459"
       ],
@@ -466,7 +502,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. How could you verify whether the coordinates you estimated are, in fact, the solution? Is the point the solution to the equations of both lines? (Substitute into the equation of each line; yes, the intersection is the solution.)",
-      "order": 28,
+      "order": 31,
       "after": [
         "1030344bb459"
       ],
@@ -478,7 +514,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Make Sense and Persevere: use your result to refine your approximation, and try again. Can you find the point of intersection this way? Is there a more efficient way? (Yes, as long as the coordinates are rational; solving algebraically might be more efficient.)",
-      "order": 29,
+      "order": 32,
       "after": [
         "1030344bb459"
       ],
@@ -490,7 +526,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What do you notice about the graph? → There are two linear functions. They both have positive slopes and intersect at approximately (3, 4.5).",
-      "order": 30,
+      "order": 33,
       "after": [
         "1030344bb459"
       ],
@@ -502,7 +538,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "What do the coordinates of the point of intersection of the two lines represent? → The point is a solution to the equations of both lines. If you input the x-coordinate into both functions, the output, the y-coordinate, will be the same.",
-      "order": 31,
+      "order": 34,
       "after": [
         "7bb342ad866b"
       ],
@@ -514,7 +550,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "What is the equation in slope-intercept form for each line? → y = 0.5x + 3 and y = 3x - 5.",
-      "order": 32,
+      "order": 35,
       "after": [
         "c160e7fa6934"
       ],
@@ -526,7 +562,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "What do you notice about the point of intersection? → The point lies on both lines. The point is a solution to the equation of each line. There is only one point of intersection.",
-      "order": 33,
+      "order": 36,
       "after": [
         "ee65bba14db1"
       ],
@@ -538,7 +574,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "How many possible points of intersection can two straight lines have? → Two straight lines can intersect once. Two straight lines that are parallel will never intersect. Two straight lines that are the same line will intersect at every point.",
-      "order": 34,
+      "order": 37,
       "after": [
         "12314cd86a37"
       ],
@@ -550,7 +586,7 @@
       "type": "cue",
       "front": "Habits of Mind, Communicate Precisely: ask?",
       "back": "The graphs of two equations appear to intersect at the point (2, 3). Does that guarantee that x = 2 and y = 3 is a solution to both equations? Explain. → No; graphing shows an approximate solution. To show that the point is the exact solution, substitute x = 2 and y = 3 into the original equations.",
-      "order": 35,
+      "order": 38,
       "after": [
         "4f2cd278f7a5"
       ],
@@ -562,7 +598,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "Fits the kept Example 1: estimate from the graph, then check. The TE's estimates disagree ((3, 4.5), (3.1, 4.8); the early-finisher lines meet at (3.2, 4.6)), so accept close estimates; part C shows why the exact pair needs algebra. The After question on how many points two lines share sets up Try It 1b (no solution).",
-      "order": 36,
+      "order": 39,
       "after": [
         "1030344bb459"
       ],
@@ -574,7 +610,7 @@
       "type": "anchor",
       "front": "IXL for example 1?",
       "back": "BW5 Solve a system of equations using substitution",
-      "order": 37,
+      "order": 40,
       "after": [
         "c31e1124b88c"
       ],
@@ -586,7 +622,7 @@
       "type": "anchor",
       "front": "IXL for example 1? (2)",
       "back": "2CN Solve a system of equations using elimination",
-      "order": 38,
+      "order": 41,
       "after": [
         "c31e1124b88c"
       ],
@@ -598,7 +634,7 @@
       "type": "anchor",
       "front": "IXL for example 1? (3)",
       "back": "FT6 Solve a system of equations using any method",
-      "order": 39,
+      "order": 42,
       "after": [
         "c31e1124b88c"
       ],
@@ -610,7 +646,7 @@
       "type": "anchor",
       "front": "IXL for example 1? (4)",
       "back": "P5A Find the number of solutions to a system of equations",
-      "order": 40,
+      "order": 43,
       "after": [
         "c31e1124b88c"
       ],
@@ -622,7 +658,7 @@
       "type": "anchor",
       "front": "IXL for example 2?",
       "back": "U5D Solve systems of linear inequalities by graphing",
-      "order": 41,
+      "order": 44,
       "after": [
         "f7b7984dff6c"
       ],
@@ -634,7 +670,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "X8H Solve a system of equations in three variables using substitution",
-      "order": 42,
+      "order": 45,
       "after": [
         "ea94d3675aaa"
       ],
@@ -646,7 +682,7 @@
       "type": "anchor",
       "front": "IXL for example 3? (2)",
       "back": "9S5 Solve a system of equations in three variables using elimination",
-      "order": 43,
+      "order": 46,
       "after": [
         "ea94d3675aaa"
       ],

@@ -16,7 +16,7 @@
       "id": "da0035d98db3",
       "type": "anchor",
       "front": "Define: growth factor",
-      "back": "I can describe an exponential function using the words growth factor, decay factor, y-intercept, asymptote, and end behavior.",
+      "back": "the growth factor b is the ratio of y-values one x-unit apart; check it at two places (Example 5: 44/40 = 48.4/44 = 1.1; IXL 2YT)",
       "order": 2,
       "after": [
         "f94d07f0701f"
@@ -28,7 +28,7 @@
       "id": "351e2ceee0b0",
       "type": "anchor",
       "front": "Define: decay factor",
-      "back": "decay factor = 1 - r: a 7.2% decrease keeps 92.8%, so b = 0.928, not 0.072 (Example 3 decay model box; Try It 3 is 22% -> 0.78; concept summary Exercise 6 is the same common error; IXL DBW)",
+      "back": "compare growth factors, not starting values; a decay factor closer to 0 decays faster (Example 5; Topic 6 test item 4 asks for a faster decay factor than 0.75: 0.6)",
       "order": 3,
       "after": [
         "f94d07f0701f"
@@ -40,7 +40,7 @@
       "id": "a9a019cc1bb4",
       "type": "anchor",
       "front": "Define: y-intercept",
-      "back": "the y-intercept of a * b^x is a because b^0 = 1 (Example 1 callout; IXL EFD)",
+      "back": "a reflection moves the y-intercept from a to -a and leaves the asymptote alone; a vertical shift k moves the y-intercept to a + k and the asymptote to y = k (Example 2A and 2B; Try It 2; Topic 6 test item 17 is -4(0.3)^x + 1: y-intercept -3, asymptote y = 1)",
       "order": 4,
       "after": [
         "f94d07f0701f"
@@ -52,7 +52,7 @@
       "id": "34df601f2de7",
       "type": "anchor",
       "front": "Define: asymptote",
-      "back": "domain all real numbers, range y > 0 and asymptote y = 0 for every untranslated a * b^x with a > 0, b > 0, b != 1 (Example 1A and 1B; Try It 1; IXL EFD)",
+      "back": "a reflection moves the y-intercept from a to -a and leaves the asymptote alone; a vertical shift k moves the y-intercept to a + k and the asymptote to y = k (Example 2A and 2B; Try It 2; Topic 6 test item 17 is -4(0.3)^x + 1: y-intercept -3, asymptote y = 1)",
       "order": 5,
       "after": [
         "f94d07f0701f"
@@ -61,29 +61,29 @@
       "source": "objectives.language.words.asymptote"
     },
     {
-      "id": "01841e9109e6",
+      "id": "d1d12f12a42d",
       "type": "anchor",
-      "front": "Define: end behavior",
-      "back": "I can describe an exponential function using the words growth factor, decay factor, y-intercept, asymptote, and end behavior.",
+      "front": "Define: reflection",
+      "back": "a reflection moves the y-intercept from a to -a and leaves the asymptote alone; a vertical shift k moves the y-intercept to a + k and the asymptote to y = k (Example 2A and 2B; Try It 2; Topic 6 test item 17 is -4(0.3)^x + 1: y-intercept -3, asymptote y = 1)",
       "order": 6,
       "after": [
         "f94d07f0701f"
       ],
       "minute": null,
-      "source": "objectives.language.words.end behavior"
+      "source": "objectives.language.words.reflection"
     },
     {
       "id": "fbf495d03aa8",
       "type": "anchor",
-      "front": "Quiz item 4 asks?",
-      "back": "Item 4: the rabbit population of Springfield, Ohio, was 144,000 in 2016 and is expected to decrease by about 7.2% per year; write and graph the exponential decay function P(t) = __(__)^t (TE graph window t -10 to 90, P -20,000 to 180,000). …",
+      "front": "Quiz item 1 asks?",
+      "back": "Item 1: which function represents f(x) = 3^x after a vertical stretch by a factor of 8 and a reflection across the x-axis (choices 3^(-8x), -3^(8x), 8 * 3^(-x), -8 * 3^x). …",
       "order": 7,
       "after": [
         "da0035d98db3",
         "351e2ceee0b0",
         "a9a019cc1bb4",
         "34df601f2de7",
-        "01841e9109e6"
+        "d1d12f12a42d"
       ],
       "minute": null,
       "source": "quizFocus.what"
@@ -91,15 +91,15 @@
     {
       "id": "75f55443e4a7",
       "type": "anchor",
-      "front": "Quiz item 4 answer?",
-      "back": "Item 4: P(t) = 144,000(0.928)^t; the graph starts at (0, 144,000) and decreases toward the t-axis (about 68,000 at t = 10, 32,000 at t = 20). Item 3: all real numbers; y > 0; y-intercept 0.5; asymptote y = 0; exponential. Bonus item 2: D, it increases by about 12,000 (15,000(9/8)^5 = 27,030). …",
+      "front": "Quiz item 1 answer?",
+      "back": "Item 1: D, g(x) = -8 * 3^x (the 8 stretches the y-values, the minus reflects across the x-axis). Item 5: A, (3/2) * 3^x; the graph's growth factor is 54/36 = 1.5 (36/16 = 2.25 = 1.5^2 over two steps), and 3 > 1.5. Bonus item 3: all real numbers; y > 0; y-intercept 0.5; asymptote y = 0; exponential. …",
       "order": 8,
       "after": [
         "da0035d98db3",
         "351e2ceee0b0",
         "a9a019cc1bb4",
         "34df601f2de7",
-        "01841e9109e6"
+        "d1d12f12a42d"
       ],
       "minute": null,
       "source": "quizFocus.answer"
@@ -107,8 +107,8 @@
     {
       "id": "7a1ea0f31d7c",
       "type": "anchor",
-      "front": "Before quiz item 4 students need?",
-      "back": "decay factor = 1 - r: a 7.2% decrease keeps 92.8%, so b = 0.928, not 0.072 (Example 3 decay model box; Try It 3 is 22% -> 0.78; concept summary Exercise 6 is the same common error; IXL DBW)",
+      "front": "Before quiz item 1 students need?",
+      "back": "-f(x) reflects across the x-axis and k * f(x) stretches the y-values; a number inside the exponent changes the graph horizontally, not vertically (Example 2A, g(x) = -3^x = -f(x); IXL RSN)",
       "order": 9,
       "after": [
         "fbf495d03aa8"
@@ -119,8 +119,8 @@
     {
       "id": "8f9ffcd455a4",
       "type": "anchor",
-      "front": "Before quiz item 4 students need? (2)",
-      "back": "the y-intercept of a * b^x is a because b^0 = 1 (Example 1 callout; IXL EFD)",
+      "front": "Before quiz item 1 students need? (2)",
+      "back": "a reflection moves the y-intercept from a to -a and leaves the asymptote alone; a vertical shift k moves the y-intercept to a + k and the asymptote to y = k (Example 2A and 2B; Try It 2; Topic 6 test item 17 is -4(0.3)^x + 1: y-intercept -3, asymptote y = 1)",
       "order": 10,
       "after": [
         "fbf495d03aa8"
@@ -131,8 +131,8 @@
     {
       "id": "af29d1b21d62",
       "type": "anchor",
-      "front": "Before quiz item 4 students need? (3)",
-      "back": "domain all real numbers, range y > 0 and asymptote y = 0 for every untranslated a * b^x with a > 0, b > 0, b != 1 (Example 1A and 1B; Try It 1; IXL EFD)",
+      "front": "Before quiz item 1 students need? (3)",
+      "back": "the growth factor b is the ratio of y-values one x-unit apart; check it at two places (Example 5: 44/40 = 48.4/44 = 1.1; IXL 2YT)",
       "order": 11,
       "after": [
         "fbf495d03aa8"
@@ -143,8 +143,8 @@
     {
       "id": "61a0b753e739",
       "type": "anchor",
-      "front": "Before quiz item 4 students need? (4)",
-      "back": "graph a decay model from its starting point and a few values on a scaled grid (Example 1B, Try It 1; IXL U7P)",
+      "front": "Before quiz item 1 students need? (4)",
+      "back": "points two units apart give b^2, not b: 36/16 = 2.25 = 1.5^2 (quiz item 5's graph has no x = 1 point)",
       "order": 12,
       "after": [
         "fbf495d03aa8"
@@ -155,8 +155,8 @@
     {
       "id": "0da8352152c5",
       "type": "anchor",
-      "front": "Before quiz item 4 students need? (5)",
-      "back": "for the bonus: with a > 0, b > 1 means growth; evaluate f(5) and subtract the start, not one year's increase (Example 3B, Try It 3b-c; IXL TYQ)",
+      "front": "Before quiz item 1 students need? (5)",
+      "back": "compare growth factors, not starting values; a decay factor closer to 0 decays faster (Example 5; Topic 6 test item 4 asks for a faster decay factor than 0.75: 0.6)",
       "order": 13,
       "after": [
         "fbf495d03aa8"
@@ -165,11 +165,23 @@
       "source": "quizFocus.needs[4]"
     },
     {
+      "id": "41262e97efb0",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (6)",
+      "back": "for the bonus: the y-intercept of a * b^x is a because b^0 = 1, the range is y > 0 and the asymptote y = 0 with no shift (packet definition line, Example 2's rules; IXL EFD)",
+      "order": 14,
+      "after": [
+        "fbf495d03aa8"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
       "id": "4b7d2e279f2a",
       "type": "anchor",
       "front": "Quiz item 1 is covered by?",
-      "back": "Which function is f(x) = 3^x after a vertical stretch by 8 and a reflection across the x-axis (answer D, g(x) = -8 * 3^x): Example 2 (transformations), cut; it is the Lesson 1-2 rule -f(x), kf(x). Left off the short form. DOK 2, F28.",
-      "order": 14,
+      "back": "Which function is f(x) = 3^x after a vertical stretch by 8 and a reflection across the x-axis (answer D, g(x) = -8 * 3^x): Example 2A (reflection -f(x)), kept; the same task as Topic 6 test item 1 (5^x, stretch 2). On the short form, graded, 10 points (6 for D, 4 for the explain-your-choice prompt). DOK 2, F28.",
+      "order": 15,
       "after": [
         "fbf495d03aa8"
       ],
@@ -180,8 +192,8 @@
       "id": "1b0b86944aca",
       "type": "anchor",
       "front": "Quiz item 2 is covered by?",
-      "back": "15,000 trout, f(x) = 15,000(9/8)^x: after 5 years the population increases by about 12,000 (answer D): Example 3B (evaluate the model later) with Example 4A's growth-or-decay test (b = 9/8 > 1). On the short form as the proposed +5 bonus. DOK 2, F14.",
-      "order": 15,
+      "back": "15,000 trout, f(x) = 15,000(9/8)^x: after 5 years the population increases by about 12,000 (answer D): Example 3B with Example 4A's growth-or-decay test, both cut. Left off the short form (full Savvas quiz only). DOK 2, F14.",
+      "order": 16,
       "after": [
         "fbf495d03aa8"
       ],
@@ -192,8 +204,8 @@
       "id": "8a0fd2a934be",
       "type": "anchor",
       "front": "Quiz item 3 is covered by?",
-      "back": "Domain, range, y-intercept, asymptote and function type of f(x) = (1/2)6^x from choice tiles: Example 1 (Try It 1 is the same five features). On the short form, graded, 10 points. DOK 2, F13.",
-      "order": 16,
+      "back": "Domain, range, y-intercept, asymptote and function type of f(x) = (1/2)6^x from choice tiles: Example 1 (cut); Example 2's intercept and asymptote rules and the packet's definition line (y-intercept a because b^0 = 1) carry it. On the short form as the proposed +5 bonus (1 per blank). DOK 2, F13.",
+      "order": 17,
       "after": [
         "fbf495d03aa8"
       ],
@@ -204,8 +216,8 @@
       "id": "7ceeb1688b89",
       "type": "anchor",
       "front": "Quiz item 4 is covered by?",
-      "back": "Write and graph the rabbit decay model P(t) = 144,000(0.928)^t: Example 3 and its decay-model box (Try It 3 is the same decay shape); the graph is Example 1B / Try It 1. On the short form, graded, 10 points. DOK 2, F13 and F14.",
-      "order": 17,
+      "back": "Write and graph the rabbit decay model P(t) = 144,000(0.928)^t: Example 3 and its decay-model box, cut. Left off the short form (full Savvas quiz only). DOK 2, F13 and F14.",
+      "order": 18,
       "after": [
         "fbf495d03aa8"
       ],
@@ -216,8 +228,8 @@
       "id": "583d0ebe5297",
       "type": "anchor",
       "front": "Quiz item 5 is covered by?",
-      "back": "Which function has a greater growth factor than the graph through (0,16), (2,36), (3,54) (b = 54/36 = 1.5; answer A, (3/2) * 3^x): Example 5 (compare growth factors), cut; Example 1's study tip (ratio of consecutive y-values = b) is the one-minute bridge. Left off the short form; its graph could be redrawn. DOK 2, F14.",
-      "order": 18,
+      "back": "Which function has a greater growth factor than the graph through (0,16), (2,36), (3,54) (b = 54/36 = 1.5; answer A, (3/2) * 3^x): Example 5 (compare growth factors), kept; the same skill as Topic 6 test item 4. …",
+      "order": 19,
       "after": [
         "fbf495d03aa8"
       ],
@@ -225,258 +237,439 @@
       "source": "quizFocus.items.5"
     },
     {
-      "id": "ea2bd84f6799",
+      "id": "8b56e09a4702",
+      "type": "anchor",
+      "front": "Topic 6 test item 1 is covered by?",
+      "back": "Which g is f(x) = 5^x after a vertical stretch by 2 and a reflection across the x-axis? (choices (2*5)^(-x), -(2*5)^x, 2*5^(-x), -2*5^x) (DOK 2): Example 2, kept",
+      "order": 20,
+      "after": [
+        "fbf495d03aa8"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.1"
+    },
+    {
+      "id": "c5b76244060a",
+      "type": "anchor",
+      "front": "Topic 6 test item 4 is covered by?",
+      "back": "Which function has a faster decay factor than the graphed curve through (0, 48), (1, 36), (2, 27) (b = 0.75)? (48(0.6)^x, 48(0.75)^x, 48(0.772)^x, 48(0.8)^x) (DOK 2): Example 5, kept",
+      "order": 21,
+      "after": [
+        "fbf495d03aa8"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.4"
+    },
+    {
+      "id": "1234b91b1bcf",
+      "type": "anchor",
+      "front": "Topic 6 test item 17 is covered by?",
+      "back": "Identify the y-intercept and the asymptote of f(x) = -4(0.3)^x + 1 (DOK 3): Example 2, kept (Form A; Form B's 2(3)^(-x) is Example 1, cut)",
+      "order": 22,
+      "after": [
+        "fbf495d03aa8"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.17"
+    },
+    {
+      "id": "25996612c96a",
       "type": "step",
-      "front": "Example 1: ?",
-      "back": "Identify Key Features of Exponential Functions · DOK 1, 2 · practice 9, 14-17 · Quiz item 3 is this Example (domain, range, y-intercept, asymptote of a * b^x), and the concept summary (Key Features of Exponential Functions) is built on it, which wins R2's tie-break over Examples 2 and 5 (each also covers one quiz …",
-      "order": 19,
+      "front": "Example 2: ?",
+      "back": "Graph Transformations of Exponential Functions · DOK 2 · practice 23, 28, 29 · Kept. Topic 6 test items 1 (5^x after a vertical stretch by 2 and a reflection across the x-axis) and 17 (y-intercept and asymptote of -4(0.3)^x + 1, the topic's other DOK 3) are this Example: the reflection moves the y-intercept from a …",
+      "order": 23,
       "after": [
         "fbf495d03aa8",
         "75f55443e4a7"
       ],
       "minute": null,
-      "source": "examples[n=1]"
+      "source": "examples[n=2]"
     },
     {
-      "id": "f4630040d874",
+      "id": "07aafa767e13",
       "type": "step",
-      "front": "Example 3: ?",
-      "back": "Model with Exponential Functions · DOK 2 · practice 10, 25 · Quiz items 4 (write the decay model from 144,000 and 7.2%) and 2 (evaluate a growth model 5 years later): the only Example that covers two quiz items, and the SAT's most common exponential task (a starting amount times (1 +/- r)^t). …",
-      "order": 20,
+      "front": "Example 5: ?",
+      "back": "Compare Two Exponential Functions · DOK 2, 3 · practice 13, 22, 27 · Kept. Topic 6 test item 4 (which function has a faster decay factor than a graphed curve through (0, 48), (1, 36), (2, 27): b = 0.75, answer 0.6) is this Example's ratio-of-y-values method, and it covers graded quiz item 5 (greater growth factor …",
+      "order": 24,
       "after": [
-        "ea2bd84f6799"
+        "25996612c96a"
       ],
       "minute": null,
-      "source": "examples[n=3]"
+      "source": "examples[n=5]"
     },
     {
-      "id": "c7733ec71bc5",
+      "id": "0d49cfcc3215",
       "type": "cue",
-      "front": "Example 1 · Connect representations: Consider the functions (f(x)=2^x) and (g(x)=5(1/2)^x). What information tells you whether the functions are increasing or decreasing?",
-      "back": "Listen for: the value of (b); If (b>1), the function is increasing and if (b<1), the function is decreasing.",
-      "order": 21,
+      "front": "Example 2 · Connect representations: The point ((1,3)) is on (f(x)). How does a reflection tell you what point will be on (g(x))?",
+      "back": "Listen for: Because (g(x)) is a reflection of (f(x)) across the (x)-axis, the point ((1,-3)) will be on the graph of (g(x)).",
+      "order": 25,
       "after": [
-        "ea2bd84f6799"
+        "25996612c96a"
       ],
       "minute": null,
-      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "source": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
       "teaching": {
-        "example": 1,
+        "example": 2,
         "kind": "question",
         "category": "GeneralizeETP",
         "source": {
           "file": "a2_6-1_TE.tex",
-          "anchor": 1,
+          "anchor": 2,
           "category": "GeneralizeETP",
           "block": 0,
-          "page": "14: 285 Understand & Apply",
+          "page": "15: 286 Example 1 continued; Example 2",
           "item": 0,
-          "line": 166
+          "line": 231
         },
-        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "promptKey": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "e0c23c60141d",
+      "id": "6b9d420780d9",
       "type": "cue",
-      "front": "Example 3 · Purposeful question: Why is the growth factor 1.013 rather than 0.013?",
-      "back": "Listen for: The growth rate is 1.3%. But the 1 in the ones place of the growth factor accounts for the size of the original population.",
-      "order": 22,
-      "after": [
-        "f4630040d874"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "PurposefulQuestions",
-        "source": {
-          "file": "a2_6-1_TE.tex",
-          "anchor": 3,
-          "category": "PurposefulQuestions",
-          "block": 0,
-          "page": "16: 287 Example 3",
-          "item": 1,
-          "line": 287
-        },
-        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "e0e30e809b6c",
-      "type": "cue",
-      "front": "Example 3 · Check student thinking: How can you tell by the description of the value of the printer whether (0<b<1) or (b>1)?",
-      "back": "Listen for: (0<b<1) because the value of the printer is decreasing.",
-      "order": 23,
-      "after": [
-        "e0c23c60141d"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "ElicitEvidence",
-        "source": {
-          "file": "a2_6-1_TE.tex",
-          "anchor": 3,
-          "category": "ElicitEvidence",
-          "block": 0,
-          "page": "16: 287 Example 3",
-          "item": 0,
-          "line": 317
-        },
-        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "327003caf6a1",
-      "type": "cue",
-      "front": "Example 3 · Check student thinking: Does your answer make sense? Explain. (1/2)",
-      "back": "Listen for: Sample: The original value of the printer was $35,750 and the value decreases at a rate of 22% per year. That is a decrease of $7,865 the first year. If the value decreased at a constant rate, it would be less than $13,000 after three years.",
-      "order": 24,
-      "after": [
-        "e0e30e809b6c"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[1]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "ElicitEvidence",
-        "source": {
-          "file": "a2_6-1_TE.tex",
-          "anchor": 3,
-          "category": "ElicitEvidence",
-          "block": 0,
-          "page": "16: 287 Example 3",
-          "item": 1,
-          "line": 319
-        },
-        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[1]",
-        "part": 1,
-        "parts": 2
-      }
-    },
-    {
-      "id": "80ac8997d37b",
-      "type": "cue",
-      "front": "Example 3 · Check student thinking: Does your answer make sense? Explain. (2/2)",
-      "back": "But each year, the value of the printer is less than it was the previous year. This means that 22% of the value is less in any given year than it was the previous year. So each year, the value decreases by a smaller amount than it did the previous year, making $16,965 a reasonable answer.",
-      "order": 25,
-      "after": [
-        "327003caf6a1"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[1].part[1]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "ElicitEvidence",
-        "source": {
-          "file": "a2_6-1_TE.tex",
-          "anchor": 3,
-          "category": "ElicitEvidence",
-          "block": 0,
-          "page": "16: 287 Example 3",
-          "item": 1,
-          "line": 319
-        },
-        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[1]",
-        "part": 2,
-        "parts": 2
-      }
-    },
-    {
-      "id": "c23d46105b90",
-      "type": "trap",
-      "front": "Example 3 · Common error: What error should I watch for, and how does the TE respond?",
-      "back": "Try It! 3c Some students may subtract the value after 6 years from the original value. Emphasize that the amount of decrease in the second 3 years is found by subtracting the value after 6 years from the value after 3 years.",
+      "front": "Example 2 · Connect representations: How does a translation of (f(x)-4) tell you the new point on (h(x))?",
+      "back": "Listen for: All points on the graph will be shifted down 4 units.",
       "order": 26,
       "after": [
-        "80ac8997d37b"
+        "0d49cfcc3215"
       ],
       "minute": null,
-      "source": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+      "source": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
       "teaching": {
-        "example": 3,
-        "kind": "trap",
-        "category": "CommonError",
+        "example": 2,
+        "kind": "question",
+        "category": "GeneralizeETP",
         "source": {
           "file": "a2_6-1_TE.tex",
-          "anchor": 3,
-          "category": "CommonError",
+          "anchor": 2,
+          "category": "GeneralizeETP",
           "block": 0,
-          "page": "16: 287 Example 3",
-          "item": 0,
-          "line": 322
+          "page": "15: 286 Example 1 continued; Example 2",
+          "item": 1,
+          "line": 233
         },
-        "promptKey": "examples[n=3].teacherPrompts.CommonError[0].guidance",
+        "promptKey": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[1]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "0609fa727e90",
-      "type": "cue",
-      "front": "Example 3 · Extend thinking: What is an exponential function that models the situation?",
-      "back": "Listen for: 1. (y=45(1.045)^x) 2. (y=240(0.93)^x) 3. (y=13(0.75)^x)",
+      "id": "5ab80be194e2",
+      "type": "trap",
+      "front": "Example 2 · Teacher prompt: What misconception should I watch for?",
+      "back": "You may confuse reflection across the axes. Recall that if the (y)-value is multiplied by (-1), as in this case, with (g(x)=-3^x), the reflection is across the (x)-axis. Each (y)-value is replaced by its opposite.",
       "order": 27,
       "after": [
-        "c23d46105b90"
+        "6b9d420780d9"
       ],
       "minute": null,
-      "source": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+      "source": "examples[n=2].teacherPrompts.inlineCommonError[0]",
       "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "RtIExtend",
+        "example": 2,
+        "kind": "trap",
+        "category": "InlineCommonError",
         "source": {
           "file": "a2_6-1_TE.tex",
-          "anchor": 3,
-          "category": "RtIExtend",
+          "anchor": 2,
+          "category": "InlineCommonError",
           "block": 0,
-          "page": "16: 287 Example 3",
           "item": 0,
-          "line": 332
+          "line": 248,
+          "page": "15: 286 Example 1 continued; Example 2"
         },
-        "promptKey": "examples[n=3].teacherPrompts.RtIExtend[0].questions[0]",
+        "promptKey": "examples[n=2].teacherPrompts.inlineCommonError[0]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "ab167f2a6a4f",
+      "id": "c00083b4065a",
       "type": "cue",
-      "front": "Example 3 · Extend thinking: For Exercise 1, write a real-world context for this function.",
-      "back": "Listen for: Sample: The population of a herd of cattle is 45 in 2010. The population grows at a rate of 4.5% every year. Write a function to model the population of the herd of cattle.",
+      "front": "Example 2 · Teacher prompt: What word related to parent could be used to describe a transformed function?",
+      "back": "Listen for: child",
       "order": 28,
       "after": [
-        "0609fa727e90"
+        "5ab80be194e2"
       ],
       "minute": null,
-      "source": "examples[n=3].teacherPrompts.RtIExtend[0].questions[1]",
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
       "teaching": {
-        "example": 3,
+        "example": 2,
         "kind": "question",
-        "category": "RtIExtend",
+        "category": "ELLAddendum",
         "source": {
           "file": "a2_6-1_TE.tex",
-          "anchor": 3,
-          "category": "RtIExtend",
+          "anchor": 2,
+          "category": "ELLAddendum",
           "block": 0,
-          "page": "16: 287 Example 3",
-          "item": 1,
-          "line": 334
+          "page": "15: 286 Example 1 continued; Example 2",
+          "item": 0,
+          "line": 272
         },
-        "promptKey": "examples[n=3].teacherPrompts.RtIExtend[0].questions[1]",
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "845ca079a9d1",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: Why is (f) considered the parent of (g)?",
+      "back": "Listen for: (g) is a reflection of (f), as children are often a reflection of their parents.",
+      "order": 29,
+      "after": [
+        "c00083b4065a"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_6-1_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "15: 286 Example 1 continued; Example 2",
+          "item": 1,
+          "line": 275
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a230eeea300c",
+      "type": "cue",
+      "front": "Example 2 · Teacher prompt: How are the words related?",
+      "back": "Listen for: Reflections, translations, and shifts are all types of transformations. Translation and shift are synonymous.",
+      "order": 30,
+      "after": [
+        "845ca079a9d1"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "ELLAddendum",
+        "source": {
+          "file": "a2_6-1_TE.tex",
+          "anchor": 2,
+          "category": "ELLAddendum",
+          "block": 0,
+          "page": "15: 286 Example 1 continued; Example 2",
+          "item": 2,
+          "line": 278
+        },
+        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c49510b05ca4",
+      "type": "cue",
+      "front": "Example 5 · Connect representations: What part of an exponential function (f(x)=a· b^x) determines how rapidly the function will grow?",
+      "back": "Listen for: The value of (b) determines how rapidly an exponential function grows. For (b>1), the larger (b) is, the more rapidly the function will grow.",
+      "order": 31,
+      "after": [
+        "07aafa767e13"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_6-1_TE.tex",
+          "anchor": 5,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "18: 289 Example 4 continued; Example 5",
+          "item": 0,
+          "line": 394
+        },
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "430f31ab5f8c",
+      "type": "cue",
+      "front": "Example 5 · Connect representations: How else could you compare the two functions besides comparing their growth factors?",
+      "back": "Listen for: You could graph the two functions on the same coordinate grid to compare.",
+      "order": 32,
+      "after": [
+        "c49510b05ca4"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_6-1_TE.tex",
+          "anchor": 5,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "18: 289 Example 4 continued; Example 5",
+          "item": 1,
+          "line": 396
+        },
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "1b684a806f37",
+      "type": "cue",
+      "front": "Example 5 · Check student thinking: Is it possible to determine when the value of the painting will surpass the value of the sculpture?",
+      "back": "Listen for: Yes; You could graph the sculpture value function on the same coordinate grid as the graph of the Painting's value, and locate the point of intersection of the graphs. The value of the painting will be larger than the value of the sculpture for all (x)-values to the right of the intersection point.",
+      "order": 33,
+      "after": [
+        "430f31ab5f8c"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_6-1_TE.tex",
+          "anchor": 5,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "18: 289 Example 4 continued; Example 5",
+          "item": 0,
+          "line": 424
+        },
+        "promptKey": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "79d59dc34100",
+      "type": "cue",
+      "front": "Example 5 · Support: Is the exponential function a growth or decay function? How do you know?",
+      "back": "Listen for: (f(x)) is a decay function because the (y)-coordinates are decreasing.",
+      "order": 34,
+      "after": [
+        "1b684a806f37"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_6-1_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "18: 289 Example 4 continued; Example 5",
+          "item": 0,
+          "line": 437
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "1236f202bb25",
+      "type": "cue",
+      "front": "Example 5 · Support: Would you expect the growth or decay factor to be greater than 1?",
+      "back": "Listen for: No; since the function is a decay function, (b) is a decay factor, with (0<b<1).",
+      "order": 35,
+      "after": [
+        "79d59dc34100"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_6-1_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "18: 289 Example 4 continued; Example 5",
+          "item": 1,
+          "line": 439
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "5cc49f2624a6",
+      "type": "cue",
+      "front": "Example 5 · Support: Describe (b) in terms of a ratio.",
+      "back": "Listen for: The growth or decay factor of an exponential function is the ratio of successive (y)-coordinates. So, (b=(f(1))/(f(0))) or (b=(f(2))/(f(1))).",
+      "order": 36,
+      "after": [
+        "1236f202bb25"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[0].questions[2]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_6-1_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "18: 289 Example 4 continued; Example 5",
+          "item": 2,
+          "line": 441
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[0].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "150bd5a25b89",
+      "type": "cue",
+      "front": "Example 5 · Support: What is (b) and how does it relate to the exponential function?",
+      "back": "Listen for: (b≈0.905), so the function is (f(x)=235(0.905)^x). The function decreases by almost 10% for each increase in (x).",
+      "order": 37,
+      "after": [
+        "5cc49f2624a6"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[0].questions[3]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_6-1_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "18: 289 Example 4 continued; Example 5",
+          "item": 3,
+          "line": 443
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[0].questions[3]",
         "part": 1,
         "parts": 1
       }
@@ -486,9 +679,9 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "A colony of bacteria starts with 50 organisms and quadruples each day. Write a function, P(t), that represents the population of the bacteria after t days. Then find the number of bacteria that will be in the colony after 5 days.",
-      "order": 29,
+      "order": 38,
       "after": [
-        "f4630040d874"
+        "07aafa767e13"
       ],
       "minute": null,
       "source": "dok3.task"
@@ -497,10 +690,10 @@
       "id": "30c698ed4571",
       "type": "anchor",
       "front": "DOK 3 key?",
-      "back": "P(t) = 50(4)^t (the TE prints 50(4)^x); P(5) = 50 * 1024 = 51,200 bacteria. R3's cut-Example rule applies: the TE item analysis files every DOK 3 item under a cut Example (26 under Example 4, though its own text says SEE EXAMPLE 5; 27 under Example 5), so no DOK 3 is tied to kept Example 1 or 3. …",
-      "order": 30,
+      "back": "P(t) = 50(4)^t (the TE prints 50(4)^x); P(5) = 50 * 1024 = 51,200 bacteria. R3: the item analysis files item 27 under Example 5, which this re-cut keeps, so the lesson's DOK 3 is tied to a kept Example. …",
+      "order": 39,
       "after": [
-        "f4630040d874"
+        "07aafa767e13"
       ],
       "minute": null,
       "source": "dok3.key"
@@ -510,7 +703,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Margaret investigates three functions, y = 3x, y = x^3 and y = 3^x, and compares the differences and the ratios between consecutive y-values. Her started table for y = 3x: (1, 3), (2, 6), (3, 9), (4, 12); differences 3, 3, 3; ratios 2, 1.5, 1.33.",
-      "order": 31,
+      "order": 40,
       "after": [
         "f94d07f0701f"
       ],
@@ -522,7 +715,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Create tables like Margaret's for all three functions and fill in more rows.",
-      "order": 32,
+      "order": 41,
       "after": [
         "60af87326340"
       ],
@@ -534,7 +727,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Which functions have a constant difference between consecutive y-values? Constant ratio? (y = 3x has a constant difference of 3; y = 3^x has a constant ratio of 3.)",
-      "order": 33,
+      "order": 42,
       "after": [
         "60af87326340"
       ],
@@ -546,7 +739,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Use Structure: which of these three functions will have y-values that increase the fastest as x increases? Why? (y = 3^x: its differences grow fastest, and the other two have decreasing ratios.)",
-      "order": 34,
+      "order": 43,
       "after": [
         "60af87326340"
       ],
@@ -558,7 +751,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "Why might Margaret be interested in the ratio between y-values? → Sample: she is looking for any pattern she could use to describe the functions.",
-      "order": 35,
+      "order": 44,
       "after": [
         "60af87326340"
       ],
@@ -570,7 +763,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "How can a table help you find constant differences and ratios? → A table organizes the values of a function sequentially, so you can quickly find differences and ratios and compare them.",
-      "order": 36,
+      "order": 45,
       "after": [
         "574574d9a6a5"
       ],
@@ -582,7 +775,7 @@
       "type": "cue",
       "front": "During, small group: ask? (2)",
       "back": "What similarities and differences do you notice among the three tables? → Each function has an x and a 3 in it; two tables have increasing differences and two have decreasing ratios; only one table has constant differences and only one has constant ratios.",
-      "order": 37,
+      "order": 46,
       "after": [
         "3a71df6937ba"
       ],
@@ -594,7 +787,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "What effect would changing the 3's in the equations to 2's have on the tables? → The values would be smaller, but one table would still show constant differences and one would still show constant ratios.",
-      "order": 38,
+      "order": 47,
       "after": [
         "af008c2c94f3"
       ],
@@ -606,7 +799,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "Is there anything you recognize about the equations that indicates a constant ratio between consecutive y-values? → 3^x indicates that 3 is multiplied repeatedly.",
-      "order": 39,
+      "order": 48,
       "after": [
         "a1a9d5167efc"
       ],
@@ -618,7 +811,7 @@
       "type": "cue",
       "front": "Habits of Mind, Generalize: ask?",
       "back": "For a whole number b > 1, which increases faster as x increases, f(x) = b^x or g(x) = x^b? Explain. → The exponential function increases faster than the power function as x approaches infinity.",
-      "order": 40,
+      "order": 49,
       "after": [
         "f1cc530daab7"
       ],
@@ -629,8 +822,8 @@
       "id": "41f72d85ac74",
       "type": "trap",
       "front": "Opener caution?",
-      "back": "The opener's 'constant ratio' is Example 1's study tip (ratio of consecutive y-values = b), so it leads straight into Example 1; keep part A to four or five rows per table so it does not eat the period. y = x^3 needs only evaluating, no cubic background. The ratio idea is also the bridge to the cut quiz item 5.",
-      "order": 41,
+      "back": "The opener's 'constant ratio' (the ratio of consecutive y-values is b) is Example 5's method (44/40 = 48.4/44 = 1.1), so it leads into Example 5; keep part A to four or five rows per table so it does not eat the period. y = x^3 needs only evaluating, no cubic background. …",
+      "order": 50,
       "after": [
         "60af87326340"
       ],
@@ -638,52 +831,52 @@
       "source": "modelDiscuss.caution"
     },
     {
+      "id": "6736608d9c6c",
+      "type": "anchor",
+      "front": "IXL for example 2?",
+      "back": "RSN Transformations of functions",
+      "order": 51,
+      "after": [
+        "25996612c96a"
+      ],
+      "minute": null,
+      "source": "ixl.RSN"
+    },
+    {
       "id": "f8b643d79135",
       "type": "anchor",
-      "front": "IXL for example 1?",
+      "front": "IXL for example 2? (2)",
       "back": "EFD Domain and range of exponential functions",
-      "order": 42,
+      "order": 52,
       "after": [
-        "ea2bd84f6799"
+        "25996612c96a"
       ],
       "minute": null,
       "source": "ixl.EFD"
     },
     {
-      "id": "777a492a2a5f",
+      "id": "88e0644ab6d3",
       "type": "anchor",
-      "front": "IXL for example 1? (2)",
-      "back": "U7P Graph exponential functions",
-      "order": 43,
+      "front": "IXL for example 5?",
+      "back": "2YT Exponential functions over unit intervals",
+      "order": 53,
       "after": [
-        "ea2bd84f6799"
+        "07aafa767e13"
       ],
       "minute": null,
-      "source": "ixl.U7P"
+      "source": "ixl.2YT"
     },
     {
-      "id": "4dbc1365db54",
+      "id": "6f4f2a4afe71",
       "type": "anchor",
-      "front": "IXL for example 3?",
-      "back": "DBW Write exponential functions: word problems",
-      "order": 44,
+      "front": "IXL for example 2? (3)",
+      "back": "KT8 Describe function transformations",
+      "order": 54,
       "after": [
-        "f4630040d874"
+        "25996612c96a"
       ],
       "minute": null,
-      "source": "ixl.DBW"
-    },
-    {
-      "id": "8683bac934a9",
-      "type": "anchor",
-      "front": "IXL for example 3? (2)",
-      "back": "TYQ Exponential growth and decay: word problems",
-      "order": 45,
-      "after": [
-        "f4630040d874"
-      ],
-      "minute": null,
-      "source": "ixl.TYQ"
+      "source": "ixl.KT8"
     }
   ]
 }

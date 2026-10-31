@@ -13,77 +13,64 @@
       "source": "objectives.essentialQuestion"
     },
     {
-      "id": "60ffcadd096f",
+      "id": "1bf3b40e62fd",
       "type": "anchor",
-      "front": "Define: principal",
-      "back": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
+      "front": "Define: growth factor",
+      "back": "with consecutive x-values, the growth factor b is the ratio of the y-values (10/5 = 2), so the next point multiplies by b; a line adds instead (Example 5; Try It 5; IXL 2YT)",
       "order": 2,
       "after": [
         "6f44e4819666"
       ],
       "minute": null,
-      "source": "objectives.language.words.principal"
+      "source": "objectives.language.words.growth factor"
     },
     {
-      "id": "9225f41237f4",
+      "id": "f1b782b9b1eb",
       "type": "anchor",
-      "front": "Define: interest rate",
-      "back": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
+      "front": "Define: growth rate",
+      "back": "I can explain how I found a rate or a model, using the words growth factor, growth rate, initial value, and Power of a Power rule.",
       "order": 3,
       "after": [
         "6f44e4819666"
       ],
       "minute": null,
-      "source": "objectives.language.words.interest rate"
+      "source": "objectives.language.words.growth rate"
     },
     {
-      "id": "ca32b0b8f9f9",
+      "id": "acbb42fa8ec2",
       "type": "anchor",
-      "front": "Define: compounding periods",
-      "back": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
+      "front": "Define: initial value",
+      "back": "write a decay model from words: initial value 4,200 and decay factor 1 - 0.024 = 0.976 (6-1 Example 3; packet Practice hint; IXL E5S)",
       "order": 4,
       "after": [
         "6f44e4819666"
       ],
       "minute": null,
-      "source": "objectives.language.words.compounding periods"
+      "source": "objectives.language.words.initial value"
     },
     {
-      "id": "c5c068fe1442",
+      "id": "e172dd62d837",
       "type": "anchor",
-      "front": "Define: compounded continuously",
-      "back": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
+      "front": "Define: Power of a Power rule",
+      "back": "rewrite the exponent as 4t with the Power of a Power rule, y = 4200(0.976^(1/4))^(4t), and read the quarterly rate as 1 minus the quarterly factor, not 2.4%/4 (Example 1 and its common error; Try It 1; packet Practice: a car losing 12% a year, a structural parallel)",
       "order": 5,
       "after": [
         "6f44e4819666"
       ],
       "minute": null,
-      "source": "objectives.language.words.compounded continuously"
-    },
-    {
-      "id": "531998351823",
-      "type": "anchor",
-      "front": "Define: natural base e",
-      "back": "I can explain why more compounding periods give a larger account value, using the words principal, interest rate, compounding periods, compounded continuously, and natural base e.",
-      "order": 6,
-      "after": [
-        "6f44e4819666"
-      ],
-      "minute": null,
-      "source": "objectives.language.words.natural base e"
+      "source": "objectives.language.words.power of a power rule"
     },
     {
       "id": "63746521d5ba",
       "type": "anchor",
-      "front": "Quiz item 3 asks?",
-      "back": "Item 3: Micah invests $5,280 at 4.2% compounded monthly; complete A(t) = __(1 + __)^__ from the tiles 5280, 5501, 5298.48 / 0.042/12, 0.042/6, 0.042 / 12t, t, t/12. Item 4: Steve invests $1,800 at 3.7% compounded continuously; value after 10 years (A $2,466, B $2,589, C $2,601, D $2,606). …",
-      "order": 7,
+      "front": "Quiz item 1 asks?",
+      "back": "Item 1: in 1970 a town of 4,200 is decreasing 2.4% per year; complete y = __(__)^t and give the rate per quarter to the nearest thousandth of a percent. Item 2: y = a*b^x passes through (3, 5) and (4, 10); which point is also on the graph (A (2, 0), B (2, 1), C (5, 15), D (5, 20))? …",
+      "order": 6,
       "after": [
-        "60ffcadd096f",
-        "9225f41237f4",
-        "ca32b0b8f9f9",
-        "c5c068fe1442",
-        "531998351823"
+        "1bf3b40e62fd",
+        "f1b782b9b1eb",
+        "acbb42fa8ec2",
+        "e172dd62d837"
       ],
       "minute": null,
       "source": "quizFocus.what"
@@ -91,15 +78,14 @@
     {
       "id": "5c185ac9cd99",
       "type": "anchor",
-      "front": "Quiz item 3 answer?",
-      "back": "Item 3: A(t) = 5280(1 + 0.042/12)^(12t). Item 4: D, 1800e^(0.37) = $2,605.92 (A is simple interest, B annual, C quarterly compounding). Item 5: 80; 89; linear; exponential; linear; exponential. (Verify against the TE key on quiz day.)",
-      "order": 8,
+      "front": "Quiz item 1 answer?",
+      "back": "Item 1: y = 4200(0.976)^t; 0.976^(1/4) = 0.9939452313, so 100(1 - 0.976^(1/4)) = 0.6054768703%, about 0.605% per quarter. Item 2: D, (5, 20) (b = 10/5 = 2; A and C lie on the line y = 5x - 10). Item 3 (bonus): A(t) = 5280(1 + 0.042/12)^(12t). (Verify against the TE key on quiz day.)",
+      "order": 7,
       "after": [
-        "60ffcadd096f",
-        "9225f41237f4",
-        "ca32b0b8f9f9",
-        "c5c068fe1442",
-        "531998351823"
+        "1bf3b40e62fd",
+        "f1b782b9b1eb",
+        "acbb42fa8ec2",
+        "e172dd62d837"
       ],
       "minute": null,
       "source": "quizFocus.answer"
@@ -107,9 +93,9 @@
     {
       "id": "6e333dd2ebb2",
       "type": "anchor",
-      "front": "Before quiz item 3 students need?",
-      "back": "read P, r and n from the words and write A = P(1 + r/n)^(nt), with n = 12 for monthly (Example 2A; Try It 2; IXL YJW)",
-      "order": 9,
+      "front": "Before quiz item 1 students need?",
+      "back": "write a decay model from words: initial value 4,200 and decay factor 1 - 0.024 = 0.976 (6-1 Example 3; packet Practice hint; IXL E5S)",
+      "order": 8,
       "after": [
         "63746521d5ba"
       ],
@@ -119,9 +105,9 @@
     {
       "id": "210127b75456",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (2)",
-      "back": "write r as a decimal (4.2% = 0.042) and put n in both places: r/n inside, nt in the exponent (Example 2; practice 12 is the 'used 12 for quarterly' error)",
-      "order": 10,
+      "front": "Before quiz item 1 students need? (2)",
+      "back": "rewrite the exponent as 4t with the Power of a Power rule, y = 4200(0.976^(1/4))^(4t), and read the quarterly rate as 1 minus the quarterly factor, not 2.4%/4 (Example 1 and its common error; Try It 1; packet Practice: a car losing 12% a year, a structural parallel)",
+      "order": 9,
       "after": [
         "63746521d5ba"
       ],
@@ -131,9 +117,9 @@
     {
       "id": "827e931bc130",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (3)",
-      "back": "A = Pe^(rt) for continuous compounding, with e raised to the whole product rt on the calculator (Example 4 common error; Try It 4; IXL 5GU)",
-      "order": 11,
+      "front": "Before quiz item 1 students need? (3)",
+      "back": "with consecutive x-values, the growth factor b is the ratio of the y-values (10/5 = 2), so the next point multiplies by b; a line adds instead (Example 5; Try It 5; IXL 2YT)",
+      "order": 10,
       "after": [
         "63746521d5ba"
       ],
@@ -143,9 +129,9 @@
     {
       "id": "78823ff30d29",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (4)",
-      "back": "for the bonus (item 5): simple interest A = P(1 + rt) is linear, compounding is exponential; compare values after 1 year and after 6 years (packet Practice: Lena, $5,000, 8 years, a structural parallel)",
-      "order": 12,
+      "front": "Before quiz item 1 students need? (4)",
+      "back": "for the bonus (item 3): A = P(1 + r/n)^(nt) with n = 12 (Example 2, cut; IXL YJW)",
+      "order": 11,
       "after": [
         "63746521d5ba"
       ],
@@ -156,8 +142,8 @@
       "id": "07414a2f55f9",
       "type": "anchor",
       "front": "Quiz item 1 is covered by?",
-      "back": "Town of 4,200 in 1970 decreasing 2.4% per year: y = 4200(0.976)^t, about 0.605% per quarter. Example 1 (cut). Left off the short form; the strongest SAT item on the quiz. Example 2B's power-of-a-power rewrite is the same move in reverse.",
-      "order": 13,
+      "back": "Town of 4,200 in 1970 decreasing 2.4% per year: y = 4200(0.976)^t, about 0.605% per quarter. Example 1 (kept; Try It 1 and the packet Practice rehearse it). Graded, 10 points. Same move as Topic 6 test items 2 and 6.",
+      "order": 12,
       "after": [
         "63746521d5ba"
       ],
@@ -168,8 +154,8 @@
       "id": "80fdc1ed6b69",
       "type": "anchor",
       "front": "Quiz item 2 is covered by?",
-      "back": "y = a*b^x through (3,5) and (4,10): which point is also on the graph? D (5,20). Example 5 (cut). Left off the short form.",
-      "order": 14,
+      "back": "y = a*b^x through (3,5) and (4,10): which point is also on the graph? D (5,20). Example 5 (kept; Try It 5). Graded, 10 points. Same task as Topic 6 test item 5.",
+      "order": 13,
       "after": [
         "63746521d5ba"
       ],
@@ -180,8 +166,8 @@
       "id": "15a128f7a98b",
       "type": "anchor",
       "front": "Quiz item 3 is covered by?",
-      "back": "Build the monthly compound interest model from tiles: Example 2 (Try It 2 is the same model). Graded, 10 points.",
-      "order": 15,
+      "back": "Build the monthly compound interest model from tiles: Example 2 (cut). +5 bonus; IXL YJW is the route.",
+      "order": 14,
       "after": [
         "63746521d5ba"
       ],
@@ -192,8 +178,8 @@
       "id": "125e6cb17a09",
       "type": "anchor",
       "front": "Quiz item 4 is covered by?",
-      "back": "Continuously compounded value after 10 years: Example 4 (Try It 4). Graded, 10 points.",
-      "order": 16,
+      "back": "Continuously compounded value after 10 years ($1,800 at 3.7%): D, $2,606. Example 4 (cut). Left off the short form.",
+      "order": 15,
       "after": [
         "63746521d5ba"
       ],
@@ -204,8 +190,8 @@
       "id": "7c951078bdd4",
       "type": "anchor",
       "front": "Quiz item 5 is covered by?",
-      "back": "Compare 5% simple, 4.5% continuous and 4.75% yearly on $8,000 for 6 years; name linear vs exponential: Examples 2 and 4 plus the packet Practice (structural parallel). +5 bonus.",
-      "order": 17,
+      "back": "Compare 5% simple, 4.5% continuous and 4.75% yearly on $8,000 for 6 years; name linear vs exponential: Examples 2 and 4 (both cut). Left off the short form.",
+      "order": 16,
       "after": [
         "63746521d5ba"
       ],
@@ -213,258 +199,381 @@
       "source": "quizFocus.items.5"
     },
     {
-      "id": "e549c0da1612",
-      "type": "step",
-      "front": "Example 2: ?",
-      "back": "Understand compound interest (Tamira, $5,000 at 4% for 3 years: A annually, quarterly, monthly; B the annual growth rate of each) · DOK 1, 2, 3 · practice 16-19, 12, 33 · Quiz item 3 (the monthly model from tiles) and the yearly-compounding third of item 5. …",
+      "id": "c3d5ce7b2e9d",
+      "type": "anchor",
+      "front": "Topic 6 test item 2 is covered by?",
+      "back": "A butterfly population grows from 2000 to 2800 over 7 years: choose the model (2000(1.4)^(x/7), 2000(1 + 0.4^7)^x, 2000(1 + 0.4/7)^x, 2000(1 + 0.4/7)^(7x)) (DOK 2): Example 1, kept",
+      "order": 17,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.2"
+    },
+    {
+      "id": "8e969b855bbf",
+      "type": "anchor",
+      "front": "Topic 6 test item 5 is covered by?",
+      "back": "Video views y = a*b^x: 10 views after 1 day, 20 after 2 days; which point is also on the graph? ((3,25), (3,30), (3,40), (3,60)) (DOK 2): Example 5, kept",
       "order": 18,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.5"
+    },
+    {
+      "id": "d03d38452092",
+      "type": "anchor",
+      "front": "Topic 6 test item 6 is covered by?",
+      "back": "25 rabbits increasing 20% per year: select the model that reveals the monthly growth rate (25(1.2)^t, 25(1.0167)^(12t), 25(1.0167)^t, 25(1.0153)^(12t)) (DOK 2): Example 1, kept",
+      "order": 19,
+      "after": [
+        "63746521d5ba"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.6"
+    },
+    {
+      "id": "15a686b108f2",
+      "type": "step",
+      "front": "Example 1: ?",
+      "back": "Rewrite an exponential function to identify a rate (town of 8,000 growing 2.5% per year; monthly rate about 0.206%) · DOK 2 · practice 25, 28 · Kept. The SAT's 'rewrite to reveal the rate' move: multiply the exponent by 12/12 and use the Power of a Power rule, 8,000(1.025)^t = 8,000(1.00206)^(12t). …",
+      "order": 20,
       "after": [
         "63746521d5ba",
         "5c185ac9cd99"
       ],
       "minute": null,
-      "source": "examples[n=2]"
+      "source": "examples[n=1]"
     },
     {
-      "id": "9b9a2d6f1529",
+      "id": "251ea927a682",
       "type": "step",
-      "front": "Example 4: ?",
-      "back": "Find continuously compounded interest (Regina, $12,600 at 3.2% for 12 years: $18,499) · DOK 2, 3 · practice 20-21, 29, 31-32, 27 · Quiz item 4 directly and the continuous third of item 5; it also holds the DOK 3 (practice 27, the packet's exit question). …",
-      "order": 19,
-      "after": [
-        "e549c0da1612"
-      ],
-      "minute": null,
-      "source": "examples[n=4]"
-    },
-    {
-      "id": "ad08f3bbf953",
-      "type": "cue",
-      "front": "Example 2 · Purposeful question: Why is 0.04 used in the formula for (r) rather than 4?",
-      "back": "Listen for: The rate is 4%; percent means out of 100 and (4÷100=0.04).",
-      "order": 20,
-      "after": [
-        "e549c0da1612"
-      ],
-      "minute": null,
-      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
-      "teaching": {
-        "example": 2,
-        "kind": "question",
-        "category": "PurposefulQuestions",
-        "source": {
-          "file": "a2_6-2_TE.tex",
-          "anchor": 2,
-          "category": "PurposefulQuestions",
-          "block": 0,
-          "page": "27: 294 Understand & Apply",
-          "item": 0,
-          "line": 263
-        },
-        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "25ec71733d45",
-      "type": "cue",
-      "front": "Example 2 · Check student thinking: When banks advertise an interest rates of 3% interest compounded quarterly, do they really pay 3% every quarter? Explain.",
-      "back": "Listen for: No; 3% is the annual rate. The bank only pays (1/4) of the annual rate each quarter.",
+      "front": "Example 5: ?",
+      "back": "Use two points to find an exponential model (Tia's instant messages: y = 40.98(1.1)^x) · DOK 1, 3 · practice 22-24, 13 · Kept. With consecutive x-values the growth factor is the ratio of the y-values (66/60 = 1.1), then one point gives the initial value: y = 40.98(1.1)^x. …",
       "order": 21,
       "after": [
-        "ad08f3bbf953"
+        "15a686b108f2"
       ],
       "minute": null,
-      "source": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
-      "teaching": {
-        "example": 2,
-        "kind": "question",
-        "category": "ElicitEvidence",
-        "source": {
-          "file": "a2_6-2_TE.tex",
-          "anchor": 2,
-          "category": "ElicitEvidence",
-          "block": 0,
-          "page": "27: 294 Understand & Apply",
-          "item": 0,
-          "line": 268
-        },
-        "promptKey": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
+      "source": "examples[n=5]"
     },
     {
-      "id": "6b9e1f916ddf",
-      "type": "cue",
-      "front": "Example 2 · Teacher prompt: What currency could be used to apply this same illustration to semi-annually?",
-      "back": "Listen for: half dollar",
+      "id": "d2e9f47b4aa8",
+      "type": "trap",
+      "front": "Example 1 · Teacher prompt: What misconception should I watch for?",
+      "back": "Dividing the annual growth rate by 12 does not give the exact monthly growth rate. You must use the Power of a Power rule to find the exact monthly growth rate.",
       "order": 22,
       "after": [
-        "25ec71733d45"
+        "15a686b108f2"
       ],
       "minute": null,
-      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
+      "source": "examples[n=1].teacherPrompts.inlineCommonError[0]",
       "teaching": {
-        "example": 2,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_6-2_TE.tex",
-          "anchor": 2,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "27: 294 Understand & Apply",
-          "item": 0,
-          "line": 274
-        },
-        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "fbf4867abca4",
-      "type": "cue",
-      "front": "Example 2 · Teacher prompt: Using complete sentences, write a description of what happens when interest is compounded monthly.",
-      "back": "Listen for: Check students' work.",
-      "order": 23,
-      "after": [
-        "6b9e1f916ddf"
-      ],
-      "minute": null,
-      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
-      "teaching": {
-        "example": 2,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_6-2_TE.tex",
-          "anchor": 2,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "27: 294 Understand & Apply",
-          "item": 1,
-          "line": 276
-        },
-        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[1]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "7b2480d297ab",
-      "type": "cue",
-      "front": "Example 2 · Teacher prompt: The words in the example that specify time all end in -ly. How does that ending change the meaning of the words?",
-      "back": "Listen for: It changes the meaning from a single time unit to a frequency of occurrence.",
-      "order": 24,
-      "after": [
-        "fbf4867abca4"
-      ],
-      "minute": null,
-      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
-      "teaching": {
-        "example": 2,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_6-2_TE.tex",
-          "anchor": 2,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "27: 294 Understand & Apply",
-          "item": 2,
-          "line": 279
-        },
-        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[2]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "2383158c8ea4",
-      "type": "cue",
-      "front": "Example 2 · Teacher prompt: What things might you do or might happen annually? semi-annually? quarterly? monthly? weekly? daily?",
-      "back": "Listen for: Answers will vary.",
-      "order": 25,
-      "after": [
-        "7b2480d297ab"
-      ],
-      "minute": null,
-      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
-      "teaching": {
-        "example": 2,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_6-2_TE.tex",
-          "anchor": 2,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "27: 294 Understand & Apply",
-          "item": 3,
-          "line": 281
-        },
-        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[3]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "fc8cb8f7ca59",
-      "type": "cue",
-      "front": "Example 2 · Teacher prompt: What is the value of (n) when the period is semi-annual?",
-      "back": "Listen for: 2; Semi- means half, so when interest is compounded semi-annually, it is applied every half year, or two times per year.",
-      "order": 26,
-      "after": [
-        "2383158c8ea4"
-      ],
-      "minute": null,
-      "source": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
-      "teaching": {
-        "example": 2,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_6-2_TE.tex",
-          "anchor": 2,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "27: 294 Understand & Apply",
-          "item": 4,
-          "line": 284
-        },
-        "promptKey": "examples[n=2].teacherPrompts.ELLAddendum[0].questions[4]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "c1a3c1c387db",
-      "type": "trap",
-      "front": "Example 4 · Teacher prompt: What misconception should I watch for?",
-      "back": "Be sure that when you evaluate (e^(0.032(12))) you either simplify 0.032(12) as 0.384 first, or use parentheses to ensure that (e) is raised to the entire product, rather than just the first factor.",
-      "order": 27,
-      "after": [
-        "9b9a2d6f1529"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.inlineCommonError[0]",
-      "teaching": {
-        "example": 4,
+        "example": 1,
         "kind": "trap",
         "category": "InlineCommonError",
         "source": {
           "file": "a2_6-2_TE.tex",
-          "anchor": 4,
+          "anchor": 1,
           "category": "InlineCommonError",
           "block": 0,
           "item": 0,
-          "line": 357,
+          "line": 171,
+          "page": "26: 293 Step 2 Understand & Apply"
+        },
+        "promptKey": "examples[n=1].teacherPrompts.inlineCommonError[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "0dfc47306ba9",
+      "type": "cue",
+      "front": "Example 1 · Support: How does the monthly rate compare to the annual rate?",
+      "back": "Listen for: The monthly rate is almost (1/12) of the annual rate.",
+      "order": 23,
+      "after": [
+        "d2e9f47b4aa8"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.RtISupport[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 1,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "26: 293 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 181
+        },
+        "promptKey": "examples[n=1].teacherPrompts.RtISupport[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "2697dc382423",
+      "type": "cue",
+      "front": "Example 1 · Check student thinking: How is the Try It different from the Example and how does the difference affect the process used to answer the question?",
+      "back": "Listen for: The Try It asks for a quarterly rate rather than a monthly rate. So instead of multiplying the exponent by (12/12), multiply it by (4/4).",
+      "order": 24,
+      "after": [
+        "0dfc47306ba9"
+      ],
+      "minute": null,
+      "source": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 1,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 1,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "26: 293 Step 2 Understand & Apply",
+          "item": 0,
+          "line": 186
+        },
+        "promptKey": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "279c5c318da1",
+      "type": "trap",
+      "front": "Example 5 · Teacher prompt: What misconception should I watch for?",
+      "back": "Remember that the growth factor ((1+r)) is different from the growth rate ((r)). In this example, the growth factor is 1.1 while the growth rate is 0.1, or 10%.",
+      "order": 25,
+      "after": [
+        "251ea927a682"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.inlineCommonError[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "trap",
+        "category": "InlineCommonError",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 5,
+          "category": "InlineCommonError",
+          "block": 0,
+          "item": 0,
+          "line": 381,
           "page": "29: 296 Understand & Apply"
         },
-        "promptKey": "examples[n=4].teacherPrompts.inlineCommonError[0]",
+        "promptKey": "examples[n=5].teacherPrompts.inlineCommonError[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "33ee8292026e",
+      "type": "cue",
+      "front": "Example 5 · Support: Why is 5 substituted for (x)?",
+      "back": "Listen for: 5 is the number of years between 2018 and 2023.",
+      "order": 26,
+      "after": [
+        "279c5c318da1"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "29: 296 Understand & Apply",
+          "item": 0,
+          "line": 386
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "dcb111a28f2c",
+      "type": "cue",
+      "front": "Example 5 · Support: How can you find the growth factor when the data points have x-values that are 2 units apart?",
+      "back": "Listen for: Divide the second y-value by the first y-value, then take the square root of the quotient.",
+      "order": 27,
+      "after": [
+        "33ee8292026e"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "29: 296 Understand & Apply",
+          "item": 1,
+          "line": 388
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c936201e53a6",
+      "type": "cue",
+      "front": "Example 5 · Check student thinking: According to the model, the value of the land in 2060 will be $5,789. Is it definite the land will be actually worth that much? Explain.",
+      "back": "Listen for: No; Exponential models may only be accurate over a restricted domain. It's not likely that the land value would increase exponentially for 45 years.",
+      "order": 28,
+      "after": [
+        "dcb111a28f2c"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 5,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "29: 296 Understand & Apply",
+          "item": 0,
+          "line": 393
+        },
+        "promptKey": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "ec678ba4a0e6",
+      "type": "trap",
+      "front": "Example 5 · Common error: What error should I watch for, and how does the TE respond?",
+      "back": "Some students may use the first value given as the initial value in the exponential model. Ask students what the initial value in this context might be. Emphasize that they need to use the growth factor and one of the given points to solve for the initial value.",
+      "order": 29,
+      "after": [
+        "c936201e53a6"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.CommonError[0].guidance",
+      "teaching": {
+        "example": 5,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 5,
+          "category": "CommonError",
+          "block": 0,
+          "page": "29: 296 Understand & Apply",
+          "item": 0,
+          "line": 396
+        },
+        "promptKey": "examples[n=5].teacherPrompts.CommonError[0].guidance",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "35178448c080",
+      "type": "cue",
+      "front": "Example 5 · Support: What is each growth factor?",
+      "back": "Listen for: 1. 1.5. 2. 1.25. 3. 1.3.",
+      "order": 30,
+      "after": [
+        "ec678ba4a0e6"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[1].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 1,
+          "page": "29: 296 Understand & Apply",
+          "item": 0,
+          "line": 406
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "e4e5053a3d4e",
+      "type": "cue",
+      "front": "Example 5 · Support: Once you know the growth factor, what do you need to do next to write an exponential model?",
+      "back": "Listen for: You need to substitute the growth factor and the x- and y-values of one of the points into (y=a(b)^x). Then solve for (a).",
+      "order": 31,
+      "after": [
+        "35178448c080"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[1].questions[1]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 1,
+          "page": "29: 296 Understand & Apply",
+          "item": 1,
+          "line": 408
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[1].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "57f31b49f7e7",
+      "type": "cue",
+      "front": "Example 5 · Support: Use the growth factor you found to write an exponential model with data points (12,20) and (13,26).",
+      "back": "Listen for: (y=0.858(1.3)^x)",
+      "order": 32,
+      "after": [
+        "e4e5053a3d4e"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtISupport[1].questions[2]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_6-2_TE.tex",
+          "anchor": 5,
+          "category": "RtISupport",
+          "block": 1,
+          "page": "29: 296 Understand & Apply",
+          "item": 2,
+          "line": 410
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtISupport[1].questions[2]",
         "part": 1,
         "parts": 1
       }
@@ -473,10 +582,10 @@
       "id": "b949f2a987c9",
       "type": "anchor",
       "front": "DOK 3 task?",
-      "back": "Adam and Jacinta open an account on the same day, each with $8,000 for 20 years. Adam's interest is compounded quarterly at 1.25%; Jacinta's is compounded continuously at 1.25%. Who do you predict will have more money after 20 years? Explain your reasoning.",
-      "order": 28,
+      "back": "The points (2, 54.61) and (4, 403.48) are points on the graph of an exponential model in the form y = a*e^x. a. Find the exponential model. b. Use the exponential model to find the value of y when x = 8.",
+      "order": 33,
       "after": [
-        "9b9a2d6f1529"
+        "251ea927a682"
       ],
       "minute": null,
       "source": "dok3.task"
@@ -485,10 +594,10 @@
       "id": "4376bd60e4bf",
       "type": "anchor",
       "front": "DOK 3 key?",
-      "back": "Jacinta. Adam: 8000(1 + 0.0125/4)^80 = $10,268.20; Jacinta: 8000e^(0.0125*20) = 8000e^0.25 = $10,272.20. TE: continuously compounded interest increases at a faster rate. Uses both kept Examples at once and asks for a prediction with a reason (MP.3), which no IXL skill does. …",
-      "order": 29,
+      "back": "a. Substitute one point: 54.61 = a*e^2, so a = 54.61/7.389 = 7.39 (403.48/e^4 = 7.39 checks); y = 7.39e^x. b. y = 7.39e^8 = 22,029 (TE: y = 7.39e^x; 22,029). Example 5's structure (a known base, one point gives the initial value, the other checks it) with the natural base e, which no IXL skill asks. …",
+      "order": 34,
       "after": [
-        "9b9a2d6f1529"
+        "251ea927a682"
       ],
       "minute": null,
       "source": "dok3.key"
@@ -498,7 +607,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Juan is studying exponential growth of bacteria cultures, each controlled to a specific growth rate. Four cultures start with 10,000 bacteria: A grows 8% per day for 1 day, B 4% for 2 days, C 2% for 4 days, D 1% for 8 days. Students complete the table of final numbers (10,800; 10,816; 10,824; 10,828).",
-      "order": 30,
+      "order": 35,
       "after": [
         "6f44e4819666"
       ],
@@ -510,7 +619,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. What is the relationship between the daily growth rate and the time in days for each culture? (Each product is 0.08.)",
-      "order": 31,
+      "order": 36,
       "after": [
         "2836a3ab988e"
       ],
@@ -522,7 +631,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Look for Relationships. Would you expect a culture with a growth rate of 1/2% and a time of 16 days to have more or fewer cells than the others in the table? Explain. (More: 10,000(1.005)^16 = 10,831.)",
-      "order": 32,
+      "order": 37,
       "after": [
         "2836a3ab988e"
       ],
@@ -534,7 +643,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "Do you expect the final number of bacteria to be the same for each culture? Explain. → No; although the product of the growth rate per day and the number of days is constant, the final number of bacteria will be different because the growth rate is compounded.",
-      "order": 33,
+      "order": 38,
       "after": [
         "2836a3ab988e"
       ],
@@ -546,7 +655,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "How do the growth rate of 1/2% and the time of 16 days fit the table? → They continue the patterns in the table. The growth rate is halved in each row, the number of days is doubled, and the product of the two values is 0.08.",
-      "order": 34,
+      "order": 39,
       "after": [
         "8ae8333fae3d"
       ],
@@ -558,7 +667,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "How would the result change with a rate of decay rather than one of growth? → With growth, a lower rate over a longer time gives more bacteria; with decay, a lower rate over a longer time means fewer bacteria die.",
-      "order": 35,
+      "order": 40,
       "after": [
         "e4c45d38338e"
       ],
@@ -570,7 +679,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "Did the result of the activity match your expectation before starting the activity? → Sample: No; I thought the number of bacteria would be constant because the product of the growth rate and the number of days was constant. Then introduce exponential models for compound interest.",
-      "order": 36,
+      "order": 41,
       "after": [
         "87c030c758e6"
       ],
@@ -582,7 +691,7 @@
       "type": "cue",
       "front": "Habits of Mind, Generalize: ask?",
       "back": "How would the numbers of final bacteria change if the initial number were doubled in each culture? Explain. → They would also double, because the exponent applies only to the growth factor, not the initial number.",
-      "order": 37,
+      "order": 42,
       "after": [
         "343102932f4a"
       ],
@@ -594,7 +703,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The TE's sample answers print periods as thousands separators (10.800 means 10,800), and culture D is truncated: 10,000(1.01)^8 = 10,828.57, so 10,829 when rounded. …",
-      "order": 38,
+      "order": 43,
       "after": [
         "2836a3ab988e"
       ],
@@ -602,13 +711,37 @@
       "source": "modelDiscuss.caution"
     },
     {
+      "id": "17c1cd86c599",
+      "type": "anchor",
+      "front": "IXL for example 1?",
+      "back": "E5S Exponential growth and decay",
+      "order": 44,
+      "after": [
+        "15a686b108f2"
+      ],
+      "minute": null,
+      "source": "ixl.E5S"
+    },
+    {
+      "id": "8930ad78c855",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "2YT Exponential functions over unit intervals",
+      "order": 45,
+      "after": [
+        "251ea927a682"
+      ],
+      "minute": null,
+      "source": "ixl.2YT"
+    },
+    {
       "id": "55bf7e2e8a07",
       "type": "anchor",
       "front": "IXL for example 2?",
       "back": "YJW Compound interest: word problems",
-      "order": 39,
+      "order": 46,
       "after": [
-        "e549c0da1612"
+        "6f44e4819666"
       ],
       "minute": null,
       "source": "ixl.YJW"
@@ -618,9 +751,9 @@
       "type": "anchor",
       "front": "IXL for example 4?",
       "back": "5GU Continuously compounded interest: word problems",
-      "order": 40,
+      "order": 47,
       "after": [
-        "9b9a2d6f1529"
+        "6f44e4819666"
       ],
       "minute": null,
       "source": "ixl.5GU"
@@ -630,9 +763,9 @@
       "type": "anchor",
       "front": "IXL for example 2? (2)",
       "back": "KLF Describe linear and exponential growth and decay",
-      "order": 41,
+      "order": 48,
       "after": [
-        "e549c0da1612"
+        "6f44e4819666"
       ],
       "minute": null,
       "source": "ixl.KLF"

@@ -213,11 +213,35 @@
       "source": "quizFocus.items.5"
     },
     {
+      "id": "b4c6d4cf5cc4",
+      "type": "anchor",
+      "front": "Topic 3 test item 6 is covered by?",
+      "back": "Sketch the graph of f(x) = x^3 - 2x^2. (DOK 2): Example 2 and 3, kept",
+      "order": 18,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.6"
+    },
+    {
+      "id": "455431527777",
+      "type": "anchor",
+      "front": "Topic 3 test item 9 is covered by?",
+      "back": "Cube V(x) = x^3 vs the graphed sphere of radius x: which volume increases faster over [0.5, 1]? (DOK 2): Example 3, kept",
+      "order": 19,
+      "after": [
+        "4bc84dbf54d4"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.9"
+    },
+    {
       "id": "b164d2f8d238",
       "type": "step",
       "front": "Example 2: ?",
       "back": "Understand End Behavior of Polynomial Functions · DOK 1 · practice 21-23 · Quiz item 2 (graded) and choice B of item 1; the concept summary's GRAPHS panel is this Example's four cases, and the lesson note says end behavior feeds 3-5. …",
-      "order": 18,
+      "order": 20,
       "after": [
         "4bc84dbf54d4",
         "3490fc4db56b"
@@ -230,7 +254,7 @@
       "type": "step",
       "front": "Example 3: ?",
       "back": "Graph a Polynomial Function · DOK 1, 3 · practice 24, 25, 14, 15 · Quiz item 3 (graded: turning points from a graph) and the increasing / decreasing half of item 4; the concept summary's KEY FEATURES (turning point, relative minimum, relative maximum) are defined here, and it is the only kept-candidate Example with …",
-      "order": 19,
+      "order": 21,
       "after": [
         "b164d2f8d238"
       ],
@@ -242,7 +266,7 @@
       "type": "cue",
       "front": "Example 2 · Connect representations: What differences and similarities do you notice between the graphs?",
       "back": "Listen for: Two of the graphs are the same shape, but going in different directions. One opens upward, and one opens downward.",
-      "order": 20,
+      "order": 22,
       "after": [
         "b164d2f8d238"
       ],
@@ -271,7 +295,7 @@
       "type": "cue",
       "front": "Example 2 · Connect representations: How does each feature describe the end behavior of the graphs?",
       "back": "Listen for: The degree of the polynomial determines the shape of the graph. The sign of the leading coefficient affects the orientation of the graph.",
-      "order": 21,
+      "order": 23,
       "after": [
         "825bcbf6bf95"
       ],
@@ -300,7 +324,7 @@
       "type": "trap",
       "front": "Example 2 · Common error: What error should I watch for, and how does the TE respond?",
       "back": "Try It! 2 Students may incorrectly define the greatest coefficient as the leading coefficient. Remind students to rewrite the polynomial, reordering the terms so the exponents are in descending order.",
-      "order": 22,
+      "order": 24,
       "after": [
         "faf4196a47de"
       ],
@@ -329,7 +353,7 @@
       "type": "cue",
       "front": "Example 2 · Extend thinking: Which term has the greatest effect on the output of the functions?",
       "back": "Listen for: The term with the highest degree has the greatest effect on the final output of the functions.",
-      "order": 23,
+      "order": 25,
       "after": [
         "7aafa0556b5f"
       ],
@@ -358,7 +382,7 @@
       "type": "cue",
       "front": "Example 2 · Extend thinking: Which coefficient has the most influence on the output of the functions?",
       "back": "Listen for: Since the leading coefficient belongs to the term with the greatest degree, it has the most influence on the functions' output; therefore, it will also have the most influence on the graph.",
-      "order": 24,
+      "order": 26,
       "after": [
         "c77c2a3124ee"
       ],
@@ -387,7 +411,7 @@
       "type": "cue",
       "front": "Example 3 · Connect representations: What can be determined from looking at the polynomial function before graphing?",
       "back": "Listen for: The leading coefficient is negative, and the degree is even; therefore, the y-values will decrease as the x-values go to negative infinity, and the y-values will decrease as the x-values go to positive infinity.",
-      "order": 25,
+      "order": 27,
       "after": [
         "9eafab25aac8"
       ],
@@ -416,7 +440,7 @@
       "type": "cue",
       "front": "Example 3 · Connect representations: How is the table helpful when sketching the graph of a polynomial function? What points are important?",
       "back": "Listen for: The table is used to help determine the behavior of the graph that occurs between the ends. The turning points are important points.",
-      "order": 26,
+      "order": 28,
       "after": [
         "3624071a1595"
       ],
@@ -445,7 +469,7 @@
       "type": "cue",
       "front": "Example 3 · Check student thinking: How can you identify the turning points of the graph?",
       "back": "Listen for: You can use a table to find where the values change from increasing to decreasing.",
-      "order": 27,
+      "order": 29,
       "after": [
         "dc3a756dbd79"
       ],
@@ -474,7 +498,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "An analyst predicts the function f(x) = -2x^5 + 6x^4 - x^3 + 5x^2 + 6x + 50 will give a new company's revenue after x years. Should the CEO expect the company to be successful? Explain.",
-      "order": 28,
+      "order": 30,
       "after": [
         "9eafab25aac8"
       ],
@@ -486,7 +510,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "No; the end behavior of the function as x approaches infinity is negative infinity (degree 5, odd; leading coefficient -2, negative), so the model predicts the revenue earned by the company will become negative. …",
-      "order": 29,
+      "order": 31,
       "after": [
         "9eafab25aac8"
       ],
@@ -498,7 +522,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Consider functions of the form f(x) = x^n, where n is a positive integer.",
-      "order": 30,
+      "order": 32,
       "after": [
         "6bd7d7a7e4c9"
       ],
@@ -510,7 +534,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Graph f(x) = x^n for n = 1, 3, and 5. Look at the graphs in Quadrant I. As the exponent increases, what is happening to the graphs? Which quadrants do the graphs pass through? (Steeper; Quadrants I and III.)",
-      "order": 31,
+      "order": 33,
       "after": [
         "7762aed3b6a5"
       ],
@@ -522,7 +546,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Look for Relationships: now graph f(x) = x^n for n = 2, 4, and 6. What happens to these graphs in Quadrant I as the exponent increases? Which quadrants do the graphs pass through? (Steeper; Quadrants I and II.)",
-      "order": 32,
+      "order": 34,
       "after": [
         "7762aed3b6a5"
       ],
@@ -534,7 +558,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Write two equations in the form f(x) = x^n with graphs that you predict are in Quadrants I and II, and two with graphs in Quadrants I and III. Use graphing technology to test your predictions. (For example x^6, x^8; x^7, x^9.)",
-      "order": 33,
+      "order": 35,
       "after": [
         "7762aed3b6a5"
       ],
@@ -546,7 +570,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What do you know about the effect of exponents on negative and positive numbers? → A negative number raised to an even power gives a positive product; raised to an odd power, the product stays negative.",
-      "order": 34,
+      "order": 36,
       "after": [
         "7762aed3b6a5"
       ],
@@ -558,7 +582,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "What general observation can you make about the graphs with exponents that are odd numbers? → They start at the bottom left, in Quadrant III, and move to the top right, in Quadrant I.",
-      "order": 35,
+      "order": 37,
       "after": [
         "1a1ee1e9d3ab"
       ],
@@ -570,7 +594,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Graph f(x) = -x^n for n = 2, 3, 4, and 5. What happens to the graphs and the range of each function when -1 is the coefficient of x? → The graph is reflected across the x-axis. For n = 3 or 5 the range is unchanged; for n = 2 or 4 it changes from real numbers >= 0 to real numbers <= 0.",
-      "order": 36,
+      "order": 38,
       "after": [
         "32cd53a34eed"
       ],
@@ -582,7 +606,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "What generalizations can be made about how specific features of equations cause specific behaviors in the graphs? …",
-      "order": 37,
+      "order": 39,
       "after": [
         "2ee0d387ff64"
       ],
@@ -594,7 +618,7 @@
       "type": "cue",
       "front": "Habits of Mind, Construct Arguments: ask?",
       "back": "Compare the end behavior of f(x) = x^n for n = 1, 3, 5 with n = 2, 4, 10. Write a general statement comparing odd and even exponents. → When n is odd, the sign of the y-values differs as x approaches positive or negative infinity; when n is even, the sign is the same.",
-      "order": 38,
+      "order": 40,
       "after": [
         "4dadfc6f452c"
       ],
@@ -606,7 +630,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The printed 'becomes steeper' describes the graphs outside -1 < x < 1; between 0 and 1 the higher powers are flatter (the TE notes this). …",
-      "order": 39,
+      "order": 41,
       "after": [
         "7762aed3b6a5"
       ],
@@ -618,7 +642,7 @@
       "type": "anchor",
       "front": "IXL for example 2?",
       "back": "XMK Match polynomial functions and graphs using end behavior",
-      "order": 40,
+      "order": 42,
       "after": [
         "b164d2f8d238"
       ],
@@ -630,7 +654,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "XJU Match polynomial functions and graphs",
-      "order": 41,
+      "order": 43,
       "after": [
         "9eafab25aac8"
       ],

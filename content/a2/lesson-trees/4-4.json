@@ -16,7 +16,7 @@
       "id": "cb7f2f9f4413",
       "type": "anchor",
       "front": "Define: factor",
-      "back": "factor each denominator and build the LCD from each different factor, raised to the greatest power it has in any denominator (Example 4 steps 1-2, where each factor appears once; Try It 4a needs x^2, LCD 6x^2; quiz item 2, full Savvas quiz only, keeps (x+3)^2; IXL UB5)",
+      "back": "factor each denominator and build the LCD from each different factor, raised to the greatest power it has in any denominator (Example 3 steps 1-2, where x-1 is in both denominators and is used once; item 1's 4x+2 = 2(2x+1); quiz item 2, full Savvas quiz only, keeps (x+3)^2; IXL UB5)",
       "order": 2,
       "after": [
         "5bf899217839"
@@ -40,7 +40,7 @@
       "id": "72bc9489bbae",
       "type": "anchor",
       "front": "Define: numerator",
-      "back": "subtract the whole second numerator: distribute the -1 to every term (Example 4 steps 3-4; item 3 distractor B is 3x+9-4x-4; IXL FEX)",
+      "back": "add the numerators over the LCD, then factor again and divide out a common factor (Example 3 steps 3-4; item 1 reduces 18/(2(2x+1)) to 9/(2x+1); IXL FEX, 37N)",
       "order": 4,
       "after": [
         "5bf899217839"
@@ -63,8 +63,8 @@
     {
       "id": "8dde322ba2bb",
       "type": "anchor",
-      "front": "Quiz item 3 asks?",
-      "back": "Item 3: subtract 3/(x-1) - 4/(x+3); the four choices share the denominator (x-1)(x+3) and differ only in the numerator (-x+13, -x+5, 7x+5, 7x+13). Item 4: simplify the compound fraction (1/x - 1/(x+2))/2. …",
+      "front": "Quiz item 1 asks?",
+      "back": "Item 1: add 5/(2x+1) + 8/(4x+2); 4x+2 = 2(2x+1), so the LCD is 2(2x+1) and the sum 18/(2(2x+1)) reduces to 9/(2x+1) (distractor B adds the numerators without rewriting, D keeps 18 over 2x+1). Item 4: simplify the compound fraction (1/x - 1/(x+2))/2. …",
       "order": 6,
       "after": [
         "cb7f2f9f4413",
@@ -78,8 +78,8 @@
     {
       "id": "58a7ee4bbe7e",
       "type": "anchor",
-      "front": "Quiz item 3 answer?",
-      "back": "Item 3: A, (-x+13)/((x-1)(x+3)), x != -3 or 1. Item 4: C, 1/(x(x+2)), x != -2 or 0. Item 5: C, x(x+1)/(2x+1), x != -1, -1/2 or 0. All recomputed and matching the TE key (verify against the TE key on quiz day).",
+      "front": "Quiz item 1 answer?",
+      "back": "Item 1: A, 9/(2x+1), x != -1/2. Item 4: C, 1/(x(x+2)), x != -2 or 0. Item 5: C, x(x+1)/(2x+1), x != -1, -1/2 or 0. All recomputed and matching the TE key (verify against the TE key on quiz day).",
       "order": 7,
       "after": [
         "cb7f2f9f4413",
@@ -93,8 +93,8 @@
     {
       "id": "0e971228ba6c",
       "type": "anchor",
-      "front": "Before quiz item 3 students need?",
-      "back": "factor each denominator and build the LCD from each different factor, raised to the greatest power it has in any denominator (Example 4 steps 1-2, where each factor appears once; Try It 4a needs x^2, LCD 6x^2; quiz item 2, full Savvas quiz only, keeps (x+3)^2; IXL UB5)",
+      "front": "Before quiz item 1 students need?",
+      "back": "factor each denominator and build the LCD from each different factor, raised to the greatest power it has in any denominator (Example 3 steps 1-2, where x-1 is in both denominators and is used once; item 1's 4x+2 = 2(2x+1); quiz item 2, full Savvas quiz only, keeps (x+3)^2; IXL UB5)",
       "order": 8,
       "after": [
         "8dde322ba2bb"
@@ -105,8 +105,8 @@
     {
       "id": "fd36a0437bb6",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (2)",
-      "back": "subtract the whole second numerator: distribute the -1 to every term (Example 4 steps 3-4; item 3 distractor B is 3x+9-4x-4; IXL FEX)",
+      "front": "Before quiz item 1 students need? (2)",
+      "back": "add the numerators over the LCD, then factor again and divide out a common factor (Example 3 steps 3-4; item 1 reduces 18/(2(2x+1)) to 9/(2x+1); IXL FEX, 37N)",
       "order": 9,
       "after": [
         "8dde322ba2bb"
@@ -117,8 +117,8 @@
     {
       "id": "3d76d6968955",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (3)",
-      "back": "clear a compound fraction by multiplying top and bottom by the LCD of every small denominator (Example 6; IXL YD8)",
+      "front": "Before quiz item 1 students need? (3)",
+      "back": "subtract the whole second numerator: distribute the -1 to every term (quiz item 3, full Savvas quiz only, and Topic 4 test item 4; Example 4 is cut, so Try It 4b is the whiteboard round; IXL FEX)",
       "order": 10,
       "after": [
         "8dde322ba2bb"
@@ -129,8 +129,8 @@
     {
       "id": "c8569c66eb09",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (4)",
-      "back": "substitute into a formula before simplifying (item 5; the packet's Practice block, round-trip average speed, is the structural parallel)",
+      "front": "Before quiz item 1 students need? (4)",
+      "back": "clear a compound fraction by multiplying top and bottom by the LCD of every small denominator (Example 6; IXL YD8)",
       "order": 11,
       "after": [
         "8dde322ba2bb"
@@ -141,8 +141,8 @@
     {
       "id": "567415743801",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (5)",
-      "back": "state the excluded values from the original denominators (every choice carries a domain)",
+      "front": "Before quiz item 1 students need? (5)",
+      "back": "substitute into a formula before simplifying (item 5 and Topic 4 test item 15; the packet's Practice block, round-trip average speed, is the structural parallel)",
       "order": 12,
       "after": [
         "8dde322ba2bb"
@@ -151,11 +151,23 @@
       "source": "quizFocus.needs[4]"
     },
     {
+      "id": "3e1851e0071c",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (6)",
+      "back": "state the excluded values from the original denominators (every choice carries a domain)",
+      "order": 13,
+      "after": [
+        "8dde322ba2bb"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
       "id": "974398420647",
       "type": "anchor",
       "front": "Quiz item 1 is covered by?",
-      "back": "Add 5/(2x+1) + 8/(4x+2), x != -1/2 (TE answer A, 9/(2x+1); DOK 1): unlike denominators where one is a multiple of the other. Example 3 content (cut); Try It 4a (3x, 6x, x^2) and IXL FEX rehearse it. Left off the short form (full Savvas quiz only).",
-      "order": 13,
+      "back": "Add 5/(2x+1) + 8/(4x+2), x != -1/2 (TE answer A, 9/(2x+1); DOK 1): unlike denominators where one is a multiple of the other. Example 3 and Try It 3. Graded, 10 points.",
+      "order": 14,
       "after": [
         "8dde322ba2bb"
       ],
@@ -166,8 +178,8 @@
       "id": "58f6e14e05af",
       "type": "anchor",
       "front": "Quiz item 2 is covered by?",
-      "back": "LCM of (x+3)^2(x-2) and (x+3)(x^2-16) (TE answer D, (x+3)^2(x-2)(x^2-16); DOK 2). Example 2 content (cut); it is steps 1-2 of Example 4 (with the repeated factor x+3 kept to its greatest power, 2), and UB5 is the warm-up. Left off the short form (full Savvas quiz only).",
-      "order": 14,
+      "back": "LCM of (x+3)^2(x-2) and (x+3)(x^2-16) (TE answer D, (x+3)^2(x-2)(x^2-16); DOK 2). Example 2 content (cut); it is steps 1-2 of Example 3 (with the repeated factor x+3 kept to its greatest power, 2), and UB5 is the warm-up. Left off the short form (full Savvas quiz only).",
+      "order": 15,
       "after": [
         "8dde322ba2bb"
       ],
@@ -178,8 +190,8 @@
       "id": "5fa9e4e843fe",
       "type": "anchor",
       "front": "Quiz item 3 is covered by?",
-      "back": "Subtract 3/(x-1) - 4/(x+3) (TE answer A; DOK 1): Example 4 and Try It 4b. Graded, 10 points.",
-      "order": 15,
+      "back": "Subtract 3/(x-1) - 4/(x+3) (TE answer A; DOK 1): Example 4 content (cut); Example 3's steps with the -1 distributed (distractor B forgets it). Try It 4b as a whiteboard round and IXL FEX rehearse it. Left off the short form (full Savvas quiz only).",
+      "order": 16,
       "after": [
         "8dde322ba2bb"
       ],
@@ -191,7 +203,7 @@
       "type": "anchor",
       "front": "Quiz item 4 is covered by?",
       "back": "Simplify (1/x - 1/(x+2))/2 (TE answer C; DOK 2): Example 6 and Try It 6. Graded, 10 points.",
-      "order": 16,
+      "order": 17,
       "after": [
         "8dde322ba2bb"
       ],
@@ -202,8 +214,8 @@
       "id": "f088734728fa",
       "type": "anchor",
       "front": "Quiz item 5 is covered by?",
-      "back": "Parallel resistors r = 1/(1/r1 + 1/r2) with r1 = x and r2 = x+1 (TE answer C; DOK 2): Example 6 plus the packet's Practice block. Bonus, 5 points.",
-      "order": 17,
+      "back": "Parallel resistors r = 1/(1/r1 + 1/r2) with r1 = x and r2 = x+1 (TE answer C; DOK 2): Example 6 plus the packet's Practice block; Topic 4 test item 15 is the same shape. Bonus, 5 points.",
+      "order": 18,
       "after": [
         "8dde322ba2bb"
       ],
@@ -211,113 +223,149 @@
       "source": "quizFocus.items.5"
     },
     {
-      "id": "0a798451cc3f",
+      "id": "7e331680d753",
+      "type": "anchor",
+      "front": "Topic 4 test item 4 is covered by?",
+      "back": "Simplify 2x/(x - 3) - (-6)/(3 - x) and state the domain restriction (DOK 2): Example 4, cut",
+      "order": 19,
+      "after": [
+        "8dde322ba2bb"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.4"
+    },
+    {
+      "id": "63d7ca9aac0a",
+      "type": "anchor",
+      "front": "Topic 4 test item 10 is covered by?",
+      "back": "Sum 1/(x + 3) + (-6)/(x^2 - 9) (DOK 2): Example 3, kept",
+      "order": 20,
+      "after": [
+        "8dde322ba2bb"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.10"
+    },
+    {
+      "id": "c5ab121dd443",
+      "type": "anchor",
+      "front": "Topic 4 test item 15 is covered by?",
+      "back": "If a = 1/x + 1/y, what is 1/a? (DOK 2): Example 6, kept",
+      "order": 21,
+      "after": [
+        "8dde322ba2bb"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.15"
+    },
+    {
+      "id": "66f7ed3a2e56",
       "type": "step",
-      "front": "Example 4: ?",
-      "back": "Subtract rational expressions · DOK 1, 2 · practice 24, 25, 35, 12 · Quiz item 3 directly; with Try It 4a it also rehearses item 1 (full Savvas quiz only), and its steps 1-2 are item 2 (full Savvas quiz only). …",
-      "order": 18,
+      "front": "Example 3: ?",
+      "back": "Add rational expressions with unlike denominators · DOK 1, 2 · practice 22-23, 13, 17 · Kept. Quiz item 1 directly (graded): its 4x+2 = 2(2x+1) is the factor-and-build-the-LCD step, and the sum reduces by dividing out the 2. …",
+      "order": 22,
       "after": [
         "8dde322ba2bb",
         "58a7ee4bbe7e"
       ],
       "minute": null,
-      "source": "examples[n=4]"
+      "source": "examples[n=3]"
     },
     {
       "id": "15ce5e0339cd",
       "type": "step",
       "front": "Example 6: ?",
       "back": "Simplify a compound fraction · DOK 2, 3 · practice 27-30, 14, 32, 34 · Quiz items 4 and 5, the most items of any Example, and it carries the lesson's DOK 3 items (14, 32, 34); practice 14 is the packet's exit question. …",
-      "order": 19,
+      "order": 23,
       "after": [
-        "0a798451cc3f"
+        "66f7ed3a2e56"
       ],
       "minute": null,
       "source": "examples[n=6]"
     },
     {
-      "id": "5f38a84f5014",
+      "id": "528157795cf9",
       "type": "cue",
-      "front": "Example 4 · Purposeful question: How is subtracting rational expressions similar to adding rational expressions?",
-      "back": "Listen for: When adding or subtracting, you need to find the least common denominator and rewrite the rational expressions before performing the operation.",
-      "order": 20,
+      "front": "Example 3 · Purposeful question: Why would you want to find the sum using LCM instead of any other common multiple?",
+      "back": "Listen for: Using the LCM will reduce the amount of simplifying you need to do after adding.",
+      "order": 24,
       "after": [
-        "0a798451cc3f"
+        "66f7ed3a2e56"
       ],
       "minute": null,
-      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
       "teaching": {
-        "example": 4,
+        "example": 3,
         "kind": "question",
         "category": "PurposefulQuestions",
         "source": {
           "file": "a2_4-4_TE.tex",
-          "anchor": 4,
+          "anchor": 3,
           "category": "PurposefulQuestions",
-          "block": 1,
-          "page": "52: 207 Understand & Apply",
-          "item": 0,
-          "line": 310
-        },
-        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "12d1fc9c398b",
-      "type": "cue",
-      "front": "Example 4 · Purposeful question: How is the Distributive Property used when subtracting rational expressions?",
-      "back": "Listen for: The Distributive Property is used when simplifying the numerator by subtracting polynomials. You multiply each term of the polynomial by (-1).",
-      "order": 21,
-      "after": [
-        "5f38a84f5014"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "PurposefulQuestions",
-        "source": {
-          "file": "a2_4-4_TE.tex",
-          "anchor": 4,
-          "category": "PurposefulQuestions",
-          "block": 1,
-          "page": "52: 207 Understand & Apply",
-          "item": 1,
-          "line": 312
-        },
-        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "3bc85dc9602d",
-      "type": "trap",
-      "front": "Example 4 · Common error: What error should I watch for, and how does the TE respond?",
-      "back": "When subtracting rational expressions, students may forget to distribute the negative sign. Have students relate subtracting rational expressions to subtracting polynomials, reminding them that they need to multiply each term by (-1) before removing the parentheses and combining like terms in the numerator.",
-      "order": 22,
-      "after": [
-        "12d1fc9c398b"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.CommonError[0].guidance",
-      "teaching": {
-        "example": 4,
-        "kind": "trap",
-        "category": "CommonError",
-        "source": {
-          "file": "a2_4-4_TE.tex",
-          "anchor": 4,
-          "category": "CommonError",
           "block": 0,
-          "page": "52: 207 Understand & Apply",
+          "page": "51: 206 Understand & Apply",
           "item": 0,
-          "line": 335
+          "line": 257
         },
-        "promptKey": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "57feedbaaa86",
+      "type": "cue",
+      "front": "Example 3 · Purposeful question: How is thinking about adding fractions with unlike denominators helpful when adding rational expressions with unlike denominators?",
+      "back": "Listen for: The process that you use to add fractions with unlike denominators is similar to the process for adding rational expressions with unlike denominators. Thinking about fractions may help simplify the process.",
+      "order": 25,
+      "after": [
+        "528157795cf9"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_4-4_TE.tex",
+          "anchor": 3,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "51: 206 Understand & Apply",
+          "item": 1,
+          "line": 259
+        },
+        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "cbf2f4e08a1a",
+      "type": "cue",
+      "front": "Example 3 · Check student thinking: Why should you try to factor the expression after adding the numerators?",
+      "back": "Listen for: You factor the expression to see if there are any common factors you can divide out of the numerator and denominator.",
+      "order": 26,
+      "after": [
+        "57feedbaaa86"
+      ],
+      "minute": null,
+      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 3,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_4-4_TE.tex",
+          "anchor": 3,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "51: 206 Understand & Apply",
+          "item": 0,
+          "line": 287
+        },
+        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
         "part": 1,
         "parts": 1
       }
@@ -327,7 +375,7 @@
       "type": "cue",
       "front": "Example 6 · Purposeful question: What do you notice about a compound fraction that is different from other fractions?",
       "back": "Listen for: The numerator or denominator of a compound fraction contains a fraction.",
-      "order": 23,
+      "order": 27,
       "after": [
         "15ce5e0339cd"
       ],
@@ -356,7 +404,7 @@
       "type": "cue",
       "front": "Example 6 · Purposeful question: Is there another method you could use to write a simpler form of the compound fraction?",
       "back": "Listen for: You can multiply the numerator by the reciprocal of the denominator, then write the rational expression as a single fraction.",
-      "order": 24,
+      "order": 28,
       "after": [
         "1224b42a3ba8"
       ],
@@ -385,7 +433,7 @@
       "type": "cue",
       "front": "Example 6 · Check student thinking: What first step would you take to rewrite the compound fraction?",
       "back": "Listen for: The first step is to multiply the numerator and denominator by the LCD of all rational expressions in the numerator and denominator. This eliminates the fractions from the numerator and denominator and makes the compound fraction easier to simplify.",
-      "order": 25,
+      "order": 29,
       "after": [
         "180899ff59e3"
       ],
@@ -414,7 +462,7 @@
       "type": "cue",
       "front": "Example 6 · Reasoning: Reason Edwin multiplied the top and bottom of the fraction in Try It 6a by (3/(x+1)+(x-1)/4). Will this technique work to simplify the compound fraction? Explain.",
       "back": "Listen for: No; this will not simplify the denominator because the product of ((x+1)/3+4/(x-1)) and (3/(x+1)+(x-1)/4) gives 2 plus additional terms.",
-      "order": 26,
+      "order": 30,
       "after": [
         "127afd85e44d"
       ],
@@ -443,7 +491,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: How is the LCD different from the denominator in the compound fraction?",
       "back": "Listen for: The LCD is the product of all of the denominators that appear in the compound fraction (x), (y), and (x+1). The denominator of the compound fraction is (1/y).",
-      "order": 27,
+      "order": 31,
       "after": [
         "2120bcc6fcd6"
       ],
@@ -472,7 +520,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: When multiplying the numerator and denominator of the compound fraction by the LCD, what is being eliminated?",
       "back": "Listen for: Multiplying the numerator and denominator by the LCD ``eliminates'' fractions. The compound fraction is rewritten with a numerator and denominator with no fractions.",
-      "order": 28,
+      "order": 32,
       "after": [
         "ebcfc49cd560"
       ],
@@ -501,7 +549,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: What property is helpful in eliminating the fractions?",
       "back": "Listen for: The Distributive Property is helpful for multiplying each addend in the brackets by the LCD.",
-      "order": 29,
+      "order": 33,
       "after": [
         "bd7a1c60e0f0"
       ],
@@ -530,7 +578,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: Does a compound fraction have to include more than one fraction?",
       "back": "Listen for: No; the description says one or more fractions.",
-      "order": 30,
+      "order": 34,
       "after": [
         "d31889d458b1"
       ],
@@ -559,7 +607,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: Does a compound fraction have to have fractions in both the numerator and denominator?",
       "back": "Listen for: No; the definition says and/or, which means a compound fraction may have a fraction in either the numerator or the denominator, or it may have fractions in both.",
-      "order": 31,
+      "order": 35,
       "after": [
         "b2b134efa34b"
       ],
@@ -588,7 +636,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Find the slope of the line that passes through the points (1/a, 1/b) and (-1/b, -1/a) shown on a graph. Express in simplest form.",
-      "order": 32,
+      "order": 36,
       "after": [
         "15ce5e0339cd"
       ],
@@ -600,7 +648,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "1. Slope = (1/b + 1/a) / (1/a + 1/b) = 1: the numerator and denominator are the same sum (when 1/a + 1/b is not 0). Students build a compound fraction from the slope formula and must see by structure that its top and bottom are equal; no IXL skill asks for that. It is the packet's exit question. …",
-      "order": 33,
+      "order": 37,
       "after": [
         "15ce5e0339cd"
       ],
@@ -612,7 +660,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Teo and Evander find 1/2 + 1/3 + 1/9 in their homework. Teo claims that a common denominator of the sum is 2 + 3 + 9 = 14; Evander claims that it is 2 x 3 x 9 = 54.",
-      "order": 34,
+      "order": 38,
       "after": [
         "5bf899217839"
       ],
@@ -624,7 +672,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Is either student correct? Explain why or why not. (Only Evander: a common denominator has each denominator as a factor.)",
-      "order": 35,
+      "order": 39,
       "after": [
         "89a075c39fbe"
       ],
@@ -636,7 +684,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Find the sum, explaining the method you use. (17/18, rewriting each fraction with denominator 18.)",
-      "order": 36,
+      "order": 40,
       "after": [
         "89a075c39fbe"
       ],
@@ -648,7 +696,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Construct Arguments: Timothy states that the quickest way to add any two fractions with unlike denominators is to multiply their denominators to find a common denominator. Do you agree? (No; the least common denominator may be faster.)",
-      "order": 37,
+      "order": 41,
       "after": [
         "89a075c39fbe"
       ],
@@ -660,7 +708,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What do you notice about the expression in the homework exercise? → Three fractions are added. The numerator of each fraction is 1. Each fraction has a different denominator.",
-      "order": 38,
+      "order": 42,
       "after": [
         "89a075c39fbe"
       ],
@@ -672,7 +720,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "Compare common multiples and the least common multiple. How are they similar? How are they different? → The least common multiple is a common multiple. A group of numbers has many common multiples, but only one least common multiple.",
-      "order": 39,
+      "order": 43,
       "after": [
         "9cf5eb75de1b"
       ],
@@ -684,7 +732,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Add 1/8 to the expression in the homework exercise. What are the least common denominator and the sum of the new expression? → 72; 77/72",
-      "order": 40,
+      "order": 44,
       "after": [
         "e1d96241c36b"
       ],
@@ -696,7 +744,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "Why would you want to use the least common multiple when writing fractions with a common denominator instead of any other common multiple? → The least common multiple gives you smaller numbers to compute.",
-      "order": 41,
+      "order": 45,
       "after": [
         "6b9ee48cbcf0"
       ],
@@ -708,7 +756,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "How can there be more than one correct answer to this problem? → You can write the answer with different equivalent fractions: 17/18, 34/36, 51/54 and 68/72 are all equivalent.",
-      "order": 42,
+      "order": 46,
       "after": [
         "276dcc6e0659"
       ],
@@ -720,7 +768,7 @@
       "type": "cue",
       "front": "Habits of Mind, Look for Relationships: ask?",
       "back": "For two fractions with denominators 10 and x, when is 10x the least common multiple? When is 10x NOT the least common multiple? → When x and 10 have no common factors (other than 1), 10x is the least common multiple; when they share a factor, it is not.",
-      "order": 43,
+      "order": 47,
       "after": [
         "802d56caebf2"
       ],
@@ -731,8 +779,8 @@
       "id": "226cd9b2e2e8",
       "type": "trap",
       "front": "Opener caution?",
-      "back": "The opener is numbers only: it sets up the least common denominator for Example 4 but says nothing about compound fractions (Example 6). The Habits of Mind question (denominators 10 and x) is the bridge to polynomial denominators. …",
-      "order": 44,
+      "back": "The opener is numbers only: it sets up the least common denominator for Example 3 but says nothing about compound fractions (Example 6). The Habits of Mind question (denominators 10 and x) is the bridge to polynomial denominators. …",
+      "order": 48,
       "after": [
         "89a075c39fbe"
       ],
@@ -742,11 +790,11 @@
     {
       "id": "98de415ea93a",
       "type": "anchor",
-      "front": "IXL for example 4?",
+      "front": "IXL for example 3?",
       "back": "FEX Add and subtract rational expressions",
-      "order": 45,
+      "order": 49,
       "after": [
-        "0a798451cc3f"
+        "66f7ed3a2e56"
       ],
       "minute": null,
       "source": "ixl.FEX"
@@ -756,7 +804,7 @@
       "type": "anchor",
       "front": "IXL for example 6?",
       "back": "YD8 Simplify complex fractions",
-      "order": 46,
+      "order": 50,
       "after": [
         "15ce5e0339cd"
       ],

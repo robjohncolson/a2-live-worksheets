@@ -237,11 +237,23 @@
       "source": "quizFocus.items.5"
     },
     {
+      "id": "1cf7cb9686bc",
+      "type": "anchor",
+      "front": "Topic 3 test item 14 is covered by?",
+      "back": "How does f(x) = 2x^4 - 3 differ from its parent function? Select all transformations. (DOK 2): Example 3, kept",
+      "order": 20,
+      "after": [
+        "5dbe18867388"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.14"
+    },
+    {
       "id": "f1c9be2a814b",
       "type": "step",
       "front": "Example 3: ?",
       "back": "Graph Transformations of Cubic and Quartic Parent Functions · DOK 1, 2 · practice 17, 18, 25, 8 · The lesson. …",
-      "order": 20,
+      "order": 21,
       "after": [
         "5dbe18867388",
         "ea42d110ca13"
@@ -254,7 +266,7 @@
       "type": "cue",
       "front": "Example 3 · Support: How does changing the values for (a), (h), and (k) transform the graph?",
       "back": "Listen for: (a) stretches and compresses the graph, (h) shifts the graph horizontally, and (k) shifts the graph vertically.",
-      "order": 21,
+      "order": 22,
       "after": [
         "f1c9be2a814b"
       ],
@@ -283,7 +295,7 @@
       "type": "cue",
       "front": "Example 3 · Connect representations: Compare and contrast the two functions shown in the graph.",
       "back": "Listen for: The graph of the parent function is wider. The graph of the transformed function is shifted below the (x)-axis. Both graphs are even, open upward, and are symmetrical across the (y)-axis.",
-      "order": 22,
+      "order": 23,
       "after": [
         "ef296820ce3f"
       ],
@@ -312,7 +324,7 @@
       "type": "cue",
       "front": "Example 3 · Connect representations: Is the order in which you apply the transformations important?",
       "back": "Listen for: It doesn't matter in which order you apply the translations, but the vertical stretch should be applied before the vertical translation.",
-      "order": 23,
+      "order": 24,
       "after": [
         "a5fd0f1f54cd"
       ],
@@ -341,7 +353,7 @@
       "type": "cue",
       "front": "Example 3 · Connect representations: Why is knowing the graph of the parent function a valuable tool?",
       "back": "Listen for: Knowing the parent graph gives you a starting place. You do not have to make a table of points to graph the function; instead, you can compare the function to the parent function to determine the transformation.",
-      "order": 24,
+      "order": 25,
       "after": [
         "b44dc3a93521"
       ],
@@ -370,7 +382,7 @@
       "type": "cue",
       "front": "Example 3 · Check student thinking: How does the graph of a function (g(x)=a(x-h)^n+k) compare to the graph of the parent function (f(x)=x^n)?",
       "back": "Listen for: The (a)-value stretches or compresses the graph vertically, the (h)-value shifts the graph horizontally, and the (k)-value shifts the graph vertically.",
-      "order": 25,
+      "order": 26,
       "after": [
         "2f4e2311b1df"
       ],
@@ -399,7 +411,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Provide an example that demonstrates the following statement is not true. If the degree of a function is an even number, then the function is an even function.",
-      "order": 26,
+      "order": 27,
       "after": [
         "f1c9be2a814b"
       ],
@@ -411,7 +423,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "TE sample: f(x) = 2x^4 + x^3 - 2 has even degree but is not even: f(-x) = 2(-x)^4 + (-x)^3 - 2 = 2x^4 - x^3 - 2, which is not equal to f(x) (the TE prints the second f(x) where f(-x) is meant). …",
-      "order": 27,
+      "order": 28,
       "after": [
         "f1c9be2a814b"
       ],
@@ -423,7 +435,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Look at the polynomial graphs below: f(x) = x^2 (a parabola with vertex at the origin, both ends up) and g(x) = x^3 (through the origin, from lower left to upper right).",
-      "order": 28,
+      "order": 29,
       "after": [
         "3a45784746bc"
       ],
@@ -435,7 +447,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Is the graph of f or g symmetric about the y-axis? Is the graph of f or g symmetric about the origin? Explain. (f is symmetric about the y-axis: its reflection across the y-axis is identical; g is symmetric about the origin: it is identical when rotated 180 degrees about the origin.)",
-      "order": 29,
+      "order": 30,
       "after": [
         "e148d6da39bf"
       ],
@@ -447,7 +459,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Look for Relationships: graph more functions of the form y = x^n where n is a natural number. Which of these functions are symmetric about the origin? Which are symmetric about the y-axis? What conjectures can you make? (Even n: symmetric about the y-axis; odd n: symmetric about the origin.)",
-      "order": 30,
+      "order": 31,
       "after": [
         "e148d6da39bf"
       ],
@@ -459,7 +471,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What do you notice about the two graphs? → f(x) is a parabola that opens upward; it is symmetric across the y-axis and has a minimum at the origin. g(x) is cubic; it passes through the origin and it is symmetric about the origin.",
-      "order": 31,
+      "order": 32,
       "after": [
         "e148d6da39bf"
       ],
@@ -471,7 +483,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "What does it mean for a graph to be symmetrical? → It has an axis of symmetry; the graph is reflected across a line. One part of the graph is the mirror image of the other part.",
-      "order": 32,
+      "order": 33,
       "after": [
         "9fe9967bf79f"
       ],
@@ -483,7 +495,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Graph the functions m(x) = x and h(x) = x^4. How does the symmetry of these graphs compare to the symmetry of f(x) and g(x)? → The graph of m(x) is symmetric about the origin, like the graph of g(x). The graph of h(x) is symmetric about the y-axis, like the graph of f(x).",
-      "order": 33,
+      "order": 34,
       "after": [
         "9a35ed918a48"
       ],
@@ -495,7 +507,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "What do you notice about the degree of the polynomial and the type of symmetry it has? → A polynomial with an even degree is symmetric about the y-axis. A polynomial with an odd degree is symmetric about the origin.",
-      "order": 34,
+      "order": 35,
       "after": [
         "0bdb585aff79"
       ],
@@ -507,7 +519,7 @@
       "type": "cue",
       "front": "Habits of Mind, Look for Relationships: ask?",
       "back": "Do you notice any other patterns among the functions with even degree and the functions with odd degree? → Functions with an even degree always go the same direction when approaching positive and negative infinity, while odd functions always go opposite directions.",
-      "order": 35,
+      "order": 36,
       "after": [
         "d56f91c03f69"
       ],
@@ -519,7 +531,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The TE's After answer ('a polynomial with an even degree is symmetric about the y-axis') is true only for the power functions y = x^n on the screen, not for every polynomial; Practice 12 (the DOK 3 Extension) exists to break it. Say 'for y = x^n' on the board. …",
-      "order": 36,
+      "order": 37,
       "after": [
         "e148d6da39bf"
       ],
@@ -531,7 +543,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "KT8 Describe function transformations",
-      "order": 37,
+      "order": 38,
       "after": [
         "f1c9be2a814b"
       ],
@@ -543,7 +555,7 @@
       "type": "anchor",
       "front": "IXL for example 3? (2)",
       "back": "RSN Transformations of functions",
-      "order": 38,
+      "order": 39,
       "after": [
         "f1c9be2a814b"
       ],
@@ -555,7 +567,7 @@
       "type": "anchor",
       "front": "IXL for example 1?",
       "back": "Q83 Even and odd functions",
-      "order": 39,
+      "order": 40,
       "after": [
         "3a45784746bc"
       ],

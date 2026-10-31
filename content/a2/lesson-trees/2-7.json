@@ -13,22 +13,22 @@
       "source": "objectives.essentialQuestion"
     },
     {
-      "id": "3bafc7868fb2",
+      "id": "b5961db838c9",
       "type": "anchor",
-      "front": "Define: substitute",
-      "back": "I can explain why my answer solves the system using the words substitute, intersection, boundary, and region.",
+      "front": "Define: system",
+      "back": "write each side of an equation as one equation of a system, y = left side and y = right side (Example 5)",
       "order": 2,
       "after": [
         "057d4abbe12f"
       ],
       "minute": null,
-      "source": "objectives.language.words.substitute"
+      "source": "objectives.language.words.system"
     },
     {
       "id": "920fb712cf84",
       "type": "anchor",
       "front": "Define: intersection",
-      "back": "I can explain why my answer solves the system using the words substitute, intersection, boundary, and region.",
+      "back": "graph a parabola and a line and count the points of intersection: 0, 1 (tangent) or 2 (Example 1; IXL VQU)",
       "order": 3,
       "after": [
         "057d4abbe12f"
@@ -37,40 +37,40 @@
       "source": "objectives.language.words.intersection"
     },
     {
-      "id": "2debe9535e66",
+      "id": "5022d82dadad",
       "type": "anchor",
-      "front": "Define: boundary",
-      "back": "I can explain why my answer solves the system using the words substitute, intersection, boundary, and region.",
+      "front": "Define: tangent",
+      "back": "graph a parabola and a line and count the points of intersection: 0, 1 (tangent) or 2 (Example 1; IXL VQU)",
       "order": 4,
       "after": [
         "057d4abbe12f"
       ],
       "minute": null,
-      "source": "objectives.language.words.boundary"
+      "source": "objectives.language.words.tangent"
     },
     {
-      "id": "d09e6685bd04",
+      "id": "bb7411261c85",
       "type": "anchor",
-      "front": "Define: region",
-      "back": "I can explain why my answer solves the system using the words substitute, intersection, boundary, and region.",
+      "front": "Define: approximate",
+      "back": "check an approximate solution in the original equation: the two sides are close, not equal (Example 5 check)",
       "order": 5,
       "after": [
         "057d4abbe12f"
       ],
       "minute": null,
-      "source": "objectives.language.words.region"
+      "source": "objectives.language.words.approximate"
     },
     {
       "id": "cc3f05274fa9",
       "type": "anchor",
-      "front": "Quiz item 3 asks?",
-      "back": "Graded (proposal): item 3, Nate's ball up a hill, path y = -(1/4)x^2 + (33/5)x and hill y = (1/5)x: how far does the ball travel horizontally (Example 3); item 4, shade y >= 2x^2 + 2x - 3 and y <= (1/3)x + 6 (Example 4). …",
+      "front": "Quiz item 1 asks?",
+      "back": "Graded (proposal): item 1, the number of real solutions of y = x^2 - 3 and y = -2x + 4 (multiple choice; Example 1); item 5, solve 2x^2 + 5x - 8 = (5/2)x + 20 with a graphing calculator's intersection feature, nearest tenth (Example 5). …",
       "order": 6,
       "after": [
-        "3bafc7868fb2",
+        "b5961db838c9",
         "920fb712cf84",
-        "2debe9535e66",
-        "d09e6685bd04"
+        "5022d82dadad",
+        "bb7411261c85"
       ],
       "minute": null,
       "source": "quizFocus.what"
@@ -78,14 +78,14 @@
     {
       "id": "055c7a9e8690",
       "type": "anchor",
-      "front": "Quiz item 3 answer?",
-      "back": "Item 3: 25.6 ft (x(-x/4 + 32/5) = 0 gives x = 0, the toss, and x = 128/5). Item 4: both boundaries solid; shade above the parabola (vertex (-0.5, -3.5)) and below the line (y-intercept 6); the overlap lies between the crossings near (-2.58, 5.14) and (1.75, 6.58). Item 2: C, (-4, -8) and (2, -2). …",
+      "front": "Quiz item 1 answer?",
+      "back": "Item 1: A, 2 (x^2 + 2x - 7 = 0, discriminant 32 > 0; x = -1 +/- 2 sqrt 2). Item 5: x about 3.2 and x about -4.4 (2x^2 + 2.5x - 28 = 0 gives 3.168 and -4.418). Item 2: C, (-4, -8) and (2, -2). (Verify against the TE key on quiz day.)",
       "order": 7,
       "after": [
-        "3bafc7868fb2",
+        "b5961db838c9",
         "920fb712cf84",
-        "2debe9535e66",
-        "d09e6685bd04"
+        "5022d82dadad",
+        "bb7411261c85"
       ],
       "minute": null,
       "source": "quizFocus.answer"
@@ -93,8 +93,8 @@
     {
       "id": "286acffd9ce5",
       "type": "anchor",
-      "front": "Before quiz item 3 students need?",
-      "back": "set the two y-expressions equal and solve the quadratic by factoring out x (Example 3; IXL HVZ)",
+      "front": "Before quiz item 1 students need?",
+      "back": "graph a parabola and a line and count the points of intersection: 0, 1 (tangent) or 2 (Example 1; IXL VQU)",
       "order": 8,
       "after": [
         "cc3f05274fa9"
@@ -105,8 +105,8 @@
     {
       "id": "ef4817745128",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (2)",
-      "back": "say which solution answers the question: x = 0 is the toss, the other root is the landing (Example 3 common error: answer every part)",
+      "front": "Before quiz item 1 students need? (2)",
+      "back": "check a count with algebra: set the two y-expressions equal, write the quadratic in standard form and read the discriminant (2-6), or factor (Example 1 check)",
       "order": 9,
       "after": [
         "cc3f05274fa9"
@@ -117,8 +117,8 @@
     {
       "id": "dd8fb3a011d0",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (3)",
-      "back": "graph a parabola from its vertex and y-intercept (2-1, 2-2) and a line from slope and intercept (IXL VQU)",
+      "front": "Before quiz item 1 students need? (3)",
+      "back": "write each side of an equation as one equation of a system, y = left side and y = right side (Example 5)",
       "order": 10,
       "after": [
         "cc3f05274fa9"
@@ -129,8 +129,8 @@
     {
       "id": "f3d793318a72",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (4)",
-      "back": "solid for >= and <=, dashed for < and >; test (0,0); shade the overlap (1-6 Example 2; IXL U5D)",
+      "front": "Before quiz item 1 students need? (4)",
+      "back": "use the calculator's intersect feature (TI-84 CALC 5, or Desmos) once per crossing and round as asked (Example 5; IXL VQU)",
       "order": 11,
       "after": [
         "cc3f05274fa9"
@@ -141,8 +141,8 @@
     {
       "id": "b7c7759060f2",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (5)",
-      "back": "solve a linear inequality for y and flip the sign when dividing by -1 (Try It 4 common error)",
+      "front": "Before quiz item 1 students need? (5)",
+      "back": "check an approximate solution in the original equation: the two sides are close, not equal (Example 5 check)",
       "order": 12,
       "after": [
         "cc3f05274fa9"
@@ -151,11 +151,23 @@
       "source": "quizFocus.needs[4]"
     },
     {
+      "id": "df6125ed7855",
+      "type": "anchor",
+      "front": "Before quiz item 1 students need? (6)",
+      "back": "pair each x-value with its y-value for a substitution answer (bonus item 2 distractor A; IXL HVZ)",
+      "order": 13,
+      "after": [
+        "cc3f05274fa9"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[5]"
+    },
+    {
       "id": "ee8f2780939f",
       "type": "anchor",
       "front": "Quiz item 1 is covered by?",
-      "back": "Number of real solutions of y = x^2 - 3 and y = -2x + 4 (A, 2): Example 1, cut. Reachable from Example 3's step plus the discriminant from 2-6 (x^2 + 2x - 7 = 0, D = 32), or a quick sketch. Left off the short form (full Savvas quiz only); one whiteboard round if the teacher grades it.",
-      "order": 13,
+      "back": "Number of real solutions of y = x^2 - 3 and y = -2x + 4 (A, 2): Example 1 and Try It 1. On the short form as item 1, 10 points; the same task as Topic 2 test item 16.",
+      "order": 14,
       "after": [
         "cc3f05274fa9"
       ],
@@ -166,8 +178,8 @@
       "id": "ce09c9d093b7",
       "type": "anchor",
       "front": "Quiz item 2 is covered by?",
-      "back": "Substitution, y = -(1/2)x^2 and y = x - 4 (C): Example 2's skill, but both equations already start y =, so Example 3's set-equal step is the whole item. On the short form as item 2, the +5 bonus; the Exit question (Additional Practice 5) rehearses it.",
-      "order": 14,
+      "back": "Substitution, y = -(1/2)x^2 and y = x - 4 (C): Example 2's skill, but both equations already start y =, so the set-equal step of the Example 1 check is the whole item. On the short form as item 2, the +5 bonus; the Exit question (Additional Practice 5) rehearses it.",
+      "order": 15,
       "after": [
         "cc3f05274fa9"
       ],
@@ -178,8 +190,8 @@
       "id": "1e4888b3c53f",
       "type": "anchor",
       "front": "Quiz item 3 is covered by?",
-      "back": "Ball tossed up a hill, horizontal distance (25.6 ft): Example 3 and Try It 3. On the short form as item 3, 10 points.",
-      "order": 15,
+      "back": "Ball tossed up a hill, horizontal distance (25.6 ft): Example 3, cut. Left off the short form (full Savvas quiz only).",
+      "order": 16,
       "after": [
         "cc3f05274fa9"
       ],
@@ -190,8 +202,8 @@
       "id": "8f02f5256a25",
       "type": "anchor",
       "front": "Quiz item 4 is covered by?",
-      "back": "Shade a linear-quadratic system of inequalities (both boundaries solid): Example 4 and Try It 4. On the short form as item 4, 10 points.",
-      "order": 16,
+      "back": "Shade a linear-quadratic system of inequalities (both boundaries solid): Example 4, cut. Left off the short form (full Savvas quiz only).",
+      "order": 17,
       "after": [
         "cc3f05274fa9"
       ],
@@ -202,8 +214,8 @@
       "id": "0063b0c347a1",
       "type": "anchor",
       "front": "Quiz item 5 is covered by?",
-      "back": "Solve 2x^2 + 5x - 8 = (5/2)x + 20 with the calculator's intersection feature (x about 3.2 and -4.4): Example 5, cut. Left off the short form (full Savvas quiz only); the same equation falls to the quadratic formula (2-6).",
-      "order": 17,
+      "back": "Solve 2x^2 + 5x - 8 = (5/2)x + 20 with the calculator's intersection feature (x about 3.2 and -4.4): Example 5 and Try It 5. On the short form as item 5, 10 points; the same task as Topic 2 test item 17.",
+      "order": 18,
       "after": [
         "cc3f05274fa9"
       ],
@@ -211,463 +223,139 @@
       "source": "quizFocus.items.5"
     },
     {
-      "id": "ef8df7ee587f",
+      "id": "bd7cf0c67618",
+      "type": "anchor",
+      "front": "Topic 2 test item 16 is covered by?",
+      "back": "Number of real solutions of the system y = x^2 + 8, y = x + 15 (0, 1, 2 or 3) (DOK 2): Example 1, kept",
+      "order": 19,
+      "after": [
+        "cc3f05274fa9"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.16"
+    },
+    {
+      "id": "b422ee45528f",
+      "type": "anchor",
+      "front": "Topic 2 test item 17 is covered by?",
+      "back": "Solve -3x^2 + 2x + 4 = -x - 3 as a linear-quadratic system with a graphing calculator's intersection feature, nearest hundredth (DOK 2): Example 5, kept",
+      "order": 20,
+      "after": [
+        "cc3f05274fa9"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.17"
+    },
+    {
+      "id": "79f84feeab1d",
       "type": "step",
-      "front": "Example 3: ?",
-      "back": "Applying a Linear-Quadratic System · DOK 2, 3 · practice 18, 24, 26, 29 · R3: practice 29 is the lesson's only DOK 3, so this Example must be kept. It is quiz item 3 (Nate's ball up a hill is the same task with new numbers), and its substitution step is all of quiz item 2. …",
-      "order": 18,
+      "front": "Example 1: ?",
+      "back": "Determine the Number of Solutions · DOK 1, 2 · practice 8-15, 27, 28 · R1: Topic 2 test item 16 (the number of real solutions of y = x^2 + 8 and y = x + 15) is this Example's task, and it is quiz item 1 (Try It 1 is the rehearsal). …",
+      "order": 21,
       "after": [
         "cc3f05274fa9",
         "055c7a9e8690"
       ],
       "minute": null,
-      "source": "examples[n=3]"
+      "source": "examples[n=1]"
     },
     {
-      "id": "d99b840a4c35",
+      "id": "4a956530605c",
       "type": "step",
-      "front": "Example 4: ?",
-      "back": "Solve a Linear-Quadratic System of Inequalities · DOK 1 · practice 19, 20 · The only Example that reaches quiz item 4, which nothing else in the lesson rehearses. It builds on 1-6 Example 2 (systems of linear inequalities: boundary, test point, overlap) and the concept summary's second half is built on it. …",
-      "order": 19,
-      "after": [
-        "ef8df7ee587f"
-      ],
-      "minute": null,
-      "source": "examples[n=4]"
-    },
-    {
-      "id": "e259556c1a4d",
-      "type": "cue",
-      "front": "Example 3 · Purposeful question: Do you need to know the horizontal distance the ball traveled in order to determine how far Laika must run up the hill?",
-      "back": "Listen for: Yes, the horizontal distance traveled is one of the legs of the right triangle that is used to determine how far Laika must run up the hill.",
-      "order": 20,
-      "after": [
-        "ef8df7ee587f"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "PurposefulQuestions",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 3,
-          "category": "PurposefulQuestions",
-          "block": 1,
-          "page": "85: 106, Understand & Apply",
-          "item": 0,
-          "line": 261
-        },
-        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "e0e790030fe4",
-      "type": "cue",
-      "front": "Example 3 · Purposeful question: How are the two graphs related?",
-      "back": "Listen for: Both graphs show the slope of the hill. The first graph shows the hill as a line with the horizontal distance and height scaled by 2.5 feet. The second graph shows the hill as a line with the horizontal distance and height scaled by 1 foot.",
-      "order": 21,
-      "after": [
-        "e259556c1a4d"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "PurposefulQuestions",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 3,
-          "category": "PurposefulQuestions",
-          "block": 1,
-          "page": "85: 106, Understand & Apply",
-          "item": 1,
-          "line": 263
-        },
-        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[1].questions[1]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "3ecc266f4f2b",
-      "type": "cue",
-      "front": "Example 4 · Support: Solve (y≤ x+3); (y>2x-4)",
-      "back": "Listen for: See graph.",
+      "front": "Example 5: ?",
+      "back": "Using a System to Solve an Equation · DOK 1, 2 · practice 21-23, 25 · R1: Topic 2 test item 17 (solve -3x^2 + 2x + 4 = -x - 3 with a calculator's intersection feature, nearest hundredth) is this Example's task, and it is quiz item 5 (Try It 5 is the rehearsal). …",
       "order": 22,
       "after": [
-        "d99b840a4c35"
+        "79f84feeab1d"
       ],
       "minute": null,
-      "source": "examples[n=4].teacherPrompts.RtISupport[0].questions[0]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "RtISupport",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "RtISupport",
-          "block": 0,
-          "page": "85: 106, Understand & Apply",
-          "item": 0,
-          "line": 280
-        },
-        "promptKey": "examples[n=4].teacherPrompts.RtISupport[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
+      "source": "examples[n=5]"
     },
     {
-      "id": "02cddc983a16",
+      "id": "6c0539f3bd1d",
       "type": "cue",
-      "front": "Example 4 · Support: Solve (y>x-4); (y≤3x)",
-      "back": "Listen for: See graph.",
+      "front": "Example 1 · Connect representations: For how many values of b will there be 2 solutions? 1 solution? No solution?",
+      "back": "Listen for: There are an infinite number of values of b that will produce 2 solutions or no solution. There is one value of b that will produce 1 solution.",
       "order": 23,
       "after": [
-        "3ecc266f4f2b"
+        "79f84feeab1d"
       ],
       "minute": null,
-      "source": "examples[n=4].teacherPrompts.RtISupport[0].questions[1]",
+      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
       "teaching": {
-        "example": 4,
+        "example": 1,
         "kind": "question",
-        "category": "RtISupport",
+        "category": "GeneralizeETP",
         "source": {
           "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "RtISupport",
+          "anchor": 1,
+          "category": "GeneralizeETP",
           "block": 0,
-          "page": "85: 106, Understand & Apply",
-          "item": 1,
-          "line": 283
+          "page": "84: 105, Understand & Apply",
+          "item": 0,
+          "line": 169
         },
-        "promptKey": "examples[n=4].teacherPrompts.RtISupport[0].questions[1]",
+        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "5507b00e4849",
+      "id": "b50da1cb1349",
       "type": "cue",
-      "front": "Example 4 · Connect representations: What do the three shaded regions represent? Which region contains solutions of the system? (1/2)",
-      "back": "Listen for: The shaded region below the parabola represents all ordered pairs that are solutions of the equation (y<-2x^2+10x-10). The region above the line represents all ordered pairs that are solutions of the equation (4x+y>4).",
+      "front": "Example 1 · Connect representations: Suppose the constant b was added to the quadratic function instead of the linear function. For what values of b will there be 2 solutions? 1 solution? No solution?",
+      "back": "Listen for: When (b<1), there are 2 solutions. When (b=1), there is one solution. When (b>1), there is no solution.",
       "order": 24,
       "after": [
-        "02cddc983a16"
+        "6c0539f3bd1d"
       ],
       "minute": null,
-      "source": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
       "teaching": {
-        "example": 4,
+        "example": 1,
         "kind": "question",
         "category": "GeneralizeETP",
         "source": {
           "file": "a2_2-7_TE.tex",
-          "anchor": 4,
+          "anchor": 1,
           "category": "GeneralizeETP",
           "block": 0,
-          "page": "86: 107, Understand & Apply",
-          "item": 0,
-          "line": 321
+          "page": "84: 105, Understand & Apply",
+          "item": 1,
+          "line": 171
         },
-        "promptKey": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
         "part": 1,
-        "parts": 2
+        "parts": 1
       }
     },
     {
-      "id": "ebe26f41ceb1",
+      "id": "5634aae66145",
       "type": "cue",
-      "front": "Example 4 · Connect representations: What do the three shaded regions represent? Which region contains solutions of the system? (2/2)",
-      "back": "The overlapping region represents all ordered pairs that are solutions of both equations; these ordered pairs are the solutions of the system.",
+      "front": "Example 5 · Purposeful question: How can you show that the system of equations is equivalent to the original equation?",
+      "back": "Listen for: Both equations in the system are equal to y. You can substitute the second equation into the first equation to obtain the original equation.",
       "order": 25,
       "after": [
-        "5507b00e4849"
+        "4a956530605c"
       ],
       "minute": null,
-      "source": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0].part[1]",
+      "source": "examples[n=5].teacherPrompts.PurposefulQuestions[1].questions[0]",
       "teaching": {
-        "example": 4,
+        "example": 5,
         "kind": "question",
-        "category": "GeneralizeETP",
+        "category": "PurposefulQuestions",
         "source": {
           "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "GeneralizeETP",
-          "block": 0,
-          "page": "86: 107, Understand & Apply",
-          "item": 0,
-          "line": 321
-        },
-        "promptKey": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
-        "part": 2,
-        "parts": 2
-      }
-    },
-    {
-      "id": "df05d2650175",
-      "type": "cue",
-      "front": "Example 4 · Connect representations: How can you check your work to ensure that the shaded region actually contains the solutions of the system?",
-      "back": "Listen for: Choose a point that is not on the graph of either equation. Substitute the x- and y-values of the point into both inequalities and simplify. If both inequalities result in a true statement, then it is a solution, and all points in the same region are solutions.",
-      "order": 26,
-      "after": [
-        "ebe26f41ceb1"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "GeneralizeETP",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "GeneralizeETP",
-          "block": 0,
-          "page": "86: 107, Understand & Apply",
-          "item": 1,
-          "line": 324
-        },
-        "promptKey": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[1]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "990a06feba50",
-      "type": "cue",
-      "front": "Example 4 · Teacher prompt: Based on how you heard it used in these sentences, what do you think the word test means?",
-      "back": "Listen for: evaluate",
-      "order": 27,
-      "after": [
-        "df05d2650175"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[0]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "86: 107, Understand & Apply",
-          "item": 0,
-          "line": 359
-        },
-        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "4ecff1aa862f",
-      "type": "cue",
-      "front": "Example 4 · Teacher prompt: How is the use of the word test different among the three sentences?",
-      "back": "Listen for: In the first sentence, test describes a school assessment. In the second sentence, it refers to a medical evaluation. In the third sentence, test is used to mean a challenge.",
-      "order": 28,
-      "after": [
-        "990a06feba50"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[1]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "86: 107, Understand & Apply",
-          "item": 1,
-          "line": 361
-        },
-        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[1]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "22b576bde674",
-      "type": "cue",
-      "front": "Example 4 · Teacher prompt: Using context clues, what does the word determine mean?",
-      "back": "Listen for: to find or identify",
-      "order": 29,
-      "after": [
-        "4ecff1aa862f"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[2]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "86: 107, Understand & Apply",
-          "item": 2,
-          "line": 364
-        },
-        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[2]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "2b24bf1548bf",
-      "type": "cue",
-      "front": "Example 4 · Teacher prompt: In what contexts can you use the word region?",
-      "back": "Listen for: regions in a country, regional sports championships",
-      "order": 30,
-      "after": [
-        "22b576bde674"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[3]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "86: 107, Understand & Apply",
-          "item": 3,
-          "line": 367
-        },
-        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[3]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "c135be59217b",
-      "type": "cue",
-      "front": "Example 4 · Teacher prompt: In what part of speech did you use the word shade?",
-      "back": "Listen for: noun, verb",
-      "order": 31,
-      "after": [
-        "2b24bf1548bf"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[4]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "86: 107, Understand & Apply",
-          "item": 4,
-          "line": 369
-        },
-        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[4]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "89da28c56f2b",
-      "type": "cue",
-      "front": "Example 4 · Teacher prompt: How is region used in the example?",
-      "back": "Listen for: It is used to mean an area or section of the coordinate plane.",
-      "order": 32,
-      "after": [
-        "c135be59217b"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[5]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "86: 107, Understand & Apply",
-          "item": 5,
-          "line": 371
-        },
-        "promptKey": "examples[n=4].teacherPrompts.ELLAddendum[0].questions[5]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "260b478f4ad7",
-      "type": "trap",
-      "front": "Example 4 · Common error: What error should I watch for, and how does the TE respond? (1/2)",
-      "back": "Try It! 4 Students may forget to reverse the sign of the inequality symbol when they solve the linear inequality for y, causing them to shade the wrong part of the graph.",
-      "order": 33,
-      "after": [
-        "89da28c56f2b"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.CommonError[0].guidance",
-      "teaching": {
-        "example": 4,
-        "kind": "trap",
-        "category": "CommonError",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "CommonError",
-          "block": 0,
+          "anchor": 5,
+          "category": "PurposefulQuestions",
+          "block": 1,
           "page": "87: 108, Understand & Apply",
           "item": 0,
-          "line": 376
+          "line": 382
         },
-        "promptKey": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+        "promptKey": "examples[n=5].teacherPrompts.PurposefulQuestions[1].questions[0]",
         "part": 1,
-        "parts": 2
-      }
-    },
-    {
-      "id": "115faff5bf54",
-      "type": "trap",
-      "front": "Example 4 · Common error: What error should I watch for, and how does the TE respond? (2/2)",
-      "back": "Have students check by selecting a point in the shaded region and use the point's coordinates to verify that each of the original inequalities is true.",
-      "order": 34,
-      "after": [
-        "260b478f4ad7"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.CommonError[0].guidance.part[1]",
-      "teaching": {
-        "example": 4,
-        "kind": "trap",
-        "category": "CommonError",
-        "source": {
-          "file": "a2_2-7_TE.tex",
-          "anchor": 4,
-          "category": "CommonError",
-          "block": 0,
-          "page": "87: 108, Understand & Apply",
-          "item": 0,
-          "line": 376
-        },
-        "promptKey": "examples[n=4].teacherPrompts.CommonError[0].guidance",
-        "part": 2,
-        "parts": 2
+        "parts": 1
       }
     },
     {
@@ -675,9 +363,9 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "A golfer hits toward a water hazard downhill. The hill is a line through the origin with slope -1/8; the ball's path is y = -(1/100)x^2 + (3/2)x. Part A: the hazard is 180 yd away; bounce or splash? Part B: how far from the edge of the hazard did the ball land? …",
-      "order": 35,
+      "order": 26,
       "after": [
-        "d99b840a4c35"
+        "4a956530605c"
       ],
       "minute": null,
       "source": "dok3.task"
@@ -687,9 +375,9 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "-(1/100)x^2 + (3/2)x = -(1/8)x gives x(-(1/100)x + 13/8) = 0, x = 0 or x = 162.5. Part A: bounce (162.5 < 180). Part B: 17.5 yd. Part C: yes; 180 yd along the hill is a shorter horizontal distance (about 178.6 yd), though the ball still bounces. …",
-      "order": 36,
+      "order": 27,
       "after": [
-        "d99b840a4c35"
+        "4a956530605c"
       ],
       "minute": null,
       "source": "dok3.key"
@@ -699,7 +387,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Draw a rough sketch of a parabola and a line on the coordinate plane.",
-      "order": 37,
+      "order": 28,
       "after": [
         "057d4abbe12f"
       ],
@@ -711,7 +399,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Count the number of points of intersection between the two graphs. (Sample: 2 intersections.)",
-      "order": 38,
+      "order": 29,
       "after": [
         "8656fc8c5854"
       ],
@@ -723,7 +411,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Sketch another parabola on a coordinate plane. Use a straightedge to investigate the different ways that a line and a parabola intersect. What conjectures can you make? (No points, one point where the line is tangent, or two points.)",
-      "order": 39,
+      "order": 30,
       "after": [
         "8656fc8c5854"
       ],
@@ -735,7 +423,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Construct Arguments: How many different numbers of intersection points are possible between a quadratic function and a linear function? Justify that you have found all of the possibilities. (Zero, one or two.)",
-      "order": 40,
+      "order": 31,
       "after": [
         "8656fc8c5854"
       ],
@@ -747,7 +435,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "Describe the graph you sketched. → There are two equations graphed. One is a parabola and one is a line. The parabola and the line intersect in two places.",
-      "order": 41,
+      "order": 32,
       "after": [
         "8656fc8c5854"
       ],
@@ -759,7 +447,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "Would using a vertical line help you determine the different number of intersection points between a linear function and a quadratic function? → No; a vertical line is not a function.",
-      "order": 42,
+      "order": 33,
       "after": [
         "45b413968191"
       ],
@@ -771,7 +459,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "If the line is of the form y = c, would it change the number of intersection points possible, when combined with the graph of a quadratic function? → No; a horizontal line could be drawn so as not to intersect with the parabola, to only intersect it at its vertex, or to intersect it at two points.",
-      "order": 43,
+      "order": 34,
       "after": [
         "f3e3f11840cf"
       ],
@@ -783,7 +471,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "What method did you use to determine the possible number of intersection points? → Draw a parabola. Change the position of the straight edge so that it intersects the parabola at two points, at one point, or not at all.",
-      "order": 44,
+      "order": 35,
       "after": [
         "8e6975ddbbc8"
       ],
@@ -795,7 +483,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "Does changing the position of the parabola instead of the position of the line change the number of possible intersection points from 2, 1, or 0? → No; the number of possible intersection points is the same whether you move the line or the parabola.",
-      "order": 45,
+      "order": 36,
       "after": [
         "e4b4a45f3439"
       ],
@@ -807,7 +495,7 @@
       "type": "cue",
       "front": "Habits of Mind, Construct Arguments: ask?",
       "back": "What must be true about the equation for a horizontal line that has no points of intersection with the parabola of the equation y = x^2? → The equation must be of the form y = a, for a constant a < 0.",
-      "order": 46,
+      "order": 37,
       "after": [
         "46e9ddaa9dfa"
       ],
@@ -818,8 +506,8 @@
       "id": "4e3da455d6b8",
       "type": "trap",
       "front": "Opener caution?",
-      "back": "The opener is Example 1's idea (0, 1 or 2 intersections), which the fast packet cuts; keep it to five minutes as the bridge to 'the solutions are the intersection points', which Example 3 needs, and to quiz item 1. …",
-      "order": 47,
+      "back": "The opener is Example 1's idea (0, 1 or 2 intersections), which the fast packet keeps; keep it to five minutes as the lead-in to Example 1 (quiz item 1, Topic 2 test item 16) and to 'the solutions are the intersection points', which Example 5 uses. …",
+      "order": 38,
       "after": [
         "8656fc8c5854"
       ],
@@ -827,52 +515,52 @@
       "source": "modelDiscuss.caution"
     },
     {
-      "id": "1ce002d5de62",
-      "type": "anchor",
-      "front": "IXL for example 3?",
-      "back": "HVZ Solve a linear-quadratic system of equations: lines and parabolas",
-      "order": 48,
-      "after": [
-        "ef8df7ee587f"
-      ],
-      "minute": null,
-      "source": "ixl.HVZ"
-    },
-    {
       "id": "77711c0b8c86",
       "type": "anchor",
-      "front": "IXL for example 4?",
+      "front": "IXL for example 1?",
       "back": "VQU Solve a linear-quadratic system of equations by graphing: lines and parabolas",
-      "order": 49,
+      "order": 39,
       "after": [
-        "d99b840a4c35"
+        "79f84feeab1d"
       ],
       "minute": null,
       "source": "ixl.VQU"
     },
     {
-      "id": "11fe8fb1bc12",
+      "id": "1ce002d5de62",
       "type": "anchor",
-      "front": "IXL for example 4? (2)",
-      "back": "U5D Solve systems of linear inequalities by graphing",
-      "order": 50,
+      "front": "IXL for example 2?",
+      "back": "HVZ Solve a linear-quadratic system of equations: lines and parabolas",
+      "order": 40,
       "after": [
-        "d99b840a4c35"
+        "057d4abbe12f"
       ],
       "minute": null,
-      "source": "ixl.U5D"
+      "source": "ixl.HVZ"
     },
     {
       "id": "74e5fc49a5a7",
       "type": "anchor",
       "front": "IXL for example 5?",
       "back": "DKB Solve a linear-quadratic system of equations: lines and circles",
-      "order": 51,
+      "order": 41,
+      "after": [
+        "4a956530605c"
+      ],
+      "minute": null,
+      "source": "ixl.DKB"
+    },
+    {
+      "id": "11fe8fb1bc12",
+      "type": "anchor",
+      "front": "IXL for example 4?",
+      "back": "U5D Solve systems of linear inequalities by graphing",
+      "order": 42,
       "after": [
         "057d4abbe12f"
       ],
       "minute": null,
-      "source": "ixl.DKB"
+      "source": "ixl.U5D"
     }
   ]
 }

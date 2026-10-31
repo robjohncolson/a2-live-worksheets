@@ -16,7 +16,7 @@
       "id": "de701538be81",
       "type": "anchor",
       "front": "Define: rational equation",
-      "back": "I can explain why a solution is or is not valid using the words rational equation, common denominator, domain and extraneous solution.",
+      "back": "I can explain why a solution is or is not valid using the words rational equation, common denominator, rate, domain and extraneous solution.",
       "order": 2,
       "after": [
         "e8f39c1c7fc7"
@@ -28,7 +28,7 @@
       "id": "dd7119cd47ee",
       "type": "anchor",
       "front": "Define: common denominator",
-      "back": "multiply EVERY term on both sides by the common denominator, distributing fully: 2(x+4) = 2x + 8 (Example 1; the TE Habits of Mind error on Try It 1b)",
+      "back": "multiply EVERY term on both sides by the common denominator (6h for item 2; 5(x+3) for item 4; Example 4's callout; IXL CHP)",
       "order": 3,
       "after": [
         "e8f39c1c7fc7"
@@ -37,11 +37,23 @@
       "source": "objectives.language.words.common denominator"
     },
     {
+      "id": "ad865a0ffcc5",
+      "type": "anchor",
+      "front": "Define: rate",
+      "back": "a work rate is 1 job / time: Aaron 1/6 and Anna 1/3 door per hour (Example 2 Step 1; Try It 2)",
+      "order": 4,
+      "after": [
+        "e8f39c1c7fc7"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.rate"
+    },
+    {
       "id": "69e7a105fab3",
       "type": "anchor",
       "front": "Define: domain",
       "back": "find the domain first: the values that make a denominator 0 can never be solutions (concept summary; IXL 7JJ)",
-      "order": 4,
+      "order": 5,
       "after": [
         "e8f39c1c7fc7"
       ],
@@ -52,8 +64,8 @@
       "id": "00d3f79d0bcb",
       "type": "anchor",
       "front": "Define: extraneous solution",
-      "back": "I can explain why a solution is or is not valid using the words rational equation, common denominator, domain and extraneous solution.",
-      "order": 5,
+      "back": "I can explain why a solution is or is not valid using the words rational equation, common denominator, rate, domain and extraneous solution.",
+      "order": 6,
       "after": [
         "e8f39c1c7fc7"
       ],
@@ -63,12 +75,13 @@
     {
       "id": "085e52fbcee7",
       "type": "anchor",
-      "front": "Quiz item 4 asks?",
-      "back": "Five items, all DOK 2, skill A87. Item 4 (graded): solve -3/(x+3) = x/(x+3) - x/5 and identify any extraneous solutions. Item 3 (graded): solve 3/(x-1) = 4/(2x+3). Item 2 (proposed +5 bonus): Aaron paints a door in 6 hours and Anna in 3 hours; how long together? …",
-      "order": 6,
+      "front": "Quiz item 2 asks?",
+      "back": "Five items, all DOK 2, skill A87. Item 2 (graded): Aaron paints a door in 6 hours and Anna in 3 hours; how many hours working together? Item 4 (graded): solve -3/(x+3) = x/(x+3) - x/5 and identify any extraneous solutions. Item 3 (proposed +5 bonus): solve 3/(x-1) = 4/(2x+3). …",
+      "order": 7,
       "after": [
         "de701538be81",
         "dd7119cd47ee",
+        "ad865a0ffcc5",
         "69e7a105fab3",
         "00d3f79d0bcb"
       ],
@@ -78,12 +91,13 @@
     {
       "id": "949ec9ff268a",
       "type": "anchor",
-      "front": "Quiz item 4 answer?",
-      "back": "Item 4: x = 5; extraneous solution x = -3. Item 3: x = -6.5. Item 2: h = 2. (TE key; verify against the TE key on quiz day.)",
-      "order": 7,
+      "front": "Quiz item 2 answer?",
+      "back": "Item 2: h = 2. Item 4: x = 5; extraneous solution x = -3. Item 3: x = -6.5. (TE key; verify against the TE key on quiz day.)",
+      "order": 8,
       "after": [
         "de701538be81",
         "dd7119cd47ee",
+        "ad865a0ffcc5",
         "69e7a105fab3",
         "00d3f79d0bcb"
       ],
@@ -93,9 +107,9 @@
     {
       "id": "002ee2ebb15f",
       "type": "anchor",
-      "front": "Before quiz item 4 students need?",
-      "back": "find the domain first: the values that make a denominator 0 can never be solutions (concept summary; IXL 7JJ)",
-      "order": 8,
+      "front": "Before quiz item 2 students need?",
+      "back": "a work rate is 1 job / time: Aaron 1/6 and Anna 1/3 door per hour (Example 2 Step 1; Try It 2)",
+      "order": 9,
       "after": [
         "085e52fbcee7"
       ],
@@ -105,9 +119,9 @@
     {
       "id": "94992717f5f7",
       "type": "anchor",
-      "front": "Before quiz item 4 students need? (2)",
-      "back": "multiply EVERY term on both sides by the common denominator, distributing fully: 2(x+4) = 2x + 8 (Example 1; the TE Habits of Mind error on Try It 1b)",
-      "order": 9,
+      "front": "Before quiz item 2 students need? (2)",
+      "back": "the rates add to the rate together, 1/6 + 1/3 = 1/h, and the time together is less than either time alone (Example 2 Step 2; the packet's Practice 1, TE Practice 26 Kenji 2 h and Oscar 3 h, with part e TE Practice 8)",
+      "order": 10,
       "after": [
         "085e52fbcee7"
       ],
@@ -117,9 +131,9 @@
     {
       "id": "527118569c1a",
       "type": "anchor",
-      "front": "Before quiz item 4 students need? (3)",
-      "back": "with a different denominator on each side, multiply by both (or cross-multiply): item 3 (the packet's Practice 1, TE Practice 32 3/(x+1) = 2/(x-3); Example 4B's two-factor multiplier 4(x-3); IXL CHP)",
-      "order": 10,
+      "front": "Before quiz item 2 students need? (3)",
+      "back": "Example 2 and Try It 2 find one worker's time from the time together; item 2 asks the time together from two times alone, the direction Practice 1 rehearses",
+      "order": 11,
       "after": [
         "085e52fbcee7"
       ],
@@ -129,9 +143,9 @@
     {
       "id": "bc487bfe199b",
       "type": "anchor",
-      "front": "Before quiz item 4 students need? (4)",
-      "back": "write the cleared equation in standard form and factor the quadratic: x^2 - 2x - 15 = (x-5)(x+3) (Example 4B; IXL CJC)",
-      "order": 11,
+      "front": "Before quiz item 2 students need? (4)",
+      "back": "find the domain first: the values that make a denominator 0 can never be solutions (concept summary; IXL 7JJ)",
+      "order": 12,
       "after": [
         "085e52fbcee7"
       ],
@@ -141,9 +155,9 @@
     {
       "id": "798fa1a26457",
       "type": "anchor",
-      "front": "Before quiz item 4 students need? (5)",
-      "back": "check each answer against the domain and cross out the extraneous one (Example 4; Try It 4)",
-      "order": 12,
+      "front": "Before quiz item 2 students need? (5)",
+      "back": "multiply EVERY term on both sides by the common denominator (6h for item 2; 5(x+3) for item 4; Example 4's callout; IXL CHP)",
+      "order": 13,
       "after": [
         "085e52fbcee7"
       ],
@@ -153,9 +167,9 @@
     {
       "id": "75ec7509aa17",
       "type": "anchor",
-      "front": "Before quiz item 4 students need? (6)",
-      "back": "for the bonus: a work rate is 1 job / time; the rates add; the time together is less than either time alone (TE Practice 26, the packet's Practice 2)",
-      "order": 13,
+      "front": "Before quiz item 2 students need? (6)",
+      "back": "write the cleared equation in standard form and factor the quadratic: x^2 - 2x - 15 = (x-5)(x+3) (Example 4B; IXL CJC)",
+      "order": 14,
       "after": [
         "085e52fbcee7"
       ],
@@ -163,11 +177,35 @@
       "source": "quizFocus.needs[5]"
     },
     {
+      "id": "42d076695426",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (7)",
+      "back": "check each answer against the domain and cross out the extraneous one (Example 4; Try It 4)",
+      "order": 15,
+      "after": [
+        "085e52fbcee7"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[6]"
+    },
+    {
+      "id": "ba78c852f934",
+      "type": "anchor",
+      "front": "Before quiz item 2 students need? (8)",
+      "back": "for the bonus: with a different denominator on each side, multiply by both (or cross-multiply): item 3 (the packet's Practice 3, TE Practice 32 3/(x+1) = 2/(x-3); Practice 2, TE Practice 24; IXL CHP)",
+      "order": 16,
+      "after": [
+        "085e52fbcee7"
+      ],
+      "minute": null,
+      "source": "quizFocus.needs[7]"
+    },
+    {
       "id": "ff2b688cf95b",
       "type": "anchor",
       "front": "Quiz item 1 is covered by?",
-      "back": "Solve 1/(2x-3) = 4; answer D, 13/8 (choices A 1/2, B 8/13, C 11/8, D 13/8). Example 1 (one denominator; practice 15-18 are SEE EXAMPLE 1), the same move as Try It 1. Left off the short form (full Savvas quiz only; available for Form B).",
-      "order": 14,
+      "back": "Solve 1/(2x-3) = 4; answer D, 13/8 (choices A 1/2, B 8/13, C 11/8, D 13/8). Example 1 (cut; practice 15-18 are SEE EXAMPLE 1); its one-denominator move is the first step of Example 4A. Left off the short form (full Savvas quiz only; available for Form B).",
+      "order": 17,
       "after": [
         "085e52fbcee7"
       ],
@@ -178,8 +216,8 @@
       "id": "6648b7bc6797",
       "type": "anchor",
       "front": "Quiz item 2 is covered by?",
-      "back": "Aaron paints a door in 6 h, Anna in 3 h; working together? Answer h = 2 (1/6 + 1/3 = 1/h). Example 2 (work rate, cut); rehearsed by the packet's Practice 2 (TE Practice 26, Kenji 2 h and Oscar 3 h). On the short form as the proposed +5 bonus.",
-      "order": 15,
+      "back": "Aaron paints a door in 6 h, Anna in 3 h; working together? Answer h = 2 (1/6 + 1/3 = 1/h). Example 2 (work rate, kept); Try It 2 and the packet's Practice 1 (TE Practice 26, Kenji 2 h and Oscar 3 h, the same structure) rehearse it. On the short form, graded, 10 points.",
+      "order": 18,
       "after": [
         "085e52fbcee7"
       ],
@@ -190,8 +228,8 @@
       "id": "e20d635ec3b4",
       "type": "anchor",
       "front": "Quiz item 3 is covered by?",
-      "back": "Solve 3/(x-1) = 4/(2x+3); answer x = -6.5. Example 1 by the TE tag (TE Practice 32, the same proportion structure, is tagged SEE EXAMPLE 1), but neither kept Example nor any Try It shows a variable denominator on each side; the packet's Practice 1 is TE Practice 32 so it is rehearsed on paper (PLC question in …",
-      "order": 16,
+      "back": "Solve 3/(x-1) = 4/(2x+3); answer x = -6.5. Example 1 by the TE tag (TE Practice 32, the same proportion structure, is tagged SEE EXAMPLE 1; Example 1 is cut); the packet's Practice 3 is TE Practice 32 and Practice 2 (TE Practice 24) multiplies by both binomial denominators. On the short form as the proposed +5 bonus.",
+      "order": 19,
       "after": [
         "085e52fbcee7"
       ],
@@ -203,7 +241,7 @@
       "type": "anchor",
       "front": "Quiz item 4 is covered by?",
       "back": "Solve -3/(x+3) = x/(x+3) - x/5 and identify any extraneous solutions; answer x = 5, extraneous x = -3. Example 4 (Part B, 3/(x-3) = x/(x-3) - x/4, is the same structure). On the short form, graded, 10 points.",
-      "order": 17,
+      "order": 20,
       "after": [
         "085e52fbcee7"
       ],
@@ -215,7 +253,7 @@
       "type": "anchor",
       "front": "Quiz item 5 is covered by?",
       "back": "Boat 10 mi/h in still water, 5 mi upstream and 5 mi back in 1 h 20 min; speed of the stream? Answer D, 5 mi/h (5/(10-c) + 5/(10+c) = 4/3, c^2 = 25, the negative root rejected). Example 5 (cut). Left off the short form (full Savvas quiz only; available for Form B).",
-      "order": 18,
+      "order": 21,
       "after": [
         "085e52fbcee7"
       ],
@@ -223,113 +261,243 @@
       "source": "quizFocus.items.5"
     },
     {
-      "id": "0f5eaf65ef6e",
+      "id": "42222d4d68a6",
+      "type": "anchor",
+      "front": "Topic 4 test item 6 is covered by?",
+      "back": "Solve 10/(x^2 - 2x) = 5/(x - 2) - 3/x (DOK 2): Example 3, cut",
+      "order": 22,
+      "after": [
+        "085e52fbcee7"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.6"
+    },
+    {
+      "id": "ba07ac2e242c",
+      "type": "anchor",
+      "front": "Topic 4 test item 7 is covered by?",
+      "back": "Luke and Nora peel 20 carrots in 6 min together; Luke alone peels 5 carrots in 2 min; minutes for Nora alone to peel 10 carrots? (DOK 3): Example 2, kept",
+      "order": 23,
+      "after": [
+        "085e52fbcee7"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.7"
+    },
+    {
+      "id": "3b0798835207",
+      "type": "anchor",
+      "front": "Topic 4 test item 9 is covered by?",
+      "back": "Solve 3(1 + x)/(4x) = 1 - 1/x (DOK 2): Example 4, kept",
+      "order": 24,
+      "after": [
+        "085e52fbcee7"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.9"
+    },
+    {
+      "id": "8dc8ca40bab0",
+      "type": "anchor",
+      "front": "Topic 4 test item 11 is covered by?",
+      "back": "Solve 1/3 = (x^2 + 2x - 3)/(3x^2 - 2x - 1) (DOK 2): Example 4, kept",
+      "order": 25,
+      "after": [
+        "085e52fbcee7"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.11"
+    },
+    {
+      "id": "b5e8e13a347e",
+      "type": "anchor",
+      "front": "Topic 4 test item 13 is covered by?",
+      "back": "Faucet A fills a tank in 2 h and Faucet B in 3 h; hours to fill it together? (DOK 3): Example 2, kept",
+      "order": 26,
+      "after": [
+        "085e52fbcee7"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.13"
+    },
+    {
+      "id": "f054be6dc404",
+      "type": "anchor",
+      "front": "Topic 4 test item 17 is covered by?",
+      "back": "Solve 1/(x(x - 3)) = 2/(x - 3) + 3/x (DOK 2): Example 3, cut",
+      "order": 27,
+      "after": [
+        "085e52fbcee7"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.17"
+    },
+    {
+      "id": "d4a307677630",
       "type": "step",
-      "front": "Example 1: ?",
-      "back": "Solve a rational equation · DOK 1-2 · practice 15, 16, 17, 18, 32, 12 · Quiz items 1 and 3 (item 3 graded): practice 15-18 are the item 1 structure and practice 32 (3/(x+1) = 2/(x-3)) is the item 3 structure, all tagged SEE EXAMPLE 1. …",
-      "order": 19,
+      "front": "Example 2: ?",
+      "back": "Solve a work-rate problem · DOK 2, 3 · practice 19, 20, 26, 8 · Kept (re-cut toward the Topic 4 test). Example 2 teaches Topic 4 items 7 (Luke and Nora, Nora's time alone, the Example's direction) and 13 (Faucets A and B together), the test's only DOK 3 items, and graded quiz item 2 (Aaron 6 h and Anna 3 h …",
+      "order": 28,
       "after": [
         "085e52fbcee7",
         "949ec9ff268a"
       ],
       "minute": null,
-      "source": "examples[n=1]"
+      "source": "examples[n=2]"
     },
     {
       "id": "0072121ddd76",
       "type": "step",
       "front": "Example 4: ?",
-      "back": "Check for extraneous solutions · DOK 1, 2, 3 · practice 23, 24, 31, 10, 14, 13 · Quiz item 4 (graded): Part B, 3/(x-3) = x/(x-3) - x/4, is the same structure as item 4, and its multiplier 4(x-3) is the two-denominator move item 3 needs. …",
-      "order": 20,
+      "back": "Check for extraneous solutions · DOK 1, 2, 3 · practice 23, 24, 31, 10, 14, 13 · Kept. Quiz item 4 (graded): Part B, 3/(x-3) = x/(x-3) - x/4, is the same structure as item 4, and its multiplier 4(x-3) is the two-factor move the bonus item 3 needs. …",
+      "order": 29,
       "after": [
-        "0f5eaf65ef6e"
+        "d4a307677630"
       ],
       "minute": null,
       "source": "examples[n=4]"
     },
     {
-      "id": "0d1dfe4221ad",
+      "id": "2e66a90e98e2",
       "type": "cue",
-      "front": "Example 1 · Purposeful question: Why do you have to confirm that the solution is valid in the original equation?",
-      "back": "Listen for: You have to make sure the solution does not cause the denominator of the rational expression to equal zero.",
-      "order": 21,
+      "front": "Example 2 · Purposeful question: Why do you add the expressions that represent the two work-rates?",
+      "back": "Listen for: In one hour, Arthur completes (1/x) of the job, and Cheyenne completes (2/x) of the job. Together, they complete (1/x+2/x) of the job.",
+      "order": 30,
       "after": [
-        "0f5eaf65ef6e"
+        "d4a307677630"
       ],
       "minute": null,
-      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
       "teaching": {
-        "example": 1,
+        "example": 2,
         "kind": "question",
         "category": "PurposefulQuestions",
         "source": {
           "file": "a2_4-5_TE.tex",
-          "anchor": 1,
+          "anchor": 2,
           "category": "PurposefulQuestions",
           "block": 0,
-          "page": "61: 212 Understand & Apply",
+          "page": "62: 213 Understand & Apply",
           "item": 0,
-          "line": 161
+          "line": 244
         },
-        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "958deddadd4c",
+      "id": "e87ef08484da",
       "type": "cue",
-      "front": "Example 1 · Check student thinking: Why do you multiply both sides of the equation by the common denominator?",
-      "back": "Listen for: You multiply both sides by the common denominator to eliminate the fractions.",
-      "order": 22,
+      "front": "Example 2 · Purposeful question: How could you solve this equation without multiplying both sides by (24x)?",
+      "back": "Listen for: You can add the fractions and then cross-multiply.",
+      "order": 31,
       "after": [
-        "0d1dfe4221ad"
+        "2e66a90e98e2"
       ],
       "minute": null,
-      "source": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
       "teaching": {
-        "example": 1,
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_4-5_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "62: 213 Understand & Apply",
+          "item": 1,
+          "line": 246
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "1ff102ec1a09",
+      "type": "cue",
+      "front": "Example 2 · Check student thinking: Why is it important to define the variable before writing an equation to represent the problem?",
+      "back": "Listen for: Without understanding what the variable represents, it would be difficult to set up the equation correctly.",
+      "order": 32,
+      "after": [
+        "e87ef08484da"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 2,
         "kind": "question",
         "category": "ElicitEvidence",
         "source": {
           "file": "a2_4-5_TE.tex",
-          "anchor": 1,
+          "anchor": 2,
           "category": "ElicitEvidence",
           "block": 0,
-          "page": "61: 212 Understand & Apply",
+          "page": "62: 213 Understand & Apply",
           "item": 0,
-          "line": 190
+          "line": 276
         },
-        "promptKey": "examples[n=1].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "promptKey": "examples[n=2].teacherPrompts.ElicitEvidence[0].questions[0]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "f56d41c8b9e2",
+      "id": "d8251310251a",
       "type": "cue",
-      "front": "Example 1 · Reasoning: Critique Reasoning For part (b), Kaitlyn wrote (1=2x-7), then (8=2x), and (4=x). Is she correct? Explain.",
-      "back": "Listen for: No; Kaitlyn did not distribute the 2 properly. The equation becomes (1=2(x-7)), with (x=7.5).",
-      "order": 23,
+      "front": "Example 2 · Reasoning: Reason In a work-rate problem, explain why you can't average the individual rates to determine how long it will take to complete a job together.",
+      "back": "Listen for: Averaging the two rates would result in a rate less than the faster person's rate. But two individuals working together would complete the work in less time than the person with the faster rate could do alone.",
+      "order": 33,
       "after": [
-        "958deddadd4c"
+        "1ff102ec1a09"
       ],
       "minute": null,
-      "source": "examples[n=1].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "source": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
       "teaching": {
-        "example": 1,
+        "example": 2,
         "kind": "question",
         "category": "HabitsOfMind",
         "source": {
           "file": "a2_4-5_TE.tex",
-          "anchor": 1,
+          "anchor": 2,
           "category": "HabitsOfMind",
           "block": 0,
-          "page": "61: 212 Understand & Apply",
+          "page": "62: 213 Understand & Apply",
           "item": 0,
-          "line": 195
+          "line": 281
         },
-        "promptKey": "examples[n=1].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "promptKey": "examples[n=2].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a7d1f94884af",
+      "type": "cue",
+      "front": "Example 2 · Extend thinking: what should I ask?",
+      "back": "Ask: Rebecca can rake all of the leaves in a yard in (x) hours. Angus can rake all of the leaves in a yard in 2 more hours than Rebecca. Together they can rake the yard in 10 hours. How many hours does it take for Rebecca to rake the yard by herself? Write your answer to the nearest hundredth.\nListen for: 19.05 h",
+      "order": 34,
+      "after": [
+        "d8251310251a"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_4-5_TE.tex",
+          "anchor": 2,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "62: 213 Understand & Apply",
+          "item": 0,
+          "line": 287
+        },
+        "promptKey": "examples[n=2].teacherPrompts.RtIExtend[0].questions[0]",
         "part": 1,
         "parts": 1
       }
@@ -339,7 +507,7 @@
       "type": "cue",
       "front": "Example 4 · Purposeful question: How can you determine values that cannot be solutions to the equation without solving?",
       "back": "Listen for: Any value that makes a denominator zero cannot be a solution to the equation. You can set each denominator equal to zero to find these values.",
-      "order": 24,
+      "order": 35,
       "after": [
         "0072121ddd76"
       ],
@@ -368,7 +536,7 @@
       "type": "cue",
       "front": "Example 4 · Purposeful question: Do you have to multiply both sides of the equation by the least common denominator to eliminate the fractions?",
       "back": "Listen for: You do not have to multiply by the least common denominator, but you do have to multiply by a common denominator.",
-      "order": 25,
+      "order": 36,
       "after": [
         "4fa980d4aa19"
       ],
@@ -397,7 +565,7 @@
       "type": "cue",
       "front": "Example 4 · Check student thinking: What do you notice about the equation in part (b)? How can this help you solve the problem?",
       "back": "Listen for: The denominators on each side of the equation are equal. Because the denominators are equal, you can set the numerators equal to each other to solve. Then check for extraneous solutions.",
-      "order": 26,
+      "order": 37,
       "after": [
         "d2b6021e3753"
       ],
@@ -426,7 +594,7 @@
       "type": "cue",
       "front": "Example 4 · Reasoning: Communicate Precisely What is an extraneous solution?",
       "back": "Listen for: An extraneous solution is a solution that arises from manipulations of equivalent equations but is not a solution to the original problem.",
-      "order": 27,
+      "order": 38,
       "after": [
         "fcfe2c920cdd"
       ],
@@ -455,7 +623,7 @@
       "type": "cue",
       "front": "Example 4 · Support: How does the TE support students who struggle? (1/2)",
       "back": "Students may need additional practice with multiplying rational expressions, when solving problems with extraneous solutions. Have students practice multiplying these rational expressions. Find the product. 1. ((x-4)/(x+7)·(x+5)/(x-4)) 2. ((x^2-16)/(x^2+6x+9)·(x^2+5x+6)/(x^2-3x-4)) 3.",
-      "order": 28,
+      "order": 39,
       "after": [
         "70bbb0ec10f2"
       ],
@@ -484,7 +652,7 @@
       "type": "cue",
       "front": "Example 4 · Support: How does the TE support students who struggle? (2/2)",
       "back": "((x^2+5x-14)/(2x^2+7x-4)·(2x^2-9x+4)/(x^2+9x+14))",
-      "order": 29,
+      "order": 40,
       "after": [
         "a841984887cc"
       ],
@@ -513,7 +681,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Write a rational equation that cannot have 2 or -6 as solutions.",
-      "order": 30,
+      "order": 41,
       "after": [
         "0072121ddd76"
       ],
@@ -524,8 +692,8 @@
       "id": "69b5d4ffc028",
       "type": "anchor",
       "front": "DOK 3 key?",
-      "back": "Sample (TE): 1/(x-2) + 2/(x+6) = 10. Any rational equation with denominators that are 0 at x = 2 and x = -6 works, because those values are outside its domain. Tied to kept Example 4 (the domain decides what can be a solution); the other DOK 3 items belong to cut Examples (8 to Example 2; 30, 33 to Example 5). …",
-      "order": 31,
+      "back": "Sample (TE): 1/(x-2) + 2/(x+6) = 10. Any rational equation with denominators that are 0 at x = 2 and x = -6 works, because those values are outside its domain. …",
+      "order": 42,
       "after": [
         "0072121ddd76"
       ],
@@ -537,7 +705,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Nicky and Tavon used different methods to solve the equation (1/2)x + 2/5 = 9/10. Nicky subtracts 2/5 (finding a common denominator: (1/2)x = 5/10) and gets x = 1. Tavon multiplies both sides by 10 to get 5x + 4 = 9, then x = 1.",
-      "order": 32,
+      "order": 43,
       "after": [
         "e8f39c1c7fc7"
       ],
@@ -549,7 +717,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Explain the different strategies that Nicky and Tavon used and the advantages or disadvantages of each. (Tavon cleared the fractions by multiplying by 10, one extra step; Nicky kept the fractions and needed common denominators.)",
-      "order": 33,
+      "order": 44,
       "after": [
         "b5bf02dd88fe"
       ],
@@ -561,7 +729,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Did Nicky use a correct method to solve the equation? Did Tavon? (Both methods are correct.)",
-      "order": 34,
+      "order": 45,
       "after": [
         "b5bf02dd88fe"
       ],
@@ -573,7 +741,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Use Structure: Why might Tavon have chosen to multiply both sides of the equation by 10? Could he have used another number? Explain. (10 is the LCD; any common multiple works but means more reducing.)",
-      "order": 35,
+      "order": 46,
       "after": [
         "b5bf02dd88fe"
       ],
@@ -585,7 +753,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What do you notice about the equation? → It is a linear equation; the coefficient of the x-term and the constants are fractions.",
-      "order": 36,
+      "order": 47,
       "after": [
         "b5bf02dd88fe"
       ],
@@ -597,7 +765,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "What strategy does Nicky use to solve the equation? → The same strategy as a linear equation with integers: subtract to isolate the variable term, then divide.",
-      "order": 37,
+      "order": 48,
       "after": [
         "5f33ec51c8c1"
       ],
@@ -609,7 +777,7 @@
       "type": "cue",
       "front": "During, small group: ask? (2)",
       "back": "What strategy does Tavon use to solve the equation? → He multiplies each side by 10; because each side is multiplied by the same value, the result is an equivalent equation.",
-      "order": 38,
+      "order": 49,
       "after": [
         "f708ecff9fe0"
       ],
@@ -621,7 +789,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Solve (2/3)x - 4/5 = 1 1/5 using the methods that Nicky and Tavon use. Does each method give the same solution? → x = 3 both ways.",
-      "order": 39,
+      "order": 50,
       "after": [
         "068b80e99ba3"
       ],
@@ -633,7 +801,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "What do you notice if you rewrite each fraction with a denominator of 10? → The numerators are the numbers in Tavon's equation after multiplying by 10.",
-      "order": 40,
+      "order": 51,
       "after": [
         "055b906afdce"
       ],
@@ -645,7 +813,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "Substitute x = 1 into (1/2)x + 2/5 = 9/10 and 5x + 4 = 9. What does the result tell you? → Both are true: they are equivalent equations.",
-      "order": 41,
+      "order": 52,
       "after": [
         "53a2747240c2"
       ],
@@ -657,7 +825,7 @@
       "type": "cue",
       "front": "Habits of Mind, Reason: ask?",
       "back": "If Tavon multiplied each side by 100, would his answer have been 10 times as much? Explain. → No; multiplying each side by the same value does not change the solution.",
-      "order": 42,
+      "order": 53,
       "after": [
         "0c0e8656a73d"
       ],
@@ -668,8 +836,8 @@
       "id": "be1122a349cb",
       "type": "trap",
       "front": "Opener caution?",
-      "back": "The TE prints Tavon's second line with the whole equation inside the parentheses, 10((1/2)x + 2/5 = 9/10); write it on the board as 10((1/2)x + 2/5) = 10(9/10). Tavon's move is exactly Example 1's (multiply both sides by the denominator), so the opener leads straight in. …",
-      "order": 43,
+      "back": "The TE prints Tavon's second line with the whole equation inside the parentheses, 10((1/2)x + 2/5 = 9/10); write it on the board as 10((1/2)x + 2/5) = 10(9/10). Tavon's move (multiply both sides by the LCD) is the move in kept Example 2, where both sides are multiplied by 24x, the LCD of 1/x, 2/x and 1/24. …",
+      "order": 54,
       "after": [
         "b5bf02dd88fe"
       ],
@@ -679,11 +847,11 @@
     {
       "id": "b370478b43b6",
       "type": "anchor",
-      "front": "IXL for example 1?",
+      "front": "IXL for example 2?",
       "back": "CHP Solve rational equations",
-      "order": 44,
+      "order": 55,
       "after": [
-        "0f5eaf65ef6e"
+        "d4a307677630"
       ],
       "minute": null,
       "source": "ixl.CHP"
@@ -693,7 +861,7 @@
       "type": "anchor",
       "front": "IXL for example 4?",
       "back": "CJC Solve a quadratic equation by factoring",
-      "order": 45,
+      "order": 56,
       "after": [
         "0072121ddd76"
       ],

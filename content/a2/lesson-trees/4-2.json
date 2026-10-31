@@ -16,7 +16,7 @@
       "id": "8a5efae3ee82",
       "type": "anchor",
       "front": "Define: numerator",
-      "back": "vertical asymptote: set the denominator equal to 0 and check the numerator is not 0 there (Example 4 Step 1; IXL 79Q)",
+      "back": "vertical asymptote: set the denominator equal to 0 (factor it when it is quadratic) and check that the numerator is not 0 there (Example 2; IXL 79Q, UB5)",
       "order": 2,
       "after": [
         "ec70c78204cf"
@@ -28,7 +28,7 @@
       "id": "063c5eb52b53",
       "type": "anchor",
       "front": "Define: denominator",
-      "back": "vertical asymptote: set the denominator equal to 0 and check the numerator is not 0 there (Example 4 Step 1; IXL 79Q)",
+      "back": "vertical asymptote: set the denominator equal to 0 (factor it when it is quadratic) and check that the numerator is not 0 there (Example 2; IXL 79Q, UB5)",
       "order": 3,
       "after": [
         "ec70c78204cf"
@@ -40,7 +40,7 @@
       "id": "4083b65588c9",
       "type": "anchor",
       "front": "Define: degree",
-      "back": "horizontal asymptote by comparing degrees; equal degrees give the ratio of the leading coefficients, including negative leading coefficients written last, as in 3 - 2x and 4 - 3x (Example 3 Case 3, Example 4 Step 2; IXL 7JJ)",
+      "back": "horizontal asymptote by comparing degrees; equal degrees give the ratio of the leading coefficients, including negative leading coefficients written last, as in 3 - 2x and 4 - 3x (Example 3 Case 3; IXL 7JJ)",
       "order": 4,
       "after": [
         "ec70c78204cf"
@@ -52,7 +52,7 @@
       "id": "73ef3a065392",
       "type": "anchor",
       "front": "Define: asymptote",
-      "back": "vertical asymptote: set the denominator equal to 0 and check the numerator is not 0 there (Example 4 Step 1; IXL 79Q)",
+      "back": "vertical asymptote: set the denominator equal to 0 (factor it when it is quadratic) and check that the numerator is not 0 there (Example 2; IXL 79Q, UB5)",
       "order": 5,
       "after": [
         "ec70c78204cf"
@@ -64,7 +64,7 @@
       "id": "fd8eb083530a",
       "type": "anchor",
       "front": "Define: leading coefficient",
-      "back": "horizontal asymptote by comparing degrees; equal degrees give the ratio of the leading coefficients, including negative leading coefficients written last, as in 3 - 2x and 4 - 3x (Example 3 Case 3, Example 4 Step 2; IXL 7JJ)",
+      "back": "horizontal asymptote by comparing degrees; equal degrees give the ratio of the leading coefficients, including negative leading coefficients written last, as in 3 - 2x and 4 - 3x (Example 3 Case 3; IXL 7JJ)",
       "order": 6,
       "after": [
         "ec70c78204cf"
@@ -76,7 +76,7 @@
       "id": "6d5f2e8a8adf",
       "type": "anchor",
       "front": "Quiz item 3 asks?",
-      "back": "Item 3: the vertical and horizontal asymptotes of f(x) = (3-2x)/(4-3x). Choices A x = 4/3 and y = 2/3; B x = 2/3 and y = 4/3; C x = 3/4 and y = 2/3; D x = 3/2 and y = 4/3. Item 5 (also graded) is the same skill run backwards: which of four linear-over-linear functions has horizontal asymptote y = -3.",
+      "back": "Item 3: the vertical and horizontal asymptotes of f(x) = (3-2x)/(4-3x). Choices A x = 4/3 and y = 2/3; B x = 2/3 and y = 4/3; C x = 3/4 and y = 2/3; D x = 3/2 and y = 4/3. Item 5 (also graded) is the horizontal rule run backwards: which of four linear-over-linear functions has horizontal asymptote y = -3. …",
       "order": 7,
       "after": [
         "8a5efae3ee82",
@@ -92,7 +92,7 @@
       "id": "75cbc616e8f3",
       "type": "anchor",
       "front": "Quiz item 3 answer?",
-      "back": "Item 3: A (4 - 3x = 0 gives x = 4/3; equal degrees, so y = -2/-3 = 2/3). Item 5: C ((1-3x)/(2+x): -3/1). Item 1 bonus: C, p(x) = 2 - 1/(2x+4). (verify against the TE key on quiz day)",
+      "back": "Item 3: A (4 - 3x = 0 gives x = 4/3, where the numerator is 1/3, not 0; equal degrees, so y = -2/-3 = 2/3). Item 5: C ((1-3x)/(2+x): -3/1). Item 2 bonus: D, x = 4 only (x^2 - 3x - 4 = (x-4)(x+1) and x + 1 cancels). (verify against the TE key on quiz day)",
       "order": 8,
       "after": [
         "8a5efae3ee82",
@@ -108,7 +108,7 @@
       "id": "3218e7665681",
       "type": "anchor",
       "front": "Before quiz item 3 students need?",
-      "back": "vertical asymptote: set the denominator equal to 0 and check the numerator is not 0 there (Example 4 Step 1; IXL 79Q)",
+      "back": "vertical asymptote: set the denominator equal to 0 (factor it when it is quadratic) and check that the numerator is not 0 there (Example 2; IXL 79Q, UB5)",
       "order": 9,
       "after": [
         "6d5f2e8a8adf"
@@ -120,7 +120,7 @@
       "id": "02b3f5e92395",
       "type": "anchor",
       "front": "Before quiz item 3 students need? (2)",
-      "back": "horizontal asymptote by comparing degrees; equal degrees give the ratio of the leading coefficients, including negative leading coefficients written last, as in 3 - 2x and 4 - 3x (Example 3 Case 3, Example 4 Step 2; IXL 7JJ)",
+      "back": "horizontal asymptote by comparing degrees; equal degrees give the ratio of the leading coefficients, including negative leading coefficients written last, as in 3 - 2x and 4 - 3x (Example 3 Case 3; IXL 7JJ)",
       "order": 10,
       "after": [
         "6d5f2e8a8adf"
@@ -132,7 +132,7 @@
       "id": "5c525f3593ab",
       "type": "anchor",
       "front": "Before quiz item 3 students need? (3)",
-      "back": "for the item 1 bonus: read both asymptotes off a graph, then one test point (x = 0) to decide which side of y = 2 the right branch is on (Example 4 Step 3)",
+      "back": "for the item 2 bonus: cancel all common factors first; an excluded value is a hole only if the reduced denominator is not 0 there, and a vertical asymptote if it still is (in item 2, x + 1 cancels completely, leaving x - 4, so x = -1 is a hole); the value stays out of the domain either way (Example 2 with the …",
       "order": 11,
       "after": [
         "6d5f2e8a8adf"
@@ -144,7 +144,7 @@
       "id": "2798349cf182",
       "type": "anchor",
       "front": "Before quiz item 3 students need? (4)",
-      "back": "not taught by the kept Examples: a factor that cancels is not an asymptote (item 2) and a mixture model solved by setting f(x) equal to a value (item 4); the packet prints the concept-summary rule Q(a) = 0 and P(a) != 0 and has one Practice block for item 4",
+      "back": "not taught by the kept Examples: matching a graph to k + a/(bx + c) (item 1, Examples 1 and 4) and a mixture model solved by setting f(x) equal to a value (item 4, Example 5); both are full Savvas quiz only, and the packet has one Practice block for item 4",
       "order": 12,
       "after": [
         "6d5f2e8a8adf"
@@ -156,7 +156,7 @@
       "id": "d81ce1bcc1e1",
       "type": "anchor",
       "front": "Quiz item 1 is covered by?",
-      "back": "Match the graph (vertical asymptote x = -2, horizontal y = 2, right branch below y = 2) to p(x) = 2 +/- 1/(2x +/- 4). Answer C. DOK 1, F20. Example 1 writes functions in this k + a/(x-h) form (cut); Example 4 (asymptotes then a test point) answers it. Proposed +5 bonus.",
+      "back": "Match the graph (vertical asymptote x = -2, horizontal y = 2, right branch below y = 2) to p(x) = 2 +/- 1/(2x +/- 4). Answer C. DOK 1, F20. Example 1 writes functions in this k + a/(x-h) form and Example 4 (asymptotes, then a test point) answers it; both cut. …",
       "order": 13,
       "after": [
         "6d5f2e8a8adf"
@@ -168,7 +168,7 @@
       "id": "9f711394d0c3",
       "type": "anchor",
       "front": "Quiz item 2 is covered by?",
-      "back": "Vertical asymptotes of y = (x+1)^2/(x^2-3x-4). Answer D, x = 4 only: x + 1 cancels, so x = -1 is not an asymptote. DOK 2, F76. Examples 2 and 6 (both cut); the TE says removable discontinuities are not expected at this level. …",
+      "back": "Vertical asymptotes of y = (x+1)^2/(x^2-3x-4). Answer D, x = 4 only: x + 1 cancels, so x = -1 is not an asymptote (a hole). DOK 2, F76. …",
       "order": 14,
       "after": [
         "6d5f2e8a8adf"
@@ -180,7 +180,7 @@
       "id": "ebc5f770059c",
       "type": "anchor",
       "front": "Quiz item 3 is covered by?",
-      "back": "Vertical and horizontal asymptotes of f(x) = (3-2x)/(4-3x). Answer A, x = 4/3 and y = 2/3. DOK 1, F76. Example 4 (same form, same two steps). Proposed graded 10.",
+      "back": "Vertical and horizontal asymptotes of f(x) = (3-2x)/(4-3x). Answer A, x = 4/3 and y = 2/3. DOK 1, F76. Example 2 (the denominator is 0, the numerator is not) and Example 3 Case 3 (ratio of leading coefficients); Example 4 (cut) is this form exactly. Proposed graded 10.",
       "order": 15,
       "after": [
         "6d5f2e8a8adf"
@@ -204,7 +204,7 @@
       "id": "209a6c0a472a",
       "type": "anchor",
       "front": "Quiz item 5 is covered by?",
-      "back": "Which function has horizontal asymptote y = -3? Answer C, (1-3x)/(2+x). DOK 2, F76. Example 3 Case 3 (ratio of leading coefficients); all four choices are linear over linear, so Example 4 Step 2 too. Proposed graded 10.",
+      "back": "Which function has horizontal asymptote y = -3? Answer C, (1-3x)/(2+x). DOK 2, F76. Example 3 Case 3 (ratio of leading coefficients); all four choices are linear over linear. Proposed graded 10.",
       "order": 17,
       "after": [
         "6d5f2e8a8adf"
@@ -213,36 +213,195 @@
       "source": "quizFocus.items.5"
     },
     {
-      "id": "8fad337d89eb",
-      "type": "step",
-      "front": "Example 3: ?",
-      "back": "Find Types of Horizontal Asymptotes · DOK 1, 3 · practice 10, 13, 20-21, 35, 36 · Quiz item 5 (Case 3: ratio of leading coefficients) and the horizontal half of item 3; the concept summary's horizontal-asymptote rule is these three cases. …",
+      "id": "270711005b59",
+      "type": "anchor",
+      "front": "Topic 4 test item 2 is covered by?",
+      "back": "Domain of f(x) = (x^2 - x - 2)/(x^2 - 5x + 6) (DOK 2): Example 2, kept",
       "order": 18,
+      "after": [
+        "6d5f2e8a8adf"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.2"
+    },
+    {
+      "id": "12cb09cdeaf1",
+      "type": "anchor",
+      "front": "Topic 4 test item 3 is covered by?",
+      "back": "Horizontal and vertical asymptotes of y = (x^2 - 3x - 4)/(1 - 3x - 4x^2) (DOK 2): Example 2 and 3, kept",
+      "order": 19,
+      "after": [
+        "6d5f2e8a8adf"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.3"
+    },
+    {
+      "id": "1bfd916f3188",
+      "type": "anchor",
+      "front": "Topic 4 test item 8 is covered by?",
+      "back": "Remainder when 5x^3 - 11x^2 + 5x + 2 is divided by 5x - 4 (DOK 2): Example 1, cut",
+      "order": 20,
+      "after": [
+        "6d5f2e8a8adf"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.8"
+    },
+    {
+      "id": "e952c95d8b1a",
+      "type": "anchor",
+      "front": "Topic 4 test item 12 is covered by?",
+      "back": "Horizontal and vertical asymptotes of y = (x + 3)/(x^4 - 81) (DOK 2): Example 2 and 3, kept",
+      "order": 21,
+      "after": [
+        "6d5f2e8a8adf"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.12"
+    },
+    {
+      "id": "30e801332305",
+      "type": "anchor",
+      "front": "Topic 4 test item 16 is covered by?",
+      "back": "Horizontal and vertical asymptotes of y = (5x + 1)/(2x - 5) (DOK 1): Example 4, cut",
+      "order": 22,
+      "after": [
+        "6d5f2e8a8adf"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.16"
+    },
+    {
+      "id": "f43efa1d7d31",
+      "type": "anchor",
+      "front": "Topic 4 test item 18 is covered by?",
+      "back": "Select all functions whose graphs have horizontal asymptote y = 7 (DOK 2): Example 3, kept",
+      "order": 23,
+      "after": [
+        "6d5f2e8a8adf"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.18"
+    },
+    {
+      "id": "bbbcac1c1819",
+      "type": "step",
+      "front": "Example 2: ?",
+      "back": "Find Multiple Vertical Asymptotes of a Rational Function · DOK 1 · practice 18-19 · Kept in the 2026-10-31 re-cut for the Topic 4 test: it is the only Example that factors a denominator and checks every zero, which is item 2 (the domain of (x^2 - x - 2)/(x^2 - 5x + 6)) and the vertical half of items 3 and 12, where …",
+      "order": 24,
       "after": [
         "6d5f2e8a8adf",
         "75cbc616e8f3"
       ],
       "minute": null,
+      "source": "examples[n=2]"
+    },
+    {
+      "id": "8fad337d89eb",
+      "type": "step",
+      "front": "Example 3: ?",
+      "back": "Find Types of Horizontal Asymptotes · DOK 1, 3 · practice 10, 13, 20-21, 35, 36 · Quiz item 5 (Case 3: ratio of leading coefficients) and the horizontal half of graded item 3; the concept summary's horizontal-asymptote rule is these three cases. …",
+      "order": 25,
+      "after": [
+        "bbbcac1c1819"
+      ],
+      "minute": null,
       "source": "examples[n=3]"
     },
     {
-      "id": "ace09e1e0256",
-      "type": "step",
-      "front": "Example 4: ?",
-      "back": "Graph a Function of the Form (ax+b)/(cx+d) · DOK 1 · practice 22-25 · Quiz item 3 is this form exactly (both asymptotes of (3-2x)/(4-3x)), item 5's four choices are all this form, and item 1 is answered by its three steps (asymptotes, then a test point). …",
-      "order": 19,
+      "id": "05bbe6196818",
+      "type": "cue",
+      "front": "Example 2 · Connect representations: How do you find the factors of (x^2+7x+12)?",
+      "back": "Listen for: Sample: You can use the Quadratic Formula or recognize that the factors of the polynomial are (x+4) and (x+3) because 4 and 3 are the factors of 12 that have a sum of 7.",
+      "order": 26,
       "after": [
-        "8fad337d89eb"
+        "bbbcac1c1819"
       ],
       "minute": null,
-      "source": "examples[n=4]"
+      "source": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "GeneralizeETP",
+        "source": {
+          "file": "a2_4-2_TE.tex",
+          "anchor": 2,
+          "category": "GeneralizeETP",
+          "block": 0,
+          "page": "27: 190 Example 1 continued; Example 2",
+          "item": 0,
+          "line": 244
+        },
+        "promptKey": "examples[n=2].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "d9ea1c76951d",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: Are there any rational functions that do not have vertical asymptotes?",
+      "back": "Listen for: A function whose denominator never equals zero, or a function where the factors of the denominator are also in the numerator, allowing them to be rewritten as a factor of 1",
+      "order": 27,
+      "after": [
+        "05bbe6196818"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_4-2_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "27: 190 Example 1 continued; Example 2",
+          "item": 0,
+          "line": 250
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "84798968910a",
+      "type": "cue",
+      "front": "Example 2 · Purposeful question: How would the graph of a rational function look if one of the factors were a factor of both the numerator and the denominator?",
+      "back": "Listen for: Instead of having an asymptote at the value where the repeated factor equals zero, there would be a discontinuity.",
+      "order": 28,
+      "after": [
+        "d9ea1c76951d"
+      ],
+      "minute": null,
+      "source": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "teaching": {
+        "example": 2,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_4-2_TE.tex",
+          "anchor": 2,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "27: 190 Example 1 continued; Example 2",
+          "item": 1,
+          "line": 252
+        },
+        "promptKey": "examples[n=2].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
     },
     {
       "id": "f0e3ecc79e3d",
       "type": "cue",
       "front": "Example 3 · Purposeful question: What happens to a fraction as the denominator approaches infinity?",
       "back": "Listen for: The value of the fraction approaches zero.",
-      "order": 20,
+      "order": 29,
       "after": [
         "8fad337d89eb"
       ],
@@ -271,7 +430,7 @@
       "type": "cue",
       "front": "Example 3 · Check student thinking: What does the relationship between the degrees of the numerator and the denominator tell you about the horizontal asymptotes of these functions? (1/2)",
       "back": "Listen for: In part (a), the numerator has a greater degree than the denominator, so there is no horizontal asymptote. In part (b), the degree of the numerator is equal to the degree of the denominator, so the horizontal asymptote is equal to the ratio of the leading coefficients.",
-      "order": 21,
+      "order": 30,
       "after": [
         "f0e3ecc79e3d"
       ],
@@ -300,7 +459,7 @@
       "type": "cue",
       "front": "Example 3 · Check student thinking: What does the relationship between the degrees of the numerator and the denominator tell you about the horizontal asymptotes of these functions? (2/2)",
       "back": "In part (c), the denominator has a greater degree, so the horizontal asymptote is at (y=0).",
-      "order": 22,
+      "order": 31,
       "after": [
         "4dfaf4a796a5"
       ],
@@ -329,7 +488,7 @@
       "type": "trap",
       "front": "Example 3 · Common error: What error should I watch for, and how does the TE respond? (1/2)",
       "back": "Students may think that because the coefficient of (x^2) in the denominator is greater than in the numerator, the horizontal asymptote is (y=0). Have students consider the function (f(x)=(x^2)/(3x^2)), and ask them to graph the function.",
-      "order": 23,
+      "order": 32,
       "after": [
         "df251e5be822"
       ],
@@ -358,7 +517,7 @@
       "type": "trap",
       "front": "Example 3 · Common error: What error should I watch for, and how does the TE respond? (2/2)",
       "back": "Ask students how the end behavior of function (f) relates to the end behavior of function (h).",
-      "order": 24,
+      "order": 33,
       "after": [
         "58ba4031976e"
       ],
@@ -387,7 +546,7 @@
       "type": "cue",
       "front": "Example 3 · Reasoning: Under what conditions could there be a horizontal asymptote at (y=-2)? Give an example.",
       "back": "Listen for: Sample: A horizontal asymptote exists at (y=-2) when the function is a vertical translation by (-2) of a rational function, where the degree of the denominator is greater than the degree of the numerator; (y=1/x-2)",
-      "order": 25,
+      "order": 34,
       "after": [
         "87b34a26190c"
       ],
@@ -416,7 +575,7 @@
       "type": "cue",
       "front": "Example 3 · Support: What happens to (f(x)) and (g(x)) for larger values of (x)?",
       "back": "Listen for: The values for (f(x)) and (g(x)) stabilize---the function (f) approaches (5/2), and the function (g) approaches (17/3).",
-      "order": 26,
+      "order": 35,
       "after": [
         "d14b38983192"
       ],
@@ -441,71 +600,13 @@
       }
     },
     {
-      "id": "88b73dd37a16",
-      "type": "cue",
-      "front": "Example 4 · Connect representations: How can you determine which technique to use to find the horizontal asymptotes in this function?",
-      "back": "Listen for: The degrees of the numerator and the denominator are the same, so you can use the ratio of the leading coefficients.",
-      "order": 27,
-      "after": [
-        "ace09e1e0256"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "GeneralizeETP",
-        "source": {
-          "file": "a2_4-2_TE.tex",
-          "anchor": 4,
-          "category": "GeneralizeETP",
-          "block": 0,
-          "page": "29: 192 Example 4",
-          "item": 0,
-          "line": 349
-        },
-        "promptKey": "examples[n=4].teacherPrompts.GeneralizeETP[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "40cbd5c9f5c3",
-      "type": "cue",
-      "front": "Example 4 · Check student thinking: What strategies did you use to graph this function?",
-      "back": "Listen for: Sample: Set the denominator equal to zero to find the vertical asymptote. Compute the ratio of the leading coefficients to find the horizontal asymptote. Sketch the asymptotes on the graph. Select some test points to graph the function.",
-      "order": 28,
-      "after": [
-        "88b73dd37a16"
-      ],
-      "minute": null,
-      "source": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
-      "teaching": {
-        "example": 4,
-        "kind": "question",
-        "category": "ElicitEvidence",
-        "source": {
-          "file": "a2_4-2_TE.tex",
-          "anchor": 4,
-          "category": "ElicitEvidence",
-          "block": 0,
-          "page": "29: 192 Example 4",
-          "item": 0,
-          "line": 388
-        },
-        "promptKey": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
       "id": "245d16d2a1c4",
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Juanita finds the asymptotes of f(x) = (x^2+3x-4)/(x^2-x-12) = ((x+4)(x-1))/((x+3)(x-4)) and writes vertical asymptotes x = -3, x = 4 and horizontal asymptotes y = -4, y = 1. Describe and correct the error.",
-      "order": 29,
+      "order": 36,
       "after": [
-        "ace09e1e0256"
+        "8fad337d89eb"
       ],
       "minute": null,
       "source": "dok3.task"
@@ -515,9 +616,9 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "The vertical asymptotes x = -3 and x = 4 are correct (the numerator is -4 and 24 there, not 0). Juanita used the zeros of the numerator for the horizontal asymptote; the degrees are equal, so the only horizontal asymptote is y = 1/1 = 1. …",
-      "order": 30,
+      "order": 37,
       "after": [
-        "ace09e1e0256"
+        "8fad337d89eb"
       ],
       "minute": null,
       "source": "dok3.key"
@@ -527,7 +628,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Three functions: f(x) = x - 1, g(x) = (x - 1)/2 and h(x) = (x - 1)/(x - 2).",
-      "order": 31,
+      "order": 38,
       "after": [
         "ec70c78204cf"
       ],
@@ -539,7 +640,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Look for Relationships: graph each function. Determine which of the functions are linear. Find the y-intercept of each function and the slope, if appropriate. (f: linear, slope 1, y-intercept -1; g: linear, slope 1/2, y-intercept -1/2; h: not linear, y-intercept 1/2)",
-      "order": 32,
+      "order": 39,
       "after": [
         "ad32bd39e10e"
       ],
@@ -551,7 +652,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. What is the effect on the graph of f when dividing x - 1 by 2? (Each y-value is half the previous y-value.)",
-      "order": 33,
+      "order": 40,
       "after": [
         "ad32bd39e10e"
       ],
@@ -563,7 +664,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. What happens to the graph of h as x approaches 2? (From the left y goes to negative infinity; from the right, to positive infinity.)",
-      "order": 34,
+      "order": 41,
       "after": [
         "ad32bd39e10e"
       ],
@@ -575,7 +676,7 @@
       "type": "cue",
       "front": "Opener prompt 4?",
       "back": "D. Communicate Precisely: what is the effect on the graph of f(x) when dividing x - 1 by x - 2? (The graph is no longer linear.)",
-      "order": 35,
+      "order": 42,
       "after": [
         "ad32bd39e10e"
       ],
@@ -587,7 +688,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "How are f(x), g(x), and h(x) similar? How are they different? → All three contain x - 1. g and h are fractions (rational expressions).",
-      "order": 36,
+      "order": 43,
       "after": [
         "ad32bd39e10e"
       ],
@@ -599,7 +700,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "What are some strategies you can use to find the slope of the functions that are linear? → Graph and compute change in y over change in x for two points, or rewrite in slope-intercept form.",
-      "order": 37,
+      "order": 44,
       "after": [
         "af8eef75da19"
       ],
@@ -611,7 +712,7 @@
       "type": "cue",
       "front": "During, small group: ask? (2)",
       "back": "What are some strategies you can use to find the y-intercept? → Read where the graph crosses the y-axis, or evaluate f(0).",
-      "order": 38,
+      "order": 45,
       "after": [
         "d90abbaf5016"
       ],
@@ -623,7 +724,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "What do you notice about the end behavior of each function? → f and g go to infinity as x goes to infinity and to negative infinity as x goes to negative infinity. h approaches 1 as x goes to either infinity, and goes to positive or negative infinity as x approaches 2.",
-      "order": 39,
+      "order": 46,
       "after": [
         "8d151419aceb"
       ],
@@ -635,7 +736,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "What do you notice about the graphs of functions that have a variable in the denominator? → They are not linear; they have asymptotes; their domain and range do not contain all real numbers (true for this launch example, not for every such function).",
-      "order": 40,
+      "order": 47,
       "after": [
         "8fc9fa25c78e"
       ],
@@ -647,7 +748,7 @@
       "type": "cue",
       "front": "Habits of Mind, Look for Relationships: ask?",
       "back": "What similarities do you notice between the graph of h(x) = (x - 1)/(x - 2) and the graph of a reciprocal function? → Both have vertical and horizontal asymptotes and approach the horizontal asymptote as x goes to positive and negative infinity.",
-      "order": 41,
+      "order": 48,
       "after": [
         "91d0173142ef"
       ],
@@ -659,7 +760,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "h(x) = (x - 1)/(x - 2) is already Example 4's form: use part C (x approaching 2: the denominator is 0) as the bridge to Step 1 and the early-finishers answer (h approaches 1, the ratio 1/1) as the bridge to Step 2. Do not let the slope and intercept table in part A eat the period; f and g are review. …",
-      "order": 42,
+      "order": 49,
       "after": [
         "ad32bd39e10e"
       ],
@@ -671,7 +772,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "7JJ Rational functions: asymptotes and excluded values",
-      "order": 43,
+      "order": 50,
       "after": [
         "8fad337d89eb"
       ],
@@ -681,11 +782,11 @@
     {
       "id": "6a2ab80d7102",
       "type": "anchor",
-      "front": "IXL for example 4?",
+      "front": "IXL for example 2?",
       "back": "79Q Domain of rational functions",
-      "order": 44,
+      "order": 51,
       "after": [
-        "ace09e1e0256"
+        "bbbcac1c1819"
       ],
       "minute": null,
       "source": "ixl.79Q"

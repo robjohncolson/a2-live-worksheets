@@ -438,7 +438,8 @@
         "url": "https://www.ixl.com/math/algebra-2/characteristics-of-quadratic-functions-graphs",
         "level": "core",
         "example": [
-          2
+          2,
+          4
         ]
       },
       {
@@ -567,8 +568,7 @@
         "url": "https://www.ixl.com/math/algebra-2/factor-quadratics",
         "level": "prereq",
         "example": [
-          1,
-          3
+          1
         ]
       },
       {
@@ -579,7 +579,7 @@
         "level": "core",
         "example": [
           2,
-          3
+          4
         ]
       },
       {
@@ -589,7 +589,8 @@
         "url": "https://www.ixl.com/math/algebra-2/solve-a-quadratic-equation-by-factoring",
         "level": "core",
         "example": [
-          3
+          4,
+          5
         ]
       },
       {
@@ -768,7 +769,7 @@
         "url": "https://www.ixl.com/math/algebra-2/using-the-discriminant",
         "level": "core",
         "example": [
-          3
+          5
         ]
       },
       {
@@ -905,7 +906,7 @@
         "url": "https://www.ixl.com/math/algebra-2/add-and-subtract-polynomials",
         "level": "core",
         "example": [
-          1
+          4
         ]
       },
       {
@@ -1151,6 +1152,16 @@
         "example": [
           5
         ]
+      },
+      {
+        "code": "F6J",
+        "directoryId": "W.2",
+        "name": "Translations of functions",
+        "url": "https://www.ixl.com/math/algebra-2/translations-of-functions",
+        "level": "core",
+        "example": [
+          5
+        ]
       }
     ],
     "4-2": [
@@ -1185,7 +1196,7 @@
         "url": "https://www.ixl.com/math/algebra-2/domain-of-rational-functions",
         "level": "core",
         "example": [
-          4
+          2
         ]
       }
     ],
@@ -1257,7 +1268,7 @@
         "url": "https://www.ixl.com/math/algebra-2/add-and-subtract-rational-expressions",
         "level": "core",
         "example": [
-          4
+          3
         ]
       },
       {
@@ -1293,7 +1304,7 @@
         "url": "https://www.ixl.com/math/algebra-2/solve-rational-equations",
         "level": "core",
         "example": [
-          1,
+          2,
           4
         ]
       },
@@ -1425,7 +1436,8 @@
         "url": "https://www.ixl.com/math/algebra-2/find-values-of-inverse-functions-from-tables",
         "level": "core",
         "example": [
-          1
+          1,
+          5
         ]
       },
       {
@@ -1435,7 +1447,7 @@
         "url": "https://www.ixl.com/math/algebra-2/graphs-of-inverse-functions",
         "level": "core",
         "example": [
-          2
+          5
         ]
       },
       {
@@ -1445,7 +1457,6 @@
         "url": "https://www.ixl.com/math/algebra-2/identify-inverse-functions",
         "level": "core",
         "example": [
-          2,
           5
         ]
       },
@@ -1456,7 +1467,7 @@
         "url": "https://www.ixl.com/math/algebra-2/find-values-of-inverse-functions-from-graphs",
         "level": "core",
         "example": [
-          2
+          4
         ]
       },
       {
@@ -1466,9 +1477,8 @@
         "url": "https://www.ixl.com/math/algebra-2/find-inverse-functions-and-relations",
         "level": "core",
         "example": [
-          2,
-          3,
-          4
+          4,
+          5
         ]
       }
     ],
@@ -1481,43 +1491,43 @@
         "level": "prereq"
       },
       {
+        "code": "RSN",
+        "directoryId": "W.5",
+        "name": "Transformations of functions",
+        "url": "https://www.ixl.com/math/algebra-2/transformations-of-functions",
+        "level": "core",
+        "example": [
+          2
+        ]
+      },
+      {
         "code": "EFD",
         "directoryId": "Z.1",
         "name": "Domain and range of exponential functions",
         "url": "https://www.ixl.com/math/algebra-2/domain-and-range-of-exponential-functions",
         "level": "core",
         "example": [
-          1
+          2
         ]
       },
       {
-        "code": "U7P",
-        "directoryId": "Z.4",
-        "name": "Graph exponential functions",
-        "url": "https://www.ixl.com/math/algebra-2/graph-exponential-functions",
+        "code": "2YT",
+        "directoryId": "Z.6",
+        "name": "Exponential functions over unit intervals",
+        "url": "https://www.ixl.com/math/algebra-2/exponential-functions-over-unit-intervals",
         "level": "core",
         "example": [
-          1
+          5
         ]
       },
       {
-        "code": "DBW",
-        "directoryId": "Z.3",
-        "name": "Write exponential functions: word problems",
-        "url": "https://www.ixl.com/math/algebra-2/write-exponential-functions-word-problems",
+        "code": "KT8",
+        "directoryId": "W.6",
+        "name": "Describe function transformations",
+        "url": "https://www.ixl.com/math/algebra-2/describe-function-transformations",
         "level": "core",
         "example": [
-          3
-        ]
-      },
-      {
-        "code": "TYQ",
-        "directoryId": "Z.10",
-        "name": "Exponential growth and decay: word problems",
-        "url": "https://www.ixl.com/math/algebra-2/exponential-growth-and-decay-word-problems",
-        "level": "core",
-        "example": [
-          3
+          2
         ]
       }
     ],
@@ -1559,6 +1569,26 @@
           2,
           4
         ]
+      },
+      {
+        "code": "E5S",
+        "directoryId": "Z.9",
+        "name": "Exponential growth and decay",
+        "url": "https://www.ixl.com/math/algebra-2/exponential-growth-and-decay",
+        "level": "core",
+        "example": [
+          1
+        ]
+      },
+      {
+        "code": "2YT",
+        "directoryId": "Z.6",
+        "name": "Exponential functions over unit intervals",
+        "url": "https://www.ixl.com/math/algebra-2/exponential-functions-over-unit-intervals",
+        "level": "core",
+        "example": [
+          5
+        ]
       }
     ],
     "6-3": [
@@ -1576,7 +1606,7 @@
         "url": "https://www.ixl.com/math/algebra-2/convert-between-exponential-and-logarithmic-form-all-bases",
         "level": "core",
         "example": [
-          3,
+          1,
           5
         ]
       },
@@ -1749,23 +1779,23 @@
         ]
       },
       {
+        "code": "XJJ",
+        "directoryId": "MM.3",
+        "name": "Find trigonometric ratios using a Pythagorean or reciprocal identity",
+        "url": "https://www.ixl.com/math/algebra-2/find-trigonometric-ratios-using-a-pythagorean-or-reciprocal-identity",
+        "level": "core",
+        "example": [
+          6
+        ]
+      },
+      {
         "code": "PAE",
         "directoryId": "JJ.3",
         "name": "Evaluate trigonometric ratios using reference angles: sec, csc, cot",
         "url": "https://www.ixl.com/math/algebra-2/evaluate-trigonometric-ratios-using-reference-angles-sec-csc-cot",
         "level": "core",
         "example": [
-          5
-        ]
-      },
-      {
-        "code": "ZF7",
-        "directoryId": "JJ.1",
-        "name": "Determine trigonometric ratios using points on the unit circle",
-        "url": "https://www.ixl.com/math/algebra-2/determine-trigonometric-ratios-using-points-on-the-unit-circle",
-        "level": "core",
-        "example": [
-          5
+          4
         ]
       }
     ],
@@ -1811,7 +1841,7 @@
         "url": "https://www.ixl.com/math/algebra-2/graph-sine-and-cosine-functions",
         "level": "core",
         "example": [
-          6
+          4
         ]
       }
     ]

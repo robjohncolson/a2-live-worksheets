@@ -237,11 +237,23 @@
       "source": "quizFocus.items.5"
     },
     {
+      "id": "cccf039705ee",
+      "type": "anchor",
+      "front": "Topic 4 test item 19 is covered by?",
+      "back": "A rectangle has area x^3 + 3x^2 - 18x in.^2 and width x + 6 in.; what is the length? (DOK 2): Example 2, kept",
+      "order": 20,
+      "after": [
+        "f1321a208164"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.19"
+    },
+    {
       "id": "5008a083ce56",
       "type": "step",
       "front": "Example 2: ?",
       "back": "Simplify a rational expression · DOK 1-2 · practice 22, 23, 24, 25, 39, 17, 38 · Quiz items 1 and 2 (item 2 graded): factor, take the domain from the original denominator, divide out the common factor. Its step 2 - x = -(x - 2) is also the sign move quiz items 3 and 4 need. …",
-      "order": 20,
+      "order": 21,
       "after": [
         "f1321a208164",
         "640973808461"
@@ -254,7 +266,7 @@
       "type": "step",
       "front": "Example 5: ?",
       "back": "Divide rational expressions · DOK 1, 2, 3 · practice 30, 31, 32, 33, 40, 13 · Quiz items 4 and 5 (item 4 graded, item 5 the proposed bonus), and its multiply-by-the-reciprocal step makes it the multiplication practice for item 3. It carries the lesson's only DOK 3 (practice 13). …",
-      "order": 21,
+      "order": 22,
       "after": [
         "5008a083ce56"
       ],
@@ -266,7 +278,7 @@
       "type": "cue",
       "front": "Example 2 · Purposeful question: Why is (-1) factored out of (2-x) in the numerator?",
       "back": "Listen for: If you factor out (-1), you can divide out the common factor (x-2).",
-      "order": 22,
+      "order": 23,
       "after": [
         "5008a083ce56"
       ],
@@ -295,7 +307,7 @@
       "type": "cue",
       "front": "Example 2 · Purposeful question: Why can you cross out factors that divide to 1?",
       "back": "Listen for: A rational expression with factors that divide to 1 can be written as 1 times another rational expression, and 1 is not typically written in products.",
-      "order": 23,
+      "order": 24,
       "after": [
         "747f64a6ce24"
       ],
@@ -324,7 +336,7 @@
       "type": "cue",
       "front": "Example 2 · Reasoning: what should I ask? (1/2)",
       "back": "Ask: Critique Reasoning Bailey simplified the rational expression ((x^2+2x+4)/(x^2+x+2)) by dividing out the (x^2)-terms and then dividing out a factor of (x+2) to get 2 as the simplified form of the rational expression. Is Bailey correct? Why or why not?",
-      "order": 24,
+      "order": 25,
       "after": [
         "cafb6e4b86f5"
       ],
@@ -353,7 +365,7 @@
       "type": "cue",
       "front": "Example 2 · Reasoning: what should I ask? (2/2)",
       "back": "Listen for: No; you cannot eliminate terms from the numerator and denominator if they are bound by addition. You must factor the expression first, and then eliminate like factors.",
-      "order": 25,
+      "order": 26,
       "after": [
         "c62b26a50541"
       ],
@@ -382,7 +394,7 @@
       "type": "cue",
       "front": "Example 5 · Purposeful question: Why do you factor out (-1)?",
       "back": "Listen for: The factoring out of (-1) allows you to divide common factors from the numerator and the denominator.",
-      "order": 26,
+      "order": 27,
       "after": [
         "2529f688bdba"
       ],
@@ -411,7 +423,7 @@
       "type": "cue",
       "front": "Example 5 · Purposeful question: How is dividing rational expressions similar to dividing fractions?",
       "back": "Listen for: You multiply by the reciprocal of the divisor.",
-      "order": 27,
+      "order": 28,
       "after": [
         "dc1f4e5cb322"
       ],
@@ -440,7 +452,7 @@
       "type": "cue",
       "front": "Example 5 · Support: How do you decide what can be factored out of each expression?",
       "back": "Listen for: Find the greatest common factor.",
-      "order": 28,
+      "order": 29,
       "after": [
         "b380b030d0b2"
       ],
@@ -469,7 +481,7 @@
       "type": "cue",
       "front": "Example 5 · Support: What are the quotient and the domain?",
       "back": "Listen for: (3(x+1)); (x≠-2,-1,0).",
-      "order": 29,
+      "order": 30,
       "after": [
         "5e9c4bb86c1f"
       ],
@@ -498,7 +510,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Why are rational expressions closed under multiplication and division?",
-      "order": 30,
+      "order": 31,
       "after": [
         "2529f688bdba"
       ],
@@ -510,7 +522,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "Sample (TE): a/b divided by c/d = (a/b)/(c/d) = ((a/b)(d/c))/((c/d)(d/c)) = (ad/bc)/1 = ad/bc = (a/b)(d/c). …",
-      "order": 31,
+      "order": 32,
       "after": [
         "2529f688bdba"
       ],
@@ -522,7 +534,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "The graph of the line y = x + 2, through (-2, 0) and (0, 2), on a grid from about -17.5 to 17.5 by -12.5 to 12.5.",
-      "order": 32,
+      "order": 33,
       "after": [
         "ec3bc30bac28"
       ],
@@ -534,7 +546,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. What is the domain of this function? (all real numbers)",
-      "order": 33,
+      "order": 34,
       "after": [
         "696a96d21a90"
       ],
@@ -546,7 +558,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Sketch a function that resembles the graph, but restrict its domain to exclude 2. (the line with an open circle at (2, 4))",
-      "order": 34,
+      "order": 35,
       "after": [
         "696a96d21a90"
       ],
@@ -558,7 +570,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Use Structure: Consider the function you have sketched. What kind of function might have a graph like this? Explain. (one whose denominator is zero when x = 2)",
-      "order": 35,
+      "order": 36,
       "after": [
         "696a96d21a90"
       ],
@@ -570,7 +582,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What do you notice about the graph of the function? → Sample: x-intercept -2; y-intercept 2; the function is linear.",
-      "order": 36,
+      "order": 37,
       "after": [
         "696a96d21a90"
       ],
@@ -582,7 +594,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "Why is it important to know the domain of a function? → The domain needs to make sense for the scenario, and some values of x make the function undefined, so they cannot be in the domain.",
-      "order": 37,
+      "order": 38,
       "after": [
         "6942b4441707"
       ],
@@ -594,7 +606,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Sketch the function y = -x + 4. What is the domain of the function? → All real numbers.",
-      "order": 38,
+      "order": 39,
       "after": [
         "0e0277135dbc"
       ],
@@ -606,7 +618,7 @@
       "type": "cue",
       "front": "Early finishers: ask? (2)",
       "back": "Sketch the graph of the function, excluding -4 from the domain. Describe the new graph created. → A line with a negative slope and an opening at x = -4; x-intercept 4, y-intercept 4.",
-      "order": 39,
+      "order": 40,
       "after": [
         "6a60c3c1f827"
       ],
@@ -618,7 +630,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "How does the exclusion of an x-value in a function's domain due to an asymptote compare to the exclusion of an x-value at a single point? → An asymptote occurs where the denominator is zero and the numerator is not; the graph gets close to it but never touches. …",
-      "order": 40,
+      "order": 41,
       "after": [
         "9ee750105539"
       ],
@@ -630,7 +642,7 @@
       "type": "cue",
       "front": "Habits of Mind, Reason: ask?",
       "back": "Does the graph of y = (2x + 6)/(x + 3) have a vertical asymptote at x = -3? Explain. → No; the function approaches (-3, 2) from both sides, so there is a hole at x = -3 instead of an asymptote.",
-      "order": 41,
+      "order": 42,
       "after": [
         "66d3ba824ed6"
       ],
@@ -642,7 +654,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The TE's printed answer to C, y = (2x - 4)/(x - 2), simplifies to y = 2 with a hole at (2, 2); it does not give the line y = x + 2 drawn in B. …",
-      "order": 42,
+      "order": 43,
       "after": [
         "696a96d21a90"
       ],
@@ -654,7 +666,7 @@
       "type": "anchor",
       "front": "IXL for example 2?",
       "back": "37N Simplify rational expressions",
-      "order": 43,
+      "order": 44,
       "after": [
         "5008a083ce56"
       ],
@@ -666,7 +678,7 @@
       "type": "anchor",
       "front": "IXL for example 2? (2)",
       "back": "79Q Domain of rational functions",
-      "order": 44,
+      "order": 45,
       "after": [
         "5008a083ce56"
       ],
@@ -678,7 +690,7 @@
       "type": "anchor",
       "front": "IXL for example 5?",
       "back": "MG2 Multiply and divide rational expressions",
-      "order": 45,
+      "order": 46,
       "after": [
         "2529f688bdba"
       ],

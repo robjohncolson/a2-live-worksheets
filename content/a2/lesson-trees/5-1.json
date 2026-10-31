@@ -52,7 +52,7 @@
       "id": "4be0efcabc58",
       "type": "anchor",
       "front": "Define: radicand",
-      "back": "an odd index gives one real root with the sign of the radicand (cube root of -8 = -2); an even index and a positive radicand give two real roots, +/- (x^4 = 625, x = +/-5), and a negative radicand gives none (Example 5B; quiz item 1)",
+      "back": "write the radicand as an nth power, or raise it to the 1/n power and divide every exponent by the index: fourth root of 81m^12n^4 = fourth root of (3m^3n)^4 = 3m^3n (Example 4; Try It 4b; IXL LQX)",
       "order": 5,
       "after": [
         "07c1175b86d3"
@@ -64,7 +64,7 @@
       "id": "a269289f27d5",
       "type": "anchor",
       "front": "Quiz item 3 asks?",
-      "back": "Five items. Item 3 (graded, DOK 2, A82): explain what 243^(3/5) means (the [square/cube/fourth/fifth] root of 243 [squared/cubed/to the fourth/to the fifth power]) and evaluate it (choices 3, 9, 27, 81). Item 5 (graded, DOK 2, A84): solve -4x^3 = 32. …",
+      "back": "Five items. Item 3 (graded, DOK 2, A82): explain what 243^(3/5) means (the [square/cube/fourth/fifth] root of 243 [squared/cubed/to the fourth/to the fifth power]) and evaluate it (choices 3, 9, 27, 81). …",
       "order": 6,
       "after": [
         "8156228a4ff2",
@@ -79,7 +79,7 @@
       "id": "738b4275ec8c",
       "type": "anchor",
       "front": "Quiz item 3 answer?",
-      "back": "Item 3: fifth; cubed; 27. Item 5: x = -2. Item 2: A, D, F. (TE key; verify against the TE key on quiz day.)",
+      "back": "Item 3: fifth; cubed; 27. Item 4: C, 3m^3n. Item 2: A, D, F. (TE key; verify against the TE key on quiz day.)",
       "order": 7,
       "after": [
         "8156228a4ff2",
@@ -106,7 +106,7 @@
       "id": "744f54fa89ee",
       "type": "anchor",
       "front": "Before quiz item 3 students need? (2)",
-      "back": "recognise perfect powers: 243 = 3^5, 32 = 2^5, 27 = 3^3, 16 = 2^4, 625 = 5^4 (prereq; IXL EUH)",
+      "back": "recognise perfect powers: 243 = 3^5, 32 = 2^5, 27 = 3^3, 81 = 3^4, 256 = 4^4 (prereq; IXL EUH)",
       "order": 9,
       "after": [
         "a269289f27d5"
@@ -130,7 +130,7 @@
       "id": "a3c0f68a655b",
       "type": "anchor",
       "front": "Before quiz item 3 students need? (4)",
-      "back": "get x^n alone first (divide by the coefficient, including a negative one: -4x^3 = 32 gives x^3 = -8), then raise both sides to the 1/n power (Example 5; IXL U42 for the root step)",
+      "back": "write the radicand as an nth power, or raise it to the 1/n power and divide every exponent by the index: fourth root of 81m^12n^4 = fourth root of (3m^3n)^4 = 3m^3n (Example 4; Try It 4b; IXL LQX)",
       "order": 11,
       "after": [
         "a269289f27d5"
@@ -142,7 +142,7 @@
       "id": "0e247d722e0e",
       "type": "anchor",
       "front": "Before quiz item 3 students need? (5)",
-      "back": "an odd index gives one real root with the sign of the radicand (cube root of -8 = -2); an even index and a positive radicand give two real roots, +/- (x^4 = 625, x = +/-5), and a negative radicand gives none (Example 5B; quiz item 1)",
+      "back": "the traps on item 4: a square root of 81 (9) instead of a fourth root (choices A, B), and subtracting the index from each exponent instead of dividing (choice D, 3m^8)",
       "order": 12,
       "after": [
         "a269289f27d5"
@@ -166,7 +166,7 @@
       "id": "446a14504372",
       "type": "anchor",
       "front": "Quiz item 1 is covered by?",
-      "back": "Real fourth roots of 256; answer 4 and -4 (DOK 1, A83). Example 1 (cut); the +/- move for an even index and a positive number is Example 5B (x^4 = 625, x = +/-5). Not on the short form (full Savvas quiz only; available for Form B or a retake).",
+      "back": "Real fourth roots of 256; answer 4 and -4 (DOK 1, A83). Example 1 (cut); the +/- move for an even index is Example 5B, also cut. Not on the short form (full Savvas quiz only; available for Form B or a retake); IXL U42 is the optional practice.",
       "order": 14,
       "after": [
         "a269289f27d5"
@@ -202,7 +202,7 @@
       "id": "f6093817ae2e",
       "type": "anchor",
       "front": "Quiz item 4 is covered by?",
-      "back": "Simplify the fourth root of 81m^12n^4, variables positive; answer C, 3m^3n (DOK 1, A80). Example 4 (cut). Not on the short form (full Savvas quiz only); IXL LQX is the optional practice.",
+      "back": "Simplify the fourth root of 81m^12n^4, variables positive; answer C, 3m^3n (DOK 1, A80). Example 4 (write the radicand as a fourth power, or divide each exponent by 4); Try It 4b is the same move. On the short form, scored, 10 points.",
       "order": 17,
       "after": [
         "a269289f27d5"
@@ -214,7 +214,7 @@
       "id": "18308bd4b8d0",
       "type": "anchor",
       "front": "Quiz item 5 is covered by?",
-      "back": "Solve -4x^3 = 32; answer x = -2 (DOK 2, A84). Example 5 (divide by the coefficient, raise both sides to the 1/3 power); Try It 5a. On the short form, scored, 10 points.",
+      "back": "Solve -4x^3 = 32; answer x = -2 (DOK 2, A84). Example 5 (cut). Not on the short form (full Savvas quiz only; available for Form B or a retake); IXL U42 is the optional practice.",
       "order": 18,
       "after": [
         "a269289f27d5"
@@ -223,11 +223,71 @@
       "source": "quizFocus.items.5"
     },
     {
+      "id": "c6d5f95b8133",
+      "type": "anchor",
+      "front": "Topic 5 test item 1 is covered by?",
+      "back": "Simplify the cube root of 27x^9y^3. (DOK 1): Example 4, kept",
+      "order": 19,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.1"
+    },
+    {
+      "id": "c2f297085b15",
+      "type": "anchor",
+      "front": "Topic 5 test item 3 is covered by?",
+      "back": "121^(1/11) is equivalent to [2 / 11 / 11th root of 121 / sqrt(121^11)] because [11^2 = 121 / (11th root of 121)^11 = 121 / 11 = sqrt 121 / sqrt(121^11) = 1]. (DOK 2): Example 2, kept",
+      "order": 20,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.3"
+    },
+    {
+      "id": "5e07b1a26712",
+      "type": "anchor",
+      "front": "Topic 5 test item 5 is covered by?",
+      "back": "Which expression is equivalent to (cube root of 17)^4: 17^(4/3), 17^(3/4), 17^12, (4/3)^17? (DOK 2): Example 2, kept",
+      "order": 21,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.5"
+    },
+    {
+      "id": "54adb6243f55",
+      "type": "anchor",
+      "front": "Topic 5 test item 10 is covered by?",
+      "back": "Which expression is equivalent to the cube root of -x: (-x)^3, (-x)^(1/3), x^(-3), x^(-1/3)? (DOK 2): Example 2, kept",
+      "order": 22,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.10"
+    },
+    {
+      "id": "079ea29a61f4",
+      "type": "anchor",
+      "front": "Topic 5 test item 18 is covered by?",
+      "back": "Which property gives the definition of x^(a/b) as the bth root of x^a: Power of a Power, Product of Powers, Quotient of Powers, Square Root Property? (DOK 3): Example 2, kept",
+      "order": 23,
+      "after": [
+        "a269289f27d5"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.18"
+    },
+    {
       "id": "19dfec2b2e62",
       "type": "step",
       "front": "Example 2: ?",
-      "back": "Understand Rational Exponents · DOK 1-2 · practice 29, 30, 31, 32, 48, 20, 21, 24, 47 · Quiz items 2 and 3 (both skill A82, the only Example with two quiz items). The concept summary's first column (Relating Radical and Exponential Forms) is this Example. …",
-      "order": 19,
+      "back": "Understand Rational Exponents · DOK 1-2 · practice 29, 30, 31, 32, 48, 20, 21, 24, 47 · Teaches four of the five Topic 5 test items the lesson owns (3 and 5: rational exponent to radical; 10: the cube root of -x as (-x)^(1/3); 18: the property behind x^(a/b), which the packet labels Power of a Power) and quiz items …",
+      "order": 24,
       "after": [
         "a269289f27d5",
         "738b4275ec8c"
@@ -236,23 +296,23 @@
       "source": "examples[n=2]"
     },
     {
-      "id": "31af82fc67f9",
+      "id": "08b6d6559edf",
       "type": "step",
-      "front": "Example 5: ?",
-      "back": "Use nth Roots to Solve Equations · DOK 1 · practice 39, 40, 41, 42 · Quiz item 5 (solve -4x^3 = 32) and, through Part B's +/- for an even index and a positive radicand, quiz item 1. …",
-      "order": 20,
+      "front": "Example 4: ?",
+      "back": "Simplify nth Roots · DOK 1-2 · practice 35, 36, 37, 38, 49, 18 · Kept under R1: it teaches Topic 5 test item 1 (simplify the cube root of 27x^9y^3) and quiz item 4 (simplify the fourth root of 81m^12n^4, graded on the short form). …",
+      "order": 25,
       "after": [
         "19dfec2b2e62"
       ],
       "minute": null,
-      "source": "examples[n=5]"
+      "source": "examples[n=4]"
     },
     {
       "id": "728cbed453ae",
       "type": "cue",
       "front": "Example 2 · Purposeful question: Does the order in which you raise a number to a power and find the nth root matter?",
       "back": "Listen for: No; you can raise a number to a power and then take the nth root, or you can take the nth root and then raise that number to a power.",
-      "order": 21,
+      "order": 26,
       "after": [
         "19dfec2b2e62"
       ],
@@ -281,7 +341,7 @@
       "type": "cue",
       "front": "Example 2 · Purposeful question: Assuming that (root[n](x)) is a real number, what do you know about the value of (n) if (x) is negative?",
       "back": "Listen for: If (x) is negative, the value of (n) is an odd number, because you cannot find real nth roots of a negative number if (n) is even.",
-      "order": 22,
+      "order": 27,
       "after": [
         "728cbed453ae"
       ],
@@ -310,7 +370,7 @@
       "type": "cue",
       "front": "Example 2 · Purposeful question: Could a rational exponent have a 1 in the denominator? What does that represent?",
       "back": "Listen for: A rational exponent can have a 1 in the denominator. A rational exponent with a 1 in the denominator would be the same as an exponent with an integer value.",
-      "order": 23,
+      "order": 28,
       "after": [
         "bc97466876c7"
       ],
@@ -339,7 +399,7 @@
       "type": "cue",
       "front": "Example 2 · Check student thinking: What do the numerator and denominator of a rational exponent represent?",
       "back": "Listen for: The numerator is the power that the number is raised to. The denominator is the root of the number you're finding.",
-      "order": 24,
+      "order": 29,
       "after": [
         "9d293a84b2eb"
       ],
@@ -368,7 +428,7 @@
       "type": "cue",
       "front": "Example 2 · Reasoning: Generalize If a base raised to a fractional exponent is imaginary, what is true about the values of the numbers involved?",
       "back": "Listen for: The base is negative, and the denominator of the fractional exponent must be even.",
-      "order": 25,
+      "order": 30,
       "after": [
         "8eb71032e063"
       ],
@@ -397,7 +457,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: Using context clues, what does the word expression mean in the sentences you read?",
       "back": "Listen for: a way of communicating, or representing, emotions without speaking",
-      "order": 26,
+      "order": 31,
       "after": [
         "bcb29950ba69"
       ],
@@ -426,7 +486,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: Have students read the first sentence of both parts (a) and (b). What does the word expression mean in the example?",
       "back": "Listen for: numbers and symbols that show a value",
-      "order": 27,
+      "order": 32,
       "after": [
         "13e2ad39c898"
       ],
@@ -455,7 +515,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: Does power mean the same thing in the example as it does in the sentence you heard?",
       "back": "Listen for: no",
-      "order": 28,
+      "order": 33,
       "after": [
         "997e9a2e1f21"
       ],
@@ -484,7 +544,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: What other word did you hear in the example that means the same thing as power?",
       "back": "Listen for: exponent",
-      "order": 29,
+      "order": 34,
       "after": [
         "166fc48f0e2f"
       ],
@@ -513,7 +573,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: Listen to the first sentence again. What is the exponent? What is the power?",
       "back": "Listen for: (1/4); (1/4); Exponent and power are synonyms.",
-      "order": 30,
+      "order": 35,
       "after": [
         "84f6354f3652"
       ],
@@ -542,7 +602,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: What does the word property mean in the first sentence?",
       "back": "Listen for: a piece of land that a person owns",
-      "order": 31,
+      "order": 36,
       "after": [
         "92c8c7b43adc"
       ],
@@ -571,7 +631,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: What does the word property mean in the second sentence?",
       "back": "Listen for: a characteristic that describes something",
-      "order": 32,
+      "order": 37,
       "after": [
         "4bc4788437c3"
       ],
@@ -600,7 +660,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: How does the second definition help you understand how the term property is used in math?",
       "back": "Listen for: Math properties describe the characteristics of numbers and their relationships.",
-      "order": 33,
+      "order": 38,
       "after": [
         "059aa092f2a4"
       ],
@@ -625,59 +685,175 @@
       }
     },
     {
-      "id": "6e1cace11c96",
+      "id": "ef9ecfa2cb36",
       "type": "cue",
-      "front": "Example 5 · Purposeful question: What property are you using when you rewrite ((x^5)^(1/5)) as (x)?",
-      "back": "Listen for: the Power of a Power Property",
-      "order": 34,
+      "front": "Example 4 · Purposeful question: What is another approach you can use to simplify the expression?",
+      "back": "Listen for: You can write the 5th root as the rational exponent (1/5). Then multiply the exponent of each factor by the rational exponent and simplify.",
+      "order": 39,
       "after": [
-        "31af82fc67f9"
+        "08b6d6559edf"
       ],
       "minute": null,
-      "source": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
       "teaching": {
-        "example": 5,
+        "example": 4,
         "kind": "question",
         "category": "PurposefulQuestions",
         "source": {
           "file": "a2_5-1_TE.tex",
-          "anchor": 5,
+          "anchor": 4,
           "category": "PurposefulQuestions",
           "block": 0,
           "page": "17: 230 Understand & Apply",
           "item": 0,
-          "line": 423
+          "line": 386
         },
-        "promptKey": "examples[n=5].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[0]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "7e8f0defda5c",
+      "id": "9bca13702707",
       "type": "cue",
-      "front": "Example 5 · Check student thinking: What do you notice about these equations that makes them easier to solve?",
-      "back": "Listen for: The coefficient of the variable divides the value on the other side of the equation evenly. In part (a), this quotient is a perfect cube. In part (b), this quotient is a perfect fourth power.",
-      "order": 35,
+      "front": "Example 4 · Purposeful question: Why is it necessary to assume all variables represent positive numbers? (1/2)",
+      "back": "Listen for: Because the given expression uses the radical symbol, which represents the principal (positive) root, it can only be equivalent to an expression with a nonnegative value. The exponent of (x^5) is odd, so the value of (x^5) could be negative.",
+      "order": 40,
       "after": [
-        "6e1cace11c96"
+        "ef9ecfa2cb36"
       ],
       "minute": null,
-      "source": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
       "teaching": {
-        "example": 5,
+        "example": 4,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 4,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "17: 230 Understand & Apply",
+          "item": 1,
+          "line": 389
+        },
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 1,
+        "parts": 2
+      }
+    },
+    {
+      "id": "1c7cf9cd1a4b",
+      "type": "cue",
+      "front": "Example 4 · Purposeful question: Why is it necessary to assume all variables represent positive numbers? (2/2)",
+      "back": "In this case, the expression (x^5y^2) would not be equivalent to the given expression because it would be negative. Using variables to represent only positive numbers ensures that the resulting expression is nonnegative and thus equivalent to the given expression.",
+      "order": 41,
+      "after": [
+        "9bca13702707"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1].part[1]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 4,
+          "category": "PurposefulQuestions",
+          "block": 0,
+          "page": "17: 230 Understand & Apply",
+          "item": 1,
+          "line": 389
+        },
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "part": 2,
+        "parts": 2
+      }
+    },
+    {
+      "id": "ea5657fb9af7",
+      "type": "cue",
+      "front": "Example 4 · Check student thinking: Why is it important to write the radicand as an expression to a power before evaluating?",
+      "back": "Listen for: Rewriting as an expression to a power makes it simpler to find the nth root.",
+      "order": 42,
+      "after": [
+        "1c7cf9cd1a4b"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 4,
         "kind": "question",
         "category": "ElicitEvidence",
         "source": {
           "file": "a2_5-1_TE.tex",
-          "anchor": 5,
+          "anchor": 4,
           "category": "ElicitEvidence",
           "block": 0,
           "page": "17: 230 Understand & Apply",
           "item": 0,
-          "line": 457
+          "line": 418
         },
-        "promptKey": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "promptKey": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "af98c23f474e",
+      "type": "cue",
+      "front": "Example 4 · Reasoning: Make Sense and Persevere What is an example of a variable expression that has both a cube root and a fourth root, which can be simplified to an expression without a radical?",
+      "back": "Listen for: Answers will vary. Sample: (x^12)",
+      "order": 43,
+      "after": [
+        "ea5657fb9af7"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 4,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "17: 230 Understand & Apply",
+          "item": 0,
+          "line": 462
+        },
+        "promptKey": "examples[n=4].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "1d9313e26701",
+      "type": "cue",
+      "front": "Example 4 · Support: How does the TE support students who struggle?",
+      "back": "Students may have difficulty simplifying expressions with nth roots. Have students practice simplifying expressions with square roots. Simplify each expression. Assume all variables are positive. 1. (√(4a^4)) 2. (√(49y^6z^2)) 3. (√(121m^8n^4))",
+      "order": 44,
+      "after": [
+        "af98c23f474e"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.RtISupport[0].guidance",
+      "teaching": {
+        "example": 4,
+        "kind": "support",
+        "category": "RtISupport",
+        "source": {
+          "file": "a2_5-1_TE.tex",
+          "anchor": 4,
+          "category": "RtISupport",
+          "block": 0,
+          "page": "17: 230 Understand & Apply",
+          "item": 0,
+          "line": 465
+        },
+        "promptKey": "examples[n=4].teacherPrompts.RtISupport[0].guidance",
         "part": 1,
         "parts": 1
       }
@@ -687,9 +863,9 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "A milk processing company uses cylindrical containers whose height equals the diameter of the base; volume 169.65 ft^3. Part A: how much material is needed for the lateral surface area? Part B: the cargo hold of a ship is 20 ft high; what is the largest number of these containers that could be stacked inside it?",
-      "order": 36,
+      "order": 45,
       "after": [
-        "31af82fc67f9"
+        "08b6d6559edf"
       ],
       "minute": null,
       "source": "dok3.task"
@@ -699,9 +875,9 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "h = 2r, so 169.65 = pi r^2 (2r) = 2 pi r^3, r^3 = 27.0, r = 3 ft, h = 6 ft. Part A: lateral area 2 pi r h = 36 pi ft^2 (about 113.1 ft^2). Part B: 20 / 6 = 3.33, so 3 containers. …",
-      "order": 37,
+      "order": 46,
       "after": [
-        "31af82fc67f9"
+        "08b6d6559edf"
       ],
       "minute": null,
       "source": "dok3.key"
@@ -711,7 +887,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "The graph of y = x^2 (a parabola with vertex at the origin) on a grid from about x = -5 to 5 and y = -5 to 15.",
-      "order": 38,
+      "order": 47,
       "after": [
         "07c1175b86d3"
       ],
@@ -723,7 +899,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Find all possible values of x or y so that the point is on the graph: (2, _), (3, _), (-3, _), (5, _), (_, 4), (_, -16), (_, 7), (_, 5). (4; 9; 9; 25; -2 and 2; no possible value; -sqrt 7 and sqrt 7; -sqrt 5 and sqrt 5)",
-      "order": 39,
+      "order": 48,
       "after": [
         "f1b8b92c6955"
       ],
@@ -735,7 +911,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Communicate Precisely: write a precise set of instructions that show how to find an approximate value of sqrt 13 using the graph. (Draw y = 13, then go straight down from where it meets the graph to the positive x-axis and read the value.)",
-      "order": 40,
+      "order": 49,
       "after": [
         "f1b8b92c6955"
       ],
@@ -747,7 +923,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Draw a graph of y = x^3. Use the graph to approximate the cube roots of 5, -5 and 8, and a solution to x^3 = 5, x^3 = -5 and x^3 = 8. (about 1.7; about -1.7; 2; about 1.7; about -1.7; 2)",
-      "order": 41,
+      "order": 50,
       "after": [
         "f1b8b92c6955"
       ],
@@ -759,7 +935,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What do you notice about the graph of y = x^2? → The graph is a parabola. All values of y are greater than or equal to zero.",
-      "order": 42,
+      "order": 51,
       "after": [
         "f1b8b92c6955"
       ],
@@ -771,7 +947,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "What is true about the possible missing x-values compared to the possible missing y-values? → For a missing x-value there are 2 possible values (when y is positive); for a missing y-value there is only 1 possible value.",
-      "order": 43,
+      "order": 52,
       "after": [
         "269b143a8c36"
       ],
@@ -783,7 +959,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Draw a graph of y = x^4 and y = x^5 and use them to approximate values as in Part C. How do the numbers of x- and y-values compare to y = x^2 and y = x^3? → A positive y-value of y = x^4 has 2 x-values, like y = x^2. Each y-value of y = x^5 has 1 x-value, like y = x^3.",
-      "order": 44,
+      "order": 53,
       "after": [
         "3a894e2d8e38"
       ],
@@ -795,7 +971,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "Can the instructions you created in Part B be used to approximate the cube root of a number? → Yes: find the point whose y-value is the number under the radical sign and read its x-value.",
-      "order": 45,
+      "order": 54,
       "after": [
         "03f9588d4d19"
       ],
@@ -807,7 +983,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "What do you notice about the answers in Part C? → The cube root of 5 equals the solution to x^3 = 5, the cube root of -5 the solution to x^3 = -5, and the cube root of 8 the solution to x^3 = 8.",
-      "order": 46,
+      "order": 55,
       "after": [
         "7e5976a7b9ac"
       ],
@@ -819,7 +995,7 @@
       "type": "cue",
       "front": "Habits of Mind, Look for Relationships: ask?",
       "back": "How is sqrt 5 related to 5? How is the cube root of 5 related to 5? How do you think the fourth root of 5 is related to 5? → (sqrt 5)^2 = 5; (cube root of 5)^3 = 5; (fourth root of 5)^4 = 5.",
-      "order": 47,
+      "order": 56,
       "after": [
         "77b22f5e5932"
       ],
@@ -831,7 +1007,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The TE's printed During answer says every missing x-value has two possibilities, but its own Part A lists (_, -16), which has none, and y = 0 has only one: say 'two for a positive y'. The early-finisher answer has the same gap for y = x^4. …",
-      "order": 48,
+      "order": 57,
       "after": [
         "f1b8b92c6955"
       ],
@@ -843,7 +1019,7 @@
       "type": "anchor",
       "front": "IXL for example 2?",
       "back": "9TM Convert between rational exponents and radicals",
-      "order": 49,
+      "order": 58,
       "after": [
         "19dfec2b2e62"
       ],
@@ -855,7 +1031,7 @@
       "type": "anchor",
       "front": "IXL for example 2? (2)",
       "back": "KJX Evaluate rational exponents",
-      "order": 50,
+      "order": 59,
       "after": [
         "19dfec2b2e62"
       ],
@@ -867,9 +1043,9 @@
       "type": "anchor",
       "front": "IXL for example 5?",
       "back": "U42 Nth roots",
-      "order": 51,
+      "order": 60,
       "after": [
-        "31af82fc67f9"
+        "07c1175b86d3"
       ],
       "minute": null,
       "source": "ixl.U42"
@@ -879,9 +1055,9 @@
       "type": "anchor",
       "front": "IXL for example 4?",
       "back": "LQX Simplify radical expressions with variables I",
-      "order": 52,
+      "order": 61,
       "after": [
-        "07c1175b86d3"
+        "08b6d6559edf"
       ],
       "minute": null,
       "source": "ixl.LQX"

@@ -68,6 +68,20 @@ describe('buildTree', () => {
     const moved = buildTree('1-4', fixture.prep, null);
     expect(moved.nodes[0].id).not.toBe(golden.nodes[0].id);
   });
+  it('topic-assessment items become anchors after the quiz anchor; without the field the tree is unchanged', () => {
+    const prep = clone(fixture.prep);
+    prep.topicAssessment = { topic: 1, source: 'a2_T1_assessment_TE.tex', items: { 6: 'Graph a three-piece function (DOK 2): Example 3, kept' } };
+    const tree = buildTree('1-3', prep, fixture.dayLog);
+    const node = bySource(tree, 'topicAssessment.items.6');
+    expect(node).toMatchObject({ type: 'anchor', front: 'Topic 1 test item 6 is covered by?', back: 'Graph a three-piece function (DOK 2): Example 3, kept' });
+    expect(node.after).toEqual([bySource(tree, 'quizFocus.what').id]);
+    expect(node.id).toBe(nodeId('1-3', 'topicAssessment.items.6'));
+    expect(treeProblem(tree)).toBeNull();
+    expect(tree.nodes.length).toBe(golden.nodes.length + 1);
+    // Every other node keeps its id (ids come from the source path, not the position).
+    expect(tree.nodes.filter(node => !node.source.startsWith('topicAssessment.')).map(node => node.id)).toEqual(golden.nodes.map(node => node.id));
+    expect(buildTree('1-3', fixture.prep, fixture.dayLog)).toEqual(golden);
+  });
   it('an empty field makes no node; without a card the steps have no minute and no traps', () => {
     const prep = clone(fixture.prep);
     delete prep.dok3; prep.modelDiscuss.caution = '  ';

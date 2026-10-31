@@ -145,6 +145,12 @@ export function buildTree(lesson, prep, dayLog = null) {
   needs.forEach((need, i) => add('anchor', `quizFocus.needs[${i}]`, `Before quiz item ${n === '' ? '' : n + ' '}students need?`, need, quizRoot));
   for (const [k, value] of Object.entries(quiz.items || {})) add('anchor', `quizFocus.items.${k}`, `Quiz item ${k} is covered by?`, value, quizRoot);
 
+  // Topic Assessment items this lesson owns (the end goal; the quiz is the step toward it):
+  // one anchor per item after the quiz anchors, keyed by item number.
+  const topicTest = prep?.topicAssessment || {};
+  const topicLabel = Number.isInteger(topicTest.topic) ? `Topic ${topicTest.topic} test` : 'Topic test';
+  for (const [k, value] of Object.entries(topicTest.items || {})) add('anchor', `topicAssessment.items.${k}`, `${topicLabel} item ${k} is covered by?`, value, quizRoot);
+
   // Kept examples are the routine: a chain of steps after the quiz anchors. Minutes
   // split the first card's minutes evenly, cumulative (null without a card).
   const kept = (prep?.examples || []).filter(example => example && example.keep === true);

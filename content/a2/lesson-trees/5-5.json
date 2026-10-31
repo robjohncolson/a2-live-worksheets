@@ -237,11 +237,47 @@
       "source": "quizFocus.items.5"
     },
     {
+      "id": "2ff1cca23a53",
+      "type": "anchor",
+      "front": "Topic 5 test item 11 is covered by?",
+      "back": "f(x) = sqrt x, g(x) = 3 - x: the domain of f o g is x <= [ ] (DOK 2): Example 5, kept",
+      "order": 20,
+      "after": [
+        "0263467dbb95"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.11"
+    },
+    {
+      "id": "1b10f21a6d42",
+      "type": "anchor",
+      "front": "Topic 5 test item 19 is covered by?",
+      "back": "10% sale, then $30 off a bicycle; f(x) = x - 30, g(x) = 0.90x: which function gives the final price (f + g, g o f, g - f, f o g)? (DOK 3): Example 6, kept",
+      "order": 21,
+      "after": [
+        "0263467dbb95"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.19"
+    },
+    {
+      "id": "8adf1949490c",
+      "type": "anchor",
+      "front": "Topic 5 test item 21 is covered by?",
+      "back": "V(r) = (4/3) pi r^3 and r(t) = 2t (radius grows 2 mm/s): which gives the volume at time t: (V o r)(t), (r o V)(t), (r + V)(t), (V * r)(t)? (DOK 2): Example 6, kept",
+      "order": 22,
+      "after": [
+        "0263467dbb95"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.21"
+    },
+    {
       "id": "1349b7df653a",
       "type": "step",
       "front": "Example 5: ?",
       "back": "Write a rule for a composite function · DOK 1, 2 · practice 28, 29; 12, 14, 34 · The lesson for the quiz: item 5 (Part A is a square-root composition whose domain limit comes from the outside square root, 2x - 5 >= -7; item 5's comes from the inside square root, x >= 4; the packet's concept box and its 'Domain …",
-      "order": 20,
+      "order": 23,
       "after": [
         "0263467dbb95",
         "3f9796faa73d"
@@ -254,7 +290,7 @@
       "type": "step",
       "front": "Example 6: ?",
       "back": "Use a composite function model (two discounts) · DOK 2, 3 · practice 15, 17, 30; 16, 32 · The only Example with DOK 3 practice (16 and 32). …",
-      "order": 21,
+      "order": 24,
       "after": [
         "1349b7df653a"
       ],
@@ -266,7 +302,7 @@
       "type": "cue",
       "front": "Example 5 · Purposeful question: What notation is introduced in the example and what does it mean?",
       "back": "Listen for: The operation symbol (°) in (f° g) means \"apply the rule for g, and then apply the rule for f.\"",
-      "order": 22,
+      "order": 25,
       "after": [
         "1349b7df653a"
       ],
@@ -295,7 +331,7 @@
       "type": "cue",
       "front": "Example 5 · Purposeful question: What procedure do you perform to find the rule for (f° g)?",
       "back": "Listen for: Substitute the expression (g(x)) for the variable in (f(x)), then apply the operations indicated by (f(x)).",
-      "order": 23,
+      "order": 26,
       "after": [
         "c498486910ef"
       ],
@@ -324,7 +360,7 @@
       "type": "cue",
       "front": "Example 5 · Support: What does the expression (f(g(x))) in Part A mean?",
       "back": "Listen for: Evaluate (g(x)) to get a number or an expression. Then evaluate the function f for that number or expression.",
-      "order": 24,
+      "order": 27,
       "after": [
         "97154073f314"
       ],
@@ -353,7 +389,7 @@
       "type": "cue",
       "front": "Example 5 · Support: How is (g(f(x))) in Part B different from (f(g(x)))?",
       "back": "Listen for: The difference is the order of using the functions. Evaluate the \"inside\" expression first, then use the result to evaluate the \"outside\" expression.",
-      "order": 25,
+      "order": 28,
       "after": [
         "2264c5a4a9f5"
       ],
@@ -382,7 +418,7 @@
       "type": "cue",
       "front": "Example 5 · Check student thinking: Part a: For the two given functions f and g, how can you tell when (f° g) will be negative?",
       "back": "Listen for: (f(x)=x^3), so (f(g(x))) will be negative when (g(x)) is negative. Because (g(x)) is negative when (x+1<0), (f° g) is negative when (x<-1).",
-      "order": 26,
+      "order": 29,
       "after": [
         "4eada1fd0042"
       ],
@@ -411,7 +447,7 @@
       "type": "cue",
       "front": "Example 6 · Purposeful question: Why does order matter for discounts?",
       "back": "Listen for: The amount of a percent coupon depends on the base price. To maximize a percent coupon, take it off the larger price; that is, before a dollars-off coupon.",
-      "order": 27,
+      "order": 30,
       "after": [
         "1f17ff18b95c"
       ],
@@ -440,7 +476,7 @@
       "type": "cue",
       "front": "Example 6 · Reasoning: Reason Let (f(x)=1/3(x-2)) and (g(x)=3x+2). Find (f° g) and (g° f). Are they equivalent? If so, does this prove that the composition of two functions is commutative?",
       "back": "Listen for: (f(g(x))=x) and (g(f(x))=x), so in this case (f° g=g° f). One example is not a proof, so this does not prove that composition of functions is commutative.",
-      "order": 28,
+      "order": 31,
       "after": [
         "bed6fb24c847"
       ],
@@ -469,7 +505,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: How is order important in the problem?",
       "back": "Listen for: The final price changes depending on which discount is used first.",
-      "order": 29,
+      "order": 32,
       "after": [
         "f3a7399f3e85"
       ],
@@ -498,7 +534,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: What is an example of when you can not change the order of operations in a problem?",
       "back": "Listen for: When you simplify an expression, you must follow the same order of operations.",
-      "order": 30,
+      "order": 33,
       "after": [
         "c1d506903a0f"
       ],
@@ -527,7 +563,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: How might a customer and a cashier interact?",
       "back": "Listen for: A cashier helps a customer buy items in a store; he rings up the purchases, and the customer gives the cashier money for the purchases.",
-      "order": 31,
+      "order": 34,
       "after": [
         "cfdb2caa0e49"
       ],
@@ -556,7 +592,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: How are discounts and deals related?",
       "back": "Listen for: A discount is money off the price of an item, and a deal is a good price on an item.",
-      "order": 32,
+      "order": 35,
       "after": [
         "9acea3c56647"
       ],
@@ -585,7 +621,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: What does it mean to post on social media?",
       "back": "Listen for: to put a statement, advertisement, or photo online to share with other people",
-      "order": 33,
+      "order": 36,
       "after": [
         "1f38c4a6e908"
       ],
@@ -614,7 +650,7 @@
       "type": "cue",
       "front": "Example 6 · Teacher prompt: What is a word that means the same thing as the word yields, as it is used in this example?",
       "back": "Listen for: produces or gives",
-      "order": 34,
+      "order": 37,
       "after": [
         "b3c6c0fa0ca1"
       ],
@@ -643,7 +679,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Suppose two functions, f(x) and g(x), are only defined by the ordered pairs listed below. f = (6,7), (5,2), (4,1), (10,8); g = (5,4), (3,6), (1,5), (2,10). Find the ordered pairs that comprise (f o g)(x).",
-      "order": 35,
+      "order": 38,
       "after": [
         "1f17ff18b95c"
       ],
@@ -655,7 +691,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "(f o g)(x) = {(5,1), (3,7), (1,2), (2,8)}: g(5) = 4 and f(4) = 1; g(3) = 6 and f(6) = 7; g(1) = 5 and f(5) = 2; g(2) = 10 and f(10) = 8. Every output of g is an input of f, so the domain of f o g is {5, 3, 1, 2}, the domain of g. …",
-      "order": 36,
+      "order": 39,
       "after": [
         "1f17ff18b95c"
       ],
@@ -667,7 +703,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Grooming USA charges $25 per pet groomed. Materials and labor cost $15 per pet, and fixed costs are $1,000 a month. Profit is revenue minus cost.",
-      "order": 37,
+      "order": 40,
       "after": [
         "a55d326ad391"
       ],
@@ -679,7 +715,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Let x represent the number of pets groomed in a month at Grooming USA. Define a revenue function for the business. (r(x) = 25x)",
-      "order": 38,
+      "order": 41,
       "after": [
         "cbab71710911"
       ],
@@ -691,7 +727,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Materials and labor for each pet groomed cost $15. The business also has fixed costs of $1,000 each month. Define a cost function for this business. (c(x) = 15x + 1000)",
-      "order": 39,
+      "order": 42,
       "after": [
         "cbab71710911"
       ],
@@ -703,7 +739,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Last month, Grooming USA groomed 95 pets. Did they earn a profit? What would the profit be if the business groomed 110 pets in a month? (No, a $50 loss; $100 profit)",
-      "order": 40,
+      "order": 43,
       "after": [
         "cbab71710911"
       ],
@@ -715,7 +751,7 @@
       "type": "cue",
       "front": "Opener prompt 4?",
       "back": "D. Generalize: Explain your procedure for calculating the profit for Grooming USA. Suppose you wanted to calculate the profit for several different scenarios. How could you simplify your process? (r(95) - c(95) and r(110) - c(110); one rule for profit, r(x) - c(x), is simpler)",
-      "order": 41,
+      "order": 44,
       "after": [
         "cbab71710911"
       ],
@@ -727,7 +763,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What do the terms revenue and cost mean? → Revenue is income; cost is an expense of the company.",
-      "order": 42,
+      "order": 45,
       "after": [
         "cbab71710911"
       ],
@@ -739,7 +775,7 @@
       "type": "cue",
       "front": "Before, whole class: ask? (2)",
       "back": "How is profit related to revenue and cost? → Profit equals revenue minus cost.",
-      "order": 43,
+      "order": 46,
       "after": [
         "799047a26531"
       ],
@@ -751,7 +787,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "What is the difference between a fixed cost and a variable cost? → A fixed cost does not change, while a variable cost changes based on the number of items involved.",
-      "order": 44,
+      "order": 47,
       "after": [
         "b9e84a94c198"
       ],
@@ -763,7 +799,7 @@
       "type": "cue",
       "front": "During, small group: ask? (2)",
       "back": "Do both the revenue and the cost functions have both fixed and variable terms? → No; the cost function has a fixed term and a variable term, but the revenue function has only a variable term.",
-      "order": 45,
+      "order": 48,
       "after": [
         "94c638329a6f"
       ],
@@ -775,7 +811,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Last month, Grooming USA made a profit of $300. What will their profit be if they double the number of pets they groom this month? How many pets do they have to groom this month to double last month's profit? → $1,600; 160 pets.",
-      "order": 46,
+      "order": 49,
       "after": [
         "c5cb8a77c18a"
       ],
@@ -787,7 +823,7 @@
       "type": "cue",
       "front": "Early finishers: ask? (2)",
       "back": "Does their profit double when the number of pets that are groomed doubles? → No; they only need to groom 30 more pets to double their profit. Doubling the pets groomed increases the profit by more than 5 times.",
-      "order": 47,
+      "order": 50,
       "after": [
         "5284899b9a1d"
       ],
@@ -799,7 +835,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "How many functions were generated in this activity? → Two functions: one for revenue and one for cost.",
-      "order": 48,
+      "order": 51,
       "after": [
         "4ad522e35f52"
       ],
@@ -811,7 +847,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "How can these two functions be combined to make a profit function? → By subtracting the function for cost from the function for revenue.",
-      "order": 49,
+      "order": 52,
       "after": [
         "3988f6a661bd"
       ],
@@ -823,7 +859,7 @@
       "type": "cue",
       "front": "Habits of Mind, Make Sense and Persevere: ask?",
       "back": "A business 'breaks even' when its revenue equals its costs. How many pets would Grooming USA have to groom in order to break even? → 100 pets.",
-      "order": 50,
+      "order": 53,
       "after": [
         "1cc01bdc443b"
       ],
@@ -835,7 +871,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The opener subtracts two functions (P(x) = r(x) - c(x) = 10x - 1,000), which is Example 1's operation, cut in the fast packet; it is not a composition. …",
-      "order": 51,
+      "order": 54,
       "after": [
         "cbab71710911"
       ],
@@ -847,7 +883,7 @@
       "type": "anchor",
       "front": "IXL for example 5?",
       "back": "EKJ Composition of linear and quadratic functions: find an equation",
-      "order": 52,
+      "order": 55,
       "after": [
         "1349b7df653a"
       ],
@@ -859,7 +895,7 @@
       "type": "anchor",
       "front": "IXL for example 6?",
       "back": "RSP Composition of linear functions: find an equation",
-      "order": 53,
+      "order": 56,
       "after": [
         "1f17ff18b95c"
       ],
@@ -871,7 +907,7 @@
       "type": "anchor",
       "front": "IXL for example 5? (2)",
       "back": "P9T Composition of linear and quadratic functions: find a value",
-      "order": 54,
+      "order": 57,
       "after": [
         "1349b7df653a"
       ],
@@ -883,7 +919,7 @@
       "type": "anchor",
       "front": "IXL for example 1?",
       "back": "QQD Add and subtract functions",
-      "order": 55,
+      "order": 58,
       "after": [
         "a55d326ad391"
       ],

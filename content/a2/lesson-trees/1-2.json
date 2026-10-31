@@ -181,11 +181,23 @@
       "source": "quizFocus.needs[3]"
     },
     {
+      "id": "011223fbc27e",
+      "type": "anchor",
+      "front": "Topic 1 test item 5 is covered by?",
+      "back": "Identify the translations of f(x) = x^2 that give g(x) = (x - 5)^2 - 4 (choices pair up/down 4 with left/right 5) (DOK 2): Examples 1 and 5, kept",
+      "order": 15,
+      "after": [
+        "9a6611e8e556"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.5"
+    },
+    {
       "id": "b0bc8b3f3de4",
       "type": "step",
       "front": "Example 1: ?",
-      "back": "Translate a function · DOK 1, 3 · practice 18-21, 13 · Left/right and up/down; the sign trap in (x + 1) is half of quiz item 1.",
-      "order": 15,
+      "back": "Translate a function · DOK 1, 3 · practice 18-21, 13 · Left/right and up/down; the sign trap in (x + 1) is half of quiz item 1. Topic 1 test item 5.",
+      "order": 16,
       "after": [
         "9a6611e8e556",
         "1993fcf120d0"
@@ -198,7 +210,7 @@
       "type": "step",
       "front": "Example 2: ?",
       "back": "Reflect a function across the x- or y-axis · DOK 1-2 · practice 16, 22, 23, 14 · Opens-down = reflection across the x-axis (choice F).",
-      "order": 16,
+      "order": 17,
       "after": [
         "b0bc8b3f3de4"
       ],
@@ -210,7 +222,7 @@
       "type": "step",
       "front": "Example 3: ?",
       "back": "Understand stretches and compressions · DOK 1, 3 · practice 24-27, 15 · Horizontal vs vertical stretch (choice D vs E); the hardest distinction on the item.",
-      "order": 17,
+      "order": 18,
       "after": [
         "5330680ba5df"
       ],
@@ -221,8 +233,8 @@
       "id": "9531ac9db980",
       "type": "step",
       "front": "Example 5: ?",
-      "back": "Identify transformations from an equation · DOK 2, 3 · practice 29-32, 36, 17, 37 · The lesson. Try It 5 is the graded Try It; quiz item 1 is Example 5 read from a graph instead of an equation.",
-      "order": 18,
+      "back": "Identify transformations from an equation · DOK 2, 3 · practice 29-32, 36, 17, 37 · The lesson. Try It 5 is the graded Try It; quiz item 1 is Example 5 read from a graph instead of an equation. Topic 1 test item 5.",
+      "order": 19,
       "after": [
         "655e53b3a6ec"
       ],
@@ -234,7 +246,7 @@
       "type": "cue",
       "front": "Example 1 · Connect representations: What do you notice about the two new graphs compared to their parent functions?",
       "back": "Listen for: One graph is the parent function translated down; the other graph is the parent function translated to the right.",
-      "order": 19,
+      "order": 20,
       "after": [
         "b0bc8b3f3de4"
       ],
@@ -263,7 +275,7 @@
       "type": "cue",
       "front": "Example 1 · Connect representations: Will the transformation of either graph cause the parabola to change shape?",
       "back": "Listen for: No; a translation is a slide to a new position. The shape will not change.",
-      "order": 20,
+      "order": 21,
       "after": [
         "a43217480d78"
       ],
@@ -292,7 +304,7 @@
       "type": "cue",
       "front": "Example 1 · Check student thinking: Will a horizontal translation always result in the translated function not having a y-intercept?",
       "back": "Listen for: No; if the domain of (f) were not restricted, then any horizontal translation of (f) would still have a y-intercept.",
-      "order": 21,
+      "order": 22,
       "after": [
         "e6314e612b78"
       ],
@@ -321,7 +333,7 @@
       "type": "cue",
       "front": "Example 2 · Purposeful question: How can you describe what the reflection across the x-axis does to the coordinates and the equation?",
       "back": "Listen for: The y-values of the original function are multiplied by (-1).",
-      "order": 22,
+      "order": 23,
       "after": [
         "5330680ba5df"
       ],
@@ -350,7 +362,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: How do the points of a graph change when reflected across the x-axis? The y-axis?",
       "back": "Listen for: The y-coordinates change to the opposite sign when reflected across the x-axis. The x-coordinates change to the opposite sign when reflected across the y-axis.",
-      "order": 23,
+      "order": 24,
       "after": [
         "df3a8aeacebe"
       ],
@@ -379,7 +391,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: How are reflections related to symmetry?",
       "back": "Listen for: Symmetrical shapes can be divided by a line down the middle, with one side a reflection of the other side.",
-      "order": 24,
+      "order": 25,
       "after": [
         "878d468f5b4d"
       ],
@@ -408,7 +420,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: When you move from a positive y-value to a negative y-value, in which direction do you move?",
       "back": "Listen for: down",
-      "order": 25,
+      "order": 26,
       "after": [
         "60cd904b6af5"
       ],
@@ -437,7 +449,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: When you move from a negative x-value to a positive x-value, in which direction do you move?",
       "back": "Listen for: right",
-      "order": 26,
+      "order": 27,
       "after": [
         "927022fb3196"
       ],
@@ -466,7 +478,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: What topic could you write about if you used the word produce pronounced with the stress on the first syllable?",
       "back": "Listen for: fruits and vegetables; grocery store",
-      "order": 27,
+      "order": 28,
       "after": [
         "9f35570c6c01"
       ],
@@ -495,7 +507,7 @@
       "type": "cue",
       "front": "Example 2 · Teacher prompt: What is a synonym for produce as it is used in the example?",
       "back": "Listen for: make, create, form",
-      "order": 28,
+      "order": 29,
       "after": [
         "8f7eb7a2e5c5"
       ],
@@ -524,7 +536,7 @@
       "type": "cue",
       "front": "Example 2 · Purposeful question: How can you describe what the reflection across the y-axis does to the coordinates and the equation?",
       "back": "Listen for: The x-values of the original function are multiplied by (-1).",
-      "order": 29,
+      "order": 30,
       "after": [
         "2b4ee445eb8a"
       ],
@@ -553,7 +565,7 @@
       "type": "cue",
       "front": "Example 2 · Purposeful question: What is the difference between (g(x)=-f(x)) and (g(x)=f(-x))?",
       "back": "Listen for: When (f(x)) has a coefficient of (-1), the y-values change sign, causing a reflection across the x-axis. When (x) has a coefficient of (-1), the x-values change sign, causing a reflection across the y-axis.",
-      "order": 30,
+      "order": 31,
       "after": [
         "f005b8a07548"
       ],
@@ -582,7 +594,7 @@
       "type": "trap",
       "front": "Example 2 · Common error: What error should I watch for, and how does the TE respond? (1/2)",
       "back": "Some students may incorrectly interpret a reflection across the y-axis as the result of changing the coefficient of (x) to (-1).",
-      "order": 31,
+      "order": 32,
       "after": [
         "148b61db9da3"
       ],
@@ -611,7 +623,7 @@
       "type": "trap",
       "front": "Example 2 · Common error: What error should I watch for, and how does the TE respond? (2/2)",
       "back": "Show students that the (x) in the function is not changed to a negative; the actual values that are substituted into the function will be opposites of those from the original function but will produce the same range.",
-      "order": 32,
+      "order": 33,
       "after": [
         "cf7adc4e60b8"
       ],
@@ -640,7 +652,7 @@
       "type": "cue",
       "front": "Example 2 · Reasoning: Look for Relationships How are the intercepts of a graph affected by reflection across the x-axis? Explain.",
       "back": "Listen for: The x-intercept stays the same because the points on the axis you are reflecting about do not change. The y-intercept of the reflected graph is the opposite of the y-intercept of the original graph because the two points are equidistant from the x-axis.",
-      "order": 33,
+      "order": 34,
       "after": [
         "8f2ef9cc76b8"
       ],
@@ -669,7 +681,7 @@
       "type": "cue",
       "front": "Example 3 · Connect representations: What is the relationship between the coefficient of (f(x)=a|x|) and its effects on the graph?",
       "back": "Listen for: The coefficient of (f(x)) is the factor by which the graph is either stretched or compressed vertically with regard to each point’s distance from the x-axis.",
-      "order": 34,
+      "order": 35,
       "after": [
         "655e53b3a6ec"
       ],
@@ -698,7 +710,7 @@
       "type": "trap",
       "front": "Example 3 · Teacher prompt: What misconception should I watch for?",
       "back": "Be careful not to assume that the domain of a transformed function is the same as the domain of the original function. Notice that (h(-4)) would equal (f(-8)), which is outside the domain of (f), ([-4,4]).",
-      "order": 35,
+      "order": 36,
       "after": [
         "602e56a163b5"
       ],
@@ -727,7 +739,7 @@
       "type": "cue",
       "front": "Example 3 · Support: Describe the domain and range of (h).",
       "back": "Listen for: The domain of (h) is the same as that of (f), and the range is (1/2) the range of (f).",
-      "order": 36,
+      "order": 37,
       "after": [
         "d1bfcc08731c"
       ],
@@ -756,7 +768,7 @@
       "type": "cue",
       "front": "Example 3 · Support: How will the transformation affect the points on the graph of (h) when compared to the graph of (f)?",
       "back": "Listen for: Each corresponding point on the graph of (h) is half the distance from the x-axis as the points on the graph of (f).",
-      "order": 37,
+      "order": 38,
       "after": [
         "af7b508d7d43"
       ],
@@ -785,7 +797,7 @@
       "type": "cue",
       "front": "Example 5 · Connect representations: How are vertical transformations expressed differently in function notation than horizontal transformations?",
       "back": "Listen for: When (f(x)) is written as (af(x)+k), (a) signals a vertical stretch or compression and (k) signals a vertical shift. When (f(x)) is written as (f[b(x-h)]), (b) signals a horizontal stretch or compression and (h) signals a horizontal shift.",
-      "order": 38,
+      "order": 39,
       "after": [
         "9531ac9db980"
       ],
@@ -814,7 +826,7 @@
       "type": "cue",
       "front": "Example 5 · Connect representations: What can you tell about the shape of the graph of (g) compared to the shape of the graph of (f), just by looking at the equation for (g)? Explain.",
       "back": "Listen for: The shape of the graphs will be the same because the equation for (g) shows only a horizontal and a vertical translation, with no stretch or compression.",
-      "order": 39,
+      "order": 40,
       "after": [
         "0842c52e19e5"
       ],
@@ -843,7 +855,7 @@
       "type": "cue",
       "front": "Example 5 · Check student thinking: What determines whether the function is transformed vertically or horizontally?",
       "back": "Listen for: Vertical transformations are indicated by operations performed on the output of the function; horizontal transformations are indicated by operations performed on the input of the function.",
-      "order": 40,
+      "order": 41,
       "after": [
         "058da9e37a7a"
       ],
@@ -872,7 +884,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Monisha compares f(x) = |x| and g(x) = |2x - 4|. She says g is f translated 4 right and compressed horizontally by 2. What is her error?",
-      "order": 41,
+      "order": 42,
       "after": [
         "9531ac9db980"
       ],
@@ -884,7 +896,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "|2x - 4| = 2|x - 2|, so g is f translated 2 right and stretched vertically by 2 (or, read as f(2(x - 2)), compressed horizontally by 1/2 and shifted 2 right). Students must factor inside the absolute value before reading the transformations; the same inside-vs-outside reasoning as quiz item 1's choice D vs E.",
-      "order": 42,
+      "order": 43,
       "after": [
         "9531ac9db980"
       ],
@@ -896,7 +908,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "The graph of f(x) = |x| is shown. Students graph g(x) = |x + c| for several values of c from -5 to 5.",
-      "order": 43,
+      "order": 44,
       "after": [
         "493bbfa9864b"
       ],
@@ -908,7 +920,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Graph g(x) = |x + c| several times with different values of c (any value from -5 to 5).",
-      "order": 44,
+      "order": 45,
       "after": [
         "d4c131bb1bd3"
       ],
@@ -920,7 +932,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Look for Relationships: predict what happens to the graph if c is greater than 100. What if c is between 0 and 1/2? (Very large shift left; very small shift left.)",
-      "order": 45,
+      "order": 46,
       "after": [
         "d4c131bb1bd3"
       ],
@@ -932,7 +944,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What does the graph tell you about the range of f(x) = |x|? → The range is greater than or equal to zero.",
-      "order": 46,
+      "order": 47,
       "after": [
         "d4c131bb1bd3"
       ],
@@ -944,7 +956,7 @@
       "type": "cue",
       "front": "Before, whole class: ask? (2)",
       "back": "What can you predict about the range of g(x) = |x + c| for different values of c? → Whatever c is, the range is still greater than or equal to zero.",
-      "order": 47,
+      "order": 48,
       "after": [
         "1f2cece9b15c"
       ],
@@ -956,7 +968,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "How can you find points to graph for each function? → Make a table of values for x from -5 to 5 and compute y.",
-      "order": 48,
+      "order": 49,
       "after": [
         "0c2cf531bce7"
       ],
@@ -968,7 +980,7 @@
       "type": "cue",
       "front": "During, small group: ask? (2)",
       "back": "What do you notice about the vertex of each function? → The vertices all lie on the x-axis.",
-      "order": 49,
+      "order": 50,
       "after": [
         "04588bac3cd5"
       ],
@@ -980,7 +992,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "How does the graph change if the coefficient of f(x + c) is negative? Graph -f(x + c) for three of your functions. → The graphs of -f(x + c) are reflections of f(x + c) across the x-axis.",
-      "order": 50,
+      "order": 51,
       "after": [
         "883a70d87c79"
       ],
@@ -992,7 +1004,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "If f(x) has a horizontal shift, what part of the function has been changed? → x stands for the domain, so the operation is applied to x inside the parentheses.",
-      "order": 51,
+      "order": 52,
       "after": [
         "91fcd7b4d188"
       ],
@@ -1004,7 +1016,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "If f(x) has a vertical shift, what part of the function has been changed? → f(x) stands for the range, so the operation is applied to f(x).",
-      "order": 52,
+      "order": 53,
       "after": [
         "ca05b804ae81"
       ],
@@ -1016,7 +1028,7 @@
       "type": "cue",
       "front": "Habits of Mind, Reason: ask?",
       "back": "What happens to the graph if c is a negative number? → The graph shifts to the right when c is negative.",
-      "order": 53,
+      "order": 54,
       "after": [
         "a65e923180c5"
       ],
@@ -1028,7 +1040,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The After questions are the moment to introduce a·f(b(x - h)) + k. The Mon/Tue whiteboard table activity (a2_1-2_plan_oct5-7) already does part A on paper; the TE's 'table of values' answer matches it.",
-      "order": 54,
+      "order": 55,
       "after": [
         "d4c131bb1bd3"
       ],
@@ -1040,7 +1052,7 @@
       "type": "anchor",
       "front": "IXL for example 1?",
       "back": "F6J Translations of functions",
-      "order": 55,
+      "order": 56,
       "after": [
         "b0bc8b3f3de4"
       ],
@@ -1052,7 +1064,7 @@
       "type": "anchor",
       "front": "IXL for example 2?",
       "back": "PHV Reflections of functions",
-      "order": 56,
+      "order": 57,
       "after": [
         "5330680ba5df"
       ],
@@ -1064,7 +1076,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "NNY Dilations of functions",
-      "order": 57,
+      "order": 58,
       "after": [
         "655e53b3a6ec"
       ],
@@ -1076,7 +1088,7 @@
       "type": "anchor",
       "front": "IXL for example 5?",
       "back": "KT8 Describe function transformations",
-      "order": 58,
+      "order": 59,
       "after": [
         "9531ac9db980"
       ],
@@ -1088,7 +1100,7 @@
       "type": "anchor",
       "front": "IXL for example 5? (2)",
       "back": "R7X Function transformation rules",
-      "order": 59,
+      "order": 60,
       "after": [
         "9531ac9db980"
       ],
@@ -1100,7 +1112,7 @@
       "type": "anchor",
       "front": "IXL for example 5? (3)",
       "back": "KQL Transformations of quadratic functions",
-      "order": 60,
+      "order": 61,
       "after": [
         "9531ac9db980"
       ],

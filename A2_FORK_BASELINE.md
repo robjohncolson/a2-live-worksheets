@@ -2865,3 +2865,32 @@ Root suite: the same pre-existing failures as before this work (`a2-fork-freeze`
 `a2-objectives-display`, `a2-secrets`; `draft-card-decks` is flaky), no new failures; server
 suite 99 files pass. `tests/a2-lesson-skills.test.js` now accepts Topics 3+ and pins 2-1 (L8C
 last) and 2-7 (U5D last).
+
+## Topic Assessment alignment - 2026-10-31
+
+The teacher ruled that the Savvas Topic Assessment is the end goal of every lesson and the lesson
+quiz the intermediate (the district's common assessments are remade from the Savvas forms by
+removing questions, aimed at the SAT and Precalculus). The seven Topic Assessments (Forms A and B
+with the TE's marked keys and the item-analysis table) were transcribed from the TE pages into
+`../Lesson_planning/a2_T<N>_assessment_TE.tex` (Opus 5.5 transcribers, independent item-by-item
+verification on 600 dpi crops, all seven passed with only graph-wording minors; Codex gpt-6-astra
+text-only review GREEN on Topics 1, 4 and 6, its flags on the others being Savvas item-design
+quirks now noted in `\te`). Every item (120) was mapped to its lesson and Example with DOK, Skills
+Review code, SAT and Precalculus relevance and the district form's status in
+`data/a2-topic-assessments.json` (adversarially verified per topic; Topic 3 needed one fix round);
+`scripts/build-a2-topic-assessment-audit.mjs` renders `docs/a2-topic-assessment-audit.md` and
+`tests/a2-topic-assessments.test.js` enforces the map, the prep entries' `topicAssessment` blocks
+and the doc. Spec amendments: R1 (topic items outrank quiz items; SAT/Precalculus tie-break), R2,
+R8 (`\topictarget{<N>}{...}` box, required by the lint), sections 3, 7, 10, 12.
+
+Under R1 the kept Examples changed in 16 of the 29 fast lessons (2-1, 2-3, 2-6, 2-7, 3-2, 4-1, 4-2,
+4-4, 4-5, 5-1, 5-6, 6-1, 6-2, 6-3, 7-2, 7-3): packet, short quiz and Desk entries rebuilt by Opus
+5.5 with an Opus verifier and fix loop (every one passed; new IXL codes for 4-1, 6-1, 6-2, 7-2).
+The other 17 lessons (1-2 to 1-6, 2-2, 2-4, 2-5, 3-1, 3-3, 3-4, 3-5, 3-7, 4-3, 5-5, 6-6, 7-1) keep
+their Examples and gained the box and the prep block; 1-2 is quiz-only. All 32 packets and 29
+quizzes pass the lint with `--compile`; 33 lesson trees valid; the Desk fold shows "Topic N test"
+items and the lesson tree adds one anchor per item (`scripts/lib/lesson-tree.mjs`, test added).
+Coverage before the PLC rules: 48 of 120 items are taught by a kept Example, 46 sit under a cut
+Example, 25 fall in lessons with no fast lesson (1-1; 5-2, 5-3, 5-4; 6-4, 6-5, 6-7; 7-4, 7-5), 1 has
+no Example (Topic 6 item 3). The department's SY25-26 Topic 6 cut (8 items, on disk as
+`Topic6AssessFormB.tex`) keeps only logarithm items, six of them from 6-4 and 6-5.

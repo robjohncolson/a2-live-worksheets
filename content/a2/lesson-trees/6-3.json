@@ -16,7 +16,7 @@
       "id": "c6f8a247f895",
       "type": "anchor",
       "front": "Define: base",
-      "back": "log with no base written means base 10; ln means base e (packet top box, from the TE concept box before Example 4)",
+      "back": "rewrite a logarithmic equation in exponential form: base, exponent, argument (Example 5 Part B; Try It 5a is the structural twin of item 5; IXL BXU, 8RK)",
       "order": 2,
       "after": [
         "18c8de049367"
@@ -28,7 +28,7 @@
       "id": "dc01101d0052",
       "type": "anchor",
       "front": "Define: exponent",
-      "back": "rewrite a logarithmic equation in exponential form: base, exponent, argument (Example 5 Part B; Try It 5a is the structural twin of item 5; IXL 8RK, BXU)",
+      "back": "rewrite a logarithmic equation in exponential form: base, exponent, argument (Example 5 Part B; Try It 5a is the structural twin of item 5; IXL BXU, 8RK)",
       "order": 3,
       "after": [
         "18c8de049367"
@@ -40,7 +40,7 @@
       "id": "81bff915efbf",
       "type": "anchor",
       "front": "Define: argument",
-      "back": "rewrite a logarithmic equation in exponential form: base, exponent, argument (Example 5 Part B; Try It 5a is the structural twin of item 5; IXL 8RK, BXU)",
+      "back": "rewrite a logarithmic equation in exponential form: base, exponent, argument (Example 5 Part B; Try It 5a is the structural twin of item 5; IXL BXU, 8RK)",
       "order": 4,
       "after": [
         "18c8de049367"
@@ -49,11 +49,23 @@
       "source": "objectives.language.words.argument"
     },
     {
+      "id": "0b5a546c2aed",
+      "type": "anchor",
+      "front": "Define: inverse",
+      "back": "the logarithmic function y = log_b x is the inverse of the exponential function y = b^x (Example 1 continued; Try It 1 writes the log form of y = 8^x; packet Practice names the inverse of y = 5^x, 10^x, (1/2)^x; IXL 8RK)",
+      "order": 5,
+      "after": [
+        "18c8de049367"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.inverse"
+    },
+    {
       "id": "4f2472026c2d",
       "type": "anchor",
       "front": "Define: logarithmic form",
-      "back": "I can explain how I evaluated a logarithm or solved an equation using the words base, exponent, argument, logarithmic form, and exponential form.",
-      "order": 5,
+      "back": "I can explain how I found an inverse or solved an equation using the words base, exponent, argument, inverse, and logarithmic form.",
+      "order": 6,
       "after": [
         "18c8de049367"
       ],
@@ -61,29 +73,17 @@
       "source": "objectives.language.words.logarithmic form"
     },
     {
-      "id": "bb53038db802",
-      "type": "anchor",
-      "front": "Define: exponential form",
-      "back": "rewrite a logarithmic equation in exponential form: base, exponent, argument (Example 5 Part B; Try It 5a is the structural twin of item 5; IXL 8RK, BXU)",
-      "order": 6,
-      "after": [
-        "18c8de049367"
-      ],
-      "minute": null,
-      "source": "objectives.language.words.exponential form"
-    },
-    {
       "id": "a613d1f1f0f8",
       "type": "anchor",
       "front": "Quiz item 5 asks?",
-      "back": "Item 5: What is the solution to the equation log(2x + 4) = 2? Round to the nearest thousandth, if necessary. Proposed scoring: items 4 and 5 at 10 points each (the two kept Examples), item 3 a +5 bonus, total out of 20; items 1 and 2 left off the short form.",
+      "back": "Item 5: What is the solution to the equation log(2x + 4) = 2? Round to the nearest thousandth, if necessary (the only constructed-response item, and the structural twin of Topic 6 test item 9, log_4(5x + 9) = 3). …",
       "order": 7,
       "after": [
         "c6f8a247f895",
         "dc01101d0052",
         "81bff915efbf",
-        "4f2472026c2d",
-        "bb53038db802"
+        "0b5a546c2aed",
+        "4f2472026c2d"
       ],
       "minute": null,
       "source": "quizFocus.what"
@@ -92,14 +92,14 @@
       "id": "ded5ebf50ad6",
       "type": "anchor",
       "front": "Quiz item 5 answer?",
-      "back": "Item 5: x = 48 (10^2 = 2x + 4, 2x = 96). Item 4: A, E. Item 3: D. (TE key: 1 C, 2 B, 3 D, 4 A, E, 5 x = 48; verify against the TE key on quiz day)",
+      "back": "Item 5: x = 48 (10^2 = 2x + 4, 2x = 96). Item 1: C, y = log_3 x. Item 3: D. (TE key: 1 C, 2 B, 3 D, 4 A, E, 5 x = 48; verify against the TE key on quiz day)",
       "order": 8,
       "after": [
         "c6f8a247f895",
         "dc01101d0052",
         "81bff915efbf",
-        "4f2472026c2d",
-        "bb53038db802"
+        "0b5a546c2aed",
+        "4f2472026c2d"
       ],
       "minute": null,
       "source": "quizFocus.answer"
@@ -108,7 +108,7 @@
       "id": "697644139465",
       "type": "anchor",
       "front": "Before quiz item 5 students need?",
-      "back": "log with no base written means base 10; ln means base e (packet top box, from the TE concept box before Example 4)",
+      "back": "rewrite a logarithmic equation in exponential form: base, exponent, argument (Example 5 Part B; Try It 5a is the structural twin of item 5; IXL BXU, 8RK)",
       "order": 9,
       "after": [
         "a613d1f1f0f8"
@@ -120,7 +120,7 @@
       "id": "aa10c4e4a6ab",
       "type": "anchor",
       "front": "Before quiz item 5 students need? (2)",
-      "back": "rewrite a logarithmic equation in exponential form: base, exponent, argument (Example 5 Part B; Try It 5a is the structural twin of item 5; IXL 8RK, BXU)",
+      "back": "the logarithmic function y = log_b x is the inverse of the exponential function y = b^x (Example 1 continued; Try It 1 writes the log form of y = 8^x; packet Practice names the inverse of y = 5^x, 10^x, (1/2)^x; IXL 8RK)",
       "order": 10,
       "after": [
         "a613d1f1f0f8"
@@ -132,7 +132,7 @@
       "id": "d51081c1e065",
       "type": "anchor",
       "front": "Before quiz item 5 students need? (3)",
-      "back": "evaluate a logarithm by asking what exponent on the base gives the argument, and call a log of 0 or a negative number undefined (Example 3; Try It 3; packet Practice; IXL GBR)",
+      "back": "log with no base written means base 10; ln means base e (packet top box, from the TE concept box before Example 4)",
       "order": 11,
       "after": [
         "a613d1f1f0f8"
@@ -144,7 +144,7 @@
       "id": "9878de63ec10",
       "type": "anchor",
       "front": "Before quiz item 5 students need? (4)",
-      "back": "for item 4, check each claimed value by writing its exponential form (the packet Practice is a structural parallel with different numbers)",
+      "back": "for the bonus (item 3): base 8, exponent a, result 64 gives 8^a = 64 (Example 5 Part B's first step; packet top box; IXL 8RK)",
       "order": 12,
       "after": [
         "a613d1f1f0f8"
@@ -153,23 +153,11 @@
       "source": "quizFocus.needs[3]"
     },
     {
-      "id": "fc4a8bae75e7",
-      "type": "anchor",
-      "front": "Before quiz item 5 students need? (5)",
-      "back": "for the bonus (item 3): base 8, exponent a, result 64 gives 8^a = 64 (IXL 8RK)",
-      "order": 13,
-      "after": [
-        "a613d1f1f0f8"
-      ],
-      "minute": null,
-      "source": "quizFocus.needs[4]"
-    },
-    {
       "id": "8af29cd599e3",
       "type": "anchor",
       "front": "Quiz item 1 is covered by?",
-      "back": "Inverse of y = 3^x (answer C, y = log_3 x; DOK 2, F69): Example 1 (cut). The packet's top box prints the TE definition 'y = log_b x is the inverse of y = b^x'. Full Savvas quiz only (left off the short form).",
-      "order": 14,
+      "back": "Inverse of y = 3^x (answer C, y = log_3 x; DOK 2, F69): Example 1 (kept; its continuation states y = log_b x is the inverse of y = b^x), Try It 1 and the packet Practice (R5 parallel). On the short form: proposed 10 points (7 for C, 3 for the explanation). Same skill as Topic 6 test item 7 (inverse of y = 4^x).",
+      "order": 13,
       "after": [
         "a613d1f1f0f8"
       ],
@@ -181,7 +169,7 @@
       "type": "anchor",
       "front": "Quiz item 2 is covered by?",
       "back": "Best estimate of ln 16 (answer B, 2.77; DOK 2, F73): Example 4 (cut); a calculator press (ln 16 = 2.7726). Optional unstarred IXL TDF. Full Savvas quiz only (left off the short form).",
-      "order": 15,
+      "order": 14,
       "after": [
         "a613d1f1f0f8"
       ],
@@ -192,8 +180,8 @@
       "id": "a76fe9e42464",
       "type": "anchor",
       "front": "Quiz item 3 is covered by?",
-      "back": "log_8 64 = a in exponential form (answer D, 8^a = 64; DOK 2, F73): Example 2B's move (cut), but both kept Examples perform it (Example 3 THINK step, Example 5 Part B). On the short form: proposed +5 bonus.",
-      "order": 16,
+      "back": "log_8 64 = a in exponential form (answer D, 8^a = 64; DOK 2, F73): Example 2B's move (cut), but kept Example 5 Part B performs it as its first step, and Try It 5a repeats it. On the short form: proposed +5 bonus.",
+      "order": 15,
       "after": [
         "a613d1f1f0f8"
       ],
@@ -204,8 +192,8 @@
       "id": "0ac6b4544a9f",
       "type": "anchor",
       "front": "Quiz item 4 is covered by?",
-      "back": "Select all the logarithms evaluated correctly: ln 1 = 0, log_2 9 = 3, log 1/100 = 1/2, log_3(-1) = 1/3, log_5 1/125 = -3 (answer A, E; DOK 1, F69): Example 3 plus the common/natural notation line; the packet Practice rehearses the format. …",
-      "order": 17,
+      "back": "Select all the logarithms evaluated correctly: ln 1 = 0, log_2 9 = 3, log 1/100 = 1/2, log_3(-1) = 1/3, log_5 1/125 = -3 (answer A, E; DOK 1, F69): Example 3 (cut) plus the common/natural notation line. Optional unstarred IXL GBR. Full Savvas quiz only (left off the short form).",
+      "order": 16,
       "after": [
         "a613d1f1f0f8"
       ],
@@ -216,8 +204,8 @@
       "id": "f41d8a84c366",
       "type": "anchor",
       "front": "Quiz item 5 is covered by?",
-      "back": "Solve log(2x + 4) = 2 (answer x = 48; DOK 2, F69): Example 5 Part B and Try It 5a. On the short form: proposed 10 points (4 for the exponential form, 6 for x = 48).",
-      "order": 18,
+      "back": "Solve log(2x + 4) = 2 (answer x = 48; DOK 2, F69): Example 5 Part B and Try It 5a. On the short form: proposed 10 points (4 for the exponential form, 6 for x = 48). Same skill as Topic 6 test item 9.",
+      "order": 17,
       "after": [
         "a613d1f1f0f8"
       ],
@@ -225,229 +213,108 @@
       "source": "quizFocus.items.5"
     },
     {
-      "id": "d83b349a427d",
-      "type": "step",
-      "front": "Example 3: ?",
-      "back": "Evaluate Logarithms · DOK 1, 2, 3 · practice 32-39, 16, 17, 55, 56 · Quiz item 4 (select the logs evaluated correctly, including the undefined log_3(-1) and the negative log_5 1/125), and its THINK step rehearses item 3. Carries the lesson's cleanest DOK 3 (practice 17). …",
+      "id": "26cdcc50d97b",
+      "type": "anchor",
+      "front": "Topic 6 test item 7 is covered by?",
+      "back": "Which function is the inverse of y = 4^x? (x^(1/4), (1/4)^x, log_x 4, log_4 x) (DOK 2): Example 1, kept",
+      "order": 18,
+      "after": [
+        "a613d1f1f0f8"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.7"
+    },
+    {
+      "id": "2c38869bbacd",
+      "type": "anchor",
+      "front": "Topic 6 test item 9 is covered by?",
+      "back": "Solve log_4(5x + 9) = 3 (DOK 2): Example 5, kept",
       "order": 19,
+      "after": [
+        "a613d1f1f0f8"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.9"
+    },
+    {
+      "id": "72684f91c433",
+      "type": "step",
+      "front": "Example 1: ?",
+      "back": "Understand Logarithms · DOK 1 · practice 20-23 · Topic 6 test item 7 (which function is the inverse of y = 4^x; answer log_4 x) and quiz item 1 (the inverse of y = 3^x) both come from this Example's continuation: y = log_b x is the inverse of y = b^x. …",
+      "order": 20,
       "after": [
         "a613d1f1f0f8",
         "ded5ebf50ad6"
       ],
       "minute": null,
-      "source": "examples[n=3]"
+      "source": "examples[n=1]"
     },
     {
       "id": "0816101bd2d9",
       "type": "step",
       "front": "Example 5: ?",
-      "back": "Solve Equations With Logarithms · DOK 2 · practice 14, 46-51 · Quiz item 5 (log(2x + 4) = 2, the only constructed-response item, so the one that shows work). Part B converts to exponential form, which is also quiz item 3; Try It 5a (log(3x - 2) = 2) is its twin. …",
-      "order": 20,
+      "back": "Solve Equations With Logarithms · DOK 2 · practice 14, 46-51 · Topic 6 test item 9 (solve log_4(5x + 9) = 3: rewrite as 4^3 = 5x + 9, x = 11) is its Part B move, and quiz item 5 (log(2x + 4) = 2, the only constructed-response item) is the same move; Part B's first step is also quiz item 3 (bonus). …",
+      "order": 21,
       "after": [
-        "d83b349a427d"
+        "72684f91c433"
       ],
       "minute": null,
       "source": "examples[n=5]"
     },
     {
-      "id": "e2ef10f732ed",
-      "type": "trap",
-      "front": "Example 3 · Common error: What error should I watch for, and how does the TE respond?",
-      "back": "Some students confuse the placement of the various numbers when converting to another form of the equation. Instead of writing (2^5=32) as (log_2 32=5), students may write the logarithmic form as (log_2 5=32). Show different parts of the expression using color or a diagram.",
-      "order": 21,
-      "after": [
-        "d83b349a427d"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.CommonError[0].guidance",
-      "teaching": {
-        "example": 3,
-        "kind": "trap",
-        "category": "CommonError",
-        "source": {
-          "file": "a2_6-3_TE.tex",
-          "anchor": 3,
-          "category": "CommonError",
-          "block": 0,
-          "page": "42: 303 Step 2 Understand & Apply",
-          "item": 0,
-          "line": 251
-        },
-        "promptKey": "examples[n=3].teacherPrompts.CommonError[0].guidance",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "6eda67a213ce",
+      "id": "540c35272fc5",
       "type": "cue",
-      "front": "Example 3 · Connect representations: Must all parts of a logarithmic expression be positive?",
-      "back": "Listen for: No; The base must be positive by definition. The input value must be positive because any positive number raised to an exponent yields a positive number. But the properties of exponents state that (a^(-b)=1/(a^b)), so the value of the expression as a whole can be negative.",
+      "front": "Example 1 · Connect representations: How is solving (2^x=8) similar to solving (2x=8)? different?",
+      "back": "Listen for: Similar: both use inverse operations; different: inverse operation used to solve (2x=8) is division and inverse operation used to solve (2^x=8) is a logarithm.",
       "order": 22,
       "after": [
-        "e2ef10f732ed"
+        "72684f91c433"
       ],
       "minute": null,
-      "source": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
       "teaching": {
-        "example": 3,
+        "example": 1,
         "kind": "question",
         "category": "GeneralizeETP",
         "source": {
           "file": "a2_6-3_TE.tex",
-          "anchor": 3,
+          "anchor": 1,
           "category": "GeneralizeETP",
           "block": 0,
-          "page": "43: 304 Step 2 Understand & Apply",
+          "page": "41: 302 Step 2 Understand & Apply",
           "item": 0,
-          "line": 302
+          "line": 176
         },
-        "promptKey": "examples[n=3].teacherPrompts.GeneralizeETP[0].questions[0]",
+        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[0]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "ca3f3fa75585",
+      "id": "0c8b7edbed70",
       "type": "cue",
-      "front": "Example 3 · Check student thinking: How is Part a in the Try It different from Part B of the example?",
-      "back": "Listen for: In the Try It, the argument is a fraction, but in the example, the base is a fraction.",
+      "front": "Example 1 · Connect representations: You can calculate the value of (x) in (2^x=8) without rewriting the function as (log_2 8=x). When might it be necessary to use this notation?",
+      "back": "Listen for: It will be necessary to use the inverse form of an exponential function to solve more difficult problems.",
       "order": 23,
       "after": [
-        "6eda67a213ce"
+        "540c35272fc5"
       ],
       "minute": null,
-      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "source": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
       "teaching": {
-        "example": 3,
+        "example": 1,
         "kind": "question",
-        "category": "ElicitEvidence",
+        "category": "GeneralizeETP",
         "source": {
           "file": "a2_6-3_TE.tex",
-          "anchor": 3,
-          "category": "ElicitEvidence",
+          "anchor": 1,
+          "category": "GeneralizeETP",
           "block": 0,
-          "page": "43: 304 Step 2 Understand & Apply",
-          "item": 0,
-          "line": 307
-        },
-        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "dde31baf0b4c",
-      "type": "cue",
-      "front": "Example 3 · Support: What does evaluate mean?",
-      "back": "Listen for: find the value of",
-      "order": 24,
-      "after": [
-        "ca3f3fa75585"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "RtISupport",
-        "source": {
-          "file": "a2_6-3_TE.tex",
-          "anchor": 3,
-          "category": "RtISupport",
-          "block": 0,
-          "page": "43: 304 Step 2 Understand & Apply",
-          "item": 0,
-          "line": 352
-        },
-        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "1bbdf77a6738",
-      "type": "cue",
-      "front": "Example 3 · Support: Must an expression include a variable in order to be evaluated?",
-      "back": "Listen for: No, numerical expressions can be evaluated.",
-      "order": 25,
-      "after": [
-        "dde31baf0b4c"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[1]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "RtISupport",
-        "source": {
-          "file": "a2_6-3_TE.tex",
-          "anchor": 3,
-          "category": "RtISupport",
-          "block": 0,
-          "page": "43: 304 Step 2 Understand & Apply",
+          "page": "41: 302 Step 2 Understand & Apply",
           "item": 1,
-          "line": 354
+          "line": 178
         },
-        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[1]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "b2ae15fd4b14",
-      "type": "cue",
-      "front": "Example 3 · Support: If you were asked to evaluate three times four, would it be okay to write ``(3×4=?)''?",
-      "back": "Listen for: yes",
-      "order": 26,
-      "after": [
-        "1bbdf77a6738"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[2]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "RtISupport",
-        "source": {
-          "file": "a2_6-3_TE.tex",
-          "anchor": 3,
-          "category": "RtISupport",
-          "block": 0,
-          "page": "43: 304 Step 2 Understand & Apply",
-          "item": 2,
-          "line": 356
-        },
-        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[2]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "19be19895362",
-      "type": "cue",
-      "front": "Example 3 · Support: Can you combine the same logic, along with your knowledge of how to convert between exponential and logarithmic forms, to evaluate (log_4 64)? Explain.",
-      "back": "Listen for: yes; (log_4 64=?) means (4^?=64); (4^3=64), so (log_4 64=3).",
-      "order": 27,
-      "after": [
-        "b2ae15fd4b14"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.RtISupport[0].questions[3]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "RtISupport",
-        "source": {
-          "file": "a2_6-3_TE.tex",
-          "anchor": 3,
-          "category": "RtISupport",
-          "block": 0,
-          "page": "43: 304 Step 2 Understand & Apply",
-          "item": 3,
-          "line": 358
-        },
-        "promptKey": "examples[n=3].teacherPrompts.RtISupport[0].questions[3]",
+        "promptKey": "examples[n=1].teacherPrompts.GeneralizeETP[0].questions[1]",
         "part": 1,
         "parts": 1
       }
@@ -457,7 +324,7 @@
       "type": "cue",
       "front": "Example 5 · Connect representations: How is solving exponential and logarithmic equations similar to solving linear equations? How is it different?",
       "back": "Listen for: Solving any type of equation requires the use of inverse operations. To solve linear equations, you use the inverse operations of addition/subtraction and multiplication/division. To solve exponential equations, you use logarithms, and vice versa.",
-      "order": 28,
+      "order": 24,
       "after": [
         "0816101bd2d9"
       ],
@@ -486,7 +353,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "A student says that log_3(1/27) simplifies to -3. Is the student correct? Explain.",
-      "order": 29,
+      "order": 25,
       "after": [
         "0816101bd2d9"
       ],
@@ -497,8 +364,8 @@
       "id": "2c01ee088510",
       "type": "anchor",
       "front": "DOK 3 key?",
-      "back": "Yes; 3^-3 = 1/27, so log_3(1/27) = -3. The only DOK 3 item the TE item analysis ties to a kept Example (13, 15 and 18 belong to Example 4; 57 to Example 6; 58 is not in the item analysis and its DOK is uncertain, 3 or 2). …",
-      "order": 30,
+      "back": "Yes; 3^-3 = 1/27, so log_3(1/27) = -3. The item analysis files every DOK 3 item under a cut Example (17 under Example 3; 13, 15 and 18 under Example 4; 57 under Example 6; 58 is not in the item analysis and its DOK is uncertain, 3 or 2), and none under Example 1 or 5, so under R3 the packet names 17 as the …",
+      "order": 26,
       "after": [
         "0816101bd2d9"
       ],
@@ -510,7 +377,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "The equation y = 10^x relates the amplitude y (microns on a seismograph) of a seismic wave to the magnitude x of the ground-shaking it can cause. Table: magnitude 2, 3, ?, 4 with amplitude 100; 1,000; 5,500; 10,000. Taylor says 5,500 is halfway between 1,000 and 10,000, so the magnitude is about 3.5. …",
-      "order": 31,
+      "order": 27,
       "after": [
         "18c8de049367"
       ],
@@ -522,7 +389,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. What is the magnitude of an earthquake with amplitude 100,000? How do you know? (5, because 10^5 = 100,000)",
-      "order": 32,
+      "order": 28,
       "after": [
         "f418e0839664"
       ],
@@ -534,7 +401,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Construct Arguments. Critique Taylor's and Chen's work. Is each method valid? Could either method be improved?",
-      "order": 33,
+      "order": 29,
       "after": [
         "f418e0839664"
       ],
@@ -546,7 +413,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Describe how to express the exact value of the desired magnitude. (the value of x when 10^x = 5,500)",
-      "order": 34,
+      "order": 30,
       "after": [
         "f418e0839664"
       ],
@@ -558,7 +425,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "What do you notice about the relationship between the magnitude and the amplitude of an earthquake? → As x increases by 1, y increases by a power of 10.",
-      "order": 35,
+      "order": 31,
       "after": [
         "f418e0839664"
       ],
@@ -570,7 +437,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "How are Taylor and Chen's work alike? → Both students made estimates and both may have initially thought that x would be halfway between 3 and 4. However, Chen used the equation to check and refine his answer.",
-      "order": 36,
+      "order": 32,
       "after": [
         "59a3ab9b6f35"
       ],
@@ -582,7 +449,7 @@
       "type": "cue",
       "front": "During, small group: ask? (2)",
       "back": "When would each student's method of solving the problem be more appropriate? → Use Taylor's method when an estimate is acceptable. Use Chen's method when a more precise answer is needed.",
-      "order": 37,
+      "order": 33,
       "after": [
         "f869e9b639dc"
       ],
@@ -594,7 +461,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Use the method you prefer to find the magnitude of an earthquake with amplitude 400. → 10^2.4 is about 251, 10^2.5 about 316, 10^2.6 about 398; the magnitude is about 2.6.",
-      "order": 38,
+      "order": 34,
       "after": [
         "7b7803720346"
       ],
@@ -606,7 +473,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "How would you solve the equation y = 10x? → Substitute 5,500 for y and solve for x.",
-      "order": 39,
+      "order": 35,
       "after": [
         "fc01c9616163"
       ],
@@ -618,7 +485,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "Can you apply the same method to solve this equation? Explain. → No; y = 10^x cannot be solved by dividing both sides by 10 because x is an exponent, not a factor.",
-      "order": 40,
+      "order": 36,
       "after": [
         "59ffa934f0cc"
       ],
@@ -630,7 +497,7 @@
       "type": "cue",
       "front": "Habits of Mind, Reason: ask?",
       "back": "Taylor reasoned that since 5,500 was halfway between 1,000 and 10,000 that the magnitude had to be halfway between 3 and 4. What is incorrect about Taylor's reasoning? → Exponential functions increase exponentially, so they do not increase at a constant rate. …",
-      "order": 41,
+      "order": 37,
       "after": [
         "a8688e123a54"
       ],
@@ -641,8 +508,8 @@
       "id": "90b7ae5ed695",
       "type": "trap",
       "front": "Opener caution?",
-      "back": "The opener leads to Example 1 (log as the inverse of exponentiation) and Example 6 (earthquakes), both cut. …",
-      "order": 42,
+      "back": "The opener leads to Example 1 (log as the inverse of exponentiation; kept) and Example 6 (earthquakes; cut). …",
+      "order": 38,
       "after": [
         "f418e0839664"
       ],
@@ -652,11 +519,11 @@
     {
       "id": "e62696138604",
       "type": "anchor",
-      "front": "IXL for example 3?",
+      "front": "IXL for example 1?",
       "back": "8RK Convert between exponential and logarithmic form: all bases",
-      "order": 43,
+      "order": 39,
       "after": [
-        "d83b349a427d"
+        "72684f91c433"
       ],
       "minute": null,
       "source": "ixl.8RK"
@@ -664,11 +531,11 @@
     {
       "id": "9c0af4de2538",
       "type": "anchor",
-      "front": "IXL for example 3? (2)",
+      "front": "IXL for example 3?",
       "back": "GBR Evaluate logarithms",
-      "order": 44,
+      "order": 40,
       "after": [
-        "d83b349a427d"
+        "18c8de049367"
       ],
       "minute": null,
       "source": "ixl.GBR"
@@ -678,7 +545,7 @@
       "type": "anchor",
       "front": "IXL for example 5?",
       "back": "BXU Solve logarithmic equations I",
-      "order": 45,
+      "order": 41,
       "after": [
         "0816101bd2d9"
       ],
@@ -690,7 +557,7 @@
       "type": "anchor",
       "front": "IXL for example 4?",
       "back": "TDF Evaluate logarithms using a calculator",
-      "order": 46,
+      "order": 42,
       "after": [
         "18c8de049367"
       ],

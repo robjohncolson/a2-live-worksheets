@@ -13,35 +13,11 @@
       "source": "objectives.essentialQuestion"
     },
     {
-      "id": "40534fa2a9f9",
-      "type": "anchor",
-      "front": "Define: like terms",
-      "back": "like terms need the same variables with the same exponents: x^2y and xy^2 are not like terms (Example 1B; Try It 1b; IXL 9A3)",
-      "order": 2,
-      "after": [
-        "00f64ec1fa70"
-      ],
-      "minute": null,
-      "source": "objectives.language.words.like terms"
-    },
-    {
-      "id": "ca30051c079a",
-      "type": "anchor",
-      "front": "Define: coefficient",
-      "back": "I can explain each step using the words like terms, coefficient, Distributive Property, degree, and standard form.",
-      "order": 3,
-      "after": [
-        "00f64ec1fa70"
-      ],
-      "minute": null,
-      "source": "objectives.language.words.coefficient"
-    },
-    {
       "id": "b52b6c010991",
       "type": "anchor",
       "front": "Define: Distributive Property",
-      "back": "I can explain each step using the words like terms, coefficient, Distributive Property, degree, and standard form.",
-      "order": 4,
+      "back": "I can explain each step using the words Distributive Property, like terms, degree, standard form, and polynomial function.",
+      "order": 2,
       "after": [
         "00f64ec1fa70"
       ],
@@ -49,11 +25,23 @@
       "source": "objectives.language.words.distributive property"
     },
     {
+      "id": "40534fa2a9f9",
+      "type": "anchor",
+      "front": "Define: like terms",
+      "back": "combine like terms and write the answer in standard form by degree (Example 2B degree callout; Example 4 Compute; IXL DYB)",
+      "order": 3,
+      "after": [
+        "00f64ec1fa70"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.like terms"
+    },
+    {
       "id": "cdc073ecbe7f",
       "type": "anchor",
       "front": "Define: degree",
-      "back": "standard form by degree, with the degree of a two-variable term the sum of its exponents (Example 1B callout; IXL DYB)",
-      "order": 5,
+      "back": "combine like terms and write the answer in standard form by degree (Example 2B degree callout; Example 4 Compute; IXL DYB)",
+      "order": 4,
       "after": [
         "00f64ec1fa70"
       ],
@@ -64,8 +52,8 @@
       "id": "fbd32d4ae35f",
       "type": "anchor",
       "front": "Define: standard form",
-      "back": "standard form by degree, with the degree of a two-variable term the sum of its exponents (Example 1B callout; IXL DYB)",
-      "order": 6,
+      "back": "combine like terms and write the answer in standard form by degree (Example 2B degree callout; Example 4 Compute; IXL DYB)",
+      "order": 5,
       "after": [
         "00f64ec1fa70"
       ],
@@ -73,17 +61,29 @@
       "source": "objectives.language.words.standard form"
     },
     {
+      "id": "b0ff6651fed3",
+      "type": "anchor",
+      "front": "Define: polynomial function",
+      "back": "I can explain each step using the words Distributive Property, like terms, degree, standard form, and polynomial function.",
+      "order": 6,
+      "after": [
+        "00f64ec1fa70"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.polynomial function"
+    },
+    {
       "id": "4c8035c2422b",
       "type": "anchor",
-      "front": "Quiz item 2 asks?",
-      "back": "Item 2: multiply (x + 2y)(x^2 - xy + 3y). Choices A x^3 + x^2y + 3xy - 2xy^2 + 6y^2; B x^3 - 3x^2y + 3xy - 2xy^2 + 6y^2; C x^3 + 3xy - xy^2 + 3y^2; D x^3 - xy + 6y^2. Item 1 (graded with it) adds (4a^2b - 3ab^2 + 2ab + 5) + (2a^2b + 3ab^2 - 7ab) into three tile boxes.",
+      "front": "Quiz item 4 asks?",
+      "back": "Item 4: Jae is constructing an open box from a piece of cardboard that is 9 in. wide and 12 in. long, cuts squares of equal size from each corner and folds up the sides; write and simplify V in standard form, V(x) = _x^3 - _x^2 + _x. …",
       "order": 7,
       "after": [
-        "40534fa2a9f9",
-        "ca30051c079a",
         "b52b6c010991",
+        "40534fa2a9f9",
         "cdc073ecbe7f",
-        "fbd32d4ae35f"
+        "fbd32d4ae35f",
+        "b0ff6651fed3"
       ],
       "minute": null,
       "source": "quizFocus.what"
@@ -91,15 +91,15 @@
     {
       "id": "2c47daf3370f",
       "type": "anchor",
-      "front": "Quiz item 2 answer?",
-      "back": "Item 2: A (verify against the TE key on quiz day). x(x^2 - xy + 3y) + 2y(x^2 - xy + 3y) = x^3 - x^2y + 3xy + 2x^2y - 2xy^2 + 6y^2; -x^2y + 2x^2y = x^2y. Item 1: 6a^2b + (-5ab) + 5 (the ab^2 terms cancel). Bonus item 4: V(x) = 4x^3 - 42x^2 + 108x.",
+      "front": "Quiz item 4 answer?",
+      "back": "Item 4: V(x) = 4x^3 - 42x^2 + 108x (verify against the TE key on quiz day). Length 12 - 2x, width 9 - 2x, height x: x(12 - 2x)(9 - 2x) = x(4x^2 - 42x + 108). Item 2: A (x^2y terms: -x^2y + 2x^2y = x^2y). Bonus item 1: 6a^2b + (-5ab) + 5 (the ab^2 terms cancel).",
       "order": 8,
       "after": [
-        "40534fa2a9f9",
-        "ca30051c079a",
         "b52b6c010991",
+        "40534fa2a9f9",
         "cdc073ecbe7f",
-        "fbd32d4ae35f"
+        "fbd32d4ae35f",
+        "b0ff6651fed3"
       ],
       "minute": null,
       "source": "quizFocus.answer"
@@ -107,8 +107,8 @@
     {
       "id": "52471082f12c",
       "type": "anchor",
-      "front": "Before quiz item 2 students need?",
-      "back": "distribute every term of the first factor to every term of the second (Example 2A; box check, 2 x 3 = 6 products; IXL 8GN)",
+      "front": "Before quiz item 4 students need?",
+      "back": "write each dimension from the situation: length 12 - 2x, width 9 - 2x, height x (Example 4's Formulate step; packet Practice = TE Practice 27, the foundry tray)",
       "order": 9,
       "after": [
         "4c8035c2422b"
@@ -119,8 +119,8 @@
     {
       "id": "b0e85806b036",
       "type": "anchor",
-      "front": "Before quiz item 2 students need? (2)",
-      "back": "like terms need the same variables with the same exponents: x^2y and xy^2 are not like terms (Example 1B; Try It 1b; IXL 9A3)",
+      "front": "Before quiz item 4 students need? (2)",
+      "back": "volume = length x width x height: multiply two factors first, then the third (Example 2B)",
       "order": 10,
       "after": [
         "4c8035c2422b"
@@ -131,8 +131,8 @@
     {
       "id": "c798fb666142",
       "type": "anchor",
-      "front": "Before quiz item 2 students need? (3)",
-      "back": "distribute the -1 to every term when subtracting (Example 1B; concept summary Do You Understand 2 is Chen's error)",
+      "front": "Before quiz item 4 students need? (3)",
+      "back": "distribute every term of the first factor to every term of the second (Example 2A; box check, 2 x 3 = 6 products; IXL 8GN)",
       "order": 11,
       "after": [
         "4c8035c2422b"
@@ -143,8 +143,8 @@
     {
       "id": "e9625f93f6e9",
       "type": "anchor",
-      "front": "Before quiz item 2 students need? (4)",
-      "back": "standard form by degree, with the degree of a two-variable term the sum of its exponents (Example 1B callout; IXL DYB)",
+      "front": "Before quiz item 4 students need? (4)",
+      "back": "combine like terms and write the answer in standard form by degree (Example 2B degree callout; Example 4 Compute; IXL DYB)",
       "order": 12,
       "after": [
         "4c8035c2422b"
@@ -155,8 +155,8 @@
     {
       "id": "66fadd558c51",
       "type": "anchor",
-      "front": "Before quiz item 2 students need? (5)",
-      "back": "for the bonus: length 12 - 2x, width 9 - 2x, height x, then multiply two factors first (Example 2B; packet Practice = TE Practice 27)",
+      "front": "Before quiz item 4 students need? (5)",
+      "back": "for the bonus: distribute -1 when subtracting and combine like terms in two variables (Example 4's P(x) = R(x) - c(x); IXL 9A3)",
       "order": 13,
       "after": [
         "4c8035c2422b"
@@ -168,7 +168,7 @@
       "id": "dc128f6b37bb",
       "type": "anchor",
       "front": "Quiz item 1 is covered by?",
-      "back": "Add two polynomials in a and b, complete the expression in standard form from choice tiles: Example 1 (Try It 1b is the same two-variable shape). On the short form, graded, 10 points. DOK 1, A18.",
+      "back": "Add two polynomials in a and b, complete the expression in standard form from choice tiles: Example 1, cut; the 9A3 Jam and Example 4's subtraction step (distribute -1, combine like terms) carry it. On the short form as the proposed +5 bonus. DOK 1, A18.",
       "order": 14,
       "after": [
         "4c8035c2422b"
@@ -180,7 +180,7 @@
       "id": "4ce91ab41754",
       "type": "anchor",
       "front": "Quiz item 2 is covered by?",
-      "back": "Multiply a binomial by a trinomial (multiple choice): Example 2A. On the short form, graded, 10 points. DOK 1, A20.",
+      "back": "Multiply a binomial by a trinomial (multiple choice): Example 2A, kept. On the short form, graded, 10 points. DOK 1, A20.",
       "order": 15,
       "after": [
         "4c8035c2422b"
@@ -204,7 +204,7 @@
       "id": "bbec50865391",
       "type": "anchor",
       "front": "Quiz item 4 is covered by?",
-      "back": "Jae's open box from 9 in. by 12 in. cardboard, V(x) = 4x^3 - 42x^2 + 108x: Example 4's task (write a polynomial function from a context, cut) with Example 2B's three-factor product; rehearsed by the packet Practice (TE Practice 27, the foundry tray). On the short form as the proposed +5 bonus. DOK 3, A20.",
+      "back": "Jae's open box from 9 in. by 12 in. cardboard, V(x) = 4x^3 - 42x^2 + 108x: Example 4 (write a polynomial function from a situation), kept, with Example 2B's three-factor product; rehearsed by the packet Practice (TE Practice 27, the foundry tray). On the short form, graded, 10 points. DOK 3, A20.",
       "order": 17,
       "after": [
         "4c8035c2422b"
@@ -225,87 +225,53 @@
       "source": "quizFocus.items.5"
     },
     {
-      "id": "d8cccfa7c8b2",
-      "type": "step",
-      "front": "Example 1: ?",
-      "back": "Add and Subtract Polynomials · DOK 1, 3 · practice 18-20, 11, 13 · Quiz item 1 (add two polynomials in a and b, standard form). The concept summary is built on Examples 1 and 2 (ADD, SUBTRACT, MULTIPLY), and Example 1 carries the lesson's Example-tied DOK 3 (practice 13, used as the exit question). …",
+      "id": "e09eb31f380f",
+      "type": "anchor",
+      "front": "Topic 3 test item 4 is covered by?",
+      "back": "Simplify (x^2 + 2x)(x^2 + x + 5) in standard form from tiles. (DOK 1): Example 2, kept",
       "order": 19,
       "after": [
-        "4c8035c2422b",
-        "2c47daf3370f"
+        "4c8035c2422b"
       ],
       "minute": null,
-      "source": "examples[n=1]"
+      "source": "topicAssessment.items.4"
+    },
+    {
+      "id": "cd89774cc8e7",
+      "type": "anchor",
+      "front": "Topic 3 test item 7 is covered by?",
+      "back": "Lucy cuts 4 squares of side x in. from the corners of a 6-by-9-in. paper and folds a tray x in. high; complete V(x) = _x^3 - _x^2 + _x. (DOK 3): Examples 2 and 4, kept",
+      "order": 20,
+      "after": [
+        "4c8035c2422b"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.7"
     },
     {
       "id": "be95d9af754a",
       "type": "step",
       "front": "Example 2: ?",
-      "back": "Multiply Polynomials · DOK 1, 2 · practice 21-23, 10, 12, 14 · Quiz item 2 (binomial times trinomial = Part A) and the multiplication in item 4 (three factors, two first = Part B). Expansion feeds 3-5: writing a polynomial from its zeros is Part B's three-factor product. …",
-      "order": 20,
+      "back": "Multiply Polynomials · DOK 1, 2 · practice 21-23, 10, 12, 14 · Quiz item 2 (binomial times trinomial = Part A, graded) and the three-factor product in quiz item 4 (Part B, multiply two factors first). …",
+      "order": 21,
       "after": [
-        "d8cccfa7c8b2"
+        "4c8035c2422b",
+        "2c47daf3370f"
       ],
       "minute": null,
       "source": "examples[n=2]"
     },
     {
-      "id": "4713bd4f7c14",
-      "type": "cue",
-      "front": "Example 1 · Purposeful question: Why can the Commutative and Associative Properties be applied in the same step?",
-      "back": "Listen for: One deals with grouping like terms and the other deals with ordering. It makes sense to group the like terms that you order next to each other.",
-      "order": 21,
-      "after": [
-        "d8cccfa7c8b2"
-      ],
-      "minute": null,
-      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
-      "teaching": {
-        "example": 1,
-        "kind": "question",
-        "category": "PurposefulQuestions",
-        "source": {
-          "file": "a2_3-2_TE.tex",
-          "anchor": 1,
-          "category": "PurposefulQuestions",
-          "block": 0,
-          "page": "26: 127 Understand & Apply",
-          "item": 0,
-          "line": 170
-        },
-        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "90c31820ec74",
-      "type": "cue",
-      "front": "Example 1 · Purposeful question: If two polynomials are being subtracted, what property must be used?",
-      "back": "Listen for: Applying the subtraction sign is the same as multiplying the second polynomial by -1 and then adding both polynomials. You must use the Distributive Property to apply subtraction to the entire polynomial.",
+      "id": "5628b8c07f2f",
+      "type": "step",
+      "front": "Example 4: ?",
+      "back": "Write a Polynomial Function · DOK 2 · practice 25, 27-29 · Writing a polynomial function from a situation: quiz item 4 (Jae's box, graded) is this task with a volume instead of a profit, and the TE item analysis files Practice 27 (the foundry tray, the packet Practice) under it. …",
       "order": 22,
       "after": [
-        "4713bd4f7c14"
+        "be95d9af754a"
       ],
       "minute": null,
-      "source": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
-      "teaching": {
-        "example": 1,
-        "kind": "question",
-        "category": "PurposefulQuestions",
-        "source": {
-          "file": "a2_3-2_TE.tex",
-          "anchor": 1,
-          "category": "PurposefulQuestions",
-          "block": 0,
-          "page": "26: 127 Understand & Apply",
-          "item": 1,
-          "line": 173
-        },
-        "promptKey": "examples[n=1].teacherPrompts.PurposefulQuestions[0].questions[1]",
-        "part": 1,
-        "parts": 1
-      }
+      "source": "examples[n=4]"
     },
     {
       "id": "3c22f5a262fb",
@@ -395,13 +361,216 @@
       }
     },
     {
+      "id": "4080891ce2fc",
+      "type": "cue",
+      "front": "Example 4 · Purposeful question: What is the difference between revenue and profit in this example?",
+      "back": "Listen for: Revenue is the amount of money Hachi gets for selling the Seminole Indian dolls. Profit is the amount of money left after subtracting her costs.",
+      "order": 26,
+      "after": [
+        "5628b8c07f2f"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_3-2_TE.tex",
+          "anchor": 4,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "28: 129 Understand & Apply",
+          "item": 0,
+          "line": 325
+        },
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "156d94640bd5",
+      "type": "cue",
+      "front": "Example 4 · Purposeful question: Why does the price function need to be multiplied by the number of items sold whereas the cost function does not?",
+      "back": "Listen for: The price function represents the price per item, and so you multiply by the number of items to get the revenue (income). The cost function already represents the total cost.",
+      "order": 27,
+      "after": [
+        "4080891ce2fc"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_3-2_TE.tex",
+          "anchor": 4,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "28: 129 Understand & Apply",
+          "item": 1,
+          "line": 327
+        },
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "c376b57e68e7",
+      "type": "cue",
+      "front": "Example 4 · Purposeful question: How is the maximum point on the graph related to the nine Seminole Indian dolls?",
+      "back": "Listen for: The maximum is at (9.25,107.125), but Hachi cannot sell part of a doll, which means the most profit Hachi can make is $107.00 when she sells 9 Seminole Indian dolls.",
+      "order": 28,
+      "after": [
+        "156d94640bd5"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[2]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "PurposefulQuestions",
+        "source": {
+          "file": "a2_3-2_TE.tex",
+          "anchor": 4,
+          "category": "PurposefulQuestions",
+          "block": 1,
+          "page": "28: 129 Understand & Apply",
+          "item": 2,
+          "line": 329
+        },
+        "promptKey": "examples[n=4].teacherPrompts.PurposefulQuestions[1].questions[2]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "50dfc161a75d",
+      "type": "cue",
+      "front": "Example 4 · Check student thinking: How does the change in the cost of materials affect the maximum of the profit function?",
+      "back": "Listen for: With the decreased costs, Hachi will now make a maximum profit of $211 when she sells 11 Seminole Indian dolls.",
+      "order": 29,
+      "after": [
+        "c376b57e68e7"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "ElicitEvidence",
+        "source": {
+          "file": "a2_3-2_TE.tex",
+          "anchor": 4,
+          "category": "ElicitEvidence",
+          "block": 0,
+          "page": "28: 129 Understand & Apply",
+          "item": 0,
+          "line": 367
+        },
+        "promptKey": "examples[n=4].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "3cc171e93823",
+      "type": "trap",
+      "front": "Example 4 · Common error: What error should I watch for, and how does the TE respond?",
+      "back": "Try It! 4 Students may think that profit is maximized when the greatest number of Seminole Indian dolls are sold. Have students think about what factors impact the profit, and whether selling more always results in a greater profit.",
+      "order": 30,
+      "after": [
+        "50dfc161a75d"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+      "teaching": {
+        "example": 4,
+        "kind": "trap",
+        "category": "CommonError",
+        "source": {
+          "file": "a2_3-2_TE.tex",
+          "anchor": 4,
+          "category": "CommonError",
+          "block": 0,
+          "page": "28: 129 Understand & Apply",
+          "item": 0,
+          "line": 370
+        },
+        "promptKey": "examples[n=4].teacherPrompts.CommonError[0].guidance",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "9b31e644224d",
+      "type": "cue",
+      "front": "Example 4 · Extend thinking: How can you determine the function that models the area of the patio not taken up by the garden?",
+      "back": "Listen for: Answers may vary. Sample: Find the area of the rectangle by multiplying the length by the width. Then subtract from that the area of the triangle.",
+      "order": 31,
+      "after": [
+        "3cc171e93823"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.RtIExtend[0].questions[0]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_3-2_TE.tex",
+          "anchor": 4,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "28: 129 Understand & Apply",
+          "item": 0,
+          "line": 379
+        },
+        "promptKey": "examples[n=4].teacherPrompts.RtIExtend[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "a48b723a4aba",
+      "type": "cue",
+      "front": "Example 4 · Extend thinking: What is a function that models this area?",
+      "back": "Listen for: (f(x)=3/4x^2+9/4x-3)",
+      "order": 32,
+      "after": [
+        "9b31e644224d"
+      ],
+      "minute": null,
+      "source": "examples[n=4].teacherPrompts.RtIExtend[0].questions[1]",
+      "teaching": {
+        "example": 4,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_3-2_TE.tex",
+          "anchor": 4,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "28: 129 Understand & Apply",
+          "item": 1,
+          "line": 381
+        },
+        "promptKey": "examples[n=4].teacherPrompts.RtIExtend[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
       "id": "3819db87ee64",
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "Polynomial function R is the difference of two degree-two polynomial functions. What are the possible degrees for R? Explain.",
-      "order": 26,
+      "order": 33,
       "after": [
-        "be95d9af754a"
+        "5628b8c07f2f"
       ],
       "minute": null,
       "source": "dok3.task"
@@ -411,9 +580,9 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "2, 1, or 0. If the second-degree terms have the same coefficient they cancel, and the degree of the difference depends on the remaining first- or zero-degree terms. …",
-      "order": 27,
+      "order": 34,
       "after": [
-        "be95d9af754a"
+        "5628b8c07f2f"
       ],
       "minute": null,
       "source": "dok3.key"
@@ -423,7 +592,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Let S be the set of expressions that can be written as ax + b, where a and b are real numbers.",
-      "order": 28,
+      "order": 35,
       "after": [
         "00f64ec1fa70"
       ],
@@ -435,7 +604,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Describe the Associative Property, Commutative Property, and the Distributive Property. Then explain the role of each in simplifying the sum (3x + 2) + (7x - 4). Identify the leading coefficient and the constant term in the result. (10x - 2: leading coefficient 10, constant term -2.)",
-      "order": 29,
+      "order": 36,
       "after": [
         "32319d37fad9"
       ],
@@ -447,7 +616,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Is the sum you found in part A a member of S? Explain. (Yes; it has the form ax + b.)",
-      "order": 30,
+      "order": 37,
       "after": [
         "32319d37fad9"
       ],
@@ -459,7 +628,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Construct Arguments: is the product of two expressions in S also a member of S? Explain why or produce a counterexample. (No; with a not 0 the product is quadratic, not ax + b.)",
-      "order": 31,
+      "order": 38,
       "after": [
         "32319d37fad9"
       ],
@@ -471,7 +640,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "When have you used the Associative, Commutative, and Distributive Properties before? → To simplify numerical expressions and make mental math easier.",
-      "order": 32,
+      "order": 39,
       "after": [
         "32319d37fad9"
       ],
@@ -483,7 +652,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "How does using the Distributive Property help you to simplify the expression? → After the Associative and Commutative Properties rearrange the terms, the Distributive Property rewrites 3x + 7x as (3 + 7)x.",
-      "order": 33,
+      "order": 40,
       "after": [
         "2d94c7119fb7"
       ],
@@ -495,7 +664,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Simplify (4x - 7) - 5x + 2x - 9 and (2x + 4 - 4x) + (-9x + 2 - 7 + 10x). What do you notice about each expression after it is simplified? → They are all in the form ax + b (x - 16 and -x - 1).",
-      "order": 34,
+      "order": 41,
       "after": [
         "91e68830d65b"
       ],
@@ -507,7 +676,7 @@
       "type": "cue",
       "front": "Early finishers: ask? (2)",
       "back": "What generalization can you make about the effects of using addition and subtraction to simplify expressions? → Combining like terms only changes the coefficients; the variables and exponents do not change.",
-      "order": 35,
+      "order": 42,
       "after": [
         "b2695f17d120"
       ],
@@ -519,7 +688,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "What have you learned about the Associative, Commutative, and Distributive Properties? → They can be used to simplify algebraic expressions.",
-      "order": 36,
+      "order": 43,
       "after": [
         "3ac02f92657e"
       ],
@@ -531,7 +700,7 @@
       "type": "cue",
       "front": "Habits of Mind, Construct Arguments: ask?",
       "back": "Is the quotient of two expressions in S also a member of S? Explain why or produce a counterexample. → No. Counterexample: (x + 1) / (x + 2) cannot be written as ax + b. …",
-      "order": 37,
+      "order": 44,
       "after": [
         "c78536926747"
       ],
@@ -543,7 +712,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The digital version of part A prints (3x - 2) + (7x - 4) while the student page prints (3x + 2) + (7x - 4); the TE answer (leading coefficient 10, constant term -2) fits the student page. …",
-      "order": 38,
+      "order": 45,
       "after": [
         "32319d37fad9"
       ],
@@ -551,28 +720,28 @@
       "source": "modelDiscuss.caution"
     },
     {
-      "id": "7d8762cb4c8f",
-      "type": "anchor",
-      "front": "IXL for example 1?",
-      "back": "9A3 Add and subtract polynomials",
-      "order": 39,
-      "after": [
-        "d8cccfa7c8b2"
-      ],
-      "minute": null,
-      "source": "ixl.9A3"
-    },
-    {
       "id": "9984229a5758",
       "type": "anchor",
       "front": "IXL for example 2?",
       "back": "8GN Multiply polynomials",
-      "order": 40,
+      "order": 46,
       "after": [
         "be95d9af754a"
       ],
       "minute": null,
       "source": "ixl.8GN"
+    },
+    {
+      "id": "7d8762cb4c8f",
+      "type": "anchor",
+      "front": "IXL for example 4?",
+      "back": "9A3 Add and subtract polynomials",
+      "order": 47,
+      "after": [
+        "5628b8c07f2f"
+      ],
+      "minute": null,
+      "source": "ixl.9A3"
     }
   ]
 }

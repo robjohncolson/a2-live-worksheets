@@ -223,11 +223,23 @@
       "source": "quizFocus.items.5"
     },
     {
+      "id": "1c4ed21b0f0b",
+      "type": "anchor",
+      "front": "Topic 6 test item 3 is covered by?",
+      "back": "With x replacing (s - t), select all expressions equivalent to ((s - t) + (2s - 2t)^2)/(t - s), t != s (DOK 3): Example none, no Example",
+      "order": 19,
+      "after": [
+        "51d7bbaa23dd"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.3"
+    },
+    {
       "id": "da927dcb3013",
       "type": "step",
       "front": "Example 1: ?",
       "back": "Solve Exponential Equations Using a Common Base · DOK 1 · practice 16, 17, 18, 19, 20, 21, 45 · Teaches quiz items 2 and 3, the most of any Example, including item 3, the quiz's only DOK 3. The concept summary's first column (Property of Equality for Exponential Equations) is this Example. …",
-      "order": 19,
+      "order": 20,
       "after": [
         "51d7bbaa23dd",
         "5ac1a38d582b"
@@ -240,7 +252,7 @@
       "type": "step",
       "front": "Example 5: ?",
       "back": "Solve Logarithmic Equations · DOK 1, 3 · practice 29-37, 44, 12, 15, 43, 46 · Teaches quiz item 4 (set the arguments equal, factor, check for extraneous roots; item 4 adds the Power Property first). It is the second column of the concept summary and the only Example with DOK 3 practice items (43, 46). …",
-      "order": 20,
+      "order": 21,
       "after": [
         "da927dcb3013"
       ],
@@ -252,7 +264,7 @@
       "type": "cue",
       "front": "Example 1 · Connect representations: Why was each side of the equation written with an equivalent expression using 2 as the base?",
       "back": "Listen for: In order to solve an exponential equation, the bases must be the same.",
-      "order": 21,
+      "order": 22,
       "after": [
         "da927dcb3013"
       ],
@@ -281,7 +293,7 @@
       "type": "cue",
       "front": "Example 1 · Connect representations: Could the expressions have been rewritten by using a common base of (1/2), 4, or 10 rather than 2?",
       "back": "Listen for: The expressions could be rewritten with a common base of (1/2) or 4. They could also be rewritten with a common base of 10, however, this would make the equation more complex rather than drawing closer to a solution.",
-      "order": 22,
+      "order": 23,
       "after": [
         "d5019e1b3123"
       ],
@@ -310,7 +322,7 @@
       "type": "cue",
       "front": "Example 5 · Connect representations: What is an extraneous solution and how do they occur?",
       "back": "Listen for: An extraneous solution is a root of a transformed equation that is not a root of the original equation. They occur when you transform an equation in order to solve it, without regard to the domain of the original equation.",
-      "order": 23,
+      "order": 24,
       "after": [
         "e0727cf9ac26"
       ],
@@ -339,7 +351,7 @@
       "type": "cue",
       "front": "Example 5 · Check student thinking: Why is (-5) an extraneous solution (part a), but (-1/2) is not extraneous (part b)?",
       "back": "Listen for: In part b, a negative x-value results in a positive argument for the natural log. But in part a, a negative x-value results in a negative argument for the logarithm with base 5, resulting in an expression that is undefined.",
-      "order": 24,
+      "order": 25,
       "after": [
         "cf1e27cbfd63"
       ],
@@ -368,7 +380,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "A biologist uses n = k log(A) for the number of a species n on a land mass of area A. a. Use the graph (points (100, 1000) and (1000, 1500)) to determine k. b. Determine the land mass in acres needed to support 3,000 of the species.",
-      "order": 25,
+      "order": 26,
       "after": [
         "e0727cf9ac26"
       ],
@@ -380,7 +392,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "a. 500 (1000 = k log 100 = 2k; check 500 log 1000 = 1500). b. 1,000,000 acres (3000 = 500 log A, log A = 6, A = 10^6). Tied to kept Example 5 by the TE item analysis (43 and 46 are the lesson's only DOK 3 items); students must choose a point, solve for k, then undo the log, which no IXL skill asks. …",
-      "order": 26,
+      "order": 27,
       "after": [
         "e0727cf9ac26"
       ],
@@ -392,7 +404,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "A store sells two fitness trackers until TrackSmart sales exceed FitTracker sales. Weekly sales, weeks 1-4: FitTracker 28, 54, 112, 228; TrackSmart 5, 17, 44, 130.",
-      "order": 27,
+      "order": 28,
       "after": [
         "02f7eef9f9cb"
       ],
@@ -404,7 +416,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Model With Mathematics: find an equation of an exponential function that models the sales for each fitness tracker. Describe your method. (TE: regression, y = 13.6266(2.0180)^x and y = 1.8081(2.9227)^x)",
-      "order": 28,
+      "order": 29,
       "after": [
         "2b24457d39fd"
       ],
@@ -416,7 +428,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Based on the equations that you wrote, determine when the store will stop selling FitTracker. (TE: the graphs intersect near x = 6, so after 6 weeks)",
-      "order": 29,
+      "order": 30,
       "after": [
         "2b24457d39fd"
       ],
@@ -428,7 +440,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "Why do you think an exponential model is better than a linear or a quadratic model for this problem? → Sales are not increasing at a constant rate, so a linear model would not make sense; nothing in the data suggests a downward turn, so a quadratic model would not make sense.",
-      "order": 30,
+      "order": 31,
       "after": [
         "2b24457d39fd"
       ],
@@ -440,7 +452,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "How do you know that TrackSmart will outsell FitTracker at some point? → TrackSmart is increasing at a greater rate, so eventually its sales will be greater.",
-      "order": 31,
+      "order": 32,
       "after": [
         "86c120396f39"
       ],
@@ -452,7 +464,7 @@
       "type": "cue",
       "front": "During, small group: ask? (2)",
       "back": "How can you use the equations to determine when the store will stop selling FitTracker? → Evaluate each model for different numbers of weeks until FitTracker sales are less than TrackSmart sales.",
-      "order": 32,
+      "order": 33,
       "after": [
         "ed6726bc1db1"
       ],
@@ -464,7 +476,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Graph the two equations you found. Does your graph verify your results? Explain. → Yes; the x-coordinate of the intersection is when TrackSmart begins to exceed FitTracker.",
-      "order": 33,
+      "order": 34,
       "after": [
         "3112a980c9cd"
       ],
@@ -476,7 +488,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "Why did different methods result in the same answer for Part B? → The methods differ, but the equations themselves should be fairly alike.",
-      "order": 34,
+      "order": 35,
       "after": [
         "0af425afd924"
       ],
@@ -488,7 +500,7 @@
       "type": "cue",
       "front": "Habits of Mind, Look for Relationships: ask?",
       "back": "How do you know that the sales data is modeled by an exponential function? → Of the linear, quadratic and exponential regressions, the exponential model had the highest r value.",
-      "order": 35,
+      "order": 36,
       "after": [
         "e4334f56d9a3"
       ],
@@ -500,7 +512,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The opener needs calculator exponential regression and ends at 'solve by graphing' (Example 6), which the fast packet cuts; it does not lead into Example 1 or 5. …",
-      "order": 36,
+      "order": 37,
       "after": [
         "2b24457d39fd"
       ],
@@ -512,7 +524,7 @@
       "type": "anchor",
       "front": "IXL for example 1?",
       "back": "YQY Solve exponential equations by rewriting the base",
-      "order": 37,
+      "order": 38,
       "after": [
         "da927dcb3013"
       ],
@@ -524,7 +536,7 @@
       "type": "anchor",
       "front": "IXL for example 5?",
       "back": "BXU Solve logarithmic equations I",
-      "order": 38,
+      "order": 39,
       "after": [
         "e0727cf9ac26"
       ],
@@ -536,7 +548,7 @@
       "type": "anchor",
       "front": "IXL for example 5? (2)",
       "back": "RLX Solve logarithmic equations II",
-      "order": 39,
+      "order": 40,
       "after": [
         "e0727cf9ac26"
       ],
@@ -548,7 +560,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "9F2 Solve exponential equations using common logarithms",
-      "order": 40,
+      "order": 41,
       "after": [
         "02f7eef9f9cb"
       ],

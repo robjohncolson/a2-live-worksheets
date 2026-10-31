@@ -13,64 +13,77 @@
       "source": "objectives.essentialQuestion"
     },
     {
-      "id": "3c82583e90b5",
+      "id": "83fa1ab911c8",
       "type": "anchor",
-      "front": "Define: varies inversely",
-      "back": "I can explain how I found a missing value using the words varies inversely, product, constant of variation, and inverse variation.",
+      "front": "Define: translation",
+      "back": "I can explain how a translation moves the graph of the reciprocal function using the words translation, vertical asymptote, horizontal asymptote, domain, and range.",
       "order": 2,
       "after": [
         "487e047e88f7"
       ],
       "minute": null,
-      "source": "objectives.language.words.varies inversely"
+      "source": "objectives.language.words.translation"
     },
     {
-      "id": "ac084c86b5fc",
+      "id": "a3f08dbe15fd",
       "type": "anchor",
-      "front": "Define: product",
-      "back": "a table is an inverse variation when every product xy is the same; k can be negative (packet Practice block; item 2's distractors A and B are direct variations, C has the wrong sign)",
+      "front": "Define: vertical asymptote",
+      "back": "I can explain how a translation moves the graph of the reciprocal function using the words translation, vertical asymptote, horizontal asymptote, domain, and range.",
       "order": 3,
       "after": [
         "487e047e88f7"
       ],
       "minute": null,
-      "source": "objectives.language.words.product"
+      "source": "objectives.language.words.vertical asymptote"
     },
     {
-      "id": "a4b52b2e26fc",
+      "id": "7e13dc7b5da7",
       "type": "anchor",
-      "front": "Define: constant of variation",
-      "back": "I can explain how I found a missing value using the words varies inversely, product, constant of variation, and inverse variation.",
+      "front": "Define: horizontal asymptote",
+      "back": "the asymptotes of 1/(x - h) + k are x = h and y = k, so the horizontal asymptote is y = k (Example 5 Step 3, Try It 5, which has the same k = -4 as item 4; IXL ULD)",
       "order": 4,
       "after": [
         "487e047e88f7"
       ],
       "minute": null,
-      "source": "objectives.language.words.constant of variation"
+      "source": "objectives.language.words.horizontal asymptote"
     },
     {
-      "id": "851f2ccc29d7",
+      "id": "19607acc1e80",
       "type": "anchor",
-      "front": "Define: inverse variation",
-      "back": "a table is an inverse variation when every product xy is the same; k can be negative (packet Practice block; item 2's distractors A and B are direct variations, C has the wrong sign)",
+      "front": "Define: domain",
+      "back": "I can explain how a translation moves the graph of the reciprocal function using the words translation, vertical asymptote, horizontal asymptote, domain, and range.",
       "order": 5,
       "after": [
         "487e047e88f7"
       ],
       "minute": null,
-      "source": "objectives.language.words.inverse variation"
+      "source": "objectives.language.words.domain"
+    },
+    {
+      "id": "623dcb6381ed",
+      "type": "anchor",
+      "front": "Define: range",
+      "back": "I can explain how a translation moves the graph of the reciprocal function using the words translation, vertical asymptote, horizontal asymptote, domain, and range.",
+      "order": 6,
+      "after": [
+        "487e047e88f7"
+      ],
+      "minute": null,
+      "source": "objectives.language.words.range"
     },
     {
       "id": "5848560130f7",
       "type": "anchor",
-      "front": "Quiz item 3 asks?",
-      "back": "Item 3: three students can wash a car in 16 minutes; time varies inversely with the number of students; how many minutes for two students? Choices A 20, B 22, C 24, D 26. Item 1 (also graded) is the same two steps in a table: x 3, 10, 15, 30; y 5, p, 1, 0.5; find p.",
-      "order": 6,
+      "front": "Quiz item 5 asks?",
+      "back": "Item 5: the graph of y = 1/x is translated 3 units up and 2 units to the left; which is an equation of the translated graph? Choices A y = 1/(x+2) + 3, B y = 1/(x-2) + 3, C y = 1/(x-3) + 2, D y = 1/(x+3) - 2. Item 4 (also graded) is the horizontal asymptote of y = 1/(x+5) - 4.",
+      "order": 7,
       "after": [
-        "3c82583e90b5",
-        "ac084c86b5fc",
-        "a4b52b2e26fc",
-        "851f2ccc29d7"
+        "83fa1ab911c8",
+        "a3f08dbe15fd",
+        "7e13dc7b5da7",
+        "19607acc1e80",
+        "623dcb6381ed"
       ],
       "minute": null,
       "source": "quizFocus.what"
@@ -78,14 +91,15 @@
     {
       "id": "9b89a3c2df0d",
       "type": "anchor",
-      "front": "Quiz item 3 answer?",
-      "back": "Item 3: C, 24 (k = 3(16) = 48; 48/2 = 24). Item 1: p = 1.5 (k = 15; 15/10). Item 2 bonus: D, y = -12/x. (verify against the TE key on quiz day)",
-      "order": 7,
+      "front": "Quiz item 5 answer?",
+      "back": "Item 5: A, y = 1/(x+2) + 3 (left 2 means h = -2, so x - h = x + 2; up 3 means k = 3). Item 4: y = -4 (k = -4). Item 3 bonus: C, 24 (k = 3(16) = 48; 48/2 = 24). (verify against the TE key on quiz day)",
+      "order": 8,
       "after": [
-        "3c82583e90b5",
-        "ac084c86b5fc",
-        "a4b52b2e26fc",
-        "851f2ccc29d7"
+        "83fa1ab911c8",
+        "a3f08dbe15fd",
+        "7e13dc7b5da7",
+        "19607acc1e80",
+        "623dcb6381ed"
       ],
       "minute": null,
       "source": "quizFocus.answer"
@@ -93,9 +107,9 @@
     {
       "id": "2a7d512b07d2",
       "type": "anchor",
-      "front": "Before quiz item 3 students need?",
-      "back": "write y = k/x and find k from one known pair: k = xy (Example 3 Step 1; IXL PXE)",
-      "order": 8,
+      "front": "Before quiz item 5 students need?",
+      "back": "read g(x) = 1/(x - h) + k as f(x) = 1/x translated h units horizontally and k units vertically (Example 5 Step 2 and its Key idea box; IXL F6J)",
+      "order": 9,
       "after": [
         "5848560130f7"
       ],
@@ -105,9 +119,9 @@
     {
       "id": "3573fe0a142f",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (2)",
-      "back": "substitute k and the new value, then solve for the unknown (Example 3 Step 2; IXL PNY)",
-      "order": 9,
+      "front": "Before quiz item 5 students need? (2)",
+      "back": "a move left makes h negative, so x - h becomes x + |h| (Try It 5's x + 2; the packet's Practice block, a parallel of item 5 with the same four-choice traps; item 5's distractor B has the wrong sign, C and D swap the moves)",
+      "order": 10,
       "after": [
         "5848560130f7"
       ],
@@ -117,9 +131,9 @@
     {
       "id": "71470e8035b7",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (3)",
-      "back": "a table is an inverse variation when every product xy is the same; k can be negative (packet Practice block; item 2's distractors A and B are direct variations, C has the wrong sign)",
-      "order": 10,
+      "front": "Before quiz item 5 students need? (3)",
+      "back": "the asymptotes of 1/(x - h) + k are x = h and y = k, so the horizontal asymptote is y = k (Example 5 Step 3, Try It 5, which has the same k = -4 as item 4; IXL ULD)",
+      "order": 11,
       "after": [
         "5848560130f7"
       ],
@@ -129,9 +143,9 @@
     {
       "id": "f920d7a7768b",
       "type": "anchor",
-      "front": "Before quiz item 3 students need? (4)",
-      "back": "not taught by the kept Example: the horizontal asymptote of a translated reciprocal function (item 4) and the equation of a translation of y = 1/x (item 5); both are Example 5, cut",
-      "order": 11,
+      "front": "Before quiz item 5 students need? (4)",
+      "back": "not taught by the kept Example: the inverse-variation items 1-3 (k = xy, then use k; Examples 1-3, cut). Item 3 is the +5 bonus, rehearsed by the packet's self-paced Extension (Practice 20, the pump) and IXL PNY; items 1 and 2 are left off the short form",
+      "order": 12,
       "after": [
         "5848560130f7"
       ],
@@ -142,8 +156,8 @@
       "id": "7acdd75d87bf",
       "type": "anchor",
       "front": "Quiz item 1 is covered by?",
-      "back": "Missing value p in an inverse-variation table (x 3, 10, 15, 30; y 5, p, 1, 0.5). Answer p = 1.5. DOK 1, F74. Examples 1-2 (cut) teach tables and k; Example 3's two steps answer it and the packet's Practice block is a structural parallel (x -5, -2, 4, 10; y 4, 10, q, -2). On the short form; proposed graded 10.",
-      "order": 12,
+      "back": "Missing value p in an inverse-variation table (x 3, 10, 15, 30; y 5, p, 1, 0.5). Answer p = 1.5. DOK 1, F74. Examples 1-3 (cut; Example 3's two steps answer it). Left off the short form (full Savvas quiz only).",
+      "order": 13,
       "after": [
         "5848560130f7"
       ],
@@ -154,8 +168,8 @@
       "id": "efc8bc2d4f77",
       "type": "anchor",
       "front": "Quiz item 2 is covered by?",
-      "back": "Equation for the table x -3, -1, 1/2, 2/3; y 4, 12, -24, -18. Answer D, y = -12/x. DOK 2, F74. Example 2 (cut) writes the equation from one pair; Example 3 Step 1 does the same, and the Practice block has a negative k. On the short form; proposed +5 bonus.",
-      "order": 13,
+      "back": "Equation for the table x -3, -1, 1/2, 2/3; y 4, 12, -24, -18. Answer D, y = -12/x. DOK 2, F74. Example 2 (cut) writes the equation from one pair; Example 3 (cut) Step 1 does the same. Left off the short form (full Savvas quiz only).",
+      "order": 14,
       "after": [
         "5848560130f7"
       ],
@@ -166,8 +180,8 @@
       "id": "3bf1fe7af7d5",
       "type": "anchor",
       "front": "Quiz item 3 is covered by?",
-      "back": "Car wash: 3 students take 16 minutes; time varies inversely with the number of students; 2 students? Answer C, 24. DOK 1, F74. Example 3 (inverse variation model in a context) and Try It 3 (ice cube). On the short form; proposed graded 10.",
-      "order": 14,
+      "back": "Car wash: 3 students take 16 minutes; time varies inversely with the number of students; 2 students? Answer C, 24. DOK 1, F74. Example 3 (cut) and Try It 3. On the short form as the +5 bonus; the packet's Extension (Practice 20, the pump) is the same two steps, and IXL PNY is starred for it.",
+      "order": 15,
       "after": [
         "5848560130f7"
       ],
@@ -178,8 +192,8 @@
       "id": "43ee3ce0ce1e",
       "type": "anchor",
       "front": "Quiz item 4 is covered by?",
-      "back": "Horizontal asymptote of y = 1/(x+5) - 4. Answer y = -4. DOK 2, F74. Example 5 (cut). Left off the short form (full Savvas quiz only); one whiteboard round (asymptotes x = h, y = k of 1/(x-h) + k) if the Realize quiz is used. Lesson 4-2's kept Example 4 finds asymptotes again.",
-      "order": 15,
+      "back": "Horizontal asymptote of y = 1/(x+5) - 4. Answer y = -4. DOK 2, F74. Example 5 (kept) Step 3 and Try It 5 (y = 1/(x+2) - 4, the same k). On the short form; proposed graded 10.",
+      "order": 16,
       "after": [
         "5848560130f7"
       ],
@@ -190,8 +204,8 @@
       "id": "d851f61f2465",
       "type": "anchor",
       "front": "Quiz item 5 is covered by?",
-      "back": "y = 1/x translated 3 units up and 2 units to the left. Answer A, y = 1/(x+2) + 3. DOK 2, F74. Example 5 (cut). Left off the short form (full Savvas quiz only); same whiteboard round as item 4.",
-      "order": 16,
+      "back": "y = 1/x translated 3 units up and 2 units to the left. Answer A, y = 1/(x+2) + 3. DOK 2, F74. Example 5 (kept) Step 2 read backward; the packet's Practice block is a structural parallel (5 down, 1 left; same choice traps). On the short form; proposed graded 10.",
+      "order": 17,
       "after": [
         "5848560130f7"
       ],
@@ -199,246 +213,224 @@
       "source": "quizFocus.items.5"
     },
     {
-      "id": "3ce32550c1a5",
+      "id": "062b5f5c1099",
+      "type": "anchor",
+      "front": "Topic 4 test item 1 is covered by?",
+      "back": "Width y of a fixed-area rectangle varies inversely with length x; y = 3 in. when x = 14 in.; find y when x = 30 in. (DOK 2): Example 3, cut",
+      "order": 18,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.1"
+    },
+    {
+      "id": "6c2b5edb234d",
+      "type": "anchor",
+      "front": "Topic 4 test item 5 is covered by?",
+      "back": "Describe the translation from y = 1/x to y = 1/(x + 3) - 4 (DOK 1): Example 5, kept",
+      "order": 19,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.5"
+    },
+    {
+      "id": "5da12ea77140",
+      "type": "anchor",
+      "front": "Topic 4 test item 14 is covered by?",
+      "back": "xy = 6 is translated up 3 and right 2; select all equations of the image (DOK 2): Example 5, kept",
+      "order": 20,
+      "after": [
+        "5848560130f7"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.14"
+    },
+    {
+      "id": "dfe90f90ed6a",
       "type": "step",
-      "front": "Example 3: ?",
-      "back": "Use an Inverse Variation Model · DOK 2, 3 · practice 12, 17, 20, 22, 23, 25, 26 · The lesson for the quiz: its two steps (find k from one known pair, then use k) answer quiz items 1, 2 and 3 (items 1 and 3 supply all 20 base points, and item 2 supplies up to 5 bonus points), and item 3 is this Example in a new …",
-      "order": 17,
+      "front": "Example 5: ?",
+      "back": "Graph Translations of the Reciprocal Function · DOK 2 · practice 8, 19 · The lesson for the Topic 4 test: g(x) = 1/(x - h) + k is y = 1/x translated h right and k up, which answers topic item 5 (describe the translation to 1/(x + 3) - 4) and item 14 (equations of xy = 6 translated up 3 and right 2), and quiz items 4 …",
+      "order": 21,
       "after": [
         "5848560130f7",
         "9b89a3c2df0d"
       ],
       "minute": null,
-      "source": "examples[n=3]"
+      "source": "examples[n=5]"
     },
     {
-      "id": "a5058563e23d",
+      "id": "77a69726f8c5",
       "type": "cue",
-      "front": "Example 3 · Purposeful question: What information about the inverse variation model is given that will be used to set up an equation?",
-      "back": "Listen for: The model explains that a certain length of bouzouki string, (s), will produce a certain frequency, (f), from which you can find the constant of variation, their product.",
-      "order": 18,
+      "front": "Example 5 · Connect representations: How can you recognize and describe a translation on a coordinate plane?",
+      "back": "Listen for: A translation is a shift from an original position that is described by horizontal movement and/or vertical movement.",
+      "order": 22,
       "after": [
-        "3ce32550c1a5"
+        "dfe90f90ed6a"
       ],
       "minute": null,
-      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
       "teaching": {
-        "example": 3,
+        "example": 5,
         "kind": "question",
-        "category": "PurposefulQuestions",
+        "category": "GeneralizeETP",
         "source": {
           "file": "a2_4-1_TE.tex",
-          "anchor": 3,
-          "category": "PurposefulQuestions",
+          "anchor": 5,
+          "category": "GeneralizeETP",
           "block": 0,
-          "page": "16: 183 Understand & Apply",
+          "page": "18: 185 Understand & Apply",
           "item": 0,
-          "line": 317
+          "line": 426
         },
-        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[0]",
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[0]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "f9cb16782a50",
+      "id": "33fd1b361b10",
       "type": "cue",
-      "front": "Example 3 · Purposeful question: Using the inverse variation model, can you find the frequency for any string length?",
-      "back": "Listen for: Yes; if you know the values of (k) and (s), then any frequency can be found using the equation (f=k/s).",
-      "order": 19,
+      "front": "Example 5 · Connect representations: What is a good point of reference when graphing a translation?",
+      "back": "Listen for: The parent function (f(x)=1/x) has asymptotes that intersect at (0,0). Therefore, that is a good point to count from when identifying the asymptotes of a translation as well as the points of the graph.",
+      "order": 23,
       "after": [
-        "a5058563e23d"
+        "77a69726f8c5"
       ],
       "minute": null,
-      "source": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+      "source": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
       "teaching": {
-        "example": 3,
+        "example": 5,
         "kind": "question",
-        "category": "PurposefulQuestions",
+        "category": "GeneralizeETP",
         "source": {
           "file": "a2_4-1_TE.tex",
-          "anchor": 3,
-          "category": "PurposefulQuestions",
+          "anchor": 5,
+          "category": "GeneralizeETP",
           "block": 0,
-          "page": "16: 183 Understand & Apply",
+          "page": "18: 185 Understand & Apply",
           "item": 1,
-          "line": 319
+          "line": 428
         },
-        "promptKey": "examples[n=3].teacherPrompts.PurposefulQuestions[0].questions[1]",
+        "promptKey": "examples[n=5].teacherPrompts.GeneralizeETP[0].questions[1]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "4bb51f2f5aaa",
+      "id": "4e5fd7933a37",
       "type": "cue",
-      "front": "Example 3 · Check student thinking: How can you write an inverse variation model to represent the situation being described?",
-      "back": "Listen for: Since the temperature determines the time, ((degrees)(time)=k), creating the inverse variation model (t=k/d).",
-      "order": 20,
+      "front": "Example 5 · Check student thinking: What can you use to determine the specific transformation in order to identify the equations of the asymptotes, and how does this relate to the domain and the range?",
+      "back": "Listen for: For the function in (f(x)=1/(x-h)+k) form, (h,k) is the point of intersection of the asymptotes. Therefore, (x=h) and (y=k) are the equations of the asymptotes. The values of (h) and (k) also define the limitations on the domain and range.",
+      "order": 24,
       "after": [
-        "f9cb16782a50"
+        "33fd1b361b10"
       ],
       "minute": null,
-      "source": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+      "source": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
       "teaching": {
-        "example": 3,
+        "example": 5,
         "kind": "question",
         "category": "ElicitEvidence",
         "source": {
           "file": "a2_4-1_TE.tex",
-          "anchor": 3,
+          "anchor": 5,
           "category": "ElicitEvidence",
           "block": 0,
-          "page": "16: 183 Understand & Apply",
+          "page": "18: 185 Understand & Apply",
           "item": 0,
-          "line": 347
+          "line": 456
         },
-        "promptKey": "examples[n=3].teacherPrompts.ElicitEvidence[0].questions[0]",
+        "promptKey": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[0]",
         "part": 1,
         "parts": 1
       }
     },
     {
-      "id": "8211c5082471",
+      "id": "7f2b8f95278a",
       "type": "cue",
-      "front": "Example 3 · Teacher prompt: On each spoke, write something that occurs in cycles.",
-      "back": "Listen for: Samples: the Olympics, full moon, seasons, school year, cell phone bills, life cycle of a butterfly",
-      "order": 21,
-      "after": [
-        "4bb51f2f5aaa"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_4-1_TE.tex",
-          "anchor": 3,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "16: 183 Understand & Apply",
-          "item": 0,
-          "line": 357
-        },
-        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[0]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "11254a3f17f3",
-      "type": "cue",
-      "front": "Example 3 · Teacher prompt: What is a cycle in regards to a guitar string?",
-      "back": "Listen for: the number of times it vibrates back and forth",
-      "order": 22,
-      "after": [
-        "8211c5082471"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_4-1_TE.tex",
-          "anchor": 3,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "16: 183 Understand & Apply",
-          "item": 1,
-          "line": 359
-        },
-        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[1]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "87d6fa35094b",
-      "type": "cue",
-      "front": "Example 3 · Teacher prompt: Although the definitions are similar, which one best describes the way frequency is used in the example?",
-      "back": "Listen for: 2",
-      "order": 23,
-      "after": [
-        "11254a3f17f3"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_4-1_TE.tex",
-          "anchor": 3,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "16: 183 Understand & Apply",
-          "item": 2,
-          "line": 362
-        },
-        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[2]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "dddda07aac2d",
-      "type": "cue",
-      "front": "Example 3 · Teacher prompt: What affects the frequency of sounds from a guitar?",
-      "back": "Listen for: Samples: the string length; the tension of the string",
-      "order": 24,
-      "after": [
-        "87d6fa35094b"
-      ],
-      "minute": null,
-      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
-      "teaching": {
-        "example": 3,
-        "kind": "question",
-        "category": "ELLAddendum",
-        "source": {
-          "file": "a2_4-1_TE.tex",
-          "anchor": 3,
-          "category": "ELLAddendum",
-          "block": 0,
-          "page": "16: 183 Understand & Apply",
-          "item": 3,
-          "line": 364
-        },
-        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[3]",
-        "part": 1,
-        "parts": 1
-      }
-    },
-    {
-      "id": "b939d9494149",
-      "type": "cue",
-      "front": "Example 3 · Teacher prompt: Why is this situation an example of an inverse variation?",
-      "back": "Listen for: As one variable increases, the other decreases proportionally.",
+      "front": "Example 5 · Check student thinking: How can you define (h,k) in translations of the reciprocal function?",
+      "back": "Listen for: The coordinate (h,k) is the intersection of the horizontal and vertical asymptotes.",
       "order": 25,
       "after": [
-        "dddda07aac2d"
+        "4e5fd7933a37"
       ],
       "minute": null,
-      "source": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+      "source": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[1]",
       "teaching": {
-        "example": 3,
+        "example": 5,
         "kind": "question",
-        "category": "ELLAddendum",
+        "category": "ElicitEvidence",
         "source": {
           "file": "a2_4-1_TE.tex",
-          "anchor": 3,
-          "category": "ELLAddendum",
+          "anchor": 5,
+          "category": "ElicitEvidence",
           "block": 0,
-          "page": "16: 183 Understand & Apply",
-          "item": 4,
-          "line": 367
+          "page": "18: 185 Understand & Apply",
+          "item": 1,
+          "line": 458
         },
-        "promptKey": "examples[n=3].teacherPrompts.ELLAddendum[0].questions[4]",
+        "promptKey": "examples[n=5].teacherPrompts.ElicitEvidence[0].questions[1]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "2b983b7f4992",
+      "type": "cue",
+      "front": "Example 5 · Reasoning: A translation of the reciprocal function has a vertical asymptote at (x=5). What is a possible equation for the function?",
+      "back": "Listen for: Sample: (f(x)=1/(x-5))",
+      "order": 26,
+      "after": [
+        "7f2b8f95278a"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "HabitsOfMind",
+        "source": {
+          "file": "a2_4-1_TE.tex",
+          "anchor": 5,
+          "category": "HabitsOfMind",
+          "block": 0,
+          "page": "18: 185 Understand & Apply",
+          "item": 0,
+          "line": 463
+        },
+        "promptKey": "examples[n=5].teacherPrompts.HabitsOfMind[0].questions[0]",
+        "part": 1,
+        "parts": 1
+      }
+    },
+    {
+      "id": "1d9e52413f08",
+      "type": "cue",
+      "front": "Example 5 · Extend thinking: How can you use a graph to identify the translation from one function to another?",
+      "back": "Listen for: Graph both functions by identifying their translation from the parent function. Then describe the translation from the first function to the second function detailing the horizontal and vertical shifts.",
+      "order": 27,
+      "after": [
+        "2b983b7f4992"
+      ],
+      "minute": null,
+      "source": "examples[n=5].teacherPrompts.RtIExtend[0].questions[0]",
+      "teaching": {
+        "example": 5,
+        "kind": "question",
+        "category": "RtIExtend",
+        "source": {
+          "file": "a2_4-1_TE.tex",
+          "anchor": 5,
+          "category": "RtIExtend",
+          "block": 0,
+          "page": "18: 185 Understand & Apply",
+          "item": 0,
+          "line": 470
+        },
+        "promptKey": "examples[n=5].teacherPrompts.RtIExtend[0].questions[0]",
         "part": 1,
         "parts": 1
       }
@@ -448,9 +440,9 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "The time t required to empty a water tank varies inversely as the rate of pumping p. A pump can empty a water tank in 40 min at the rate of 120 gal/min. Write the equation of the inverse variation. How long will it take the pump to empty the water tank at the rate of 200 gal/min?",
-      "order": 26,
+      "order": 28,
       "after": [
-        "3ce32550c1a5"
+        "dfe90f90ed6a"
       ],
       "minute": null,
       "source": "dok3.task"
@@ -459,10 +451,10 @@
       "id": "4cbbd0e4fb3e",
       "type": "anchor",
       "front": "DOK 3 key?",
-      "back": "t = 4,800/p (k = 40(120) = 4,800); 4,800/200 = 24 min Same structure as quiz item 3 (a time that varies inversely with a rate) but students must decide which quantities multiply to k and write the equation themselves before answering; IXL items are DOK 1-2 and cannot stand in for it. …",
-      "order": 27,
+      "back": "t = 4,800/p (k = 40(120) = 4,800); 4,800/200 = 24 min R3: every DOK 3 item in the item analysis (20, 22, 25, 26) is filed under Example 3, which this re-cut drops, and Example 5's items (8, 19) are DOK 2, so the lesson's DOK 3 item is named as the self-paced extension and printed in the packet as the Extension …",
+      "order": 29,
       "after": [
-        "3ce32550c1a5"
+        "dfe90f90ed6a"
       ],
       "minute": null,
       "source": "dok3.key"
@@ -472,7 +464,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "Two rectangles both have an area of 144 square units: 72 by 2 and 24 by 6.",
-      "order": 28,
+      "order": 30,
       "after": [
         "487e047e88f7"
       ],
@@ -484,7 +476,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Sketch as many other rectangles as you can that have the same area. Organize and record your data for the lengths and widths of the rectangles. (1 by 144, 3 by 48, 4 by 36, 8 by 18, 9 by 16, and 12 by 12)",
-      "order": 29,
+      "order": 31,
       "after": [
         "2c91543cd77c"
       ],
@@ -496,7 +488,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Use Structure: considering rectangles with an area of 144 square units, what happens to the width of the rectangle as the length increases? (As the width increases, the length decreases.)",
-      "order": 30,
+      "order": 32,
       "after": [
         "2c91543cd77c"
       ],
@@ -508,7 +500,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Examine at least five other pairs of rectangles, each pair sharing the same area. How would you describe the relationship between the lengths and widths? (In each pair, the lengths and widths are different by reciprocal factors.)",
-      "order": 31,
+      "order": 33,
       "after": [
         "2c91543cd77c"
       ],
@@ -520,7 +512,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "How many length-width combinations for a rectangle can be created from a given pair of factors? → Two; given the factors 2 and 3, a rectangle can have length 2 and width 3, or length 3 and width 2.",
-      "order": 32,
+      "order": 34,
       "after": [
         "2c91543cd77c"
       ],
@@ -532,7 +524,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "Do the lengths and widths always have to be integers? → No; a rectangle with a length of 5 units and a width of 28.8 units has an area of 144 square units.",
-      "order": 33,
+      "order": 35,
       "after": [
         "f718e926343e"
       ],
@@ -544,7 +536,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Sketch as many rectangles as you can that have an area of 25 square units. Is the relationship between the lengths and widths the same as or different from the one for an area of 144 square units? → The same.",
-      "order": 34,
+      "order": 36,
       "after": [
         "d93f5bcd324e"
       ],
@@ -556,7 +548,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "Can you write a general equation that models this situation? → xy = k",
-      "order": 35,
+      "order": 37,
       "after": [
         "2f2824ab0a5e"
       ],
@@ -568,7 +560,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "What would the equation look like solved for the dependent variable y? → y = k/x",
-      "order": 36,
+      "order": 38,
       "after": [
         "ad91465f0570"
       ],
@@ -580,7 +572,7 @@
       "type": "cue",
       "front": "Habits of Mind, Use Structure: ask?",
       "back": "How does the formula for the area of a rectangle make sense with the relationships you found? → Area is length times width, so any two factors could be the length and width and give the same product, the area.",
-      "order": 37,
+      "order": 39,
       "after": [
         "7448f0fc837f"
       ],
@@ -591,8 +583,8 @@
       "id": "da8c11f5b03e",
       "type": "trap",
       "front": "Opener caution?",
-      "back": "The opener is the constant product k = xy, which is Example 3 Step 1, so it bridges straight into the kept Example; keep it to the 'After' questions (xy = k, then y = k/x) and skip the sketching marathon in part A. …",
-      "order": 38,
+      "back": "The opener is the constant product k = xy (Example 3 Step 1, which is cut); it establishes y = k/x, so specialize to k = 1 to introduce the parent reciprocal function y = 1/x, then translate it in kept Example 5. Keep it to the 'After' questions (xy = k, then y = k/x) and skip the sketching marathon in part A. …",
+      "order": 40,
       "after": [
         "2c91543cd77c"
       ],
@@ -600,13 +592,37 @@
       "source": "modelDiscuss.caution"
     },
     {
+      "id": "c301636fdf9b",
+      "type": "anchor",
+      "front": "IXL for example 5?",
+      "back": "ULD Domain and range of reciprocal functions",
+      "order": 41,
+      "after": [
+        "dfe90f90ed6a"
+      ],
+      "minute": null,
+      "source": "ixl.ULD"
+    },
+    {
+      "id": "0e1138ad2495",
+      "type": "anchor",
+      "front": "IXL for example 5? (2)",
+      "back": "F6J Translations of functions",
+      "order": 42,
+      "after": [
+        "dfe90f90ed6a"
+      ],
+      "minute": null,
+      "source": "ixl.F6J"
+    },
+    {
       "id": "15305144c912",
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "PNY Write and solve inverse variation equations",
-      "order": 39,
+      "order": 43,
       "after": [
-        "3ce32550c1a5"
+        "487e047e88f7"
       ],
       "minute": null,
       "source": "ixl.PNY"
@@ -616,24 +632,12 @@
       "type": "anchor",
       "front": "IXL for example 3? (2)",
       "back": "PXE Find the constant of variation",
-      "order": 40,
-      "after": [
-        "3ce32550c1a5"
-      ],
-      "minute": null,
-      "source": "ixl.PXE"
-    },
-    {
-      "id": "c301636fdf9b",
-      "type": "anchor",
-      "front": "IXL for example 5?",
-      "back": "ULD Domain and range of reciprocal functions",
-      "order": 41,
+      "order": 44,
       "after": [
         "487e047e88f7"
       ],
       "minute": null,
-      "source": "ixl.ULD"
+      "source": "ixl.PXE"
     }
   ]
 }

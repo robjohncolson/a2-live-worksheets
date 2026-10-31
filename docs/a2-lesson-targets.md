@@ -281,6 +281,11 @@ The reverse of Topic 8: not a Precalculus prerequisite, but parts are valuable S
 
 ## Topic 1 assessment audit (14 items)
 
+Every topic's Savvas Topic Assessment (Forms A and B) is now transcribed in
+`../Lesson_planning/a2_T<N>_assessment_TE.tex` and mapped item by item to its lesson and Example in
+`data/a2-topic-assessments.json`; `docs/a2-topic-assessment-audit.md` is the generated audit for
+Topics 1-7 and supersedes the table below for the fast lessons (`docs/a2-fast-lesson-spec.md`, R1).
+
 Standards named in the curriculum map for Topic 1: F-IF.B.4, F-IF.B.5, F-IF.B.6, F-BF.B.3,
 F-IF.C.7b, F-BF.A.2, A-REI.D.11, A-REI.C.6, A-CED.A.2/3. Highlighted practices: MP.3 (construct
 viable arguments) and MP.7 (make use of structure).
@@ -309,9 +314,9 @@ Findings worth carrying into lesson checks and topic assessments:
 - Content coverage is good, but the assessment is roughly 29% DOK 1 and 71% DOK 2 with no DOK 3
   item. Nothing asks students to justify, critique, compare strategies, or construct an argument,
   despite MP.3 and MP.7 being the highlighted practices.
-- Items 13 and 14 use three-variable systems. The listed standard A-REI.C.6 specifies pairs of
-  equations in two variables, so label those items Savvas Topic 1 extension content rather than a
-  Massachusetts standard requirement.
+- Item 13 uses a three-variable system. The listed standard A-REI.C.6 specifies pairs of
+  equations in two variables, so label that item Savvas Topic 1 extension content rather than a
+  Massachusetts standard requirement. (Item 14 is a two-variable system in context.)
 
 ## How the platform uses this
 

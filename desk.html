@@ -7158,6 +7158,14 @@ function _appendA2TeacherPrep(fold, prep) {
         if (prep.quizFocus.answer) p(q, 'Key', prep.quizFocus.answer);
         (prep.quizFocus.needs || []).forEach(function (n) { p(q, 'Needs', n); });
     }
+    // The Topic Assessment items this lesson owns: the end goal the quiz leads to.
+    if (prep.topicAssessment && prep.topicAssessment.items) {
+        var ta = prep.topicAssessment, taKeys = Object.keys(ta.items);
+        var taLabel = 'Topic ' + ta.topic + ' test: ' + (taKeys.length ? 'item' + (taKeys.length === 1 ? ' ' : 's ') + taKeys.join(', ') : 'no item from this lesson');
+        var t = sub(taLabel, true);
+        if (ta.source) p(t, null, ta.source, 'a2-week-muted');
+        taKeys.forEach(function (k) { p(t, 'Item ' + k, ta.items[k]); });
+    }
     if (Array.isArray(prep.examples)) {
         var ex = sub('Examples: keep ' + prep.examples.filter(function (e) { return e.keep; }).map(function (e) { return e.n; }).join(', ') + ', cut ' + prep.examples.filter(function (e) { return !e.keep; }).map(function (e) { return e.n; }).join(', '), true);
         prep.examples.forEach(function (e) {
@@ -15373,7 +15381,7 @@ async function _reconcileRosterSection() {
 try { window._reconcileRosterSection = _reconcileRosterSection; } catch (_) {}
 try { _reconcileRosterSection().catch(function () {}); } catch (_) {}
 uClock();setInterval(uClock,15e3);
-var APP_BUILD = '2026-10-31-ofgw';   // scripts/bump-build.mjs replaces this stamp
+var APP_BUILD = '2026-10-31-r325';   // scripts/bump-build.mjs replaces this stamp
 try { if (typeof _fcLoadFlags === 'function') _fcLoadFlags(); } catch (_) {}
 // Screen-size aware calendar: re-render when the viewport crosses the short/tall
 // threshold (rCal re-reads innerHeight for its week cap). Debounced; no-op if rCal is absent.

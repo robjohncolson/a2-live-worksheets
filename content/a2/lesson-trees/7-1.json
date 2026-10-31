@@ -225,11 +225,47 @@
       "source": "quizFocus.items.5"
     },
     {
+      "id": "ed40e14ffadc",
+      "type": "anchor",
+      "front": "Topic 7 test item 9 is covered by?",
+      "back": "Select all measures of the drawn angle (terminal side 30 degrees below the negative x-axis): -17pi/6, -210, -2pi/3, 5pi/6, 210 (DOK 2): Example 1 and 3, kept",
+      "order": 19,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.9"
+    },
+    {
+      "id": "b7a9214514af",
+      "type": "anchor",
+      "front": "Topic 7 test item 13 is covered by?",
+      "back": "Ferris wheel radius 20 ft, angle pi/3 radians: distance traveled, to the nearest foot (DOK 2): Example 4, cut",
+      "order": 20,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.13"
+    },
+    {
+      "id": "37f19cede934",
+      "type": "anchor",
+      "front": "Topic 7 test item 14 is covered by?",
+      "back": "An angle intercepts an arc of length 31pi/36 on the unit circle: a possible positive and negative measure (DOK 2): Example 1 and 3, kept",
+      "order": 21,
+      "after": [
+        "c7688cea8332"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.14"
+    },
+    {
       "id": "55d422f9176e",
       "type": "step",
       "front": "Example 1: ?",
       "back": "Explore angles in the coordinate plane (A: standard position and quadrants; B: sketch 210° and 315°; C: negative and coterminal angles) · DOK 1-2 · practice 16, 21, 22, 48, 19 · Quiz items 1, 2 and 3 (item 3 graded, item 1 the bonus). …",
-      "order": 19,
+      "order": 22,
       "after": [
         "c7688cea8332",
         "001369d907ec"
@@ -242,7 +278,7 @@
       "type": "step",
       "front": "Example 3: ?",
       "back": "Convert between degrees and radians (A: 5pi/4 to 225°; B: 75° to 5pi/12) · DOK 1-2 · practice 27, 28, 29, 30, 31, 32, 33, 34, 20 · Quiz item 4 (graded) and the radian choices of item 1 (bonus). …",
-      "order": 20,
+      "order": 23,
       "after": [
         "55d422f9176e"
       ],
@@ -254,7 +290,7 @@
       "type": "cue",
       "front": "Example 1 · Connect representations: What statement can you make about an angle by looking at its graph?",
       "back": "Listen for: You can give a range of 90° that the angle measure will fall.",
-      "order": 21,
+      "order": 24,
       "after": [
         "55d422f9176e"
       ],
@@ -283,7 +319,7 @@
       "type": "cue",
       "front": "Example 1 · Connect representations: What does it mean when you say an angle is in standard position?",
       "back": "Listen for: The vertex of the angle is at the origin; the initial side is the positive x-axis, and the terminal side is the other ray that forms the angle.",
-      "order": 22,
+      "order": 25,
       "after": [
         "a857076ecdae"
       ],
@@ -312,7 +348,7 @@
       "type": "cue",
       "front": "Example 1 · Purposeful question: How do you know that the triangle you formed is a right triangle?",
       "back": "Listen for: The line drawn to the point is a vertical line, so it is perpendicular to the x-axis.",
-      "order": 23,
+      "order": 26,
       "after": [
         "a4ed867b08f5"
       ],
@@ -341,7 +377,7 @@
       "type": "cue",
       "front": "Example 1 · Purposeful question: What do you notice about the positive and negative measures of an angle?",
       "back": "Listen for: The sum of the absolute values of the measures is 360°.",
-      "order": 24,
+      "order": 27,
       "after": [
         "336e03dfa620"
       ],
@@ -370,7 +406,7 @@
       "type": "cue",
       "front": "Example 1 · Purposeful question: How is measuring a positive angle different than measuring a negative angle?",
       "back": "Listen for: When you measure a positive angle, you start at the initial side and rotate counterclockwise until you reach the terminal side. When you measure a negative angle, you start at the initial side and rotate clockwise until you reach the terminal side.",
-      "order": 25,
+      "order": 28,
       "after": [
         "fd6c3c576463"
       ],
@@ -399,7 +435,7 @@
       "type": "cue",
       "front": "Example 1 · Purposeful question: The measure of the angle could be ((120+360k)°), where k is any natural number. How many coterminal angles are there?",
       "back": "Listen for: Because k could be any natural number, there are an infinite number of coterminal angles.",
-      "order": 26,
+      "order": 29,
       "after": [
         "9d90ba1ce6f5"
       ],
@@ -428,7 +464,7 @@
       "type": "trap",
       "front": "Example 1 · Common error: What error should I watch for, and how does the TE respond? (1/2)",
       "back": "Try It! 1 Students may confuse the direction of the positive and negative angle measures and write the wrong sign with the measure. Have students trace the angle with their finger so they can see which direction it is going.",
-      "order": 27,
+      "order": 30,
       "after": [
         "d44375904098"
       ],
@@ -457,7 +493,7 @@
       "type": "trap",
       "front": "Example 1 · Common error: What error should I watch for, and how does the TE respond? (2/2)",
       "back": "Positive angles start at the initial side and rotate counterclockwise toward the positive part of the y-axis, and negative angles rotate clockwise toward the negative part of the y-axis.",
-      "order": 28,
+      "order": 31,
       "after": [
         "15fda2f8a197"
       ],
@@ -486,7 +522,7 @@
       "type": "cue",
       "front": "Example 1 · Teacher prompt: What does it mean to terminate?",
       "back": "Listen for: To terminate something means to end it.",
-      "order": 29,
+      "order": 32,
       "after": [
         "8436fd29bc77"
       ],
@@ -515,7 +551,7 @@
       "type": "cue",
       "front": "Example 1 · Teacher prompt: One ray of an angle in standard position is called the initial side. Why is the other ray called the terminal side?",
       "back": "Listen for: You can think of the initial side as the side where the angle starts and the terminal side as the side where the angle ends.",
-      "order": 30,
+      "order": 33,
       "after": [
         "13e0e09cbf6f"
       ],
@@ -544,7 +580,7 @@
       "type": "cue",
       "front": "Example 1 · Teacher prompt: Why is it important to do some things in a standard way?",
       "back": "Listen for: so the results are the same each time; For example, when using standard ruler, 8 inches is always the same length.",
-      "order": 31,
+      "order": 34,
       "after": [
         "cfc0497b8672"
       ],
@@ -573,7 +609,7 @@
       "type": "cue",
       "front": "Example 1 · Teacher prompt: What makes an angle in standard position on a coordinate plane standard?",
       "back": "Listen for: It is always positioned so one of its rays (the initial side) is found along the x-axis and the vertex is at the origin.",
-      "order": 32,
+      "order": 35,
       "after": [
         "8897a7f85154"
       ],
@@ -602,7 +638,7 @@
       "type": "cue",
       "front": "Example 1 · Teacher prompt: Do co-terminal angles always share a side?",
       "back": "Listen for: Yes; the initial side and the terminal side are always shared.",
-      "order": 33,
+      "order": 36,
       "after": [
         "b5a88e536e3e"
       ],
@@ -631,7 +667,7 @@
       "type": "cue",
       "front": "Example 1 · Teacher prompt: Can two angles that are co-terminal both be negative?",
       "back": "Listen for: Yes; subtracting 360° from a negative angle will result in two negative co-terminal angles.",
-      "order": 34,
+      "order": 37,
       "after": [
         "a007adbf0ee6"
       ],
@@ -660,7 +696,7 @@
       "type": "cue",
       "front": "Example 3 · Purposeful question: How do you know that (2π) radians is equal to 360°?",
       "back": "Listen for: The arc length of a 360° angle is the circumference of the circle. The circumference of a unit circle is (2π) units. Because 1 radian subtends an arc length of 1 unit, the radian measure of the 360° angle is ((2π)/1=2π) radians.",
-      "order": 35,
+      "order": 38,
       "after": [
         "fbfce64eb244"
       ],
@@ -689,7 +725,7 @@
       "type": "cue",
       "front": "Example 3 · Purposeful question: Why do you multiply the number of radians by ((180°)/(π)) when converting radians to degrees?",
       "back": "Listen for: (π) radians is equal to 180°. If you divide both sides by (π), you find that 1 radian (=(180°)/(π)).",
-      "order": 36,
+      "order": 39,
       "after": [
         "995fea588a06"
       ],
@@ -718,7 +754,7 @@
       "type": "cue",
       "front": "Example 3 · Check student thinking: What method can you use to rewrite a radian measure in degrees?",
       "back": "Listen for: You can multiply the radian measure by the conversion factor ((180°)/(π)).",
-      "order": 37,
+      "order": 40,
       "after": [
         "8963b0b97570"
       ],
@@ -747,7 +783,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "What is the relationship between a positive angle and a negative angle that share a common terminal side? Write a formula that relates the two measures.",
-      "order": 38,
+      "order": 41,
       "after": [
         "fbfce64eb244"
       ],
@@ -759,7 +795,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "TE: the sum of the positive angle and the negative angle is a multiple of 360° or 2pi; negative angle + positive angle = k x 360° or 2k pi. The TE transcription flags this: coterminal measures differ by a multiple of 360°, so the formula that holds is positive - negative = 360°k (k a positive integer), e.g. …",
-      "order": 39,
+      "order": 42,
       "after": [
         "fbfce64eb244"
       ],
@@ -771,7 +807,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "A triangle with a vertical side of 20, a horizontal side of 21 and a hypotenuse of 29; angle A is at the bottom right, between the base and the hypotenuse.",
-      "order": 40,
+      "order": 43,
       "after": [
         "9b2aee0b0b40"
       ],
@@ -783,7 +819,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. Is this a right triangle? How do you know? (Yes: 20^2 + 21^2 = 400 + 441 = 841 = 29^2.)",
-      "order": 41,
+      "order": 44,
       "after": [
         "29734a24f956"
       ],
@@ -795,7 +831,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. If it is, find sin A, cos A, and tan A. (sin A = 20/29, cos A = 21/29, tan A = 20/21.)",
-      "order": 42,
+      "order": 45,
       "after": [
         "29734a24f956"
       ],
@@ -807,7 +843,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. Look for Relationships: suppose there is a similar triangle that has lengths twice as long. Would the sine, cosine, and tangent of the corresponding angle be twice as large? Explain. (No: numerator and denominator both double, so each ratio is unchanged.)",
-      "order": 43,
+      "order": 46,
       "after": [
         "29734a24f956"
       ],
@@ -819,7 +855,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "If triangle ABC is a right triangle, which angle must be the right angle? → The angle opposite the longest side (29). The TE prints 'Angle A', but the figure puts A at an acute angle opposite the side of length 20; the right angle is the unlabeled vertex between the sides 20 and 21.",
-      "order": 44,
+      "order": 47,
       "after": [
         "29734a24f956"
       ],
@@ -831,7 +867,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "Draw a triangle with lengths twice those of triangle ABC, then write the ratios for the sine, cosine, and tangent of the angle corresponding with angle A. What happens when you simplify the ratios of the side lengths? …",
-      "order": 45,
+      "order": 48,
       "after": [
         "3fdbec666cc4"
       ],
@@ -843,7 +879,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "Draw 3 more triangles similar to triangle ABC. Show how the ratios created are equivalent. → Check students' work.",
-      "order": 46,
+      "order": 49,
       "after": [
         "76f8481d9961"
       ],
@@ -855,7 +891,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "How many ratios of side lengths are there in one right triangle? → 6",
-      "order": 47,
+      "order": 50,
       "after": [
         "eba9b931d369"
       ],
@@ -867,7 +903,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "If a group of triangles is similar, are ratios of side lengths always equivalent? → Yes; similar triangles multiply every side by the same value, so each ratio stays the same.",
-      "order": 48,
+      "order": 51,
       "after": [
         "4cef8ffaa56a"
       ],
@@ -879,7 +915,7 @@
       "type": "cue",
       "front": "Habits of Mind, Look for Relationships: ask?",
       "back": "Find the side lengths of two right triangles, one that is similar to triangle ABC and one that is not. How do the sine, cosine, and tangent ratios compare to the ratios for triangle ABC? …",
-      "order": 49,
+      "order": 52,
       "after": [
         "152d6d8b4329"
       ],
@@ -891,7 +927,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The opener reviews right-triangle trigonometry from Geometry; it leads to Example 5 (sine and cosine on the unit circle), which the fast packet cuts, not to the kept Examples 1 and 3. …",
-      "order": 50,
+      "order": 53,
       "after": [
         "29734a24f956"
       ],
@@ -903,7 +939,7 @@
       "type": "anchor",
       "front": "IXL for example 1?",
       "back": "7CV Coterminal angles",
-      "order": 51,
+      "order": 54,
       "after": [
         "55d422f9176e"
       ],
@@ -915,7 +951,7 @@
       "type": "anchor",
       "front": "IXL for example 1? (2)",
       "back": "BRP Reference angles",
-      "order": 52,
+      "order": 55,
       "after": [
         "55d422f9176e"
       ],
@@ -927,7 +963,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "EDC Convert between radians and degrees",
-      "order": 53,
+      "order": 56,
       "after": [
         "fbfce64eb244"
       ],
@@ -939,7 +975,7 @@
       "type": "anchor",
       "front": "IXL for example 4?",
       "back": "UA5 Radians and arc length",
-      "order": 54,
+      "order": 57,
       "after": [
         "9b2aee0b0b40"
       ],

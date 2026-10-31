@@ -1,9 +1,10 @@
 # Algebra 2 fast lessons: spec
 
-**Status:** draft for the PLC, written 2026-10-30 from the October PLC record. It describes how the
-fast packets for 1-3, 1-5 and 1-6 were made and sets the same method for every lesson still in the
-year plan. The keep/cut choices it produces are **proposals** until the PLC confirms them, exactly
-like the Oct 13 draft for 1-5 was.
+**Status:** draft for the PLC, written 2026-10-30 from the October PLC record, amended 2026-10-31
+(the Topic Assessment is the end goal; section 1 last row, R1, R8, sections 3, 7, 10, 12). It
+describes how the fast packets for 1-3, 1-5 and 1-6 were made and sets the same method for every
+lesson still in the year plan. The keep/cut choices it produces are **proposals** until the PLC
+confirms them, exactly like the Oct 13 draft for 1-5 was.
 
 Companion files: `../Lesson_planning/fast-packet-template.tex` (the shared preamble),
 `../Lesson_planning/a2_1-3_fast.tex`, `a2_1-5_fast.tex`, `a2_1-6_fast.tex` (exemplar packets),
@@ -22,10 +23,16 @@ Companion files: `../Lesson_planning/fast-packet-template.tex` (the shared pream
 | Oct 20 | PLC, Mr. Serino | **Go fast through the rest of Topic 1** to reach the Topic 1 Assessment by the Q1 close. Per lesson: **at most one or two packet Examples, chosen for the quiz items, then Web Jams on the lesson's IXL skills, then the Savvas Lesson Quiz.** SmartScore 70 on each starred skill replaces the quiz score. Picks: 1-3 Ex 3+5, 1-5 Ex 1+2, 1-6 Ex 1+2; 1-4 skipped; Try It 5 no longer graded for 1-2 | memory `a2-grading-rule-sep28` (Oct 20), `CONTINUATION_PROMPT.md` items 5-6, `content/a2/day-log.json` plans |
 | Oct 20 | teacher + assistant | The three fast packets and the 1-2 short-form quiz built on `fast-packet-template.tex` (12 pt, 0.7 in margins, goals box, "On the quiz" box, Example then Try It pairs, IXL table with stars, sentence frames) | `../Lesson_planning/a2_1-*_fast.tex` |
 | Oct 27 | teacher (Performance Matters goals) | Every lesson opens with a one-problem Do Now **from the assigned IXL skill, never a new task**; every lesson ends with **visible independent work**; **one language routine per section per week** tied to the posted language objective; lesson checks require shown work; SmartScore target 70 | memory `a2-performance-matters-goals`, `roster-local/performance-matters-goals-2026-27.md` |
+| Oct 31 | teacher | **The Savvas Topic Assessment is the end goal of every lesson; the lesson quiz is the intermediate.** The district's common topic assessments are being remade from the Savvas Topic Assessments (the department removes questions it judges unnecessary, aiming the course at the SAT and Precalculus); the old district Topic 2 and 7 forms no longer exist, the new ones arrive later. So each topic's Savvas Topic Assessment (Forms A and B, TE pages) is transcribed as ground truth and every item is mapped to its lesson and Example before the lessons of that topic are cut | `../Lesson_planning/a2_T<N>_assessment_TE.tex`, `data/a2-topic-assessments.json`, `docs/a2-topic-assessment-audit.md` |
 
 The Teacher Edition transcriptions (`../Lesson_planning/a2_<lesson>_TE.tex`, 2024 enVision, all 69
 lessons) are ground truth for every example, Try It, practice item, DOK label and lesson-quiz item
-(memory `a2-te-transcription-ground-truth`). The TE prints no standards codes; standards come from
+(memory `a2-te-transcription-ground-truth`). The Topic Assessment transcriptions
+(`../Lesson_planning/a2_T<N>_assessment_TE.tex`, Topics 1-7: Form A and Form B item by item with
+the TE's marked answers, and the TE item-analysis table with DOK and Skills Review codes) are
+ground truth for the topic items; `data/a2-topic-assessments.json` maps each item to its lesson
+and Example and `node scripts/build-a2-topic-assessment-audit.mjs` renders that map as
+`docs/a2-topic-assessment-audit.md`. The TE prints no standards codes; standards come from
 the Savvas Realize standards pane (`aga_24_a2_na_<tt><ll>_lq_standards.txt`) or the district
 curriculum map.
 
@@ -54,12 +61,14 @@ In `../Lesson_planning/` (public repo; never student data):
 |---|---|
 | `a2_<L>_fast.tex` + `.pdf` | the student packet, 3-4 pages, on `fast-packet-template.tex` |
 | `a2_<L>_quiz_fast.tex` + `.pdf` | the lesson quiz, short form: the quiz items the kept Examples teach, a scoring line, an answer-key page; built from the TE's Lesson Quiz block. The teacher may use the Realize PDF instead |
+| `a2_T<N>_assessment_TE.tex` | once per topic, before its lessons: the Savvas Topic Assessment transcribed from the TE pages (Form A and Form B, every item with the marked answer, the item-analysis table), verified item by item by an independent agent |
 
 In this repo:
 
 | File | What |
 |---|---|
-| `content/a2/lesson-prep.json` | one entry per lesson (section 7): the keep/cut proposal, quiz focus, DOK 3, IXL per example, opener questions |
+| `data/a2-topic-assessments.json` | once per topic: every Topic Assessment item mapped to its lesson and Example, with DOK, Skills Review code, SAT and Precalculus relevance, the district form's status, and the per-lesson re-ranking (section 7); `docs/a2-topic-assessment-audit.md` is generated from it |
+| `content/a2/lesson-prep.json` | one entry per lesson (section 7): the keep/cut proposal, the topic items the lesson owns, quiz focus, DOK 3, IXL per example, opener questions |
 | `content/a2/lesson-objectives.json` | one entry per lesson (section 8): the packet's goals verbatim, essential question, standards |
 | `data/a2-lesson-skills.json` | Topics 3+: the lesson's IXL codes (section 9); Topics 1-2 are already mapped and keep their lists |
 | generated | `content/a2/lesson-skills.json`, `content/a2/lesson-trees/<L>.json`, `content/a2/teacher-prompts/<L>.json` |
@@ -72,14 +81,19 @@ from the prep entry), the published lesson model in `content/a2/lessons.json` (t
 
 Apply in order. Every choice is written down in the prep entry (`why`) so the PLC can overturn it.
 
-- **R1 Quiz first.** List the lesson-quiz items (TE block `<L> Lesson Quiz:`) and, for each, the
-  Example that teaches it (the TE's `SEE EXAMPLE` tags on practice items, the quiz item analysis,
-  the concept summary). Topic-assessment items, when known, outrank quiz items (Topic 1 so far:
-  `docs/a2-lesson-targets.md`).
-- **R2 At most two Examples** (one for a `brief` lesson) that together cover the most quiz items;
-  tie-break toward the Example the concept summary is built on, then the one with a DOK 3 practice
-  item. Everything else is cut. A kept Example's parts (A/B) may be trimmed to the part the quiz
-  needs; the packet says so.
+- **R1 Topic test first, then the quiz.** List the Savvas Topic Assessment items the lesson owns
+  (`a2_T<N>_assessment_TE.tex`; the map in `data/a2-topic-assessments.json`) and, for each, the
+  Example that teaches it; then the lesson-quiz items (TE block `<L> Lesson Quiz:`) the same way
+  (the TE's `SEE EXAMPLE` tags on practice items, the quiz item analysis, the concept summary). A
+  topic item outranks a quiz item. The district's common assessment is the Savvas form with
+  questions removed, aimed at the SAT and Precalculus (Oct 31), so when two Examples tie on topic
+  items prefer the one whose items the audit tags SAT- or Precalculus-relevant; when the district
+  form arrives, the items it dropped leave the ranking. No lesson of a topic is cut before that
+  topic's assessment is transcribed and mapped.
+- **R2 At most two Examples** (one for a `brief` lesson) that together cover the most topic items,
+  then the most quiz items; tie-break toward the Example the concept summary is built on, then the
+  one with a DOK 3 practice item. Everything else is cut. A kept Example's parts (A/B) may be
+  trimmed to the part the topic test and the quiz need; the packet says so.
 - **R3 One DOK 3 survives.** Name one DOK 3 practice item from the TE item analysis tied to a kept
   Example. It appears in the packet as the Practice or Exit block, or is named as the self-paced
   extension; an IXL skill never replaces it. When the item analysis files every DOK 3 item under a
@@ -102,11 +116,16 @@ Apply in order. Every choice is written down in the prep entry (`why`) so the PL
   say / describe / explain ... using the words ...") naming 3-5 words; every Example ends with a
   "Say it:" frame using those words; the last block of the packet reuses the frame (sentence
   completion or exit question). Spanish cognates from the TE vocabulary builder may be listed.
-- **R8 "On the quiz" box:** plain words, numbered to the Savvas quiz items, telling students what
-  each kept Example buys them on the quiz; an item the short form leaves off is marked "(full
-  Savvas quiz only)". The IXL table's Feeds column uses the same numbers.
+- **R8 "On the quiz" and "On the Topic test" boxes:** plain words, numbered to the Savvas quiz
+  items, telling students what each kept Example buys them on the quiz; an item the short form
+  leaves off is marked "(full Savvas quiz only)". The IXL table's Feeds column uses the same
+  numbers. Under it, `\topictarget{<N>}{...}` names the Topic Assessment question(s) the kept
+  Examples answer, in plain words with the Example that teaches each ("Question 13 asks for the
+  equation of a parabola through three points: Example 4"); a lesson whose kept Examples answer no
+  topic item says so ("No question on the Topic 2 test comes from this lesson; the quiz is the
+  goal") and the prep entry explains the choice.
 - **R9 Layout:** `\input{fast-packet-template}`, `\packethead{Lesson <L>}{<TE title>}`, `\goals`,
-  `\quiztarget`, `\wspart{Example N}{<TE title>}`, `\wspart{Try It N}{...}`, optional
+  `\quiztarget`, `\topictarget`, `\wspart{Example N}{<TE title>}`, `\wspart{Try It N}{...}`, optional
   `\wspart{Practice}{...}`, `\wspart{IXL}{Practice for the quiz}`, a closing block. Graphs use the
   template's `sheetgrid` / `unitgrid` styles and `closed` / `open` nodes; windows match the TE
   figure description. 3-4 pages; `\newpage` so each Example + Try It pair opens a page when it fits.
@@ -128,6 +147,7 @@ Apply in order. Every choice is written down in the prep entry (`why`) so the PL
 \packethead{Lesson 2-1}{Vertex Form of a Quadratic Function}
 \goals{I can ...}{I can ... using the words ...}
 \quiztarget{You will (1) ... (2) ...}
+\topictarget{2}{Question 1 asks for vertex form from the vertex and a point (Example 3); Question 13 ... (Example 4).}
 \wspart{Example 3}{Write the equation of a parabola from its vertex and a point}
   ... worked example, graph in a minipage, table or numbered steps, then
 \textbf{Say it:} ... \blank[...] ... \lines[2]
@@ -173,6 +193,8 @@ Same shape as `1-3` and `1-5`; the Desk fold, the Tomorrow draft and the lesson 
   "status": "Fast-lesson draft <date>; PLC has not met on this lesson. Keep Examples a, b.",
   "objectives": { "learning": "<packet learning goal>", "language": "<packet language goal>",
                   "essentialQuestion": "<TE essential question>" },
+  "topicAssessment": { "topic": <N>, "source": "a2_T<N>_assessment_TE.tex (Forms A and B; TE printed <pages>); data/a2-topic-assessments.json",
+                       "items": { "<item>": "<what Form A asks> (DOK <d>): Example <n>, kept|cut", ... } },
   "quizFocus": { "item": <graded item>, "source": "a2_<L>_TE.tex Lesson Quiz; aga_24_a2_na_<tt><ll>_lq.pdf when downloaded",
                  "what": "...", "answer": "<TE key> (verify against the TE key on quiz day)",
                  "needs": ["..."], "items": { "1": "...", "2": "...", ... } },
@@ -186,8 +208,27 @@ Same shape as `1-3` and `1-5`; the Desk fold, the Tomorrow draft and the lesson 
 ```
 
 `examples` lists every TE Example with `keep` true or false and the practice item numbers from
-the item analysis. `node scripts/build-lesson-tree.mjs --lesson <L>` must succeed (it needs the TE
+the item analysis. `topicAssessment.items` lists exactly the items `data/a2-topic-assessments.json`
+assigns to this lesson (`tests/a2-topic-assessments.test.js` checks the two agree); the Desk fold
+shows them under "Topic N test" and the lesson tree makes one anchor per item after the quiz
+anchors. `node scripts/build-lesson-tree.mjs --lesson <L>` must succeed (it needs the TE
 prompts for each kept Example) and `--all --check` must stay green.
+
+`data/a2-topic-assessments.json`, one block per topic:
+
+```
+"<N>": { "title": "<topic title>", "transcription": "a2_T<N>_assessment_TE.tex", "printed": "<pages>", "items": <count>,
+         "district": { "status": "remade from the Savvas form; not yet received" | "SY25-26 form on disk", "file": "...", "note": "..." },
+         "byItem": [ { "n": 1, "dok": 2, "skills": ["F17"], "lesson": "2-1", "examples": [3],
+                       "formA": "<what Form A asks, one line>", "formB": "<Form B parallel>", "keyA": "...", "keyB": "...",
+                       "sat": "high|medium|low|none", "satWhy": "...", "precalc": "high|medium|low|none", "precalcWhy": "...",
+                       "district": "kept|dropped|unknown", "districtNote": "...", "note": "..." }, ... ],
+         "lessons": { "<L>": { "items": [1, 13], "currentKept": [2, 4], "recommendedKept": [3, 4], "change": true, "why": "..." }, ... } }
+```
+
+`examples` names the TE Example(s) that teach the item (empty when the item needs no single
+Example: a Topic Review skill, or a lesson the plan skips). `lessons` records the re-ranking
+under R1 for every lesson of the topic that has a fast packet.
 
 ## 8. Objectives entry (`content/a2/lesson-objectives.json`)
 
@@ -216,6 +257,11 @@ Then `node scripts/build-a2-lesson-skills.mjs` and the test's "Topics 1 and 2" e
 ## 10. Build and validation order
 
 ```
+# Lesson_planning, once per topic, before its lessons
+#   a2_T<N>_assessment_TE.tex transcribed from Topic_0<N>_Teacher_Edition.pdf (Topic Assessment pages),
+#   verified item by item; then data/a2-topic-assessments.json authored and
+node scripts/build-a2-topic-assessment-audit.mjs            # writes docs/a2-topic-assessment-audit.md (--check verifies)
+
 # Lesson_planning
 pdflatex -interaction=nonstopmode -halt-on-error a2_<L>_fast.tex      # and a2_<L>_quiz_fast.tex
 python tools/check_fast_packet.py a2_<L>_fast.tex --quiz a2_<L>_quiz_fast.tex \
@@ -254,6 +300,9 @@ one-Example form; `later` lessons are built on request with the same commands.
 
 ## 12. Review and sign-off
 
+0. Per topic, first: the Topic Assessment is transcribed (Opus 5.5) from the TE pages and verified
+   item by item against the page images by an independent agent (both forms, answers, item
+   analysis); then the item-to-Example map is written and verified the same way.
 1. Author (Opus 5.5) writes the packet, the quiz and the three draft entries, compiles, lints.
 2. Verifier (independent agent) renders the pages, recomputes every worked answer against the TE,
    checks R1-R11 and returns findings; the author fixes and recompiles; two rounds at most.

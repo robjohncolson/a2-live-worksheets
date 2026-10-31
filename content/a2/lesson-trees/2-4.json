@@ -211,11 +211,35 @@
       "source": "quizFocus.items.5"
     },
     {
+      "id": "0bbddbab2bcf",
+      "type": "anchor",
+      "front": "Topic 2 test item 8 is covered by?",
+      "back": "Use square roots to solve x^2 = -25 over the complex numbers; select all solutions (DOK 2): Example 1, cut",
+      "order": 18,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.8"
+    },
+    {
+      "id": "5aeb3d448008",
+      "type": "anchor",
+      "front": "Topic 2 test item 9 is covered by?",
+      "back": "Write (4 + i)(4 - i) in the form a + bi (choices 16 - i, 16 - i^2, 17, 8) (DOK 1): Example 3, kept",
+      "order": 19,
+      "after": [
+        "5df2f6b84642"
+      ],
+      "minute": null,
+      "source": "topicAssessment.items.9"
+    },
+    {
       "id": "14aedb928529",
       "type": "step",
       "front": "Example 3: ?",
       "back": "Multiply Complex Numbers · DOK 1, 3 · practice 24-29, 47 · The lesson. Quiz items 3 (conjugate product, Part B) and 4 (three factors, Parts A and B chained) are the two graded items; it uses i, i^2 = -1 and a + bi, which is the arithmetic the 3-5 hard gate needs; the concept summary's four operations are built on …",
-      "order": 18,
+      "order": 20,
       "after": [
         "5df2f6b84642",
         "55aa77318c6b"
@@ -228,7 +252,7 @@
       "type": "cue",
       "front": "Example 3 · Support: How are these equations alike? How are they different?",
       "back": "Listen for: They all have a single isolated variable on the left side and a number on the right. Some numbers are imaginary and some are real.",
-      "order": 19,
+      "order": 21,
       "after": [
         "14aedb928529"
       ],
@@ -257,7 +281,7 @@
       "type": "cue",
       "front": "Example 3 · Support: What is the product of each expression?",
       "back": "Listen for: (6i+4); (-4i+8); (6x-4x^2); (-4x-8x^2)",
-      "order": 20,
+      "order": 22,
       "after": [
         "8f8bd466acdf"
       ],
@@ -286,7 +310,7 @@
       "type": "cue",
       "front": "Example 3 · Support: How are the expressions for 1 and 3 alike? How are they different?",
       "back": "Listen for: They are each a monomial multiplied by a binomial. They use the same coefficients. One uses a variable, while the other uses (i).",
-      "order": 21,
+      "order": 23,
       "after": [
         "468f360cee4b"
       ],
@@ -315,7 +339,7 @@
       "type": "cue",
       "front": "Example 3 · Support: How are the results different?",
       "back": "Listen for: The products of the expressions with (i) have a constant term, but the products of expressions with (x) do not because (i^2) simplifies to (-1).",
-      "order": 22,
+      "order": 24,
       "after": [
         "b1a9f7843c0a"
       ],
@@ -344,7 +368,7 @@
       "type": "cue",
       "front": "Example 3 · Purposeful question: How is the problem in Part B like multiplying binomials?",
       "back": "Listen for: Each of the two terms in the first expression must be multiplied by each of the two terms in the second expression.",
-      "order": 23,
+      "order": 25,
       "after": [
         "afcb42958cb2"
       ],
@@ -373,7 +397,7 @@
       "type": "anchor",
       "front": "DOK 3 task?",
       "back": "The complex number a + bi can be represented as the point (a, b). The graph shows the point (3, 2). a. Write the point as x + yi. b. Multiply the complex number by i and interpret the new value as a point. c. Repeat for two other points. How does multiplication by i rotate a point?",
-      "order": 24,
+      "order": 26,
       "after": [
         "14aedb928529"
       ],
@@ -385,7 +409,7 @@
       "type": "anchor",
       "front": "DOK 3 key?",
       "back": "a. 3 + 2i. b. i(3 + 2i) = 3i + 2i^2 = -2 + 3i, the point (-2, 3). c. (a, b) always becomes (-b, a): a 90 degree counterclockwise rotation about the origin. The only DOK 3 tied to the kept Example: it is Example 3A's product (a monomial times a binomial, i^2 = -1) used to find a pattern and argue it generalizes. …",
-      "order": 25,
+      "order": 27,
       "after": [
         "14aedb928529"
       ],
@@ -397,7 +421,7 @@
       "type": "cue",
       "front": "Opener situation?",
       "back": "A class plays \"Solve It, You're Out.\" Each student holds a card with an integer from -5 to 5; when an equation is shown, any student whose card is a solution is eliminated. Five students remain: Mercedes -3, Steve 0, Aubrey 1, Fatima 3, Elijah -2.",
-      "order": 26,
+      "order": 28,
       "after": [
         "25b8a4728878"
       ],
@@ -409,7 +433,7 @@
       "type": "cue",
       "front": "Opener prompt 1?",
       "back": "A. The next equation presented was x^2 = 9. Which student(s) was eliminated? Explain. (Mercedes and Fatima: (-3)^2 = 9 and 3^2 = 9.)",
-      "order": 27,
+      "order": 29,
       "after": [
         "2b4f696b6b08"
       ],
@@ -421,7 +445,7 @@
       "type": "cue",
       "front": "Opener prompt 2?",
       "back": "B. Construct Arguments: in the next round, the equation presented was x^2 = -4. Is Elijah eliminated? Why or why not? (No: (-2)^2 = 4, not -4.)",
-      "order": 28,
+      "order": 30,
       "after": [
         "2b4f696b6b08"
       ],
@@ -433,7 +457,7 @@
       "type": "cue",
       "front": "Opener prompt 3?",
       "back": "C. What is true about solutions to x^2 = a when a is a positive number? When a is a negative number? What about when a = 0? (a > 0: two solutions, the square root of a and its opposite; a = 0: one solution, 0; a < 0: no real-number solutions.)",
-      "order": 29,
+      "order": 31,
       "after": [
         "2b4f696b6b08"
       ],
@@ -445,7 +469,7 @@
       "type": "cue",
       "front": "Before, whole class: ask?",
       "back": "How can you tell whether someone should be eliminated from the game? → His or her card will contain a solution to the equation.",
-      "order": 30,
+      "order": 32,
       "after": [
         "2b4f696b6b08"
       ],
@@ -457,7 +481,7 @@
       "type": "cue",
       "front": "During, small group: ask?",
       "back": "Explain how you can identify the number of solutions to the equation x^2 = a when a > 0 without calculating. → For any positive nonzero number there are two square roots, a positive and a negative one, so the equation has 2 solutions.",
-      "order": 31,
+      "order": 33,
       "after": [
         "743bd34bc875"
       ],
@@ -469,7 +493,7 @@
       "type": "cue",
       "front": "Early finishers: ask?",
       "back": "What equations of the form x^2 = a are needed to eliminate Steve, Aubrey, and Elijah? → x^2 = 0 eliminates Steve, x^2 = 1 eliminates Aubrey, and x^2 = 4 eliminates Elijah.",
-      "order": 32,
+      "order": 34,
       "after": [
         "a36e1198f351"
       ],
@@ -481,7 +505,7 @@
       "type": "cue",
       "front": "After, whole class: ask?",
       "back": "Are there any values for a for which nobody would be eliminated from the game? → Yes; when a is not equal to 0, 1, 4, 9, 16, or 25.",
-      "order": 33,
+      "order": 35,
       "after": [
         "215413e6aebf"
       ],
@@ -493,7 +517,7 @@
       "type": "cue",
       "front": "After, whole class: ask? (2)",
       "back": "What values of a will eliminate only one person? → Considering the entire deck of Solve It! cards, only a = 0.",
-      "order": 34,
+      "order": 36,
       "after": [
         "5fd29ebabd1a"
       ],
@@ -505,7 +529,7 @@
       "type": "cue",
       "front": "Habits of Mind, Reason: ask?",
       "back": "Steve thought that he was a sure winner because he could not be eliminated. Is he correct? Explain. If not, write an equation of the form x^2 = a that would eliminate Steve. → No; the equation x^2 = 0 would eliminate him.",
-      "order": 35,
+      "order": 37,
       "after": [
         "5db467bb359f"
       ],
@@ -517,7 +541,7 @@
       "type": "trap",
       "front": "Opener caution?",
       "back": "The opener leads to Example 1 (x^2 = a negative number), which is cut. Use part B and part C only, as the bridge to the packet's concept box (i is the square root of -1, i^2 = -1), five minutes at most, then go straight to Example 3. The Do Now stays the assigned IXL skill (5VV or VZ8), never this game.",
-      "order": 36,
+      "order": 38,
       "after": [
         "2b4f696b6b08"
       ],
@@ -529,7 +553,7 @@
       "type": "anchor",
       "front": "IXL for example 3?",
       "back": "VZ8 Multiply complex numbers",
-      "order": 37,
+      "order": 39,
       "after": [
         "14aedb928529"
       ],
@@ -541,7 +565,7 @@
       "type": "anchor",
       "front": "IXL for example 3? (2)",
       "back": "7U5 Complex conjugates",
-      "order": 38,
+      "order": 40,
       "after": [
         "14aedb928529"
       ],
@@ -553,7 +577,7 @@
       "type": "anchor",
       "front": "IXL for example 2?",
       "back": "JVF Add and subtract complex numbers",
-      "order": 39,
+      "order": 41,
       "after": [
         "25b8a4728878"
       ],
@@ -565,7 +589,7 @@
       "type": "anchor",
       "front": "IXL for example 1?",
       "back": "5VV Introduction to complex numbers",
-      "order": 40,
+      "order": 42,
       "after": [
         "25b8a4728878"
       ],
@@ -577,7 +601,7 @@
       "type": "anchor",
       "front": "IXL for example 1? (2)",
       "back": "EUT Powers of i",
-      "order": 41,
+      "order": 43,
       "after": [
         "25b8a4728878"
       ],
@@ -589,7 +613,7 @@
       "type": "anchor",
       "front": "IXL for example 4?",
       "back": "MBM Divide complex numbers",
-      "order": 42,
+      "order": 44,
       "after": [
         "25b8a4728878"
       ],
